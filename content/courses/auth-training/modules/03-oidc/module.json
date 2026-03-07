@@ -6,7 +6,9 @@
   "difficulty": "intermediate",
   "order": 3,
   "estimatedHours": 4.5,
-  "prerequisiteModules": ["02-oauth2"],
+  "prerequisiteModules": [
+    "02-oauth2"
+  ],
   "learningObjectives": [
     "Understand the relationship between OAuth 2.0 and OpenID Connect",
     "Decode and validate ID Tokens (JWT structure)",
@@ -19,9 +21,7 @@
     "id": "badge-oidc-core",
     "name": "OpenID Connect Expert",
     "description": "Mastered OpenID Connect authentication, ID Tokens, UserInfo, discovery, and session management",
-    "icon": "🔓",
+    "icon": "\ud83d\udd13",
     "color": "intermediate"
-  },
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  }
 }

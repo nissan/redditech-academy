@@ -6,11 +6,13 @@
   "description": "Master modern authorization with Google Zanzibar, Amazon Cedar, OpenFGA, and scalable permission systems for complex access control.",
   "difficulty": "advanced",
   "estimatedHours": 2.5,
-  "prerequisiteModules": ["05-fido2"],
+  "prerequisiteModules": [
+    "05-fido2"
+  ],
   "badge": {
     "id": "badge-zanzibar",
     "name": "Authorization Expert",
-    "icon": "🔐",
+    "icon": "\ud83d\udd10",
     "description": "Mastered fine-grained authorization with Zanzibar and ReBAC",
     "color": "advanced"
   },
@@ -23,7 +25,5 @@
     "Build scalable permission checks at Google scale",
     "Master Amazon Cedar policy-driven authorization",
     "Choose the right authorization system for your use case"
-  ],
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  ]
 }

@@ -6,12 +6,10 @@
   "difficulty": "advanced",
   "estimatedHours": 4,
   "order": 10,
-  "requiresPassword": true,
-  "password": "NoAccess2025",
   "badge": {
     "name": "IAM Architect",
     "description": "Completed the Applied Case Study and demonstrated practical IAM architecture skills",
-    "icon": "🏆"
+    "icon": "\ud83c\udfc6"
   },
   "learningObjectives": [
     "Apply IAM concepts to real-world defense technology scenarios",

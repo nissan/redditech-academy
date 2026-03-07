@@ -6,10 +6,12 @@
   "description": "Master passwordless authentication with FIDO2, WebAuthn, passkeys, and hardware-bound credentials for phishing-resistant security.",
   "difficulty": "intermediate",
   "estimatedHours": 3.5,
-  "prerequisiteModules": ["04-saml"],
+  "prerequisiteModules": [
+    "04-saml"
+  ],
   "badge": {
     "name": "Passwordless Expert",
-    "icon": "🔑",
+    "icon": "\ud83d\udd11",
     "description": "Mastered FIDO2 and WebAuthn passwordless authentication"
   },
   "learningObjectives": [
@@ -19,7 +21,5 @@
     "Master registration and authentication ceremonies",
     "Understand attestation and credential backup",
     "Build phishing-resistant authentication flows"
-  ],
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  ]
 }

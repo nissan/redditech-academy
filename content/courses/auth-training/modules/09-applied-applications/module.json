@@ -14,14 +14,17 @@
     "Learn from real-world implementation patterns and best practices",
     "Apply course principles to practical authentication challenges"
   ],
-  "prerequisiteModules": ["01-auth-fundamentals", "02-oauth2", "03-oidc", "05-fido2"],
+  "prerequisiteModules": [
+    "01-auth-fundamentals",
+    "02-oauth2",
+    "03-oidc",
+    "05-fido2"
+  ],
   "badge": {
     "id": "applied-applications-expert",
     "name": "Applied Applications Expert",
     "description": "Mastered real-world authentication implementations and can evaluate and apply IAM solutions in production contexts",
-    "icon": "🛠️",
+    "icon": "\ud83d\udee0\ufe0f",
     "color": "advanced"
-  },
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  }
 }

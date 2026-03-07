@@ -14,14 +14,14 @@
     "Architect Zero Trust security models with policy decision points and micro-segmentation",
     "Prepare for future IAM trends including passwordless, AI-powered security, and quantum-resistant cryptography"
   ],
-  "prerequisiteModules": ["06-zanzibar"],
+  "prerequisiteModules": [
+    "06-zanzibar"
+  ],
   "badge": {
     "id": "future-ready-iam",
     "name": "Future-Ready IAM Expert",
     "description": "Mastered emerging trends in identity and access management including DID, Verifiable Credentials, CAE, and Zero Trust",
-    "icon": "🚀",
+    "icon": "\ud83d\ude80",
     "color": "advanced"
-  },
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  }
 }

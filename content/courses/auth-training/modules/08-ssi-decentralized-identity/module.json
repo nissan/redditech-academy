@@ -15,14 +15,15 @@
     "Understand DIDComm protocol for peer-to-peer communication",
     "Navigate the SSI ecosystem and standards (W3C, EU eIDAS 2.0)"
   ],
-  "prerequisiteModules": ["01-auth-fundamentals", "03-oidc"],
+  "prerequisiteModules": [
+    "01-auth-fundamentals",
+    "03-oidc"
+  ],
   "badge": {
     "id": "ssi-expert",
     "name": "SSI & Decentralized Identity Expert",
     "description": "Mastered Self-Sovereign Identity, DIDs, Verifiable Credentials, and decentralized identity systems",
-    "icon": "🆔",
+    "icon": "\ud83c\udd94",
     "color": "advanced"
-  },
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  }
 }

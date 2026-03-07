@@ -13,14 +13,14 @@
     "Manage token lifecycle with refresh tokens, introspection, and revocation",
     "Identify and prevent common OAuth security vulnerabilities"
   ],
-  "prerequisiteModules": ["01-auth-fundamentals"],
+  "prerequisiteModules": [
+    "01-auth-fundamentals"
+  ],
   "badge": {
     "id": "badge-oauth2",
     "name": "OAuth 2.0 Master",
     "description": "Expert in OAuth flows, PKCE, token management, and security best practices",
-    "icon": "🔑",
+    "icon": "\ud83d\udd11",
     "color": "beginner"
-  },
-  "requiresPassword": true,
-  "password": "NoAccess2025"
+  }
 }
