@@ -1,32 +1,14 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
-import remarkFrontmatter from "remark-frontmatter";
-import rehypeHighlight from "rehype-highlight";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkGfm, remarkFrontmatter],
-    rehypePlugins: [
-      rehypeHighlight,
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-          properties: {
-            className: ["anchor"],
-          },
-        },
-      ],
-    ],
-  },
-});
+// Next.js 16 / @next/mdx 16: remark/rehype plugins with function options
+// are not serializable for the Rust MDX compiler.
+// Plugins are applied in mdx-components.tsx via the useMDXComponents pattern,
+// or via a custom prose wrapper component.
+const withMDX = createMDX({});
 
 export default withMDX(nextConfig);
