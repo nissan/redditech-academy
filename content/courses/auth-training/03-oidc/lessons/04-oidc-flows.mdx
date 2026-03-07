@@ -1,0 +1,316 @@
+---
+title: "OIDC Flows: Authorization Code, Implicit, and Hybrid"
+slug: "04-oidc-flows"
+duration: 30
+keyTakeaways:
+  - "Authorization Code Flow: Most secure, uses backend token exchange with client secret"
+  - "Implicit Flow: Deprecated, returns tokens in URL fragment - use Code + PKCE instead"
+  - "Hybrid Flow: Combines features of Code and Implicit for complex scenarios"
+  - "Response types: code (auth code), id_token (ID Token), token (access token)"
+  - "Flow selection based on client type: confidential (Code Flow) vs public (Code + PKCE)"
+---
+
+## OIDC Flow Overview
+
+OpenID Connect defines **three primary flows** for authentication, each suited to different application types:
+
+**1. Authorization Code Flow**
+- **Best for**: Server-side web applications, mobile apps (with PKCE)
+- **Security**: Highest (tokens never exposed to browser)
+- **Tokens**: Authorization code → Exchange for ID Token + Access Token
+- **Status**: ✅ **Recommended** (with PKCE)
+
+**2. Implicit Flow**
+- **Best for**: (Deprecated - don't use)
+- **Security**: Lower (tokens in URL fragment)
+- **Tokens**: ID Token (and optionally Access Token) directly in redirect
+- **Status**: ⚠️ **Deprecated** (use Authorization Code + PKCE instead)
+
+**3. Hybrid Flow**
+- **Best for**: Complex scenarios needing both front-channel and back-channel tokens
+- **Security**: Medium-High
+- **Tokens**: Some tokens from authorization endpoint, others from token endpoint
+- **Status**: ✅ Used in specific enterprise scenarios
+
+**Current Best Practice (2025):**
+Use **Authorization Code Flow with PKCE** for all application types (web, mobile, SPA).
+
+## Authorization Code Flow with OIDC
+
+```typescript
+// This is OAuth 2.0 Authorization Code Flow + OpenID Connect
+
+// Step 1: Generate PKCE challenge
+import crypto from 'crypto';
+
+const codeVerifier = crypto.randomBytes(32).toString('base64url');
+const codeChallenge = crypto
+  .createHash('sha256')
+  .update(codeVerifier)
+  .digest('base64url');
+
+// Step 2: Authorization Request (redirect user to identity provider)
+const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
+authUrl.searchParams.set('response_type', 'code');
+authUrl.searchParams.set('client_id', 'my-client-id.apps.googleusercontent.com');
+authUrl.searchParams.set('redirect_uri', 'https://myapp.com/callback');
+authUrl.searchParams.set('scope', 'openid profile email');  // ← OIDC scopes
+authUrl.searchParams.set('state', generateRandomState());
+authUrl.searchParams.set('nonce', generateRandomNonce());   // ← OIDC addition (replay protection)
+authUrl.searchParams.set('code_challenge', codeChallenge);
+authUrl.searchParams.set('code_challenge_method', 'S256');
+
+// Redirect user
+res.redirect(authUrl.toString());
+
+// Step 3: User authenticates, consents, redirects back
+// GET /callback?code=AUTH_CODE&state=STATE
+
+// Step 4: Exchange authorization code for tokens
+const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: new URLSearchParams({
+    grant_type: 'authorization_code',
+    code: authCode,
+    redirect_uri: 'https://myapp.com/callback',
+    client_id: 'my-client-id',
+    client_secret: 'my-client-secret',  // Optional for public clients
+    code_verifier: codeVerifier         // PKCE verifier
+  })
+});
+
+const tokens = await tokenResponse.json();
+
+// Response includes:
+{
+  "access_token": "ya29.a0AfH6...",
+  "id_token": "eyJhbGciOiJSUzI1NiIs...",  // ← ID Token (JWT)
+  "expires_in": 3600,
+  "token_type": "Bearer",
+  "refresh_token": "1//0gHN...",
+  "scope": "openid profile email"
+}
+
+// Step 5: Validate ID Token (see previous lesson)
+const claims = await validateIdToken(tokens.id_token);
+
+// Step 6: Create user session
+req.session.userId = claims.sub;
+req.session.email = claims.email;
+req.session.name = claims.name;
+```
+
+## Implicit Flow (Deprecated)
+
+**Historical Context:**
+The Implicit Flow was designed for browser-based apps (SPAs) that couldn't keep secrets. Tokens were returned directly in the URL fragment.
+
+**Why It Was Created:**
+Before PKCE, SPAs couldn't securely use Authorization Code Flow (no client secret). Implicit Flow was a workaround.
+
+**Authorization Request (Implicit Flow):**
+```
+GET /authorize?
+  response_type=id_token token&  ← Returns tokens directly
+  client_id=my-app&
+  redirect_uri=https://myapp.com/callback&
+  scope=openid profile email&
+  state=xyz123&
+  nonce=abc456
+```
+
+**Callback (Tokens in URL Fragment):**
+```
+https://myapp.com/callback#
+  access_token=AT123&
+  id_token=eyJhbGci...&
+  token_type=Bearer&
+  expires_in=3600&
+  state=xyz123
+```
+
+**Security Issues:**
+❌ Tokens exposed in browser history
+❌ Tokens visible in JavaScript (XSS risk)
+❌ No refresh tokens (poor UX for long sessions)
+❌ Vulnerable to token injection attacks
+
+**Current Recommendation:**
+⚠️ **Do NOT use Implicit Flow**
+✅ **Use Authorization Code Flow with PKCE** for SPAs instead
+
+**OIDC Spec Status:**
+OpenID Connect still documents Implicit Flow for backward compatibility, but OAuth 2.0 Security Best Current Practice (RFC 8252) recommends against it.
+
+## Hybrid Flow
+
+**What is Hybrid Flow?**
+Hybrid Flow combines elements of Authorization Code and Implicit flows. Some tokens are returned from the authorization endpoint (front-channel), others from the token endpoint (back-channel).
+
+**response_type Values:**
+- **code id_token**: Authorization code + ID Token from authorization endpoint
+- **code token**: Authorization code + Access Token from authorization endpoint
+- **code id_token token**: All three from authorization endpoint
+
+**Use Case:**
+- Frontend needs immediate ID Token to render UI
+- Backend needs authorization code to fetch access token securely
+- Common in enterprise scenarios with complex architectures
+
+**Example Authorization Request:**
+```
+GET /authorize?
+  response_type=code id_token&  ← Hybrid
+  client_id=my-app&
+  redirect_uri=https://myapp.com/callback&
+  scope=openid profile&
+  state=xyz123&
+  nonce=abc456&
+  response_mode=form_post  ← Optional: POST instead of GET
+```
+
+**Response (Front-Channel):**
+```
+https://myapp.com/callback#
+  code=AUTH_CODE&
+  id_token=eyJhbGci...&
+  state=xyz123
+```
+
+**Then Exchange Code (Back-Channel):**
+Client uses the authorization code to fetch access token and refresh token from token endpoint.
+
+**When to Use Hybrid Flow:**
+- Rarely needed in modern applications
+- Legacy enterprise SSO implementations
+- Complex multi-party scenarios
+
+**Modern Alternative:**
+Use Authorization Code Flow with PKCE and cache ID Token claims on the frontend if needed.
+
+## OIDC Flow Selection Guide
+
+```typescript
+// Decision tree for choosing OIDC flow in 2025
+
+function selectOIDCFlow(appType: string) {
+  switch (appType) {
+    case 'server-side-web-app':
+      return {
+        flow: 'Authorization Code Flow',
+        responseType: 'code',
+        pkce: 'recommended',  // Even with client secret
+        tokens: 'Back-channel (token endpoint)',
+        security: 'Highest',
+        example: 'Express.js, Django, Rails app'
+      };
+
+    case 'single-page-app':
+      return {
+        flow: 'Authorization Code Flow with PKCE',
+        responseType: 'code',
+        pkce: 'required',     // No client secret possible
+        tokens: 'Back-channel (token endpoint)',
+        security: 'High',
+        example: 'React, Vue, Angular app',
+        note: 'Do NOT use Implicit Flow (deprecated)'
+      };
+
+    case 'mobile-app':
+      return {
+        flow: 'Authorization Code Flow with PKCE',
+        responseType: 'code',
+        pkce: 'required',
+        tokens: 'Back-channel (token endpoint)',
+        security: 'High',
+        example: 'iOS, Android native app',
+        redirectUri: 'Use custom URL scheme or universal links'
+      };
+
+    case 'native-desktop-app':
+      return {
+        flow: 'Authorization Code Flow with PKCE',
+        responseType: 'code',
+        pkce: 'required',
+        tokens: 'Back-channel (token endpoint)',
+        security: 'High',
+        example: 'Electron, .NET desktop app',
+        redirectUri: 'Use loopback redirect (http://127.0.0.1:PORT)'
+      };
+
+    case 'cli-tool':
+      return {
+        flow: 'Device Code Flow (OAuth 2.0 extension)',
+        responseType: 'device_code',
+        pkce: 'not applicable',
+        tokens: 'Polling token endpoint',
+        security: 'Medium-High',
+        example: 'aws-cli, gcloud, terraform',
+        note: 'For input-constrained devices'
+      };
+
+    default:
+      return {
+        flow: 'Authorization Code Flow with PKCE',
+        note: 'Default recommendation for all scenarios'
+      };
+  }
+}
+
+// Usage
+const config = selectOIDCFlow('single-page-app');
+console.log(`Use: ${config.flow}`);
+console.log(`PKCE: ${config.pkce}`);
+```
+
+## Response Modes
+
+OIDC supports different **response modes** to control how the authorization server returns tokens:
+
+**1. query (Default for Code Flow)**
+Tokens/codes in query string:
+```
+https://myapp.com/callback?code=ABC&state=XYZ
+```
+
+**2. fragment (Default for Implicit/Hybrid)**
+Tokens in URL fragment (not sent to server):
+```
+https://myapp.com/callback#access_token=AT&id_token=IT
+```
+
+**3. form_post**
+Tokens sent via HTTP POST with auto-submitting form:
+```
+POST /callback
+Content-Type: application/x-www-form-urlencoded
+
+code=ABC&id_token=IT&state=XYZ
+```
+
+**When to Use form_post:**
+✅ Tokens too large for URL (some browsers limit URL length)
+✅ Prevent tokens from appearing in browser history
+✅ Server-side applications that prefer POST
+
+**Example with form_post:**
+```
+GET /authorize?
+  response_type=code&
+  response_mode=form_post&  ← Add this
+  client_id=my-app&
+  redirect_uri=https://myapp.com/callback&
+  scope=openid
+```
+
+The authorization server will POST the code to your redirect_uri instead of using a GET with query parameters.
+
+## Key Takeaways
+
+- Use Authorization Code Flow with PKCE for all modern applications
+- Implicit Flow is deprecated (don't use for new projects)
+- Hybrid Flow is rarely needed (complex enterprise scenarios only)
+- response_type=code triggers Authorization Code Flow in OIDC
+- Always include 'openid' in scope to activate OIDC authentication
+- response_mode=form_post prevents tokens from appearing in browser history

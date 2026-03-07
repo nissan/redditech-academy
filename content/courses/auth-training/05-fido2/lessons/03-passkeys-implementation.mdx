@@ -1,0 +1,760 @@
+---
+title: "Implementing Passkeys"
+description: "Learn how to implement passkeys for cross-device synced credentials using iCloud Keychain and Google Password Manager."
+slug: "03-passkeys-implementation"
+duration: 35
+order: 3
+keyTakeaways:
+  - "Passkeys are FIDO2 credentials that sync across devices via encrypted cloud storage (iCloud Keychain, Google Password Manager)"
+  - "Setting residentKey: 'required' creates discoverable credentials that enable username-less authentication"
+  - "Conditional mediation (mediation: 'conditional') enables passkey autofill in the username field"
+  - "Passkeys maintain the same phishing resistance as device-bound credentials through origin-binding"
+prerequisites: ["01-fido2-fundamentals", "02-webauthn-api"]
+---
+
+# Implementing Passkeys
+
+## What Are Passkeys?
+
+**Passkeys** are FIDO2 credentials that sync across a user's devices via encrypted cloud storage.
+
+### Traditional FIDO2 vs. Passkeys
+
+#### Device-Bound Credentials (Traditional)
+
+**Problem:**
+- Credential tied to single device
+- Lost device = lost credential
+- Can't sign in on new device easily
+- Requires registration on each device
+
+**Example:**
+- Register Touch ID on iPhone
+- ❌ Can't use credential on iPad
+- ❌ Can't use credential on Mac
+- Need to register separately on each device
+
+#### Passkeys (Synced Credentials)
+
+**Solution:**
+- Credential syncs across user's devices
+- End-to-end encrypted in cloud
+- Device loss doesn't lock you out
+- Use same passkey on iPhone, iPad, Mac
+
+**Example:**
+- Register Touch ID passkey on iPhone
+- ✅ Automatically available on iPad (via iCloud)
+- ✅ Automatically available on Mac (via iCloud)
+- ✅ Can use on any trusted device
+
+## Passkey Providers
+
+### Apple Passkeys (iCloud Keychain)
+
+**Ecosystem:**
+- iPhone, iPad, Mac (Safari, Chrome, Edge)
+- Requires iCloud Keychain enabled
+- End-to-end encrypted with device passcode
+
+**User Experience:**
+1. User registers passkey on iPhone (Touch ID/Face ID)
+2. Passkey syncs to iCloud Keychain (encrypted)
+3. User logs in on iPad → Passkey available via Face ID
+4. User logs in on Mac → Passkey available via Touch ID
+
+### Google Password Manager
+
+**Ecosystem:**
+- Android devices + Chrome browser
+- Syncs via Google account
+- End-to-end encrypted
+
+**User Experience:**
+1. User registers passkey on Android phone (fingerprint)
+2. Passkey syncs to Google Password Manager
+3. User logs in on another Android device → Passkey available
+4. User logs in on Chrome (desktop) → Passkey available via phone proximity
+
+### Cross-Platform Authentication
+
+**Scenario:** User with iPhone wants to sign in on Windows laptop
+
+**Flow:**
+1. User clicks "Sign in with passkey" on Windows Chrome
+2. QR code displayed
+3. User scans QR code with iPhone
+4. iPhone prompts for Face ID
+5. iPhone sends assertion to Windows via secure channel
+6. User authenticated on Windows
+
+This is called **hybrid authentication** (phone as roaming authenticator).
+
+## Passkey Security Model
+
+### Encryption
+
+**Private Key Storage:**
+- Encrypted with device's Secure Enclave / TPM
+- Further encrypted for cloud sync
+- Only decryptable on user's trusted devices
+
+**Cloud Sync:**
+- End-to-end encrypted before upload
+- Cloud provider cannot decrypt keys
+- Requires user's device passcode/biometric to decrypt
+
+### Trust Model
+
+**Apple iCloud Keychain:**
+- Trusted devices managed via Apple ID
+- New device requires approval from existing device
+- Or verification via SMS/trusted phone number
+
+**Google Password Manager:**
+- Trusted devices via Google account
+- Screen lock required to access passkeys
+- Device encryption required
+
+### Backup and Recovery
+
+**If All Devices Lost:**
+
+**Apple:**
+- iCloud Keychain escrow (optional)
+- Recovery key (user-generated)
+- Account recovery (contact Apple Support)
+
+**Google:**
+- Google account recovery
+- Trusted contacts
+- Recovery phone number/email
+
+## Implementing Passkeys (Code)
+
+To create passkeys instead of device-bound credentials, use these WebAuthn options:
+
+### Registration for Passkeys
+
+```javascript
+const registrationOptions = {
+  challenge: randomChallenge,
+
+  rp: { name: "Example Corp", id: "example.com" },
+
+  user: {
+    id: userIdBytes,
+    name: "alice@example.com",
+    displayName: "Alice Smith"
+  },
+
+  pubKeyCredParams: [
+    { alg: -7, type: "public-key" },   // ES256
+    { alg: -257, type: "public-key" }  // RS256
+  ],
+
+  authenticatorSelection: {
+    // ⭐ KEY FOR PASSKEYS ⭐
+    residentKey: "required",           // Create discoverable credential
+    requireResidentKey: true,          // Legacy compatibility
+
+    userVerification: "required",      // Require biometric/PIN
+
+    authenticatorAttachment: "platform"  // Prefer built-in (optional)
+  },
+
+  timeout: 60000,
+
+  attestation: "none"  // Privacy-friendly (don't request attestation)
+}
+```
+
+**Critical Settings:**
+- `residentKey: "required"` → Creates passkey that syncs
+- `userVerification: "required"` → Ensures biometric/PIN
+- `authenticatorAttachment: "platform"` → Prefers Touch ID/Face ID (optional)
+
+### Username-less Authentication
+
+With passkeys, users don't need to enter a username:
+
+```javascript
+// Authentication WITHOUT username
+const authenticationOptions = {
+  challenge: randomChallenge,
+  rpId: "example.com",
+  userVerification: "required",
+
+  // ⭐ OMIT allowCredentials for username-less ⭐
+  // This allows ANY passkey on the authenticator to be used
+}
+
+// Browser will show list of available passkeys
+const assertion = await navigator.credentials.get({
+  publicKey: authenticationOptions
+})
+
+// assertion.response.userHandle contains the user ID
+// Use this to look up the user account
+```
+
+**Flow:**
+1. User clicks "Sign in with passkey" (no username entry)
+2. Browser/OS shows list of available passkeys
+3. User selects their account
+4. User provides biometric (Face ID/Touch ID)
+5. Assertion includes `userHandle` (user ID from registration)
+6. Server looks up user by `userHandle`
+7. Server verifies signature
+8. User authenticated
+
+## Conditional UI (Autofill)
+
+**Best practice:** Let users select passkeys from autofill:
+
+```javascript
+// Enable passkey autofill in username field
+async function setupPasskeyAutofill() {
+  // Check browser support
+  if (!window.PublicKeyCredential ||
+      !PublicKeyCredential.isConditionalMediationAvailable) {
+    return  // Fallback to traditional login
+  }
+
+  const available = await PublicKeyCredential.isConditionalMediationAvailable()
+  if (!available) {
+    return
+  }
+
+  // Start conditional mediation (autofill)
+  const authOptions = {
+    challenge: await getChallenge(),
+    rpId: "example.com",
+    userVerification: "required"
+    // No allowCredentials - show all available passkeys
+  }
+
+  try {
+    const assertion = await navigator.credentials.get({
+      publicKey: authOptions,
+      mediation: "conditional"  // ⭐ ENABLE AUTOFILL ⭐
+    })
+
+    // User selected passkey from autofill
+    await verifyAndLogin(assertion)
+
+  } catch (error) {
+    console.log("Passkey autofill aborted:", error)
+    // User didn't select passkey, continue with traditional login
+  }
+}
+
+// Call on page load
+setupPasskeyAutofill()
+```
+
+**HTML:**
+```html
+<!-- Add autocomplete="webauthn" to enable passkey autofill -->
+<input
+  type="text"
+  name="username"
+  autocomplete="username webauthn"
+  placeholder="Email or passkey"
+/>
+```
+
+**User Experience:**
+1. User focuses username field
+2. Autofill dropdown shows saved passkeys
+3. User selects passkey
+4. Biometric prompt appears
+5. User authenticated (never typed anything!)
+
+## Feature Detection
+
+Always check browser support before using passkeys:
+
+```javascript
+async function checkPasskeySupport() {
+  // Check basic WebAuthn support
+  if (!window.PublicKeyCredential) {
+    return {
+      supported: false,
+      reason: "WebAuthn not supported"
+    }
+  }
+
+  // Check platform authenticator (Touch ID, Face ID, Windows Hello)
+  const platformSupported = await PublicKeyCredential
+    .isUserVerifyingPlatformAuthenticatorAvailable()
+
+  if (!platformSupported) {
+    return {
+      supported: false,
+      reason: "No biometric authenticator available"
+    }
+  }
+
+  // Check conditional mediation (autofill)
+  let autofillSupported = false
+  if (PublicKeyCredential.isConditionalMediationAvailable) {
+    autofillSupported = await PublicKeyCredential
+      .isConditionalMediationAvailable()
+  }
+
+  return {
+    supported: true,
+    platformAuthenticator: true,
+    autofill: autofillSupported
+  }
+}
+
+// Usage
+const support = await checkPasskeySupport()
+if (support.supported) {
+  showPasskeyOption()  // Show "Sign in with passkey" button
+  if (support.autofill) {
+    setupPasskeyAutofill()  // Enable autofill
+  }
+} else {
+  console.log("Passkeys not supported:", support.reason)
+  // Show traditional login only
+}
+```
+
+## Multi-Credential Management
+
+Users may have multiple passkeys (different accounts, different devices):
+
+```javascript
+// List user's registered credentials
+async function listUserCredentials(userId) {
+  const credentials = await db.credentials.find({ userId })
+
+  return credentials.map(cred => ({
+    id: cred.credentialId,
+    name: cred.deviceName || "Passkey",  // e.g., "iPhone 14 Pro"
+    createdAt: cred.createdAt,
+    lastUsed: cred.lastUsed,
+    transports: cred.transports  // ["internal", "usb", "nfc", "ble"]
+  }))
+}
+
+// Delete credential (user wants to remove device)
+async function deleteCredential(credentialId, userId) {
+  await db.credentials.delete({ credentialId, userId })
+}
+
+// Rename credential (better UX)
+async function renameCredential(credentialId, userId, newName) {
+  await db.credentials.update(
+    { credentialId, userId },
+    { deviceName: newName }
+  )
+}
+```
+
+**UI Best Practices:**
+- Show list of registered passkeys in account settings
+- Allow users to rename (e.g., "Work iPhone", "Personal iPad")
+- Show last used timestamp
+- Allow deletion of lost/old devices
+- Require re-authentication before deletion
+
+## Complete Passkey Implementation (Full Stack)
+
+### Server-Side (Node.js + Express)
+
+```javascript
+const express = require('express')
+const crypto = require('crypto')
+const { Fido2Lib } = require('fido2-lib')
+
+const app = express()
+app.use(express.json())
+
+// Initialize FIDO2 library
+const fido2 = new Fido2Lib({
+  timeout: 60000,
+  rpId: "example.com",
+  rpName: "Example Corp",
+  challengeSize: 32,
+  attestation: "none",
+  cryptoParams: [-7, -257],  // ES256, RS256
+  authenticatorAttachment: "platform",
+  authenticatorRequireResidentKey: true,
+  authenticatorUserVerification: "required"
+})
+
+// In-memory storage (use database in production)
+const users = new Map()
+const credentials = new Map()
+const sessions = new Map()
+
+// Registration: Begin
+app.post('/passkey/register/begin', async (req, res) => {
+  const { username, displayName } = req.body
+
+  // Check if user exists
+  let user = Array.from(users.values()).find(u => u.username === username)
+
+  if (!user) {
+    // Create new user
+    user = {
+      id: crypto.randomBytes(16),
+      username,
+      displayName,
+      credentials: []
+    }
+    users.set(user.id.toString('base64url'), user)
+  }
+
+  // Generate registration options
+  const registrationOptions = await fido2.attestationOptions()
+
+  registrationOptions.user = {
+    id: user.id,
+    name: username,
+    displayName: displayName
+  }
+
+  // Exclude existing credentials (prevent duplicate registration)
+  registrationOptions.excludeCredentials = user.credentials.map(credId => ({
+    type: "public-key",
+    id: Buffer.from(credId, 'base64url')
+  }))
+
+  // Store challenge in session
+  const sessionId = crypto.randomBytes(16).toString('hex')
+  sessions.set(sessionId, {
+    challenge: registrationOptions.challenge,
+    userId: user.id.toString('base64url')
+  })
+
+  res.json({
+    options: registrationOptions,
+    sessionId
+  })
+})
+
+// Registration: Complete
+app.post('/passkey/register/complete', async (req, res) => {
+  const { credential, sessionId } = req.body
+
+  const session = sessions.get(sessionId)
+  if (!session) {
+    return res.status(400).json({ error: "Invalid session" })
+  }
+
+  try {
+    // Verify attestation
+    const attestationExpectations = {
+      challenge: session.challenge,
+      origin: "https://example.com",
+      factor: "either"
+    }
+
+    const regResult = await fido2.attestationResult(
+      credential,
+      attestationExpectations
+    )
+
+    // Store credential
+    const credentialId = Buffer.from(credential.rawId, 'base64url')
+      .toString('base64url')
+
+    credentials.set(credentialId, {
+      userId: session.userId,
+      publicKey: regResult.authnrData.get("credentialPublicKeyPem"),
+      counter: regResult.authnrData.get("counter"),
+      transports: credential.response.transports || [],
+      createdAt: new Date(),
+      lastUsed: new Date()
+    })
+
+    // Add to user's credential list
+    const user = users.get(session.userId)
+    user.credentials.push(credentialId)
+
+    sessions.delete(sessionId)
+
+    res.json({ success: true, userId: session.userId })
+
+  } catch (error) {
+    console.error("Registration failed:", error)
+    res.status(400).json({ error: error.message })
+  }
+})
+
+// Authentication: Begin
+app.post('/passkey/authenticate/begin', async (req, res) => {
+  // Username-less authentication
+  const authenticationOptions = await fido2.assertionOptions()
+
+  // Don't set allowCredentials - allow any passkey
+
+  const sessionId = crypto.randomBytes(16).toString('hex')
+  sessions.set(sessionId, {
+    challenge: authenticationOptions.challenge
+  })
+
+  res.json({
+    options: authenticationOptions,
+    sessionId
+  })
+})
+
+// Authentication: Complete
+app.post('/passkey/authenticate/complete', async (req, res) => {
+  const { assertion, sessionId } = req.body
+
+  const session = sessions.get(sessionId)
+  if (!session) {
+    return res.status(400).json({ error: "Invalid session" })
+  }
+
+  try {
+    const credentialId = Buffer.from(assertion.rawId, 'base64url')
+      .toString('base64url')
+
+    const credential = credentials.get(credentialId)
+    if (!credential) {
+      return res.status(400).json({ error: "Credential not found" })
+    }
+
+    // Verify assertion
+    const assertionExpectations = {
+      challenge: session.challenge,
+      origin: "https://example.com",
+      factor: "either",
+      publicKey: credential.publicKey,
+      prevCounter: credential.counter,
+      userHandle: Buffer.from(credential.userId, 'base64url')
+    }
+
+    const authnResult = await fido2.assertionResult(
+      assertion,
+      assertionExpectations
+    )
+
+    // Update counter
+    credential.counter = authnResult.authnrData.get("counter")
+    credential.lastUsed = new Date()
+
+    // Create session
+    const user = users.get(credential.userId)
+    const userSessionId = crypto.randomBytes(32).toString('hex')
+    sessions.set(userSessionId, {
+      userId: credential.userId,
+      username: user.username
+    })
+
+    sessions.delete(sessionId)
+
+    res.json({
+      success: true,
+      sessionToken: userSessionId,
+      user: {
+        username: user.username,
+        displayName: user.displayName
+      }
+    })
+
+  } catch (error) {
+    console.error("Authentication failed:", error)
+    res.status(400).json({ error: error.message })
+  }
+})
+
+app.listen(3000, () => console.log("Server running on port 3000"))
+```
+
+### Client-Side (Browser JavaScript)
+
+```javascript
+class PasskeyAuth {
+  constructor(apiBase) {
+    this.apiBase = apiBase
+  }
+
+  // Helper: Convert base64url to ArrayBuffer
+  base64urlToBuffer(base64url) {
+    const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/')
+    const binary = atob(base64)
+    const bytes = new Uint8Array(binary.length)
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i)
+    }
+    return bytes.buffer
+  }
+
+  // Helper: Convert ArrayBuffer to base64url
+  bufferToBase64url(buffer) {
+    const bytes = new Uint8Array(buffer)
+    let binary = ''
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i])
+    }
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+  }
+
+  // Register new passkey
+  async register(username, displayName) {
+    // Get registration options from server
+    const beginResp = await fetch(`${this.apiBase}/passkey/register/begin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, displayName })
+    })
+
+    const { options, sessionId } = await beginResp.json()
+
+    // Convert challenge and user.id to ArrayBuffer
+    options.challenge = this.base64urlToBuffer(options.challenge)
+    options.user.id = this.base64urlToBuffer(options.user.id)
+
+    if (options.excludeCredentials) {
+      options.excludeCredentials = options.excludeCredentials.map(cred => ({
+        ...cred,
+        id: this.base64urlToBuffer(cred.id)
+      }))
+    }
+
+    // Create credential
+    const credential = await navigator.credentials.create({
+      publicKey: options
+    })
+
+    // Convert to JSON
+    const credentialJSON = {
+      id: credential.id,
+      rawId: this.bufferToBase64url(credential.rawId),
+      type: credential.type,
+      response: {
+        clientDataJSON: this.bufferToBase64url(credential.response.clientDataJSON),
+        attestationObject: this.bufferToBase64url(credential.response.attestationObject),
+        transports: credential.response.getTransports()
+      }
+    }
+
+    // Complete registration
+    const completeResp = await fetch(`${this.apiBase}/passkey/register/complete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: credentialJSON, sessionId })
+    })
+
+    return completeResp.json()
+  }
+
+  // Authenticate with passkey
+  async authenticate() {
+    // Get authentication options
+    const beginResp = await fetch(`${this.apiBase}/passkey/authenticate/begin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+
+    const { options, sessionId } = await beginResp.json()
+
+    // Convert challenge
+    options.challenge = this.base64urlToBuffer(options.challenge)
+
+    // Get credential
+    const assertion = await navigator.credentials.get({
+      publicKey: options
+    })
+
+    // Convert to JSON
+    const assertionJSON = {
+      id: assertion.id,
+      rawId: this.bufferToBase64url(assertion.rawId),
+      type: assertion.type,
+      response: {
+        clientDataJSON: this.bufferToBase64url(assertion.response.clientDataJSON),
+        authenticatorData: this.bufferToBase64url(assertion.response.authenticatorData),
+        signature: this.bufferToBase64url(assertion.response.signature),
+        userHandle: this.bufferToBase64url(assertion.response.userHandle)
+      }
+    }
+
+    // Complete authentication
+    const completeResp = await fetch(`${this.apiBase}/passkey/authenticate/complete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ assertion: assertionJSON, sessionId })
+    })
+
+    return completeResp.json()
+  }
+}
+
+// Usage
+const passkeyAuth = new PasskeyAuth('https://example.com')
+
+// Register
+document.getElementById('registerBtn').addEventListener('click', async () => {
+  try {
+    const result = await passkeyAuth.register('alice@example.com', 'Alice Smith')
+    console.log('Registration successful:', result)
+  } catch (error) {
+    console.error('Registration failed:', error)
+  }
+})
+
+// Authenticate
+document.getElementById('loginBtn').addEventListener('click', async () => {
+  try {
+    const result = await passkeyAuth.authenticate()
+    console.log('Login successful:', result)
+    localStorage.setItem('sessionToken', result.sessionToken)
+  } catch (error) {
+    console.error('Login failed:', error)
+  }
+})
+```
+
+## Practice Exercise
+
+**Scenario Analysis:** You're building authentication for a banking app.
+
+**Requirements:**
+- High security (phishing-resistant)
+- Users have multiple devices (phone, tablet, laptop)
+- Must work if user loses their phone
+- Easy recovery
+
+**Option A: Device-Bound FIDO2 Credentials**
+```javascript
+authenticatorSelection: {
+  residentKey: "discouraged",  // No sync
+  userVerification: "required"
+}
+```
+
+**Option B: Passkeys (Synced)**
+```javascript
+authenticatorSelection: {
+  residentKey: "required",  // Sync via cloud
+  userVerification: "required"
+}
+```
+
+**Questions:**
+
+1. Which option is better for this scenario?
+2. What happens if user loses phone with Option A?
+3. What security considerations exist for Option B?
+4. Can both options prevent phishing?
+
+<details>
+<summary>View Answers</summary>
+
+1. **Option B (Passkeys)** is better - syncs across devices and provides backup
+2. **Option A (Device-Bound)** - User loses access, must re-register or use recovery method. Poor UX.
+3. **Option B Security** - Relies on cloud provider's encryption and device passcode security. Private keys still never leave Secure Enclave unencrypted.
+4. **Both prevent phishing** - Origin-binding works for both device-bound and synced credentials
+
+**Best Practice:** Use passkeys (Option B) with account recovery options (backup codes, trusted contacts) for banking apps.
+</details>

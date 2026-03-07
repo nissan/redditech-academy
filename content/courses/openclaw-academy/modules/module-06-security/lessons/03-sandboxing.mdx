@@ -1,0 +1,107 @@
+---
+title: Tool policy and sandboxing
+description: Lesson on Tool policy and sandboxing
+slug: tool-policy-sandboxing
+duration: 12
+order: 1
+keyTakeaways:
+- "`full` \u2014 everything available (default for personal agent)"
+- "`messaging` \u2014 channels, web search, TTS only; no filesystem or shell"
+- "`minimal` \u2014 almost nothing; override selectively"
+- "`session` \u2014 one container per session (most isolated)"
+- "`agent` \u2014 one container per agent (reused across sessions)"
+- "`shared` \u2014 one container for everything (least isolated)"
+- "`none` \u2014 sandbox has its own workspace under `~/.openclaw/sandboxes`; your\
+  \ host workspace is invisible"
+- "`ro` \u2014 workspace mounted read-only at `/agent`; `write`/`edit`/`apply_patch`\
+  \ are disabled"
+- "`rw` \u2014 workspace mounted read-write at `/workspace`"
+---
+
+Prompt injection defenses depend on the model making good decisions. Tool policy and sandboxing do not. These are hard controls, enforced by the Gateway regardless of what the model wants to do.
+
+This lesson covers three distinct but related systems:
+
+1. **Tool policy** — which tools are available at all
+2. **Sandboxing** — where tool execution happens
+3. **Exec approvals** — who can authorize what, with what level of trust
+
+Plus the pairing and allowlist system that controls who can even reach the agent.
+
+---
+
+## Three controls, one mental model
+
+Before diving in, get this distinction clear:
+
+| Control | Question it answers | Layer |
+|---------|-------------------|-------|
+| Tool policy | Which tools can the agent call? | Allow/deny list |
+| Sandbox | Where do tools run? (Docker vs host) | Execution environment |
+| Elevated / exec approvals | Can this command run on the real host? | Escape hatch + guardrail |
+
+They compose. A tool denied by policy can't be called even from an elevated session. Sandboxing limits a tool that *is* allowed. Exec approvals add human confirmation as an extra gate.
+
+---
+
+## Tool policy
+
+Tool policy is the first gate. If a tool is denied, it simply doesn't appear in the agent's available tools list. No model judgment required.
+
+### Global policy
+
+```json5
+{
+  tools: {
+    deny: ["exec", "write", "browser", "cron", "gateway"]
+  }
+}
+```
+
+### Per-agent policy
+
+```json5
+{
+  agents: {
+    list: [
+      {
+        id: "family",
+        tools: {
+          deny: ["exec", "write", "edit", "browser"]
+        }
+      }
+    ]
+  }
+}
+```
+
+### Tool groups (shorthand)
+
+Policy supports `group:*` entries that expand to multiple tools:
+
+| Group | Expands to |
+|-------|-----------|
+| `group:runtime` | `exec`, `bash`, `process` |
+| `group:fs` | `read`, `write`, `edit`, `apply_patch` |
+| `group:ui` | `browser`, `canvas` |
+| `group:automation` | `cron`, `gateway` |
+| `group:sessions` | `sessions_list`, `sessions_history`, `sessions_send`, `sessions_spawn`, `session_status` |
+| `group:messaging` | `message` |
+| `group:nodes` | `nodes` |
+| `group:openclaw` | All built-in OpenClaw tools |
+
+Example, deny all automation and runtime tools:
+
+```json5
+{
+  tools: {
+    deny: ["group:automation", "group:runtime"]
+  }
+}
+```
+
+> **`deny` always wins.** If a tool appears in both `allow` and `deny`, it's denied. No exceptions.
+
+### Common profiles
+
+Three preset profiles cover the most common setups:

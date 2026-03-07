@@ -1,0 +1,308 @@
+---
+title: "The Identity & Access Management Landscape"
+description: "Understanding the big picture: What is IAM, why it matters, and the key problems it solves"
+slug: "identity-landscape"
+duration: 25
+order: 1
+keyTakeaways:
+  - "Authentication proves who you are, Authorization controls what you can do"
+  - "81% of data breaches involve compromised credentials, making IAM critical for security"
+  - "Modern IAM includes authentication, authorization, federation, and governance layers"
+  - "Build vs. Buy decision depends on whether identity is core to your business"
+  - "Typical ROI is 200-400% in 3 years for mid-size companies"
+prerequisites: []
+---
+
+## What is Identity & Access Management?
+
+### The Two-Second Explanation
+
+**Authentication** = "Who are you?"
+**Authorization** = "What can you do?"
+
+Every digital interaction requires both. IAM is the technology that makes this secure, scalable, and user-friendly.
+
+## Why IAM Matters to Your Business
+
+### Security Impact
+- **81% of data breaches** involve compromised credentials
+- **Average cost of a breach**: $4.45 million (2023)
+- **Time to detect**: 277 days on average
+
+**Bottom line:** Poor IAM = Your biggest security vulnerability
+
+### Business Impact
+- **User experience**: Password fatigue causes 40% cart abandonment
+- **Productivity**: Employees spend 11 hours/year on password resets
+- **Compliance**: GDPR, HIPAA, SOC 2 all require proper IAM
+- **Revenue**: Seamless authentication increases conversion rates by 30%+
+
+**Bottom line:** Good IAM = Better UX, lower costs, happier customers
+
+### Digital Transformation
+- **Cloud migration**: Can't happen without modern IAM
+- **API economy**: Every API needs authentication
+- **Remote work**: Zero Trust requires sophisticated IAM
+- **Customer 360**: Single identity across all touchpoints
+
+**Bottom line:** IAM is the foundation of digital transformation
+
+## The IAM Problem Space
+
+### Problem 1: Too Many Passwords
+**Reality:**
+- Average person has 100+ online accounts
+- Uses the same password for 65% of them
+- 51% write passwords on sticky notes
+
+**Risk:** One breach compromises everything
+
+### Problem 2: Fragmented Identity
+**Reality:**
+- Your identity is scattered across hundreds of systems
+- Google has your email, LinkedIn has your professional data, banks have your financial identity
+- No single source of truth
+
+**Risk:** Data inconsistency, privacy violations, poor UX
+
+### Problem 3: Insider Threats
+**Reality:**
+- 34% of breaches involve internal actors
+- Employees have access to far more than needed
+- No visibility into who accesses what
+
+**Risk:** Data exfiltration, compliance violations
+
+### Problem 4: Regulatory Compliance
+**Reality:**
+- GDPR, CCPA, HIPAA, PCI-DSS, SOC 2, ISO 27001
+- Each requires different controls
+- Fines up to 4% of global revenue
+
+**Risk:** Massive fines, reputational damage
+
+### Problem 5: The Password Paradox
+**Reality:**
+- Make passwords strong → Users can't remember them
+- Make them simple → Easily hacked
+- Add MFA → Friction kills conversion
+- Remove MFA → Security risk
+
+**Risk:** No-win situation with traditional approaches
+
+## The IAM Technology Stack
+
+Modern IAM involves multiple technologies working together. Here's the landscape:
+
+### Layer 1: Authentication (Proving Who You Are)
+
+#### Traditional Methods
+- **Passwords**: Everyone knows them, everyone hates them, still 80% of logins
+- **Multi-Factor Authentication (MFA)**: Something you know + something you have + something you are
+- **Single Sign-On (SSO)**: Log in once, access everything
+
+#### Modern Methods
+- **Passwordless**: FIDO2/WebAuthn, biometrics, magic links
+- **Decentralized Identity**: You own your identity (Self-Sovereign Identity)
+- **Continuous Authentication**: Always verifying, not just at login
+
+**Key Message:** We're moving from passwords to passwordless to user-controlled identity.
+
+### Layer 2: Authorization (Controlling What You Can Do)
+
+#### Simple Approaches
+- **Access Control Lists (ACLs)**: User X can access Resource Y
+- **Role-Based Access Control (RBAC)**: Roles have permissions, users have roles
+
+#### Advanced Approaches
+- **Attribute-Based Access Control (ABAC)**: Policies based on user/resource attributes
+- **Relationship-Based Access Control (ReBAC)**: Google Drive-style sharing graphs
+- **Fine-Grained Authorization**: Google Zanzibar, Amazon Cedar
+
+**Key Message:** Moving from roles to relationships to policies to handle complex scenarios.
+
+### Layer 3: Federation (Connecting Systems)
+
+#### Protocols
+- **OAuth 2.0**: Delegated authorization ("Let app X access your Google data")
+- **OpenID Connect (OIDC)**: Authentication layer on OAuth ("Sign in with Google")
+- **SAML 2.0**: Enterprise federation (older, XML-based)
+
+**Key Message:** Let users bring their existing identity instead of creating new accounts.
+
+### Layer 4: Governance (Who Has Access to What)
+
+#### Key Capabilities
+- **Identity Lifecycle Management**: Onboarding, changes, offboarding
+- **Access Reviews**: Regular audits of who has access
+- **Privileged Access Management (PAM)**: Special controls for admins
+- **Identity Analytics**: Detect anomalies, risky access patterns
+
+**Key Message:** It's not just about granting access, but managing it over time.
+
+### The Stack Visualized
+
+```
+┌─────────────────────────────────────────────┐
+│         User Experience Layer                │
+│  (Login forms, SSO portals, mobile apps)    │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│         Authentication Layer                 │
+│  (Passwords, MFA, Biometrics, FIDO2)        │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│         Federation Layer                     │
+│  (OAuth 2.0, OIDC, SAML)                    │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│         Authorization Layer                  │
+│  (RBAC, ABAC, ReBAC, Policies)              │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│         Governance & Analytics               │
+│  (Audits, Reviews, Anomaly Detection)       │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│         Data Layer                           │
+│  (User directory, permissions, logs)        │
+└─────────────────────────────────────────────┘
+```
+
+## Strategic Decision Framework
+
+### Key Questions Every Executive Should Ask
+
+#### 1. "What's our identity strategy?"
+
+**Good answers:**
+- ✅ "Passwordless by 2026, FIDO2 deployment in progress"
+- ✅ "Zero Trust architecture with continuous verification"
+- ✅ "Customer identity separate from employee identity"
+
+**Red flags:**
+- ❌ "We use Active Directory" (That's a tool, not a strategy)
+- ❌ "IT handles that" (C-suite issue, not just IT)
+- ❌ "Passwords with mandatory 90-day rotation" (Outdated thinking)
+
+#### 2. "How quickly can we revoke access?"
+
+**Benchmark:** Should be `<5` minutes for any employee, contractor, or customer.
+
+**Why it matters:**
+- Departed employees retain access for average of 8 days
+- Compromised credentials go undetected for 277 days
+- Time is money in breach scenarios ($4.45M average cost)
+
+#### 3. "Do we know who has access to what?"
+
+**Test:** Can you, right now, list everyone with access to:
+- Customer financial data?
+- Source code repositories?
+- Production databases?
+
+If no → You have an IAM governance problem.
+
+#### 4. "What happens if our identity provider goes down?"
+
+**Scenarios to plan for:**
+- Okta outage (happened in 2023)
+- Google Workspace breach
+- Auth0 service interruption
+
+**Strategy:** Multi-provider redundancy or self-hosted backup.
+
+#### 5. "Are we compliant?"
+
+**Requirements to track:**
+| Regulation | Key IAM Requirements |
+|------------|---------------------|
+| **GDPR** | Consent management, right to delete, data portability |
+| **HIPAA** | Access logs, minimum necessary access, encryption |
+| **PCI-DSS** | MFA for all access, regular access reviews, privileged access controls |
+| **SOC 2** | Access controls, authentication, monitoring, incident response |
+| **CCPA** | Consumer data rights, deletion capabilities, access transparency |
+
+#### 6. "What's our passwordless roadmap?"
+
+**Industry trend:** 75% of enterprises will be passwordless by 2027.
+
+**Your roadmap should include:**
+- Phase 1: MFA for all users (now)
+- Phase 2: Passwordless options for employees (12-18 months)
+- Phase 3: Passwordless for customers (18-24 months)
+- Phase 4: Eliminate passwords entirely (24-36 months)
+
+## Build vs. Buy Decision Matrix
+
+### When to Build
+✅ You're a tech company with identity as core differentiator
+✅ You have unique requirements no vendor can meet
+✅ You have dedicated IAM engineering team (5+ engineers)
+✅ You need complete control and customization
+
+**Example:** Airbnb built their own identity platform
+
+### When to Buy
+✅ Identity is not your core business
+✅ You need to move fast (< 6 months)
+✅ You want vendor support and SLAs
+✅ You need compliance certifications (SOC 2, FedRAMP)
+
+**Example:** Most SaaS companies use Auth0, Okta, or similar
+
+### Hybrid Approach
+Many companies do both:
+- **Buy:** Customer-facing authentication (Auth0, Clerk)
+- **Build:** Internal authorization rules (custom policies)
+- **Buy:** Employee SSO (Okta, Google Workspace)
+- **Build:** Fine-grained permissions (Zanzibar-inspired)
+
+## The Cost of Getting IAM Wrong
+
+### Security Failures
+- **Target (2013)**: Breach via HVAC vendor credentials → $162M settlement
+- **Capital One (2019)**: Misconfigured IAM permissions → $80M fine
+- **SolarWinds (2020)**: Compromised update server → Immeasurable damage
+
+### Compliance Failures
+- **British Airways**: GDPR fine £20M for weak authentication
+- **Marriott**: £18.4M fine for inadequate access controls
+- **Uber**: $148M settlement for covering up breach (IAM governance failure)
+
+### Productivity Losses
+- **Password resets**: $70 per reset, 40% of help desk calls
+- **Account lockouts**: 15 minutes average resolution time
+- **Onboarding delays**: 3-5 days to provision access (should be `<1` hour)
+
+**Annual IAM-related costs for a 1,000-employee company:**
+- Password resets: ~$280,000
+- Lost productivity: ~$500,000
+- Help desk overhead: ~$400,000
+- **Total: ~$1.18M/year** (could be reduced 70% with modern IAM)
+
+## Return on Investment (ROI)
+
+### Cost Savings
+- **40-50% reduction** in help desk tickets
+- **70% faster** employee onboarding
+- **30% increase** in customer conversion (better auth UX)
+- **90% reduction** in password-related incidents
+
+### Security Improvements
+- **95% reduction** in credential-based breaches (with passwordless)
+- **80% faster** threat detection and response
+- **100% audit** coverage (with proper logging)
+
+### Business Enablers
+- **Enable cloud migration**: Can't go cloud without modern IAM
+- **Support M&A**: Integrate acquisitions 10x faster
+- **Accelerate partnerships**: Federated access with partners
+- **Regulatory readiness**: Pass audits 3x faster
+
+**Typical ROI:** 200-400% in 3 years for mid-size companies

@@ -1,0 +1,16 @@
+{
+  "id": "module-01-overview",
+  "slug": "module-01-overview",
+  "order": 1,
+  "title": "OpenClaw Overview",
+  "description": "What OpenClaw is, how it works end-to-end, and how to think about the system as a whole.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "OpenClaw Overview Badge",
+    "icon": "\ud83e\udd9e",
+    "description": "Completed the OpenClaw Overview module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

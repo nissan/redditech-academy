@@ -1,0 +1,182 @@
+---
+title: "Token Types: Access, ID, and Refresh Tokens"
+slug: "token-types"
+description: "Understand the three critical token types in modern IAM systems and when each is used."
+duration: 25
+order: 3
+keyTakeaways:
+  - "Access Tokens grant authorization to access APIs (what you can do)"
+  - "ID Tokens prove authentication and contain user identity (who you are)"
+  - "Refresh Tokens enable obtaining new access tokens without re-authentication"
+  - "Access and ID tokens are short-lived; refresh tokens are long-lived"
+  - "Each token type has different audiences: APIs, client apps, and IdPs"
+prerequisites:
+  - "auth-vs-authz"
+  - "idps-and-rps"
+---
+
+# Token Types: Access, ID, and Refresh Tokens
+
+Modern identity systems use **tokens**—cryptographically signed strings that represent identity, permissions, or authentication state. Three token types dominate: Access Tokens, ID Tokens, and Refresh Tokens.
+
+## Access Token: Authorization Credential
+
+An **Access Token** is a credential that grants permission to access specific resources. It represents what a user (or client) is **authorized** to do.
+
+**Characteristics:**
+- **Purpose**: Authorization (not authentication)
+- **Audience**: Resource server (API)
+- **Format**: Often opaque (random string) or JWT
+- **Lifetime**: Short (minutes to hours)
+- **Scope**: Limited permissions (read:profile, write:posts)
+
+**Example Use Case:**
+A mobile app uses an access token to call the GitHub API on behalf of the user. The token grants permissions like "read:user" and "public_repo" but not admin access.
+
+**Access Token Structure (JWT Example):**
+```json
+{
+  "iss": "https://accounts.google.com",
+  "aud": "https://api.example.com",
+  "sub": "user123",
+  "scope": "read:profile write:posts",
+  "exp": 1672531200,
+  "iat": 1672527600
+}
+```
+
+Key fields:
+- **iss**: Issuer (IdP)
+- **aud**: Audience (which API can accept this token)
+- **sub**: Subject (user ID)
+- **scope**: Permissions granted
+- **exp**: Expiration timestamp
+
+## ID Token: Authentication Proof
+
+An **ID Token** proves that authentication occurred and provides information about the authenticated user. It represents **who the user is**.
+
+**Characteristics:**
+- **Purpose**: Authentication proof
+- **Audience**: Client application (RP)
+- **Format**: Always JWT (signed JSON)
+- **Lifetime**: Short (minutes)
+- **Content**: User identity claims (email, name, sub)
+
+**Introduced by OpenID Connect (OIDC)**, ID Tokens are not sent to APIs. They're consumed by the client application to establish a user session.
+
+**ID Token Structure (JWT):**
+```json
+{
+  "iss": "https://accounts.google.com",
+  "aud": "client-app-id-12345",
+  "sub": "110169484474386276334",
+  "email": "user@example.com",
+  "email_verified": true,
+  "name": "Jane Doe",
+  "picture": "https://example.com/photo.jpg",
+  "iat": 1672527600,
+  "exp": 1672531200,
+  "nonce": "n-0S6_WzA2Mj"
+}
+```
+
+Key fields:
+- **sub**: Unique user identifier
+- **email**, **name**, **picture**: User profile claims
+- **nonce**: Anti-replay token
+- **aud**: Client application ID (not an API)
+
+## Refresh Token: Long-Lived Credential
+
+A **Refresh Token** is a long-lived credential used to obtain new access tokens without re-authenticating the user.
+
+**Characteristics:**
+- **Purpose**: Obtain fresh access tokens
+- **Audience**: Authorization server (IdP)
+- **Format**: Opaque string (not JWT)
+- **Lifetime**: Long (days to months)
+- **Storage**: Secure (encrypted database, secure cookie)
+
+**Why Refresh Tokens?**
+
+Access tokens have short lifetimes for security. If an access token is stolen, it expires quickly. But forcing users to log in every 15 minutes is poor UX.
+
+**Solution**: Issue a refresh token alongside the access token. When the access token expires, use the refresh token to get a new one—without user interaction.
+
+**Refresh Token Flow:**
+1. User authenticates, receives access token + refresh token
+2. App uses access token to call APIs
+3. Access token expires
+4. App sends refresh token to IdP
+5. IdP validates refresh token, issues new access token
+6. Process repeats until refresh token expires or is revoked
+
+## Token Lifecycle Example
+
+```typescript
+// Initial authentication
+const authResponse = await fetch('https://idp.com/oauth/token', {
+  method: 'POST',
+  body: JSON.stringify({
+    grant_type: 'authorization_code',
+    code: authorizationCode,
+    client_id: 'your-client-id',
+    client_secret: 'your-client-secret',
+  }),
+});
+
+const tokens = await authResponse.json();
+// {
+//   access_token: "eyJhbGciOiJSUzI1NiIs...",
+//   id_token: "eyJhbGciOiJSUzI1NiIs...",
+//   refresh_token: "v1.MRrtPcZt...",
+//   expires_in: 3600
+// }
+
+// Use access token to call API
+const userData = await fetch('https://api.example.com/user', {
+  headers: {
+    'Authorization': `Bearer ${tokens.access_token}`
+  }
+});
+
+// When access token expires, refresh it
+const refreshResponse = await fetch('https://idp.com/oauth/token', {
+  method: 'POST',
+  body: JSON.stringify({
+    grant_type: 'refresh_token',
+    refresh_token: tokens.refresh_token,
+    client_id: 'your-client-id',
+  }),
+});
+
+const newTokens = await refreshResponse.json();
+// Get new access_token (and optionally new refresh_token)
+```
+
+## Security Considerations
+
+**Access Token Protection:**
+- Store in memory (not localStorage for web apps)
+- Send only to authorized APIs
+- Validate audience and scope on the API side
+
+**ID Token Validation:**
+- Verify signature using IdP's public key
+- Check issuer, audience, expiration
+- Validate nonce to prevent replay attacks
+
+**Refresh Token Security:**
+- Store securely (encrypted, HttpOnly cookies)
+- Rotate on use (issue new refresh token with each refresh)
+- Implement refresh token revocation
+- Monitor for suspicious refresh patterns
+
+## Key Takeaways
+
+- Access Tokens grant authorization to access APIs (what you can do)
+- ID Tokens prove authentication and contain user identity (who you are)
+- Refresh Tokens enable obtaining new access tokens without re-authentication
+- Access and ID tokens are short-lived; refresh tokens are long-lived
+- Each token type has different audiences: APIs, client apps, and IdPs

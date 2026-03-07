@@ -1,0 +1,137 @@
+{
+  "passingScore": 80,
+  "questions": [
+    {
+      "question": "What is the primary purpose of OpenID Connect (OIDC)?",
+      "options": [
+        "To provide delegated authorization for API access",
+        "To add a standardized authentication layer on top of OAuth 2.0",
+        "To replace OAuth 2.0 entirely with a new protocol",
+        "To encrypt communication between client and server"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenID Connect (OIDC) is a simple identity layer built on top of OAuth 2.0. It adds standardized authentication to OAuth 2.0's authorization framework, providing ID Tokens and the UserInfo endpoint."
+    },
+    {
+      "question": "Which scope must be included in an authorization request to trigger OIDC authentication?",
+      "options": [
+        "profile",
+        "email",
+        "openid",
+        "user:read"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The 'openid' scope is required to trigger OIDC authentication. When included, the authorization server will issue an ID Token in addition to the access token. Other scopes like 'profile' and 'email' are optional."
+    },
+    {
+      "question": "What format is an ID Token always in?",
+      "options": [
+        "Opaque string",
+        "JSON object",
+        "JWT (JSON Web Token)",
+        "XML"
+      ],
+      "correctAnswer": 2,
+      "explanation": "ID Tokens are always JWTs (JSON Web Tokens). Unlike access tokens which can be opaque, ID Tokens must be JWTs so clients can extract and validate the identity claims within them."
+    },
+    {
+      "question": "Which claim in an ID Token uniquely identifies the user and never changes?",
+      "options": [
+        "aud (audience)",
+        "sub (subject)",
+        "iss (issuer)",
+        "email"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'sub' (subject) claim is a unique, immutable identifier for the user at that identity provider. Unlike email addresses which can change, the sub claim never changes for a given user."
+    },
+    {
+      "question": "What is the purpose of the UserInfo endpoint in OIDC?",
+      "options": [
+        "To exchange authorization codes for tokens",
+        "To retrieve additional user claims beyond those in the ID Token",
+        "To validate ID Token signatures",
+        "To revoke access tokens"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The UserInfo endpoint is an OAuth 2.0 protected resource that returns additional claims about the authenticated user. It provides real-time data and claims not included in the ID Token to keep the ID Token size manageable."
+    },
+    {
+      "question": "When calling the UserInfo endpoint, which token must you provide in the Authorization header?",
+      "options": [
+        "ID Token",
+        "Access Token",
+        "Refresh Token",
+        "Authorization Code"
+      ],
+      "correctAnswer": 1,
+      "explanation": "You must use the access token (not the ID Token) to call the UserInfo endpoint. The UserInfo endpoint is an OAuth 2.0 protected resource that requires a valid bearer access token with the 'openid' scope."
+    },
+    {
+      "question": "Which OIDC flow is currently recommended for Single Page Applications (SPAs) in 2025?",
+      "options": [
+        "Implicit Flow",
+        "Authorization Code Flow with PKCE",
+        "Hybrid Flow",
+        "Resource Owner Password Credentials Flow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Authorization Code Flow with PKCE is recommended for all modern application types, including SPAs. The Implicit Flow is deprecated due to security concerns (tokens in URL, no refresh tokens)."
+    },
+    {
+      "question": "What is the purpose of validating the 'nonce' claim in an ID Token?",
+      "options": [
+        "To verify the token hasn't expired",
+        "To prevent token replay attacks",
+        "To check the token audience",
+        "To verify the issuer"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The nonce is a random value sent by the client in the authorization request and returned in the ID Token. Validating it prevents token replay attacks by ensuring the ID Token was issued in response to the current authentication request."
+    },
+    {
+      "question": "Where can you find the JWKS endpoint for validating ID Token signatures?",
+      "options": [
+        "In the ID Token itself",
+        "In the access token response",
+        "In the OpenID Provider's discovery document at /.well-known/openid-configuration",
+        "In the authorization response"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The JWKS (JSON Web Key Set) endpoint URI is published in the OpenID Provider's discovery document at /.well-known/openid-configuration. The 'jwks_uri' field contains the URL where public keys for signature verification can be fetched."
+    },
+    {
+      "question": "What is RP-Initiated Logout?",
+      "options": [
+        "When the identity provider automatically logs out inactive users",
+        "When the relying party (client application) triggers logout at the identity provider via the end_session_endpoint",
+        "When the user manually logs out of all applications simultaneously",
+        "When the access token expires and the session ends"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RP-Initiated Logout is when the Relying Party (your application) triggers logout at the OpenID Provider by redirecting the user to the end_session_endpoint. This allows the application to log the user out of both the local session and the IdP session."
+    },
+    {
+      "question": "What is the main advantage of Back-Channel Logout over Front-Channel Logout?",
+      "options": [
+        "It's faster because it uses HTTP/2",
+        "It works without requiring third-party cookies and functions even when the user is offline",
+        "It doesn't require JWT validation",
+        "It only logs out the current application, not all applications"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Back-Channel Logout uses server-to-server communication (HTTP POST with logout tokens), which doesn't rely on browser features like third-party cookies or iframes. It's more reliable, works when users are offline, and is compatible with modern browser privacy features."
+    },
+    {
+      "question": "Which of the following is NOT a valid ID Token validation step?",
+      "options": [
+        "Verify the signature using the public key from the JWKS endpoint",
+        "Validate that the 'aud' claim contains your client_id",
+        "Check that the current time is before the 'exp' timestamp",
+        "Send the ID Token to the resource server API for validation"
+      ],
+      "correctAnswer": 3,
+      "explanation": "You should NEVER send ID Tokens to resource servers or APIs. ID Tokens are meant for the client application only to prove authentication occurred. Resource servers should validate access tokens, not ID Tokens. All other options are required validation steps."
+    }
+  ]
+}

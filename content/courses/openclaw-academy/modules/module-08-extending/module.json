@@ -1,0 +1,16 @@
+{
+  "id": "module-08-extending",
+  "slug": "module-08-extending",
+  "order": 8,
+  "title": "Extending OpenClaw",
+  "description": "Writing skills, custom routing, and integrating with the Model Context Protocol (MCP).",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Extending OpenClaw Badge",
+    "icon": "\ud83d\udd27",
+    "description": "Completed the Extending OpenClaw module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

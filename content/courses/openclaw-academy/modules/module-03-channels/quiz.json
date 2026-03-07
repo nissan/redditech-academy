@@ -1,0 +1,89 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What library does OpenClaw use to connect to WhatsApp?",
+      "options": [
+        "The official Meta WhatsApp Business API",
+        "Baileys (WhatsApp Web multi-device protocol)",
+        "Twilio's WhatsApp integration",
+        "signal-cli over a JSON-RPC socket"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenClaw uses Baileys, an open-source Node.js library implementing the WhatsApp Web multi-device protocol. It requires a QR scan to link the session \u2014 the same way WhatsApp Web in a browser works."
+    },
+    {
+      "id": "q2",
+      "question": "You configure 'dmPolicy: pairing' for Telegram. What happens when an unknown sender DMs your bot for the first time?",
+      "options": [
+        "The message is silently dropped with no response",
+        "The message is processed normally and the agent responds",
+        "The bot sends them a pairing code and their message is not processed until you approve them",
+        "The Gateway shuts down as a security precaution"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In pairing mode, unknown senders receive a pairing code. You must run 'openclaw pairing approve telegram <CODE>' before their messages are processed. Codes expire after 1 hour."
+    },
+    {
+      "id": "q3",
+      "question": "What session key would be generated for a message from Discord user 987654321 in channel 123456789?",
+      "options": [
+        "discord:987654321:channel:123456789",
+        "agent:main:discord:channel:123456789",
+        "agent:main:discord:dm:987654321",
+        "main:discord:987654321"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Guild channel sessions are keyed by channel ID, not user ID. The pattern is agent:<agentId>:<channel>:<type>:<id>. The user who sent the message doesn't change which session it goes to \u2014 the channel does."
+    },
+    {
+      "id": "q4",
+      "question": "Telegram bots have Privacy Mode enabled by default. What does this affect?",
+      "options": [
+        "The bot can't see any messages at all, not even DMs",
+        "The bot only sees messages that @mention it in groups \u2014 it misses all other group messages",
+        "The bot token is encrypted and rotated every 24 hours",
+        "The bot can only respond to users in the allowFrom list"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Telegram's Privacy Mode limits bots to only seeing messages that @mention them in groups. If you want requireMention: false to actually work, you must disable Privacy Mode in BotFather with /setprivacy, then remove and re-add the bot to each group."
+    },
+    {
+      "id": "q5",
+      "question": "What is the key difference between Slack's Socket Mode and HTTP Events API?",
+      "options": [
+        "Socket Mode requires two bot tokens; HTTP mode only needs one",
+        "Socket Mode uses a persistent WebSocket (no public URL needed); HTTP mode requires a public HTTPS endpoint",
+        "Socket Mode only works for DMs; HTTP mode is required for channel messages",
+        "They are identical in behaviour \u2014 Socket Mode is just HTTP with keep-alive"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Socket Mode maintains a persistent outbound WebSocket from your gateway to Slack's servers, so no public URL or port forwarding is required. HTTP Events API mode requires a publicly-accessible HTTPS endpoint that Slack can POST events to."
+    },
+    {
+      "id": "q6",
+      "question": "Which channels require a separate plugin install and are NOT bundled with OpenClaw core?",
+      "options": [
+        "Telegram, WhatsApp, and Discord",
+        "Slack and Google Chat",
+        "Matrix, Microsoft Teams, IRC, and Nostr",
+        "Signal and BlueBubbles"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Matrix, MS Teams, IRC, Nostr, LINE, Mattermost, and several other channels ship as optional plugins (openclaw plugins install @openclaw/matrix, etc.). Telegram, WhatsApp, Discord, Slack, Google Chat, Signal, and BlueBubbles are bundled in core."
+    },
+    {
+      "id": "q7",
+      "question": "You want your Discord bot to respond to every message in your private server WITHOUT being @mentioned each time. What config change do you need?",
+      "options": [
+        "Set channels.discord.dmPolicy to 'open'",
+        "Set requireMention: false in the guild config under channels.discord.guilds",
+        "Enable the Message Content Intent in the Discord Developer Portal only \u2014 no config change needed",
+        "Set channels.discord.groupPolicy to 'disabled'"
+      ],
+      "correctAnswer": 1,
+      "explanation": "requireMention is a per-guild (and optionally per-channel) setting in channels.discord.guilds.<guildId>.requireMention. Setting it to false makes the bot respond to all messages in allowlisted channels without needing a direct @mention. Note: you still need Message Content Intent enabled in the Developer Portal or the bot won't see message content at all."
+    }
+  ]
+}

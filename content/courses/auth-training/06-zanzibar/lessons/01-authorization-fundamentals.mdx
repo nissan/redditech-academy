@@ -1,0 +1,307 @@
+---
+title: "Authorization Fundamentals"
+slug: "authorization-fundamentals"
+duration: 30
+keyTakeaways:
+  - "Authorization determines what authenticated users can do"
+  - "ACL is simple but doesn't scale to complex scenarios"
+  - "RBAC assigns permissions via roles, ideal for organizational structures"
+  - "ABAC uses attributes for flexible, context-aware decisions"
+  - "ReBAC models relationships between users and resources for fine-grained control"
+---
+
+# Authorization Fundamentals
+
+**Authorization** determines what an authenticated user is allowed to do.
+
+## Authentication vs. Authorization
+
+| Aspect | Authentication | Authorization |
+|--------|----------------|---------------|
+| **Question** | Who are you? | What can you do? |
+| **Purpose** | Verify identity | Control access |
+| **When** | Login | Every action |
+| **Output** | User identity | Permissions/decisions |
+| **Example** | Password, passkey, SAML | Read file, delete document |
+
+**Example Flow:**
+1. **Authentication**: User logs in with email + password → "You are alice@example.com"
+2. **Authorization**: Alice tries to delete document → Check: "Can alice@example.com delete doc123?" → Allowed/Denied
+
+## Why Authorization is Hard
+
+### Simple App (Small Scale)
+
+**Scenario:** Blog with 100 users
+
+```
+if (user.id === post.authorId) {"{"}
+  allowDelete()  // Author can delete their own posts
+{"}"}
+```
+
+✅ Works fine for simple cases
+
+### Complex App (Large Scale)
+
+**Scenario:** Google Docs with billions of users
+
+**Requirements:**
+- ✅ Owner can edit document
+- ✅ Users can be granted edit/view permissions
+- ✅ Users can share with groups (e.g., "Engineering Team")
+- ✅ Groups can contain other groups (nested)
+- ✅ Folders inherit permissions to child documents
+- ✅ Permissions can be time-limited
+- ✅ Check must complete in `<1`0ms for billions of documents
+
+❌ Simple `if` statements don't scale!
+
+### The Challenge
+
+**Volume:**
+- Billions of users
+- Trillions of resources (documents, folders, files)
+- Quadrillions of permission checks per day
+
+**Complexity:**
+- Nested groups (group contains group contains user)
+- Inherited permissions (folder → subfolder → document)
+- Multiple permission types (owner, editor, viewer)
+- Shared with "anyone with link"
+- Organization-level policies
+
+**Performance:**
+- Must answer "Can user X access resource Y?" in milliseconds
+- Global consistency across data centers
+- Real-time permission changes
+
+## Authorization Models
+
+### 1. Access Control Lists (ACLs)
+
+**Concept:** Each resource has a list of who can access it
+
+**Example:**
+```json
+{"{"}
+  "document": "doc123",
+  "acl": [
+    {"{"} "user": "alice@example.com", "permission": "owner" {"}"},
+    {"{"} "user": "bob@example.com", "permission": "editor" {"}"},
+    {"{"} "user": "charlie@example.com", "permission": "viewer" {"}"}
+  ]
+{"}"}
+```
+
+**Pros:**
+- ✅ Simple to understand
+- ✅ Easy to implement for small systems
+- ✅ Direct permission assignment
+
+**Cons:**
+- ❌ Doesn't scale (each resource stores full list)
+- ❌ No group support
+- ❌ Hard to audit ("What can Alice access?")
+- ❌ Difficult to manage at scale
+
+**Use Case:** Small apps with few users/resources
+
+### 2. Role-Based Access Control (RBAC)
+
+**Concept:** Users are assigned roles, roles have permissions
+
+**Example:**
+```
+User → Role → Permissions
+
+alice@example.com → "Admin" → [create, read, update, delete]
+bob@example.com → "Editor" → [read, update]
+charlie@example.com → "Viewer" → [read]
+```
+
+**Authorization Check:**
+```javascript
+function canDelete(user, resource) {"{"}
+  const userRoles = getRoles(user)  // ["Admin"]
+  const requiredRoles = ["Admin", "Owner"]
+  return userRoles.some(role => requiredRoles.includes(role))
+{"}"}
+```
+
+**Pros:**
+- ✅ Scales better than ACLs
+- ✅ Easy to understand (roles match job functions)
+- ✅ Centralized permission management
+- ✅ Works well for enterprise applications
+
+**Cons:**
+- ❌ Coarse-grained (all Admins have same permissions)
+- ❌ No resource-specific permissions
+- ❌ Role explosion (need "Document123Editor" for specific access)
+- ❌ Can't express relationships ("Alice is Bob's manager")
+
+**Use Case:** Enterprise apps with clear role hierarchy (HR systems, admin panels)
+
+### 3. Attribute-Based Access Control (ABAC)
+
+**Concept:** Access decisions based on attributes of user, resource, and environment
+
+**Example:**
+```javascript
+function canAccess(user, resource, environment) {"{"}
+  return (
+    user.department === resource.owner.department &&  // Same department
+    user.clearanceLevel >= resource.classification &&  // Sufficient clearance
+    environment.time >= "09:00" &&                     // Business hours
+    environment.time <= "17:00" &&
+    environment.location === "office"                  // On-site only
+  )
+{"}"}
+```
+
+**Policy Example (XACML-style):**
+```xml
+<Rule>
+  <Condition>
+    <Match>
+      <AttributeValue>Engineering</AttributeValue>
+      <UserAttribute>department</UserAttribute>
+    </Match>
+    <Match>
+      <UserAttribute>clearanceLevel</UserAttribute>
+      <GreaterThanOrEqual/>
+      <ResourceAttribute>classification</ResourceAttribute>
+    </Match>
+  </Condition>
+  <Effect>Permit</Effect>
+</Rule>
+```
+
+**Pros:**
+- ✅ Very flexible
+- ✅ Fine-grained control
+- ✅ Context-aware (time, location)
+- ✅ Good for compliance (government, healthcare)
+
+**Cons:**
+- ❌ Complex to implement
+- ❌ Hard to debug ("Why was I denied?")
+- ❌ Performance overhead (evaluate complex policies)
+- ❌ Difficult to audit
+
+**Use Case:** Government systems, healthcare (HIPAA), classified data
+
+### 4. Relationship-Based Access Control (ReBAC)
+
+**Concept:** Access decisions based on relationships between entities
+
+**Example:**
+```
+alice is owner of doc123
+bob is member of Engineering
+Engineering is viewer of doc123
+
+Can bob view doc123?
+→ Yes (bob → member → Engineering → viewer → doc123)
+```
+
+**Graph Representation:**
+```
+alice --owner--> doc123
+bob --member--> Engineering
+Engineering --viewer--> doc123
+
+Query: Can bob view doc123?
+Answer: Traverse graph to find path from bob to doc123 with view permission
+```
+
+**Pros:**
+- ✅ Extremely flexible
+- ✅ Handles complex relationships (groups, nested groups, inheritance)
+- ✅ Scales to billions of entities (Google-proven)
+- ✅ Natural for social graphs (Facebook, Google)
+- ✅ Easy to reason about
+
+**Cons:**
+- ❌ More complex to implement than RBAC
+- ❌ Requires specialized infrastructure (graph database or Zanzibar-like system)
+
+**Use Case:** Google Docs, GitHub (organizations/teams), Facebook (friends/groups)
+
+## Comparison Table
+
+| Feature | ACL | RBAC | ABAC | ReBAC (Zanzibar) |
+|---------|-----|------|------|------------------|
+| **Complexity** | Low | Medium | High | Medium-High |
+| **Scalability** | Poor | Good | Medium | Excellent |
+| **Flexibility** | Low | Medium | Very High | Very High |
+| **Performance** | Fast | Fast | Slow | Very Fast |
+| **Groups** | No | Yes | Yes | Yes (nested) |
+| **Inheritance** | No | Limited | Yes | Yes |
+| **Context-Aware** | No | No | Yes | Limited |
+| **Audit ("What can user X access?")** | Hard | Easy | Hard | Medium |
+| **Best For** | Small apps | Enterprise apps | Compliance-heavy | Large-scale SaaS |
+
+## Which Model to Use?
+
+**Use ACLs when:**
+- Small application (`<1`000 users, `<1`0,000 resources)
+- Simple permission model (owner + viewers)
+- No groups needed
+
+**Use RBAC when:**
+- Enterprise application
+- Clear organizational roles (Admin, Manager, Employee)
+- Permissions tied to job functions
+- Medium scale (thousands of users)
+
+**Use ABAC when:**
+- Government, healthcare, finance
+- Complex compliance requirements
+- Context matters (time, location, classification)
+- Willing to invest in policy management
+
+**Use ReBAC (Zanzibar) when:**
+- Large-scale SaaS (millions of users)
+- Complex sharing (Google Docs, Dropbox, GitHub)
+- Nested groups and inheritance
+- Need Google-level scalability
+- Resources have relationships (folders contain documents)
+
+## Exercise: Identify the Right Model
+
+For each scenario, identify the best authorization model:
+
+**Scenario 1:** A todo list app with 500 users. Each user can only access their own todos. No sharing.
+- A) ACL
+- B) RBAC
+- C) ABAC
+- D) ReBAC
+
+**Scenario 2:** An enterprise HR system with 10,000 employees. Permissions tied to job roles: HR Admin, Manager, Employee. Managers can see their direct reports' data.
+- A) ACL
+- B) RBAC
+- C) ABAC
+- D) ReBAC
+
+**Scenario 3:** A healthcare records system. Access requires: correct department, sufficient clearance level, on-site location, business hours, and patient consent.
+- A) ACL
+- B) RBAC
+- C) ABAC
+- D) ReBAC
+
+**Scenario 4:** A Google Docs alternative with millions of users. Documents can be shared with individuals, groups, or "anyone with link". Folders inherit permissions. Groups can contain other groups.
+- A) ACL
+- B) RBAC
+- C) ABAC
+- D) ReBAC
+
+<details>
+<summary>View Answers</summary>
+
+1. **A - ACL** - Simple app, no sharing, small scale. ACLs are perfect.
+2. **B - RBAC** - Enterprise with clear roles. RBAC handles role hierarchy well.
+3. **C - ABAC** - Complex compliance requirements with multiple contextual attributes. ABAC is designed for this.
+4. **D - ReBAC (Zanzibar)** - Large-scale with complex sharing, nested groups, and inheritance. Zanzibar is built for this exact use case.
+</details>

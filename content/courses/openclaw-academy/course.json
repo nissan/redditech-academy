@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-academy",
+  "slug": "openclaw-academy",
+  "title": "OpenClaw Academy",
+  "description": "Learn to build, configure, and operate AI agent systems with OpenClaw. Covers gateway architecture, multi-agent routing, skills, memory, and production deployment.",
+  "tagline": "Build and operate AI agents with OpenClaw",
+  "icon": "ð¦",
+  "difficulty": "intermediate",
+  "estimatedHours": 12,
+  "tags": [
+    "ai-agents",
+    "openclaw",
+    "llm",
+    "multi-agent"
+  ],
+  "badge": {
+    "name": "OpenClaw Operator",
+    "icon": "ð¦",
+    "description": "Completed the OpenClaw Academy course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true
+}

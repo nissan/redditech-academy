@@ -1,0 +1,584 @@
+---
+title: "WebAuthn API Deep Dive"
+description: "Master the Web Authentication API for implementing passwordless authentication in web applications."
+slug: "02-webauthn-api"
+duration: 40
+order: 2
+keyTakeaways:
+  - "WebAuthn provides two main operations: navigator.credentials.create() for registration and navigator.credentials.get() for authentication"
+  - "The challenge prevents replay attacks and must be cryptographically random and unique per attempt"
+  - "Resident keys (residentKey: 'required') enable username-less authentication by storing credentials on the authenticator"
+  - "Server verification includes signature validity, challenge match, origin verification, and signature counter checks"
+prerequisites: ["01-fido2-fundamentals"]
+---
+
+# WebAuthn API Deep Dive
+
+## WebAuthn API Overview
+
+The **Web Authentication API** (WebAuthn) provides two main operations:
+
+### 1. Registration (Creating Credentials)
+
+**JavaScript API:**
+```javascript
+const credential = await navigator.credentials.create({
+  publicKey: publicKeyCredentialCreationOptions
+})
+```
+
+**Returns:** `PublicKeyCredential` object containing the new credential's public key
+
+### 2. Authentication (Verifying Identity)
+
+**JavaScript API:**
+```javascript
+const assertion = await navigator.credentials.get({
+  publicKey: publicKeyCredentialRequestOptions
+})
+```
+
+**Returns:** `PublicKeyCredential` object containing the authentication assertion
+
+## PublicKeyCredential Interface
+
+Both operations return a `PublicKeyCredential` with these properties:
+
+```typescript
+interface PublicKeyCredential {
+  id: string                    // Base64url-encoded credential ID
+  rawId: ArrayBuffer            // Raw credential ID bytes
+  type: "public-key"            // Always "public-key" for WebAuthn
+  response: AuthenticatorResponse  // Registration or Authentication response
+}
+```
+
+## Authenticator Types
+
+**Platform Authenticators:**
+- Built into the device/OS
+- Examples: Touch ID, Face ID, Windows Hello
+- User verification: Biometric or device PIN
+- `authenticatorAttachment: "platform"`
+
+**Roaming Authenticators:**
+- External security keys
+- Examples: YubiKey, Google Titan, Feitian
+- Connection: USB, NFC, or Bluetooth
+- `authenticatorAttachment: "cross-platform"`
+
+**You can require a specific type:**
+```javascript
+authenticatorSelection: {
+  authenticatorAttachment: "platform"  // Require Touch ID/Face ID/Windows Hello
+}
+```
+
+## Registration Flow (Creating a Credential)
+
+### Step 1: Generate Registration Options (Server-Side)
+
+The **Relying Party** (your server) generates options for registration:
+
+```javascript
+// Server-side (Node.js example)
+const registrationOptions = {
+  challenge: crypto.randomBytes(32),  // Random challenge (must be fresh)
+
+  rp: {
+    name: "Example Corp",              // Your organization name
+    id: "example.com"                  // Your domain (no protocol, no port)
+  },
+
+  user: {
+    id: crypto.randomBytes(16),        // Unique user identifier (never changes)
+    name: "alice@example.com",         // User's username/email (visible)
+    displayName: "Alice Smith"         // User's display name
+  },
+
+  pubKeyCredParams: [                  // Supported algorithms
+    { alg: -7, type: "public-key" },   // ES256 (ECDSA with SHA-256)
+    { alg: -257, type: "public-key" }  // RS256 (RSA with SHA-256)
+  ],
+
+  authenticatorSelection: {
+    authenticatorAttachment: "platform",  // Prefer built-in (Touch ID, etc.)
+    userVerification: "required",         // Require biometric/PIN
+    residentKey: "required"               // Create discoverable credential (passkey)
+  },
+
+  timeout: 60000,                      // 60 seconds
+
+  attestation: "none"                  // Don't request attestation (privacy)
+}
+
+// Store challenge associated with user session
+sessionStore.set(sessionId, { challenge, userId })
+
+// Send to browser
+res.json(registrationOptions)
+```
+
+### Step 2: Call WebAuthn API (Browser-Side)
+
+```javascript
+// Browser-side JavaScript
+async function registerCredential(options) {
+  try {
+    // Convert challenge and user.id from base64url to ArrayBuffer
+    options.challenge = base64urlDecode(options.challenge)
+    options.user.id = base64urlDecode(options.user.id)
+
+    // Call WebAuthn API
+    const credential = await navigator.credentials.create({
+      publicKey: options
+    })
+
+    // At this point:
+    // 1. Browser prompted user for biometric/PIN
+    // 2. User provided Touch ID/Face ID
+    // 3. Authenticator generated key pair
+    // 4. Private key stored in secure hardware
+    // 5. Public key returned in credential object
+
+    return credential
+  } catch (error) {
+    console.error("Registration failed:", error)
+    throw error
+  }
+}
+```
+
+### Step 3: Send Credential to Server
+
+```javascript
+// Convert credential to JSON-serializable format
+const credentialJSON = {
+  id: credential.id,
+  rawId: base64urlEncode(credential.rawId),
+  type: credential.type,
+  response: {
+    clientDataJSON: base64urlEncode(credential.response.clientDataJSON),
+    attestationObject: base64urlEncode(credential.response.attestationObject)
+  }
+}
+
+// Send to server
+await fetch('/register/verify', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(credentialJSON)
+})
+```
+
+### Step 4: Verify and Store (Server-Side)
+
+```javascript
+// Server-side verification
+const { challenge, userId } = sessionStore.get(sessionId)
+
+// Decode response
+const clientDataJSON = JSON.parse(
+  base64urlDecode(credentialJSON.response.clientDataJSON).toString()
+)
+const attestationObject = cbor.decode(
+  base64urlDecode(credentialJSON.response.attestationObject)
+)
+
+// Verify challenge matches
+if (clientDataJSON.challenge !== base64urlEncode(challenge)) {
+  throw new Error("Challenge mismatch")
+}
+
+// Verify origin
+if (clientDataJSON.origin !== "https://example.com") {
+  throw new Error("Origin mismatch")
+}
+
+// Verify type
+if (clientDataJSON.type !== "webauthn.create") {
+  throw new Error("Invalid ceremony type")
+}
+
+// Extract public key from authenticator data
+const authData = attestationObject.authData
+const publicKey = extractPublicKey(authData)  // COSE format
+
+// Store credential in database
+await db.credentials.create({
+  userId: userId,
+  credentialId: credentialJSON.rawId,
+  publicKey: publicKey,
+  signCount: 0,
+  transports: credential.response.getTransports(),  // USB, NFC, BLE
+  createdAt: new Date()
+})
+```
+
+## Important Registration Concepts
+
+### Challenge
+
+**Purpose:** Prevent replay attacks
+
+- Must be cryptographically random (32+ bytes)
+- Must be unique per registration attempt
+- Stored server-side, associated with session
+- Verified in response's `clientDataJSON`
+
+### User ID
+
+**Purpose:** Unique identifier for the user
+
+- Must be unique and stable (never changes)
+- Typically a database UUID or random bytes
+- **NOT** the username (usernames can change)
+- Used to look up credentials during authentication
+
+### Resident Key (Discoverable Credential)
+
+**Purpose:** Enable username-less authentication
+
+```javascript
+residentKey: "required"  // Creates passkey (stored on authenticator)
+```
+
+- **Resident key**: Credential stored on authenticator
+- Allows authentication without username
+- Required for true passwordless (no username entry)
+- Examples: Touch ID, Face ID, YubiKey 5 series
+
+### User Verification
+
+**Purpose:** Ensure user is present and verified
+
+```javascript
+userVerification: "required"  // Require biometric/PIN
+```
+
+- **required**: Must use biometric or PIN
+- **preferred**: Use if available, fallback to presence test
+- **discouraged**: Only test user presence (tap key)
+
+## Complete Registration Example (Client-Side)
+
+```javascript
+// Complete client-side registration flow
+
+async function registerWithPasskey() {
+  try {
+    // Step 1: Request registration options from server
+    const optionsResponse = await fetch('/register/begin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'alice@example.com',
+        displayName: 'Alice Smith'
+      })
+    })
+
+    const options = await optionsResponse.json()
+
+    // Step 2: Convert base64url strings to ArrayBuffers
+    options.challenge = base64urlToBuffer(options.challenge)
+    options.user.id = base64urlToBuffer(options.user.id)
+
+    // If excludeCredentials exists, convert those too
+    if (options.excludeCredentials) {
+      options.excludeCredentials = options.excludeCredentials.map(cred => ({
+        ...cred,
+        id: base64urlToBuffer(cred.id)
+      }))
+    }
+
+    // Step 3: Call WebAuthn API to create credential
+    console.log('Prompting for biometric...')
+    const credential = await navigator.credentials.create({
+      publicKey: options
+    })
+
+    console.log('Credential created:', credential.id)
+
+    // Step 4: Prepare credential for transmission
+    const credentialJSON = {
+      id: credential.id,
+      rawId: bufferToBase64url(credential.rawId),
+      type: credential.type,
+      response: {
+        clientDataJSON: bufferToBase64url(credential.response.clientDataJSON),
+        attestationObject: bufferToBase64url(credential.response.attestationObject),
+        transports: credential.response.getTransports()
+      }
+    }
+
+    // Step 5: Send to server for verification and storage
+    const verifyResponse = await fetch('/register/complete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentialJSON)
+    })
+
+    const result = await verifyResponse.json()
+
+    if (result.success) {
+      console.log('Registration successful!')
+      return result
+    } else {
+      throw new Error(result.error || 'Registration failed')
+    }
+
+  } catch (error) {
+    console.error('Registration error:', error)
+
+    // Handle specific error types
+    if (error.name === 'NotAllowedError') {
+      alert('Registration cancelled or timed out')
+    } else if (error.name === 'InvalidStateError') {
+      alert('Authenticator already registered')
+    } else if (error.name === 'NotSupportedError') {
+      alert('WebAuthn not supported on this device')
+    } else {
+      alert('Registration failed: ' + error.message)
+    }
+
+    throw error
+  }
+}
+
+// Helper: Convert base64url string to ArrayBuffer
+function base64urlToBuffer(base64url) {
+  const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/')
+  const binary = atob(base64)
+  const bytes = new Uint8Array(binary.length)
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i)
+  }
+  return bytes.buffer
+}
+
+// Helper: Convert ArrayBuffer to base64url string
+function bufferToBase64url(buffer) {
+  const bytes = new Uint8Array(buffer)
+  let binary = ''
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i])
+  }
+  const base64 = btoa(binary)
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+}
+
+// Usage
+document.getElementById('registerButton').addEventListener('click', async () => {
+  try {
+    await registerWithPasskey()
+    window.location.href = '/dashboard'
+  } catch (error) {
+    console.error('Registration failed:', error)
+  }
+})
+```
+
+## Authentication Flow (Verifying Identity)
+
+### Step 1: Generate Authentication Options (Server-Side)
+
+```javascript
+// Server-side authentication initiation
+const authenticationOptions = {
+  challenge: crypto.randomBytes(32),  // Fresh random challenge
+
+  timeout: 60000,                     // 60 seconds
+
+  rpId: "example.com",                // Your domain
+
+  allowCredentials: [                 // List of allowed credentials for this user
+    {
+      id: credentialIdFromDB,         // Credential ID from registration
+      type: "public-key",
+      transports: ["internal", "usb", "nfc", "ble"]
+    }
+  ],
+
+  userVerification: "required"        // Require biometric/PIN
+}
+
+// For username-less (discoverable credentials):
+// Omit allowCredentials to allow any credential on authenticator
+
+sessionStore.set(sessionId, { challenge, userId })
+res.json(authenticationOptions)
+```
+
+### Step 2: Call WebAuthn API (Browser-Side)
+
+```javascript
+// Browser-side authentication
+async function authenticateWithPasskey(options) {
+  try {
+    // Convert challenge to ArrayBuffer
+    options.challenge = base64urlDecode(options.challenge)
+
+    // Convert credential IDs if present
+    if (options.allowCredentials) {
+      options.allowCredentials = options.allowCredentials.map(cred => ({
+        ...cred,
+        id: base64urlDecode(cred.id)
+      }))
+    }
+
+    // Call WebAuthn API
+    const assertion = await navigator.credentials.get({
+      publicKey: options
+    })
+
+    // At this point:
+    // 1. Browser prompted user for biometric/PIN
+    // 2. User provided Touch ID/Face ID
+    // 3. Authenticator signed challenge with private key
+    // 4. Signature returned (private key never left device)
+
+    return assertion
+  } catch (error) {
+    console.error("Authentication failed:", error)
+    throw error
+  }
+}
+```
+
+### Step 3: Send Assertion to Server
+
+```javascript
+// Convert assertion to JSON
+const assertionJSON = {
+  id: assertion.id,
+  rawId: base64urlEncode(assertion.rawId),
+  type: assertion.type,
+  response: {
+    clientDataJSON: base64urlEncode(assertion.response.clientDataJSON),
+    authenticatorData: base64urlEncode(assertion.response.authenticatorData),
+    signature: base64urlEncode(assertion.response.signature),
+    userHandle: base64urlEncode(assertion.response.userHandle)  // User ID
+  }
+}
+
+await fetch('/authenticate/verify', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(assertionJSON)
+})
+```
+
+### Step 4: Verify Signature (Server-Side)
+
+```javascript
+// Server-side verification
+const { challenge } = sessionStore.get(sessionId)
+
+// Decode response
+const clientDataJSON = JSON.parse(
+  base64urlDecode(assertionJSON.response.clientDataJSON).toString()
+)
+const authenticatorData = base64urlDecode(assertionJSON.response.authenticatorData)
+const signature = base64urlDecode(assertionJSON.response.signature)
+
+// 1. Verify challenge matches
+if (clientDataJSON.challenge !== base64urlEncode(challenge)) {
+  throw new Error("Challenge mismatch")
+}
+
+// 2. Verify origin
+if (clientDataJSON.origin !== "https://example.com") {
+  throw new Error("Origin mismatch")
+}
+
+// 3. Verify type
+if (clientDataJSON.type !== "webauthn.get") {
+  throw new Error("Invalid ceremony type")
+}
+
+// 4. Look up credential by ID
+const credential = await db.credentials.findOne({
+  credentialId: assertionJSON.rawId
+})
+
+if (!credential) {
+  throw new Error("Credential not found")
+}
+
+// 5. Verify signature using stored public key
+const clientDataHash = crypto.createHash('sha256')
+  .update(Buffer.from(assertionJSON.response.clientDataJSON, 'base64url'))
+  .digest()
+
+const signedData = Buffer.concat([
+  authenticatorData,
+  clientDataHash
+])
+
+const isValid = crypto.verify(
+  null,  // Use algorithm from key
+  signedData,
+  credential.publicKey,  // Stored during registration
+  signature
+)
+
+if (!isValid) {
+  throw new Error("Invalid signature")
+}
+
+// 6. Verify signature counter (prevent cloning)
+const signCount = extractSignCount(authenticatorData)
+if (signCount <= credential.signCount) {
+  throw new Error("Authenticator may be cloned")
+}
+
+// Update sign count
+await db.credentials.update(credential.id, { signCount })
+
+// 7. Authentication successful
+const user = await db.users.findById(credential.userId)
+createSession(user)
+```
+
+## Signature Counter
+
+**Purpose:** Detect cloned authenticators
+
+- Authenticator maintains a counter of signatures
+- Counter increments with each authentication
+- Server stores last known counter value
+- If counter doesn't increase → authenticator may be cloned
+
+**Security Note:** Some authenticators (like macOS Touch ID) don't implement signature counter (always 0). This is acceptable but provides less cloning protection.
+
+## Hands-On Exercise
+
+**Exercise:** Given this WebAuthn registration response, identify the key components:
+
+```json
+{
+  "id": "AR52dGVzdC1jcmVkLWlk",
+  "rawId": "AR52dGVzdC1jcmVkLWlk",
+  "type": "public-key",
+  "response": {
+    "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiw...",
+    "attestationObject": "o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVi..."
+  }
+}
+```
+
+**Questions:**
+
+1. What does `id` represent?
+2. Where is the public key located?
+3. What information is in `clientDataJSON`?
+4. Is the private key transmitted to the server?
+
+<details>
+<summary>View Answers</summary>
+
+1. **Credential ID** - Unique identifier for this credential, used to look it up during authentication
+2. **Inside attestationObject** - The public key is embedded in the authenticator data within the attestation object (COSE format)
+3. **Challenge, origin, type** - Client data contains the challenge from server, the origin (domain), and ceremony type ("webauthn.create")
+4. **NO** - The private key NEVER leaves the authenticator. Only the public key and signatures are transmitted.
+</details>

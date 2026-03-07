@@ -1,0 +1,551 @@
+---
+title: "Privy: Embedded Wallets & Progressive Onboarding"
+description: "Explore Privy's approach to Web3 authentication with embedded wallets, MPC-based security, and seamless Web2-to-Web3 user onboarding"
+slug: "privy-embedded-wallets"
+duration: 60
+keyTakeaways:
+  - "Embedded wallet architecture: MPC-based key management with threshold signatures (2-of-3 shards)"
+  - "Progressive onboarding: start with social login (Google, Twitter), transparently create wallet, upgrade to self-custody"
+  - "Multi-authentication methods: social logins, email, SMS, external wallets (MetaMask, WalletConnect)"
+  - "Security model: user shard (device), Privy shard (encrypted server), recovery shard (optional password/additional device)"
+  - "Cross-chain support: Ethereum, Polygon, Base, Arbitrum, Optimism, Solana with unified SDK"
+---
+
+## Privy Embedded Wallets Overview
+
+
+## What is Privy?
+
+**Privy** is a **Web3-native authentication platform** that specializes in **embedded wallets** and **progressive onboarding** - making it easy to onboard Web2 users into Web3 applications without requiring them to install MetaMask or understand seed phrases.
+
+### The Core Problem Privy Solves
+
+**Traditional Web3 onboarding friction:**
+```
+User wants to use your dApp
+  ↓
+"Install MetaMask" → User abandons (60% drop-off)
+  ↓
+"Create wallet" → User confused about seed phrases (30% drop-off)
+  ↓
+"Write down 12 words" → User loses paper (20% drop-off)
+  ↓
+"Buy crypto for gas" → User gives up (50% drop-off)
+  ↓
+RESULT: 95% abandonment rate
+```
+
+**Privy's approach:**
+```
+User wants to use your dApp
+  ↓
+"Sign in with Google" → Instant sign-in (90% success)
+  ↓
+Embedded wallet auto-created (invisible to user)
+  ↓
+User starts using dApp immediately
+  ↓
+Later: "Link your MetaMask for advanced features" (optional)
+  ↓
+RESULT: 90% conversion rate
+```
+
+### What are Embedded Wallets?
+
+**Embedded wallets** are blockchain wallets that:
+- Are **created and managed by the application** (not a browser extension)
+- Use **Web2 authentication** (email, Google, Twitter) as the entry point
+- Store **private keys securely** using MPC (Multi-Party Computation)
+- Provide **gasless transactions** (app pays gas fees)
+- Enable **progressive onboarding** (start simple, add complexity later)
+
+**Key Insight:** Users don't need to know they have a wallet. They just "sign in with Google" and can interact with blockchain apps immediately.
+
+## Privy's Architecture
+
+### High-Level Flow
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                      User's Browser                      │
+│                                                          │
+│  1. Sign in with Google                                 │
+│     ↓                                                    │
+│  2. Privy SDK creates embedded wallet                   │
+│     ↓                                                    │
+│  3. Private key sharded across 3 locations              │
+│     ↓                                                    │
+│  4. User can sign transactions                          │
+└─────────────────────────────────────────────────────────┘
+         ↓                    ↓                    ↓
+    ┌────────┐          ┌─────────┐         ┌──────────┐
+    │ Shard 1│          │ Shard 2 │         │ Shard 3  │
+    │ (TEE)  │          │ (TEE)   │         │ (Browser)│
+    │ Privy  │          │ Privy   │         │ Local    │
+    └────────┘          └─────────┘         └──────────┘
+
+    Key reconstruction requires 2 of 3 shards
+    Single shard compromise = wallet is safe
+```
+
+### Multi-Party Computation (MPC) Explained
+
+**Traditional wallet:**
+```
+Private Key → Single Point of Failure
+If stolen → Wallet compromised
+If lost → Wallet unrecoverable
+```
+
+**MPC-based wallet (Privy):**
+```
+Private Key split into 3 shards using Shamir's Secret Sharing:
+- Shard 1: Privy TEE (AWS Nitro Enclave)
+- Shard 2: Privy TEE (different region)
+- Shard 3: User's device (encrypted in browser storage)
+
+To sign transaction:
+1. Reconstruct key using 2 of 3 shards
+2. Sign transaction in secure environment
+3. Immediately destroy reconstructed key
+4. Never expose full key to any single location
+```
+
+**Security Properties:**
+- **Theft resistance:** Attacker needs to compromise 2 of 3 shards (extremely difficult)
+- **Recovery:** User can recover wallet with 2 shards if device is lost
+- **No seed phrases:** Users never see 12-word mnemonic
+- **TEE protection:** Trusted Execution Environments prevent unauthorized access
+
+### Authentication Methods
+
+Privy supports **multiple authentication flows**:
+
+```typescript
+import { usePrivy } from '@privy-io/react-auth'
+
+function AuthComponent() {
+  const { login } = usePrivy()
+
+  return (
+    <>
+      {/* 1. Social OAuth */}
+      <button onClick={() => login({ loginMethod: 'google' })}>
+        Sign in with Google
+      </button>
+
+      {/* 2. Email (passwordless) */}
+      <button onClick={() => login({ loginMethod: 'email' })}>
+        Sign in with Email
+      </button>
+
+      {/* 3. SMS (phone number) */}
+      <button onClick={() => login({ loginMethod: 'sms' })}>
+        Sign in with Phone
+      </button>
+
+      {/* 4. External wallet (MetaMask, WalletConnect) */}
+      <button onClick={() => login({ loginMethod: 'wallet' })}>
+        Connect Wallet
+      </button>
+
+      {/* 5. Passkeys (WebAuthn) */}
+      <button onClick={() => login({ loginMethod: 'passkey' })}>
+        Sign in with Passkey
+      </button>
+    </>
+  )
+}
+```
+
+**Supported Methods:**
+- **OAuth:** Google, Twitter, Discord, GitHub, LinkedIn, Apple, TikTok, Farcaster
+- **Email:** Passwordless magic links or OTP codes
+- **SMS:** Phone number with OTP verification
+- **Wallet:** MetaMask, Coinbase Wallet, WalletConnect, Rainbow
+- **Passkeys:** FIDO2/WebAuthn for biometric authentication
+
+## Progressive Onboarding: The Privy Philosophy
+
+### What is Progressive Onboarding?
+
+**Start Simple → Add Complexity Over Time**
+
+Instead of overwhelming users with Web3 concepts upfront, Privy enables a **gradual introduction**:
+
+```
+Level 1: Web2 User (Day 1)
+  ├─ Sign in with Google
+  ├─ Embedded wallet created (invisible)
+  ├─ Can use dApp features
+  └─ Transactions paid by app (gasless)
+
+Level 2: Curious User (Week 1)
+  ├─ "What's this wallet thing?"
+  ├─ Export wallet to see balance
+  ├─ Link external wallet (MetaMask)
+  └─ Start understanding blockchain
+
+Level 3: Power User (Month 1)
+  ├─ Transfer funds between wallets
+  ├─ Use embedded wallet AND external wallet
+  ├─ Export private key (optional)
+  └─ Full control and understanding
+```
+
+### Implementation Example
+
+```typescript
+import { usePrivy, useWallets } from '@privy-io/react-auth'
+import { useState, useEffect } from 'react'
+
+function ProgressiveOnboardingExample() {
+  const { user, authenticated, login, logout } = usePrivy()
+  const { wallets } = useWallets()
+
+  const [onboardingLevel, setOnboardingLevel] = useState(1)
+
+  useEffect(() => {
+    if (!authenticated) return
+
+    // Determine user's onboarding level
+    const hasLinkedWallet = user?.linkedAccounts?.some(
+      account => account.type === 'wallet'
+    )
+    const hasExportedKey = localStorage.getItem('hasExportedKey') === 'true'
+
+    if (hasExportedKey) {
+      setOnboardingLevel(3) // Power user
+    } else if (hasLinkedWallet) {
+      setOnboardingLevel(2) // Curious user
+    } else {
+      setOnboardingLevel(1) // Web2 user
+    }
+  }, [user, authenticated])
+
+  if (!authenticated) {
+    return (
+      <div>
+        <h2>Welcome! Get started in seconds</h2>
+        <button onClick={() => login({ loginMethod: 'google' })}>
+          Sign in with Google
+        </button>
+        <p className="text-sm text-gray-500">
+          No wallet needed - we'll create one for you
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <h2>Welcome back, {user?.email?.address || user?.wallet?.address}</h2>
+
+      {/* Level 1: Basic usage */}
+      {onboardingLevel >= 1 && (
+        <div className="feature-card">
+          <h3>✅ You're ready to use the app!</h3>
+          <p>Your embedded wallet: {wallets[0]?.address}</p>
+          <button>Start Trading NFTs</button>
+        </div>
+      )}
+
+      {/* Level 2: Link external wallet */}
+      {onboardingLevel === 1 && (
+        <div className="upgrade-card">
+          <h3>💡 Want more control?</h3>
+          <p>Link your MetaMask wallet for advanced features</p>
+          <button onClick={() => login({ loginMethod: 'wallet' })}>
+            Link External Wallet
+          </button>
+        </div>
+      )}
+
+      {/* Level 2: Export options */}
+      {onboardingLevel === 2 && (
+        <div className="upgrade-card">
+          <h3>🔒 Take full custody</h3>
+          <p>Export your private key to use your wallet anywhere</p>
+          <button onClick={() => {
+            // Show export flow
+            localStorage.setItem('hasExportedKey', 'true')
+            setOnboardingLevel(3)
+          }}>
+            Export Private Key
+          </button>
+        </div>
+      )}
+
+      {/* Level 3: Power user features */}
+      {onboardingLevel === 3 && (
+        <div className="feature-card">
+          <h3>🚀 Power User Mode</h3>
+          <p>All advanced features unlocked</p>
+          <ul>
+            <li>✅ Embedded wallet</li>
+            <li>✅ External wallet linked</li>
+            <li>✅ Private key exported</li>
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+```
+
+## Multi-Chain Support
+
+Privy supports **multiple blockchain networks**:
+
+```typescript
+import { usePrivy } from '@privy-io/react-auth'
+
+function MultiChainExample() {
+  const { createWallet } = usePrivy()
+
+  const createEthereumWallet = async () => {
+    const wallet = await createWallet({
+      chainType: 'ethereum'
+    })
+    console.log('Ethereum wallet:', wallet.address)
+  }
+
+  const createSolanaWallet = async () => {
+    const wallet = await createWallet({
+      chainType: 'solana'
+    })
+    console.log('Solana wallet:', wallet.address)
+  }
+
+  const createBitcoinWallet = async () => {
+    const wallet = await createWallet({
+      chainType: 'bitcoin-segwit'
+    })
+    console.log('Bitcoin wallet:', wallet.address)
+  }
+
+  return (
+    <div>
+      <h2>Create Multi-Chain Wallets</h2>
+      <button onClick={createEthereumWallet}>Create ETH Wallet</button>
+      <button onClick={createSolanaWallet}>Create Solana Wallet</button>
+      <button onClick={createBitcoinWallet}>Create Bitcoin Wallet</button>
+    </div>
+  )
+}
+```
+
+**Supported Chains:**
+- **EVM Chains:** Ethereum, Polygon, Arbitrum, Optimism, Base, Avalanche, BNB Chain, Zora, and 500+ others
+- **Non-EVM:** Solana, Bitcoin (SegWit), TRON, Stellar
+- **Custom Networks:** Configure any EVM-compatible chain
+
+## Security Model Deep Dive
+
+### Threat Model
+
+**What Privy protects against:**
+
+1. **Server compromise:** Even if Privy's servers are hacked, attacker only gets 2 of 3 shards from TEEs (not enough to reconstruct key)
+
+2. **Device theft:** If user's device is stolen, attacker only has 1 shard (not enough)
+
+3. **Insider threat:** Privy employees cannot access user wallets (TEE prevents unauthorized access)
+
+4. **Phishing:** Private keys never exposed to user or application, so can't be phished
+
+**What Privy does NOT protect against:**
+
+1. **Transaction signing abuse:** If your application code is malicious and tricks users into signing bad transactions, Privy can't prevent it
+
+2. **Session hijacking:** If attacker steals user's session token, they can sign transactions
+
+3. **Social engineering:** If user approves malicious transaction, it will execute
+
+### Trusted Execution Environments (TEEs)
+
+**What are TEEs?**
+
+Isolated compute environments that:
+- Run code in **hardware-encrypted enclaves**
+- Prevent **external access** (even by cloud provider or OS)
+- Provide **cryptographic attestation** (proof of isolation)
+- Used by: AWS Nitro Enclaves, Intel SGX, ARM TrustZone
+
+**Privy's TEE Architecture:**
+```
+┌──────────────────────────────────────┐
+│     AWS Server (untrusted)           │
+│                                      │
+│  ┌────────────────────────────────┐ │
+│  │  Nitro Enclave (TEE)           │ │
+│  │                                │ │
+│  │  ┌──────────────────────────┐ │ │
+│  │  │   Key Shard 1            │ │ │
+│  │  │   (encrypted in memory)  │ │ │
+│  │  └──────────────────────────┘ │ │
+│  │                                │ │
+│  │  Only accessible via:          │ │
+│  │  - User authentication         │ │
+│  │  - Cryptographic attestation   │ │
+│  └────────────────────────────────┘ │
+│                                      │
+│  Root access cannot read enclave    │
+└──────────────────────────────────────┘
+```
+
+**Key Properties:**
+- **Memory encryption:** Data inside enclave is encrypted by hardware
+- **Isolated execution:** Host OS cannot inspect enclave memory
+- **Attestation:** Enclave can prove it's running correct code
+- **Audited:** Privy's TEE implementation is SOC 2 Type II compliant
+
+### SOC 2 Compliance
+
+**What is SOC 2?**
+
+An auditing standard for service providers that store customer data. Privy has **SOC 2 Type II** certification, which means:
+
+- **Security:** Systems are protected against unauthorized access
+- **Availability:** Systems are available for operation and use
+- **Confidentiality:** Information is protected as committed or agreed
+- **Independent audit:** Third-party verification of security controls
+
+**Why this matters for Web3:**
+- Most Web3 wallet providers are NOT SOC 2 compliant
+- Privy is production-ready for **enterprise use cases**
+- Institutional investors require SOC 2 for custody solutions
+
+## Transaction Management
+
+### Gasless Transactions (Sponsored)
+
+**Problem:** New users don't have ETH for gas fees
+
+**Solution:** Application sponsors gas fees using **Privy's Paymaster**
+
+```typescript
+import { usePrivy, useSendTransaction } from '@privy-io/react-auth'
+
+function GaslessTransaction() {
+  const { sendTransaction } = useSendTransaction()
+
+  const mintNFT = async () => {
+    // User has NO ETH in their wallet
+    // App pays gas fees via Privy's paymaster
+    const txHash = await sendTransaction({
+      to: '0xNFT_CONTRACT_ADDRESS',
+      data: encodeFunctionData({
+        abi: NFT_ABI,
+        functionName: 'mint',
+        args: [userAddress]
+      }),
+      // Privy automatically sponsors gas
+      sponsored: true
+    })
+
+    console.log('NFT minted (user paid $0 for gas):', txHash)
+  }
+
+  return <button onClick={mintNFT}>Mint NFT (Free!)</button>
+}
+```
+
+**How it works:**
+1. User initiates transaction
+2. Privy's paymaster pre-funds transaction on blockchain
+3. Transaction executes
+4. Your app is billed for gas cost (+ small fee)
+
+**Use cases:**
+- **Onboarding:** Let users try your dApp before buying crypto
+- **Free-to-play games:** Players don't need gas for game actions
+- **Social apps:** Posting/commenting without gas friction
+
+### Transaction Policies (Enterprise)
+
+**Problem:** Need to limit what embedded wallets can do
+
+**Solution:** Set spending limits and allowlists
+
+```typescript
+// Configure wallet policy via Privy Dashboard API
+const policy = {
+  spending_limits: {
+    daily_limit_usd: 100,
+    per_transaction_limit_usd: 10
+  },
+  allowed_contracts: [
+    '0xYOUR_NFT_CONTRACT',
+    '0xYOUR_GAME_CONTRACT'
+  ],
+  allowed_methods: [
+    'mint(address)',
+    'transfer(address,uint256)'
+  ],
+  block_high_risk: true
+}
+```
+
+**Enforcement:**
+- Privy validates transactions **before signing**
+- Blocks transactions that violate policy
+- Alerts admins to suspicious activity
+
+## Real-World Implementation
+
+### Complete Privy Integration Example
+
+```typescript
+import { PrivyProvider, usePrivy, useWallets } from '@privy-io/react-auth'
+import { useEffect, useState } from 'react'
+import { createPublicClient, http, parseEther } from 'viem'
+import { mainnet } from 'viem/chains'
+
+// 1. Wrap app with PrivyProvider
+function App() {
+  return (
+    <PrivyProvider
+      appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
+      config={{
+        loginMethods: ['google', 'email', 'wallet', 'sms'],
+        appearance: {
+          theme: 'dark',
+          accentColor: '#6A6FF5',
+          logo: 'https://your-app.com/logo.png'
+        },
+        embeddedWallets: {
+          createOnLogin: 'users-without-wallets', // Auto-create for new users
+          requireUserPasswordOnCreate: false // No password needed
+        },
+        mfa: {
+          noPromptOnMfaRequired: false
+        }
+      }}
+    >
+      <MainApp />
+    </PrivyProvider>
+  )
+}
+
+// 2. Use Privy hooks in components
+function MainApp() {
+  const { authenticated, user, login, logout } = usePrivy()
+  const { wallets, ready } = useWallets()
+  const [balance, setBalance] = useState<string>('0')
+
+  const embeddedWallet = wallets.find(w => w.walletClientType === 'privy')
+  const externalWallet = wallets.find(w => w.walletClientType !== 'privy')
+
+  // Fetch wallet balance
+  useEffect(() => {
+    if (!embeddedWallet) return
+
+    const publicClient = createPublicClient({
+      chain: mainnet,
+      transport: http()
+    })
+
+    publicClient.getBalance({
+      address: embeddedWallet.address as `0x\${string}\
+

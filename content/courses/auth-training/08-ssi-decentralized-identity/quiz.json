@@ -1,0 +1,269 @@
+{
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "ssi-q1",
+      "question": "What is the PRIMARY difference between traditional identity systems (OAuth/SAML) and Self-Sovereign Identity?",
+      "options": [
+        "SSI is faster than traditional systems",
+        "In SSI, the user owns and controls their identity data instead of a centralized provider",
+        "SSI doesn't require cryptography",
+        "SSI only works with blockchain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The fundamental difference is ownership and control. In traditional systems, identity providers (Google, Facebook, etc.) own and control your identity data. In SSI, YOU own your Decentralized Identifier (DID) and control your credentials through private keys."
+    },
+    {
+      "id": "ssi-q2",
+      "question": "In the SSI Trust Triangle, what are the three roles?",
+      "options": [
+        "User, Server, Database",
+        "Issuer, Holder, Verifier",
+        "Client, Provider, Authenticator",
+        "Sender, Receiver, Validator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Trust Triangle consists of: Issuer (issues credentials like a university), Holder (you - stores credentials in wallet), and Verifier (checks credentials like an employer). This model enables decentralized trust without a central authority."
+    },
+    {
+      "id": "ssi-q3",
+      "question": "What is the advantage of zero-knowledge proofs in SSI for age verification?",
+      "options": [
+        "Faster verification speed",
+        "You can prove you're over 21 without revealing your exact birthdate or other personal information",
+        "The verifier doesn't need internet connection",
+        "It's cheaper to implement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zero-knowledge proofs enable selective disclosure - you can prove a claim ('I am over 21') without revealing the underlying data (exact birthdate, name, address). This is a fundamental privacy feature of SSI that traditional IDs cannot provide."
+    },
+    {
+      "id": "ssi-q4",
+      "question": "According to Christopher Allen's principles, what does 'Persistence' mean in SSI?",
+      "options": [
+        "Data must be backed up regularly",
+        "Identities must be long-lived and work forever (or as long as the user wants)",
+        "The system must always be online",
+        "Credentials must be stored on blockchain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Persistence means your digital identity should be long-lived and durable. Your DID should work indefinitely (or until you choose to deactivate it), not depend on a company staying in business or a service remaining available."
+    },
+    {
+      "id": "ssi-q5",
+      "question": "What happens if you lose your private keys in an SSI system?",
+      "options": [
+        "You can reset your password like in traditional systems",
+        "The identity provider can recover your account",
+        "You lose access to your identity unless you have recovery mechanisms in place",
+        "Nothing, your DID still works"
+      ],
+      "correctAnswer": 2,
+      "explanation": "This is a critical challenge in SSI: losing your private keys means losing access to your DID and credentials. There's no 'forgot password' option. Solutions include social recovery (trusted contacts help recover), multi-device sync, or hardware security modules. This trade-off comes with true ownership and control."
+    },
+    {
+      "id": "did-q1",
+      "question": "What does a DID resolve to?",
+      "options": [
+        "A user's email address",
+        "A DID Document containing public keys and service endpoints",
+        "A blockchain transaction",
+        "An OAuth access token"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When you resolve a DID (like did:ethr:0x1234...), you get back a DID Document - a JSON-LD document containing verification methods (public keys), authentication methods, service endpoints, and other metadata about the DID."
+    },
+    {
+      "id": "did-q2",
+      "question": "What is the main advantage of did:key compared to other DID methods?",
+      "options": [
+        "It's the most secure",
+        "It's completely self-contained and works offline without any blockchain or registration",
+        "It supports unlimited key rotation",
+        "It's the cheapest"
+      ],
+      "correctAnswer": 1,
+      "explanation": "did:key is self-contained - the DID itself contains all the information needed (it's derived from the public key). No blockchain, no registration, no network required. The DID Document is generated on-the-fly from the key. Perfect for testing and temporary use."
+    },
+    {
+      "id": "did-q3",
+      "question": "How does did:ion achieve scalability despite using Bitcoin?",
+      "options": [
+        "It uses Lightning Network",
+        "It batches thousands of DID operations together and anchors only one IPFS hash to Bitcoin",
+        "It doesn't actually use Bitcoin",
+        "It uses a sidechain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "did:ion uses the Sidetree protocol to batch thousands of DID operations (create, update, etc.) together, store the batch in IPFS, and anchor only the IPFS content hash (CID) to Bitcoin. This means one Bitcoin transaction can represent thousands of DID operations, achieving massive scalability."
+    },
+    {
+      "id": "did-q4",
+      "question": "What is the main trade-off of using did:web?",
+      "options": [
+        "It's too expensive",
+        "It's centralized - depends on DNS and web hosting, sacrificing decentralization for simplicity",
+        "It doesn't support key rotation",
+        "It requires blockchain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "did:web trades decentralization for simplicity and familiarity. It relies on centralized DNS and web hosting infrastructure. If the domain is seized or the server goes down, the DID becomes unreachable. However, this makes it easy to set up and leverages existing web trust."
+    },
+    {
+      "id": "did-q5",
+      "question": "In a DID Document, what is the 'authentication' verification relationship used for?",
+      "options": [
+        "To encrypt messages",
+        "To prove you control the DID (e.g., for login/DID Auth)",
+        "To issue verifiable credentials",
+        "To delegate permissions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'authentication' relationship specifies which public keys can be used to authenticate as this DID - proving you control the DID's private keys. This is used for DID Auth (login), similar to how you prove ownership in other systems. Other relationships serve different purposes: assertionMethod for issuing credentials, keyAgreement for encryption, etc."
+    },
+    {
+      "id": "vc-q1",
+      "question": "What is the primary advantage of Verifiable Credentials over traditional physical credentials?",
+      "options": [
+        "They are cheaper to produce",
+        "They are cryptographically signed making them unforgeable and instantly verifiable",
+        "They look better",
+        "They require internet connection"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The primary advantage is cryptographic security: VCs are signed by the issuer making them mathematically unforgeable, and verification is instant by checking the signature against the issuer's public key. Physical credentials can be forged (fake degrees are a $1B industry) and require manual verification processes."
+    },
+    {
+      "id": "vc-q2",
+      "question": "In the SSI Trust Triangle, what are the three roles?",
+      "options": [
+        "User, Server, Database",
+        "Issuer, Holder, Verifier",
+        "Client, Provider, Consumer",
+        "Subject, Object, Predicate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Trust Triangle consists of: (1) Issuer - creates and signs credentials (e.g., university), (2) Holder - stores credentials in wallet (e.g., you), and (3) Verifier - checks credential validity (e.g., employer). This model enables decentralized trust without a central authority."
+    },
+    {
+      "id": "vc-q3",
+      "question": "What is selective disclosure and which cryptographic technique enables it?",
+      "options": [
+        "Hiding your DID, using encryption",
+        "Revealing only specific fields from a credential, using BBS+ signatures",
+        "Deleting old credentials, using revocation lists",
+        "Choosing which verifiers to trust, using public key infrastructure"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Selective disclosure allows revealing only specific fields from a credential (e.g., sharing only name and photo from a driver's license, hiding address and birthdate). BBS+ signatures make this cryptographically possible - verifiers can validate the signature on disclosed fields while hidden fields remain provably signed but unrevealed."
+    },
+    {
+      "id": "vc-q4",
+      "question": "What is a Verifiable Presentation (VP) and why is it needed?",
+      "options": [
+        "A PowerPoint slide with credentials, for sharing",
+        "A package that bundles multiple VCs together with the holder's proof of control",
+        "A public display of all your credentials",
+        "A presentation layer for mobile apps"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Verifiable Presentation is a cryptographically-signed package created by the holder that bundles one or more VCs together. It's needed because verifiers often require proof of multiple credentials (e.g., degree + certification + employment), and the VP includes the holder's signature proving they control the DIDs and aren't just forwarding someone else's credentials. The VP also includes challenge and domain to prevent replay attacks."
+    },
+    {
+      "id": "vc-q5",
+      "question": "How does Zero-Knowledge Proof (ZKP) differ from selective disclosure?",
+      "options": [
+        "ZKPs prove properties about data (e.g., age >21) without revealing the underlying data (birthdate)",
+        "ZKPs are faster than selective disclosure",
+        "ZKPs don't use cryptography",
+        "They are the same thing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ZKPs go beyond selective disclosure by proving properties or predicates about data without revealing the data itself. For example, proving 'I am over 21' without revealing your birthdate, or 'My credit score is >700' without revealing it's 745. Selective disclosure reveals specific fields but ZKPs can prove mathematical relationships while keeping all underlying data hidden."
+    },
+    {
+      "id": "vc-q6",
+      "question": "What is the purpose of the 'challenge' and 'domain' fields in a Verifiable Presentation?",
+      "options": [
+        "To make the presentation harder to understand",
+        "To prevent replay attacks - challenge ensures freshness, domain ensures it's for the intended verifier",
+        "To encrypt the presentation",
+        "To add metadata for analytics"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'challenge' (a random nonce from the verifier) prevents replay attacks by ensuring the presentation is fresh and created specifically for this verification request. The 'domain' field (verifier's domain like 'employer.com') ensures the presentation can't be reused with a different verifier. Together they cryptographically bind the presentation to a specific verification context."
+    },
+    {
+      "id": "wallet-q1",
+      "question": "What is the primary difference between custodial and non-custodial digital wallets?",
+      "options": [
+        "Custodial wallets are more secure",
+        "Non-custodial wallets store private keys on the user's device, while custodial wallets store keys on the provider's servers",
+        "Custodial wallets are faster",
+        "They are the same thing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Non-custodial wallets store private keys on the user's device, giving the user full control and true self-sovereignty, but requiring them to manage backups. Custodial wallets store keys on the provider's servers, making recovery easier but requiring trust in the provider and sacrificing some sovereignty. The industry trend is toward non-custodial with social recovery mechanisms."
+    },
+    {
+      "id": "wallet-q2",
+      "question": "What is DIDComm and what problem does it solve?",
+      "options": [
+        "A way to compress DIDs for storage",
+        "A secure, private, peer-to-peer messaging protocol that provides end-to-end encryption and metadata protection",
+        "A blockchain for storing DIDs",
+        "A programming language for DIDs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DIDComm is a secure messaging protocol for SSI that provides end-to-end encryption, metadata protection, forward secrecy, and repudiability. Unlike traditional messaging (email, SMS) where intermediaries can read content and metadata, DIDComm ensures only sender and recipient can decrypt messages, and even metadata like 'who messaged whom' is protected."
+    },
+    {
+      "id": "wallet-q3",
+      "question": "What is the EU Digital Identity Wallet (eIDAS 2.0) and when is it launching?",
+      "options": [
+        "A cryptocurrency wallet, launched in 2020",
+        "A government-mandated digital identity wallet for all EU citizens, launching in 2026 with 80% adoption target",
+        "A private company's product, available now",
+        "An optional wallet only for businesses"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The EU Digital Identity Wallet is mandated by eIDAS 2.0 regulation, requiring all EU member states to provide digital identity wallets to citizens by 2026, targeting 80% adoption. These wallets will be interoperable across member states and used for government services, banking, healthcare, and cross-border identity verification - representing the largest-scale SSI deployment globally."
+    },
+    {
+      "id": "wallet-q4",
+      "question": "What are the core functions of a digital identity wallet?",
+      "options": [
+        "Only storing passwords",
+        "DID management, credential storage, presentation creation, verification, and backup/recovery",
+        "Just displaying QR codes",
+        "Only cryptocurrency storage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Digital identity wallets provide five core functions: (1) DID Management - generate, store, export DIDs, (2) Credential Storage - receive, organize, search VCs, (3) Presentation Creation - select credentials, create VPs, sign with DID, (4) Verification - verify incoming credentials, check issuer trust, validate signatures, and (5) Backup & Recovery - encrypted backups, seed phrase recovery, social recovery, multi-device sync."
+    },
+    {
+      "id": "wallet-q5",
+      "question": "What is a Mobile Driver's License (mDL) based on ISO 18013-5?",
+      "options": [
+        "A photo of your license on your phone",
+        "A digital driver's license with NFC tap-to-share, selective disclosure, and offline verification capabilities",
+        "An app to book driving lessons",
+        "A GPS navigation system"
+      ],
+      "correctAnswer": 1,
+      "explanation": "mDL (Mobile Driver's License) following ISO 18013-5 is a verifiable credential version of a driver's license with advanced capabilities: NFC tap-to-share for instant verification, QR code fallback, selective disclosure (e.g., prove age >21 without showing birthdate), and offline verification. Currently deployed in 10+ US states and accepted by TSA at airports."
+    },
+    {
+      "id": "wallet-q6",
+      "question": "Why might you use different DIDs for different contexts (pairwise DIDs)?",
+      "options": [
+        "It's required by law",
+        "To prevent correlation and tracking across different services, preserving privacy",
+        "To save storage space",
+        "There is no reason - use one DID everywhere"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Using different DIDs for different contexts (pairwise DIDs) is a privacy best practice that prevents correlation tracking. If you use the same DID everywhere (employer, bank, social media), these services could collude to track your activities across platforms. By using context-specific DIDs (one for work, one for finance, one for social), you maintain privacy while still proving your identity when needed."
+    }
+  ]
+}

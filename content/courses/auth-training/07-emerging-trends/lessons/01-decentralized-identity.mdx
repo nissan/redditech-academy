@@ -1,0 +1,463 @@
+---
+title: "Decentralized Identity & Verifiable Credentials"
+slug: "decentralized-identity"
+duration: 40
+keyTakeaways:
+  - "Decentralized Identifiers (DIDs) enable user-controlled, portable digital identities without centralized authorities"
+  - "Verifiable Credentials are cryptographically-signed digital credentials issued by trusted entities"
+  - "The Trust Triangle: Issuer creates credentials, Holder stores in wallet, Verifier checks authenticity"
+  - "W3C standards (DIDs, VCs) provide interoperability across different systems and platforms"
+  - "Real-world use cases: education credentials, government IDs, healthcare records, employment verification"
+---
+
+# Decentralized Identity & Verifiable Credentials
+
+## Introduction to Decentralized Identity
+
+Decentralized identity (DID) represents a paradigm shift from centralized identity providers to user-controlled, portable digital identities. Instead of Google, Facebook, or government databases controlling your identity, **you** own and control your credentials.
+
+## The Problem with Centralized Identity
+
+Traditional identity systems have several critical issues:
+
+- **Centralization Risk**: Single points of failure (data breaches at Equifax, Marriott, etc.)
+- **Lack of Portability**: You can't easily move your identity between services
+- **Privacy Concerns**: Identity providers track all your authentication events
+- **Vendor Lock-in**: You're dependent on the IdP's availability and policies
+- **No User Control**: The IdP can revoke or modify your identity at will
+
+## What is Decentralized Identity (DID)?
+
+A **Decentralized Identifier (DID)** is a globally unique identifier that:
+
+- Is created by the subject (you)
+- Is controlled by the subject (you manage the private keys)
+- Is verifiable cryptographically
+- Does not require a centralized registry (uses blockchain or distributed ledger)
+- Can be resolved to a DID Document containing public keys and service endpoints
+
+**Example DID:**
+```
+did:example:123456789abcdefghi
+```
+
+Structure: `did:&lt;method&gt;:&lt;identifier&gt;`
+
+- **did**: The scheme
+- **example**: The DID method (could be `ethr`, `ion`, `key`, `web`, etc.)
+- **123456789abcdefghi**: The method-specific identifier
+
+## DID Methods
+
+Different DID methods use different underlying technologies:
+
+| Method | Technology | Example | Use Case |
+|--------|-----------|---------|----------|
+| **did:ethr** | Ethereum blockchain | `did:ethr:0x1234...` | Ethereum-based identities |
+| **did:ion** | Bitcoin + IPFS | `did:ion:EiClWZ...` | Microsoft's ION network |
+| **did:key** | Cryptographic key | `did:key:z6MkpT...` | Self-contained, no ledger |
+| **did:web** | Web domain | `did:web:example.com` | DNS-based DIDs |
+| **did:sov** | Sovrin network | `did:sov:12345` | Hyperledger Indy/Sovrin |
+
+## DID Documents
+
+A DID resolves to a **DID Document** containing:
+
+- **Public keys** for verification
+- **Authentication methods**
+- **Service endpoints** (where to reach the identity owner)
+- **Verification methods**
+
+**Example DID Document:**
+```json
+{"{"}
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "verificationMethod": [{"{"}
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "Ed25519VerificationKey2020",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  {"}"}],
+  "authentication": [
+    "did:example:123456789abcdefghi#keys-1"
+  ],
+  "service": [{"{"}
+    "id": "did:example:123456789abcdefghi#vcs",
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  {"}"}]
+{"}"}
+```
+
+## Verifiable Credentials (VCs)
+
+**Verifiable Credentials (VCs)** are digital credentials that can be cryptographically verified. Think of them as digital versions of driver's licenses, diplomas, passports, or employee badges.
+
+## The Three Roles in the VC Model
+
+```
+Issuer → Issues credential → Holder → Presents credential → Verifier
+```
+
+1. **Issuer**: Organization that issues the credential (university, government, employer)
+2. **Holder**: Individual who owns and stores the credential (you)
+3. **Verifier**: Entity that verifies the credential (employer checking your diploma)
+
+## Key Properties of Verifiable Credentials
+
+- **Tamper-evident**: Cryptographic signatures detect any modifications
+- **Privacy-preserving**: Selective disclosure (share only what's needed)
+- **User-controlled**: You decide when and with whom to share
+- **Interoperable**: Based on W3C standards
+- **Revocable**: Issuers can revoke credentials if needed
+
+## Verifiable Credential Structure
+
+**Example: University Diploma as a VC**
+```json
+{"{"}
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "http://example.edu/credentials/3732",
+  "type": ["VerifiableCredential", "UniversityDegreeCredential"],
+  "issuer": "https://example.edu/issuers/565049",
+  "issuanceDate": "2024-01-01T00:00:00Z",
+  "credentialSubject": {"{"}
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "degree": {"{"}
+      "type": "BachelorDegree",
+      "name": "Bachelor of Science in Computer Science",
+      "degreeSchool": "Example University"
+    {"}"},
+    "graduationDate": "2023-12-15"
+  {"}"},
+  "proof": {"{"}
+    "type": "Ed25519Signature2020",
+    "created": "2024-01-01T00:00:00Z",
+    "verificationMethod": "https://example.edu/issuers/565049#key-1",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z58DAdFfa9SkqZMVPxAQp...mN1jftHg"
+  {"}"}
+{"}"}
+```
+
+## Verifiable Presentations
+
+A **Verifiable Presentation (VP)** is when you package one or more VCs to present to a verifier.
+
+**Example: Job application presenting diploma + background check**
+```json
+{"{"}
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": "VerifiablePresentation",
+  "verifiableCredential": [
+    {"{"}
+      /* University Diploma VC */
+    {"}"},
+    {"{"}
+      /* Background Check VC */
+    {"}"}
+  ],
+  "proof": {"{"}
+    "type": "Ed25519Signature2020",
+    "created": "2024-06-15T09:30:00Z",
+    "verificationMethod": "did:example:ebfeb1f712ebc6f1c276e12ec21#keys-1",
+    "proofPurpose": "authentication",
+    "challenge": "abc123-from-verifier",
+    "proofValue": "z3FXQjecWRwCg7WfVHh...j3AKb2x"
+  {"}"}
+{"}"}
+```
+
+The proof signature proves:
+- You own the DID in the credentials
+- The credentials haven't been tampered with
+- The presentation is fresh (via challenge/nonce)
+
+## Selective Disclosure
+
+One powerful feature of VCs is **selective disclosure** - sharing only the necessary information.
+
+**Example: Age verification for alcohol purchase**
+
+Instead of showing your entire driver's license (name, address, photo, license number), you can create a zero-knowledge proof that reveals only:
+- "This person is over 21 years old: TRUE"
+
+No other information is disclosed. This is achieved through:
+- **BBS+ Signatures**: Allows selective disclosure of individual claims
+- **Zero-Knowledge Proofs**: Prove statements without revealing underlying data
+
+## Verifiable Credentials Flow
+
+```mermaid
+sequenceDiagram
+    participant Issuer as Issuer&lt;br/&gt;(University)
+    participant Holder as Holder&lt;br/&gt;(Graduate)
+    participant Verifier as Verifier&lt;br/&gt;(Employer)
+    participant Blockchain as DID Registry&lt;br/&gt;(Blockchain)
+
+    Note over Issuer,Blockchain: 1. Setup Phase
+    Issuer->>Blockchain: Register DID + Public Key
+    Holder->>Blockchain: Register DID + Public Key
+
+    Note over Issuer,Holder: 2. Credential Issuance
+    Holder->>Issuer: Request diploma credential
+    Issuer->>Issuer: Verify graduation
+    Issuer->>Issuer: Create VC, sign with private key
+    Issuer->>Holder: Issue Verifiable Credential
+    Holder->>Holder: Store in digital wallet
+
+    Note over Holder,Verifier: 3. Credential Presentation
+    Verifier->>Holder: Request proof of degree
+    Holder->>Holder: Create Verifiable Presentation
+    Holder->>Holder: Sign VP with holder's private key
+    Holder->>Verifier: Send Verifiable Presentation
+
+    Note over Verifier,Blockchain: 4. Verification
+    Verifier->>Blockchain: Resolve Issuer DID → Public Key
+    Verifier->>Verifier: Verify Issuer signature
+    Verifier->>Blockchain: Resolve Holder DID → Public Key
+    Verifier->>Verifier: Verify Holder signature
+    Verifier->>Issuer: Check revocation status (optional)
+    Verifier->>Verifier: Accept or reject credential
+```
+
+## Real-World Applications
+
+### 1. **European Digital Identity Wallet (EUDI)**
+The EU is implementing digital identity wallets for all EU citizens by 2024-2026:
+- Store government IDs, driver's licenses, diplomas
+- Use for banking, travel, healthcare
+- Based on W3C VC standards
+- Supports selective disclosure
+
+### 2. **Microsoft Entra Verified ID** (formerly Azure AD Verifiable Credentials)
+Enterprise credential verification platform:
+- Issue employee credentials
+- Verify education and certifications
+- Integrate with existing Azure AD
+- Uses ION (Bitcoin + IPFS) for DID anchoring
+
+### 3. **Velocity Network Foundation**
+Career credentials for job seekers:
+- Employment verification
+- Skills certifications
+- Background checks
+- Used by IBM, Workday, SHRM
+
+### 4. **Government Digital Identity**
+Multiple countries implementing VC-based digital IDs:
+- **Canada**: Digital Trust Ecosystem
+- **Singapore**: MyInfo with VC support
+- **South Korea**: Digital ID with blockchain
+- **UK**: Digital Identity and Attributes Trust Framework
+
+## Advantages Over Traditional Systems
+
+| Aspect | Traditional (OAuth/SAML) | Decentralized (DID/VC) |
+|--------|-------------------------|------------------------|
+| **Control** | Identity provider controls | User controls |
+| **Privacy** | IdP sees all logins | Zero-knowledge proofs possible |
+| **Portability** | Locked to IdP | Portable across services |
+| **Offline** | Requires online IdP | Can verify offline |
+| **Single Point of Failure** | Yes (IdP downtime) | No (distributed) |
+| **Revocation** | IdP can revoke anytime | Requires issuer action |
+| **Correlation** | IdP can track usage | Minimized with pairwise DIDs |
+
+## Creating and Verifying a Verifiable Credential (JavaScript)
+
+```javascript
+// Using the @veramo/core library for DID and VC operations
+
+import {"{"}  createAgent, IResolver, ICredentialIssuer {"}"} from '@veramo/core'
+import {"{"}  CredentialPlugin {"}"} from '@veramo/credential-w3c'
+import {"{"}  DIDResolverPlugin {"}"} from '@veramo/did-resolver'
+import {"{"}  Resolver {"}"} from 'did-resolver'
+import {"{"}  getResolver as ethrDidResolver {"}"} from 'ethr-did-resolver'
+
+// 1. Setup Veramo agent with DID resolver and credential plugins
+const agent = createAgent({"{"}
+  plugins: [
+    new DIDResolverPlugin({"{"}
+      resolver: new Resolver({"{"}
+        ...ethrDidResolver({"{"} infuraProjectId: 'your-infura-id' {"}"}),
+      {"}"}),
+    {"}"}),
+    new CredentialPlugin(),
+  ],
+{"}"})
+
+// 2. ISSUER: Create a Verifiable Credential
+async function issueCredential() {"{"}
+  const issuerDid = 'did:ethr:0x1234...' // University's DID
+  const holderDid = 'did:ethr:0x5678...' // Graduate's DID
+
+  const verifiableCredential = await agent.createVerifiableCredential({"{"}
+    credential: {"{"}
+      '@context': ['https://www.w3.org/2018/credentials/v1'],
+      type: ['VerifiableCredential', 'UniversityDegreeCredential'],
+      issuer: {"{"} id: issuerDid {"}"},
+      issuanceDate: new Date().toISOString(),
+      credentialSubject: {"{"}
+        id: holderDid,
+        degree: {"{"}
+          type: 'BachelorDegree',
+          name: 'Bachelor of Science in Computer Science',
+          degreeSchool: 'Example University',
+        {"}"},
+        graduationDate: '2023-12-15',
+      {"}"},
+    {"}"},
+    proofFormat: 'jwt', // or 'lds' for JSON-LD signatures
+  {"}"})
+
+  console.log('Issued VC:', JSON.stringify(verifiableCredential, null, 2))
+  return verifiableCredential
+{"}"}
+
+// 3. HOLDER: Create a Verifiable Presentation
+async function createPresentation(credentials) {"{"}
+  const holderDid = 'did:ethr:0x5678...'
+
+  const verifiablePresentation = await agent.createVerifiablePresentation({"{"}
+    presentation: {"{"}
+      '@context': ['https://www.w3.org/2018/credentials/v1'],
+      type: ['VerifiablePresentation'],
+      verifiableCredential: credentials,
+    {"}"},
+    proofFormat: 'jwt',
+    challenge: 'challenge-from-verifier-abc123', // Prevents replay attacks
+    domain: 'example-employer.com', // Binds to specific verifier
+  {"}"})
+
+  console.log('Created VP:', JSON.stringify(verifiablePresentation, null, 2))
+  return verifiablePresentation
+{"}"}
+
+// 4. VERIFIER: Verify a Verifiable Presentation
+async function verifyPresentation(vp) {"{"}
+  try {"{"}
+    const result = await agent.verifyPresentation({"{"}
+      presentation: vp,
+      challenge: 'challenge-from-verifier-abc123',
+      domain: 'example-employer.com',
+    {"}"})
+
+    if (result.verified) {"{"}
+      console.log('✅ Presentation is valid!')
+      console.log('Credential subject:', vp.verifiableCredential[0].credentialSubject)
+
+      // Additional checks
+      const issuerDid = vp.verifiableCredential[0].issuer.id
+      console.log('Issued by:', issuerDid)
+
+      // Check if issuer is trusted (in production, check against registry)
+      const trustedIssuers = ['did:ethr:0x1234...'] // University DIDs
+      if (trustedIssuers.includes(issuerDid)) {"{"}
+        console.log('✅ Issuer is trusted')
+        return true
+      {"}"} else {"{"}
+        console.log('❌ Issuer not in trusted list')
+        return false
+      {"}"}
+    {"}"} else {"{"}
+      console.log('❌ Presentation is invalid:', result.error)
+      return false
+    {"}"}
+  {"}"} catch (error) {"{"}
+    console.error('Verification failed:', error)
+    return false
+  {"}"}
+{"}"}
+
+// 5. Complete workflow
+async function completeWorkflow() {"{"}
+  // Issuer creates and issues credential
+  const vc = await issueCredential()
+
+  // Holder stores in wallet (simplified - would use encrypted storage)
+  const wallet = {"{"} credentials: [vc] {"}"}
+
+  // Holder creates presentation for job application
+  const vp = await createPresentation(wallet.credentials)
+
+  // Verifier (employer) verifies the presentation
+  const isValid = await verifyPresentation(vp)
+
+  if (isValid) {"{"}
+    console.log('🎉 Credential accepted! Candidate verified.')
+  {"}"} else {"{"}
+    console.log('⛔ Credential rejected.')
+  {"}"}
+{"}"}
+
+completeWorkflow()
+```
+
+## Challenges and Considerations
+
+### 1. **Complexity**
+- Steep learning curve for developers
+- Multiple standards (DID Core, VC Data Model, JSON-LD, JWT)
+- Wallet management burden on users
+
+### 2. **Key Management**
+- Losing private keys = losing identity
+- No "forgot password" option
+- Recovery mechanisms needed (social recovery, multi-sig)
+
+### 3. **Revocation**
+- How to revoke credentials efficiently?
+- **Options:**
+  - Revocation lists (centralized)
+  - Accumulator-based revocation (privacy-preserving)
+  - Status List 2021 (W3C standard)
+
+### 4. **Scalability**
+- Blockchain write costs (gas fees on Ethereum)
+- Network congestion
+- **Solutions:**
+  - Layer 2 networks (ION uses Bitcoin + IPFS)
+  - did:key method (no blockchain needed)
+  - did:web (DNS-based, no blockchain)
+
+### 5. **Interoperability**
+- Many different DID methods
+- Wallet compatibility issues
+- Need for universal standards
+
+### 6. **Regulatory Compliance**
+- GDPR "right to be forgotten" vs. immutable blockchains
+- KYC/AML requirements
+- Government acceptance of digital credentials
+
+## Best Practices
+
+### For Issuers:
+- Use well-established DID methods (did:ion, did:ethr, did:web)
+- Implement credential revocation from day one
+- Provide clear credential schemas
+- Ensure issuer DID is publicly trusted
+
+### For Holders:
+- Use secure wallet applications (hardware wallets when possible)
+- Backup recovery phrases securely
+- Understand selective disclosure features
+- Verify credential issuers before trusting
+
+### For Verifiers:
+- Maintain trusted issuer registries
+- Always check revocation status
+- Use challenge/nonce to prevent replay attacks
+- Verify both credential and presentation signatures
+
+### For Developers:
+- Use established libraries (Veramo, DIF libraries)
+- Follow W3C standards strictly
+- Implement comprehensive error handling
+- Plan for key rotation and recovery

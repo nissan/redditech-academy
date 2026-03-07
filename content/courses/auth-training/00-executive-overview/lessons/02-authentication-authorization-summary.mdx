@@ -1,0 +1,465 @@
+---
+title: "Authentication & Authorization: Executive Summary"
+description: "High-level overview of Modules 1-3: Auth fundamentals, OAuth 2.0, and OpenID Connect"
+slug: "authentication-authorization-summary"
+duration: 20
+order: 2
+keyTakeaways:
+  - "Authentication proves who you are, authorization controls what you can do"
+  - "OAuth 2.0 is like a valet key - limited access without sharing your master password"
+  - "OpenID Connect adds identity on top of OAuth 2.0 for modern authentication"
+  - "SSO saves $280K/year on password resets alone for 1,000-employee companies"
+  - "Use Authorization Code Flow with PKCE for web and mobile applications"
+prerequisites: []
+---
+
+## Module 1: Authentication & Authorization Fundamentals
+
+### What Problem Does This Solve?
+
+**In plain English:** How do we prove users are who they say they are, and control what they can access?
+
+### Key Concepts (ELI-5)
+
+#### Authentication = Showing Your ID
+- **Passwords**: Like a key to your house (everyone has one, easy to copy)
+- **Multi-Factor Auth (MFA)**: Like needing both a key AND a code to enter
+- **Biometrics**: Like using your fingerprint instead of a key
+
+#### Authorization = Having Permission
+- **Example:** You can read a Google Doc, but only the owner can delete it
+- **Roles**: "Admin can do everything, Editor can modify, Viewer can only read"
+- **Policies**: Rules like "Only managers can approve expenses over $5,000"
+
+#### Identity Providers (IdPs) = The Bouncer
+- **What they do:** Check your ID and tell apps if you're legit
+- **Examples:** Google, Microsoft, Okta
+- **Why it matters:** One "bouncer" for all your apps (SSO)
+
+### The "Aha!" Moment
+
+**Old way:**
+```
+Every app has its own username/password
+→ 100 apps = 100 passwords
+→ Users reuse passwords
+→ One breach = everything compromised
+```
+
+**Modern way (SSO):**
+```
+One identity provider for all apps
+→ Sign in once with Google/Okta
+→ Access all apps automatically
+→ One place to enforce MFA
+→ Revoke access instantly when someone leaves
+```
+
+### Business Impact
+
+#### Security
+- ✅ **Reduce breaches** by 70% (eliminate password reuse)
+- ✅ **Faster response** to incidents (centralized control)
+- ✅ **Better compliance** (single audit trail)
+
+#### Productivity
+- ✅ **Save 11 hours/year** per employee (no password resets)
+- ✅ **40% fewer help desk tickets**
+- ✅ **Instant app access** for new hires
+
+#### Cost
+- ✅ **$280K/year savings** on password resets (1,000 employees)
+- ✅ **70% faster onboarding**
+- ✅ **Single vendor** instead of per-app auth
+
+### Decision Points
+
+#### Should we implement SSO?
+**Yes if:**
+- You have 50+ employees
+- Using 10+ SaaS apps
+- Compliance requirements (SOC 2, HIPAA)
+
+**ROI:** 6-12 months for most companies
+
+#### Which authentication method?
+| Method | Security | UX | Cost | Recommendation |
+|--------|----------|-----|------|----------------|
+| **Password only** | ❌ Low | ✅ Easy | Free | ❌ Don't use |
+| **Password + MFA** | ✅ Good | ⚠️ Okay | Low | ✅ Minimum standard |
+| **Passwordless (FIDO2)** | ✅✅ Excellent | ✅ Great | Medium | ✅ Future-proof |
+| **Biometric** | ✅ Good | ✅ Easy | Varies | ✅ For mobile apps |
+
+### Key Takeaway
+
+**You can't secure what you can't identify.**
+Modern authentication is the foundation of security, productivity, and compliance.
+
+**Next steps:**
+1. Implement SSO (if you haven't)
+2. Enforce MFA for all users
+3. Plan passwordless migration (12-18 months)
+
+## Module 2: OAuth 2.0 - Delegated Authorization
+
+### What Problem Does This Solve?
+
+**In plain English:** How do you let apps access your data without giving them your password?
+
+### The Real-World Analogy
+
+**Hotel Key Card Scenario:**
+- Hotel gives you a key card (not the master key)
+- Card only opens YOUR room
+- Card expires after checkout
+- Hotel can deactivate it instantly
+- You never get the actual lock mechanism
+
+**OAuth 2.0:**
+- App gets an access token (not your password)
+- Token only accesses specific data you approved
+- Token expires automatically
+- Can be revoked instantly
+- App never sees your credentials
+
+### Key Use Cases
+
+#### 1. "Sign in with Google"
+- ✅ Users don't create new passwords
+- ✅ Your app doesn't store passwords
+- ✅ Google handles security (MFA, breach detection)
+- ✅ Better conversion rates (30%+ improvement)
+
+#### 2. Third-Party Integrations
+**Example:** Zapier accessing your Gmail
+- You approve: "Let Zapier read my emails"
+- Zapier gets a token with LIMITED permissions
+- You can revoke access anytime
+- Zapier never knows your Gmail password
+
+#### 3. Mobile Apps
+**Example:** iPhone app accessing your company API
+- App stores a token (not username/password)
+- Token expires, requiring re-login
+- If phone stolen, revoke token remotely
+
+#### 4. Microservices
+**Example:** Service-to-service communication
+- Payment service calls shipping service
+- Uses OAuth client credentials flow
+- No human passwords involved
+- Automated token rotation
+
+### OAuth Flows (For Different Scenarios)
+
+#### Authorization Code Flow
+**When:** Web apps, mobile apps (most common)
+**Security:** Best
+**Complexity:** Medium
+
+**Example:** Booking.com accessing your Google Calendar
+1. Booking.com redirects you to Google
+2. You approve: "Let Booking.com see my calendar"
+3. Google gives Booking.com a code
+4. Booking.com exchanges code for token
+5. Booking.com uses token to read calendar
+
+#### Client Credentials Flow
+**When:** Service-to-service (no human involved)
+**Security:** Good
+**Complexity:** Low
+
+**Example:** Cron job backing up data to cloud storage
+- Service has client ID + secret
+- Exchanges for token
+- Uses token to upload files
+
+#### Device Flow
+**When:** Smart TVs, IoT devices (no keyboard)
+**Security:** Good
+**Complexity:** Medium
+
+**Example:** YouTube on Apple TV
+1. TV shows: "Go to youtube.com/activate"
+2. You enter code on phone
+3. Approve access
+4. TV gets token automatically
+
+### Common Pitfalls (What Can Go Wrong)
+
+#### ❌ Using Implicit Flow (Deprecated)
+**Problem:** Tokens in URL = security risk
+**Fix:** Use Authorization Code with PKCE
+
+#### ❌ Long-Lived Tokens
+**Problem:** Stolen token = prolonged access
+**Fix:** Short-lived access tokens (15 min) + refresh tokens
+
+#### ❌ No Token Validation
+**Problem:** Apps trust tokens without checking
+**Fix:** Always validate signature, expiration, scope
+
+#### ❌ Scope Creep
+**Problem:** Asking for more permissions than needed
+**Fix:** Minimum necessary access
+
+### Business Impact
+
+#### For B2C Companies
+- **30%+ higher conversion** ("Sign in with Google" vs. registration form)
+- **70% fewer support tickets** (no password resets)
+- **Better security** (delegate to experts like Google)
+
+#### For B2B Companies
+- **Faster integrations** with partners (OAuth APIs)
+- **Better security** than API keys
+- **Easier compliance** (auditable token usage)
+
+#### For Enterprises
+- **Secure microservices** communication
+- **Zero-trust architecture** enabler
+- **Fine-grained access control**
+
+### Decision Framework
+
+#### Should we implement OAuth?
+
+**Yes if:**
+- You have an API that third parties need to access
+- You want "Sign in with X" functionality
+- You're building microservices
+- You need mobile app authentication
+
+**No if:**
+- Simple internal tool with 5 users (overkill)
+- No external integrations needed
+- Can use simpler auth methods
+
+#### Which OAuth flow?
+
+| Scenario | Recommended Flow | Why |
+|----------|------------------|-----|
+| **Web app** | Authorization Code + PKCE | Most secure |
+| **Mobile app** | Authorization Code + PKCE | Industry standard |
+| **SPA (React/Vue)** | Authorization Code + PKCE | Avoid Implicit flow |
+| **Backend service** | Client Credentials | No user involved |
+| **Smart TV/IoT** | Device Code | No keyboard |
+
+### Key Takeaway
+
+**OAuth 2.0 = Valet Key for Your Data**
+
+Just like a valet key only starts the car (can't open trunk/glove box), OAuth tokens only access what you specifically approved. This makes third-party integrations secure without sharing your master password.
+
+**Most important:** If you're building any kind of API, you need OAuth.
+
+## Module 3: OpenID Connect (OIDC) - Modern Authentication
+
+### What Problem Does This Solve?
+
+**In plain English:** OAuth 2.0 is great for "What can you access?" but doesn't tell you "Who you are." OIDC adds identity on top of OAuth.
+
+### The Simple Explanation
+
+**OAuth 2.0:** "This token can read your Gmail"
+**OpenID Connect:** "This is Alice (alice@example.com), and here's proof"
+
+### Key Difference from OAuth 2.0
+
+| OAuth 2.0 | OpenID Connect (OIDC) |
+|-----------|----------------------|
+| **Purpose** | Authorization ("What can I access?") | Authentication ("Who am I?") |
+| **Output** | Access Token (opaque string) | ID Token (contains user info) |
+| **Use Case** | API access | Login, SSO |
+| **Example** | "Let Zapier read my emails" | "Sign in with Google" |
+
+**Relationship:** OIDC is built ON TOP of OAuth 2.0. Think of it as "OAuth 2.0 + Identity Layer"
+
+### Real-World Use Cases
+
+#### 1. Single Sign-On (SSO)
+**Scenario:** Employee logs into company intranet
+- Redirects to Okta (OIDC provider)
+- Employee authenticates once
+- Gets ID token with name, email, department
+- Automatically logged into all company apps
+- No more username/password for each app
+
+**Business value:** Save 11 hours/year per employee
+
+#### 2. "Sign in with X"
+**Scenario:** User creating account on your e-commerce site
+- Clicks "Sign in with Google"
+- Google returns ID token with verified email
+- You trust Google's verification
+- User skips registration form
+
+**Business value:** 30%+ higher conversion rate
+
+#### 3. Enterprise Federation
+**Scenario:** Partner company needs access to your system
+- Trust their OIDC provider (their Okta instance)
+- Their employees use their existing credentials
+- No need to create accounts in your system
+- Automatic provisioning/deprovisioning
+
+**Business value:** Secure B2B collaboration without credential management
+
+#### 4. Customer Identity (CIAM)
+**Scenario:** Mobile banking app
+- User logs in with biometrics
+- App gets ID token with user details
+- Backend validates token signature
+- Grants access to account
+
+**Business value:** Secure, passwordless customer experience
+
+### The ID Token (JWT)
+
+**What is it?** A JSON Web Token (JWT) containing user information, cryptographically signed.
+
+**Example ID Token (decoded):**
+```json
+{
+  "iss": "https://accounts.google.com",
+  "sub": "110169484474386276334",
+  "email": "alice@example.com",
+  "email_verified": true,
+  "name": "Alice Anderson",
+  "picture": "https://lh3.googleusercontent.com/...",
+  "iat": 1706800000,
+  "exp": 1706803600
+}
+```
+
+**Why it's secure:**
+- Cryptographically signed (can't be tampered)
+- Has expiration (short-lived, typically 1 hour)
+- Contains issuer (you know who created it)
+- Verifiable offline (check signature with public key)
+
+### How It Works (Simple Flow)
+
+1. **User clicks "Sign in with Google"**
+   - Your app redirects to Google
+
+2. **User authenticates at Google**
+   - Enters password, completes MFA
+   - Approves: "Let ExampleApp know who you are"
+
+3. **Google returns tokens**
+   - **ID Token:** User's identity (name, email)
+   - **Access Token:** Access Google APIs (optional)
+
+4. **Your app validates ID token**
+   - Check signature (using Google's public key)
+   - Check expiration
+   - Trust the claims (email, name)
+
+5. **Create session**
+   - User is now logged in
+   - No password stored in your database
+
+### Enterprise SSO Architecture
+
+**Traditional (Before OIDC):**
+```
+App 1 → Own user database → Own login page
+App 2 → Own user database → Own login page
+App 3 → Own user database → Own login page
+
+Problems:
+- Multiple passwords to remember
+- Inconsistent security policies
+- Nightmare to manage (3 places to disable access)
+```
+
+**Modern (With OIDC):**
+```
+App 1 ┐
+App 2 ├─→ Okta (OIDC Provider) ← Central user database
+App 3 ┘                        ← Single login experience
+                               ← One place to enforce MFA
+                               ← One place to revoke access
+
+Benefits:
+- Single sign-on experience
+- Centralized security policies
+- Instant provisioning/deprovisioning
+```
+
+### Common Implementation Mistakes
+
+#### ❌ Not Validating ID Token Signature
+**Problem:** Anyone can create a fake token
+**Fix:** Always verify with provider's public key
+
+#### ❌ Trusting email_verified = false
+**Problem:** Unverified emails can be spoofed
+**Fix:** Only trust verified emails for account linking
+
+#### ❌ Using ID Token for API Authorization
+**Problem:** ID tokens are for identity, not API access
+**Fix:** Use access tokens for API calls, ID tokens for login only
+
+#### ❌ No Token Expiration Handling
+**Problem:** Expired tokens cause errors
+**Fix:** Implement silent token refresh with refresh tokens
+
+### Business Impact by Company Type
+
+#### SaaS Startups
+- **Faster MVP:** No need to build authentication
+- **Better security:** Delegate to Google, Microsoft, GitHub
+- **Higher conversion:** "Sign in with X" vs. registration forms
+- **Cost savings:** $50K-$100K not building auth system
+
+#### Enterprises
+- **Single Sign-On:** One login for all apps (productivity gain)
+- **Compliance:** Centralized audit logs, MFA enforcement
+- **Cost reduction:** 40% fewer help desk tickets
+- **M&A enabler:** Easy to integrate acquired companies
+
+#### E-commerce
+- **Reduce friction:** 30%+ higher checkout conversion
+- **Lower abandonment:** No "create account" barrier
+- **Better security:** No password database to breach
+- **Verified emails:** Trust provider's verification
+
+### Decision Framework
+
+#### When to use OIDC?
+
+**✅ Yes if:**
+- You need user authentication (login)
+- You want "Sign in with X" functionality
+- You're implementing SSO across multiple apps
+- You need federated identity with partners
+
+**❌ No if:**
+- You only need API authorization (use plain OAuth 2.0)
+- Simple internal tool with 5 known users
+- Offline-only application
+
+#### Which OIDC provider?
+
+| Provider | Best For | Pros | Cons |
+|----------|----------|------|------|
+| **Okta** | Enterprise | Most features, compliance certs | Expensive |
+| **Auth0** | Startups/Scale-ups | Developer-friendly, good docs | Can get pricey |
+| **Google/Microsoft** | Consumer apps | Free, huge user base | Limited customization |
+| **Keycloak** | Self-hosted | Open source, full control | You manage infrastructure |
+
+### Key Takeaway
+
+**OIDC = Authentication + OAuth 2.0**
+
+If OAuth 2.0 is the valet key to your garage, OIDC is the valet key PLUS a photo ID proving who the valet is.
+
+**Most important decision:** For any app with user login, use OIDC instead of building custom authentication. You'll save time, money, and security headaches.
+
+**Next steps:**
+1. Choose OIDC provider (Okta, Auth0, Google)
+2. Implement "Sign in with X" buttons
+3. Migrate from password-based auth
+4. Enable SSO across all company apps

@@ -1,0 +1,523 @@
+---
+title: "Modern Authorization Systems: Cedar, OpenFGA, and Zanzibar Implementations"
+slug: "authorization-systems-comparison"
+duration: 45
+keyTakeaways:
+  - "Amazon Cedar uses policy-driven authorization with Cedar language"
+  - "OpenFGA provides production-ready Zanzibar with Google Cloud integration"
+  - "SpiceDB offers consistency guarantees and high throughput"
+  - "Ory Keto focuses on simplicity with REST API and Cloud-native design"
+  - "Choose based on scale, consistency needs, and ecosystem fit"
+---
+
+# Modern Authorization Systems Comparison
+
+Modern applications need sophisticated authorization beyond simple role checks. Let's explore the three major paradigms for fine-grained authorization in 2025:
+
+## Three Approaches to Fine-Grained Authorization
+
+### 1. **Graph-Based (Zanzibar-Inspired)**
+**Representatives:** Google Zanzibar, SpiceDB, OpenFGA, Ory Keto
+
+**Philosophy:** Model authorization as a **relationship graph**
+
+**Example:**
+```
+user:alice → viewer → document:readme.md
+user:alice → member → group:engineering
+group:engineering → editor → folder:projects
+```
+
+**Strengths:**
+- ✅ Excellent for hierarchical/nested relationships (Google Drive, GitHub)
+- ✅ Handles transitive relationships naturally (group → group → user)
+- ✅ Proven at massive scale (Google, Airbnb, Carta)
+- ✅ Check queries are fast (graph traversal optimized)
+
+**Challenges:**
+- ❌ Complex system to deploy and operate
+- ❌ Steeper learning curve
+- ❌ Requires relationship data modeling
+
+### 2. **Policy-Based (Logic/Rules)**
+**Representatives:** Amazon Cedar, Open Policy Agent (OPA), Cerbos
+
+**Philosophy:** Express authorization as **declarative policies**
+
+**Example (Cedar):**
+```cedar
+permit (
+  principal == User::"alice",
+  action == Action::"read",
+  resource == Document::"readme.md"
+);
+```
+
+**Strengths:**
+- ✅ Highly expressive and flexible
+- ✅ Excellent for attribute-based access control (ABAC)
+- ✅ Policies are auditable and analyzable
+- ✅ Simpler to deploy (stateless evaluation)
+
+**Challenges:**
+- ❌ Complex policies can be hard to reason about
+- ❌ Less natural for deep hierarchies
+- ❌ May require policy recompilation for relationship changes
+
+### 3. **Hybrid (Best of Both)**
+**Representatives:** Aserto Topaz, Permit.io
+
+**Philosophy:** Combine **relationship graphs** with **policy rules**
+
+**Example:**
+- Use Zanzibar-style graph for organizational hierarchies
+- Use OPA/Cedar policies for attribute-based decisions
+
+**Strengths:**
+- ✅ Flexible: Use the right tool for each use case
+- ✅ Can handle both ReBAC and ABAC
+
+**Challenges:**
+- ❌ More complex architecture
+- ❌ Two systems to learn and maintain
+
+## Comparison Matrix
+
+| System | Type | Language | Open Source | Managed Service | Best For |
+|--------|------|----------|-------------|-----------------|----------|
+| **Google Zanzibar** | Graph | Internal | ❌ No | ❌ No | Reference design |
+| **SpiceDB** | Graph | Schema DSL | ✅ Yes | ✅ AuthZed | Production ReBAC |
+| **OpenFGA** | Graph | DSL/JSON | ✅ Yes | ✅ Auth0 | Developer experience |
+| **Ory Keto** | Graph | DSL | ✅ Yes | ✅ Ory Cloud | Ory stack integration |
+| **Amazon Cedar** | Policy | Cedar | ✅ Yes | ✅ AWS Verified Permissions | AWS-first, analyzable policies |
+| **OPA** | Policy | Rego | ✅ Yes | ✅ Styra | Kubernetes, general policy |
+| **Cerbos** | Policy | YAML | ✅ Yes | ❌ No | GitOps-friendly ABAC |
+| **Aserto Topaz** | Hybrid | OPA + Graph | ✅ Yes | ✅ Aserto | Best of both worlds |
+
+## Amazon Cedar: Policy-Driven Authorization
+
+Amazon Cedar is an **authorization policy language** developed by AWS and used in **AWS Verified Permissions**. It's designed for **safety, expressiveness, and analyzability**.
+
+### Cedar Design Principles
+
+1. **Purpose-Built for Authorization**: Not a general-purpose language
+2. **Analyzable**: Automated reasoning can prove properties about policies
+3. **Deterministic**: Same inputs always produce same output
+4. **Fast**: Policies evaluate in microseconds
+5. **Human-Readable**: Clear syntax for security audits
+
+### Cedar Syntax
+
+Cedar policies consist of **permit** or **forbid** statements with optional **when/unless** conditions.
+
+**Basic Policy Structure:**
+
+```cedar
+permit (
+  principal,
+  action,
+  resource
+) when {
+  condition
+};
+```
+
+### Example 1: Simple RBAC
+
+```cedar
+// Allow admins to perform any action
+permit (
+  principal in Role::"admin",
+  action,
+  resource
+);
+```
+
+### Example 2: Attribute-Based Access Control (ABAC)
+
+```cedar
+// Allow users to read documents in their department
+permit (
+  principal,
+  action == Action::"read",
+  resource
+) when {
+  principal.department == resource.department
+};
+```
+
+### Example 3: Context-Aware (IP Restriction)
+
+```cedar
+// Allow access only from corporate network
+permit (
+  principal,
+  action,
+  resource
+) when {
+  context.ip_address like "192.168.*.*"
+};
+```
+
+### Example 4: Time-Based Access
+
+```cedar
+// Allow access only during business hours
+permit (
+  principal,
+  action,
+  resource
+) when {
+  context.current_time >= time("09:00:00") &&
+  context.current_time <= time("17:00:00")
+};
+```
+
+### Example 5: Multi-Factor Authentication Requirement
+
+```cedar
+// Require MFA for sensitive operations
+forbid (
+  principal,
+  action in [Action::"delete", Action::"transfer"],
+  resource
+) unless {
+  context.mfa_verified == true
+};
+```
+
+## Cedar vs. Zanzibar
+
+| Aspect | Cedar | Zanzibar/OpenFGA |
+|--------|-------|------------------|
+| **Model** | Policy-driven (ABAC) | Graph-driven (ReBAC) |
+| **Strengths** | Flexible, analyzable | Hierarchies, transitive |
+| **Data Storage** | Ephemeral (policies) | Persistent (relationships) |
+| **Best For** | Attribute rules | Organizational hierarchies |
+| **Query Pattern** | "Is this allowed?" | "Who can access X?" + "Is this allowed?" |
+| **Complexity** | Simpler deployment | Complex graph database |
+
+## When to Use Cedar
+
+✅ **Use Cedar when:**
+- You need attribute-based access control (user.role, resource.classification)
+- Policies change more often than relationships
+- You want static analysis of authorization logic
+- AWS ecosystem (integrates with Cognito, IAM)
+- Simpler deployment (no separate graph database)
+
+❌ **Avoid Cedar when:**
+- Deep organizational hierarchies (nested groups, inherited permissions)
+- Relationship-heavy (Google Drive-style sharing)
+- Need to query "who has access?" (reverse lookup)
+
+## OpenFGA: Developer-Friendly Zanzibar
+
+**OpenFGA** (Fine-Grained Authorization) is an open-source authorization system developed by **Auth0**, inspired by Google Zanzibar. It prioritizes **developer experience** while maintaining high performance.
+
+### OpenFGA Key Features
+
+1. **Zanzibar-Inspired**: Based on Google's proven authorization model
+2. **Simple DSL**: Easy-to-read authorization model syntax
+3. **Multiple SDKs**: JavaScript, Go, Python, .NET, Java
+4. **VSCode Extension**: Syntax highlighting and validation
+5. **Playground**: Interactive model testing at openfga.dev/playground
+6. **Performance**: Handles millions of relationship tuples efficiently
+
+### OpenFGA DSL Syntax
+
+**Basic Model Structure:**
+
+```
+model
+  schema 1.1
+
+type user
+
+type document
+  relations
+    define owner: [user]
+    define editor: [user]
+    define viewer: [user]
+    define can_view: owner or editor or viewer
+    define can_edit: owner or editor
+    define can_delete: owner
+```
+
+### Advanced: GitHub-Style Repository Model
+
+```
+model
+  schema 1.1
+
+type user
+
+type organization
+  relations
+    define member: [user]
+    define admin: [user]
+
+type team
+  relations
+    define member: [user]
+
+type repository
+  relations
+    define owner: [user, organization#member]
+    define admin: [user, team#member]
+    define maintainer: [user, team#member]
+    define writer: [user, team#member]
+    define reader: [user, team#member]
+
+    // Permissions
+    define can_read: reader or writer or maintainer or admin or owner
+    define can_write: writer or maintainer or admin or owner
+    define can_admin: admin or owner
+    define can_delete: owner
+```
+
+### Parent-Child Relationships (Google Drive-Style)
+
+```
+model
+  schema 1.1
+
+type user
+
+type folder
+  relations
+    define owner: [user]
+    define editor: [user]
+    define viewer: [user]
+    define parent: [folder]
+
+    // Inherit permissions from parent folder
+    define can_view: viewer or editor or owner or parent->can_view
+    define can_edit: editor or owner or parent->can_edit
+
+type document
+  relations
+    define owner: [user]
+    define editor: [user]
+    define viewer: [user]
+    define parent: [folder]
+
+    // Inherit permissions from parent folder
+    define can_view: viewer or editor or owner or parent->can_view
+    define can_edit: editor or owner or parent->can_edit
+    define can_delete: owner
+```
+
+## OpenFGA vs. SpiceDB vs. Ory Keto
+
+| Feature | OpenFGA | SpiceDB | Ory Keto |
+|---------|---------|---------|----------|
+| **Maintainer** | Auth0 | AuthZed | Ory |
+| **First Release** | 2022 | 2021 | 2020 |
+| **Language** | Go | Go | Go |
+| **DSL Quality** | ⭐⭐⭐⭐⭐ Excellent | ⭐⭐⭐⭐⭐ Excellent | ⭐⭐⭐ Good |
+| **Managed Service** | ✅ Auth0 FGA | ✅ AuthZed | ✅ Ory Cloud |
+| **Developer Experience** | ⭐⭐⭐⭐⭐ Best | ⭐⭐⭐⭐ Great | ⭐⭐⭐ Good |
+| **Performance** | High | Very High | High |
+| **Consistency** | Eventually consistent | Strong consistency | Eventually consistent |
+| **Maturity** | Medium | High | Medium |
+| **Best For** | Auth0 users, new projects | Production-critical, scale | Ory stack users |
+
+### Unique Features
+
+**OpenFGA:**
+- VSCode extension with autocomplete
+- Interactive playground (openfga.dev/playground)
+- Simplest onboarding experience
+
+**SpiceDB:**
+- **Caveats** (conditional relationships: "editor if MFA verified")
+- **Schema versioning** (migrate models without downtime)
+- **Zookies** (consistency tokens)
+- Most Zanzibar-complete implementation
+
+**Ory Keto:**
+- Integrates with Ory Hydra (OAuth), Kratos (identity), Oathkeeper (gateway)
+- Part of complete open-source IAM stack
+- Modular architecture
+
+## Choosing the Right Authorization System
+
+### Use **Amazon Cedar** when:
+
+✅ Your authorization is primarily **attribute-based** (user roles, resource tags, context)
+```
+Examples:
+- "Admins can delete any document"
+- "Users can view documents in their department"
+- "Require MFA for financial transactions"
+- "Block access from non-corporate IPs"
+```
+
+✅ You're in the **AWS ecosystem** (Cognito, API Gateway, Lambda)
+
+✅ You need **static analysis** of policies (prove security properties)
+
+✅ Simpler deployment (no separate graph database needed)
+
+✅ Policies change frequently; relationships are relatively static
+
+### Use **OpenFGA/SpiceDB/Ory Keto** (Zanzibar) when:
+
+✅ Your authorization involves **hierarchical relationships**
+```
+Examples:
+- Google Drive-style folder permissions
+- GitHub repository/organization structure
+- Nested teams and groups
+- "Alice is editor because she's in Engineering team, which has editor access to Projects folder"
+```
+
+✅ You need **transitive relationships** (group contains group contains user)
+
+✅ You need to answer **"who can access X?"** (reverse lookup)
+
+✅ Sharing/collaboration is central to your product
+
+✅ You need proven scale (billions of users, trillions of resources)
+
+### Use **Hybrid (Aserto, Permit.io)** when:
+
+✅ You need **both** relationship hierarchies AND attribute-based rules
+
+✅ You want flexibility to use the right tool for each use case
+
+✅ You're willing to manage additional complexity
+
+## Real-World Examples
+
+### Scenario 1: SaaS B2B Application (Slack, Notion)
+
+**Requirement:**
+- Multi-tenant (organizations)
+- Workspaces/channels with nested permissions
+- Teams and user groups
+- Role-based access (admin, member, guest)
+
+**Best Choice:** **OpenFGA or SpiceDB**
+
+**Why:** Deep organizational hierarchies, team-based sharing, and collaboration patterns match Zanzibar's strengths.
+
+**Model:**
+```
+organization → workspace → channel
+user → team → workspace (team members inherit workspace access)
+```
+
+### Scenario 2: Cloud Infrastructure (AWS, Datadog)
+
+**Requirement:**
+- Resource-based policies (S3 buckets, EC2 instances)
+- Attribute-based access (tags, regions, resource types)
+- Conditional policies (IP restrictions, time-based, MFA)
+
+**Best Choice:** **Amazon Cedar**
+
+**Why:** Attribute-rich, policy-driven authorization with analyzability. No deep hierarchies.
+
+**Policy:**
+```cedar
+permit (
+  principal in Role::"DataScientist",
+  action == Action::"Read",
+  resource
+) when {
+  resource.environment == "development" &&
+  context.mfaVerified == true
+};
+```
+
+### Scenario 3: Document Management (Google Drive, Dropbox)
+
+**Requirement:**
+- Folder hierarchies (inherit permissions)
+- Direct sharing (user → document)
+- Group sharing (team → folder → documents)
+- Public links
+
+**Best Choice:** **OpenFGA or SpiceDB**
+
+**Why:** Classic Zanzibar use case with folder hierarchies and transitive permissions.
+
+**Model:**
+```
+folder → subfolder → document (permissions inherit down)
+user → group → folder (group members get folder access)
+```
+
+### Scenario 4: Banking/Financial Application
+
+**Requirement:**
+- Strict compliance requirements
+- Auditable authorization decisions
+- Time-based restrictions
+- Transaction amount limits
+- Multi-factor authentication for sensitive operations
+
+**Best Choice:** **Amazon Cedar**
+
+**Why:** Analyzability (prove security properties), deterministic evaluation, context-aware policies.
+
+**Policy:**
+```cedar
+forbid (
+  principal,
+  action == Action::"Transfer",
+  resource
+) unless {
+  context.mfaVerified == true &&
+  context.ipAddress in IpRange::"CorporateNetwork" &&
+  resource.amount < principal.dailyLimit
+};
+```
+
+## Performance Comparison
+
+| System | Check Latency | Throughput | Scale |
+|--------|---------------|------------|-------|
+| **Cedar (AWS Verified Permissions)** | `<5`ms | Very High | AWS-scale |
+| **OpenFGA** | `<1`0ms | High | Millions of tuples |
+| **SpiceDB** | `<1`0ms | Very High | Billions of tuples |
+| **Ory Keto** | `<2`0ms | Medium-High | Millions of tuples |
+
+**Note:** Actual performance depends on deployment, query complexity, and data size.
+
+## Migration Strategy
+
+### From RBAC to Fine-Grained Authorization
+
+**Phase 1: Parallel Run**
+- Keep existing RBAC
+- Implement new system (Cedar/OpenFGA) in shadow mode
+- Compare decisions, log discrepancies
+
+**Phase 2: Gradual Rollout**
+- Start with non-critical resources
+- Use feature flags to control % of traffic
+- Monitor performance and correctness
+
+**Phase 3: Full Migration**
+- Switch all traffic to new system
+- Deprecate old RBAC code
+- Clean up legacy permissions
+
+## Summary Table
+
+| Factor | Cedar | Zanzibar (OpenFGA/SpiceDB) |
+|--------|-------|---------------------------|
+| **Model** | Policy (ABAC) | Graph (ReBAC) |
+| **Learning Curve** | Medium | Steep |
+| **Deployment** | Simpler | Complex (graph DB) |
+| **Best For** | Attributes, conditions | Hierarchies, relationships |
+| **Maturity** | New (2023+) | Proven (2019+) |
+| **Ecosystem** | AWS-centric | Vendor-neutral |
+| **Reverse Lookup** | ❌ Limited | ✅ Excellent ("who can access?") |
+| **Analysis** | ✅ Automated reasoning | ❌ No formal verification |
+| **Performance** | Excellent | Excellent |
+
+Choose based on your **authorization patterns**, not just technology preferences. If in doubt, prototype with both!

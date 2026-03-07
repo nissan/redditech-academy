@@ -1,0 +1,247 @@
+---
+title: "Token Lifecycle: Introspection and Revocation"
+description: "Manage the complete lifecycle of tokens from issuance through refresh to revocation."
+slug: "05-token-lifecycle"
+duration: 25
+order: 5
+prerequisites: ["device-code-flow"]
+keyTakeaways:
+  - "Introspection checks real-time token status and metadata"
+  - "Revocation explicitly invalidates tokens before expiration"
+  - "Revoking refresh tokens cascades to associated access tokens"
+  - "Refresh token rotation limits exposure from theft"
+  - "Balance token lifetimes between security and user experience"
+---
+
+# Token Lifecycle: Introspection and Revocation
+
+Tokens aren't just issued and forgotten. Managing their complete lifecycle—validation, refresh, introspection, and revocation—is essential for security and compliance.
+
+## Token Lifecycle Stages
+
+**1. Issuance**: Authorization server creates and signs token
+**2. Use**: Resource server validates and accepts token
+**3. Refresh**: Client exchanges refresh token for new access token
+**4. Introspection**: Server checks token status and metadata
+**5. Revocation**: Token is explicitly invalidated before expiration
+**6. Expiration**: Token naturally expires based on `exp` claim
+
+## Token Introspection (RFC 7662)
+
+**Introspection** allows resource servers to query the authorization server about a token's current state.
+
+**Why Introspect?**
+- **Opaque Tokens**: If tokens aren't JWTs, you need to ask the AS about them
+- **Real-Time Status**: Check if token was revoked (JWT expiration isn't enough)
+- **Metadata Retrieval**: Get scope, client_id, user info associated with token
+
+**Introspection Endpoint:**
+```
+POST /oauth/introspect
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic base64(client_id:client_secret)
+
+token=ACCESS_TOKEN_HERE
+```
+
+## Introspection Request Example
+
+```typescript
+// Resource server introspects a token
+async function introspectToken(token: string) {
+  const response = await fetch('https://auth.example.com/oauth/introspect', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + btoa(`${RS_CLIENT_ID}:${RS_CLIENT_SECRET}`),
+    },
+    body: new URLSearchParams({ token }),
+  });
+
+  const result = await response.json();
+  /*
+  {
+    "active": true,
+    "scope": "read:profile write:posts",
+    "client_id": "mobile-app-xyz",
+    "username": "john.doe",
+    "token_type": "Bearer",
+    "exp": 1672531200,
+    "iat": 1672527600,
+    "sub": "user-12345",
+    "aud": "https://api.example.com"
+  }
+  */
+
+  return result;
+}
+
+// Middleware to validate token via introspection
+async function validateTokenMiddleware(req, res, next) {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+
+  if (!token) {
+    return res.status(401).json({ error: 'No token provided' });
+  }
+
+  const introspection = await introspectToken(token);
+
+  if (!introspection.active) {
+    return res.status(401).json({ error: 'Token is not active' });
+  }
+
+  // Check required scope
+  const scopes = introspection.scope.split(' ');
+  if (!scopes.includes('read:data')) {
+    return res.status(403).json({ error: 'Insufficient scope' });
+  }
+
+  req.user = { sub: introspection.sub, scopes };
+  next();
+}
+```
+
+## Token Revocation (RFC 7009)
+
+**Revocation** explicitly invalidates a token before its natural expiration.
+
+**When to Revoke:**
+- User logs out
+- User revokes app access
+- Security incident (compromised token)
+- User changes password
+- Account deactivation
+
+**Revocation Endpoint:**
+```
+POST /oauth/revoke
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic base64(client_id:client_secret)
+
+token=TOKEN_TO_REVOKE
+token_type_hint=access_token (or refresh_token)
+```
+
+**What Gets Revoked:**
+- **Revoking access token**: Invalidates just that token
+- **Revoking refresh token**: Invalidates refresh token AND all associated access tokens
+
+This creates a token family relationship where revoking the "parent" refresh token cascades to "children" access tokens.
+
+## Token Revocation Example
+
+```typescript
+// Client revokes token on logout
+async function logout(tokens: { accessToken: string; refreshToken: string }) {
+  // Revoke refresh token (cascades to access tokens)
+  await fetch('https://auth.example.com/oauth/revoke', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
+    },
+    body: new URLSearchParams({
+      token: tokens.refreshToken,
+      token_type_hint: 'refresh_token',
+    }),
+  });
+
+  // Clear local token storage
+  clearTokens();
+
+  console.log('Logged out successfully');
+}
+
+// Handling revoked tokens on API
+app.get('/api/data', async (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+
+  // Option 1: Introspect token (checks revocation status)
+  const introspection = await introspectToken(token);
+  if (!introspection.active) {
+    return res.status(401).json({ error: 'Token has been revoked' });
+  }
+
+  // Option 2: Check against revocation list (if maintaining one)
+  if (isTokenRevoked(token)) {
+    return res.status(401).json({ error: 'Token has been revoked' });
+  }
+
+  res.json({ data: 'protected resource' });
+});
+```
+
+## Refresh Token Rotation
+
+**Refresh Token Rotation** improves security by issuing a new refresh token each time it's used.
+
+**Flow:**
+1. Client uses Refresh Token A to get new access token
+2. Authorization server returns: new access token + **new Refresh Token B**
+3. Client discards Refresh Token A, stores Refresh Token B
+4. Next refresh: use Refresh Token B, receive Refresh Token C
+5. Repeat...
+
+**Security Benefits:**
+- **Limits blast radius**: Stolen refresh token has short window before rotation
+- **Detects theft**: If Token A is used after Token B was issued → potential theft detected
+- **Automatic revocation**: Token reuse triggers revocation of entire family
+
+**Implementation:**
+```typescript
+// Authorization server issues new refresh token
+app.post('/oauth/token', async (req, res) => {
+  const { grant_type, refresh_token } = req.body;
+
+  if (grant_type === 'refresh_token') {
+    // Validate refresh token
+    const tokenData = await validateRefreshToken(refresh_token);
+
+    if (!tokenData) {
+      return res.status(401).json({ error: 'invalid_grant' });
+    }
+
+    // Check if token was already used (potential theft)
+    if (tokenData.used) {
+      // Revoke entire token family
+      await revokeTokenFamily(tokenData.familyId);
+      return res.status(401).json({ error: 'token_reuse_detected' });
+    }
+
+    // Mark current token as used
+    await markTokenAsUsed(refresh_token);
+
+    // Issue new tokens with rotation
+    const newAccessToken = generateAccessToken(tokenData.userId);
+    const newRefreshToken = generateRefreshToken(tokenData.userId, tokenData.familyId);
+
+    res.json({
+      access_token: newAccessToken,
+      refresh_token: newRefreshToken,
+      expires_in: 3600,
+      token_type: 'Bearer',
+    });
+  }
+});
+```
+
+## Token Expiration Best Practices
+
+**Access Token Lifetimes:**
+- **Standard Web/Mobile**: 15-60 minutes
+- **High Security**: 5-15 minutes
+- **Low Risk APIs**: 1-2 hours
+
+**Refresh Token Lifetimes:**
+- **Web Apps**: 30-90 days
+- **Mobile Apps**: 90 days to 1 year
+- **High Security**: 7-14 days with rotation
+
+**Absolute vs Sliding Expiration:**
+- **Absolute**: Refresh token expires at fixed time (e.g., 90 days from issuance)
+- **Sliding**: Expiration extends on each use (e.g., 30 days of inactivity)
+
+**Balancing Act:**
+- Shorter lifetimes = more secure, worse UX
+- Longer lifetimes = better UX, more risk
+- Solution: Short access tokens + long refresh tokens + rotation

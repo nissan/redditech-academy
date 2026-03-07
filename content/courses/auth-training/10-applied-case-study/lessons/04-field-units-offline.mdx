@@ -1,0 +1,144 @@
+---
+title: "Field Units & Offline Authorization"
+slug: "field-units-offline"
+description: "Design authentication and authorization for autonomous systems operating in disconnected or contested environments"
+duration: 40
+order: 4
+keyTakeaways:
+  - "Offline authorization requires cached credentials with limited validity periods"
+  - "TPM-based local authentication provides hardware-backed security for field operations"
+  - "Secure boot and firmware integrity verification prevent tampering with autonomous systems"
+  - "Cryptographic proofs enable limited autonomous operation without network connectivity"
+  - "Emergency activation procedures must balance security with operational necessity"
+prerequisites: ["executive-analysis", "command-control-platform", "cloud-telemetry-ai"]
+---
+
+# Field Units & Offline Authorization
+
+## System Overview
+
+Apex's **field-deployed autonomous units** represent the most challenging IAM scenario: systems that must operate independently in contested, disconnected, or air-gapped environments. These include:
+
+- **Mobile countermeasure platforms**: Vehicle-mounted systems that may operate 100+ km from base
+- **Stationary sensor arrays**: Forward-deployed units in remote locations without reliable connectivity
+- **Autonomous response systems**: AI-driven units that must make split-second decisions without human intervention
+
+### Operational Challenges
+
+| Challenge | Impact | IAM Requirement |
+|-----------|--------|-----------------|
+| **No Network Connectivity** | Units operate for hours/days without cloud access | Cached credentials and local authorization |
+| **Physical Access Risk** | Adversaries may attempt to extract credentials or tamper with firmware | Hardware-protected key storage and secure boot |
+| **Autonomous Decision Making** | Systems must authorize countermeasure actions without human confirmation | Pre-provisioned authorization proofs |
+| **Emergency Activation** | Operators must activate systems rapidly during active threat | Secure but fast local authentication |
+| **Firmware Integrity** | Compromised firmware could disable defenses or cause friendly-fire | Cryptographic verification at boot |
+
+---
+
+## Your Task
+
+Design the authentication and authorization architecture for Apex's field-deployed autonomous systems. Focus on offline operation, local security, and hardware-based trust anchors.
+
+<CaseStudyResponse
+  lessonId="field-units-offline"
+  moduleId="10-applied-case-study"
+  guidingQuestions={[
+    "How can autonomous systems authorize countermeasure actions when disconnected from the cloud? What credentials can be cached and for how long?",
+    "What role do TPMs (Trusted Platform Modules) play in local authentication and key protection?",
+    "How should firmware integrity be verified at boot? What is the secure boot process?",
+    "How can operators activate systems in the field? What local authentication mechanisms are secure but usable in high-stress situations?",
+    "How do you handle the trade-off between autonomous operation and the risk of compromised systems acting independently?"
+  ]}
+  sampleResponse={`**Offline Authorization Strategy:**
+
+Autonomous systems must cache limited-duration authorization proofs:
+
+1. **Pre-Provisioned JWT Tokens**: Before deployment, systems download signed JWT assertions containing:
+   - Authorized countermeasure actions (defensive only, all capabilities, etc.)
+   - Valid geographic operating area (geofenced authorization)
+   - Temporal validity (24-72 hour maximum)
+   - Mission context (training exercise, active defense, coalition operation)
+
+2. **Capability Tokens**: RFC 7519 (JWT) claims encoding specific permissions:
+   \`\`\`json
+   {"{"}
+     "sub": "unit:apex-cm-42981",
+     "authorized_actions": ["detect", "classify", "engage_defensive"],
+     "geo_fence": "lat:35.5,lon:139.8,radius:50km",
+     "mission": "operation-northern-shield",
+     "nbf": 1640000000,
+     "exp": 1640259600
+   {"}"}
+   \`\`\`
+
+3. **Local Policy Engine**: Embedded OPA/Cedar policy engine evaluates cached tokens against real-time threat data
+4. **Grace Period**: Systems operate up to 72 hours offline; return to base/connectivity for token refresh
+5. **Audit Trail**: All autonomous actions logged to encrypted local storage; uploaded when connectivity resumes
+
+**TPM-Based Local Authentication:**
+
+Trusted Platform Module provides hardware security:
+
+- **Key Protection**: All cryptographic keys stored in TPM; private keys never leave hardware
+- **Local Operator Authentication**: Field activation requires FIDO2 passkey stored in operator's smart card + TPM attestation
+- **PCR (Platform Configuration Register) Sealing**: Credentials unsealed only if firmware/boot state is unmodified
+- **Measured Boot**: TPM records hash chain of boot components; attestation proves system integrity
+- **Emergency Override**: Physical security module (HSM-in-a-box) with multi-factor unlock for mission-critical scenarios
+
+**Secure Boot Process:**
+
+Multi-stage firmware verification:
+
+1. **Hardware Root of Trust**: Immutable ROM bootloader with manufacturer public key
+2. **Stage 1**: ROM verifies bootloader signature (ECDSA P-384)
+3. **Stage 2**: Bootloader verifies kernel signature
+4. **Stage 3**: Kernel verifies application firmware signature
+5. **Rollback Prevention**: TPM-stored version counters prevent downgrade attacks
+6. **Integrity Failure**: Boot halts if any signature invalid; enters recovery mode requiring physical technician access
+
+All signatures verified against Apex PKI; update signatures include timestamp and device authorization claims.
+
+**Local Operator Activation:**
+
+Field operators activate systems via:
+
+- **FIDO2 Security Token**: Yubikey or CAC card with WebAuthn/CTAP2 credential
+- **Platform Authenticator**: Biometric authentication (fingerprint) on operator tablet bound to TPM
+- **Challenge-Response**: System generates nonce, operator signs with FIDO2 key, system verifies signature
+- **Time-Limited Session**: Operator authentication grants 4-8 hour local access; re-authentication required for sensitive actions
+- **Emergency Access**: Break-glass physical keyswitch + radio authentication code for extreme scenarios
+
+No passwords; all authentication hardware-backed.
+
+**Balancing Autonomy and Risk:**
+
+Risk mitigation for autonomous operation:
+
+- **Graduated Authorization**: Training mode (detect only) → Defensive mode (limited engagement) → Full authorization
+- **Behavioral Constraints**: AI models trained with strict rules of engagement; non-combatant detection mandatory
+- **Dead Man's Switch**: Systems auto-disable after 72 hours without operator re-authentication
+- **Remote Kill**: Encrypted radio command with multiple-signature requirement can disable compromised units
+- **Tamper Detection**: Hardware sensors detect case intrusion; system zeroizes keys and enters inert mode
+- **Accountability**: Every autonomous action logged with cryptographic proof of authorization token and decision context`}
+  relatedConcepts={[
+    { module: "Module 01", concept: "Token Types and Caching" },
+    { module: "Module 05", concept: "FIDO2, TPM, and Hardware Security" },
+    { module: "Module 06", concept: "Policy-Based Authorization" },
+    { module: "Module 08", concept: "Zero Trust in Disconnected Environments" },
+    { module: "Module 09", concept: "Hardware-Backed Credentials" }
+  ]}
+/>
+
+---
+
+## Key Considerations
+
+As you design for offline operation, think about:
+
+- **Battery Life**: Cryptographic operations consume power; how do you minimize energy usage?
+- **Physical Tampering**: What if an adversary captures a unit and attempts to extract credentials?
+- **Software Updates**: How do you update firmware for units that are rarely connected?
+- **Clock Synchronization**: JWT expiration requires accurate time; what if the system clock is wrong?
+- **Mission Abort**: How do operators remotely disable units if mission parameters change?
+
+Your design should demonstrate understanding of hardware security modules (TPM), secure boot chains, and the challenges of authorization without real-time network connectivity.

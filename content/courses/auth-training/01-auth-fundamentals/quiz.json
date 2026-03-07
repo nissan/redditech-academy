@@ -1,0 +1,21 @@
+{
+  "id": "auth-fundamentals-quiz",
+  "moduleId": "auth-fundamentals",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the primary difference between authentication and authorization?",
+      "options": [
+        "Authentication verifies identity; authorization determines permissions",
+        "Authentication determines permissions; authorization verifies identity",
+        "They are the same thing with different names",
+        "Authentication is only for mobile apps; authorization is only for web apps"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Authentication proves who you are (identity verification), while authorization determines what you're allowed to do (permission checking). They are distinct but complementary processes.",
+      "difficulty": "beginner",
+      "relatedLessonId": "auth-vs-authz"
+    }
+  ]
+}

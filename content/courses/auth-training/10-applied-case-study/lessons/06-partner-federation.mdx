@@ -1,0 +1,209 @@
+---
+title: "Partner Integration & Coalition Federation"
+slug: "partner-federation"
+description: "Design federated identity and automated provisioning for coalition partners and contractors"
+duration: 40
+order: 6
+keyTakeaways:
+  - "SAML 2.0 enables enterprise SSO for coalition partners with existing identity infrastructure"
+  - "OAuth 2.0 Token Exchange (RFC 8693) allows delegated access for contractors and third parties"
+  - "SCIM 2.0 automates user lifecycle management across organizational boundaries"
+  - "Federation trust models must account for varying security postures across partners"
+  - "Attribute mapping and claims transformation are critical for cross-organizational authorization"
+prerequisites: ["executive-analysis", "command-control-platform", "api-analytics-portal"]
+---
+
+# Partner Integration & Coalition Federation
+
+## System Overview
+
+Apex Defense Systems operates in a **coalition environment**, collaborating with:
+
+- **Allied defense agencies**: NATO members, Five Eyes partners (US, UK, Canada, New Zealand)
+- **Government contractors**: Civilian companies providing specialized services (maintenance, training, logistics)
+- **Research institutions**: Universities and labs working on AI/ML threat models
+- **Equipment suppliers**: Hardware manufacturers requiring access for support and diagnostics
+
+### Integration Challenges
+
+| Partner Type | Users | Identity System | Access Needs | Trust Level |
+|--------------|-------|----------------|--------------|-------------|
+| **Allied Military (NATO)** | 50-100 analysts | Government PKI + LDAP | Full mission data, limited control access | High |
+| **Five Eyes Agencies** | 20-40 analysts | National IdPs (varied) | Specific operation data, AI models | High |
+| **Defense Contractors** | 30-60 engineers | Corporate Azure AD / Okta | Maintenance APIs, diagnostic telemetry | Medium |
+| **Research Partners** | 10-20 scientists | University Shibboleth/SAML | Anonymized sensor data, model training | Medium-Low |
+| **Equipment Vendors** | 5-15 technicians | Vendor corporate IdP | Limited device diagnostics, update delivery | Low |
+
+---
+
+## Your Task
+
+Design the federated identity architecture for Apex's partner ecosystem. Address SSO for coalition operations, temporary contractor access, and automated user lifecycle management.
+
+<CaseStudyResponse
+  lessonId="partner-federation"
+  moduleId="10-applied-case-study"
+  guidingQuestions={[
+    "Should Apex use SAML 2.0 or OIDC for coalition partner SSO? What are the trade-offs? How do you handle partners with legacy identity systems?",
+    "How can OAuth 2.0 Token Exchange (RFC 8693) provide delegated access for contractors? What is the flow for exchanging partner tokens for Apex-scoped tokens?",
+    "What role does SCIM 2.0 play in partner user lifecycle management? How do you automate provisioning, attribute updates, and deprovisioning?",
+    "How do you handle trust and security posture variation across partners? What additional controls are needed for low-trust partners?",
+    "How do you map partner identity attributes (clearances, roles, affiliations) to Apex's authorization model?"
+  ]}
+  sampleResponse={`**SAML 2.0 vs. OIDC for Coalition SSO:**
+
+**Recommendation: SAML 2.0 for allied military, OIDC for modern partners**
+
+Rationale:
+- **SAML 2.0 Advantages**: Established standard in government/defense, supports complex attribute assertions, works with legacy systems (Active Directory Federation Services, Shibboleth)
+- **OIDC Advantages**: Modern, mobile-friendly, better developer experience, JSON-based (easier integration)
+
+Implementation:
+
+1. **SAML 2.0 for NATO/Five Eyes**:
+   - Apex acts as Service Provider (SP)
+   - Partner governments act as Identity Providers (IdP)
+   - SAML assertions contain clearance, nationality, agency, role
+   - Bilateral trust established via metadata exchange and certificate validation
+   - Attribute mapping: SAML attributes → Apex authorization claims
+
+2. **OIDC for Modern Partners**:
+   - Azure AD, Okta, Google Workspace federation via OIDC
+   - Apex registered as relying party with each partner IdP
+   - ID tokens contain email, organization, role claims
+   - Dynamic client registration where supported
+
+3. **Legacy Support**:
+   - SAML-to-OIDC bridge for partners requiring both protocols
+   - WS-Federation support for older Microsoft environments
+
+**OAuth 2.0 Token Exchange (RFC 8693):**
+
+Delegated contractor access without direct federation:
+
+1. **Contractor Authentication**: Engineer authenticates with their company IdP (e.g., Lockheed Martin Azure AD)
+2. **Initial Token**: Receives OAuth access token from their organization
+3. **Token Exchange Request**: Sends token to Apex authorization server:
+   \`\`\`http
+   POST /token HTTP/1.1
+   Host: auth.apexdefense.gov.au
+   Content-Type: application/x-www-form-urlencoded
+
+   grant_type=urn:ietf:params:oauth:grant-type:token-exchange
+   &subject_token=eyJhbGci...  (contractor's original token)
+   &subject_token_type=urn:ietf:params:oauth:token-type:access_token
+   &scope=read:telemetry write:maintenance-logs
+   &audience=https://api.apexdefense.gov.au
+   \`\`\`
+
+4. **Token Validation**: Apex validates contractor token with partner IdP
+5. **Scoped Token Issuance**: Apex issues limited-scope access token with:
+   - Short lifetime (1-4 hours)
+   - Restricted scopes based on contract terms
+   - Audit trail linking to original identity
+
+6. **API Access**: Contractor uses Apex-issued token for authorized operations
+
+Benefits: Partner doesn't need full federation infrastructure; Apex maintains fine-grained control.
+
+**SCIM 2.0 User Lifecycle Management:**
+
+Automated provisioning across organizational boundaries:
+
+1. **SCIM Server**: Apex operates SCIM 2.0 endpoint for partner-initiated provisioning
+2. **Partner SCIM Clients**: Allied agencies push user lifecycle events:
+   - **Provisioning**: New analyst joins Indo-Pacific desk → automatically provisioned in Apex with appropriate clearance
+   - **Attribute Updates**: Analyst clearance upgraded → Apex access rights automatically updated
+   - **Deprovisioning**: Analyst leaves agency → Apex access immediately revoked
+
+3. **SCIM Schema Extensions**: Custom attributes for defense context:
+   \`\`\`json
+   {"{"}
+     "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User",
+                 "urn:apex:scim:extension:security:1.0"],
+     "userName": "martinez@nato.int",
+     "name": {"{"}"givenName": "Elena", "familyName": "Martinez"{"}"},
+     "urn:apex:scim:extension:security:1.0": {"{"}
+       "clearanceLevel": "NATO_SECRET",
+       "caveats": ["COSMIC_TOP_SECRET"],
+       "nationality": "ESP",
+       "organization": "NATO_ACO",
+       "needToKnow": ["BALTIC_OPS"]
+     {"}"}
+   {"}"}
+   \`\`\`
+
+4. **Bidirectional Sync**: Apex can also push updates back to partners (e.g., training completion, certification status)
+5. **Just-in-Time Provisioning**: For ad-hoc access, SAML/OIDC assertions trigger automatic account creation
+
+**Trust and Security Posture Management:**
+
+Tiered controls based on partner trust level:
+
+**High Trust (Allied Military)**:
+- Direct SAML federation
+- Long-lived sessions (8 hours)
+- Broad authorization scope
+- Mutual security assessments
+
+**Medium Trust (Defense Contractors)**:
+- Token exchange with short lifetimes (1-2 hours)
+- Step-up authentication for sensitive operations
+- Network egress controls (no data export)
+- Quarterly security audits required
+
+**Low Trust (Equipment Vendors)**:
+- API key authentication (not federated SSO)
+- Read-only access to specific devices
+- Heavily rate-limited
+- All actions logged and reviewed
+
+**Additional Controls**:
+- **Conditional Access**: Contractor access only from approved IP ranges
+- **Data Loss Prevention**: Watermarking, download limits, screenshot prevention
+- **Session Recording**: Privileged vendor access fully recorded
+- **Time-Limited Access**: Contractor tokens valid only during contract period
+
+**Attribute Mapping and Claims Transformation:**
+
+Cross-organizational authorization requires attribute translation:
+
+1. **Clearance Mapping**:
+   - NATO SECRET → Apex CONFIDENTIAL
+   - US TOP SECRET → Apex SECRET
+   - Five Eyes TS/SCI → Apex TOP SECRET
+
+2. **Role Mapping**:
+   - NATO Intelligence Analyst → Apex Analyst (Read-Only)
+   - US DoD Program Manager → Apex Mission Coordinator (Read-Write)
+   - Contractor Engineer → Apex Maintenance Technician (Limited)
+
+3. **Claims Transformation Pipeline**:
+   - Ingest SAML attributes / OIDC claims
+   - Apply mapping rules (policy-as-code)
+   - Inject transformed claims into Apex access tokens
+   - Enforce mapped attributes in authorization decisions
+
+4. **Provenance Tracking**: All authorization decisions log original partner claims for audit`}
+  relatedConcepts={[
+    { module: "Module 03", concept: "OIDC Federation and Trust" },
+    { module: "Module 07", concept: "SAML 2.0 Assertions and Federation" },
+    { module: "Module 02", concept: "OAuth 2.0 Token Exchange (RFC 8693)" },
+    { module: "Module 04", concept: "Identity Federation Patterns" },
+    { module: "Module 06", concept: "Claims-Based Authorization" }
+  ]}
+/>
+
+---
+
+## Key Considerations
+
+Think about these federation challenges:
+
+- **Trust Establishment**: How do you verify partner IdPs are legitimate? What certificate validation is required?
+- **Attribute Reliability**: Can you trust clearance claims from all partners equally? How do you verify?
+- **Revocation**: If a partner relationship ends, how quickly can you revoke all federated access?
+- **Legal Agreements**: SAML/OIDC federation requires bilateral agreements; what are the legal requirements?
+- **Incident Response**: If a partner IdP is compromised, how do you respond?
+
+Your design should demonstrate understanding of federation protocols (SAML, OIDC), token exchange patterns, and the complexities of cross-organizational identity and access management.

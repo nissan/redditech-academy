@@ -1,0 +1,28 @@
+{
+  "id": "10-applied-case-study",
+  "title": "Applied IAM Case Study: Apex Defense Systems",
+  "slug": "10-applied-case-study",
+  "description": "Apply your IAM knowledge to a real-world defense systems case study. Analyze requirements, design solutions, and compare your approach with expert recommendations.",
+  "difficulty": "advanced",
+  "estimatedHours": 4,
+  "order": 10,
+  "requiresPassword": true,
+  "password": "NoAccess2025",
+  "badge": {
+    "name": "IAM Architect",
+    "description": "Completed the Applied Case Study and demonstrated practical IAM architecture skills",
+    "icon": "🏆"
+  },
+  "learningObjectives": [
+    "Apply IAM concepts to real-world defense technology scenarios",
+    "Design authentication and authorization solutions for complex systems",
+    "Analyze trade-offs between security, usability, and operational requirements",
+    "Integrate Zero Trust principles with federation and offline operations",
+    "Document comprehensive IAM architecture decisions"
+  ],
+  "prerequisiteModules": [
+    "01-auth-fundamentals",
+    "02-oauth2-core",
+    "03-oidc"
+  ]
+}

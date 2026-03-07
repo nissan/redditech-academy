@@ -1,0 +1,26 @@
+---
+title: Configuration system
+description: Lesson on Configuration system
+slug: configuration-system
+duration: 10
+order: 1
+keyTakeaways:
+- Comments allowed (`//` and `/* */`)
+- Trailing commas allowed
+- Unquoted keys are fine
+- Otherwise it's valid JSON
+- 'Config normalization: fixes legacy key formats automatically'
+- 'Schema validation: warns about unknown or invalid keys'
+- 'State integrity: checks session dirs, transcript files, and permissions'
+- 'Channel health: probes channel connections if the Gateway is running'
+- 'Security warnings: flags open DM policies or missing auth tokens'
+- 'Migration: applies any needed config format upgrades'
+---
+
+One file controls how your OpenClaw instance behaves: `~/.openclaw/openclaw.json`. Which channels are active, what model it uses, how sessions are keyed, what tools are available — it's all there.
+
+---
+
+## The config file
+
+Located at `~/.openclaw/openclaw.json` (or the path in `OPENCLAW_CONFIG_PATH`), this file uses **JSON5** format:

@@ -1,0 +1,468 @@
+---
+title: "SAML Security Best Practices"
+description: "Learn common SAML vulnerabilities and how to implement secure SAML integrations."
+slug: "05-saml-security-best-practices"
+duration: 35
+order: 5
+keyTakeaways:
+  - "XML Signature Wrapping (XSW) is the most critical SAML vulnerability - always validate signature references"
+  - "Prevent replay attacks by storing used assertion IDs with TTL based on NotOnOrAfter"
+  - "Validate AudienceRestriction, Recipient, and Destination to prevent recipient attacks"
+  - "Disable XML external entities (XXE) and use strong cryptographic algorithms (SHA-256+, RSA-2048+)"
+prerequisites: ["01-saml-fundamentals", "02-saml-assertions", "03-saml-bindings-profiles"]
+---
+
+# SAML Security Best Practices
+
+SAML implementations face several security vulnerabilities. Understanding these threats is critical for secure enterprise SSO.
+
+## 1. XML Signature Wrapping (XSW) Attacks
+
+**Most Critical SAML Vulnerability**
+
+### How It Works
+
+Attacker modifies a signed SAML assertion by:
+1. Taking a valid, signed assertion
+2. Moving the signature to a different location in XML
+3. Injecting malicious content in the original location
+4. SP validates signature (still valid) but processes malicious content
+
+**Example Attack:**
+```xml
+<samlp:Response>
+  {/* Attacker inserts fake assertion here */}
+  <saml:Assertion ID="_attacker">
+    <saml:Subject>
+      <saml:NameID>admin@evil.com</saml:NameID>
+    </saml:Subject>
+  </saml:Assertion>
+
+  {/* Original signed assertion moved here */}
+  <saml:Assertion ID="_original">
+    <ds:Signature>...</ds:Signature>
+    <saml:Subject>
+      <saml:NameID>user@example.com</saml:NameID>
+    </saml:Subject>
+  </saml:Assertion>
+</samlp:Response>
+```
+
+**Vulnerable Code** processes first assertion without checking signature reference:
+```python
+# VULNERABLE - processes first assertion
+response = parse_xml(saml_response)
+assertion = response.find("Assertion")  # Gets attacker's assertion!
+validate_signature(response)  # Validates original assertion
+# Grants access to admin@evil.com instead of user@example.com
+```
+
+### Mitigation
+
+✅ **Validate signature BEFORE parsing content**
+✅ **Check signature Reference URI matches processed assertion ID**
+✅ **Use SAML libraries with XSW protection**
+✅ **Validate entire Response signature, not just Assertion**
+
+**Secure Code:**
+```python
+# SECURE - validates signature reference
+response = parse_xml(saml_response)
+signature = response.find("Signature")
+reference_uri = signature.find("Reference").get("URI")  # e.g., "#_abc123"
+
+assertion = response.find("Assertion", id=reference_uri[1:])  # Match!
+validate_signature(response, assertion)  # Ensures signature matches content
+```
+
+## 2. Assertion Replay Attacks
+
+**Attack:** Attacker captures valid assertion and replays it later
+
+### How It Works
+
+1. Attacker intercepts valid SAML assertion (e.g., via network sniffing)
+2. Attacker replays assertion to SP
+3. SP accepts assertion if not checking for replay
+4. Attacker gains unauthorized access
+
+### Mitigation
+
+✅ **Store processed assertion IDs** in cache (Redis, database)
+✅ **Reject assertions with duplicate IDs**
+✅ **Enforce short NotOnOrAfter times** (5 minutes max)
+✅ **Validate NotBefore and NotOnOrAfter timestamps**
+
+**Implementation:**
+```python
+# Redis-based replay protection
+import redis
+from datetime import timedelta
+
+redis_client = redis.Redis()
+
+def prevent_replay(assertion_id, not_on_or_after):
+    # Check if already used
+    if redis_client.exists(f"saml:assertion:{assertion_id}"):
+        raise SecurityError("Assertion replay detected")
+
+    # Mark as used with expiration
+    ttl = (not_on_or_after - datetime.utcnow()).total_seconds()
+    redis_client.setex(
+        f"saml:assertion:{assertion_id}",
+        time=int(ttl),
+        value="used"
+    )
+```
+
+## 3. Recipient Attack
+
+**Attack:** Assertion meant for one SP is sent to another SP
+
+### How It Works
+
+1. User authenticates to SP1, receives assertion
+2. Attacker captures assertion
+3. Attacker sends assertion to SP2
+4. SP2 accepts if not validating Recipient/Audience
+
+### Mitigation
+
+✅ **Always validate AudienceRestriction** matches your SP's EntityID
+✅ **Validate Recipient** matches your ACS URL
+✅ **Validate Destination** in Response
+
+**Validation Code:**
+```python
+def validate_recipient(assertion, response):
+    # Check audience matches this SP
+    audience = assertion.find("AudienceRestriction/Audience").text
+    if audience != SP_ENTITY_ID:
+        raise SecurityError(f"Audience mismatch: {audience}")
+
+    # Check recipient matches ACS URL
+    recipient = assertion.find("SubjectConfirmationData").get("Recipient")
+    if recipient != SP_ACS_URL:
+        raise SecurityError(f"Recipient mismatch: {recipient}")
+
+    # Check response destination
+    if response.get("Destination") != SP_ACS_URL:
+        raise SecurityError("Destination mismatch")
+```
+
+## Additional SAML Security Risks
+
+### 4. XML External Entity (XXE) Injection
+
+**Attack:** Attacker injects external entity references in XML
+
+**Malicious SAML:**
+```xml
+<!DOCTYPE foo [
+  <!ENTITY xxe SYSTEM "file:///etc/passwd">
+]>
+<samlp:Response>
+  <saml:Issuer>&xxe;</saml:Issuer>
+</samlp:Response>
+```
+
+#### Mitigation
+
+✅ **Disable external entity processing** in XML parser
+```python
+# Python lxml - secure configuration
+from lxml import etree
+
+parser = etree.XMLParser(
+    resolve_entities=False,  # Disable XXE
+    no_network=True,         # No network access
+    remove_blank_text=True
+)
+xml = etree.fromstring(saml_xml, parser=parser)
+```
+
+### 5. SAML Logout (SLO) Vulnerabilities
+
+**Attack:** Attacker initiates logout for other users
+
+#### CSRF in Logout
+
+Attacker tricks victim into clicking logout URL:
+```html
+<img src="https://idp.example.com/logout?SAMLRequest=..."/>
+```
+
+#### Mitigation
+
+✅ **Require POST for logout requests**
+✅ **Implement CSRF tokens**
+✅ **Validate LogoutRequest signature**
+✅ **Confirm logout with user** before terminating session
+
+### 6. Man-in-the-Middle (MITM)
+
+**Attack:** Attacker intercepts SAML messages
+
+#### Mitigation
+
+✅ **Always use HTTPS/TLS** for all SAML endpoints
+✅ **Validate TLS certificates** (no self-signed in production)
+✅ **Enable HSTS (HTTP Strict Transport Security)**
+✅ **Use certificate pinning** for high-security scenarios
+
+**HSTS Header:**
+```
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+### 7. RelayState Open Redirect
+
+**Attack:** Malicious RelayState redirects user to phishing site
+
+**Malicious Request:**
+```
+https://idp.example.com/sso?SAMLRequest=...&RelayState=https://evil.com
+```
+
+After successful auth, SP redirects to `https://evil.com`
+
+#### Mitigation
+
+✅ **Validate RelayState is relative path** (not absolute URL)
+✅ **Whitelist allowed redirect targets**
+✅ **Reject external URLs** in RelayState
+
+**Secure Validation:**
+```python
+from urllib.parse import urlparse
+
+def validate_relay_state(relay_state):
+    if not relay_state:
+        return "/"  # Default
+
+    # Parse URL
+    parsed = urlparse(relay_state)
+
+    # Reject absolute URLs with scheme/netloc
+    if parsed.scheme or parsed.netloc:
+        raise SecurityError("RelayState must be relative path")
+
+    # Ensure it starts with /
+    if not relay_state.startswith("/"):
+        relay_state = "/" + relay_state
+
+    # Whitelist allowed paths
+    allowed_prefixes = ["/dashboard", "/app", "/settings"]
+    if not any(relay_state.startswith(p) for p in allowed_prefixes):
+        return "/"  # Default safe path
+
+    return relay_state
+```
+
+### 8. Weak Cryptographic Algorithms
+
+**Risk:** Using deprecated algorithms weakens security
+
+#### Avoid These
+
+❌ **SHA-1** for signatures (collision attacks possible)
+❌ **RSA-1024** keys (too short, can be factored)
+❌ **MD5** hashing (completely broken)
+❌ **3DES** encryption (deprecated)
+
+#### Use These
+
+✅ **SHA-256** or **SHA-512** for signatures
+✅ **RSA-2048** or **RSA-4096** keys
+✅ **AES-256** for encryption
+✅ **ECDSA P-256** for signatures (modern alternative)
+
+**Check Signature Algorithm:**
+```python
+def validate_signature_algorithm(assertion):
+    sig_method = assertion.find("Signature/SignedInfo/SignatureMethod")
+    algorithm = sig_method.get("Algorithm")
+
+    # Reject weak algorithms
+    weak_algorithms = [
+        "http://www.w3.org/2000/09/xmldsig#rsa-sha1",  # SHA-1
+        "http://www.w3.org/2000/09/xmldsig#dsa-sha1",  # DSA-SHA1
+    ]
+
+    if algorithm in weak_algorithms:
+        raise SecurityError(f"Weak signature algorithm: {algorithm}")
+
+    # Require strong algorithms
+    strong_algorithms = [
+        "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+        "http://www.w3.org/2001/04/xmldsig-more#rsa-sha512",
+    ]
+
+    if algorithm not in strong_algorithms:
+        raise SecurityError(f"Algorithm not allowed: {algorithm}")
+```
+
+## SAML Security Checklist
+
+### Assertion Validation
+
+- [ ] ✅ **Validate digital signature** using IdP's public certificate
+- [ ] ✅ **Check signature Reference URI** matches assertion ID (XSW protection)
+- [ ] ✅ **Verify Issuer** matches trusted IdP EntityID
+- [ ] ✅ **Validate AudienceRestriction** matches SP EntityID
+- [ ] ✅ **Check Recipient** matches ACS URL
+- [ ] ✅ **Validate NotBefore** (assertion not used too early)
+- [ ] ✅ **Validate NotOnOrAfter** (assertion not expired)
+- [ ] ✅ **Prevent replay attacks** (store used assertion IDs)
+- [ ] ✅ **Verify InResponseTo** matches original request ID (SP-initiated)
+- [ ] ✅ **Check signature algorithm** is strong (SHA-256, not SHA-1)
+
+### Transport Security
+
+- [ ] ✅ **Enforce HTTPS/TLS** for all SAML endpoints
+- [ ] ✅ **Validate TLS certificates** (no self-signed in production)
+- [ ] ✅ **Enable HSTS** header
+- [ ] ✅ **Use TLS 1.2+** (disable TLS 1.0/1.1)
+- [ ] ✅ **Implement certificate pinning** (high-security environments)
+
+### XML Parsing Security
+
+- [ ] ✅ **Disable XML external entities** (XXE protection)
+- [ ] ✅ **Disable DTD processing**
+- [ ] ✅ **Disable network access** in XML parser
+- [ ] ✅ **Use secure XML parser configuration**
+- [ ] ✅ **Limit XML document size** (prevent DoS)
+
+### RelayState Security
+
+- [ ] ✅ **Validate RelayState is relative path**
+- [ ] ✅ **Whitelist allowed redirect paths**
+- [ ] ✅ **Reject absolute URLs** in RelayState
+- [ ] ✅ **Limit RelayState length** (prevent abuse)
+- [ ] ✅ **URL-encode RelayState properly**
+
+### Logout Security
+
+- [ ] ✅ **Require POST** for logout requests
+- [ ] ✅ **Implement CSRF protection** for logout
+- [ ] ✅ **Validate LogoutRequest signature**
+- [ ] ✅ **Confirm logout** with user
+- [ ] ✅ **Clear all session data** on logout
+- [ ] ✅ **Implement Single Logout (SLO)** if using multiple SPs
+
+### Cryptographic Security
+
+- [ ] ✅ **Use RSA-2048+** or ECDSA P-256+ keys
+- [ ] ✅ **Use SHA-256+** for signatures (not SHA-1)
+- [ ] ✅ **Use AES-256** for encryption
+- [ ] ✅ **Rotate certificates regularly** (annually)
+- [ ] ✅ **Store private keys securely** (HSM, key vault)
+
+### Metadata Security
+
+- [ ] ✅ **Validate metadata signature** when exchanging
+- [ ] ✅ **Use HTTPS** for metadata URLs
+- [ ] ✅ **Implement metadata refresh** mechanism
+- [ ] ✅ **Monitor certificate expiration**
+- [ ] ✅ **Maintain metadata backup**
+
+### Monitoring and Logging
+
+- [ ] ✅ **Log all authentication attempts**
+- [ ] ✅ **Log assertion validation failures**
+- [ ] ✅ **Monitor for replay attacks**
+- [ ] ✅ **Alert on signature validation failures**
+- [ ] ✅ **Track SAML error rates**
+- [ ] ✅ **Implement anomaly detection**
+
+### Configuration Security
+
+- [ ] ✅ **Limit assertion lifetime** (5 minutes max)
+- [ ] ✅ **Implement session timeout**
+- [ ] ✅ **Require re-authentication** for sensitive operations
+- [ ] ✅ **Disable IdP-initiated SSO** (if not needed - CSRF risk)
+- [ ] ✅ **Implement MFA** at IdP
+- [ ] ✅ **Review attribute mappings** regularly
+
+> **Pro Tip:** Use a well-maintained SAML library like **OneLogin's python3-saml**, **Shibboleth**, or **SimpleSAMLphp** instead of implementing SAML from scratch. These libraries handle most security concerns automatically.
+
+## Security Exercise: Identify Vulnerabilities
+
+**Scenario:** Review this SAML validation code and identify security issues:
+
+```python
+def process_saml_response(saml_response_base64):
+    # Decode response
+    saml_xml = base64.b64decode(saml_response_base64)
+
+    # Parse XML
+    response = parse_xml(saml_xml)
+
+    # Get first assertion
+    assertion = response.find("Assertion")
+
+    # Extract user email
+    email = assertion.find("Subject/NameID").text
+
+    # Create session
+    create_session(email)
+
+    return {"status": "success", "user": email}
+```
+
+**Questions:**
+
+1. What critical validation is missing?
+2. What attack is this vulnerable to?
+3. How would you fix it?
+
+<details>
+<summary>View Answer</summary>
+
+**Vulnerabilities Identified:**
+
+1. ❌ **No signature validation** - Attacker can forge assertions
+2. ❌ **No XSW protection** - Gets first assertion without checking signature reference
+3. ❌ **No replay protection** - Same assertion can be used multiple times
+4. ❌ **No audience validation** - Assertion meant for another SP accepted
+5. ❌ **No timestamp validation** - Expired assertions accepted
+6. ❌ **No XXE protection** - XML parser might process external entities
+7. ❌ **No InResponseTo check** - Can't detect CSRF in SP-initiated flow
+
+**Secure Version:**
+
+```python
+def process_saml_response(saml_response_base64, expected_request_id=None):
+    # Decode response
+    saml_xml = base64.b64decode(saml_response_base64)
+
+    # Parse XML securely (disable XXE)
+    parser = create_secure_xml_parser()
+    response = parse_xml(saml_xml, parser=parser)
+
+    # Validate signature and get referenced assertion
+    assertion = validate_signature_and_get_assertion(response)
+
+    # Validate timestamps
+    validate_timestamps(assertion)
+
+    # Validate audience
+    validate_audience(assertion, expected_audience=SP_ENTITY_ID)
+
+    # Prevent replay
+    prevent_replay_attack(assertion.get("ID"))
+
+    # Validate InResponseTo (SP-initiated)
+    if expected_request_id:
+        if response.get("InResponseTo") != expected_request_id:
+            raise SecurityError("InResponseTo mismatch")
+
+    # Extract user email
+    email = assertion.find("Subject/NameID").text
+
+    # Create session
+    create_session(email)
+
+    return {"status": "success", "user": email}
+```
+</details>

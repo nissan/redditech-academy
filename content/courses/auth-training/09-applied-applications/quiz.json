@@ -1,0 +1,221 @@
+{
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "sup-q1",
+      "question": "What is the core philosophy behind Supabase Auth's architecture?",
+      "options": [
+        "Use microservices for each authentication method",
+        "Leverage PostgreSQL at the core for authentication, sessions, and data storage",
+        "Build everything from scratch without dependencies",
+        "Use Redis for all session management"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supabase Auth's core philosophy is to use PostgreSQL at the core and leverage Postgres' built-in authentication functionality wherever possible. This approach simplifies the stack (fewer services), provides cohesive developer experience, lowers costs, and enables built-in database integration with features like Row Level Security."
+    },
+    {
+      "id": "sup-q2",
+      "question": "Which authentication methods does Supabase Auth support?",
+      "options": [
+        "Only email and password",
+        "Email/password, passwordless (magic links, OTP), OAuth (20+ providers), and Web3 wallets (Ethereum, Solana)",
+        "Only OAuth providers",
+        "Only Web3 wallets"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supabase Auth is comprehensive, supporting: (1) Email/password with bcrypt hashing, (2) Passwordless via magic links and OTP (email/SMS), (3) OAuth with 20+ providers (Google, GitHub, Apple, etc.), and (4) Web3 wallet authentication for Ethereum and Solana using the EIP-4361 standard."
+    },
+    {
+      "id": "sup-q3",
+      "question": "How does Supabase Auth implement Web3 wallet authentication?",
+      "options": [
+        "By storing private keys on the server",
+        "Using EIP-4361 (Sign-In with Ethereum) for off-chain signature verification",
+        "By requiring on-chain transactions with gas fees",
+        "By creating new wallet addresses for users"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supabase Auth uses EIP-4361 (Sign-In with Ethereum) standard for off-chain authentication. Users sign a message with their wallet (no gas fees), which includes domain, nonce, and expiration. Supabase Auth verifies the signature cryptographically to prove wallet ownership without needing on-chain transactions or exposing private keys."
+    },
+    {
+      "id": "sup-q4",
+      "question": "What is a key security concern with Web3 wallet authentication in Supabase?",
+      "options": [
+        "Wallet users have no email or phone number associated with their account",
+        "It's more expensive than traditional auth",
+        "It requires blockchain transactions",
+        "Private keys are stored on Supabase servers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Web3 wallet users authenticate using only their wallet address, which means they have no email or phone number associated with their account. This can open projects to abuse since creating Web3 wallets is free and easy to automate. Supabase recommends rate limiting, CAPTCHA protection, and encouraging users to link an email after wallet sign-in for account recovery."
+    },
+    {
+      "id": "sup-q5",
+      "question": "How does Supabase Auth's Row Level Security (RLS) integrate with authentication?",
+      "options": [
+        "RLS is a separate system unrelated to authentication",
+        "RLS policies use auth.uid() to automatically restrict database access based on the authenticated user",
+        "RLS only works with email/password authentication",
+        "RLS requires manual token verification in application code"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Row Level Security (RLS) is a PostgreSQL feature that integrates directly with Supabase Auth. Policies can use auth.uid() to get the current authenticated user's ID and restrict data access at the database level. This means authorization is enforced automatically by Postgres, not in application code, providing a secure and maintainable approach to multi-tenancy and data isolation."
+    },
+    {
+      "id": "sup-q6",
+      "question": "What is Supabase Auth's pricing advantage compared to Auth0?",
+      "options": [
+        "Slightly cheaper by 10-20%",
+        "Approximately 60x cheaper for 50,000 MAU ($25/mo vs ~$1,500/mo)",
+        "Same pricing but better features",
+        "More expensive but worth it"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Supabase Auth is dramatically cheaper than Auth0: $25/month for 50,000 MAU on Supabase vs approximately $1,500/month for the same usage on Auth0 - roughly 60x cheaper. Supabase also offers a generous free tier with 50,000 MAU (vs Auth0's 7,000 MAU free tier), is open-source, and self-hostable, making it particularly attractive for startups and SMBs."
+    },
+    {
+      "id": "priv-q1",
+      "question": "What is the core problem that Privy's embedded wallets solve?",
+      "options": [
+        "Making blockchain transactions faster",
+        "Reducing Web3 onboarding friction by eliminating the need for users to install wallets or manage seed phrases",
+        "Lowering gas fees for transactions",
+        "Supporting more blockchain networks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Privy solves the Web3 onboarding friction problem. Traditional Web3 requires users to install MetaMask, create a wallet, write down seed phrases, and buy crypto for gas - leading to ~95% abandonment. Privy lets users 'Sign in with Google' and automatically creates an embedded wallet (invisible to the user), achieving ~90% conversion rates."
+    },
+    {
+      "id": "priv-q2",
+      "question": "How does Privy's MPC (Multi-Party Computation) architecture secure private keys?",
+      "options": [
+        "Stores the full private key encrypted on Privy's servers",
+        "Splits the private key into 3 shards using Shamir's Secret Sharing, distributed across 2 TEEs and user's device; requires 2-of-3 to reconstruct",
+        "Uses a single hardware security module (HSM)",
+        "Stores keys in the user's browser localStorage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Privy uses Shamir's Secret Sharing to split each private key into 3 shards: Shard 1 in Privy TEE (AWS Nitro Enclave), Shard 2 in another Privy TEE (different region), and Shard 3 encrypted in user's browser storage. To sign a transaction, 2 of 3 shards are required to reconstruct the key. This means even if one location is compromised, the wallet remains secure."
+    },
+    {
+      "id": "priv-q3",
+      "question": "What are Trusted Execution Environments (TEEs) and why does Privy use them?",
+      "options": [
+        "Cloud servers with standard encryption",
+        "Hardware-encrypted compute enclaves (like AWS Nitro) that isolate key shards and prevent external access, even by cloud providers",
+        "Blockchain-based key storage systems",
+        "Third-party key management services"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TEEs are hardware-encrypted compute enclaves (like AWS Nitro Enclaves, Intel SGX) that run code in complete isolation. Memory inside TEEs is encrypted by hardware, and even the host OS or cloud provider cannot inspect the enclave's memory. Privy uses TEEs to store key shards, ensuring that even if Privy's servers are compromised or insiders attempt access, the key shards remain protected by hardware-level encryption."
+    },
+    {
+      "id": "priv-q4",
+      "question": "What is 'progressive onboarding' in the context of Privy?",
+      "options": [
+        "Gradually increasing gas fees as users become more experienced",
+        "Starting users with simple Web2 authentication (Google) and embedded wallets, then progressively introducing Web3 concepts (external wallets, key export) as they become comfortable",
+        "Slowly migrating from Ethereum to other blockchains",
+        "Requiring users to complete tutorials before using features"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Progressive onboarding is Privy's philosophy of starting simple and adding complexity over time. Level 1: User signs in with Google, embedded wallet auto-created (invisible), can use dApp immediately. Level 2: User learns about wallets, can link MetaMask for advanced features. Level 3: User exports private key, takes full custody. This approach reduces initial friction (90% conversion) while allowing power users to graduate to full Web3 capabilities."
+    },
+    {
+      "id": "priv-q5",
+      "question": "How do gasless transactions work in Privy?",
+      "options": [
+        "Users must pre-fund their wallets with ETH",
+        "Application sponsors gas fees via Privy's paymaster; transactions execute with sponsored: true flag, and the app is billed for gas costs",
+        "Transactions are free and never cost gas",
+        "Users pay with credit cards instead of crypto"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Privy's gasless transaction feature allows applications to sponsor gas fees for users via Privy's paymaster. When sending a transaction with { sponsored: true }, Privy's paymaster pre-funds the transaction on the blockchain, executes it, and then bills the application for the gas cost (plus a small fee). This enables onboarding users who have zero crypto, letting them try the dApp before buying ETH."
+    },
+    {
+      "id": "priv-q6",
+      "question": "What is Privy's SOC 2 Type II certification and why does it matter for Web3?",
+      "options": [
+        "A blockchain security audit",
+        "An independent third-party audit verifying security, availability, and confidentiality controls; makes Privy enterprise-ready and suitable for institutional custody",
+        "A certification for smart contract safety",
+        "A standard for decentralized applications"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SOC 2 Type II is a rigorous auditing standard for service providers that store customer data. It requires independent third-party verification of security, availability, and confidentiality controls. Most Web3 wallet providers are NOT SOC 2 compliant. Privy's certification makes it production-ready for enterprise use cases and institutional investors who require SOC 2 for custody solutions - bridging the gap between Web3 innovation and enterprise security requirements."
+    },
+    {
+      "id": "laz-q1",
+      "question": "What cryptographic curve does LazorKit use for passkey signatures, and why is it significant?",
+      "options": [
+        "ed25519, because it's the native Solana signature algorithm",
+        "secp256r1 (P-256), because it's the standard used by Apple Secure Enclave, Android StrongBox, and WebAuthn",
+        "secp256k1, because it's compatible with Ethereum",
+        "RSA-2048, for maximum security"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LazorKit uses secp256r1 (P-256), the NIST-standardized elliptic curve used by Apple's Secure Enclave (Face ID/Touch ID), Android StrongBox, YubiKeys, and the WebAuthn standard. This enables hardware-backed passkey authentication where private keys are stored in device security chips and never exposed to software, providing superior security compared to software-only wallets."
+    },
+    {
+      "id": "laz-q2",
+      "question": "What is Solana SIMD 75 and why is it critical for LazorKit?",
+      "options": [
+        "A smart contract standard for NFTs",
+        "A precompiled instruction that enables on-chain verification of secp256r1 (WebAuthn) signatures",
+        "A consensus mechanism upgrade",
+        "A token standard for fungible assets"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SIMD 75 is a Solana Improvement Document that adds secp256r1 signature verification as a precompiled instruction. Before SIMD 75, Solana could only verify ed25519 and secp256k1 signatures on-chain. SIMD 75 enables smart contracts to verify WebAuthn/passkey signatures (secp256r1) directly on Solana, making LazorKit's passkey-based smart wallets possible without requiring off-chain verification components."
+    },
+    {
+      "id": "laz-q3",
+      "question": "How do LazorKit passkeys provide superior security compared to traditional software wallets?",
+      "options": [
+        "Passkeys use longer seed phrases",
+        "Private keys are stored in hardware security chips (Secure Enclave) and cannot be extracted, even by malware on the device",
+        "Passkeys use stronger encryption algorithms",
+        "Passkeys are backed up to the cloud"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LazorKit passkeys leverage hardware security by storing private keys in Trusted Execution Environments (TEEs) like Apple's Secure Enclave or Android StrongBox. These hardware chips are isolated from the main operating system - private keys never leave the secure chip, signing happens inside the hardware, and even if malware compromises the device, the private key remains protected. Traditional software wallets store keys in browser storage or software keystores, which can be extracted by malware."
+    },
+    {
+      "id": "laz-q4",
+      "question": "What are LazorKit smart wallet policies and how are they enforced?",
+      "options": [
+        "Client-side rules checked by JavaScript",
+        "On-chain programmable rules (spending limits, program allowlists, rate limits) validated by the smart wallet program before transaction execution",
+        "Server-side rules enforced by LazorKit's API",
+        "Browser extension permissions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LazorKit smart wallet policies are programmable rules stored on-chain in the smart wallet program. Policies can include spending limits (e.g., max 1 SOL/hour), program allowlists (only interact with specific contracts), and rate limits (max transactions per day). These policies are enforced by the smart wallet program itself - every transaction is validated against the on-chain policies before execution. Invalid transactions are rejected by the smart contract, not by client-side code that could be bypassed."
+    },
+    {
+      "id": "laz-q5",
+      "question": "What is the current production readiness status of LazorKit?",
+      "options": [
+        "Production-ready and recommended for mainnet deployments",
+        "Beta stage - suitable for prototyping and devnet testing, NOT recommended for production or real user funds",
+        "Enterprise-ready with SOC 2 compliance",
+        "Deprecated and no longer maintained"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LazorKit is currently in BETA stage and is NOT production-ready. It's recommended only for prototyping, educational demos, devnet testing, and hackathon projects. The platform has known limitations including potential smart contract bugs, breaking API changes, limited ecosystem support, no insurance fund, and limited customer support. Users should NOT deploy LazorKit on mainnet or use it to manage real user funds."
+    },
+    {
+      "id": "laz-q6",
+      "question": "How do LazorKit session keys work, and what problem do they solve?",
+      "options": [
+        "Permanent keys that never expire",
+        "Ephemeral keys with scoped permissions that allow temporary signing authority without biometric prompts, ideal for gaming and frequent transactions",
+        "Backup keys stored in the cloud",
+        "Keys shared between multiple users"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LazorKit session keys solve the user experience problem of requiring biometric authentication for every transaction (which is annoying in fast-paced games or apps with frequent transactions). Session keys are ephemeral (short-lived, e.g., 1 hour), have scoped permissions (limited to specific programs and amounts), are revocable (user can cancel anytime), and have on-chain audit trails. Applications can use session keys to sign transactions without prompting for biometrics each time, while maintaining security through strict scoping and expiration."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+---
+title: Session store
+description: Lesson on Session store
+slug: session-store
+duration: 12
+order: 1
+keyTakeaways:
+- "A **unique session key** \u2014 a string that identifies this conversation"
+- "A **JSONL transcript file** \u2014 every message, tool call, and tool result, in\
+  \ order"
+- "**Metadata** \u2014 token counts, creation time, last updated timestamp, channel\
+  \ origin"
+- Messages from non-approved members are filtered out before reaching the session
+- The agent only sees messages from approved participants
+---
+
+Sessions are how OpenClaw remembers who you are and what you talked about. Each conversation gets its own session — a unique key, a transcript file on disk, and metadata tracking token counts and timestamps.
+
+This isn't a database. It's a disciplined set of files that the Gateway reads and writes directly.
+
+---
+
+## What is a session?
+
+A session is the unit of **conversation continuity**. Every time you send a message from a particular chat (a Telegram DM, a Discord channel, a WhatsApp group), OpenClaw maps it to a session:

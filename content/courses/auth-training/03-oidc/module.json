@@ -1,0 +1,27 @@
+{
+  "id": "03-oidc",
+  "title": "OpenID Connect: Authentication on OAuth 2.0",
+  "slug": "03-oidc",
+  "description": "Master OpenID Connect (OIDC), the authentication layer built on OAuth 2.0. Learn about ID Tokens, UserInfo endpoints, and how OIDC powers modern Single Sign-On.",
+  "difficulty": "intermediate",
+  "order": 3,
+  "estimatedHours": 4.5,
+  "prerequisiteModules": ["02-oauth2"],
+  "learningObjectives": [
+    "Understand the relationship between OAuth 2.0 and OpenID Connect",
+    "Decode and validate ID Tokens (JWT structure)",
+    "Use the UserInfo endpoint to retrieve user claims",
+    "Implement OIDC flows (Authorization Code with OIDC)",
+    "Leverage Discovery documents for dynamic configuration",
+    "Distinguish between authentication and authorization use cases"
+  ],
+  "badge": {
+    "id": "badge-oidc-core",
+    "name": "OpenID Connect Expert",
+    "description": "Mastered OpenID Connect authentication, ID Tokens, UserInfo, discovery, and session management",
+    "icon": "🔓",
+    "color": "intermediate"
+  },
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

@@ -1,0 +1,185 @@
+{
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "authz-q1",
+      "question": "What is the main difference between authentication and authorization?",
+      "options": [
+        "Authentication is for APIs, authorization is for web apps",
+        "Authentication verifies identity, authorization controls access",
+        "Authentication is faster than authorization",
+        "They are the same thing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Authentication answers 'Who are you?' by verifying identity, while authorization answers 'What can you do?' by controlling access to resources."
+    },
+    {
+      "id": "authz-q2",
+      "question": "What is the main limitation of simple ACLs?",
+      "options": [
+        "Too secure",
+        "Don't support groups and don't scale well",
+        "Too complex to implement",
+        "Require expensive hardware"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ACLs don't scale well because each resource stores a full list of permitted users, and they typically don't support groups or inheritance, making them unsuitable for large systems."
+    },
+    {
+      "id": "authz-q3",
+      "question": "Which authorization model is best for a large-scale SaaS app like Google Docs?",
+      "options": [
+        "ACL (Access Control Lists)",
+        "RBAC (Role-Based Access Control)",
+        "ABAC (Attribute-Based Access Control)",
+        "ReBAC (Relationship-Based Access Control / Zanzibar)"
+      ],
+      "correctAnswer": 3,
+      "explanation": "ReBAC (Zanzibar) is designed for large-scale SaaS applications with complex sharing, nested groups, and permission inheritance. Google uses it for Docs, Drive, Calendar, and more."
+    },
+    {
+      "id": "zanzibar-q1",
+      "question": "What is a relationship tuple in Zanzibar?",
+      "options": [
+        "A database table with three columns",
+        "A statement of relationship: object#relation@subject",
+        "An encryption key",
+        "A user's password hash"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A relationship tuple in Zanzibar expresses a relationship in the format object#relation@subject, like 'doc:roadmap#viewer@alice' meaning Alice is a viewer of the roadmap document."
+    },
+    {
+      "id": "zanzibar-q2",
+      "question": "What is a Zookie in Zanzibar?",
+      "options": [
+        "A type of cookie for authentication",
+        "A consistency token ensuring read-after-write freshness",
+        "A caching mechanism",
+        "A database index"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Zookie is a consistency token that ensures read-after-write consistency. When a permission is granted, the zookie ensures subsequent checks see the updated permission, preventing stale reads."
+    },
+    {
+      "id": "zanzibar-q3",
+      "question": "How does Zanzibar achieve <10ms latency at Google scale?",
+      "options": [
+        "Using only in-memory storage",
+        "Aggressive caching, Bloom filters, and optimized graph traversal",
+        "Limiting the number of users",
+        "Pre-computing all permission checks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zanzibar achieves low latency through aggressive caching of check results, Bloom filters for quick negative checks, parallel query evaluation, and optimized graph traversal algorithms."
+    },
+    {
+      "id": "impl-q1",
+      "question": "Which open-source Zanzibar implementation is most mature and production-ready?",
+      "options": [
+        "Ory Keto",
+        "SpiceDB (AuthZed)",
+        "OpenFGA",
+        "Permify"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SpiceDB is the most mature Zanzibar implementation with excellent documentation, active development, and a managed service (AuthZed) for production use."
+    },
+    {
+      "id": "impl-q2",
+      "question": "In SpiceDB schema, what does 'permission edit = owner + editor' mean?",
+      "options": [
+        "Only owners can edit",
+        "Owners and editors both have edit permission",
+        "Editors must also be owners",
+        "Mathematical addition"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The '+' operator represents a union in SpiceDB. 'owner + editor' means users who are either owners OR editors have the edit permission."
+    },
+    {
+      "id": "impl-q3",
+      "question": "Why should you use zookies (consistency tokens) when sharing a document?",
+      "options": [
+        "To encrypt the permission grant",
+        "To ensure immediate visibility of the new permission (no stale reads)",
+        "To improve performance",
+        "To comply with GDPR"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zookies ensure read-after-write consistency. When you grant permission and immediately check if the user has access, the zookie guarantees you see the updated permission, preventing stale reads."
+    },
+    {
+      "id": "sys-q1",
+      "question": "What is the primary difference between Amazon Cedar and OpenFGA's approach to authorization?",
+      "options": [
+        "Cedar is open source while OpenFGA is proprietary",
+        "Cedar is policy-driven (ABAC) while OpenFGA is graph-driven (ReBAC)",
+        "Cedar is faster than OpenFGA",
+        "OpenFGA only works with AWS services"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cedar uses a policy-driven approach (ABAC - Attribute-Based Access Control) where authorization rules are expressed as declarative policies. OpenFGA uses a graph-driven approach (ReBAC - Relationship-Based Access Control) where authorization is modeled as relationships in a graph, following Google Zanzibar's design."
+    },
+    {
+      "id": "sys-q2",
+      "question": "Which authorization system would be BEST for a document management system with folder hierarchies and inherited permissions (like Google Drive)?",
+      "options": [
+        "Amazon Cedar - better for hierarchies",
+        "OpenFGA/SpiceDB - designed for relationship graphs",
+        "OPA (Open Policy Agent)",
+        "Simple RBAC roles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenFGA/SpiceDB are ideal for document management with folder hierarchies because they model authorization as a graph with parent-child relationships. Permissions naturally inherit down the tree (folder → subfolder → document), which is exactly what Zanzibar-inspired systems excel at."
+    },
+    {
+      "id": "sys-q3",
+      "question": "What is a unique advantage of Amazon Cedar compared to Zanzibar-inspired systems?",
+      "options": [
+        "Faster query performance",
+        "Better for nested groups",
+        "Automated reasoning and policy analysis (can prove security properties)",
+        "Supports more programming languages"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Cedar's standout feature is automated reasoning - it can analyze policies to prove security properties, detect conflicts, and verify that policies behave as intended. This is unique among authorization systems and particularly valuable for compliance-heavy industries like finance and healthcare."
+    },
+    {
+      "id": "sys-q4",
+      "question": "In OpenFGA, what does the 'parent' relation enable in a folder/document model?",
+      "options": [
+        "It allows deleting parent folders",
+        "It enables permission inheritance from parent to child resources",
+        "It creates a backup of the parent folder",
+        "It locks the parent folder"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'parent' relation in OpenFGA enables permission inheritance. For example, 'define can_view: viewer or parent->can_view' means a user can view a document if they're a direct viewer OR if they have can_view permission on the parent folder. This allows permissions to cascade down the hierarchy."
+    },
+    {
+      "id": "sys-q5",
+      "question": "Which statement about Cedar policies is TRUE?",
+      "options": [
+        "Cedar policies are always 'permit' - you cannot forbid access",
+        "Cedar policies can include 'when' and 'unless' conditions for context-aware decisions",
+        "Cedar requires a separate graph database like SpiceDB",
+        "Cedar policies cannot check user attributes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cedar policies support both 'permit' and 'forbid' statements with 'when' and 'unless' conditions. This allows context-aware authorization like 'permit when context.mfaVerified == true' or 'forbid unless context.ipAddress like \"192.168.*\"'. This makes Cedar excellent for attribute-based and conditional access control."
+    },
+    {
+      "id": "sys-q6",
+      "question": "What is the main advantage of OpenFGA's 'listObjects' API compared to just checking individual permissions?",
+      "options": [
+        "It's faster than individual checks",
+        "It enables reverse lookup: 'show me ALL documents user Alice can view'",
+        "It's required for write operations",
+        "It automatically grants permissions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The listObjects API enables reverse lookup - instead of asking 'can Alice view document X?', you can ask 'what are ALL documents Alice can view?'. This is essential for features like 'show my documents' or 'list accessible folders'. Cedar doesn't have this capability built-in, which is a key difference from Zanzibar-inspired systems."
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+---
+title: "UserInfo Endpoint: Retrieving User Claims"
+slug: "03-userinfo-endpoint"
+duration: 20
+keyTakeaways:
+  - "UserInfo endpoint provides additional user claims beyond what's in the ID Token"
+  - "Access token with openid scope required to call /userinfo endpoint"
+  - "UserInfo returns JSON claims: email, name, picture, phone_number, address, etc."
+  - "Use UserInfo for fresh data or when ID Token size limits are a concern"
+  - "Always validate UserInfo response matches ID Token sub claim for security"
+---
+
+## What is the UserInfo Endpoint?
+
+The **UserInfo endpoint** is an OAuth 2.0 protected resource that returns claims about the authenticated end-user.
+
+**Purpose:**
+While ID Tokens contain basic identity claims, the UserInfo endpoint provides:
+- **Additional claims** not included in the ID Token (to keep ID Token size small)
+- **Real-time data** (claims may have changed since ID Token was issued)
+- **Aggregated claims** from multiple sources
+
+**Endpoint Location:**
+Found in the OpenID Provider's discovery document at:
+```
+https://issuer.example.com/.well-known/openid-configuration
+```
+
+Look for the **userinfo_endpoint** field:
+```json
+{
+  "userinfo_endpoint": "https://accounts.google.com/userinfo/v2/me"
+}
+```
+
+## Calling the UserInfo Endpoint
+
+```typescript
+// Step 1: Exchange authorization code for tokens
+const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: new URLSearchParams({
+    grant_type: 'authorization_code',
+    code: authorizationCode,
+    redirect_uri: 'https://myapp.com/callback',
+    client_id: 'my-client-id',
+    client_secret: 'my-client-secret'
+  })
+});
+
+const tokens = await tokenResponse.json();
+// tokens = { access_token, id_token, refresh_token, ... }
+
+// Step 2: Call UserInfo endpoint with access token
+const userinfoResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+  headers: {
+    'Authorization': `Bearer ${tokens.access_token}`  // ← Access token required
+  }
+});
+
+const userinfo = await userinfoResponse.json();
+
+// UserInfo Response Example:
+{
+  "sub": "10769150350006150715113082367",   // Matches ID Token sub
+  "name": "John Doe",
+  "given_name": "John",
+  "family_name": "Doe",
+  "picture": "https://lh3.googleusercontent.com/...",
+  "email": "john.doe@example.com",
+  "email_verified": true,
+  "locale": "en",
+  "hd": "example.com"  // Hosted domain (for Google Workspace)
+}
+```
+
+## UserInfo vs. ID Token Claims
+
+**When to Use UserInfo Endpoint:**
+
+**Use UserInfo when:**
+✅ You need claims not included in the ID Token
+✅ You want real-time data (e.g., updated profile picture)
+✅ The ID Token is too large with all claims (performance optimization)
+✅ You need aggregated/distributed claims
+
+**Use ID Token claims when:**
+✅ Basic identity is sufficient (sub, email, name)
+✅ You want to minimize network requests
+✅ Claims don't change frequently
+✅ You're implementing client-side authentication
+
+**Key Differences:**
+
+| Aspect | ID Token Claims | UserInfo Endpoint |
+|--------|----------------|-------------------|
+| **Delivery** | Returned with tokens | Requires extra API call |
+| **Freshness** | Point-in-time (token issuance) | Real-time (current data) |
+| **Size** | Limited (keep JWT small) | Unlimited |
+| **Authentication** | None (public claims in JWT) | Requires access token |
+| **Signature** | Always signed | Optional (can be signed JWT) |
+
+**Best Practice:**
+Include essential claims in ID Token (sub, email, name). Fetch additional claims from UserInfo endpoint as needed.
+
+## UserInfo Response Formats
+
+**JSON Response (Default):**
+Content-Type: application/json
+
+```json
+{
+  "sub": "248289761001",
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+```
+
+**JWT Response (Signed/Encrypted):**
+Content-Type: application/jwt
+
+If the identity provider is configured to sign or encrypt UserInfo responses:
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNDgyODk3NjEwMDEiLCJuYW1lIjoiSmFuZSBEb2UiLCJlbWFpbCI6ImphbmVAZXhhbXBsZS5jb20ifQ.signature
+```
+
+**When JWT is Used:**
+- High-security environments
+- Need tamper-proof user data
+- Require encryption for sensitive claims
+
+**Validation for JWT UserInfo:**
+- Verify signature (same as ID Token validation)
+- Check iss and aud claims
+- Decrypt if encrypted
+
+## Complete UserInfo Integration Example
+
+```typescript
+import { Strategy as OIDCStrategy } from 'passport-openidconnect';
+import passport from 'passport';
+
+// Configure OIDC strategy with UserInfo
+passport.use('oidc', new OIDCStrategy({
+    issuer: 'https://accounts.google.com',
+    authorizationURL: 'https://accounts.google.com/o/oauth2/v2/auth',
+    tokenURL: 'https://oauth2.googleapis.com/token',
+    userInfoURL: 'https://www.googleapis.com/oauth2/v3/userinfo',  // ← UserInfo endpoint
+    clientID: process.env.GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    callbackURL: 'https://myapp.com/auth/callback',
+    scope: ['openid', 'profile', 'email']  // Request specific claims
+  },
+  async (issuer, profile, done) => {
+    // profile.id = sub claim from ID Token
+    // profile.displayName = name from UserInfo
+    // profile.emails = [{ value: 'user@example.com', verified: true }]
+
+    // Find or create user in database
+    let user = await User.findOne({ oidcSub: profile.id });
+
+    if (!user) {
+      user = await User.create({
+        oidcSub: profile.id,
+        email: profile.emails?.[0]?.value,
+        name: profile.displayName,
+        picture: profile.photos?.[0]?.value
+      });
+    } else {
+      // Update user info from UserInfo (real-time data)
+      user.name = profile.displayName;
+      user.picture = profile.photos?.[0]?.value;
+      await user.save();
+    }
+
+    done(null, user);
+  }
+));
+
+// Express route
+app.get('/auth/google',
+  passport.authenticate('oidc')
+);
+
+app.get('/auth/callback',
+  passport.authenticate('oidc', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/dashboard');
+  }
+);
+```
+
+## UserInfo Security Considerations
+
+**Access Token Protection:**
+The UserInfo endpoint requires a valid access token. Protect it:
+
+✅ **Use HTTPS**: Never send access tokens over HTTP
+✅ **Short-lived tokens**: Limit access token lifetime
+✅ **Validate scope**: Ensure access token has 'openid' scope
+✅ **Rate limiting**: Prevent abuse of UserInfo endpoint
+
+**Privacy Considerations:**
+
+**Minimal Data Principle:**
+Only request scopes you actually need:
+- Need email? Request scope=openid email (not profile)
+- Don't request address or phone if unused
+
+**Consented Claims:**
+UserInfo only returns claims the user consented to. If the user denies profile access, you'll only get sub.
+
+**Data Freshness vs. Privacy:**
+- Fetching UserInfo every session = real-time data but more tracking
+- Using ID Token claims = less tracking but potentially stale data
+
+**Regulatory Compliance:**
+- GDPR: User must consent to data collection
+- CCPA: Allow users to delete their data
+- Store minimal claims, delete when user account closes
+
+## Key Takeaways
+
+- UserInfo endpoint returns claims about the authenticated user
+- Access token (not ID Token) is required to call UserInfo
+- UserInfo provides real-time, fresh user data
+- Response can be JSON or signed/encrypted JWT
+- The 'sub' claim in UserInfo must match the ID Token sub
+- Only request scopes and claims you actually need (privacy)

@@ -1,0 +1,125 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "exec-q1",
+      "question": "What percentage of data breaches involve compromised credentials?",
+      "options": [
+        "25%",
+        "50%",
+        "81%",
+        "95%"
+      ],
+      "correctAnswer": 2,
+      "explanation": "81% of data breaches involve compromised credentials, making IAM your biggest security vulnerability. This highlights why proper authentication and authorization systems are critical for organizational security."
+    },
+    {
+      "id": "exec-q2",
+      "question": "What is the primary difference between authentication and authorization?",
+      "options": [
+        "Authentication is 'who are you?' and authorization is 'what can you do?'",
+        "They are the same thing",
+        "Authentication is for databases, authorization is for APIs",
+        "Authorization happens before authentication"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Authentication verifies identity ('who are you?') while authorization determines permissions ('what can you do?'). Every secure digital interaction requires both - first verifying who you are, then checking what you're allowed to access."
+    },
+    {
+      "id": "exec-q3",
+      "question": "What is OAuth 2.0 primarily designed for?",
+      "options": [
+        "Password storage",
+        "Delegated authorization (allowing apps to access your data without sharing passwords)",
+        "Encryption",
+        "Database security"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OAuth 2.0 solves the delegated authorization problem - allowing third-party applications to access your data on other services without sharing your password. For example, letting a calendar app access your Google Calendar without giving it your Google password."
+    },
+    {
+      "id": "exec-q4",
+      "question": "What does OpenID Connect (OIDC) add on top of OAuth 2.0?",
+      "options": [
+        "Better encryption",
+        "An authentication layer with standardized user identity information (ID Tokens)",
+        "Support for mobile devices",
+        "Blockchain integration"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenID Connect adds an authentication layer on top of OAuth 2.0's authorization framework. It introduces ID Tokens (JWTs containing verified user identity), standardized user profile info, and discovery mechanisms. OAuth 2.0 alone only handles authorization, not authentication."
+    },
+    {
+      "id": "exec-q5",
+      "question": "What is the main security advantage of FIDO2/WebAuthn over passwords?",
+      "options": [
+        "Passwords are encrypted",
+        "Phishing-resistant authentication using public-key cryptography with hardware-backed credentials",
+        "FIDO2 uses longer passwords",
+        "WebAuthn stores passwords more securely"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FIDO2/WebAuthn uses public-key cryptography with hardware-backed credentials (like biometrics or security keys). Private keys never leave the device and signatures are domain-bound, making it impossible to phish. Unlike passwords, there's no shared secret that can be stolen or reused."
+    },
+    {
+      "id": "exec-q6",
+      "question": "What business problem does Zero Trust architecture solve?",
+      "options": [
+        "Making networks faster",
+        "Eliminating the 'trusted interior' assumption - verify every request regardless of network location",
+        "Reducing server costs",
+        "Increasing password complexity"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zero Trust eliminates the traditional security model where anything inside the corporate network is trusted. Instead, it requires verification for every access request regardless of location (office, home, cloud), following 'never trust, always verify' principles. This is critical for remote work and cloud services."
+    },
+    {
+      "id": "exec-q7",
+      "question": "What is the primary innovation of Google Zanzibar in authorization?",
+      "options": [
+        "Faster databases",
+        "Global-scale relationship-based authorization (ReBAC) that can handle billions of checks per second",
+        "Better password hashing",
+        "Blockchain-based permissions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zanzibar pioneered global-scale Relationship-Based Access Control (ReBAC). Instead of simple role-based permissions, it models complex relationships (e.g., 'Can Alice edit this document?' depends on: Is Alice a member of team X? Does team X have edit access to folder Y? Is the document in folder Y?). It powers Google Drive, Calendar, and YouTube permissions."
+    },
+    {
+      "id": "exec-q8",
+      "question": "What is Self-Sovereign Identity (SSI) designed to solve?",
+      "options": [
+        "Making passwords longer",
+        "Giving users complete control over their digital identity without depending on centralized providers",
+        "Faster login speeds",
+        "Better encryption"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SSI gives users complete ownership and control of their digital identity. Instead of Facebook, Google, or governments controlling your identity, you hold Verifiable Credentials in your own wallet and selectively share them. You prove identity through cryptography, not by trusting a central authority. This is the foundation of Web3 identity."
+    },
+    {
+      "id": "exec-q9",
+      "question": "What is the EU's eIDAS 2.0 regulation mandating by 2026?",
+      "options": [
+        "Banning passwords",
+        "All EU member states must provide digital identity wallets to citizens with 80% adoption target",
+        "Requiring all websites to use OAuth",
+        "Making GDPR more strict"
+      ],
+      "correctAnswer": 1,
+      "explanation": "eIDAS 2.0 mandates that all 27 EU member states provide digital identity wallets to citizens by 2026, targeting 80% adoption. These government-issued wallets will store Verifiable Credentials and work across borders for government services, banking, healthcare, and travel. This is the largest-scale SSI deployment globally."
+    },
+    {
+      "id": "exec-q10",
+      "question": "What is Continuous Access Evaluation (CAE)?",
+      "options": [
+        "Checking passwords every hour",
+        "Real-time policy enforcement that can revoke access immediately when conditions change (e.g., user leaves office, device compromised)",
+        "Evaluating employee performance",
+        "Database backup strategy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CAE enables real-time policy enforcement by constantly evaluating access conditions. Unlike traditional sessions that last hours, CAE can revoke access within seconds when critical events occur (user leaves secure location, device shows signs of compromise, account disabled, IP address changes). This is essential for Zero Trust and high-security environments."
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+---
+title: "Session Management and Single Logout"
+slug: "06-oidc-session-management"
+duration: 25
+keyTakeaways:
+  - "Session management tracks user authentication state across multiple requests"
+  - "Front-channel logout: Browser redirects to IdP logout endpoint, then to all RPs"
+  - "Back-channel logout: IdP sends server-to-server logout notifications via HTTP POST"
+  - "Refresh tokens allow obtaining new access/ID tokens without re-authentication"
+  - "Session monitoring via session_state parameter and OP iframe for real-time session status"
+---
+
+## OIDC Session Management Overview
+
+**The Session Problem:**
+When a user logs in with OIDC, they have sessions in **two places**:
+1. **Identity Provider (IdP) session**: At Google, Microsoft, etc.
+2. **Application session**: In your web app
+
+**Scenarios to Handle:**
+
+**Scenario 1: IdP Session Expires**
+- User logs out at Google
+- Your app's session is still active
+- User appears logged in but can't refresh tokens
+
+**Scenario 2: User Logs Out of Your App**
+- User clicks "Logout" in your app
+- Your session ends
+- But IdP session remains (SSO to other apps still works)
+
+**Scenario 3: User Wants Global Logout**
+- User clicks "Logout Everywhere"
+- Should end sessions at BOTH app and IdP
+- Log user out of all connected applications
+
+OIDC provides specifications for handling these scenarios:
+- **Session Management**: Monitor IdP session status
+- **RP-Initiated Logout**: Request logout at IdP
+- **Front-Channel Logout**: IdP notifies apps of logout
+- **Back-Channel Logout**: IdP sends logout via backchannel
+
+## RP-Initiated Logout
+
+**What is RP-Initiated Logout?**
+The Relying Party (your application) triggers logout at the OpenID Provider.
+
+**Discovery Field:**
+```json
+{
+  "end_session_endpoint": "https://accounts.google.com/o/oauth2/v2/logout"
+}
+```
+
+**How It Works:**
+
+**Step 1: User Clicks "Logout" in Your App**
+- Destroy local application session
+- Clear cookies, tokens
+
+**Step 2: Redirect to IdP's end_session_endpoint**
+```
+GET /logout?
+  id_token_hint=<ID_TOKEN>&
+  post_logout_redirect_uri=https://myapp.com/goodbye&
+  state=random_state
+```
+
+**Parameters:**
+- **id_token_hint**: The ID Token received at login (helps IdP identify the session)
+- **post_logout_redirect_uri**: Where to redirect after logout (must be pre-registered)
+- **state**: Opaque value returned in redirect (prevents CSRF)
+
+**Step 3: IdP Logs User Out**
+- IdP destroys session
+- User logged out of all IdP-connected apps (if front-channel logout configured)
+
+**Step 4: Redirect Back to App**
+```
+https://myapp.com/goodbye?state=random_state
+```
+
+**Security:**
+- The post_logout_redirect_uri must be whitelisted in client configuration
+- Validate state parameter on return
+
+## RP-Initiated Logout Implementation
+
+```typescript
+import express from 'express';
+import session from 'express-session';
+
+const app = express();
+
+// Logout endpoint
+app.post('/logout', async (req, res) => {
+  // Step 1: Get ID Token from session
+  const idToken = req.session.idToken;
+
+  // Step 2: Destroy local session
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Session destruction error:', err);
+    }
+  });
+
+  // Step 3: Clear session cookie
+  res.clearCookie('connect.sid');
+
+  // Step 4: Construct end_session_endpoint URL
+  const logoutUrl = new URL(discoveryDoc.end_session_endpoint);
+  logoutUrl.searchParams.set('id_token_hint', idToken);
+  logoutUrl.searchParams.set('post_logout_redirect_uri', 'https://myapp.com/goodbye');
+  logoutUrl.searchParams.set('state', generateRandomState());
+
+  // Step 5: Redirect to IdP logout
+  res.redirect(logoutUrl.toString());
+});
+
+// Post-logout landing page
+app.get('/goodbye', (req, res) => {
+  const state = req.query.state;
+
+  // Validate state if you stored it (best practice)
+  // if (state !== expectedState) {
+  //   return res.status(400).send('Invalid state');
+  // }
+
+  res.send(`
+    <h1>You've been logged out</h1>
+    <p>Successfully logged out of both the application and identity provider.</p>
+    <a href="/">Return to homepage</a>
+  `);
+});
+
+// Alternative: Logout without IdP redirect (local only)
+app.post('/logout-local', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('connect.sid');
+  res.redirect('/');
+
+  // User still logged in at IdP (can SSO to other apps)
+});
+```
+
+## Front-Channel Logout
+
+**What is Front-Channel Logout?**
+When a user logs out at the IdP, the IdP notifies all Relying Parties using **hidden iframes**.
+
+**Discovery Field:**
+```json
+{
+  "frontchannel_logout_supported": true,
+  "frontchannel_logout_session_supported": true
+}
+```
+
+**How It Works:**
+
+**Step 1: User Logs Out at IdP**
+- User visits https://accounts.google.com and clicks logout
+
+**Step 2: IdP Loads Hidden Iframes**
+For each RP registered with front-channel logout, IdP loads:
+```html
+<iframe src="https://rp1.example.com/logout?iss=https://idp.example.com&sid=session123"></iframe>
+<iframe src="https://rp2.example.com/logout?iss=https://idp.example.com&sid=session123"></iframe>
+```
+
+**Step 3: RP's Logout Endpoint Clears Session**
+Each RP receives the iframe request and clears the session.
+
+**Step 4: User Logged Out Everywhere**
+
+**Client Registration:**
+When registering your client, provide:
+```json
+{
+  "frontchannel_logout_uri": "https://myapp.com/frontchannel-logout",
+  "frontchannel_logout_session_required": true
+}
+```
+
+**Implementation:**
+```typescript
+// Front-channel logout endpoint (no authentication required)
+app.get('/frontchannel-logout', (req, res) => {
+  const iss = req.query.iss;  // Issuer
+  const sid = req.query.sid;  // Session ID
+
+  // Find session by sid and destroy it
+  sessionStore.destroy(sid, (err) => {
+    if (err) console.error('Logout error:', err);
+  });
+
+  // Return 200 OK (iframe expects success)
+  res.status(200).send('Logged out');
+});
+```
+
+**Limitations:**
+- Requires third-party cookies (blocked in Safari by default)
+- Slower (synchronous iframe loading)
+- User must be online
+- Not suitable for mobile apps
+
+## Back-Channel Logout
+
+**What is Back-Channel Logout?**
+The IdP sends a **server-to-server** notification when a user logs out, bypassing browser limitations.
+
+**Discovery Field:**
+```json
+{
+  "backchannel_logout_supported": true,
+  "backchannel_logout_session_supported": true
+}
+```
+
+**How It Works:**
+
+**Step 1: User Logs Out at IdP**
+
+**Step 2: IdP POSTs Logout Token to RPs**
+```http
+POST /backchannel-logout HTTP/1.1
+Host: myapp.example.com
+Content-Type: application/x-www-form-urlencoded
+
+logout_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+**Step 3: RP Validates Logout Token**
+The logout_token is a JWT containing:
+```json
+{
+  "iss": "https://idp.example.com",
+  "aud": "my-client-id",
+  "iat": 1708560000,
+  "jti": "unique-token-id",
+  "events": {
+    "http://schemas.openid.net/event/backchannel-logout": {}
+  },
+  "sub": "user123",    // User being logged out
+  "sid": "session456"  // Session ID
+}
+```
+
+**Step 4: RP Destroys Session**
+
+**Implementation:**
+```typescript
+import jwt from 'jsonwebtoken';
+
+app.post('/backchannel-logout', async (req, res) => {
+  const logoutToken = req.body.logout_token;
+
+  try {
+    // Validate JWT signature (same as ID Token validation)
+    const decoded = jwt.verify(logoutToken, getPublicKey, {
+      issuer: 'https://idp.example.com',
+      audience: 'my-client-id'
+    });
+
+    // Verify it's a logout event
+    if (!decoded.events?.['http://schemas.openid.net/event/backchannel-logout']) {
+      return res.status(400).send('Invalid logout token');
+    }
+
+    // Destroy session by sub or sid
+    if (decoded.sid) {
+      await sessionStore.destroy(decoded.sid);
+    } else if (decoded.sub) {
+      await destroyAllSessionsForUser(decoded.sub);
+    }
+
+    res.status(200).send('Logged out');
+  } catch (error) {
+    console.error('Logout token validation failed:', error);
+    res.status(400).send('Invalid token');
+  }
+});
+```
+
+**Advantages over Front-Channel:**
+✅ Works without third-party cookies
+✅ Faster (no iframe loading)
+✅ Works when user is offline
+✅ Suitable for mobile apps and SPAs
+
+**Client Registration:**
+```json
+{
+  "backchannel_logout_uri": "https://myapp.com/backchannel-logout",
+  "backchannel_logout_session_required": true
+}
+```
+
+## Session Management Best Practices
+
+**1. Store ID Token for Logout**
+Save the ID Token in your session to use as id_token_hint during logout:
+```typescript
+req.session.idToken = tokenSet.id_token;
+req.session.userId = claims.sub;
+```
+
+**2. Implement Both Logout Types**
+- **Local Logout**: Clear app session only (user still logged in at IdP)
+- **Global Logout**: RP-Initiated Logout (logs out of IdP and all apps)
+
+Offer both options:
+```html
+<button onclick="logoutLocal()">Logout (this app only)</button>
+<button onclick="logoutGlobal()">Logout everywhere</button>
+```
+
+**3. Handle Session Expiration**
+When access token expires:
+- Try refreshing with refresh token
+- If refresh fails, redirect to login (IdP session expired)
+- Don't silently fail (causes confusion)
+
+**4. Use Refresh Tokens Wisely**
+- Store refresh tokens securely (encrypted, server-side only)
+- Set reasonable lifetimes (days to weeks, not years)
+- Revoke refresh tokens on logout
+
+**5. Implement Backchannel Logout**
+If your IdP supports it, use backchannel logout:
+- More reliable than front-channel
+- Works in browsers with strict cookie policies
+- Better UX (faster logout)
+
+**6. Monitor Session State (Advanced)**
+Use OIDC Session Management spec with check_session_iframe:
+- Polls IdP to check if session is still active
+- Detects when user logs out elsewhere
+- Automatically logs user out of your app
+
+**7. Secure Logout Endpoints**
+- Validate id_token_hint and state parameters
+- Use HTTPS (always)
+- Rate limit logout endpoints (prevent DoS)
+- Whitelist post_logout_redirect_uri values
+
+**8. Communicate Logout Status**
+Show clear messages:
+- "Logged out of [App Name]"
+- "You are still logged in to [IdP Name]"
+- "Click here to log out of [IdP Name] as well"
+
+## Key Takeaways
+
+- Users have sessions in both the app and the identity provider
+- RP-Initiated Logout triggers logout at the IdP via end_session_endpoint
+- Front-Channel Logout uses iframes (requires third-party cookies)
+- Back-Channel Logout uses server-to-server JWT notifications (more reliable)
+- Always provide id_token_hint when calling end_session_endpoint
+- Offer both local logout and global logout options to users

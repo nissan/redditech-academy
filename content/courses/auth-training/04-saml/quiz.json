@@ -1,0 +1,129 @@
+{
+  "id": "04-saml-quiz",
+  "moduleId": "04-saml",
+  "title": "SAML 2.0 Mastery Quiz",
+  "description": "Test your comprehensive understanding of SAML 2.0, assertions, bindings, security, and protocol comparisons",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "saml-q1",
+      "question": "What does SAML stand for?",
+      "options": [
+        "Secure Access Markup Language",
+        "Security Assertion Markup Language",
+        "Simple Authentication Markup Language",
+        "Structured Authentication Message Language"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SAML stands for Security Assertion Markup Language, an XML-based standard for exchanging authentication and authorization data between Identity Providers and Service Providers."
+    },
+    {
+      "id": "saml-q2",
+      "question": "Which component authenticates users in SAML?",
+      "options": [
+        "Service Provider (SP)",
+        "Identity Provider (IdP)",
+        "Relying Party (RP)",
+        "Authorization Server (AS)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Identity Provider (IdP) is responsible for authenticating users and issuing SAML assertions. The Service Provider trusts these assertions to grant access."
+    },
+    {
+      "id": "saml-q3",
+      "question": "What validates the integrity of a SAML assertion?",
+      "options": [
+        "The AudienceRestriction element",
+        "The digital signature using IdP's private key",
+        "The SessionIndex value",
+        "The NotOnOrAfter timestamp"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The digital signature, created with the IdP's private key and validated with the IdP's public certificate, ensures the assertion hasn't been tampered with and proves authenticity."
+    },
+    {
+      "id": "saml-q4",
+      "question": "What is the purpose of the AudienceRestriction condition?",
+      "options": [
+        "To limit which users can authenticate",
+        "To prevent assertion replay attacks by specifying the intended recipient",
+        "To set the maximum number of users",
+        "To define the authentication method"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AudienceRestriction specifies which Service Provider the assertion is intended for, preventing an attacker from replaying the assertion to a different SP (recipient attack)."
+    },
+    {
+      "id": "saml-q5",
+      "question": "Which binding is most commonly used for SAML AuthnRequests?",
+      "options": [
+        "HTTP-POST",
+        "HTTP-Redirect",
+        "HTTP-Artifact",
+        "SOAP"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HTTP-Redirect is most common for AuthnRequests because they are small and can be compressed and sent via URL parameters efficiently without hitting URL length limits."
+    },
+    {
+      "id": "saml-q6",
+      "question": "Why is HTTP-POST preferred over HTTP-Redirect for SAML Responses?",
+      "options": [
+        "It's faster",
+        "It requires less CPU",
+        "It can handle larger assertions without URL length limits",
+        "It's more secure against all attacks"
+      ],
+      "correctAnswer": 2,
+      "explanation": "HTTP-POST can handle large SAML assertions with many attributes because the data is in the POST body, not limited by URL length restrictions (~2048 characters)."
+    },
+    {
+      "id": "saml-q7",
+      "question": "What is the most critical SAML vulnerability?",
+      "options": [
+        "Weak passwords",
+        "XML Signature Wrapping (XSW)",
+        "Slow performance",
+        "Large XML size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "XML Signature Wrapping (XSW) is the most critical SAML vulnerability, allowing attackers to inject malicious content while maintaining a valid signature if the SP doesn't properly validate signature references."
+    },
+    {
+      "id": "saml-q8",
+      "question": "How do you prevent SAML assertion replay attacks?",
+      "options": [
+        "Use longer passwords",
+        "Store processed assertion IDs and reject duplicates",
+        "Encrypt the assertion",
+        "Use HTTP instead of HTTPS"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Storing processed assertion IDs (with TTL based on NotOnOrAfter) and rejecting duplicates prevents replay attacks where an attacker reuses a captured assertion."
+    },
+    {
+      "id": "saml-q9",
+      "question": "What is the main disadvantage of SAML for mobile applications?",
+      "options": [
+        "SAML is too secure for mobile apps",
+        "SAML relies on browser-based flows not suited for native apps",
+        "SAML tokens are too large",
+        "SAML requires passwords"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SAML was designed for browser-based flows using HTTP-POST/Redirect and HTML forms, which don't work well in native mobile applications. OAuth/OIDC with native app support (PKCE, custom URI schemes) are better suited."
+    },
+    {
+      "id": "saml-q10",
+      "question": "Which protocol is specifically designed for user authentication (not authorization)?",
+      "options": [
+        "OAuth 2.0 only",
+        "SAML 2.0 only",
+        "OpenID Connect only",
+        "Both SAML and OpenID Connect"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Both SAML 2.0 and OpenID Connect are designed for authentication (proving who you are). OAuth 2.0 is designed for delegated authorization (granting access), though it's often misused for authentication."
+    }
+  ]
+}

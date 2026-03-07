@@ -1,0 +1,117 @@
+{
+  "id": "05-fido2-quiz",
+  "moduleId": "05-fido2",
+  "title": "FIDO2 & WebAuthn Mastery Quiz",
+  "description": "Test your comprehensive understanding of FIDO2, WebAuthn API, passkeys, and passwordless authentication",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "fido2-q1",
+      "question": "What does FIDO stand for?",
+      "options": [
+        "Fast Identity Digital Online",
+        "Fast Identity Online",
+        "Federated Identity Digital Online",
+        "Fingerprint Identity Digital Online"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FIDO stands for Fast Identity Online. It's an open standard for passwordless authentication developed by the FIDO Alliance."
+    },
+    {
+      "id": "fido2-q2",
+      "question": "Which component of FIDO2 is the browser API for credential management?",
+      "options": [
+        "CTAP (Client to Authenticator Protocol)",
+        "WebAuthn (Web Authentication API)",
+        "U2F (Universal 2nd Factor)",
+        "UAF (Universal Authentication Framework)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WebAuthn is the W3C browser API that websites use to create and use public key credentials for passwordless authentication."
+    },
+    {
+      "id": "fido2-q3",
+      "question": "Why is FIDO2 resistant to phishing attacks?",
+      "options": [
+        "It uses very strong passwords",
+        "It sends OTP codes via SMS",
+        "Credentials are origin-bound and only work on the legitimate domain",
+        "It encrypts all communications"
+      ],
+      "correctAnswer": 2,
+      "explanation": "FIDO2 credentials are bound to the origin (domain). The browser verifies the origin matches before allowing the authenticator to sign, preventing use on phishing sites."
+    },
+    {
+      "id": "webauthn-q1",
+      "question": "What is the purpose of the 'challenge' in WebAuthn?",
+      "options": [
+        "To encrypt the user's password",
+        "To prevent replay attacks by ensuring freshness",
+        "To store the user's biometric data",
+        "To identify the authenticator type"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The challenge is a cryptographically random value that prevents replay attacks. Each authentication/registration attempt must use a fresh challenge that's verified by the server."
+    },
+    {
+      "id": "webauthn-q2",
+      "question": "What does 'residentKey: required' enable?",
+      "options": [
+        "Stronger encryption",
+        "Faster authentication",
+        "Username-less authentication (discoverable credentials/passkeys)",
+        "Multi-device sync"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Resident keys (discoverable credentials) allow username-less authentication. The credential is stored on the authenticator along with user information, enabling true passwordless login without entering a username."
+    },
+    {
+      "id": "webauthn-q3",
+      "question": "What is checked during signature verification on the server?",
+      "options": [
+        "Only the signature matches",
+        "Signature, challenge, origin, and signature counter",
+        "Only the origin matches",
+        "Password hash matches"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Server verification includes: signature validity (using stored public key), challenge match, origin match (prevents phishing), type verification, and signature counter increment (prevents cloning)."
+    },
+    {
+      "id": "passkeys-q1",
+      "question": "What is the key difference between traditional FIDO2 credentials and passkeys?",
+      "options": [
+        "Passkeys are more secure",
+        "Passkeys sync across user's devices via encrypted cloud",
+        "Passkeys don't require biometrics",
+        "Passkeys work without internet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Passkeys are FIDO2 credentials that sync across a user's devices via encrypted cloud storage (iCloud Keychain, Google Password Manager), while traditional FIDO2 credentials are bound to a single device."
+    },
+    {
+      "id": "passkeys-q2",
+      "question": "What WebAuthn option enables passkey creation?",
+      "options": [
+        "authenticatorAttachment: 'platform'",
+        "residentKey: 'required'",
+        "userVerification: 'required'",
+        "attestation: 'direct'"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Setting residentKey: 'required' creates a discoverable credential (passkey) that can sync across devices and enable username-less authentication."
+    },
+    {
+      "id": "passkeys-q3",
+      "question": "What is conditional mediation in WebAuthn?",
+      "options": [
+        "Requiring user to enter password",
+        "Passkey autofill in username field",
+        "Optional biometric verification",
+        "Backup authentication method"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Conditional mediation (mediation: 'conditional') enables passkey autofill, allowing users to select their passkey directly from the username field's autofill dropdown for seamless authentication."
+    }
+  ]
+}

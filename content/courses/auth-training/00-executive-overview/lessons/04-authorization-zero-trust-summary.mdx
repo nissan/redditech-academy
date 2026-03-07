@@ -1,0 +1,598 @@
+---
+title: "Authorization & Zero Trust: Executive Summary"
+description: "High-level overview of Modules 6-7: Fine-grained authorization and emerging security trends"
+slug: "authorization-zero-trust-summary"
+duration: 25
+order: 4
+keyTakeaways:
+  - "Authorization evolved from ACLs to RBAC to ReBAC - Google Zanzibar handles 10M+ requests/sec"
+  - "Zero Trust means 'never trust, always verify' - Google reduced breach impact by 70%"
+  - "Continuous Access Evaluation enables `<5` minute revocation vs 8-hour session windows"
+  - "Self-Sovereign Identity gives users control over their data - EU mandating by 2026"
+  - "75% of enterprises expected to be passwordless by 2027"
+prerequisites: []
+---
+
+## Module 6: Fine-Grained Authorization - Beyond Roles
+
+### What Problem Does This Solve?
+
+**In plain English:** How do you handle complex permission scenarios like "Alice can edit documents she created or that were shared with her, but only if they're not marked confidential"?
+
+### The Authorization Evolution
+
+#### Level 1: Access Control Lists (ACLs) - 1970s
+**Simple:** User X can access File Y
+```
+alice → can read → document.pdf
+bob → can write → document.pdf
+```
+
+**Problem:** Doesn't scale. What about 1 million files and 10,000 users?
+
+#### Level 2: Role-Based Access Control (RBAC) - 1990s
+**Better:** Users have roles, roles have permissions
+```
+alice → has role "Editor"
+"Editor" → can create, read, update documents
+```
+
+**Problem:** Role explosion. "Editor who can delete on Mondays in the Chicago office" = too many roles.
+
+#### Level 3: Attribute-Based Access Control (ABAC) - 2000s
+**More flexible:** Policies based on attributes
+```
+ALLOW if:
+  user.department == resource.department
+  AND resource.classification != "top-secret"
+```
+
+**Problem:** Hard to reason about. "Who has access to this file?" = complex query.
+
+#### Level 4: Relationship-Based Access Control (ReBAC) - 2010s+
+**Modern:** Authorization based on relationships in a graph
+```
+alice → owner → folder1
+folder1 → parent → document.pdf
+∴ alice can access document.pdf (via ownership chain)
+```
+
+**Example:** Google Drive (if you can access folder, you can access files inside)
+
+### Google Zanzibar - The Game Changer
+
+#### What Is It?
+
+**The real-world authorizer behind:**
+- Google Drive (billions of sharing decisions)
+- Google Calendar
+- YouTube (channel permissions)
+- Google Cloud (IAM)
+- Google Photos
+
+**Scale:** Handles 10+ million requests per second with 95th percentile latency `<10`ms
+
+#### The Core Idea
+
+**Everything is a relationship:**
+```
+user:alice → owner → doc:1
+user:bob → editor → doc:1
+user:charlie → viewer → folder:2
+doc:1 → parent → folder:2
+
+Question: "Can charlie view doc:1?"
+Answer: Yes (charlie → viewer → folder:2, and doc:1 is in folder:2)
+```
+
+**Why it's powerful:** Handles nested permissions, inheritance, and complex sharing naturally.
+
+### Modern Authorization Systems
+
+#### Amazon Cedar
+**What:** Policy-as-code authorization language (like writing firewall rules)
+
+**Who uses it:** AWS Verified Permissions, AWS AVP
+
+**Best for:** Cloud-native apps, attribute-heavy scenarios, AWS ecosystem
+
+**Example policy:**
+```cedar
+permit (
+  principal,
+  action == Action::"viewDocument",
+  resource
+) when {
+  principal.department == resource.department
+  && resource.classification != "top-secret"
+};
+```
+
+**Pros:**
+- ✅ Very expressive (complex conditions)
+- ✅ Static analysis (find policy conflicts before deployment)
+- ✅ AWS integration
+
+**Cons:**
+- ⚠️ Steep learning curve
+- ⚠️ Policy debugging can be hard
+
+#### OpenFGA (Open-source Zanzibar)
+**What:** Auth0's open-source implementation of Zanzibar
+
+**Who uses it:** Okta (Auth0's parent), thousands of startups
+
+**Best for:** Google Drive-style sharing, relationship-heavy authorization
+
+**Example:**
+```
+user:alice has owner relationship with doc:1
+user:bob has editor relationship with doc:1
+
+Check: Can bob edit doc:1? → Yes
+Check: Can bob delete doc:1? → No (only owners can delete)
+```
+
+**Pros:**
+- ✅ Proven model (Google's architecture)
+- ✅ Great for multi-tenancy
+- ✅ Intuitive for engineers
+
+**Cons:**
+- ⚠️ Need to model relationships carefully
+- ⚠️ Learning curve for graph thinking
+
+#### SpiceDB
+**What:** Most mature open-source Zanzibar implementation
+
+**Who uses it:** Red Hat, Carta, Segment, hundreds of enterprises
+
+**Best for:** Production-grade ReBAC with enterprise support
+
+**Pros:**
+- ✅ Battle-tested (AuthZed's managed offering)
+- ✅ Excellent documentation
+- ✅ Built-in consistency guarantees
+
+**Cons:**
+- ⚠️ More complex to self-host
+- ⚠️ Managed service has costs
+
+### When Do You Need This?
+
+#### ✅ You NEED Fine-Grained Authorization If:
+
+1. **Multi-Tenancy SaaS**
+   - Example: Notion, Slack, GitHub
+   - Users create workspaces, invite members, share resources
+   - Complex: "Can alice edit doc in workspace she was invited to as editor?"
+
+2. **Document Management / Collaboration**
+   - Example: Google Drive, Dropbox, Box
+   - Nested folders with inherited permissions
+   - Sharing at multiple levels
+
+3. **Cloud Infrastructure**
+   - Example: AWS, GCP, Azure
+   - Complex IAM policies across projects/accounts
+   - "Who has access to this S3 bucket?"
+
+4. **Healthcare / Financial Services**
+   - Example: Patient records, financial accounts
+   - Regulatory requirements (HIPAA minimum necessary access)
+   - Fine-grained audit trails
+
+#### ❌ You DON'T Need This If:
+
+1. **Simple B2C app** with basic roles (Admin, User)
+2. **Internal tool** with 20 users
+3. **Read-only public content** (blogs, documentation)
+4. **Single-tenant** with no sharing
+
+**Reality Check:** 90% of apps can use simple RBAC. Only implement fine-grained authz when you actually need it.
+
+### Decision Framework: Which System?
+
+| Scenario | Recommended System | Why |
+|----------|-------------------|-----|
+| **Google Drive clone** | OpenFGA or SpiceDB | Relationship-heavy, proven model |
+| **AWS-native app** | Amazon Cedar | Native AWS integration, policy-based |
+| **Multi-tenant B2B SaaS** | OpenFGA or SpiceDB | Workspace/org hierarchies |
+| **Healthcare platform** | Cedar or Oso | Policy-based, audit requirements |
+| **Simple RBAC** | Casbin or Auth0 RBAC | Don't overcomplicate |
+
+### Business Impact
+
+#### Security Improvements
+- **Least privilege:** Grant minimum necessary access (HIPAA, PCI-DSS requirement)
+- **Audit compliance:** Answer "Who has access?" in real-time
+- **Reduce breaches:** 34% of breaches involve over-privileged accounts
+
+#### Developer Productivity
+- **Centralized logic:** Authorization in one place, not scattered
+- **Faster features:** "Add sharing" becomes configuration, not code
+- **Easier audits:** Compliance teams can review policies
+
+#### Scalability
+- **Support growth:** Handle billions of permission checks (Zanzibar proven)
+- **Multi-tenancy:** Add customers without performance degradation
+- **Global distribution:** Low-latency checks worldwide
+
+### Real-World Examples
+
+#### Example 1: Notion's Authorization
+**Challenge:** Users create pages, databases, share with teams, nested hierarchies
+
+**Solution:** Zanzibar-inspired model
+```
+user:alice → member → team:engineering
+team:engineering → can_edit → workspace:acme
+workspace:acme → contains → page:roadmap
+∴ alice can edit page:roadmap
+```
+
+#### Example 2: GitHub's Authorization
+**Challenge:** Repos, orgs, teams, fine-grained permissions
+
+**Model:**
+```
+user:alice → member → team:backend
+team:backend → write → repo:api
+org:acme → owns → repo:api
+∴ alice can push to repo:api (via team membership)
+```
+
+#### Example 3: Healthcare Patient Records
+**Challenge:** HIPAA minimum necessary access
+
+**Cedar policy:**
+```cedar
+permit (
+  principal,
+  action == Action::"viewRecord",
+  resource
+) when {
+  principal.role == "doctor"
+  && principal.department == resource.patient.assignedDepartment
+  && context.purposeOfUse == "treatment"
+};
+```
+
+### Key Takeaway
+
+**Fine-Grained Authorization = The Last Mile of Security**
+
+You can have perfect authentication (FIDO2, MFA), but if authorization is wrong, anyone can access anything.
+
+**The hierarchy:**
+1. **Authentication:** Prove who you are (FIDO2, OAuth, OIDC)
+2. **Coarse authorization:** Basic roles (admin, user)
+3. **Fine-grained authorization:** Detailed permissions (Zanzibar, Cedar)
+
+**Most important decision:**
+- Start simple (RBAC)
+- Upgrade to fine-grained when you need Google Drive-like sharing or multi-tenancy
+- Choose based on your primary use case (relationships → Zanzibar, policies → Cedar)
+
+## Module 7: Emerging Trends - The Future of Identity
+
+### What Problem Does This Solve?
+
+**In plain English:** What's coming next in identity and security that executives need to understand NOW to stay ahead?
+
+### Trend 1: Zero Trust Architecture (ZTA)
+
+#### The Old Model (Perimeter Security)
+**Concept:** Hard shell, soft center
+```
+      🔒 Corporate Firewall 🔒
+            (The Moat)
+                ↓
+        Inside = Trusted
+        Outside = Untrusted
+```
+
+**Problem:** What if attacker gets inside (phishing, insider threat)?
+- Once inside, they can access everything
+- 277 days average to detect breach
+- VPN = keys to the kingdom
+
+#### The Zero Trust Model
+**Concept:** "Never trust, always verify"
+```
+Every request is authenticated and authorized
+              ↓
+        No implicit trust
+              ↓
+   Continuous verification
+              ↓
+        Least privilege access
+```
+
+**Example:** Google BeyondCorp
+- Employees access apps from anywhere (coffee shop, home, office)
+- Every request verified: Device health + User identity + Context
+- No VPN needed
+- Breached laptop? Limited damage (per-request verification)
+
+#### Key Principles
+
+1. **Verify explicitly**
+   - Check: User identity + Device posture + Location + Time
+   - Don't assume: "Inside network = trusted"
+
+2. **Least privilege access**
+   - Grant: Minimum necessary permissions
+   - Limit: Blast radius of compromised credentials
+
+3. **Assume breach**
+   - Monitor: All activity (users, devices, services)
+   - Segment: Network (lateral movement prevention)
+   - Encrypt: Everything (data at rest, in transit)
+
+#### Business Impact
+
+**Security:**
+- 70% reduction in breach impact (Google case study)
+- Faster incident response (continuous monitoring)
+- Better insider threat detection
+
+**Productivity:**
+- Work from anywhere (no VPN bottleneck)
+- Faster app access (no network routing)
+- Better user experience
+
+**Cost:**
+- Reduce VPN infrastructure costs
+- Lower breach remediation costs ($4.45M → $1.5M average)
+- Enable cloud migration
+
+#### Implementation Phases
+
+**Phase 1: Identity (0-6 months)**
+- Strong authentication (MFA, FIDO2)
+- Single Sign-On across apps
+- Conditional access policies
+
+**Phase 2: Devices (6-12 months)**
+- Device inventory and health checks
+- Endpoint detection and response (EDR)
+- Mobile device management (MDM)
+
+**Phase 3: Networks (12-18 months)**
+- Micro-segmentation
+- Software-defined perimeter (SDP)
+- Zero Trust Network Access (ZTNA)
+
+**Phase 4: Data (18-24 months)**
+- Data classification
+- Encryption everywhere
+- Data loss prevention (DLP)
+
+### Trend 2: Continuous Access Evaluation (CAE)
+
+#### The Old Model (Session-Based)
+```
+User logs in → Gets 8-hour session → Trusted for 8 hours
+```
+
+**Problem:** What if:
+- User is fired at 10am, session valid until 6pm?
+- User's laptop stolen at 2pm?
+- Attacker hijacks session token?
+
+#### The New Model (Continuous Verification)
+```
+User logs in → Every request is re-evaluated → Instant revocation
+```
+
+**Checks on every request:**
+- Is session still valid?
+- Has user's risk score changed?
+- Is device still compliant?
+- Has IP address changed suspiciously?
+- Has password been compromised (in breach database)?
+
+#### Real-World Example: Microsoft CAE
+
+**Scenario:** Employee fired at 10:00am
+- **Old way:** Access revoked, but existing sessions valid for hours
+- **CAE way:** Access revoked globally in `<5` minutes, all sessions terminated
+
+**Scenario:** User's password appears in breach
+- **Old way:** Hope they change it before attacker uses it
+- **CAE way:** Immediate session termination, force re-authentication
+
+#### Business Impact
+
+**Security:**
+- `<5` min revocation time (vs. 8 hours)
+- Real-time risk response
+- Prevent session hijacking
+
+**Compliance:**
+- Meet instant deprovisioning requirements
+- Real-time audit logs
+- Demonstrate continuous control
+
+**User Experience:**
+- Mostly invisible (when things are normal)
+- Only re-auth when risk detected
+- Better than periodic forced logouts
+
+### Trend 3: Decentralized Identity / Self-Sovereign Identity (SSI)
+
+#### The Problem with Current Identity
+
+**Current model:**
+```
+Google knows your email and browsing
+Facebook knows your social connections
+Your bank knows your financial history
+Your employer knows your work history
+
+You = fragmented across 100s of silos
+You = don't control your own data
+```
+
+#### The Self-Sovereign Identity Vision
+
+**New model:**
+```
+You own your identity (in your digital wallet)
+You control what you share (selective disclosure)
+You prove claims without exposing data (zero-knowledge proofs)
+```
+
+**Example Scenario:**
+- Bar: "Prove you're over 21"
+- **Old way:** Show driver's license (exposes name, address, birthday)
+- **SSI way:** Digital credential proves "age > 21" without revealing birthday
+
+#### Key Technologies
+
+**Decentralized Identifiers (DIDs):**
+```
+did:example:123456789abcdefghi
+```
+- You control it (not Google, not Facebook)
+- Cryptographically verifiable
+- Works across systems
+
+**Verifiable Credentials (VCs):**
+- Digital diplomas, licenses, certifications
+- Cryptographically signed by issuer
+- You hold them, share when needed
+
+**Digital Wallets:**
+- Store your DIDs and credentials
+- Like Apple Wallet but for identity
+- You control what's shared
+
+#### Real-World Adoption
+
+**European Union (eIDAS 2.0):**
+- Mandating digital identity wallets by 2026
+- 80% of citizens to have access
+- Use for: Government services, banking, healthcare
+
+**U.S. State Governments:**
+- Mobile driver's licenses (mDL)
+- Apple Wallet, Google Wallet support
+- TSA accepting at airports
+
+**Enterprise:**
+- Verifiable employment credentials
+- Professional certifications
+- Educational transcripts
+
+#### Business Impact (Next 3-5 Years)
+
+**For Consumers:**
+- Own your data (GDPR "data portability" on steroids)
+- Selective disclosure (privacy by design)
+- Reduce identity theft (credentials can't be stolen from centralized DB)
+
+**For Enterprises:**
+- Verify credentials instantly (diplomas, certifications)
+- Reduce identity verification costs (trust cryptographic proof)
+- New business models (verified identity marketplaces)
+
+**For Governments:**
+- Digital-native identity (born in 2025 = digital from day 1)
+- Cross-border recognition (EU wallet works in US)
+- Fraud reduction (cryptographic proof vs. fake documents)
+
+### Trend 4: Passwordless + Passkeys (Mainstream Adoption)
+
+#### Current State (2025)
+
+**Adoption rates:**
+- Google: 50% of users now using passkeys
+- Apple: 20% adoption since iOS 16 (2022)
+- Microsoft: Zero compromised accounts with FIDO2 (2+ years)
+- GitHub: Passkeys supported, mandatory for high-risk users
+
+**Industry shift:**
+- "Passwordless" was buzzword in 2020
+- Production-ready in 2022 (Apple/Google/Microsoft collaboration)
+- Mainstream by 2025
+- Expected: 75% of enterprises passwordless by 2027
+
+#### What Changed in 2022-2025
+
+**Before 2022:**
+- FIDO2 required hardware key (YubiKey, Titan)
+- Lose key = lose access
+- Not synced across devices
+
+**After 2022 (Passkeys):**
+- Synced via iCloud Keychain (Apple)
+- Synced via Google Password Manager (Android)
+- Works across all devices
+- Can't be lost (cloud backup)
+- Still unphishable
+
+#### Business Impact
+
+**For B2C:**
+- 30% higher conversion (passwordless login)
+- 90% reduction in credential support tickets
+- Better mobile UX (biometric > typing password)
+
+**For B2B:**
+- Zero phishing risk (government mandate driver)
+- Compliance advantage (exceed NIST standards)
+- Employee productivity (faster login)
+
+**For Enterprises:**
+- Immediate: Require passkeys for admins/executives
+- 12 months: Offer to all employees
+- 24 months: Phase out passwords entirely
+
+### What Executives Need to Do NOW
+
+#### 1. Start Zero Trust Journey
+**Action items:**
+- Audit: What's your current trust model?
+- Implement: MFA for all users (if not done)
+- Plan: 18-24 month Zero Trust roadmap
+- Vendor: Evaluate ZTNA solutions (Zscaler, Cloudflare, Palo Alto)
+
+#### 2. Enable Passkeys/Passwordless
+**Action items:**
+- Immediate: Offer passkeys as optional login method
+- Q2 2025: Mandate for executives and IT admins
+- Q4 2025: Default for all new accounts
+- 2026: Phase out passwords
+
+#### 3. Implement CAE
+**Action items:**
+- If using Okta/Azure AD: Enable CAE features
+- Set policies: IP change, device compliance, risk score
+- Test: Revocation time (should be `<5` min)
+- Monitor: False positive rate
+
+#### 4. Watch Decentralized Identity
+**Action items:**
+- Monitor: EU digital wallet rollout (2026)
+- Pilot: Verifiable credential use case (diplomas, certifications)
+- Partner: With wallet providers (Apple, Google, govt initiatives)
+- Plan: 3-5 year timeline for SSI impact
+
+### Key Takeaway
+
+**The Future is Already Here, Unevenly Distributed**
+
+- **Zero Trust:** Google doing it for 10 years, now mainstream
+- **Passkeys:** Apple/Google/Microsoft shipped it, now it's adoption phase
+- **CAE:** Microsoft/Okta have it, others catching up
+- **SSI:** EU mandating it, early adoption phase
+
+**Executive action:** Don't wait for "perfect" solutions. Start experimenting NOW with these technologies or risk falling behind competitors.
+
+**Timeline:**
+- **2025:** Passkeys mainstream, Zero Trust expected
+- **2026:** EU digital wallets, CAE standard
+- **2027:** 75% enterprises passwordless
+- **2028-2030:** Decentralized identity goes mainstream

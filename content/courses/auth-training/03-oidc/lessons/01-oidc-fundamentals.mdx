@@ -1,0 +1,113 @@
+---
+title: "OIDC Fundamentals: OAuth 2.0 vs OpenID Connect"
+slug: "01-oidc-fundamentals"
+duration: 25
+keyTakeaways:
+  - "OAuth 2.0 is for authorization (access delegation), OIDC adds authentication (identity verification)"
+  - "OIDC introduces the 'openid' scope and ID Token (JWT) for standardized authentication"
+  - "ID Tokens contain identity claims (sub, name, email) signed by the Identity Provider"
+  - "Access Tokens grant API access, ID Tokens prove user identity - never mix them"
+  - "OIDC enables Single Sign-On (SSO) and federated identity across applications"
+---
+
+## The Authentication Gap in OAuth 2.0
+
+**OAuth 2.0 is an authorization framework**, designed to grant access to resources. It excels at delegating permissions but **does not standardize authentication** (proving who the user is).
+
+**The Problem:**
+Before OpenID Connect, developers had to build custom authentication on top of OAuth 2.0, leading to:
+- Non-standard implementations
+- Security vulnerabilities (token confusion, misuse of access tokens as identity proof)
+- No interoperability between identity providers
+
+**Real-World Example:**
+Imagine using "Sign in with Google" on a website. You want:
+1. **Authentication**: Prove you're john@gmail.com
+2. **Authorization**: Grant the website access to your Google Calendar (optional)
+
+OAuth 2.0 only standardizes #2. OpenID Connect (OIDC) adds #1 as a first-class feature.
+
+## What is OpenID Connect?
+
+**OpenID Connect (OIDC)** is a simple identity layer on top of the OAuth 2.0 protocol. It was finalized in 2014 by the OpenID Foundation.
+
+**Key Characteristics:**
+- **RESTful** (uses JSON over HTTP, unlike SAML's XML)
+- **Built on OAuth 2.0** (reuses flows, endpoints, and terminology)
+- **Standardized authentication** (consistent across all identity providers)
+- **JWT-based** (ID Tokens are JSON Web Tokens)
+
+**Official Specification:**
+OpenID Connect Core 1.0 (https://openid.net/specs/openid-connect-core-1_0.html)
+
+**OIDC = OAuth 2.0 + Authentication + ID Token**
+
+## How OIDC Extends OAuth 2.0
+
+**The 'openid' Scope:**
+To trigger OIDC authentication, clients include **openid** in the authorization request scope:
+
+```
+GET /authorize?
+  response_type=code&
+  client_id=my-app&
+  redirect_uri=https://myapp.com/callback&
+  scope=openid profile email&    ← Key addition
+  state=xyz123
+```
+
+**What Changes:**
+1. **ID Token Issued**: Along with the access token, the authorization server issues an **ID Token** (a JWT containing user identity claims)
+2. **UserInfo Endpoint**: A new endpoint for retrieving additional user claims
+3. **Standard Claims**: Predefined claim names (sub, name, email, etc.)
+4. **Discovery Endpoint**: A well-known URL for dynamic configuration
+
+## OAuth 2.0 vs. OpenID Connect Comparison
+
+| Feature | OAuth 2.0 | OpenID Connect (OIDC) |
+|---------|-----------|----------------------|
+| **Purpose** | Authorization (access delegation) | Authentication (identity verification) |
+| **Primary Token** | Access Token (opaque or JWT) | ID Token (always JWT) |
+| **Scope** | Custom scopes (e.g., read:calendar) | openid + profile, email, address, phone |
+| **User Info** | No standard | UserInfo endpoint with standard claims |
+| **Use Case** | API access, resource permissions | Login, SSO, user identity |
+| **Example** | "Grant Dropbox access to my files" | "Sign in with Google" |
+
+**Key Insight:**
+OIDC **does not replace** OAuth 2.0. It's OAuth 2.0 **with authentication added**. Most OIDC flows also issue access tokens for API access.
+
+## Real-World OIDC Flow
+
+**Scenario:** User signs into a web app using "Sign in with Microsoft"
+
+**Step-by-Step:**
+1. **User Clicks "Sign in with Microsoft"**
+   - App redirects to Microsoft's authorization endpoint with scope=openid profile email
+
+2. **User Authenticates at Microsoft**
+   - Microsoft verifies credentials (password, MFA, etc.)
+
+3. **Authorization Code Issued**
+   - Microsoft redirects back to app with authorization code
+
+4. **Token Exchange**
+   - App exchanges code for tokens at token endpoint
+   - **Receives**: Access Token + **ID Token** + Refresh Token
+
+5. **ID Token Validation**
+   - App validates ID Token JWT signature
+   - Extracts claims: sub (user ID), email, name, picture
+
+6. **Session Established**
+   - App creates login session for user
+   - Optionally calls UserInfo endpoint for additional claims
+
+**The ID Token proves authentication occurred.** The app now knows who the user is.
+
+## Key Takeaways
+
+- OAuth 2.0 provides authorization; OpenID Connect adds authentication
+- The 'openid' scope triggers OIDC authentication
+- ID Tokens are JWTs containing identity claims (sub, email, name)
+- OIDC reuses OAuth 2.0 flows but adds standardized identity features
+- Use OIDC for login/SSO; use pure OAuth 2.0 for API access delegation

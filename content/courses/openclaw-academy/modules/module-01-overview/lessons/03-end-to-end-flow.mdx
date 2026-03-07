@@ -1,0 +1,22 @@
+---
+title: End-to-end message flow
+description: Lesson on End-to-end message flow
+slug: end-to-end-message-flow
+duration: 8
+order: 1
+keyTakeaways:
+- You're messaging via Telegram
+- Your agent is running on a Mac Mini
+- The LLM is Claude Sonnet 4.6 (Anthropic)
+- A weather skill is loaded that adds a `get_weather` tool
+- 'Found: loads the existing session ID'
+- 'Not found: creates a new session'
+- 'Sandboxed tools (exec): run in a restricted environment'
+- 'Skill tools: run their registered handler function'
+---
+
+Let's trace a single message — "What's the weather like in Sydney?" — from the moment you type it to the moment you get a response. Concrete examples beat abstract explanations.
+
+---
+
+## The setup

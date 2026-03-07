@@ -1,0 +1,366 @@
+---
+title: "SAML Assertions Deep Dive"
+description: "Understanding SAML assertion structure, types, attributes, and claim mapping."
+slug: "02-saml-assertions"
+duration: 35
+order: 2
+keyTakeaways:
+  - "SAML assertions contain Subject, Conditions, AuthnStatement, and AttributeStatement components"
+  - "NameID formats (email, persistent, transient) control how users are identified"
+  - "SubjectConfirmation validates assertion is bearer token and includes expiration and recipient"
+  - "AttributeStatement contains user claims for personalization and authorization"
+prerequisites: ["01-saml-fundamentals"]
+---
+
+# SAML Assertions Deep Dive
+
+## SAML Assertion Structure
+
+A **SAML Assertion** is an XML document that contains claims about an authenticated user. It's the core data structure in SAML.
+
+## Assertion Components
+
+### 1. Assertion Header
+
+```xml
+<saml:Assertion
+  xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+  ID="_abc123def456"
+  Version="2.0"
+  IssueInstant="2024-01-15T10:30:00Z">
+
+  <saml:Issuer>http://www.okta.com/exk123</saml:Issuer>
+
+  <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    {/* Digital signature for integrity */}
+  </ds:Signature>
+
+  {/* Subject, Conditions, Statements below */}
+</saml:Assertion>
+```
+
+**Key Fields:**
+- **ID**: Unique identifier for this assertion
+- **IssueInstant**: Timestamp when assertion was created
+- **Issuer**: EntityID of the IdP that issued it
+- **Signature**: Digital signature for validation
+
+### 2. Subject
+
+The **Subject** identifies who the assertion is about:
+
+```xml
+<saml:Subject>
+  <saml:NameID
+    Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+    alice@example.com
+  </saml:NameID>
+
+  <saml:SubjectConfirmation
+    Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+    <saml:SubjectConfirmationData
+      NotOnOrAfter="2024-01-15T10:35:00Z"
+      Recipient="https://salesforce.com/saml/consume"
+      InResponseTo="_request123"/>
+  </saml:SubjectConfirmation>
+</saml:Subject>
+```
+
+**NameID Formats:**
+- **emailAddress**: `alice@example.com`
+- **persistent**: `_abc123def456` (opaque, stable identifier)
+- **transient**: `_xyz789abc123` (session-specific, changes each time)
+- **unspecified**: Custom format
+
+**SubjectConfirmation:**
+- **bearer**: Assertion is valid for whoever presents it (most common)
+- **NotOnOrAfter**: Assertion expiration time
+- **Recipient**: Expected recipient (SP's ACS URL)
+- **InResponseTo**: Links to original AuthnRequest
+
+### 3. Conditions
+
+**Conditions** define when and where the assertion is valid:
+
+```xml
+<saml:Conditions
+  NotBefore="2024-01-15T10:30:00Z"
+  NotOnOrAfter="2024-01-15T10:35:00Z">
+
+  <saml:AudienceRestriction>
+    <saml:Audience>https://salesforce.com</saml:Audience>
+  </saml:AudienceRestriction>
+</saml:Conditions>
+```
+
+**Fields:**
+- **NotBefore**: Assertion not valid before this time
+- **NotOnOrAfter**: Assertion expires after this time (usually 5 minutes)
+- **AudienceRestriction**: Assertion only valid for specific SP (prevents replay attacks)
+
+> **Security Tip:** Always validate that the audience matches your SP's EntityID and the current time falls within NotBefore/NotOnOrAfter.
+
+## Authentication Statement
+
+The **AuthnStatement** describes how and when the user was authenticated:
+
+```xml
+<saml:AuthnStatement
+  AuthnInstant="2024-01-15T10:30:00Z"
+  SessionIndex="_session123">
+
+  <saml:AuthnContext>
+    <saml:AuthnContextClassRef>
+      urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+    </saml:AuthnContextClassRef>
+  </saml:AuthnContext>
+</saml:AuthnStatement>
+```
+
+### Authentication Context Classes
+
+These indicate the **strength** of authentication:
+
+| Context Class | Meaning | Example |
+|---------------|---------|---------|
+| **Password** | Basic password auth | Username + password |
+| **PasswordProtectedTransport** | Password over HTTPS | Username + password over TLS |
+| **X509** | Certificate-based auth | Client certificate |
+| **Kerberos** | Kerberos ticket | Windows Integrated Auth |
+| **MobileTwoFactorContract** | Mobile 2FA | SMS or push notification |
+| **Smartcard** | Smartcard auth | PIV card |
+| **TimeSyncToken** | Hardware token | RSA SecurID |
+
+**Use Case:**
+- SP can require minimum authentication strength
+- Example: Admin portal requires MFA, regular app accepts password
+
+### Session Management
+
+**SessionIndex** field enables Single Logout (SLO):
+
+- IdP includes unique session identifier
+- SP stores SessionIndex with user's session
+- During logout, IdP references SessionIndex to end specific session
+- Enables coordinated logout across multiple SPs
+
+## Attribute Statement
+
+The **AttributeStatement** contains user attributes (claims):
+
+```xml
+<saml:AttributeStatement>
+  <saml:Attribute Name="email">
+    <saml:AttributeValue>alice@example.com</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute Name="firstName">
+    <saml:AttributeValue>Alice</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute Name="lastName">
+    <saml:AttributeValue>Smith</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute Name="department">
+    <saml:AttributeValue>Engineering</saml:AttributeValue>
+  </saml:Attribute>
+
+  <saml:Attribute Name="role">
+    <saml:AttributeValue>Admin</saml:AttributeValue>
+    <saml:AttributeValue>Developer</saml:AttributeValue>
+  </saml:Attribute>
+</saml:AttributeStatement>
+```
+
+### Common SAML Attributes
+
+**User Identity:**
+- `email` - User's email address
+- `username` - Username or login ID
+- `employeeID` - Employee identifier
+- `userPrincipalName` - UPN (Active Directory)
+
+**Personal Information:**
+- `firstName` / `givenName`
+- `lastName` / `surname`
+- `displayName`
+- `phone` / `mobile`
+
+**Organization:**
+- `department`
+- `company`
+- `title` - Job title
+- `manager`
+- `location` / `office`
+
+**Authorization:**
+- `role` - User roles (can be multi-valued)
+- `groups` - Group memberships
+- `permissions` - Specific permissions
+
+### Attribute Mapping
+
+**IdP Side (Okta Example):**
+
+Configure which user directory fields map to SAML attributes:
+
+```
+IdP User Directory → SAML Attribute
+-----------------------------------
+user.email → email
+user.firstName → firstName
+user.lastName → lastName
+user.department → department
+appuser.role → role
+```
+
+**SP Side (Salesforce Example):**
+
+Map incoming SAML attributes to application fields:
+
+```
+SAML Attribute → Salesforce Field
+---------------------------------
+email → Email
+firstName → FirstName
+lastName → LastName
+department → Department
+role → UserRole
+```
+
+### Just-in-Time (JIT) Provisioning
+
+When user doesn't exist in SP:
+
+1. **SP receives assertion** with attributes
+2. **SP extracts attributes** from AttributeStatement
+3. **SP creates user account** automatically
+4. **SP maps attributes** to local user profile
+5. **SP grants access** immediately
+
+**Benefits:**
+- No manual user creation
+- Attributes stay synchronized
+- Reduced IT overhead
+
+**Example JIT Mapping:**
+```json
+{
+  "email": "alice@example.com",        // → Salesforce Email
+  "firstName": "Alice",                 // → FirstName
+  "lastName": "Smith",                  // → LastName
+  "department": "Engineering",          // → Department
+  "role": ["Admin", "Developer"]        // → UserRole = Admin
+}
+```
+
+## Complete SAML Assertion Example
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<saml:Assertion
+  xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+  ID="_abc123def456"
+  Version="2.0"
+  IssueInstant="2024-01-15T10:30:00Z">
+
+  {/* Issuer: Who created this assertion */}
+  <saml:Issuer>http://www.okta.com/exk123</saml:Issuer>
+
+  {/* Digital Signature (simplified) */}
+  <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <ds:SignedInfo>
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+      <ds:Reference URI="#_abc123def456">
+        <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+        <ds:DigestValue>...</ds:DigestValue>
+      </ds:Reference>
+    </ds:SignedInfo>
+    <ds:SignatureValue>...</ds:SignatureValue>
+  </ds:Signature>
+
+  {/* Subject: Who this assertion is about */}
+  <saml:Subject>
+    <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+      alice@example.com
+    </saml:NameID>
+    <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+      <saml:SubjectConfirmationData
+        NotOnOrAfter="2024-01-15T10:35:00Z"
+        Recipient="https://salesforce.com/saml/consume"
+        InResponseTo="_request123"/>
+    </saml:SubjectConfirmation>
+  </saml:Subject>
+
+  {/* Conditions: When and where assertion is valid */}
+  <saml:Conditions
+    NotBefore="2024-01-15T10:30:00Z"
+    NotOnOrAfter="2024-01-15T10:35:00Z">
+    <saml:AudienceRestriction>
+      <saml:Audience>https://salesforce.com</saml:Audience>
+    </saml:AudienceRestriction>
+  </saml:Conditions>
+
+  {/* AuthnStatement: How user was authenticated */}
+  <saml:AuthnStatement
+    AuthnInstant="2024-01-15T10:30:00Z"
+    SessionIndex="_session123">
+    <saml:AuthnContext>
+      <saml:AuthnContextClassRef>
+        urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+      </saml:AuthnContextClassRef>
+    </saml:AuthnContext>
+  </saml:AuthnStatement>
+
+  {/* AttributeStatement: User attributes (claims) */}
+  <saml:AttributeStatement>
+    <saml:Attribute Name="email">
+      <saml:AttributeValue>alice@example.com</saml:AttributeValue>
+    </saml:Attribute>
+    <saml:Attribute Name="firstName">
+      <saml:AttributeValue>Alice</saml:AttributeValue>
+    </saml:Attribute>
+    <saml:Attribute Name="lastName">
+      <saml:AttributeValue>Smith</saml:AttributeValue>
+    </saml:Attribute>
+    <saml:Attribute Name="department">
+      <saml:AttributeValue>Engineering</saml:AttributeValue>
+    </saml:Attribute>
+    <saml:Attribute Name="role">
+      <saml:AttributeValue>Admin</saml:AttributeValue>
+      <saml:AttributeValue>Developer</saml:AttributeValue>
+    </saml:Attribute>
+  </saml:AttributeStatement>
+</saml:Assertion>
+```
+
+## Hands-On: Parse a SAML Assertion
+
+**Exercise:** Given the SAML assertion above, answer these questions:
+
+1. **Who issued this assertion?**
+   - Hint: Look at `<saml:Issuer>`
+
+2. **What is the user's email address?**
+   - Hint: Check `<saml:NameID>` and attributes
+
+3. **When does this assertion expire?**
+   - Hint: Find `NotOnOrAfter` in Conditions
+
+4. **Which Service Provider is this assertion for?**
+   - Hint: Look at `<saml:Audience>`
+
+5. **What roles does the user have?**
+   - Hint: Check the `role` attribute (multi-valued)
+
+<details>
+<summary>View Answers</summary>
+
+1. **Okta** (`http://www.okta.com/exk123`)
+2. **alice@example.com** (appears in both NameID and email attribute)
+3. **2024-01-15T10:35:00Z** (5 minutes after issuance)
+4. **Salesforce** (`https://salesforce.com`)
+5. **Admin** and **Developer** (multi-valued attribute)
+</details>

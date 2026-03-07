@@ -1,0 +1,19 @@
+{
+  "id": "auth-training",
+  "slug": "auth-training",
+  "title": "Auth & Identity Mastery",
+  "description": "A complete course on OAuth 2.0, OpenID Connect, SAML, FIDO2, and modern identity architecture. From executive overview to applied case studies.",
+  "tagline": "OAuth, OIDC, SAML, FIDO2 — the complete identity stack",
+  "icon": "🔐",
+  "difficulty": "intermediate",
+  "estimatedHours": 18,
+  "tags": ["oauth", "oidc", "saml", "fido2", "identity", "security"],
+  "badge": {
+    "name": "Identity Architect",
+    "icon": "🔐",
+    "description": "Completed the full Auth & Identity Mastery course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true
+}

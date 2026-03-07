@@ -1,0 +1,16 @@
+{
+  "id": "module-05-skills",
+  "slug": "module-05-skills",
+  "order": 5,
+  "title": "Skills & Hooks",
+  "description": "The extensibility system: how skills are structured, loaded, and how the hook/cron system works.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Skills & Hooks Badge",
+    "icon": "\ud83c\udfaf",
+    "description": "Completed the Skills & Hooks module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

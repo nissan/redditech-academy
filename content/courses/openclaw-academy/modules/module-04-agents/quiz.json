@@ -1,0 +1,89 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What are the four core components that make up an OpenClaw agent?",
+      "options": [
+        "A model provider, a webhook URL, a database connection, and a Docker container",
+        "An LLM, tools, a workspace, and sessions (plus skills)",
+        "A REST API, a message queue, a session token, and a config file",
+        "A Telegram bot, a shell script, a cron job, and a log file"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An agent is the combination of: an LLM (the reasoning engine), tools (exec, read, browser, etc.), a workspace (directory with AGENTS.md, SOUL.md, etc.), and sessions (conversation transcripts). Skills add additional capabilities on top."
+    },
+    {
+      "id": "q2",
+      "question": "Which workspace file controls the agent's personality, tone, and behavioral boundaries?",
+      "options": [
+        "AGENTS.md \u2014 because it contains the agent's operating instructions",
+        "TOOLS.md \u2014 because it tells the agent which tools to use",
+        "SOUL.md \u2014 because it defines persona, voice, and what the agent won't do",
+        "IDENTITY.md \u2014 because it contains the agent's name and emoji"
+      ],
+      "correctAnswer": 2,
+      "explanation": "SOUL.md defines the agent's persona: its voice, tone, characteristic phrases, and hard limits. IDENTITY.md has the name/emoji. AGENTS.md has operating instructions and memory patterns. TOOLS.md has tool usage notes (not access control)."
+    },
+    {
+      "id": "q3",
+      "question": "What does TOOLS.md control?",
+      "options": [
+        "Which tools the agent is allowed to use (the tool allowlist)",
+        "Tool execution timeouts and sandboxing behavior",
+        "Nothing \u2014 it's guidance notes for the agent, not a policy file",
+        "The list of skills loaded at startup"
+      ],
+      "correctAnswer": 2,
+      "explanation": "TOOLS.md does NOT control tool availability \u2014 it's a human-readable notes file for the agent about local tools and conventions (e.g., which SSH hosts to use, preferred CLI flags). Tool availability is controlled by the tools.allow/deny configuration in openclaw.json."
+    },
+    {
+      "id": "q4",
+      "question": "In the agent loop, what happens when the LLM responds with 'stop_reason: tool_use'?",
+      "options": [
+        "The loop ends and the tool call is returned to the user as the final response",
+        "The requested tool is executed, the result is appended to the conversation, and another LLM call is made",
+        "The agent pauses and waits for user approval before running the tool",
+        "The Gateway raises an error because tool_use is not a valid stop reason"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When the LLM returns stop_reason:'tool_use', the agent executes the requested tool(s), appends the tool results to the conversation history, and makes another LLM call. This loop continues until the model returns stop_reason:'end_turn' with a text response."
+    },
+    {
+      "id": "q5",
+      "question": "What is the difference between session compaction and context pruning?",
+      "options": [
+        "Compaction deletes old sessions; pruning deletes old tool results",
+        "Compaction summarizes old conversation history (modifies JSONL on disk); pruning trims oversized tool results from in-memory context only (disk unchanged)",
+        "Compaction and pruning are the same thing \u2014 different names for the same process",
+        "Compaction is manual (you trigger it); pruning is automatic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Compaction is triggered when the session approaches the context window limit \u2014 it summarizes older conversation history and updates the JSONL transcript on disk. Context pruning is a lighter in-memory operation that trims oversized tool result content before each LLM call, without touching the on-disk transcript."
+    },
+    {
+      "id": "q6",
+      "question": "In a multi-agent setup with bindings, if both a peer-level binding and a channel-level binding match an incoming message, which wins?",
+      "options": [
+        "The channel-level binding wins because it's more general and covers more cases",
+        "The last binding in the list always wins regardless of specificity",
+        "The peer-level binding wins because more-specific matches always take priority",
+        "Both agents receive the message (broadcast behavior)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "OpenClaw bindings use 'most-specific wins' semantics. Peer matches (exact DM/group/channel ID) beat channel-level matches. This lets you put channel-wide rules as fallbacks and add per-peer exceptions above them."
+    },
+    {
+      "id": "q7",
+      "question": "What does the 'memory flush' feature do before session compaction?",
+      "options": [
+        "It clears the MEMORY.md file to prevent stale information from being re-injected",
+        "It runs a silent agent turn that prompts the agent to write important context to a daily memory log before history gets summarized",
+        "It uploads the session transcript to a cloud backup service",
+        "It sends the user a notification that their session is about to be compacted"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Memory flush (agents.defaults.compaction.memoryFlush) runs a silent agent turn before compaction with a prompt like 'Write lasting notes to memory/YYYY-MM-DD.md; reply NO_REPLY if nothing to store.' This gives the agent a chance to crystallize important context before older history is summarized away."
+    }
+  ]
+}

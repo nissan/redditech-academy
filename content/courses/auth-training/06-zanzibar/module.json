@@ -1,0 +1,29 @@
+{
+  "id": "06-zanzibar",
+  "slug": "06-zanzibar",
+  "order": 6,
+  "title": "Fine-Grained Authorization",
+  "description": "Master modern authorization with Google Zanzibar, Amazon Cedar, OpenFGA, and scalable permission systems for complex access control.",
+  "difficulty": "advanced",
+  "estimatedHours": 2.5,
+  "prerequisiteModules": ["05-fido2"],
+  "badge": {
+    "id": "badge-zanzibar",
+    "name": "Authorization Expert",
+    "icon": "🔐",
+    "description": "Mastered fine-grained authorization with Zanzibar and ReBAC",
+    "color": "advanced"
+  },
+  "learningObjectives": [
+    "Understand fine-grained authorization and its importance",
+    "Learn Google Zanzibar architecture and concepts",
+    "Master Relationship-based Access Control (ReBAC)",
+    "Implement authorization using Zanzibar-inspired systems (OpenFGA, SpiceDB, Ory Keto)",
+    "Compare ReBAC with RBAC, ABAC, and ACLs",
+    "Build scalable permission checks at Google scale",
+    "Master Amazon Cedar policy-driven authorization",
+    "Choose the right authorization system for your use case"
+  ],
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

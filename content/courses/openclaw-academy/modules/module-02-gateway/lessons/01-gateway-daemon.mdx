@@ -1,0 +1,40 @@
+---
+title: The Gateway daemon
+description: Lesson on The Gateway daemon
+slug: gateway-daemon
+duration: 12
+order: 1
+keyTakeaways:
+- Connections to messaging channels (Telegram, WhatsApp, Discord, etc.)
+- Conversation sessions for every user
+- The agent runtime that calls LLMs
+- Tool execution (shell commands, browser, file reads)
+- A WebSocket API for control clients (CLI, Web UI, macOS app)
+- Maintains persistent connections to each platform
+- Validates inbound senders (allowlist / pairing)
+- Normalizes messages into OpenClaw's internal `InboundMessage` format
+- Routes normalized messages to the Session Manager
+- Delivers outbound responses back to the platform
+- Custom tool wiring (browser, canvas, nodes, cron, messaging tools)
+- Workspace bootstrap injection (AGENTS.md, SOUL.md, etc.)
+- Skill loading (bundled + managed + workspace skills)
+- Auto-compaction (context window management)
+- Memory flush (pre-compaction note-writing)
+- Runs are queued per session, not parallelized. Session 1 can run while Session 2
+  queues another turn, but no two turns for the same session overlap.
+- The transcript loads into memory once per session. No per-turn database queries.
+- Channel, session, agent, and tool all run in the same Node.js process. No inter-service
+  network hops.
+- '**Crash**: automatically restarts the Gateway after a brief delay'
+- '**On restart**: channels reconnect, sessions resume from their on-disk JSONL transcripts'
+- "**In-progress turns**: any turn running when the Gateway crashed is lost \u2014\
+  \ the session is clean on restart, but the incomplete turn won't be replayed"
+---
+
+The Gateway isn't a script you run once. It's a long-lived process — the control plane that holds your entire AI setup together. Know what it owns and the rest of this module falls into place.
+
+---
+
+## What is the Gateway?
+
+The Gateway is a **Node.js process** that runs continuously in the background on your machine. You start it once (usually at login, via a system service) and it stays alive indefinitely:

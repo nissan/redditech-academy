@@ -1,0 +1,377 @@
+---
+title: "Discovery Documents and Dynamic Configuration"
+slug: "05-discovery-dynamic-config"
+duration: 25
+keyTakeaways:
+  - "OpenID Provider Discovery: .well-known/openid-configuration endpoint exposes metadata"
+  - "Discovery document contains: issuer, authorization_endpoint, token_endpoint, jwks_uri"
+  - "JWKS (JSON Web Key Set) endpoint provides public keys for ID Token signature verification"
+  - "Dynamic Client Registration allows programmatic client registration with IdP"
+  - "Discovery enables multi-tenant apps to work with any OIDC-compliant provider"
+---
+
+## What is OpenID Provider Discovery?
+
+**OpenID Provider Discovery** allows clients to dynamically discover an identity provider's configuration without hard-coding endpoints.
+
+**The Problem:**
+Hard-coding endpoints is fragile:
+```typescript
+const authUrl = 'https://accounts.google.com/o/oauth2/v2/auth'; // What if this changes?
+const tokenUrl = 'https://oauth2.googleapis.com/token';
+```
+
+**The Solution:**
+Fetch configuration from a **well-known endpoint**:
+```
+https://{issuer}/.well-known/openid-configuration
+```
+
+**Example for Google:**
+```
+https://accounts.google.com/.well-known/openid-configuration
+```
+
+**Benefits:**
+✅ No hard-coded endpoints (future-proof)
+✅ Learn provider capabilities (supported flows, algorithms, scopes)
+✅ Automatic JWKS endpoint discovery
+✅ Standard across all OIDC providers
+
+## Discovery Document Example (Google)
+
+```json
+// GET https://accounts.google.com/.well-known/openid-configuration
+
+{
+  "issuer": "https://accounts.google.com",
+  "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
+  "token_endpoint": "https://oauth2.googleapis.com/token",
+  "userinfo_endpoint": "https://openidconnect.googleapis.com/v1/userinfo",
+  "revocation_endpoint": "https://oauth2.googleapis.com/revoke",
+  "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
+
+  "response_types_supported": [
+    "code",
+    "token",
+    "id_token",
+    "code token",
+    "code id_token",
+    "token id_token",
+    "code token id_token",
+    "none"
+  ],
+
+  "subject_types_supported": ["public"],
+
+  "id_token_signing_alg_values_supported": ["RS256"],
+
+  "scopes_supported": [
+    "openid",
+    "email",
+    "profile"
+  ],
+
+  "token_endpoint_auth_methods_supported": [
+    "client_secret_post",
+    "client_secret_basic"
+  ],
+
+  "claims_supported": [
+    "aud",
+    "email",
+    "email_verified",
+    "exp",
+    "family_name",
+    "given_name",
+    "iat",
+    "iss",
+    "locale",
+    "name",
+    "picture",
+    "sub"
+  ],
+
+  "code_challenge_methods_supported": ["plain", "S256"],
+
+  "grant_types_supported": [
+    "authorization_code",
+    "refresh_token",
+    "urn:ietf:params:oauth:grant-type:device_code"
+  ]
+}
+```
+
+## Using Discovery for Dynamic Configuration
+
+```typescript
+import { Issuer, Strategy as OIDCStrategy } from 'openid-client';
+import passport from 'passport';
+
+// Fetch discovery document and configure client automatically
+async function setupOIDC(issuerUrl: string) {
+  // Discover provider configuration
+  const issuer = await Issuer.discover(issuerUrl);
+
+  console.log('Discovered issuer:', issuer.issuer);
+  console.log('Authorization endpoint:', issuer.metadata.authorization_endpoint);
+  console.log('Token endpoint:', issuer.metadata.token_endpoint);
+  console.log('JWKS URI:', issuer.metadata.jwks_uri);
+
+  // Create client
+  const client = new issuer.Client({
+    client_id: process.env.CLIENT_ID!,
+    client_secret: process.env.CLIENT_SECRET,
+    redirect_uris: ['https://myapp.com/callback'],
+    response_types: ['code']
+  });
+
+  // Configure Passport strategy (endpoints auto-discovered)
+  passport.use('oidc', new OIDCStrategy(
+    {
+      client,
+      params: {
+        scope: 'openid profile email'
+      }
+    },
+    (tokenSet, userinfo, done) => {
+      // tokenSet.claims() contains ID Token claims
+      // userinfo contains data from UserInfo endpoint
+
+      const user = {
+        id: userinfo.sub,
+        email: userinfo.email,
+        name: userinfo.name
+      };
+
+      done(null, user);
+    }
+  ));
+
+  return client;
+}
+
+// Usage with any OIDC provider
+await setupOIDC('https://accounts.google.com');          // Google
+await setupOIDC('https://login.microsoftonline.com/common/v2.0');  // Microsoft
+await setupOIDC('https://dev-abc123.okta.com');          // Okta
+await setupOIDC('https://your-tenant.auth0.com');        // Auth0
+
+// No hard-coded endpoints! 🎉
+```
+
+## Key Discovery Document Fields
+
+**Required Fields:**
+
+**issuer**
+- The identity provider's unique identifier
+- MUST match the iss claim in ID Tokens
+- Example: "https://accounts.google.com"
+
+**authorization_endpoint**
+- Where to redirect users for authentication
+- Example: "https://accounts.google.com/o/oauth2/v2/auth"
+
+**token_endpoint**
+- Where to exchange authorization codes for tokens
+- Example: "https://oauth2.googleapis.com/token"
+
+**jwks_uri**
+- Public keys for verifying ID Token signatures
+- Example: "https://www.googleapis.com/oauth2/v3/certs"
+
+**response_types_supported**
+- Which OAuth flows are available
+- Example: ["code", "id_token", "code id_token"]
+
+**subject_types_supported**
+- How sub claims are calculated
+- "public": Same sub for all clients (most common)
+- "pairwise": Different sub per client (privacy-focused)
+
+**id_token_signing_alg_values_supported**
+- Algorithms for signing ID Tokens
+- Common: ["RS256", "ES256"]
+
+**Optional but Common:**
+
+**userinfo_endpoint**
+- Where to fetch additional user claims
+- Example: "https://openidconnect.googleapis.com/v1/userinfo"
+
+**revocation_endpoint**
+- Where to revoke access/refresh tokens
+- Example: "https://oauth2.googleapis.com/revoke"
+
+**end_session_endpoint**
+- Where to trigger logout (RP-Initiated Logout)
+- Example: "https://login.microsoftonline.com/common/oauth2/v2.0/logout"
+
+**scopes_supported**
+- Available scopes clients can request
+- Example: ["openid", "profile", "email", "offline_access"]
+
+**claims_supported**
+- Claims available in ID Tokens and UserInfo
+- Example: ["sub", "name", "email", "picture"]
+
+**code_challenge_methods_supported**
+- PKCE methods available
+- Example: ["S256", "plain"]
+
+## Manual Discovery Document Fetch
+
+```typescript
+// Manually fetch and parse discovery document
+
+interface OIDCDiscovery {
+  issuer: string;
+  authorization_endpoint: string;
+  token_endpoint: string;
+  userinfo_endpoint?: string;
+  jwks_uri: string;
+  scopes_supported?: string[];
+  response_types_supported: string[];
+  id_token_signing_alg_values_supported: string[];
+  // ... many more optional fields
+}
+
+async function fetchDiscovery(issuer: string): Promise<OIDCDiscovery> {
+  // Construct well-known URL
+  const wellKnownUrl = new URL('/.well-known/openid-configuration', issuer);
+
+  const response = await fetch(wellKnownUrl.toString());
+
+  if (!response.ok) {
+    throw new Error(`Discovery failed: ${response.statusText}`);
+  }
+
+  const discovery: OIDCDiscovery = await response.json();
+
+  // Validate required fields
+  if (!discovery.issuer || !discovery.authorization_endpoint || !discovery.token_endpoint) {
+    throw new Error('Invalid discovery document: missing required fields');
+  }
+
+  // Verify issuer matches
+  if (discovery.issuer !== issuer) {
+    throw new Error(`Issuer mismatch: expected ${issuer}, got ${discovery.issuer}`);
+  }
+
+  return discovery;
+}
+
+// Usage
+const googleConfig = await fetchDiscovery('https://accounts.google.com');
+console.log('Auth URL:', googleConfig.authorization_endpoint);
+console.log('Supported scopes:', googleConfig.scopes_supported);
+
+// Build authorization URL dynamically
+const authUrl = new URL(googleConfig.authorization_endpoint);
+authUrl.searchParams.set('client_id', 'my-client-id');
+authUrl.searchParams.set('redirect_uri', 'https://myapp.com/callback');
+authUrl.searchParams.set('response_type', 'code');
+authUrl.searchParams.set('scope', 'openid email profile');
+// redirect user to authUrl
+```
+
+## Dynamic Client Registration (Advanced)
+
+**What is Dynamic Client Registration?**
+Instead of manually registering your application in the provider's console, you can **programmatically register** clients using the Dynamic Client Registration protocol (RFC 7591).
+
+**Discovery Field:**
+```json
+{
+  "registration_endpoint": "https://accounts.example.com/register"
+}
+```
+
+**Use Cases:**
+- Multi-tenant SaaS apps creating clients on the fly
+- Development/testing automation
+- Decentralized identity scenarios
+
+**Registration Request Example:**
+```http
+POST /register HTTP/1.1
+Host: accounts.example.com
+Content-Type: application/json
+
+{
+  "redirect_uris": ["https://client.example.com/callback"],
+  "token_endpoint_auth_method": "client_secret_basic",
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "client_name": "My Application",
+  "client_uri": "https://client.example.com",
+  "logo_uri": "https://client.example.com/logo.png",
+  "scope": "openid profile email"
+}
+```
+
+**Response:**
+```json
+{
+  "client_id": "s6BhdRkqt3",
+  "client_secret": "ZJYCqe3GGRvdrudKyZS0XhGv_Z45DuKhCUk0gBR1vZk",
+  "client_id_issued_at": 1708560000,
+  "client_secret_expires_at": 1740096000,
+  "registration_access_token": "this_is_a_registration_access_token",
+  "registration_client_uri": "https://accounts.example.com/register/s6BhdRkqt3"
+}
+```
+
+**Security Note:**
+Not all OIDC providers support dynamic registration. Google, Microsoft, and Auth0 require manual registration for security reasons.
+
+## Provider-Specific Discovery Examples
+
+**Major OIDC Provider Discovery URLs:**
+
+**Google:**
+```
+https://accounts.google.com/.well-known/openid-configuration
+```
+
+**Microsoft Entra ID (Azure AD):**
+```
+https://login.microsoftonline.com/{"{tenant-id}"}/v2.0/.well-known/openid-configuration
+```
+Replace {"{tenant-id}"} with your tenant ID or "common" for multi-tenant
+
+**Okta:**
+```
+https://{"{your-okta-domain}"}/.well-known/openid-configuration
+```
+Example: https://dev-123456.okta.com/.well-known/openid-configuration
+
+**Auth0:**
+```
+https://{"{your-tenant}"}.auth0.com/.well-known/openid-configuration
+```
+Example: https://my-app.us.auth0.com/.well-known/openid-configuration
+
+**Ory Hydra (Self-Hosted):**
+```
+https://your-hydra-instance.com/.well-known/openid-configuration
+```
+
+**Keycloak:**
+```
+https://{keycloak-domain}/realms/{realm-name}/.well-known/openid-configuration
+```
+Example: https://sso.example.com/realms/myrealm/.well-known/openid-configuration
+
+**Best Practice:**
+Always use discovery instead of hard-coding endpoints. Providers can change URLs, add features, or rotate keys.
+
+## Key Takeaways
+
+- Discovery documents are at /.well-known/openid-configuration
+- Discovery provides all endpoints (auth, token, userinfo, jwks)
+- Use discovery for dynamic configuration (no hard-coded endpoints)
+- Verify the issuer field matches your expected identity provider
+- JWKS URI from discovery is used to fetch ID Token signing keys
+- All major OIDC providers support discovery (Google, Microsoft, Okta, Auth0)

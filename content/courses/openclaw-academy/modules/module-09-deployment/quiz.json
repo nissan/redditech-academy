@@ -1,0 +1,89 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the minimum Node.js version required to run OpenClaw?",
+      "options": [
+        "Node.js 16",
+        "Node.js 18",
+        "Node.js 20",
+        "Node.js 22"
+      ],
+      "correctAnswer": 3,
+      "explanation": "OpenClaw requires Node.js 22 or higher. Some channel libraries (particularly WhatsApp's Baileys) depend on features introduced in Node 22. Always verify with 'node --version' before installing."
+    },
+    {
+      "id": "q2",
+      "question": "You deploy OpenClaw on a Linux VPS with a user-level systemd service. You reboot the server and the Gateway doesn't start. What's the most likely cause?",
+      "options": [
+        "The openclaw package needs to be reinstalled after every reboot",
+        "You forgot to run 'loginctl enable-linger $USER' \u2014 user services only start after login without it",
+        "systemd user services can never auto-start on boot \u2014 you must use a system service",
+        "The Gateway port 18789 is blocked by the firewall"
+      ],
+      "correctAnswer": 1,
+      "explanation": "User-level systemd services (--user) only start when the user logs in, unless you run 'loginctl enable-linger <user>'. Linger makes user services start at boot even without an active login session \u2014 critical for VPS deployments."
+    },
+    {
+      "id": "q3",
+      "question": "Why does the OpenClaw Docker image bind port 18789 to 127.0.0.1 by default, not 0.0.0.0?",
+      "options": [
+        "127.0.0.1 is faster than 0.0.0.0 due to kernel routing optimisation",
+        "Binding to loopback is the secure default \u2014 the Control UI shouldn't be exposed to the network without a reverse proxy or VPN",
+        "The Gateway doesn't support LAN connections at all",
+        "0.0.0.0 requires Docker Desktop Pro \u2014 the free version only supports loopback"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Loopback binding (127.0.0.1) is a security-first default. The Gateway's Control UI and WebSocket API should only be accessible via a reverse proxy with TLS, an SSH tunnel, or a Tailscale connection \u2014 not directly exposed to the public internet."
+    },
+    {
+      "id": "q4",
+      "question": "You're setting up Telegram webhooks on your VPS and the webhook registration fails. What does Telegram require that long polling doesn't?",
+      "options": [
+        "A static IP address",
+        "A valid HTTPS certificate (self-signed certs are rejected)",
+        "The server must be in a data centre, not a residential connection",
+        "A dedicated IP address not shared with other services"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Telegram's Bot API requires a valid HTTPS certificate for webhook mode. Self-signed certificates are rejected. Caddy or Certbot/nginx with Let's Encrypt provides this automatically."
+    },
+    {
+      "id": "q5",
+      "question": "What is the critical difference between Docker volume mounts and named volumes when deploying OpenClaw?",
+      "options": [
+        "Named volumes are faster; bind mounts cause Gateway startup delays",
+        "Bind mounts map to host directories (portable, easy to backup); named volumes are Docker-managed (survive container recreation but harder to access directly)",
+        "Only named volumes persist across container restarts \u2014 bind mounts are always deleted when the container stops",
+        "Bind mounts require root permission; named volumes run as the node user"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenClaw's recommended setup uses bind mounts (host directories like ~/.openclaw/) for config, credentials, and sessions. These are easy to back up, inspect, and move to a new host. Named volumes are useful for caches (Playwright browsers, etc.) that don't need to be portable."
+    },
+    {
+      "id": "q6",
+      "question": "You configure your nginx reverse proxy but the OpenClaw Control UI connects and then immediately disconnects. What's the most likely missing nginx config?",
+      "options": [
+        "The ssl_certificate path is wrong",
+        "The proxy_read_timeout is too short",
+        "The Upgrade and Connection headers for WebSocket upgrade are missing",
+        "The proxy_pass URL should use HTTPS not HTTP for the backend"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Control UI communicates via WebSocket. nginx must pass the Upgrade and Connection headers to allow the WebSocket handshake: 'proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection upgrade;'. Without these, the WebSocket upgrade fails and the client appears to connect then immediately drop."
+    },
+    {
+      "id": "q7",
+      "question": "What does Tailscale's 'enable-linger' equivalent solve when used with OpenClaw on a VPS?",
+      "options": [
+        "Nothing \u2014 Tailscale and systemd linger are completely unrelated features",
+        "Tailscale replaces the need for a reverse proxy by providing automatic TLS",
+        "Tailscale allows accessing the Gateway via its Tailscale IP without exposing port 18789 to the public internet, while 'loginctl enable-linger' ensures the Gateway starts at boot without login",
+        "Tailscale provides the linger functionality natively, so 'loginctl enable-linger' is not needed when using Tailscale"
+      ],
+      "correctAnswer": 2,
+      "explanation": "These are two separate but complementary things. 'loginctl enable-linger' solves the boot problem \u2014 systemd user services start even without a login session. Tailscale solves the access problem \u2014 you reach the Gateway securely over its Tailscale IP without exposing it publicly. Both are needed for a robust VPS deployment."
+    }
+  ]
+}

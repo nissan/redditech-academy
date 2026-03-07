@@ -1,0 +1,15 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Quiz questions for this module are coming soon.",
+      "options": [
+        "Coming soon",
+        "Stay tuned"
+      ],
+      "correctAnswer": 0,
+      "explanation": "This module's quiz is still being written. Check back after the lesson content is complete."
+    }
+  ]
+}

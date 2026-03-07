@@ -1,0 +1,121 @@
+---
+title: "Command & Control Platform IAM Design"
+slug: "command-control-platform"
+description: "Design authentication and authorization for Apex's mission-critical Command & Control platform"
+duration: 35
+order: 2
+keyTakeaways:
+  - "OIDC federation enables secure authentication across government and partner IdPs"
+  - "FIDO2/WebAuthn provides phishing-resistant MFA for high-assurance environments"
+  - "ABAC allows dynamic access control based on mission context and clearance levels"
+  - "Device posture enforcement ensures operators access systems only from secure endpoints"
+  - "Conditional access policies balance security requirements with operational usability"
+prerequisites: ["executive-analysis"]
+---
+
+# Command & Control Platform IAM Design
+
+## System Overview
+
+The **Command & Control (C2) Platform** is Apex's mission-critical interface for operators like Sarah Lee. During field operations, operators use this platform to:
+
+- Monitor real-time sensor telemetry from deployed defense units
+- Authorize autonomous countermeasure responses
+- Coordinate with coalition partners during joint operations
+- Access classified threat analysis and mission planning tools
+
+### Security Requirements
+
+| Requirement | Rationale |
+|-------------|-----------|
+| **High-Assurance Authentication** | Failed authentication during active threat could have life-threatening consequences |
+| **Phishing Resistance** | Nation-state adversaries frequently use credential phishing attacks |
+| **Multi-Level Access Control** | Different operators have different clearances and mission assignments |
+| **Device Trust** | Prevent access from compromised or unauthorized endpoints |
+| **Federation Support** | Coalition partners authenticate through their own government IdPs |
+
+---
+
+## Your Task
+
+Design the IAM architecture for Apex's Command & Control platform. Consider how operators authenticate, what MFA mechanisms provide sufficient assurance, and how access is controlled based on clearance levels and mission context.
+
+<CaseStudyResponse
+  lessonId="command-control-platform"
+  moduleId="10-applied-case-study"
+  guidingQuestions={[
+    "What authentication strategy should Apex use for operators? Should they maintain their own IdP or federate with government identity providers?",
+    "How can FIDO2/WebAuthn provide phishing-resistant MFA? What devices should operators use (hardware keys, platform authenticators, smart cards)?",
+    "How should attribute-based access control (ABAC) be implemented? What attributes matter (clearance level, mission assignment, geography, time)?",
+    "What role does device posture enforcement play? How do you verify that operators are using approved, compliant devices?",
+    "How do you balance high security requirements with operational usability during time-sensitive missions?"
+  ]}
+  sampleResponse={`**Authentication Strategy:**
+
+Apex should implement **OIDC federation** rather than maintaining their own identity provider:
+
+1. **Government IdP Integration**: Operators authenticate through their respective government identity providers (Australian DTA, US DoD CAC, UK Verify, etc.)
+2. **OIDC Claims Mapping**: Map government-issued claims (clearance level, agency affiliation, job role) to Apex's authorization model
+3. **Token Exchange**: Use OAuth 2.0 token exchange (RFC 8693) to convert government tokens into Apex-scoped access tokens
+4. **Session Management**: Issue short-lived ID tokens (15-30 minutes) with refresh tokens for extended operations
+
+This approach leverages existing high-assurance credentials while maintaining operational control.
+
+**FIDO2/WebAuthn MFA Implementation:**
+
+For phishing-resistant authentication:
+
+- **Hardware Security Keys**: Yubikey 5 Series or similar FIDO2 keys registered to individual operators
+- **Platform Authenticators**: Biometric authentication on government-issued tablets/laptops with TPM backing
+- **Ceremony Binding**: WebAuthn credentials bound to specific domains (command.apexdefense.gov.au) prevent phishing
+- **Attestation Verification**: Require direct attestation to ensure keys meet FIPS 140-2 Level 2+ standards
+- **Backup Authenticators**: Secondary FIDO2 device registered for contingency operations
+
+**Attribute-Based Access Control:**
+
+ABAC policy engine evaluating:
+
+1. **Clearance Level**: Secret, Top Secret, TS/SCI encoded in OIDC claims
+2. **Mission Context**: Active mission assignments (Operation Northern Shield, Exercise Talisman Sabre)
+3. **Geographic Scope**: Regional restrictions (Indo-Pacific Command, European Theater)
+4. **Temporal Constraints**: Time-of-day restrictions and emergency override capabilities
+5. **Need-to-Know**: Compartmentalized information access based on program affiliation
+
+Implementation via policy-as-code (OPA/Cedar) evaluating claims at each API request.
+
+**Device Posture Enforcement:**
+
+- **Device Registration**: All operator endpoints enrolled in MDM (Microsoft Intune, JAMF Pro)
+- **Compliance Checks**: OS patch level, disk encryption, antivirus status verified pre-authentication
+- **Certificate-Based Trust**: mTLS with device certificates provisioned during enrollment
+- **Conditional Access**: Azure AD/Okta conditional access policies blocking non-compliant devices
+- **Runtime Verification**: Continuous posture assessment during active sessions
+
+**Balancing Security and Usability:**
+
+- **Single Sign-On**: OIDC SSO across all C2 subsystems reduces authentication friction
+- **Passwordless Flow**: FIDO2 eliminates password memorization while increasing security
+- **Emergency Access**: Break-glass procedures with enhanced logging for time-critical scenarios
+- **Cached Credentials**: Limited offline operation (2-4 hours) for field environments with degraded connectivity
+- **Adaptive MFA**: Step-up authentication only for privileged actions (weapon authorization, mission plan changes)`}
+  relatedConcepts={[
+    { module: "Module 02", concept: "OAuth 2.0 Authorization Code Flow" },
+    { module: "Module 03", concept: "OIDC Federation and Claims" },
+    { module: "Module 05", concept: "FIDO2 and WebAuthn" },
+    { module: "Module 06", concept: "Attribute-Based Access Control (ABAC)" },
+    { module: "Module 08", concept: "Zero Trust Device Trust" }
+  ]}
+/>
+
+---
+
+## Key Considerations
+
+As you design this system, consider:
+
+- **User Experience**: Operators like Sarah need fast, reliable access during high-stress situations
+- **Interoperability**: Coalition partners from different nations use different identity systems
+- **Assurance Levels**: NIST 800-63 AAL3 (Authenticator Assurance Level) is likely required
+- **Incident Response**: How do you handle compromised credentials or devices in the field?
+
+Your design should demonstrate how modern IAM standards (OIDC, FIDO2, ABAC) can meet defense-grade security requirements while maintaining operational effectiveness.

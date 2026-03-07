@@ -1,0 +1,27 @@
+{
+  "id": "07-emerging-trends",
+  "title": "Emerging IAM Trends",
+  "slug": "07-emerging-trends",
+  "description": "Explore the future of identity and access management with Decentralized Identity (DID), Verifiable Credentials, Continuous Access Evaluation (CAE), Zero Trust architecture, and emerging standards.",
+  "difficulty": "advanced",
+  "order": 7,
+  "estimatedHours": 3.5,
+  "learningObjectives": [
+    "Understand Decentralized Identity (DID) and how it shifts control from centralized providers to users",
+    "Master Verifiable Credentials (VCs) and their three-party model (Issuer, Holder, Verifier)",
+    "Implement Continuous Access Evaluation (CAE) for real-time token revocation and security",
+    "Design and implement adaptive authentication and risk-based access control systems",
+    "Architect Zero Trust security models with policy decision points and micro-segmentation",
+    "Prepare for future IAM trends including passwordless, AI-powered security, and quantum-resistant cryptography"
+  ],
+  "prerequisiteModules": ["06-zanzibar"],
+  "badge": {
+    "id": "future-ready-iam",
+    "name": "Future-Ready IAM Expert",
+    "description": "Mastered emerging trends in identity and access management including DID, Verifiable Credentials, CAE, and Zero Trust",
+    "icon": "🚀",
+    "color": "advanced"
+  },
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

@@ -1,0 +1,131 @@
+---
+title: "Cloud Telemetry & AI Systems Security"
+slug: "cloud-telemetry-ai"
+description: "Secure machine-to-machine authentication and data pipelines for sensor telemetry and AI threat analysis"
+duration: 40
+order: 3
+keyTakeaways:
+  - "Device identity using X.509 certificates provides strong authentication for IoT/sensor systems"
+  - "OAuth 2.0 Client Credentials flow is the standard for machine-to-machine authentication"
+  - "Firmware update security requires digital signatures and cryptographic verification"
+  - "OIDC federation enables partner agencies to access telemetry data securely"
+  - "Scoped permissions prevent unauthorized access to sensitive sensor data"
+prerequisites: ["executive-analysis", "command-control-platform"]
+---
+
+# Cloud Telemetry & AI Systems Security
+
+## System Overview
+
+Apex's **Cloud Telemetry & AI Systems** process real-time data from thousands of deployed sensors and autonomous units. This infrastructure:
+
+- Ingests telemetry streams (radar signatures, acoustic patterns, visual feeds)
+- Runs AI/ML models for threat classification and pattern recognition
+- Stores classified sensor data in compliance with defense regulations
+- Provides federated access to partner agencies for coalition operations
+- Delivers firmware and AI model updates to field-deployed systems
+
+### Architecture Components
+
+| Component | Function | Identity Challenge |
+|-----------|----------|-------------------|
+| **Deployed Sensors** | Autonomous units transmitting telemetry | How to authenticate thousands of devices? |
+| **Telemetry Gateway** | API endpoint receiving sensor data | How to prevent spoofed sensor data? |
+| **AI Processing Pipeline** | Threat analysis and classification | How to control access to classified models? |
+| **Update Distribution** | Firmware/model delivery system | How to ensure update integrity and authenticity? |
+| **Partner Portal** | Federated access for allied agencies | How to share data while maintaining access control? |
+
+---
+
+## Your Task
+
+Design the machine identity and data protection strategy for Apex's cloud telemetry infrastructure. Focus on device authentication, secure updates, and federated partner access.
+
+<CaseStudyResponse
+  lessonId="cloud-telemetry-ai"
+  moduleId="10-applied-case-study"
+  guidingQuestions={[
+    "How should deployed sensors and autonomous units authenticate to cloud services? What identity credentials should be provisioned at manufacture?",
+    "What OAuth 2.0 flow is appropriate for machine-to-machine authentication? How do you implement mTLS for additional security?",
+    "How can firmware and AI model updates be secured? What role do digital signatures and JWT assertions play?",
+    "How should partner agencies (allied defense organizations) access telemetry data? OIDC federation vs. SAML vs. API keys?",
+    "What scoping and claims strategy prevents unauthorized cross-mission data access?"
+  ]}
+  sampleResponse={`**Device Identity and Authentication:**
+
+Every deployed sensor/unit receives cryptographic identity at manufacture:
+
+1. **X.509 Device Certificates**: PKI certificates issued during production, stored in hardware-protected key storage (TPM 2.0 or secure element)
+2. **Certificate Hierarchy**: Root CA operated by Apex, intermediate CAs per product line, unique leaf certificates per device
+3. **OAuth 2.0 Client Credentials Flow**: Devices authenticate using mTLS with their device certificate to obtain access tokens
+4. **Token Lifecycle**: Short-lived access tokens (1-4 hours) with automatic renewal using certificate-based client authentication
+5. **Device Registration**: Certificate serial numbers mapped to device metadata (model, manufacturing date, deployment location) in device registry
+
+This creates verifiable machine identity that cannot be cloned or replayed.
+
+**mTLS Implementation:**
+
+- **Mutual TLS**: Both client (device) and server (telemetry gateway) verify each other's certificates
+- **Certificate Pinning**: Devices trust only Apex's root CA, preventing man-in-the-middle attacks
+- **Token Binding**: Access tokens cryptographically bound to device certificate using mTLS-based confirmation claims
+- **Connection Security**: TLS 1.3 with approved cipher suites (CNSA Suite for Top Secret data)
+
+**Secure Firmware and AI Model Updates:**
+
+Multi-layered update security:
+
+1. **Code Signing**: All firmware images signed with Apex's private key (ECDSA P-384 or RSA 4096)
+2. **JWT-Based Manifests**: Update packages include signed JWT assertions containing:
+   - Firmware version and hash
+   - Authorized device models
+   - Deployment authorization level
+   - Expiration timestamp
+3. **Secure Boot Chain**: Devices verify signature before loading firmware; rollback prevention
+4. **Staged Rollout**: Updates delivered via OAuth-protected API requiring device authentication
+5. **Attestation**: Devices report successful update installation with TPM-signed attestation
+
+This ensures only authentic, authorized updates can be installed.
+
+**Partner Agency Federation:**
+
+For allied defense organizations accessing telemetry:
+
+- **OIDC Federation**: Partner IdPs (NATO LDAP, Five Eyes systems) federate via OIDC
+- **Claims Mapping**: Partner identity claims mapped to Apex authorization model (clearance level, coalition affiliation, need-to-know)
+- **Token Exchange**: RFC 8693 token exchange converts partner tokens to Apex-scoped access tokens
+- **API Gateway**: OAuth 2.0 protected APIs with scope-based authorization (read:telemetry:indo-pacific, read:analysis:classified)
+- **Audit Logging**: Full traceability of partner data access exported to SIEM
+
+**Scoping and Permissions:**
+
+Granular OAuth scopes prevent over-privileged access:
+
+- **Mission-Based Scopes**: read:telemetry:operation-northern-shield
+- **Geographic Scopes**: read:sensors:indo-pacific-region
+- **Classification Scopes**: read:data:top-secret, read:data:secret
+- **Capability Scopes**: read:ai-models:threat-classification, write:sensor-config
+- **Claims-Based Enforcement**: Policy engine evaluates clearance claims against requested scopes
+
+Authorization decision made per-request using policy-as-code (OPA) evaluating JWT claims.`}
+  relatedConcepts={[
+    { module: "Module 02", concept: "OAuth 2.0 Client Credentials Flow" },
+    { module: "Module 02", concept: "mTLS and Certificate-Bound Tokens" },
+    { module: "Module 03", concept: "OIDC Federation" },
+    { module: "Module 06", concept: "Fine-Grained Authorization and Scopes" },
+    { module: "Module 08", concept: "Zero Trust for Workloads" }
+  ]}
+/>
+
+---
+
+## Key Considerations
+
+Think about these technical challenges:
+
+- **Scale**: Thousands of sensors generating telemetry simultaneously
+- **Certificate Lifecycle**: How do you renew certificates for devices deployed in the field for years?
+- **Revocation**: How do you revoke credentials for compromised or decommissioned devices?
+- **Offline Operations**: Some sensors may cache data and upload in batches when connectivity returns
+- **Supply Chain Security**: How do you prevent counterfeit devices from authenticating?
+
+Your design should demonstrate how machine identity differs from human identity and why standards like X.509, mTLS, and OAuth Client Credentials are essential for IoT/sensor security.

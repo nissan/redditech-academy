@@ -1,0 +1,107 @@
+---
+title: "Executive Analysis & Organizational Context"
+slug: "executive-analysis"
+description: "Analyze Apex Defense Systems' business requirements and identify key IAM challenges"
+duration: 35
+order: 1
+keyTakeaways:
+  - "Understanding business context is critical for effective IAM architecture"
+  - "Defense systems require high assurance, federation, and offline capabilities"
+  - "Stakeholder analysis helps identify competing requirements and priorities"
+  - "IAM must balance security, usability, and operational effectiveness"
+prerequisites: []
+---
+
+# Executive Analysis & Organizational Context
+
+## Case Study Context
+
+**Apex Defense Systems** is a leading developer of counter-offensive defense technologies. Their product line includes:
+
+- AI-enabled sensors
+- Autonomous countermeasures
+- Field-deployable defense hardware
+
+These systems detect, classify, and neutralize emerging threats—from unmanned aerial vehicles to other autonomous systems used in modern warfare.
+
+### Organizational Profile
+
+| Attribute | Description |
+|-----------|-------------|
+| **Headquarters** | Canberra, Australia |
+| **Employees** | ~270 engineers, 40 field operators, 20+ partner agencies |
+| **Sector** | Defense & Advanced Manufacturing |
+| **Core Challenge** | Managing multi-domain identity and trust for distributed, high-assurance systems operating in contested or disconnected environments |
+
+---
+
+## Your Task
+
+As an IAM architect, you've been brought in to assess Apex's current state and develop a comprehensive IAM strategy. In this first section, you'll analyze the organizational context and identify the key challenges.
+
+<CaseStudyResponse
+  lessonId="executive-analysis"
+  moduleId="10-applied-case-study"
+  guidingQuestions={[
+    "What are the unique IAM challenges for a defense technology company compared to traditional enterprises?",
+    "Who are the key stakeholders (operators, engineers, partners, regulators)? What are their competing needs?",
+    "What regulatory and compliance frameworks must Apex consider (e.g., ITAR, NIST, Coalition standards)?",
+    "What are the risks if IAM is not properly implemented (operational, security, compliance)?",
+    "How do the concepts of Zero Trust and defense-in-depth apply to this scenario?"
+  ]}
+  sampleResponse={`**Unique IAM Challenges:**
+
+Apex faces several challenges not typical in commercial IAM:
+
+1. **Multi-Domain Trust**: Systems must work across human operators, autonomous devices, and partner agencies—each with different trust models
+2. **Disconnected Operations**: Field units may operate offline for extended periods, requiring cached credentials and local authorization
+3. **Coalition Operations**: Partners from allied nations need federated access with varying security clearances
+4. **High-Assurance Requirements**: Any authentication failure could have life-threatening consequences
+
+**Key Stakeholders:**
+
+- **Operators (Sarah Lee)**: Need fast, reliable authentication in high-stress environments; cannot tolerate MFA friction during active missions
+- **Engineers**: Require privileged access to firmware and AI models; need audit trails for IP protection
+- **Partner Agencies**: Demand federated SSO but have varying security postures and compliance requirements
+- **Regulators**: Enforce export controls (ITAR), security standards (NIST SP 800-207), and audit requirements
+
+**Regulatory Frameworks:**
+
+- **ITAR (International Traffic in Arms Regulations)**: Controls export of defense technology
+- **NIST SP 800-207 (Zero Trust Architecture)**: Federal standard for defense contractors
+- **ISO 27001/27002**: Information security management standards
+- **Coalition Standards**: NATO and Five Eyes information sharing agreements
+
+**Risks of Poor IAM:**
+
+- **Operational**: Failed authentication could prevent critical defensive action during an active threat
+- **Security**: Compromised credentials could allow adversaries to disable countermeasures or steal AI models
+- **Compliance**: ITAR violations carry heavy fines and loss of export licenses
+- **Reputational**: Security breach would damage relationships with allied defense agencies
+
+**Zero Trust Application:**
+
+Zero Trust is essential for Apex because:
+- Traditional network perimeters don't exist for field-deployed autonomous systems
+- Every device, operator, and API call must be authenticated and authorized independently
+- "Never trust, always verify" applies to both human and machine identities
+- Continuous verification is needed even after initial authentication (CAE)`}
+  relatedConcepts={[
+    { module: "Module 01", concept: "Authentication vs Authorization" },
+    { module: "Module 01", concept: "Identity Providers and Trust" },
+    { module: "Module 08", concept: "Zero Trust Principles" }
+  ]}
+/>
+
+---
+
+## Key Considerations
+
+As you formulate your response, think about:
+
+- **Scale**: 330+ total users, but thousands of deployed devices
+- **Geography**: Global operations across multiple time zones and jurisdictions
+- **Threat Model**: Nation-state adversaries, supply chain attacks, insider threats
+- **Assurance Levels**: Different systems require different authentication strengths
+
+Your analysis should demonstrate understanding of how IAM serves business objectives, not just technical requirements.

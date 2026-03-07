@@ -1,0 +1,283 @@
+---
+title: "FIDO2 & WebAuthn Fundamentals"
+description: "Understanding passwordless authentication, FIDO Alliance, and the WebAuthn standard."
+slug: "01-fido2-fundamentals"
+duration: 30
+order: 1
+keyTakeaways:
+  - "Passwords are inherently vulnerable to phishing, credential stuffing, and database breaches"
+  - "FIDO2 eliminates passwords using public key cryptography and hardware-bound credentials"
+  - "Private keys never leave the authenticator device, making credentials impossible to steal"
+  - "Passkeys enable cross-device sync via encrypted cloud while maintaining phishing resistance"
+prerequisites: []
+---
+
+# FIDO2 & WebAuthn Fundamentals
+
+## The Password Problem
+
+Passwords have been the dominant authentication method for decades, but they have critical weaknesses:
+
+### Why Passwords Are Broken
+
+**Security Issues:**
+- 🚨 **Phishing attacks** - Users enter passwords on fake sites
+- 🚨 **Credential stuffing** - Reused passwords across sites
+- 🚨 **Weak passwords** - "password123", "qwerty"
+- 🚨 **Database breaches** - Billions of passwords leaked
+- 🚨 **Shoulder surfing** - Passwords visible when typed
+- 🚨 **Keyloggers** - Malware captures keystrokes
+
+**Usability Problems:**
+- 😫 Password fatigue (average user has 100+ accounts)
+- 😫 Forgotten passwords (30% of users reset monthly)
+- 😫 Complex requirements (uppercase, numbers, symbols)
+- 😫 Frequent rotation policies
+- 😫 Help desk burden (20-50% of calls are password resets)
+
+### The Passwordless Solution: FIDO2
+
+**FIDO2** eliminates passwords using **public key cryptography** and **hardware-bound credentials**.
+
+#### Key Benefits
+
+**Security:**
+- ✅ **Phishing-resistant** - No password to steal
+- ✅ **No shared secrets** - Private key never leaves device
+- ✅ **Hardware-bound** - Can't be copied or transmitted
+- ✅ **Biometric local** - Fingerprint/face never sent to server
+- ✅ **Origin-binding** - Only works on legitimate domain
+
+**Usability:**
+- ✅ **Fast login** - Touch fingerprint or face scan
+- ✅ **No password to remember** - Credentials tied to device
+- ✅ **Works offline** - No network needed for local verification
+- ✅ **Cross-platform** - Sync via passkeys (iCloud, Google)
+
+**Cost Reduction:**
+- ✅ **Fewer help desk calls** - No password resets
+- ✅ **Reduced fraud** - Phishing attacks fail
+- ✅ **Better user retention** - Easier authentication
+
+## What is FIDO2?
+
+**FIDO2** is a set of standards for passwordless authentication developed by the **FIDO Alliance** and **W3C**.
+
+### FIDO2 Components
+
+#### 1. WebAuthn (Web Authentication API)
+
+**WebAuthn** is the W3C browser API that:
+- Enables websites to use public key credentials
+- Provides JavaScript APIs for registration and authentication
+- Supported by all major browsers (Chrome, Firefox, Safari, Edge)
+- Works on desktop and mobile
+
+**Browser Support (2024):**
+- ✅ Chrome 67+ (May 2018)
+- ✅ Firefox 60+ (May 2018)
+- ✅ Safari 13+ (September 2019)
+- ✅ Edge 18+ (October 2018)
+- ✅ iOS Safari 14+ (September 2020)
+- ✅ Chrome Android 70+ (October 2018)
+
+#### 2. CTAP (Client to Authenticator Protocol)
+
+**CTAP** is the protocol between:
+- **CTAP1** (U2F): Security keys via USB/NFC (legacy)
+- **CTAP2**: Modern protocol supporting USB, NFC, Bluetooth
+
+**Authenticator Types:**
+- **Platform authenticators**: Built into device (Touch ID, Face ID, Windows Hello)
+- **Roaming authenticators**: External devices (YubiKey, security keys)
+
+### FIDO2 Architecture
+
+```
+┌─────────────────────────────────────────────────┐
+│           User (Person)                         │
+└─────────────────┬───────────────────────────────┘
+                  │ Biometric/PIN
+                  ↓
+┌─────────────────────────────────────────────────┐
+│     Platform Authenticator (Device)             │
+│  • Touch ID / Face ID (iOS)                     │
+│  • Windows Hello (Windows)                      │
+│  • Fingerprint sensor (Android)                 │
+│                                                  │
+│  OR                                              │
+│                                                  │
+│     Roaming Authenticator (Security Key)        │
+│  • YubiKey                                       │
+│  • Titan Security Key (Google)                  │
+│  • FEITIAN Keys                                 │
+└─────────────────┬───────────────────────────────┘
+                  │ CTAP2 (USB/NFC/Bluetooth)
+                  ↓
+┌─────────────────────────────────────────────────┐
+│           Browser (Chrome, Safari)              │
+│         WebAuthn API (JavaScript)               │
+└─────────────────┬───────────────────────────────┘
+                  │ HTTPS
+                  ↓
+┌─────────────────────────────────────────────────┐
+│       Relying Party (Your Website)              │
+│    • Registration endpoint                      │
+│    • Authentication endpoint                    │
+│    • Credential storage (public keys)           │
+└─────────────────────────────────────────────────┘
+```
+
+## How FIDO2 Works (High-Level)
+
+### Registration (Create Credential)
+
+1. **User** visits website and clicks "Register with passkey"
+2. **Website** requests browser to create credential
+3. **Browser** calls WebAuthn API
+4. **Authenticator** prompts for biometric/PIN
+5. **User** provides fingerprint/face scan
+6. **Authenticator** generates key pair (private + public)
+7. **Private key** stored securely in authenticator (never leaves)
+8. **Public key** sent to website
+9. **Website** stores public key associated with user account
+
+### Authentication (Verify Identity)
+
+1. **User** visits website and clicks "Sign in with passkey"
+2. **Website** sends challenge (random bytes)
+3. **Browser** calls WebAuthn API with challenge
+4. **Authenticator** prompts for biometric/PIN
+5. **User** provides fingerprint/face scan
+6. **Authenticator** signs challenge with private key
+7. **Signature** sent to website (private key never transmitted)
+8. **Website** verifies signature using stored public key
+9. **User** authenticated and granted access
+
+> **Key Insight:** The private key NEVER leaves the authenticator. Only signatures and public keys are transmitted.
+
+## FIDO2 vs. Traditional Authentication
+
+### Comparison Table
+
+| Aspect | Passwords | Password + 2FA | FIDO2 Passkeys |
+|--------|-----------|----------------|----------------|
+| **Phishing Resistance** | ❌ No | ⚠️ Partial (SMS/TOTP phishable) | ✅ Yes (origin-bound) |
+| **User Experience** | 😫 Type password | 😫 Type password + code | 😊 Touch/face scan |
+| **Credential Theft** | ❌ Easy (database breach) | ⚠️ Passwords still leaked | ✅ Impossible (private key never leaves device) |
+| **Account Takeover** | ❌ High risk | ⚠️ Medium risk | ✅ Very low risk |
+| **Password Reuse** | ❌ Common | ⚠️ Still possible | ✅ N/A (no passwords) |
+| **Help Desk Calls** | 😫 20-50% of tickets | 😫 Still high | 😊 Minimal |
+| **Setup Time** | 10 seconds | 30-60 seconds | 15 seconds |
+| **Login Time** | 10-20 seconds | 30-45 seconds | 2-5 seconds |
+| **Works Offline** | ❌ No (server validation) | ❌ No | ✅ Yes (local biometric) |
+| **Cost** | Low | Medium (SMS, TOTP app) | Low (built into devices) |
+| **Adoption Barrier** | None | Low (app installation) | Low (device support) |
+
+## Real-World Attack Scenarios
+
+### Scenario 1: Phishing Attack
+
+**With Passwords:**
+1. Attacker creates fake login page: `https://gooogle.com` (note extra 'o')
+2. User enters username + password
+3. ❌ **Attacker captures credentials**
+4. Attacker logs into real site with stolen credentials
+5. **Result: Account compromised**
+
+**With FIDO2:**
+1. Attacker creates fake login page: `https://gooogle.com`
+2. User clicks "Sign in with passkey"
+3. ✅ **Browser checks origin: gooogle.com ≠ google.com**
+4. Authenticator refuses to sign (origin mismatch)
+5. **Result: Attack fails**
+
+### Scenario 2: Database Breach
+
+**With Passwords:**
+1. Attacker breaches website database
+2. ❌ **Attacker steals password hashes**
+3. Attacker cracks hashes offline (weak passwords)
+4. Attacker tries credentials on other sites (password reuse)
+5. **Result: Multiple accounts compromised**
+
+**With FIDO2:**
+1. Attacker breaches website database
+2. ✅ **Attacker only finds public keys**
+3. Public keys are useless without private keys
+4. Private keys locked in authenticator hardware
+5. **Result: No useful data stolen**
+
+### Scenario 3: Man-in-the-Middle (MITM)
+
+**With Passwords:**
+1. Attacker intercepts HTTPS connection (rare but possible)
+2. User types password
+3. ❌ **Attacker captures password in transit** (if weak TLS)
+4. **Result: Password compromised**
+
+**With FIDO2:**
+1. Attacker attempts MITM
+2. ✅ **Challenge-response is time-bound**
+3. Signature only valid for specific origin + challenge
+4. Cannot be replayed
+5. **Result: Attack fails**
+
+## Passkeys: The Future
+
+**Passkeys** are FIDO credentials that sync across devices:
+
+**Apple Passkeys (iCloud Keychain):**
+- Sync across iPhone, iPad, Mac via iCloud
+- End-to-end encrypted
+- Accessible via Face ID / Touch ID
+
+**Google Password Manager:**
+- Sync across Android, Chrome
+- Encrypted with user's Google account
+- Accessible via fingerprint / screen lock
+
+**Benefits:**
+- ✅ No lock-in to single device
+- ✅ Credential backup (device loss protection)
+- ✅ Seamless cross-device experience
+- ✅ Still phishing-resistant
+
+> **Note:** Even with cloud sync, private keys are encrypted and only decryptable on user's trusted devices.
+
+## Practice Quiz
+
+Test your understanding of FIDO2 fundamentals:
+
+**Question 1:** What makes FIDO2 phishing-resistant?
+- A) Strong passwords
+- B) Origin-binding (credentials only work on legitimate domain)
+- C) SMS codes
+- D) Email verification
+
+**Question 2:** Where is the private key stored in FIDO2?
+- A) In the browser's localStorage
+- B) On the website's server
+- C) In the authenticator hardware (never leaves device)
+- D) In a cloud database
+
+**Question 3:** What happens if an attacker steals the public key from a database?
+- A) Attacker can impersonate user
+- B) Attacker can decrypt user data
+- C) Attacker can log in as user
+- D) Nothing - public key is useless without private key
+
+**Question 4:** What are "passkeys"?
+- A) Passwords that are easier to remember
+- B) FIDO credentials that sync across devices via encrypted cloud
+- C) Hardware security keys
+- D) One-time passwords
+
+<details>
+<summary>View Answers</summary>
+
+1. **B** - Origin-binding ensures credentials only work on the legitimate domain, preventing phishing
+2. **C** - Private key is stored in authenticator hardware and never leaves the device
+3. **D** - Public keys are useless without the corresponding private key, which never leaves the authenticator
+4. **B** - Passkeys are FIDO credentials that sync across user's devices via encrypted cloud (iCloud, Google)
+</details>

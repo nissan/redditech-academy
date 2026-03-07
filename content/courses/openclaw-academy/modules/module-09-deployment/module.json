@@ -1,0 +1,16 @@
+{
+  "id": "module-09-deployment",
+  "slug": "module-09-deployment",
+  "order": 9,
+  "title": "Deployment Patterns",
+  "description": "How to run OpenClaw reliably \u2014 macOS LaunchAgent, Docker Compose, Linux VPS with systemd, HTTPS reverse proxy, and Tailscale remote access.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Deployment Patterns Badge",
+    "icon": "\ud83d\ude80",
+    "description": "Completed the Deployment Patterns module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

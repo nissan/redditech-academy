@@ -1,0 +1,180 @@
+---
+title: "IAM Evolution: From LDAP to FIDO"
+description: "Trace the historical evolution of identity systems from directory services through federation to modern passwordless authentication."
+slug: "iam-evolution"
+duration: 20
+order: 5
+keyTakeaways:
+  - "LDAP provided centralized directories but lacked federation"
+  - "SAML enabled enterprise SSO but was complex (XML)"
+  - "OAuth 2.0 solved delegated API access without passwords"
+  - "OpenID Connect added authentication on top of OAuth"
+  - "FIDO2/WebAuthn represents the passwordless future"
+  - "Modern systems use OIDC + OAuth + Zero Trust principles"
+prerequisites:
+  - "claims-scopes-audience"
+---
+
+# IAM Evolution: From LDAP to FIDO
+
+Identity and Access Management has evolved over decades, driven by changing technology landscapes, security threats, and user expectations. Understanding this evolution provides context for why modern protocols exist.
+
+## LDAP Era: Directory Services (1990s-2000s)
+
+**Lightweight Directory Access Protocol (LDAP)** emerged as the standard for centralized user directories.
+
+**Key Characteristics:**
+- Centralized user storage (username, password, attributes)
+- Hierarchical data structure (Organizational Units)
+- Used by Active Directory, OpenLDAP
+- Primarily for internal networks (VPNs, corporate apps)
+
+**Limitations:**
+- Not designed for web-based authentication
+- Credential validation requires direct LDAP access (security risk)
+- No federation support (each app needs LDAP integration)
+- Poor fit for cloud and mobile
+
+**Legacy:** LDAP still powers enterprise directories, but modern systems use it as a backend with federation layers on top.
+
+## SAML Era: Enterprise Federation (2000s-2010s)
+
+**Security Assertion Markup Language (SAML 2.0)** brought federation to the enterprise.
+
+**Innovation:**
+- XML-based assertions carrying user identity
+- Single Sign-On (SSO) across web applications
+- Trust between Identity Providers and Service Providers
+- Eliminated password sharing between systems
+
+**Use Case:**
+Employee authenticates to corporate IdP (e.g., Active Directory Federation Services). Browser carries SAML assertion to SaaS apps (Salesforce, Workday, Slack) without re-authenticating.
+
+**Why It Dominated:**
+- Enterprise-focused (legal agreements, trust frameworks)
+- Strong security (XML signatures, encryption)
+- Mature vendor ecosystem (Shibboleth, Ping Identity)
+
+**Limitations:**
+- XML complexity (verbose, hard to debug)
+- Poor mobile support (designed for browsers)
+- Security vulnerabilities (XML Signature Wrapping attacks)
+- Not developer-friendly
+
+## OAuth 2.0: Delegated Authorization (2012)
+
+**OAuth 2.0** revolutionized how applications access user data without seeing passwords.
+
+**Problem Solved:**
+Before OAuth, users gave apps their passwords:
+- Twitter app wants to post tweets → user gives app their Twitter password
+- Security disaster: apps store passwords, full account access, hard to revoke
+
+**OAuth Solution:**
+- User authorizes app at the IdP (Twitter)
+- IdP issues an access token to the app
+- App uses token to access APIs (no password needed)
+- User can revoke access anytime
+
+**Key Flows:**
+- **Authorization Code Flow**: Browser-based apps (most secure)
+- **Client Credentials Flow**: Machine-to-machine
+- **Device Code Flow**: TVs, IoT devices
+
+**Impact:**
+- Enabled API economy (Twitter, GitHub, Google APIs)
+- Foundation for modern mobile apps
+- Delegated access without sharing credentials
+
+**Limitation:**
+OAuth only handles **authorization**. It doesn't standardize **authentication** (who the user is).
+
+## OpenID Connect: Authentication Layer (2014)
+
+**OpenID Connect (OIDC)** added authentication on top of OAuth 2.0.
+
+**Innovation:**
+- Introduced **ID Token** (JWT) containing user identity
+- Standardized user profile claims (email, name, sub)
+- Built on OAuth 2.0 (reused flows, added identity layer)
+
+**"Sign in with Google" is OIDC**, not pure OAuth.
+
+**What OIDC Provides:**
+1. User authentication proof (ID Token)
+2. User profile info (UserInfo endpoint)
+3. Standardized discovery (find IdP endpoints automatically)
+4. Federation across IdPs
+
+**Why It Won:**
+- Developer-friendly (JSON vs XML)
+- Mobile-native design
+- Ecosystem support (Google, Microsoft, Auth0)
+- Works for both consumer (social login) and enterprise (SSO)
+
+**OIDC vs SAML:**
+- Both enable SSO
+- OIDC: JSON, REST, mobile-friendly, developer-focused
+- SAML: XML, enterprise-focused, mature but complex
+
+## FIDO2/WebAuthn: Passwordless Future (2018-Present)
+
+**FIDO2 and WebAuthn** aim to eliminate passwords entirely through public key cryptography.
+
+**How It Works:**
+1. User registers device (phone, security key)
+2. Device generates a **private key** (never leaves device)
+3. Device sends **public key** to website
+4. During login, website challenges device
+5. Device signs challenge with private key
+6. Website verifies signature with public key
+
+**Security Benefits:**
+- **Phishing-resistant**: Private key tied to specific domain
+- **No shared secrets**: Server breach doesn't expose credentials
+- **Hardware-bound**: Credentials tied to device (can't be copied)
+
+**Passkeys:** Synced FIDO2 credentials (iCloud Keychain, Google Password Manager)
+- Combine security of FIDO with convenience of sync
+- Biometric unlock (Face ID, Touch ID)
+
+**Adoption:**
+- Supported by all major browsers
+- Integrated into Google, Microsoft, Apple ecosystems
+- Growing enterprise adoption (Okta, Azure AD)
+
+**The Future:**
+FIDO2 represents the industry's bet on a passwordless future, but passwords will coexist for years during transition.
+
+## Evolution Timeline
+
+```text
+1990s: LDAP
+        ↓  [Centralized directories]
+2000s: SAML 2.0
+        ↓  [Enterprise SSO, XML-based federation]
+2012:  OAuth 2.0
+        ↓  [API authorization, delegated access]
+2014:  OpenID Connect
+        ↓  [Authentication + OAuth, JSON, mobile-friendly]
+2018:  FIDO2 / WebAuthn
+        ↓  [Passwordless, public key crypto]
+Now:   Hybrid Ecosystems
+        → OIDC for authentication
+        → OAuth for authorization
+        → SAML for legacy enterprise
+        → FIDO2 for passwordless
+        → Zero Trust principles
+```
+
+## Modern IAM Principles
+
+Today's IAM systems combine lessons from this evolution:
+
+**Federation**: Trust external IdPs (don't build your own auth)
+**Delegation**: OAuth for API access without passwords
+**Standards**: OIDC for authentication, SAML for enterprise
+**Passwordless**: FIDO2 for phishing-resistant auth
+**Zero Trust**: Never trust, always verify (even inside network)
+
+The trend is clear: **fewer passwords, more cryptography, federated trust**.

@@ -1,0 +1,149 @@
+{
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "case-q1",
+      "question": "What is the primary IAM challenge for Apex Defense Systems' field-deployed units operating in contested environments?",
+      "options": [
+        "Slow internet connection speeds",
+        "Offline operation requiring local authentication and authorization without network connectivity",
+        "High cost of cloud services",
+        "Limited battery life of devices"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Field-deployed defense systems must operate in contested environments where network connectivity cannot be guaranteed. This requires offline authentication (cached credentials, local certificate validation) and offline authorization (pre-loaded policies, local decision enforcement)."
+    },
+    {
+      "id": "case-q2",
+      "question": "Which IAM pattern best addresses Apex's requirement for partner agencies (NATO allies, Five Eyes) to access systems using their own identity providers?",
+      "options": [
+        "Creating individual accounts for each partner user",
+        "Federation using SAML 2.0 or OpenID Connect with trust relationships",
+        "Sharing a single administrative password",
+        "Using API keys for all partners"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Federation via SAML 2.0 or OIDC allows partner agencies to use their own Identity Providers (IdPs) while Apex maintains trust relationships. This eliminates the need to create/manage individual accounts for partner users and leverages existing partner authentication infrastructure."
+    },
+    {
+      "id": "case-q3",
+      "question": "For the Command & Control Platform requiring real-time threat analysis, which authentication method provides the best balance of security and usability?",
+      "options": [
+        "Username and password only",
+        "Multi-factor authentication (MFA) with hardware tokens and biometrics",
+        "Magic link sent via email",
+        "No authentication required (public access)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Defense systems require high assurance authentication. MFA with hardware tokens (FIDO2/WebAuthn) combined with biometrics provides strong security while maintaining usability for operators who need fast access during critical situations."
+    },
+    {
+      "id": "case-q4",
+      "question": "What is the most appropriate authorization model for Apex's API Analytics Portal where data scientists need different access levels based on data classification?",
+      "options": [
+        "Role-Based Access Control (RBAC) with roles like 'analyst', 'senior-analyst', 'data-scientist'",
+        "Attribute-Based Access Control (ABAC) considering clearance level, data classification, and project assignment",
+        "No access control (open access)",
+        "IP address whitelisting only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ABAC is ideal for complex scenarios where access decisions depend on multiple attributes: user's security clearance, data classification level, project assignment, time of day, and location. RBAC alone is too rigid for this nuanced requirement."
+    },
+    {
+      "id": "case-q5",
+      "question": "How should Apex implement Zero Trust principles for their Cloud Telemetry & AI Services while maintaining high performance?",
+      "options": [
+        "Trust all traffic from internal networks",
+        "Implement Continuous Access Evaluation (CAE) with policy decision points evaluating every request based on real-time risk signals",
+        "Only authenticate users once at login",
+        "Disable all security controls for better performance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zero Trust requires 'never trust, always verify' - Continuous Access Evaluation (CAE) validates every request based on real-time context (user location, device posture, threat intelligence). This can be implemented efficiently using policy decision points and caching to maintain performance."
+    },
+    {
+      "id": "case-q6",
+      "question": "For field units with intermittent connectivity, what is the best approach to handle token refresh when offline?",
+      "options": [
+        "Fail all operations when offline",
+        "Issue long-lived access tokens (24+ hours) with offline validation using cached public keys",
+        "Allow access without tokens when offline",
+        "Force users to reconnect every hour"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Long-lived access tokens (with appropriate security controls) combined with local JWT signature verification using cached public keys enable offline operation. This must be balanced with security concerns using techniques like time-limited validity and regular re-authentication when connectivity is restored."
+    },
+    {
+      "id": "case-q7",
+      "question": "Which NIST framework should Apex adopt for implementing zero-trust architecture in their defense systems?",
+      "options": [
+        "NIST Cybersecurity Framework (CSF)",
+        "NIST SP 800-207 (Zero Trust Architecture)",
+        "NIST SP 800-53 (Security Controls)",
+        "NIST Privacy Framework"
+      ],
+      "correctAnswer": 1,
+      "explanation": "NIST SP 800-207 'Zero Trust Architecture' provides specific guidance for implementing zero-trust principles including policy decision/enforcement points, continuous monitoring, and least-privilege access - all critical for defense systems."
+    },
+    {
+      "id": "case-q8",
+      "question": "What is the primary benefit of using a centralized Policy Decision Point (PDP) in Apex's architecture?",
+      "options": [
+        "Faster database queries",
+        "Consistent authorization decisions across all systems based on centralized policy evaluation",
+        "Reduced development costs",
+        "Simplified user interface design"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A centralized PDP ensures consistent authorization decisions across all systems (C2 Platform, API Portal, Field Units) by evaluating policies in one location. This prevents authorization drift, simplifies auditing, and enables rapid policy updates across the entire infrastructure."
+    },
+    {
+      "id": "case-q9",
+      "question": "For partner federation, why is metadata exchange critical in SAML 2.0 trust relationships?",
+      "options": [
+        "It makes the system faster",
+        "It establishes trust by exchanging X.509 certificates, entity IDs, and endpoint URLs needed for secure communication",
+        "It reduces storage costs",
+        "It improves user interface design"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SAML metadata contains critical information for establishing trust: X.509 certificates for signature validation, entity IDs for identification, and endpoint URLs (SSO, SLO) for communication. Without proper metadata exchange, secure federation cannot be established."
+    },
+    {
+      "id": "case-q10",
+      "question": "What architectural pattern should Apex use to enable session management across multiple defense platforms (C2, telemetry, analytics)?",
+      "options": [
+        "Separate authentication for each platform",
+        "Single Sign-On (SSO) using OpenID Connect with centralized session management",
+        "Shared database passwords",
+        "No session management needed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Single Sign-On (SSO) via OpenID Connect provides centralized authentication and session management. Users authenticate once and receive tokens that grant access to multiple platforms. This improves security (one authentication point to monitor), usability (one login), and enables centralized session revocation."
+    },
+    {
+      "id": "case-q11",
+      "question": "How should Apex handle device trust for field-deployed hardware to prevent unauthorized devices from accessing systems?",
+      "options": [
+        "No device verification needed",
+        "Device attestation using hardware-backed certificates (TPM) and device registration in asset inventory",
+        "Simple device ID validation",
+        "MAC address filtering only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Device attestation using Trusted Platform Modules (TPMs) provides cryptographic proof of device identity and integrity. Combined with device registration in an asset inventory, this ensures only authorized, uncompromised devices can access defense systems - critical for preventing hardware-based attacks."
+    },
+    {
+      "id": "case-q12",
+      "question": "What is the recommended approach for handling emergency access when primary authentication systems fail during critical operations?",
+      "options": [
+        "No emergency access (system locks out)",
+        "Break-glass procedures with pre-issued emergency credentials, audit logging, and mandatory post-incident review",
+        "Disable all security during emergencies",
+        "Use same credentials for all users"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Break-glass procedures provide controlled emergency access using pre-issued credentials stored in secure offline locations. Every use must be logged and trigger mandatory post-incident review to prevent abuse while ensuring operational continuity during critical failures."
+    }
+  ]
+}

@@ -1,0 +1,529 @@
+---
+title: "Supabase Auth: Open-Source Authentication Platform"
+description: "Deep dive into Supabase Auth's comprehensive authentication system supporting email/password, passwordless, OAuth, and Web3 wallets"
+slug: "supabase-auth-case-study"
+duration: 50
+keyTakeaways:
+  - "Supabase Auth architecture: PostgreSQL-backed GoTrue server with Row Level Security (RLS)"
+  - "Multi-provider authentication: email/password, magic links, OAuth (Google, GitHub), phone/SMS, Web3 wallets"
+  - "JWT-based session management with refresh token rotation and secure cookie storage"
+  - "Database-level authorization using RLS policies tied to auth.uid() for automatic user isolation"
+  - "Open-source advantages: self-hosting options, transparency, community contributions, vendor independence"
+---
+
+## Supabase Auth Overview
+
+
+## What is Supabase Auth?
+
+**Supabase Auth** is an open-source authentication solution that's part of the larger Supabase Backend-as-a-Service (BaaS) platform. It provides a **comprehensive, database-integrated authentication system** that bridges traditional web2 authentication with modern web3 wallet-based authentication.
+
+### The Supabase Philosophy
+
+**Core Principle:** Use **PostgreSQL at the core** and leverage Postgres' built-in authentication functionality wherever possible.
+
+```
+Traditional Auth Stack               Supabase Stack
+├─ Auth Service (Auth0)             ├─ Supabase Auth
+├─ User Database (MySQL)            ├─ PostgreSQL (all-in-one)
+├─ Session Store (Redis)            ├─ Postgres (sessions)
+├─ Email Service (SendGrid)         ├─ Integrated
+└─ Analytics (Mixpanel)             └─ Postgres (analytics)
+
+Result: 5 services → 1 service
+```
+
+**Why this matters:**
+- Simplified stack (fewer moving parts)
+- Cohesive developer experience
+- Lower costs (no per-service fees)
+- Built-in database integration
+
+## Authentication Methods Supported
+
+Supabase Auth supports a **comprehensive suite** of authentication methods:
+
+### 1. Email & Password
+**Traditional authentication** with secure password hashing (bcrypt):
+
+```typescript
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+// Sign up
+const { data, error } = await supabase.auth.signUp({
+  email: 'user@example.com',
+  password: 'secure-password-123',
+  options: {
+    data: {
+      first_name: 'Alice',
+      age: 27
+    }
+  }
+})
+
+// Sign in
+const { data, error } = await supabase.auth.signInWithPassword({
+  email: 'user@example.com',
+  password: 'secure-password-123'
+})
+```
+
+### 2. Passwordless Authentication
+
+**Magic Links** (email-based) and **OTP** (email or SMS):
+
+```typescript
+// Magic link (email)
+const { data, error } = await supabase.auth.signInWithOtp({
+  email: 'user@example.com',
+  options: {
+    emailRedirectTo: 'https://example.com/welcome'
+  }
+})
+
+// OTP via email
+const { data, error } = await supabase.auth.signInWithOtp({
+  email: 'user@example.com',
+  options: {
+    shouldCreateUser: true
+  }
+})
+
+// OTP via SMS
+const { data, error } = await supabase.auth.signInWithOtp({
+  phone: '+1234567890',
+})
+```
+
+**How it works:**
+- **Magic Link:** User clicks link in email → automatic sign-in
+- **OTP:** User enters 6-digit code → verified sign-in
+- **Auto-signup:** If user doesn't exist, automatically create account
+
+### 3. OAuth Providers
+
+**Social logins** with 20+ providers:
+
+```typescript
+// Sign in with Google
+const { data, error } = await supabase.auth.signInWithOAuth({
+  provider: 'google',
+  options: {
+    redirectTo: 'https://example.com/auth/callback'
+  }
+})
+
+// Sign in with GitHub
+const { data, error } = await supabase.auth.signInWithOAuth({
+  provider: 'github',
+  options: {
+    scopes: 'repo user'
+  }
+})
+```
+
+**Supported Providers:**
+- Google, GitHub, GitLab, Bitbucket
+- Apple, Facebook, Twitter, Discord
+- Azure, AWS Cognito, LinkedIn
+- Slack, Spotify, Notion, Zoom
+- And many more (20+ total)
+
+### 4. Web3 Wallet Authentication (NEW in 2024)
+
+**Sign in with Ethereum or Solana wallets** using EIP-4361 (Sign-In with Ethereum):
+
+```typescript
+// Sign in with Ethereum wallet (MetaMask, WalletConnect, etc.)
+const { data, error } = await supabase.auth.signInWithWeb3({
+  chain: 'ethereum',
+  statement: 'I accept the Terms of Service at https://example.com/tos',
+})
+
+// Sign in with Solana wallet (Phantom, Solflare, etc.)
+const { data, error } = await supabase.auth.signInWithWeb3({
+  chain: 'solana',
+  statement: 'I accept the Terms of Service at https://example.com/tos',
+})
+```
+
+**How it works (EIP-4361 standard):**
+1. App requests signature from wallet
+2. Wallet presents message to user
+3. User approves and signs message with private key
+4. Supabase Auth verifies signature
+5. Session created for wallet address
+
+**Important:** Web3 wallet users **won't have an email/phone** associated with their account.
+
+## Architecture: How Supabase Auth Works
+
+### The Authentication Flow
+
+```
+┌─────────────┐
+│   Client    │
+│  (Browser)  │
+└──────┬──────┘
+       │ 1. signInWithPassword()
+       ↓
+┌─────────────────────────────┐
+│   Supabase Auth (GoTrue)    │
+│                             │
+│  ┌──────────────────────┐  │
+│  │ Verify credentials   │  │
+│  └──────────────────────┘  │
+│           ↓                 │
+│  ┌──────────────────────┐  │
+│  │ Generate JWT tokens  │  │
+│  │ - Access Token       │  │
+│  │ - Refresh Token      │  │
+│  └──────────────────────┘  │
+└──────────┬──────────────────┘
+           │ 2. Return tokens
+           ↓
+    ┌─────────────┐
+    │ PostgreSQL  │
+    │             │
+    │ auth.users  │
+    │ auth.sessions│
+    └─────────────┘
+```
+
+### Key Components
+
+**1. GoTrue (Auth Service)**
+- Written in **Go** for performance
+- Handles authentication logic
+- Issues JWT tokens
+- Manages sessions
+
+**2. PostgreSQL Database**
+- Stores user accounts in `auth.users` table
+- Stores sessions in `auth.sessions` table
+- Built-in Row Level Security (RLS)
+
+**3. JWT Tokens**
+- **Access Token:** Short-lived (1 hour), used for API requests
+- **Refresh Token:** Long-lived (reusable), used to get new access tokens
+
+**4. Row Level Security (RLS)**
+Postgres feature that restricts data access:
+
+```sql
+-- Only allow users to read their own data
+CREATE POLICY "Users can view own data"
+  ON public.profiles
+  FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- Only allow users to update their own data
+CREATE POLICY "Users can update own data"
+  ON public.profiles
+  FOR UPDATE
+  USING (auth.uid() = user_id);
+```
+
+## Web3 Authentication Deep Dive
+
+### The Problem Supabase Auth Solves
+
+**Traditional approach (manual Web3 auth):**
+```
+1. Connect wallet (MetaMask)
+2. Generate nonce (random challenge)
+3. Store nonce in database
+4. Request signature from wallet
+5. Verify signature server-side
+6. Check nonce hasn't been reused
+7. Create session manually
+8. Implement token refresh logic
+9. Handle wallet disconnection
+10. Clean up stale sessions
+
+Result: 100+ lines of code, security pitfalls
+```
+
+**Supabase Auth approach:**
+```typescript
+const { data, error } = await supabase.auth.signInWithWeb3({
+  chain: 'ethereum'
+})
+
+Result: 3 lines of code, production-ready
+```
+
+### EIP-4361: Sign-In with Ethereum Standard
+
+**What is EIP-4361?**
+
+A standard for **off-chain authentication** using Ethereum accounts. Instead of on-chain transactions (expensive gas fees), users sign a message **off-chain** to prove ownership.
+
+**Message Format:**
+```
+example.com wants you to sign in with your Ethereum account:
+0x1234567890123456789012345678901234567890
+
+I accept the Terms of Service at https://example.com/tos
+
+URI: https://example.com
+Version: 1
+Chain ID: 1
+Nonce: 32891756
+Issued At: 2025-01-15T12:34:56.789Z
+Expiration Time: 2025-01-15T13:34:56.789Z
+```
+
+**Why this is secure:**
+- Message includes **domain** (prevents phishing)
+- Message includes **nonce** (prevents replay attacks)
+- Message includes **expiration** (limited validity)
+- Signature proves **wallet ownership** without revealing private key
+
+### Implementation Example
+
+```typescript
+import { createClient } from '@supabase/supabase-js'
+import { ethers } from 'ethers'
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+async function signInWithWallet() {
+  // 1. Check if wallet is available
+  if (typeof window.ethereum === 'undefined') {
+    throw new Error('No Ethereum wallet found. Install MetaMask.')
+  }
+
+  // 2. Request wallet connection
+  const provider = new ethers.BrowserProvider(window.ethereum)
+  const accounts = await provider.send('eth_requestAccounts', [])
+  const address = accounts[0]
+
+  console.log('Connected wallet:', address)
+
+  // 3. Sign in with Supabase Auth
+  const { data, error } = await supabase.auth.signInWithWeb3({
+    chain: 'ethereum',
+    statement: 'I accept the Terms of Service at https://example.com/tos',
+  })
+
+  if (error) {
+    console.error('Authentication failed:', error)
+    return
+  }
+
+  console.log('Authenticated user:', data.user)
+  console.log('Session:', data.session)
+
+  // 4. User is now signed in!
+  // Access token is automatically included in all Supabase requests
+}
+
+// Listen for account changes
+window.ethereum.on('accountsChanged', async (accounts) => {
+  if (accounts.length === 0) {
+    // User disconnected wallet
+    await supabase.auth.signOut()
+  } else {
+    // User switched accounts
+    await signInWithWallet()
+  }
+})
+```
+
+### Security Considerations
+
+**Rate Limiting:**
+- Default: **30 Web3 logins per 5 minutes per IP address**
+- Configurable in dashboard
+- Prevents brute-force attacks
+
+**CAPTCHA Protection:**
+- Enable CAPTCHA for Web3 sign-ins
+- Prevents automated abuse
+- Important because creating Web3 wallets is **free and easy to automate**
+
+**No Email/Phone:**
+- Web3 wallet users have **no email or phone number**
+- Can't recover account via email/SMS
+- Wallet = sole authentication method
+
+**Recommendation:** Allow users to **link email** after Web3 sign-in:
+
+```typescript
+// After Web3 sign-in, prompt user to add email
+const { error } = await supabase.auth.updateUser({
+  email: 'user@example.com'
+})
+
+// Now they can recover via email if wallet is lost
+```
+
+## Comparison to Other Platforms
+
+### Supabase Auth vs Auth0
+
+| Feature | Supabase Auth | Auth0 |
+|---------|---------------|-------|
+| **Pricing** | $25/mo (50K MAU) | ~$1,500/mo (10K MAU) |
+| **Free Tier** | 50,000 MAU | 7,000 MAU |
+| **Open Source** | ✅ Yes | ❌ No |
+| **Database Integration** | ✅ Native (Postgres) | ⚠️ External |
+| **Web3 Wallets** | ✅ Native | ⚠️ Via extensions |
+| **Self-Hosting** | ✅ Yes | ❌ No |
+| **Enterprise SSO** | ✅ SAML | ✅ SAML + more |
+| **Best For** | Startups, SMBs, Web3 | Enterprise |
+
+**Key Insight:** Supabase is **60x cheaper** for 50K MAU than Auth0.
+
+### Supabase Auth vs Privy
+
+| Feature | Supabase Auth | Privy |
+|---------|---------------|-------|
+| **Primary Focus** | Full-stack BaaS | Web3 wallet onboarding |
+| **Embedded Wallets** | ❌ No | ✅ Yes (MPC-based) |
+| **Web3 Wallet Sign-In** | ✅ Yes | ✅ Yes |
+| **OAuth/Social** | ✅ Yes (20+ providers) | ✅ Yes (10+ providers) |
+| **Database** | ✅ Included (Postgres) | ❌ Bring your own |
+| **Pricing** | Pay-per-use | Custom (higher) |
+| **Progressive Onboarding** | ⚠️ Manual | ✅ Built-in |
+| **Best For** | Web2 + Web3 hybrid apps | Pure Web3 dApps |
+
+**Key Insight:** Privy is **specialized for Web3**, Supabase is **general-purpose with Web3 support**.
+
+## Real-World Use Cases
+
+### Use Case 1: Hybrid Social + Web3 App
+
+**Scenario:** NFT marketplace where users can sign in with Google OR their Ethereum wallet
+
+```typescript
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+// Option 1: Sign in with Google
+async function signInWithGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google'
+  })
+}
+
+// Option 2: Sign in with Ethereum wallet
+async function signInWithEthereum() {
+  const { data, error } = await supabase.auth.signInWithWeb3({
+    chain: 'ethereum'
+  })
+}
+
+// Check current user
+const { data: { user } } = await supabase.auth.getUser()
+
+if (user) {
+  console.log('User ID:', user.id)
+  console.log('Email:', user.email) // Only for OAuth users
+  console.log('Wallet:', user.user_metadata?.wallet_address) // Only for Web3 users
+
+  // Fetch user's NFT collection
+  const { data: nfts } = await supabase
+    .from('nfts')
+    .select('*')
+    .eq('owner_id', user.id)
+}
+```
+
+### Use Case 2: Passwordless SaaS with Magic Links
+
+**Scenario:** B2B SaaS tool with magic link authentication (no passwords)
+
+```typescript
+// Send magic link
+async function sendMagicLink(email: string) {
+  const { data, error } = await supabase.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: 'https://app.example.com/dashboard'
+    }
+  })
+
+  if (error) {
+    console.error('Failed to send magic link:', error)
+    return
+  }
+
+  console.log('Magic link sent to:', email)
+}
+
+// User clicks link in email, automatically signed in
+// On redirect:
+const { data: { session } } = await supabase.auth.getSession()
+
+if (session) {
+  // User is authenticated!
+  console.log('Logged in as:', session.user.email)
+}
+```
+
+### Use Case 3: Multi-Tenant App with Row-Level Security
+
+**Scenario:** Project management tool where users can only see their team's data
+
+```sql
+-- Enable RLS on projects table
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Users can only see projects in their team
+CREATE POLICY "Team members can view team projects"
+  ON projects
+  FOR SELECT
+  USING (
+    team_id IN (
+      SELECT team_id
+      FROM team_members
+      WHERE user_id = auth.uid()
+    )
+  );
+
+-- Policy: Team admins can delete projects
+CREATE POLICY "Team admins can delete projects"
+  ON projects
+  FOR DELETE
+  USING (
+    EXISTS (
+      SELECT 1
+      FROM team_members
+      WHERE user_id = auth.uid()
+        AND team_id = projects.team_id
+        AND role = 'admin'
+    )
+  );
+```
+
+**Client code:**
+```typescript
+// RLS is enforced automatically!
+const { data: projects } = await supabase
+  .from('projects')
+  .select('*')
+// Only returns projects user has access to
+```
+
+## Key Takeaways
+
+1. **Supabase Auth is a comprehensive, open-source authentication platform** that supports email/password, passwordless (magic links, OTP), OAuth (20+ providers), and Web3 wallets (Ethereum, Solana)
+
+2. **Database-first approach** using PostgreSQL provides unified data model, built-in Row Level Security, and simplified stack
+
+3. **Web3 authentication uses EIP-4361** (Sign-In with Ethereum) for off-chain, gasless wallet-based authentication
+
+4. **Significantly cheaper than competitors** (60x cheaper than Auth0 for 50K MAU) while being open-source and self-hostable
+
+5. **Best for hybrid apps** that need both traditional web2 authentication and modern web3 wallet support
+
+6. **Row Level Security (RLS)** enables database-level authorization tied directly to authentication
+
+**Next:** We'll explore Privy's embedded wallet approach and LazorKit's Solana-specific passkey solution.
+          
+

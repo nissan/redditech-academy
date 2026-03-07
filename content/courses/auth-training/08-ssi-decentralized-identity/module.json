@@ -1,0 +1,28 @@
+{
+  "id": "08-ssi-decentralized-identity",
+  "title": "Self-Sovereign Identity & Decentralized Identity",
+  "slug": "08-ssi-decentralized-identity",
+  "description": "Master the future of digital identity with Self-Sovereign Identity (SSI), Decentralized Identifiers (DIDs), Verifiable Credentials, and user-controlled identity systems.",
+  "difficulty": "advanced",
+  "order": 8,
+  "estimatedHours": 3,
+  "learningObjectives": [
+    "Understand the principles of Self-Sovereign Identity (SSI)",
+    "Master Decentralized Identifiers (DIDs) and DID methods",
+    "Learn Verifiable Credentials (VCs) and Verifiable Presentations (VPs)",
+    "Implement selective disclosure and zero-knowledge proofs",
+    "Build SSI applications with digital wallets",
+    "Understand DIDComm protocol for peer-to-peer communication",
+    "Navigate the SSI ecosystem and standards (W3C, EU eIDAS 2.0)"
+  ],
+  "prerequisiteModules": ["01-auth-fundamentals", "03-oidc"],
+  "badge": {
+    "id": "ssi-expert",
+    "name": "SSI & Decentralized Identity Expert",
+    "description": "Mastered Self-Sovereign Identity, DIDs, Verifiable Credentials, and decentralized identity systems",
+    "icon": "🆔",
+    "color": "advanced"
+  },
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

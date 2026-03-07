@@ -1,0 +1,57 @@
+---
+title: "Authentication vs Authorization: The Foundation"
+description: "Learn the fundamental difference between proving who you are (authentication) and what you're allowed to do (authorization)."
+slug: "auth-vs-authz"
+duration: 15
+order: 1
+keyTakeaways:
+  - "Authentication verifies identity (who you are)"
+  - "Authorization determines permissions (what you can do)"
+  - "These are separate processes that work together"
+  - "MFA strengthens authentication by requiring multiple factors"
+  - "Authorization happens after successful authentication"
+---
+
+# Authentication vs Authorization: The Foundation
+
+Two concepts form the bedrock of Identity and Access Management (IAM): **authentication** and **authorization**. While often confused, they serve distinct purposes in securing systems.
+
+## Authentication: Proving Who You Are
+
+**Authentication** is the process of verifying identity. When you log into a system, you prove you are who you claim to be.
+
+Common authentication factors include:
+- **Something you know**: Password, PIN, security questions
+- **Something you have**: Phone, hardware token, smart card
+- **Something you are**: Fingerprint, facial recognition, iris scan
+
+**Multi-Factor Authentication (MFA)** combines two or more factors for stronger security. For example, password + SMS code or password + fingerprint.
+
+## Authorization: Deciding What You Can Do
+
+**Authorization** determines what an authenticated user is permitted to access or perform. It happens *after* authentication.
+
+Examples:
+- An employee can view company documents but only managers can approve expenses
+- A user can read their own profile but only admins can delete users
+- A mobile app can access your photos but not your contacts (if you only granted photo permission)
+
+Authorization answers: "Now that I know who you are, what are you allowed to do?"
+
+## Real-World Analogy
+
+Think of airport security:
+
+1. **Authentication**: You show your ID and boarding pass to prove you're the person on the ticket
+2. **Authorization**: The gate agent checks if your ticket allows you to board *this specific flight* at *this specific time*
+
+Your ID proves who you are. Your ticket grants you permission to board.
+
+## In Practice: Web Applications
+
+When you sign into a web application:
+
+1. **Authentication**: You enter username and password. The system verifies these credentials and issues a session token
+2. **Authorization**: On each request, the system checks the token to determine what resources you can access
+
+These processes are separate but complementary. Strong authentication without proper authorization leaves data exposed. Granular authorization without reliable authentication cannot trust user identity.

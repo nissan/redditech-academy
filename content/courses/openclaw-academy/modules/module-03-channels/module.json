@@ -1,0 +1,16 @@
+{
+  "id": "module-03-channels",
+  "slug": "module-03-channels",
+  "order": 3,
+  "title": "The Channel System",
+  "description": "How OpenClaw connects to messaging platforms \u2014 architecture, Telegram, WhatsApp, Discord, Slack, and the broader channel ecosystem.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "The Channel System Badge",
+    "icon": "\ud83d\udce8",
+    "description": "Completed the The Channel System module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

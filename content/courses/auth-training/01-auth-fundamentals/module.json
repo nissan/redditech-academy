@@ -1,0 +1,24 @@
+{
+  "id": "auth-fundamentals",
+  "slug": "01-auth-fundamentals",
+  "order": 1,
+  "title": "Authentication vs Authorization Fundamentals",
+  "description": "Master the core concepts of identity: understanding who users are (authentication) and what they can do (authorization). Learn about tokens, claims, scopes, and the evolution of modern IAM.",
+  "difficulty": "beginner",
+  "estimatedHours": 3,
+  "badge": {
+    "name": "Authentication Master",
+    "icon": "🎓",
+    "description": "Completed Authentication Fundamentals"
+  },
+  "learningObjectives": [
+    "Distinguish between authentication and authorization with real-world examples",
+    "Understand the roles of Identity Providers (IdPs) and Relying Parties (RPs)",
+    "Identify the purpose and structure of Access Tokens, ID Tokens, and Refresh Tokens",
+    "Explain claims, scopes, and audiences in identity systems",
+    "Trace the evolution from LDAP through SAML, OAuth, OIDC, to FIDO"
+  ],
+  "prerequisiteModules": [],
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

@@ -1,0 +1,173 @@
+---
+title: "API Protection & Analytics Portal"
+slug: "api-analytics-portal"
+description: "Secure API access and implement fine-grained authorization for the classified analytics portal"
+duration: 35
+order: 5
+keyTakeaways:
+  - "ABAC using OIDC claims enables clearance-based access control for classified systems"
+  - "DPoP (Demonstrating Proof-of-Possession) prevents token theft and replay attacks"
+  - "mTLS binds tokens to specific client certificates for additional security"
+  - "Comprehensive audit logging is essential for compliance and incident investigation"
+  - "API security requires layered defense: authentication, authorization, and runtime protection"
+prerequisites: ["executive-analysis", "command-control-platform", "cloud-telemetry-ai"]
+---
+
+# API Protection & Analytics Portal
+
+## System Overview
+
+Apex's **AI/Analytics Portal** provides intelligence analysts with access to:
+
+- **Classified sensor data**: Raw and processed telemetry from deployed systems
+- **AI threat models**: Machine learning models for threat classification and prediction
+- **Mission planning tools**: Geospatial analysis and scenario modeling
+- **Historical analytics**: Trend analysis and performance metrics across operations
+
+### Security and Compliance Context
+
+This system processes data at multiple classification levels (Secret, Top Secret, TS/SCI) and must comply with:
+
+- **ITAR (International Traffic in Arms Regulations)**: Export control for defense technology
+- **NIST SP 800-53**: Security controls for classified information systems
+- **DoD Cloud Security Requirements**: FedRAMP High / IL5 equivalents
+- **Audit Requirements**: Full traceability of all data access for security investigations
+
+| User Type | Example | Clearance | Access Needs |
+|-----------|---------|-----------|--------------|
+| **Intelligence Analyst** | Lt. Commander Martinez | TS/SCI | Full sensor data, AI models, mission planning |
+| **Operations Analyst** | Civilian contractor Chen | Secret | Aggregated statistics, performance metrics only |
+| **Partner Analyst** | Allied officer Schmidt | NATO Secret | Specific mission data, limited AI access |
+| **Engineering Team** | Developer Patel | Confidential | Anonymized test data, model performance metrics |
+
+---
+
+## Your Task
+
+Design API security and authorization for the Analytics Portal. Focus on clearance-based access control, token security (DPoP + mTLS), and audit/compliance requirements.
+
+<CaseStudyResponse
+  lessonId="api-analytics-portal"
+  moduleId="10-applied-case-study"
+  guidingQuestions={[
+    "How should clearance levels and need-to-know be enforced? What OIDC claims encode security clearance, and how is ABAC implemented?",
+    "What is DPoP (Demonstrating Proof-of-Possession) and how does it prevent stolen token attacks? Why combine it with mTLS?",
+    "What API security patterns protect against common attacks (OWASP API Top 10)? How do you implement rate limiting, input validation, and output filtering?",
+    "What audit and compliance logging is required? How do you export identity and access events to SIEM systems?",
+    "How do you handle cross-classification contamination? What prevents a Secret-cleared user from accessing TS/SCI data?"
+  ]}
+  sampleResponse={`**Clearance-Based ABAC Implementation:**
+
+Multi-attribute authorization using OIDC claims:
+
+1. **Clearance Level Claims**: IdP issues ID tokens with clearance attributes:
+   \`\`\`json
+   {"{"}
+     "sub": "analyst-martinez-6471",
+     "clearance_level": "TS/SCI",
+     "clearance_caveat": ["SI", "TK", "NOFORN"],
+     "need_to_know": ["INDOPACIFIC-OPS", "AI-THREAT-MODELS"],
+     "organization": "AUS-DEFENCE-INTEL",
+     "citizenship": "AUS"
+   {"}"}
+   \`\`\`
+
+2. **Policy-as-Code Authorization**: OPA/Cedar policies evaluate claims against resource metadata:
+   \`\`\`rego
+   allow {"{"}
+     input.user.clearance_level >= data.resource.classification
+     input.user.need_to_know[_] == data.resource.compartment
+     data.resource.citizenship_restriction == input.user.citizenship
+   {"}"}
+   \`\`\`
+
+3. **Attribute Propagation**: Access tokens include clearance claims; API gateway validates on every request
+4. **Dynamic Adjustment**: Real-time clearance revocation via token introspection or short token lifetimes (15 min)
+5. **Compartmentalization**: Need-to-know enforced at resource level (mission, geographic region, technology area)
+
+**DPoP + mTLS Token Binding:**
+
+Prevent token theft with cryptographic binding:
+
+1. **DPoP (RFC 9449)**: Client proves possession of private key bound to access token:
+   - Client generates key pair, includes public key in DPoP proof JWT
+   - Access token includes thumbprint of DPoP public key
+   - Every API request includes fresh DPoP proof (signed with private key)
+   - Server verifies proof signature and thumbprint match
+
+2. **mTLS Certificate Binding**: Access tokens bound to client TLS certificate:
+   - Analysts use smart cards or hardware tokens with X.509 certificates
+   - Token includes certificate thumbprint confirmation claim (RFC 8705)
+   - API gateway validates certificate matches thumbprint in token
+   - Prevents token use from different device/client
+
+3. **Combined Defense**: Even if token intercepted, attacker cannot use it without:
+   - DPoP private key (never transmitted)
+   - Client certificate private key (hardware-protected)
+
+**API Security Patterns:**
+
+Multi-layered API protection:
+
+- **Authentication**: OAuth 2.0 Bearer tokens + DPoP proof + mTLS certificate
+- **Authorization**: Per-request policy evaluation against OIDC claims
+- **Rate Limiting**: Per-user, per-clearance-level quotas (prevent data exfiltration)
+- **Input Validation**: Schema validation (OpenAPI), SQL injection prevention, parameter sanitization
+- **Output Filtering**: Data masking based on clearance (redact TS fields for Secret users)
+- **Encryption**: TLS 1.3 in transit, AES-256 at rest with key management (HSM/KMS)
+- **API Versioning**: Controlled rollout of new endpoints with backward compatibility
+- **CORS**: Strict origin policies preventing unauthorized web application access
+
+**Audit and Compliance Logging:**
+
+Comprehensive traceability:
+
+1. **Access Logs**: Every API request logged with:
+   - User identity (sub claim)
+   - Timestamp (ISO 8601 UTC)
+   - Resource accessed (endpoint, query parameters)
+   - Authorization decision (allow/deny + policy reason)
+   - Classification level of accessed data
+   - Source IP and certificate fingerprint
+
+2. **SIEM Integration**: Logs exported to security information and event management:
+   - Splunk/ELK/Azure Sentinel with correlation rules
+   - Anomaly detection (unusual access patterns, off-hours access, bulk downloads)
+   - Alerting on privilege escalation attempts or clearance mismatches
+
+3. **Immutable Audit Trail**: Logs signed and stored in append-only storage (WORM)
+4. **Retention**: 7 years minimum per ITAR/DoD requirements
+5. **Privacy Protection**: PII minimized but user identity preserved for investigations
+
+**Cross-Classification Protection:**
+
+Prevent information leakage:
+
+- **Label-Based Access Control**: Every data object tagged with classification and compartment
+- **Fail-Secure**: Authorization denies by default; explicit policy grant required
+- **Session Isolation**: Separate sessions for different classification levels (no mixing)
+- **Data Sanitization**: Aggregated reports verified for classification bleed (no TS statistics to Secret users)
+- **Watermarking**: Unique identifiers embedded in exported data for leak tracking
+- **Administrative Separation**: Dual-authorization for cross-classification operations`}
+  relatedConcepts={[
+    { module: "Module 02", concept: "OAuth 2.0 DPoP (RFC 9449)" },
+    { module: "Module 02", concept: "mTLS and Certificate-Bound Tokens" },
+    { module: "Module 06", concept: "Attribute-Based Access Control (ABAC)" },
+    { module: "Module 06", concept: "Policy-as-Code (OPA/Cedar)" },
+    { module: "Module 07", concept: "SAML Attributes and Federation" }
+  ]}
+/>
+
+---
+
+## Key Considerations
+
+Think about these compliance and security challenges:
+
+- **Spillage**: What if TS/SCI data is accidentally sent to a Secret-cleared user? How do you detect and remediate?
+- **Insider Threat**: How do you detect analysts accessing data outside their normal patterns?
+- **Token Lifetime**: Balance security (short-lived tokens) vs. usability (not re-authenticating constantly)
+- **Performance**: Policy evaluation on every request; how do you cache decisions without compromising security?
+- **Incident Response**: When a security event occurs, how quickly can you revoke access?
+
+Your design should demonstrate understanding of fine-grained authorization, token security mechanisms (DPoP, mTLS), and compliance requirements for classified systems.

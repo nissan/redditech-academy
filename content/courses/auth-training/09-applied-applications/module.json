@@ -1,0 +1,27 @@
+{
+  "id": "09-applied-applications",
+  "title": "Applied Applications: Real-World Case Studies",
+  "slug": "09-applied-applications",
+  "description": "Explore how authentication and authorization principles are implemented in production through comprehensive case studies of LazorKit, Privy, Supabase Auth, and Web3 authentication platforms.",
+  "difficulty": "advanced",
+  "order": 9,
+  "estimatedHours": 3,
+  "learningObjectives": [
+    "Analyze how theoretical IAM concepts are applied in production systems",
+    "Compare and contrast different authentication architecture approaches",
+    "Understand Web3 wallet authentication and embedded wallet security",
+    "Evaluate trade-offs in authentication platform selection",
+    "Learn from real-world implementation patterns and best practices",
+    "Apply course principles to practical authentication challenges"
+  ],
+  "prerequisiteModules": ["01-auth-fundamentals", "02-oauth2", "03-oidc", "05-fido2"],
+  "badge": {
+    "id": "applied-applications-expert",
+    "name": "Applied Applications Expert",
+    "description": "Mastered real-world authentication implementations and can evaluate and apply IAM solutions in production contexts",
+    "icon": "🛠️",
+    "color": "advanced"
+  },
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

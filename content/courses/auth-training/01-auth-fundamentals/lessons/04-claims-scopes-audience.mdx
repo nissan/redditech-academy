@@ -1,0 +1,220 @@
+---
+id: claims-scopes-audience
+title: Claims, Scopes, and Audiences
+slug: claims-scopes-audience
+description: Learn how identity information is structured and limited through claims, scopes, and audience restrictions.
+duration: 20
+order: 4
+keyTakeaways:
+  - Claims are statements about the user (email, name, custom attributes)
+  - Scopes define requested permissions (read:profile, write:posts)
+  - Audiences restrict which APIs can accept a token
+  - Scopes are requested by clients, granted by users, enforced by APIs
+  - Audience validation prevents token misuse across different services
+prerequisites:
+  - token-types
+---
+
+# Claims, Scopes, and Audiences
+
+Identity systems structure user information and permissions through three key concepts: **claims** (statements about the user), **scopes** (requested permissions), and **audiences** (who can use a token).
+
+## Claims: Statements About Identity
+
+A **claim** is a piece of information asserted about a subject (user). Claims are name-value pairs included in tokens.
+
+**Standard Claims (OpenID Connect):**
+```
+sub      - Subject (unique user ID)
+name     - Full name
+email    - Email address
+picture  - Profile photo URL
+phone    - Phone number
+address  - Physical address
+```
+
+**Custom Claims:**
+Organizations can add custom claims for business logic:
+```
+department    - Engineering
+employee_id   - EMP-12345
+access_level  - 3
+groups        - ["admins", "developers"]
+```
+
+**Example JWT with Claims:**
+```json
+{
+  "sub": "auth0|507f1f77bcf86cd799439011",
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "email_verified": true,
+  "department": "Engineering",
+  "roles": ["developer", "team-lead"],
+  "iat": 1672527600,
+  "exp": 1672531200
+}
+```
+
+**Why Claims Matter:**
+- Enable authorization decisions (check role claim)
+- Personalize user experience (display name)
+- Reduce API calls (include common user data)
+
+## Scopes: Requesting Permissions
+
+A **scope** is a permission that an application requests from a user or authorization server. Scopes define what actions an access token can perform.
+
+**OAuth 2.0 Scopes:**
+Scopes follow the pattern: `resource:action` or `permission_name`
+
+**Examples:**
+```
+read:profile     - Read user profile
+write:posts      - Create posts
+admin:users      - Manage users
+openid           - Request OIDC authentication
+email            - Request email claim
+profile          - Request profile claims (name, picture)
+offline_access   - Request refresh token
+```
+
+**Scope Request Example:**
+```
+https://idp.com/authorize?
+  client_id=abc123&
+  scope=openid email profile read:posts write:posts&
+  response_type=code&
+  redirect_uri=https://app.com/callback
+```
+
+**User Consent:**
+When scopes are requested, users often see a consent screen:
+
+"Example App wants to:"
+✓ View your email address
+✓ View your profile information
+✓ Read your posts
+✓ Create posts on your behalf
+
+**Scope Enforcement:**
+- **Client-side**: Request only necessary scopes (principle of least privilege)
+- **Server-side**: APIs validate scope claims in access tokens before allowing actions
+
+### API Scope Validation
+
+```typescript
+// Express.js middleware to check scopes
+function requireScope(requiredScope: string) {
+  return (req, res, next) => {
+    const token = extractToken(req);
+    const decoded = verifyAndDecodeToken(token);
+
+    const scopes = decoded.scope?.split(' ') || [];
+
+    if (!scopes.includes(requiredScope)) {
+      return res.status(403).json({
+        error: 'insufficient_scope',
+        message: `This endpoint requires '${requiredScope}' scope`
+      });
+    }
+
+    next();
+  };
+}
+
+// Protect endpoints with scope requirements
+app.get('/api/posts', requireScope('read:posts'), async (req, res) => {
+  const posts = await getPosts();
+  res.json(posts);
+});
+
+app.post('/api/posts', requireScope('write:posts'), async (req, res) => {
+  const newPost = await createPost(req.body);
+  res.json(newPost);
+});
+```
+
+## Audience: Who Can Use This Token
+
+The **audience (aud)** claim specifies which resource server (API) a token is intended for. It prevents token misuse across different services.
+
+**Why Audience Matters:**
+
+Without audience restrictions, a token issued for API-A could be sent to API-B. If both APIs trust the same IdP, API-B might accept the token—even though it wasn't meant for it.
+
+**Example Attack (without audience):**
+1. Attacker obtains access token for "read:profile" on Social Network API
+2. Attacker sends same token to Banking API (also trusts same IdP)
+3. Banking API validates signature (it's valid!) and grants access
+4. Attacker accesses bank data with social media token
+
+**Solution: Audience Validation**
+```json
+{
+  "iss": "https://idp.example.com",
+  "sub": "user123",
+  "aud": "https://api.banking.example.com",
+  "scope": "read:accounts",
+  "exp": 1672531200
+}
+```
+
+Each API must verify that `aud` matches its own identifier:
+
+```typescript
+function validateToken(token: string) {
+  const decoded = jwt.verify(token, publicKey);
+
+  if (decoded.aud !== 'https://api.banking.example.com') {
+    throw new Error('Token audience mismatch');
+  }
+
+  return decoded;
+}
+```
+
+**Multiple Audiences:**
+Some tokens support multiple audiences (array):
+```json
+{
+  "aud": ["https://api.example.com", "https://admin.example.com"]
+}
+```
+
+## Putting It All Together
+
+**Claims**, **scopes**, and **audiences** work together:
+
+1. **Application requests scopes**: "I want read:profile and write:posts permissions"
+2. **User grants consent**: "Yes, I allow this app to read my profile and create posts"
+3. **IdP issues tokens with claims**: Access token includes scope claim and audience
+4. **API validates**: Check signature, audience, scope, and expiration
+5. **Authorization decision**: Does this token have the right scope for this action?
+
+**Example Flow:**
+```
+Client requests: scope=read:posts write:posts
+IdP issues access token:
+{
+  "iss": "https://idp.com",
+  "sub": "user123",
+  "aud": "https://api.example.com",
+  "scope": "read:posts write:posts",
+  "email": "user@example.com",  // claim
+  "role": "editor",              // custom claim
+  "exp": 1672531200
+}
+
+API receives request: GET /api/posts
+API validates: aud ✓, scope includes read:posts ✓
+API grants access
+
+API receives request: POST /api/posts
+API validates: aud ✓, scope includes write:posts ✓
+API grants access
+
+API receives request: DELETE /api/users/456
+API validates: aud ✓, scope does NOT include admin:users ✗
+API denies access (403 Forbidden)
+```

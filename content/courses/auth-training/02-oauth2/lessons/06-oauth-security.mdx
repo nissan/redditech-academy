@@ -1,0 +1,280 @@
+---
+title: "OAuth 2.0 Security Pitfalls"
+description: "Identify and prevent common OAuth security vulnerabilities including replay attacks, token leakage, and redirect URI manipulation."
+slug: "06-oauth-security"
+duration: 25
+order: 6
+prerequisites: ["token-lifecycle"]
+keyTakeaways:
+  - "Always validate redirect URIs with exact matching"
+  - "Use PKCE to prevent authorization code interception"
+  - "Never put tokens in URLs (use Authorization Code Flow, not Implicit)"
+  - "Validate state parameter to prevent CSRF attacks"
+  - "APIs must check both token validity AND required scopes"
+---
+
+# OAuth 2.0 Security Pitfalls
+
+While OAuth 2.0 is powerful, it's also complex. Misconfigurations and implementation flaws can lead to serious security vulnerabilities. Understanding these pitfalls is essential for secure deployments.
+
+## 1. Redirect URI Manipulation
+
+**The Attack:**
+Attacker manipulates the redirect_uri parameter to send the authorization code to their own server.
+
+**Vulnerable Flow:**
+```
+https://auth.example.com/authorize?
+  client_id=legitimate-app&
+  redirect_uri=https://attacker.com/steal&  ← Attacker-controlled!
+  response_type=code
+```
+
+If the authorization server doesn't validate redirect URIs, the code is sent to the attacker.
+
+**Prevention:**
+1. **Pre-register redirect URIs**: Store allowed URIs during client registration
+2. **Exact match validation**: Don't use substring or regex matching
+3. **No wildcard domains**: `*.example.com` is dangerous
+4. **HTTPS only**: Except `localhost` for development
+
+**Secure Configuration:**
+```json
+{
+  "client_id": "abc123",
+  "redirect_uris": [
+    "https://app.example.com/callback",
+    "myapp://callback"
+  ]
+}
+```
+
+**Server Validation:**
+```typescript
+function validateRedirectUri(providedUri: string, registeredUris: string[]) {
+  // Exact match only - no substring or pattern matching
+  return registeredUris.includes(providedUri);
+}
+```
+
+## 2. Authorization Code Replay Attack
+
+**The Attack:**
+Attacker intercepts authorization code and uses it before the legitimate client.
+
+**Without PKCE:**
+1. User authenticates, code sent to legitimate app
+2. Attacker intercepts code (network sniffing, browser history)
+3. Attacker exchanges code for token
+4. Attacker gains access to user's account
+
+**Prevention:**
+1. **Use PKCE**: Code verifier proves client that started flow is completing it
+2. **Single-use codes**: Mark code as used after first exchange
+3. **Short expiration**: Codes expire in 60 seconds
+4. **TLS/HTTPS**: Prevent interception in transit
+
+**Detection:**
+```typescript
+async function exchangeCode(code: string) {
+  const codeRecord = await db.getAuthCode(code);
+
+  if (!codeRecord) {
+    throw new Error('Invalid authorization code');
+  }
+
+  if (codeRecord.used) {
+    // Code reuse detected - potential attack
+    await revokeAllTokensForClient(codeRecord.clientId);
+    throw new Error('Authorization code already used');
+  }
+
+  if (Date.now() > codeRecord.expiresAt) {
+    throw new Error('Authorization code expired');
+  }
+
+  // Mark as used
+  await db.markCodeAsUsed(code);
+
+  return generateTokens(codeRecord);
+}
+```
+
+## 3. Token Leakage via Referrer Header
+
+**The Attack:**
+Access tokens in URLs leak through Referer headers when users click external links.
+
+**Vulnerable (Implicit Flow - Deprecated):**
+```
+https://app.example.com/callback#access_token=SECRET_TOKEN
+```
+
+User clicks external link:
+```html
+<a href="https://external-site.com">Click here</a>
+```
+
+Referer header sent to external site:
+```
+Referer: https://app.example.com/callback#access_token=SECRET_TOKEN
+```
+
+**Why Implicit Flow is Deprecated:**
+Tokens in URL fragments are logged in browser history, analytics, and leak via Referer headers.
+
+**Solution: Use Authorization Code Flow**
+Tokens never appear in URLs. Only authorization codes (single-use, short-lived) are in URLs.
+
+**Additional Protection:**
+```html
+<!-- Prevent Referer header leakage -->
+<meta name="referrer" content="no-referrer">
+
+<!-- Or selectively for external links -->
+<a href="https://external.com" rel="noreferrer">External Link</a>
+```
+
+## 4. Cross-Site Request Forgery (CSRF)
+
+**The Attack:**
+Attacker tricks victim into completing an OAuth flow that links attacker's account.
+
+**Attack Flow:**
+1. Attacker initiates OAuth flow, gets authorization code
+2. Attacker stops before completing token exchange
+3. Attacker sends callback URL with their code to victim
+4. Victim clicks link, code is exchanged, victim's session links to attacker's account
+
+**Consequence:**
+Victim unknowingly links their app account to attacker's OAuth identity. Attacker can now access victim's data.
+
+**Prevention: State Parameter**
+```typescript
+// Step 1: Generate random state before redirect
+const state = crypto.randomBytes(32).toString('hex');
+await storeStateInSession(state);
+
+const authUrl = `https://auth.example.com/authorize?
+  client_id=${CLIENT_ID}&
+  redirect_uri=${REDIRECT_URI}&
+  state=${state}&
+  response_type=code`;
+
+res.redirect(authUrl);
+
+// Step 2: Validate state on callback
+app.get('/callback', async (req, res) => {
+  const { code, state } = req.query;
+  const expectedState = await getStateFromSession();
+
+  if (state !== expectedState) {
+    return res.status(400).send('CSRF attack detected: state mismatch');
+  }
+
+  // Proceed with token exchange
+  const tokens = await exchangeCode(code);
+  res.redirect('/dashboard');
+});
+```
+
+## 5. Insufficient Scope Validation
+
+**The Attack:**
+API doesn't validate scopes in access tokens, allowing unauthorized actions.
+
+**Vulnerable API:**
+```typescript
+app.delete('/api/users/:id', async (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  const decoded = jwt.verify(token, publicKey);
+
+  // BUG: No scope check!
+  await deleteUser(req.params.id);
+  res.json({ success: true });
+});
+```
+
+Attacker with `read:users` scope can call this endpoint because it doesn't check for `delete:users`.
+
+**Secure API:**
+```typescript
+function requireScope(requiredScope: string) {
+  return (req, res, next) => {
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    const decoded = jwt.verify(token, publicKey);
+
+    const scopes = decoded.scope?.split(' ') || [];
+
+    if (!scopes.includes(requiredScope)) {
+      return res.status(403).json({
+        error: 'insufficient_scope',
+        required_scope: requiredScope,
+      });
+    }
+
+    req.user = decoded;
+    next();
+  };
+}
+
+app.delete('/api/users/:id', requireScope('delete:users'), async (req, res) => {
+  await deleteUser(req.params.id);
+  res.json({ success: true });
+});
+```
+
+## 6. Client Impersonation
+
+**The Attack:**
+Public client (mobile app) impersonates another client by using stolen client_id.
+
+**Scenario:**
+1. Attacker extracts `client_id` from legitimate mobile app
+2. Attacker builds malicious app with same `client_id`
+3. Users authenticate via attacker's app
+4. Attacker intercepts tokens
+
+**Prevention: PKCE + Dynamic Client Registration**
+
+**PKCE** prevents code interception even if client_id is known.
+
+**Dynamic Client Registration (RFC 7591):**
+Instead of static client_id, apps register at runtime and receive unique credentials per installation.
+
+**Additional: App Attestation**
+- iOS: App Attest API
+- Android: Play Integrity API
+
+These prove the client is the legitimate app binary, not a modified/fake version.
+
+## Security Checklist
+
+**Authorization Server:**
+- ✓ Validate redirect URIs (exact match, pre-registered)
+- ✓ Enforce PKCE for public clients
+- ✓ Single-use authorization codes
+- ✓ Short code expiration (60 seconds)
+- ✓ Require HTTPS for all endpoints
+- ✓ Implement rate limiting
+- ✓ Support token revocation
+- ✓ Rotate refresh tokens
+
+**Client Application:**
+- ✓ Use Authorization Code Flow with PKCE
+- ✓ Never use Implicit Flow (deprecated)
+- ✓ Validate state parameter (CSRF protection)
+- ✓ Store tokens securely (not localStorage for SPAs)
+- ✓ Use short-lived access tokens
+- ✓ Implement token refresh logic
+- ✓ Revoke tokens on logout
+- ✓ Don't log tokens or include in error messages
+
+**Resource Server (API):**
+- ✓ Validate token signature
+- ✓ Check expiration (`exp` claim)
+- ✓ Verify audience (`aud` claim)
+- ✓ Enforce scope requirements
+- ✓ Use introspection for opaque tokens
+- ✓ Implement rate limiting
+- ✓ Log access for auditing

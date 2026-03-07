@@ -1,0 +1,185 @@
+{
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the primary benefit of Decentralized Identity (DID) over traditional centralized identity providers?",
+      "options": [
+        "DIDs are faster to authenticate",
+        "DIDs give users control over their identity and credentials",
+        "DIDs are cheaper to implement",
+        "DIDs work without the internet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The key benefit of DID is user control. Unlike centralized systems where Google or Facebook controls your identity, DIDs are owned and controlled by the user through cryptographic keys. This provides portability, privacy, and eliminates single points of failure."
+    },
+    {
+      "id": "q2",
+      "question": "In the Verifiable Credentials model, who signs the credential to prove its authenticity?",
+      "options": [
+        "The Holder (person receiving the credential)",
+        "The Verifier (person checking the credential)",
+        "The Issuer (organization issuing the credential)",
+        "The blockchain network"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Issuer signs the credential with their private key. This cryptographic signature proves the credential was issued by that specific organization and hasn't been tampered with. The Holder later signs the Verifiable Presentation to prove they own the credential."
+    },
+    {
+      "id": "q3",
+      "question": "What does 'selective disclosure' in Verifiable Credentials allow you to do?",
+      "options": [
+        "Share your credentials with selected verifiers only",
+        "Reveal only specific claims from a credential, hiding others",
+        "Choose which blockchain to store your credentials on",
+        "Select different cryptographic algorithms for signing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Selective disclosure allows you to reveal only the necessary claims from a credential while hiding others. For example, proving you're over 21 without revealing your exact birthdate, name, or address. This is typically implemented using BBS+ signatures or zero-knowledge proofs."
+    },
+    {
+      "id": "q4",
+      "question": "What is a DID Document?",
+      "options": [
+        "A legal document proving your identity",
+        "A JSON document containing public keys, authentication methods, and service endpoints for a DID",
+        "A smart contract on the blockchain",
+        "A PDF file stored in your digital wallet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A DID Document is a JSON document that contains the public keys, authentication methods, and service endpoints associated with a DID. When you resolve a DID, you get back its DID Document, which tells you how to verify signatures and communicate with the identity owner."
+    },
+    {
+      "id": "q5",
+      "question": "Which challenge is unique to decentralized identity compared to traditional OAuth/SAML?",
+      "options": [
+        "Phishing attacks",
+        "Man-in-the-middle attacks",
+        "Losing private keys means losing your identity permanently",
+        "Session hijacking"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In decentralized identity, you control your own private keys. If you lose them, there's no 'forgot password' option - your identity is permanently lost unless you've set up recovery mechanisms. This is fundamentally different from OAuth/SAML where the provider can reset your account."
+    },
+    {
+      "id": "q6",
+      "question": "What is the primary advantage of Continuous Access Evaluation (CAE) over traditional token-based authentication?",
+      "options": [
+        "CAE tokens last longer, reducing the need for re-authentication",
+        "CAE allows real-time token revocation based on security events, even before token expiration",
+        "CAE eliminates the need for access tokens entirely",
+        "CAE is faster than traditional authentication"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The key benefit of CAE is real-time revocation. Traditional tokens are valid until expiration, giving attackers a window of opportunity. CAE monitors critical security events (account disabled, password changed, etc.) and immediately revokes tokens, even long-lived ones, providing both security and good user experience."
+    },
+    {
+      "id": "q7",
+      "question": "In Microsoft Entra's CAE implementation, what does the 'xms_cc' claim in the access token indicate?",
+      "options": [
+        "The token has been cross-certified by multiple authorities",
+        "The token supports Continuous Access Evaluation (CAE)",
+        "The token requires cross-origin authentication",
+        "The token is a client credentials token"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The 'xms_cc' claim (specifically 'CP1' value) indicates that the token supports Continuous Access Evaluation. This tells resource servers they can rely on CAE event notifications for this token rather than implementing short token lifetimes."
+    },
+    {
+      "id": "q8",
+      "question": "What is 'impossible travel' detection in adaptive authentication?",
+      "options": [
+        "Blocking access when users travel to restricted countries",
+        "Detecting when a user appears to travel between locations faster than physically possible",
+        "Preventing users from accessing the system while traveling",
+        "Blocking all international travel-related logins"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Impossible travel detection identifies when a user's login location changes faster than physically possible. For example, logging in from New York and then Tokyo 2 hours later is physically impossible (even by the fastest flight), indicating account compromise or credential sharing."
+    },
+    {
+      "id": "q9",
+      "question": "In risk-based access control, what is 'step-up authentication'?",
+      "options": [
+        "Requiring users to change their password periodically",
+        "Requiring additional authentication factors when accessing sensitive resources, even if already logged in",
+        "Using biometric authentication instead of passwords",
+        "Implementing multi-factor authentication at initial login"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Step-up authentication requires additional authentication factors mid-session when accessing particularly sensitive resources. For example, you might log in with just a password to view documents, but need to provide MFA when downloading financial reports. This balances security with user convenience."
+    },
+    {
+      "id": "q10",
+      "question": "Which of these is NOT a typical signal used in risk-based authentication?",
+      "options": [
+        "User's geolocation and IP address reputation",
+        "Time of day and login frequency patterns",
+        "The user's profile picture and display name",
+        "Device compliance status and fingerprint"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Risk-based authentication analyzes behavioral and environmental signals like location, time, device, network, and access patterns. The user's profile picture and display name are not behavioral signals and don't indicate risk. Signals must be measurable, contextual indicators of potential compromise or malicious activity."
+    },
+    {
+      "id": "q11",
+      "question": "What is the fundamental principle that distinguishes Zero Trust from traditional perimeter security?",
+      "options": [
+        "Zero Trust requires more expensive infrastructure",
+        "Zero Trust assumes all network traffic is untrusted, regardless of location",
+        "Zero Trust only works in cloud environments",
+        "Zero Trust eliminates the need for firewalls entirely"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zero Trust's core principle is 'never trust, always verify' - all network traffic, users, and devices are untrusted by default, regardless of whether they're inside or outside the corporate network. This contrasts with perimeter security, which assumes everything inside the network is trusted."
+    },
+    {
+      "id": "q12",
+      "question": "In Zero Trust Architecture, what is the role of the Policy Decision Point (PDP)?",
+      "options": [
+        "It stores user passwords and credentials",
+        "It enforces access decisions at the network gateway",
+        "It evaluates access requests based on identity, device, context, and risk to make allow/deny decisions",
+        "It manages device enrollment and compliance"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Policy Decision Point (PDP) is the 'brain' of Zero Trust that evaluates all available signals (identity, device health, location, risk score, resource sensitivity, etc.) and makes access decisions. The Policy Enforcement Point (PEP) then enforces those decisions."
+    },
+    {
+      "id": "q13",
+      "question": "What is 'micro-segmentation' in Zero Trust?",
+      "options": [
+        "Dividing users into small teams for access control",
+        "Creating granular network zones to isolate workloads and limit lateral movement",
+        "Splitting large databases into smaller partitions",
+        "Segmenting access tokens into smaller claims"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Micro-segmentation divides the network into small, isolated zones (down to individual workloads or applications). This limits lateral movement - if an attacker compromises one application, they can't easily move to others. This contrasts with traditional flat networks where compromising one system gives broad network access."
+    },
+    {
+      "id": "q14",
+      "question": "According to the Zero Trust maturity model presented, at which level does an organization implement Just-In-Time (JIT) access and privilege escalation workflows?",
+      "options": [
+        "Level 1: Enhanced Identity Security",
+        "Level 2: Device Trust & Conditional Access",
+        "Level 3: Micro-Segmentation & Least Privilege",
+        "Level 5: Full Zero Trust"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Level 3 focuses on micro-segmentation and least privilege, which includes implementing Just-In-Time (JIT) access and Just-Enough-Access (JEA). This level goes beyond basic identity and device verification to implement fine-grained, time-limited access controls."
+    },
+    {
+      "id": "q15",
+      "question": "What is the predicted timeline for mainstream adoption of passwordless authentication (passkeys/FIDO2) as the default authentication method?",
+      "options": [
+        "2024-2025",
+        "2025-2027",
+        "2028-2030",
+        "After 2030"
+      ],
+      "correctAnswer": 1,
+      "explanation": "According to the content, passwordless authentication (passkeys/FIDO2) is predicted to reach mainstream adoption by 2025-2027. Major platforms (Apple, Google, Microsoft) have already implemented passkey support, and adoption is accelerating rapidly."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "module-10-case-study",
+  "slug": "module-10-case-study",
+  "order": 10,
+  "title": "Case Study: Our Setup",
+  "description": "How we built on top of OpenClaw: our Mac Mini setup, custom skills, QMD memory backend, and lessons learned.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Case Study: Our Setup Badge",
+    "icon": "\ud83d\udc31",
+    "description": "Completed the Case Study: Our Setup module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

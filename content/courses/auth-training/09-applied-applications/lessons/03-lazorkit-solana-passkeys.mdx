@@ -1,0 +1,806 @@
+---
+title: "LazorKit: Solana Passkeys & Smart Wallets"
+description: "Examine LazorKit's innovative Solana-specific implementation of WebAuthn passkeys with secp256r1 curve support and on-chain signature verification"
+slug: "lazorkit-solana-passkeys"
+duration: 50
+keyTakeaways:
+  - "Solana passkey integration: WebAuthn with secp256r1 curve support via Solana program (not native ed25519)"
+  - "On-chain signature verification: precompile instruction for efficient secp256r1 ECDSA validation"
+  - "Smart wallet architecture: program-owned accounts with passkey-based authorization rules"
+  - "Session keys: delegate temporary signing authority to apps without exposing passkey for every transaction"
+  - "Trade-offs: compute unit costs, curve compatibility challenges, user experience improvements over Phantom/MetaMask"
+---
+
+## LazorKit Solana Passkeys Overview
+
+
+## What is LazorKit?
+
+**LazorKit** is a **Solana-specific smart wallet system** that enables **passwordless authentication** using **WebAuthn passkeys** with **on-chain signature verification**. Unlike traditional Solana wallets that use ed25519 signatures, LazorKit leverages the **secp256r1 (P-256) curve** - the same cryptographic curve used by Apple Passkeys, Android biometrics, and hardware security modules.
+
+### The Innovation: Native Passkey Support on Solana
+
+**The Challenge:**
+```
+Traditional Solana wallets (Phantom, Solflare, etc.):
+  ├─ Use ed25519 signatures
+  ├─ Require browser extensions or mobile apps
+  ├─ Users manage seed phrases (12-24 words)
+  └─ Can't use hardware biometrics natively
+
+Result: Familiar Web3 friction
+```
+
+**LazorKit's Solution:**
+```
+LazorKit smart wallets:
+  ├─ Use secp256r1 signatures (WebAuthn standard)
+  ├─ Work directly in browser (no extension needed)
+  ├─ Leverage device biometrics (Face ID, Touch ID, fingerprint)
+  ├─ On-chain signature verification via SIMD 75
+  └─ No seed phrases needed
+
+Result: True passwordless Web3
+```
+
+### What Makes LazorKit Special?
+
+**1. Solana-Native Passkeys**
+- First implementation of **WebAuthn passkeys on Solana**
+- Uses **secp256r1 curve** (P-256), same as Apple/Android
+- **On-chain verification** via Solana's SIMD 75 precompile
+
+**2. Smart Wallet Architecture**
+- Programmable wallet logic on-chain
+- Policy engine for transaction rules
+- Gasless transactions via paymaster
+- Session keys for temporary access
+
+**3. Beta Stage (Not Production Ready)**
+- Still in **active development**
+- Breaking changes expected
+- Recommended for **prototyping and experimentation** only
+
+## Technical Architecture
+
+### secp256r1 (P-256) Curve Support
+
+**What is secp256r1?**
+
+A NIST-standardized elliptic curve (also called P-256) used by:
+- **Apple:** Secure Enclave for Face ID / Touch ID
+- **Android:** StrongBox / Titan M chip
+- **YubiKey:** FIDO2 hardware keys
+- **WebAuthn:** W3C standard for passwordless auth
+
+**Why it matters:**
+```
+Traditional Web3:
+  User's device → Generates ed25519 key
+                → Not hardware-backed
+                → Software-only security
+
+LazorKit approach:
+  User's device → Generates secp256r1 key in Secure Enclave
+                → Hardware-backed (can't be extracted)
+                → Biometric-protected
+                → Phishing-resistant
+```
+
+### Solana SIMD 75: On-Chain secp256r1 Verification
+
+**What is SIMD 75?**
+
+A Solana Improvement Document that adds **secp256r1 signature verification** as a **precompiled instruction** on Solana. This allows smart contracts to verify WebAuthn signatures directly on-chain.
+
+**Before SIMD 75:**
+```
+Solana supported:
+  ✅ ed25519 (native Solana signatures)
+  ✅ secp256k1 (Ethereum, Bitcoin)
+  ❌ secp256r1 (WebAuthn, Apple, Android)
+
+Result: Couldn't verify passkey signatures on-chain
+```
+
+**After SIMD 75:**
+```
+Solana now supports:
+  ✅ ed25519
+  ✅ secp256k1
+  ✅ secp256r1 (NEW!)
+
+Result: Can verify passkey signatures on-chain!
+```
+
+### LazorKit Smart Wallet Flow
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   User's Device                          │
+│                                                          │
+│  1. User initiates wallet creation                      │
+│     ↓                                                    │
+│  2. Browser calls navigator.credentials.create()        │
+│     ↓                                                    │
+│  3. Device generates secp256r1 keypair in Secure Enclave│
+│     - Private key: Stays in hardware (can't extract)    │
+│     - Public key: Returned to browser                   │
+│     ↓                                                    │
+│  4. LazorKit SDK creates smart wallet on Solana         │
+│     - Stores public key as wallet authority             │
+│     - Deploys programmable wallet contract              │
+└─────────────────────────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────┐
+│              Solana Blockchain (On-Chain)                │
+│                                                          │
+│  ┌───────────────────────────────────────┐             │
+│  │  LazorKit Smart Wallet Program        │             │
+│  │                                       │             │
+│  │  - Owner: secp256r1 public key        │             │
+│  │  - Policy: Transaction rules          │             │
+│  │  - Paymaster: Gas sponsorship         │             │
+│  └───────────────────────────────────────┘             │
+└─────────────────────────────────────────────────────────┘
+
+When user signs transaction:
+  1. Browser prompts biometric (Face ID)
+  2. Secure Enclave signs transaction with secp256r1 private key
+  3. Signature sent to Solana
+  4. SIMD 75 precompile verifies signature on-chain
+  5. Transaction executes if valid
+```
+
+## WebAuthn Integration
+
+### Creating a Passkey Wallet
+
+```typescript
+import { LazorKit } from '@lazorkit/sdk'
+
+async function createPasskeyWallet() {
+  const lazorKit = new LazorKit({
+    network: 'devnet' // or 'mainnet-beta'
+  })
+
+  try {
+    // 1. Prompt user to create passkey
+    // This triggers Face ID / Touch ID / Windows Hello
+    const wallet = await lazorKit.createWallet({
+      authenticatorType: 'platform', // Use device's built-in authenticator
+      userDisplayName: 'Alice Anderson',
+      userId: 'alice@example.com'
+    })
+
+    console.log('✅ Passkey wallet created!')
+    console.log('Wallet Address:', wallet.address)
+    console.log('Public Key (secp256r1):', wallet.publicKey)
+
+    // 2. Behind the scenes:
+    // - Browser called navigator.credentials.create()
+    // - Device generated secp256r1 keypair in Secure Enclave
+    // - LazorKit deployed smart wallet to Solana with public key
+    // - Private key NEVER leaves device hardware
+
+    return wallet
+  } catch (error) {
+    console.error('❌ Failed to create wallet:', error)
+    throw error
+  }
+}
+
+// Create wallet on page load
+createPasskeyWallet()
+```
+
+### Signing Transactions with Passkeys
+
+```typescript
+import { LazorKit } from '@lazorkit/sdk'
+import { Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js'
+
+async function sendSolWithPasskey() {
+  const lazorKit = new LazorKit({ network: 'devnet' })
+
+  // 1. Get user's passkey wallet
+  const wallet = await lazorKit.getWallet()
+
+  if (!wallet) {
+    console.error('No wallet found. Create one first.')
+    return
+  }
+
+  // 2. Build Solana transaction
+  const transaction = new Transaction().add(
+    SystemProgram.transfer({
+      fromPubkey: wallet.publicKey,
+      toPubkey: 'RECIPIENT_ADDRESS',
+      lamports: 0.1 * LAMPORTS_PER_SOL // Send 0.1 SOL
+    })
+  )
+
+  try {
+    // 3. Sign transaction with passkey (triggers biometric prompt)
+    console.log('🔐 Prompting for biometric authentication...')
+
+    const signature = await wallet.signTransaction(transaction)
+
+    console.log('✅ Transaction signed with passkey!')
+    console.log('Signature (secp256r1):', signature)
+
+    // 4. Behind the scenes:
+    // - Browser showed Face ID / Touch ID prompt
+    // - User authenticated with biometric
+    // - Secure Enclave signed transaction with secp256r1 private key
+    // - Signature returned to JavaScript (private key never exposed)
+
+    // 5. Send transaction to Solana
+    const txHash = await lazorKit.sendTransaction(transaction, signature)
+
+    console.log('📤 Transaction sent to Solana')
+    console.log('Transaction Hash:', txHash)
+    console.log(`View on Explorer: https://explorer.solana.com/tx/\${txHash}?cluster=devnet`)
+
+    // 6. On-chain verification:
+    // - Solana receives transaction
+    // - SIMD 75 precompile verifies secp256r1 signature
+    // - Smart wallet program checks signature matches owner public key
+    // - Transaction executes if valid
+
+  } catch (error) {
+    console.error('❌ Transaction failed:', error)
+  }
+}
+
+// Send transaction
+sendSolWithPasskey()
+```
+
+### The WebAuthn API Under the Hood
+
+**What happens when you call `createWallet()`?**
+
+```typescript
+// LazorKit internally calls:
+const credential = await navigator.credentials.create({
+  publicKey: {
+    // Challenge (prevents replay attacks)
+    challenge: new Uint8Array(32), // Random bytes from server
+
+    // Relying Party (your website)
+    rp: {
+      name: 'LazorKit App',
+      id: 'your-app.com'
+    },
+
+    // User info
+    user: {
+      id: new Uint8Array(16), // Random user ID
+      name: 'alice@example.com',
+      displayName: 'Alice Anderson'
+    },
+
+    // Cryptographic parameters
+    pubKeyCredParams: [
+      {
+        type: 'public-key',
+        alg: -7 // ES256 (secp256r1 with SHA-256)
+      }
+    ],
+
+    // Authenticator selection
+    authenticatorSelection: {
+      authenticatorAttachment: 'platform', // Use device's built-in authenticator
+      requireResidentKey: true, // Passkey stored on device
+      userVerification: 'required' // Require biometric
+    },
+
+    // Timeout
+    timeout: 60000 // 60 seconds
+  }
+})
+
+console.log('Credential created:', credential)
+
+// Extract public key
+const publicKey = credential.response.getPublicKey()
+console.log('Public key (secp256r1):', publicKey)
+
+// Deploy smart wallet to Solana with this public key
+```
+
+## Smart Wallet Features
+
+### 1. Policy Engine (Transaction Rules)
+
+**Problem:** Users want granular control over wallet permissions
+
+**Solution:** On-chain policy engine
+
+```typescript
+import { LazorKit, PolicyEngine } from '@lazorkit/sdk'
+
+async function configurePolicies() {
+  const wallet = await lazorKit.getWallet()
+
+  // Define policy: Max 1 SOL per transaction
+  await wallet.addPolicy({
+    type: 'spending_limit',
+    maxAmount: 1 * LAMPORTS_PER_SOL,
+    timeWindow: 3600 // 1 hour
+  })
+
+  // Define policy: Only allow specific program IDs
+  await wallet.addPolicy({
+    type: 'program_allowlist',
+    allowedPrograms: [
+      'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA', // SPL Token
+      'YOUR_NFT_PROGRAM_ID'
+    ]
+  })
+
+  // Define policy: Require multi-sig for large amounts
+  await wallet.addPolicy({
+    type: 'multi_sig',
+    threshold: 2,
+    signers: [wallet.publicKey, GUARDIAN_PUBLIC_KEY],
+    triggerAmount: 10 * LAMPORTS_PER_SOL // Trigger for > 10 SOL
+  })
+
+  console.log('✅ Policies configured')
+}
+```
+
+**Enforcement:**
+- Policies are stored **on-chain** in smart wallet program
+- Every transaction is validated against policies **before execution**
+- Invalid transactions are rejected by the smart wallet program
+
+### 2. Session Keys (Temporary Access)
+
+**Problem:** Users don't want to approve every transaction (e.g., in games)
+
+**Solution:** Delegate temporary signing authority
+
+```typescript
+import { LazorKit } from '@lazorkit/sdk'
+
+async function createSessionKey() {
+  const wallet = await lazorKit.getWallet()
+
+  // Create session key that expires in 1 hour
+  const sessionKey = await wallet.createSessionKey({
+    expiresIn: 3600, // 1 hour
+    scope: {
+      allowedPrograms: ['GAME_PROGRAM_ID'],
+      maxTransactionsPerMinute: 10,
+      maxAmountPerTransaction: 0.01 * LAMPORTS_PER_SOL
+    }
+  })
+
+  console.log('Session Key:', sessionKey.publicKey)
+
+  // Game can now sign transactions with session key
+  // No biometric prompt needed until session expires
+  const transaction = buildGameTransaction()
+  const signature = await sessionKey.sign(transaction)
+
+  console.log('Transaction signed with session key (no biometric)')
+}
+```
+
+**Security:**
+- Session keys are **ephemeral** (short-lived)
+- **Scoped permissions** (can only do specific things)
+- **Revocable** (user can cancel anytime)
+- **On-chain tracking** (audit trail of session key usage)
+
+### 3. Gasless Transactions (Paymaster)
+
+**Problem:** New users don't have SOL for transaction fees
+
+**Solution:** Application sponsors fees
+
+```typescript
+import { LazorKit } from '@lazorkit/sdk'
+
+async function gaslessTransaction() {
+  const wallet = await lazorKit.getWallet()
+
+  // Configure paymaster
+  const paymaster = lazorKit.getPaymaster({
+    sponsor: 'YOUR_PAYMASTER_ACCOUNT'
+  })
+
+  // Build transaction
+  const transaction = new Transaction().add(
+    // Your transaction instructions
+  )
+
+  // Send gasless transaction
+  // Paymaster pays the fees, app is billed later
+  const txHash = await wallet.sendTransaction(transaction, {
+    paymaster: paymaster,
+    gasless: true
+  })
+
+  console.log('✅ Transaction sent (user paid $0 for fees)')
+  console.log('Transaction Hash:', txHash)
+}
+```
+
+## Security Model
+
+### Hardware-Backed Security
+
+**Traditional wallet security:**
+```
+Private key stored in:
+  ├─ Browser localStorage (can be stolen by XSS)
+  ├─ Browser extension (can be compromised)
+  └─ Software keystore (can be extracted)
+
+If malware runs on device → Private key compromised
+```
+
+**LazorKit passkey security:**
+```
+Private key stored in:
+  ├─ Apple Secure Enclave (iPhone/Mac)
+  ├─ Android StrongBox (Pixel, Samsung)
+  ├─ Windows Hello TPM (Surface, Dell)
+  └─ YubiKey FIDO2 chip
+
+Even if malware runs on device → Private key safe (hardware-isolated)
+```
+
+**Key Security Properties:**
+
+1. **Private key never leaves hardware**
+   - Stored in Trusted Execution Environment (TEE)
+   - Signing happens inside secure enclave
+   - Key cannot be extracted, even by OS
+
+2. **Biometric authentication required**
+   - Every transaction requires Face ID / Touch ID
+   - Protects against unauthorized access
+   - No "approve once" vulnerability
+
+3. **Phishing-resistant**
+   - WebAuthn includes domain binding
+   - Signature only valid for specific website
+   - Prevents phishing attacks
+
+### Beta Stage Warnings
+
+**LazorKit is currently in BETA. Do NOT use for production or mainnet funds.**
+
+**Known Limitations:**
+- Smart wallet contracts may have bugs
+- API is subject to breaking changes
+- Limited ecosystem support
+- No insurance fund
+- Limited customer support
+
+**Recommended Use Cases:**
+- Prototyping and experimentation
+- Educational demos
+- Devnet testing
+- Hackathon projects
+
+**NOT Recommended For:**
+- Production applications
+- Mainnet deployments
+- Managing real user funds
+- Enterprise applications
+
+## Comparison to Other Solutions
+
+### LazorKit vs Privy (for Solana)
+
+| Feature | LazorKit | Privy (Solana) |
+|---------|----------|----------------|
+| **Authentication** | WebAuthn passkeys | Email, OAuth, passkeys |
+| **Key Management** | Hardware-backed (Secure Enclave) | MPC (3-shard) |
+| **Signature Curve** | secp256r1 (P-256) | ed25519 (Solana native) |
+| **On-Chain Verification** | ✅ Yes (SIMD 75) | ❌ No (relies on off-chain MPC) |
+| **Smart Wallet** | ✅ Yes (programmable) | ⚠️ Basic |
+| **Gasless Transactions** | ✅ Yes | ✅ Yes |
+| **Multi-Chain** | ❌ Solana only | ✅ EVM + Solana + more |
+| **Production Ready** | ❌ Beta | ✅ Yes |
+| **Best For** | Solana-specific passkey experiments | Production Web3 apps |
+
+**Key Insight:** LazorKit is **Solana-specific and experimental**, Privy is **multi-chain and production-ready**.
+
+### LazorKit vs Traditional Solana Wallets (Phantom)
+
+| Feature | LazorKit | Phantom Wallet |
+|---------|----------|----------------|
+| **Signature Type** | secp256r1 (WebAuthn) | ed25519 (Solana native) |
+| **Hardware Backing** | ✅ Always (Secure Enclave) | ⚠️ Optional (Ledger support) |
+| **Seed Phrase** | ❌ No seed phrase | ✅ 12-word seed phrase required |
+| **Browser Extension** | ❌ Not needed | ✅ Required |
+| **Biometric Auth** | ✅ Built-in (Face ID, Touch ID) | ⚠️ Via device unlock |
+| **Smart Wallet** | ✅ Programmable on-chain | ❌ Standard wallet |
+| **Phishing Resistance** | ✅ Domain-bound signatures | ⚠️ User must verify URL |
+| **Adoption** | ❌ Very low (beta) | ✅ Very high (millions of users) |
+
+**Key Insight:** LazorKit offers **superior security** but is **early-stage**, Phantom is **proven and widely adopted**.
+
+## Real-World Implementation Example
+
+```typescript
+/**
+ * Complete LazorKit Implementation
+ * Demonstrates passkey wallet creation, transaction signing, and policy configuration
+ */
+
+import {
+  LazorKit,
+  LazorKitWallet,
+  PolicyEngine,
+  SessionKey
+} from '@lazorkit/sdk'
+import {
+  Connection,
+  Transaction,
+  SystemProgram,
+  LAMPORTS_PER_SOL,
+  PublicKey
+} from '@solana/web3.js'
+
+// Initialize LazorKit
+const lazorKit = new LazorKit({
+  network: 'devnet', // or 'mainnet-beta'
+  rpcUrl: 'https://api.devnet.solana.com'
+})
+
+/**
+ * Step 1: Create Passkey Wallet
+ */
+async function createWallet(userName: string, userEmail: string) {
+  try {
+    console.log('Creating passkey wallet...')
+    console.log('Please authenticate with biometric')
+
+    const wallet = await lazorKit.createWallet({
+      authenticatorType: 'platform', // Device's built-in authenticator
+      userDisplayName: userName,
+      userId: userEmail
+    })
+
+    console.log('✅ Wallet created successfully!')
+    console.log('Address:', wallet.address)
+    console.log('Public Key (secp256r1):', wallet.publicKey.toBase58())
+
+    // Store wallet reference for later use
+    localStorage.setItem('lazorkit-wallet-id', wallet.id)
+
+    return wallet
+  } catch (error: any) {
+    console.error('Failed to create wallet:', error)
+
+    if (error.name === 'NotAllowedError') {
+      throw new Error('User cancelled biometric authentication')
+    } else if (error.name === 'NotSupportedError') {
+      throw new Error('WebAuthn not supported on this device')
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Step 2: Get Existing Wallet
+ */
+async function getWallet(): Promise<LazorKitWallet> {
+  const walletId = localStorage.getItem('lazorkit-wallet-id')
+
+  if (!walletId) {
+    throw new Error('No wallet found. Create one first.')
+  }
+
+  const wallet = await lazorKit.getWallet(walletId)
+
+  if (!wallet) {
+    throw new Error('Wallet not found')
+  }
+
+  return wallet
+}
+
+/**
+ * Step 3: Send SOL with Passkey Signature
+ */
+async function sendSol(recipientAddress: string, amount: number) {
+  const wallet = await getWallet()
+
+  // Build transaction
+  const transaction = new Transaction().add(
+    SystemProgram.transfer({
+      fromPubkey: new PublicKey(wallet.address),
+      toPubkey: new PublicKey(recipientAddress),
+      lamports: amount * LAMPORTS_PER_SOL
+    })
+  )
+
+  try {
+    console.log(`Sending \${amount} SOL to \${recipientAddress}`)
+    console.log('🔐 Please authenticate with biometric...')
+
+    // Sign with passkey (triggers Face ID / Touch ID)
+    const signature = await wallet.signTransaction(transaction)
+
+    console.log('✅ Transaction signed!')
+
+    // Send to Solana
+    const txHash = await lazorKit.sendTransaction(transaction, signature)
+
+    console.log('📤 Transaction sent!')
+    console.log('Transaction Hash:', txHash)
+    console.log(`View: https://explorer.solana.com/tx/\${txHash}?cluster=devnet`)
+
+    return txHash
+  } catch (error) {
+    console.error('Transaction failed:', error)
+    throw error
+  }
+}
+
+/**
+ * Step 4: Configure Wallet Policies
+ */
+async function setupPolicies() {
+  const wallet = await getWallet()
+
+  console.log('Configuring wallet policies...')
+
+  // Policy 1: Spending limit (max 1 SOL per hour)
+  await wallet.addPolicy({
+    type: 'spending_limit',
+    maxAmount: 1 * LAMPORTS_PER_SOL,
+    timeWindow: 3600 // 1 hour in seconds
+  })
+
+  console.log('✅ Spending limit policy added: 1 SOL/hour')
+
+  // Policy 2: Program allowlist
+  await wallet.addPolicy({
+    type: 'program_allowlist',
+    allowedPrograms: [
+      'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA', // SPL Token
+      '11111111111111111111111111111111' // System Program
+    ]
+  })
+
+  console.log('✅ Program allowlist policy added')
+
+  // Policy 3: Daily transaction limit
+  await wallet.addPolicy({
+    type: 'rate_limit',
+    maxTransactions: 10,
+    timeWindow: 86400 // 24 hours
+  })
+
+  console.log('✅ Rate limit policy added: 10 tx/day')
+}
+
+/**
+ * Step 5: Create Session Key for Gaming
+ */
+async function createGamingSession(gameProgramId: string) {
+  const wallet = await getWallet()
+
+  console.log('Creating gaming session key...')
+
+  const sessionKey = await wallet.createSessionKey({
+    expiresIn: 3600, // 1 hour
+    scope: {
+      allowedPrograms: [gameProgramId],
+      maxTransactionsPerMinute: 30, // Fast-paced game
+      maxAmountPerTransaction: 0.001 * LAMPORTS_PER_SOL // Micro-transactions
+    }
+  })
+
+  console.log('✅ Session key created!')
+  console.log('Public Key:', sessionKey.publicKey.toBase58())
+  console.log('Expires in: 1 hour')
+
+  // Return session key for game to use
+  return sessionKey
+}
+
+/**
+ * Step 6: Gasless Transaction (Sponsored by App)
+ */
+async function sendGaslessTransaction(recipientAddress: string) {
+  const wallet = await getWallet()
+
+  // Configure paymaster
+  const paymaster = lazorKit.getPaymaster({
+    sponsor: process.env.PAYMASTER_ACCOUNT! // Your paymaster account
+  })
+
+  const transaction = new Transaction().add(
+    SystemProgram.transfer({
+      fromPubkey: new PublicKey(wallet.address),
+      toPubkey: new PublicKey(recipientAddress),
+      lamports: 0.01 * LAMPORTS_PER_SOL
+    })
+  )
+
+  console.log('Sending gasless transaction...')
+  console.log('🔐 Please authenticate with biometric...')
+
+  // Sign and send with paymaster
+  const signature = await wallet.signTransaction(transaction)
+  const txHash = await lazorKit.sendTransaction(transaction, signature, {
+    paymaster: paymaster
+  })
+
+  console.log('✅ Gasless transaction sent!')
+  console.log('User paid: $0.00 (sponsored by app)')
+  console.log('Transaction Hash:', txHash)
+
+  return txHash
+}
+
+/**
+ * Demo Application
+ */
+async function demoApp() {
+  console.log('\\n=== LazorKit Passkey Wallet Demo ===\\n')
+
+  try {
+    // Step 1: Create wallet
+    const wallet = await createWallet('Alice Anderson', 'alice@example.com')
+
+    // Step 2: Configure policies
+    await setupPolicies()
+
+    // Step 3: Send SOL
+    await sendSol('RECIPIENT_ADDRESS', 0.1)
+
+    // Step 4: Create gaming session
+    const sessionKey = await createGamingSession('GAME_PROGRAM_ID')
+
+    // Step 5: Send gasless transaction
+    await sendGaslessTransaction('RECIPIENT_ADDRESS')
+
+    console.log('\\n=== Demo Complete ===\\n')
+  } catch (error) {
+    console.error('Demo failed:', error)
+  }
+}
+
+// Run demo
+demoApp()
+
+export {
+  createWallet,
+  getWallet,
+  sendSol,
+  setupPolicies,
+  createGamingSession,
+  sendGaslessTransaction
+}
+```
+
+## Key Takeaways
+
+1. **LazorKit enables native passkey authentication on Solana** using WebAuthn and secp256r1 (P-256) curve, leveraging device Secure Enclaves for hardware-backed security
+
+2. **Solana SIMD 75 precompile** enables on-chain verification of secp256r1 signatures, making passkey-based smart wallets possible without off-chain components
+
+3. **Hardware-backed security** ensures private keys never leave Secure Enclave, providing phishing resistance and protection against malware even on compromised devices
+
+4. **Smart wallet features** include programmable policies (spending limits, program allowlists), session keys for temporary access, and gasless transactions via paymaster integration
+
+5. **Currently in beta stage** - LazorKit is experimental and NOT recommended for production use or mainnet deployments with real funds
+
+6. **Solana-specific solution** - Unlike multi-chain platforms (Privy, Web3Auth), LazorKit is optimized exclusively for Solana blockchain
+
+**Next:** We'll compare all platforms and provide decision frameworks for choosing the right authentication solution.
+          
+

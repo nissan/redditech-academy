@@ -1,0 +1,16 @@
+{
+  "id": "module-04-agents",
+  "slug": "module-04-agents",
+  "order": 4,
+  "title": "Agent System",
+  "description": "The AI runtime: LLM calls, tool execution, memory management, compaction, and multi-agent routing.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Agent System Badge",
+    "icon": "\ud83e\udd16",
+    "description": "Completed the Agent System module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

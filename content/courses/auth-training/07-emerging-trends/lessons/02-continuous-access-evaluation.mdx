@@ -1,0 +1,679 @@
+---
+title: "Continuous Access Evaluation (CAE) & Adaptive Authentication"
+slug: "continuous-access-evaluation"
+duration: 35
+keyTakeaways:
+  - "Continuous Access Evaluation (CAE) provides real-time token revocation based on critical security events"
+  - "CAE monitors location changes, IP address changes, revoked credentials, and disabled accounts"
+  - "Microsoft Entra (Azure AD) implements CAE with claim challenges and long-lived tokens"
+  - "Adaptive authentication adjusts MFA requirements based on risk signals (location, device, behavior)"
+  - "Risk-based access control combines user context, resource sensitivity, and threat intelligence for dynamic decisions"
+---
+
+# Continuous Access Evaluation (CAE) & Adaptive Authentication
+
+## Introduction to Continuous Access Evaluation
+
+Traditional authentication follows a simple model: you log in once, get a token (often valid for hours or days), and you're trusted until the token expires. But what if:
+
+- An employee's laptop is stolen?
+- A user's account is compromised?
+- A device becomes infected with malware?
+- A user travels to a suspicious location?
+- An insider threat is detected?
+
+With traditional authentication, attackers have the full token lifetime to cause damage. **Continuous Access Evaluation (CAE)** solves this by continuously monitoring sessions and revoking access in real-time.
+
+## Traditional vs. Continuous Access Evaluation
+
+**Traditional Model:**
+```
+Login → Receive Token (valid 1 hour) → Use token for 1 hour → Token expires → Re-login
+```
+
+If the account is compromised at minute 5, attackers have 55 minutes of access.
+
+**CAE Model:**
+```
+Login → Receive Token → Continuous monitoring → Risk detected → Token revoked immediately
+```
+
+Compromise detected in real-time, access revoked within seconds.
+
+## Key Principles of CAE
+
+### 1. **Real-Time Policy Enforcement**
+- Access decisions are not "set and forget"
+- Policies are continuously re-evaluated
+- Changes in risk posture trigger immediate action
+
+### 2. **Event-Driven Revocation**
+CAE responds to critical events:
+- User account disabled
+- Password reset
+- User moved to high-risk group
+- IP address change to suspicious location
+- Device compliance status changed
+- Unusual activity patterns detected
+
+### 3. **Token Lifetime Independence**
+- Even long-lived tokens can be revoked instantly
+- No need to wait for token expiration
+- Balance between security and user experience
+
+## How CAE Works
+
+**Architecture Components:**
+
+```
+┌─────────────┐        ┌──────────────┐        ┌─────────────┐
+│   Client    │&lt;──────&gt;│   Resource   │&lt;──────&gt;│ Identity    │
+│ Application │        │    Server    │        │  Provider   │
+└─────────────┘        └──────────────┘        └─────────────┘
+                              ▲                        ▲
+                              │                        │
+                              ▼                        ▼
+                       ┌──────────────┐        ┌─────────────┐
+                       │ CAE Events   │        │ Policy      │
+                       │ (webhooks)   │        │ Engine      │
+                       └──────────────┘        └─────────────┘
+```
+
+### Step-by-step flow:
+
+1. **User authenticates** → Receives access token
+2. **Application makes API request** with token
+3. **Resource server validates token** (standard OAuth check)
+4. **CAE-enabled resource server subscribes** to critical events for this user
+5. **Critical event occurs** (e.g., account disabled)
+6. **Identity provider sends event notification** to resource server
+7. **Resource server immediately revokes access** and rejects requests
+8. **Client is challenged to re-authenticate**
+
+## Continuous Access Evaluation Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Client as Client App
+    participant API as Resource Server&lt;br/&gt;(CAE-enabled)
+    participant IdP as Identity Provider&lt;br/&gt;(with CAE)
+    participant Admin as Admin/Security
+
+    Note over User,IdP: Initial Authentication
+    User->>Client: Login
+    Client->>IdP: Authenticate
+    IdP->>Client: Access Token (valid 1 hour)
+    Client->>API: API Request + Token
+    API->>IdP: Validate token
+    IdP->>API: Token valid, claims
+    API->>Client: API Response
+
+    Note over API,IdP: CAE Subscription
+    API->>IdP: Subscribe to CAE events for user
+
+    Note over User,Admin: Normal Usage
+    Client->>API: API Request + Token
+    API->>Client: API Response (success)
+
+    Note over Admin,IdP: Critical Security Event
+    Admin->>IdP: Disable user account
+    IdP->>IdP: Trigger CAE event
+    IdP->>API: CAE Event: User revoked
+
+    Note over Client,API: Access Immediately Blocked
+    Client->>API: API Request + Token
+    API->>API: Check CAE status
+    API->>Client: 401 Unauthorized&lt;br/&gt;+ WWW-Authenticate: claims="insufficient_claims"
+    Client->>User: Re-authentication required
+    User->>Client: Attempt login
+    Client->>IdP: Authenticate
+    IdP->>Client: 403 Forbidden (account disabled)
+```
+
+## Microsoft Entra CAE Implementation
+
+Microsoft Entra ID (formerly Azure AD) has production CAE implementation. Let's examine how they do it.
+
+### Critical Events That Trigger CAE
+
+#### 1. **User Account Events**
+- Account disabled or deleted
+- User password changed or reset
+- User session revoked by admin
+- Multifactor authentication (MFA) configured or removed
+
+#### 2. **Location and Network Events**
+- IP address changed to unfamiliar location
+- Access from anonymous proxy or Tor
+- Travel to suspicious country
+- Impossible travel detected
+
+#### 3. **Device and Compliance Events**
+- Device marked as non-compliant
+- Device no longer meets conditional access policies
+- Device risk level increased
+
+#### 4. **Token and Session Events**
+- Refresh token revoked
+- Anomalous token usage detected
+- Session lifetime policy changed
+
+## CAE Claim Challenges
+
+When a critical event occurs, the resource server returns a special error:
+
+```http
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Bearer
+  realm="example.com",
+  error="insufficient_claims",
+  claims="eyJhY2Nlc3NfdG9rZW4iOnsibmJmIjp7ImVzc2VudGlhbCI6dHJ1ZSwgInZhbHVlIjoiMTcwNjgwMDAwMCJ9fX0"
+```
+
+The `claims` parameter (base64-encoded JSON) tells the client what's missing:
+
+```json
+{"{"}
+  "access_token": {"{"}
+    "nbf": {"{"}
+      "essential": true,
+      "value": "1706800000"
+    {"}"}
+  {"}"}
+{"}"}
+```
+
+Translation: "This token was issued before the critical event at timestamp 1706800000. Get a new one."
+
+## Token Lifetime with CAE
+
+| Token Type | Without CAE | With CAE |
+|-----------|-------------|----------|
+| **Access Token** | 1 hour | 24 hours (safe due to CAE) |
+| **Refresh Token** | Days/weeks | Days/weeks |
+| **Effective Security** | 1 hour window | Real-time revocation |
+| **User Experience** | Frequent re-auth | Rare re-auth |
+
+CAE enables **longer token lifetimes** without sacrificing security, improving user experience.
+
+## Implementing CAE in a Resource Server (Node.js)
+
+```javascript
+// CAE-enabled Resource Server using Microsoft Entra ID
+
+import express from 'express'
+import axios from 'axios'
+import jwt from 'jsonwebtoken'
+import jwksClient from 'jwks-rsa'
+
+const app = express()
+const PORT = 3000
+
+// JWKS client to fetch Microsoft's public keys
+const client = jwksClient({"{"}
+  jwksUri: 'https://login.microsoftonline.com/common/discovery/v2.0/keys',
+  cache: true,
+  rateLimit: true,
+{"}"})
+
+// In-memory CAE revocation list (in production, use Redis or database)
+const revokedTokens = new Set()
+
+// Microsoft CAE event webhook endpoint
+app.post('/cae/events', express.json(), async (req, res) => {"{"}
+  console.log('📢 CAE Event received:', req.body)
+
+  const events = req.body.value || []
+
+  for (const event of events) {"{"}
+    if (event.eventType === 'microsoft.graph.user.revoked') {"{"}
+      const userId = event.data.userId
+      const revokedAt = event.data.timestamp
+
+      console.log(`🚫 User ${"{"}{userId{"}"} revoked at ${"{"}{revokedAt{"}"}`)
+
+      // Add to revocation list (in production, persist to database)
+      revokedTokens.add(`user:${"{"}{userId{"}"}:after:${"{"}{revokedAt{"}"}`)
+
+      // Optionally: Invalidate active sessions, close WebSocket connections, etc.
+    {"}"}
+
+    if (event.eventType === 'microsoft.graph.user.ipChanged') {"{"}
+      const userId = event.data.userId
+      const newIp = event.data.ipAddress
+
+      console.log(`🌐 User ${"{"}{userId{"}"} changed IP to ${"{"}{newIp{"}"}`)
+
+      // Trigger re-authentication challenge for this user
+      // (implementation depends on your session management)
+    {"}"}
+  {"}"}
+
+  res.status(202).send('Accepted')
+{"}"})
+
+// Get public key for JWT verification
+function getKey(header, callback) {"{"}
+  client.getSigningKey(header.kid, (err, key) => {"{"}
+    if (err) return callback(err)
+    const signingKey = key.getPublicKey()
+    callback(null, signingKey)
+  {"}"})
+{"}"}
+
+// CAE-aware authentication middleware
+async function authenticateWithCAE(req, res, next) {"{"}
+  const authHeader = req.headers.authorization
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {"{"}
+    return res.status(401).json({"{"} error: 'No token provided' {"}"})
+  {"}"}
+
+  const token = authHeader.substring(7)
+
+  // Verify JWT signature
+  jwt.verify(token, getKey, {"{"} algorithms: ['RS256'] {"}"}, (err, decoded) => {"{"}
+    if (err) {"{"}
+      return res.status(401).json({"{"} error: 'Invalid token', details: err.message {"}"})
+    {"}"}
+
+    // Extract claims
+    const userId = decoded.oid || decoded.sub // Object ID or Subject
+    const tokenIssuedAt = decoded.iat
+    const xmsCae = decoded['xms_cc'] // CAE claim presence
+
+    // Check if token has CAE support
+    if (!xmsCae || !xmsCae.includes('CP1')) {"{"}
+      console.warn('⚠️  Token does not support CAE (missing xms_cc:CP1 claim)')
+    {"}"}
+
+    // Check if user has been revoked AFTER this token was issued
+    let needsChallenge = false
+    for (const entry of revokedTokens) {"{"}
+      if (entry.startsWith(`user:${"{"}{userId{"}"}:after:`)) {"{"}
+        const revokedAt = parseInt(entry.split(':')[3], 10)
+        if (tokenIssuedAt &lt; revokedAt) {"{"}
+          console.log(`🚫 Token issued before revocation event. Challenging.`)
+          needsChallenge = true
+          break
+        {"}"}
+      {"}"}
+    {"}"}
+
+    if (needsChallenge) {"{"}
+      // Return claims challenge
+      const claimsChallenge = Buffer.from(
+        JSON.stringify({"{"}
+          access_token: {"{"}
+            nbf: {"{"}
+              essential: true,
+              value: Math.floor(Date.now() / 1000).toString(),
+            {"}"},
+          {"}"},
+        {"}"})
+      ).toString('base64')
+
+      return res
+        .status(401)
+        .set(
+          'WWW-Authenticate',
+          `Bearer realm="api.example.com", error="insufficient_claims", claims="${"{"}{claimsChallenge{"}"}"`
+        )
+        .json({"{"}
+          error: 'insufficient_claims',
+          message: 'Token no longer valid due to security event. Re-authenticate required.',
+        {"}"})
+    {"}"}
+
+    // Token is valid and passes CAE checks
+    req.user = decoded
+    next()
+  {"}"})
+{"}"}
+
+// Protected API endpoint
+app.get('/api/protected', authenticateWithCAE, (req, res) => {"{"}
+  res.json({"{"}
+    message: 'Success! You have access.',
+    user: req.user.name || req.user.preferred_username,
+  {"}"})
+{"}"})
+
+// Subscription validation (Microsoft requires this for webhooks)
+app.post('/cae/events/validate', (req, res) => {"{"}
+  const validationToken = req.query.validationToken
+  if (validationToken) {"{"}
+    console.log('✅ Subscription validation successful')
+    return res.status(200).send(validationToken)
+  {"}"}
+  res.status(400).send('Missing validation token')
+{"}"})
+
+app.listen(PORT, () => {"{"}
+  console.log(`🚀 CAE-enabled API server running on http://localhost:${"{"}{PORT{"}"}`)
+  console.log(`📡 CAE webhook endpoint: http://localhost:${"{"}{PORT{"}"}/cae/events`)
+{"}"})
+```
+
+## Adaptive Authentication & Risk-Based Access Control
+
+CAE is often combined with **Adaptive Authentication** - dynamically adjusting authentication requirements based on risk signals.
+
+### Risk Signals
+
+Modern identity platforms analyze dozens of signals:
+
+#### **User Behavior Signals**
+- Login time (is it 3 AM?)
+- Login frequency (50 logins in 5 minutes?)
+- Geolocation changes (Boston → Tokyo in 1 hour?)
+- Device fingerprint changes
+- Browser/OS version changes
+
+#### **Network Signals**
+- IP reputation (known malicious IPs, VPNs, Tor)
+- ISP (corporate vs. residential vs. datacenter)
+- Autonomous System Number (ASN) reputation
+- Anonymous proxies detected
+
+#### **Device Signals**
+- Device compliance status
+- Antivirus status
+- Disk encryption enabled
+- Jailbroken/rooted devices
+- Device trust level
+
+#### **Application Signals**
+- Sensitivity of requested resource
+- Data classification level
+- Privilege level of operation (read vs. write vs. delete)
+
+## Risk Scoring
+
+Each signal contributes to a **risk score** (0-100):
+
+| Risk Level | Score | Authentication Required |
+|-----------|-------|------------------------|
+| **Low** | 0-30 | Username + Password |
+| **Medium** | 31-60 | Username + Password + MFA |
+| **High** | 61-80 | MFA + Device compliance check |
+| **Critical** | 81-100 | Block access + Admin approval |
+
+## Adaptive Authentication Examples
+
+### **Low Risk:**
+- Known device
+- Corporate network
+- Normal working hours
+- Regular geolocation
+
+**Action:** Allow access with simple authentication
+
+### **Medium Risk:**
+- New device
+- Home network
+- Normal working hours
+- Accessing sensitive data
+
+**Action:** Require MFA (push notification or TOTP)
+
+### **High Risk:**
+- Unknown device
+- VPN or proxy
+- Unusual hours (2 AM)
+- Accessing highly sensitive data
+
+**Action:** Require MFA + Device registration + Admin notification
+
+### **Critical Risk:**
+- Anonymous proxy
+- Known malicious IP
+- Impossible travel detected
+- Accessing crown jewels (financial data, PII)
+
+**Action:** Block access + Force password reset + Admin intervention
+
+## Step-Up Authentication
+
+Sometimes initial authentication is low-assurance, but certain operations require **step-up** (additional authentication):
+
+```
+Login with password (low assurance)
+  ↓
+Browse documents (allowed)
+  ↓
+Download financial report (requires MFA)
+  ↓
+Challenge user for MFA
+  ↓
+MFA successful → Grant access
+```
+
+Microsoft calls this **Conditional Access**, Okta calls it **Adaptive MFA**, Auth0 calls it **Progressive Profiling**.
+
+## Risk-Based Access Control Implementation
+
+```javascript
+// Risk-based access control with adaptive authentication
+
+import express from 'express'
+import geoip from 'geoip-lite'
+import DeviceDetector from 'device-detector-js'
+
+const app = express()
+app.use(express.json())
+
+// Risk scoring engine
+class RiskEngine {"{"}
+  // Calculate risk score based on multiple signals
+  calculateRisk(context) {"{"}
+    let score = 0
+    const factors = []
+
+    // 1. Time-based risk
+    const hour = new Date().getHours()
+    if (hour &lt; 6 || hour &gt; 22) {"{"}
+      score += 15
+      factors.push({"{"} factor: 'Unusual hour', score: 15 {"}"})
+    {"}"}
+
+    // 2. Location-based risk
+    const geo = geoip.lookup(context.ip)
+    if (!geo) {"{"}
+      score += 20
+      factors.push({"{"} factor: 'Unknown geolocation', score: 20 {"}"})
+    {"}"} else {"{"}
+      // Check if country is on high-risk list
+      const highRiskCountries = ['KP', 'IR', 'SY'] // Example
+      if (highRiskCountries.includes(geo.country)) {"{"}
+        score += 30
+        factors.push({"{"} factor: 'High-risk country', score: 30 {"}"})
+      {"}"}
+
+      // Check for travel anomaly (user's last location vs. current)
+      if (context.user?.lastLocation) {"{"}
+        const distance = this.calculateDistance(context.user.lastLocation, geo.ll)
+        const timeSinceLastLogin = Date.now() - context.user.lastLoginTime
+        const hoursElapsed = timeSinceLastLogin / (1000 * 60 * 60)
+
+        // Impossible travel detection (e.g., 5000km in 2 hours)
+        if (distance &gt; hoursElapsed * 900) {"{"}
+          // 900 km/h is faster than commercial flight
+          score += 40
+          factors.push({"{"}
+            factor: `Impossible travel: ${"{"}{distance.toFixed(0){"}"}km in ${"{"}{hoursElapsed.toFixed(1){"}"}h`,
+            score: 40,
+          {"}"})
+        {"}"}
+      {"}"}
+    {"}"}
+
+    // 3. IP reputation risk
+    if (this.isAnonymousProxy(context.ip)) {"{"}
+      score += 25
+      factors.push({"{"} factor: 'Anonymous proxy/VPN detected', score: 25 {"}"})
+    {"}"}
+
+    if (this.isKnownMaliciousIP(context.ip)) {"{"}
+      score += 50
+      factors.push({"{"} factor: 'Known malicious IP', score: 50 {"}"})
+    {"}"}
+
+    // 4. Device-based risk
+    const deviceDetector = new DeviceDetector()
+    const device = deviceDetector.parse(context.userAgent)
+
+    if (!context.user?.knownDevices?.includes(context.deviceId)) {"{"}
+      score += 20
+      factors.push({"{"} factor: 'New/unknown device', score: 20 {"}"})
+    {"}"}
+
+    if (device.os?.name === 'Unknown' || device.client?.name === 'Unknown') {"{"}
+      score += 10
+      factors.push({"{"} factor: 'Suspicious user agent', score: 10 {"}"})
+    {"}"}
+
+    // 5. Account-based risk
+    if (context.user?.recentFailedLogins &gt; 3) {"{"}
+      score += 15
+      factors.push({"{"} factor: 'Recent failed login attempts', score: 15 {"}"})
+    {"}"}
+
+    if (context.user?.accountAge &lt; 7) {"{"}
+      // Account created less than 7 days ago
+      score += 10
+      factors.push({"{"} factor: 'New account', score: 10 {"}"})
+    {"}"}
+
+    // 6. Resource sensitivity
+    const resourceRisk = this.getResourceRisk(context.resource)
+    score += resourceRisk
+    if (resourceRisk &gt; 0) {"{"}
+      factors.push({"{"} factor: `Resource sensitivity: ${"{"}{context.resource{"}"}`, score: resourceRisk {"}"})
+    {"}"}
+
+    // Cap at 100
+    score = Math.min(score, 100)
+
+    return {"{"} score, factors, level: this.getRiskLevel(score) {"}"}
+  {"}"}
+
+  getRiskLevel(score) {"{"}
+    if (score &lt; 30) return 'LOW'
+    if (score &lt; 60) return 'MEDIUM'
+    if (score &lt; 80) return 'HIGH'
+    return 'CRITICAL'
+  {"}"}
+
+  getResourceRisk(resource) {"{"}
+    const riskMap = {"{"}
+      '/api/public': 0,
+      '/api/user/profile': 5,
+      '/api/documents': 15,
+      '/api/financial': 25,
+      '/api/admin': 30,
+    {"}"}
+    return riskMap[resource] || 10
+  {"}"}
+
+  calculateDistance([lat1, lon1], [lat2, lon2]) {"{"}
+    const R = 6371 // Radius of Earth in km
+    const dLat = ((lat2 - lat1) * Math.PI) / 180
+    const dLon = ((lon2 - lon1) * Math.PI) / 180
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    return R * c
+  {"}"}
+
+  isAnonymousProxy(ip) {"{"}
+    // In production, use IPQualityScore, MaxMind, or similar service
+    // This is a simplified check
+    return ip.startsWith('10.') || ip === '127.0.0.1' // Example: local IPs
+  {"}"}
+
+  isKnownMaliciousIP(ip) {"{"}
+    // In production, check against threat intelligence feeds
+    const maliciousIPs = ['192.0.2.1', '198.51.100.1'] // Example
+    return maliciousIPs.includes(ip)
+  {"}"}
+{"}"}
+
+// Middleware for risk-based access control
+const riskEngine = new RiskEngine()
+
+function riskBasedAccessControl(req, res, next) {"{"}
+  const context = {"{"}
+    ip: req.ip,
+    userAgent: req.headers['user-agent'],
+    deviceId: req.headers['x-device-id'],
+    resource: req.path,
+    user: req.user, // From authentication middleware
+  {"}"}
+
+  const riskAssessment = riskEngine.calculateRisk(context)
+
+  console.log('🎯 Risk Assessment:', riskAssessment)
+
+  // Store in request for logging/audit
+  req.riskAssessment = riskAssessment
+
+  // Decision logic based on risk level
+  switch (riskAssessment.level) {"{"}
+    case 'LOW':
+      // Allow access
+      return next()
+
+    case 'MEDIUM':
+      // Require MFA if not already provided
+      if (!req.user?.mfaVerified) {"{"}
+        return res.status(403).json({"{"}
+          error: 'step_up_required',
+          message: 'Multi-factor authentication required',
+          mfa_challenge_url: '/auth/mfa/challenge',
+        {"}"})
+      {"}"}
+      return next()
+
+    case 'HIGH':
+      // Require MFA + additional verification
+      if (!req.user?.mfaVerified || !req.user?.deviceTrusted) {"{"}
+        return res.status(403).json({"{"}
+          error: 'enhanced_verification_required',
+          message: 'Additional verification required due to high risk',
+          required_actions: ['mfa', 'device_verification'],
+        {"}"})
+      {"}"}
+      // Log for security team review
+      console.warn('⚠️  HIGH RISK ACCESS GRANTED:', context.user?.email, context.resource)
+      return next()
+
+    case 'CRITICAL':
+      // Block access, require admin approval
+      console.error('🚨 CRITICAL RISK - ACCESS BLOCKED:', context.user?.email, context.resource)
+      // Notify security team
+      // notifySecurityTeam(riskAssessment)
+      return res.status(403).json({"{"}
+        error: 'access_denied',
+        message: 'Access blocked due to critical security risk. Contact your administrator.',
+        risk_factors: riskAssessment.factors,
+      {"}"})
+  {"}"}
+{"}"}
+
+// Example protected routes
+app.get('/api/user/profile', riskBasedAccessControl, (req, res) => {"{"}
+  res.json({"{"} message: 'User profile data' {"}"})
+{"}"})
+
+app.get('/api/financial', riskBasedAccessControl, (req, res) => {"{"}
+  res.json({"{"} message: 'Financial data' {"}"})
+{"}"})
+
+app.listen(3000, () => console.log('🚀 Risk-based API running on port 3000'))
+```

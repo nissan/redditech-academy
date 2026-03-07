@@ -1,0 +1,16 @@
+{
+  "id": "module-06-security",
+  "slug": "module-06-security",
+  "order": 6,
+  "title": "Security Model",
+  "description": "Trust boundaries, prompt injection defenses, elevated mode, and sandboxing \u2014 keeping your Gateway safe.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Security Model Badge",
+    "icon": "\ud83d\udd12",
+    "description": "Completed the Security Model module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

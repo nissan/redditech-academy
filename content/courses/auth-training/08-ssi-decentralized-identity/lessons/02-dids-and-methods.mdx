@@ -1,0 +1,438 @@
+---
+title: "Decentralized Identifiers (DIDs) & DID Methods"
+description: "Deep dive into DID architecture, DID Documents, resolution, and comparing DID methods (did:web, did:key, did:ethr, did:ion)"
+slug: "dids-and-methods"
+duration: 45
+keyTakeaways:
+  - "DID syntax and structure: did:method:method-specific-identifier with W3C URI scheme"
+  - "DID Documents contain public keys, service endpoints, and authentication methods for identity verification"
+  - "DID Resolution process: resolving DID to DID Document using method-specific resolvers"
+  - "Comparing DID methods: did:web (web-based), did:key (self-contained), did:ethr (Ethereum), did:ion (Bitcoin, Sidetree)"
+  - "Creating and managing DIDs with real code examples and implementation patterns"
+---
+
+## Understanding Decentralized Identifiers (DIDs)
+
+
+A **Decentralized Identifier (DID)** is a new type of identifier that is globally unique, resolvable with high availability, and cryptographically verifiable. DIDs are the foundation of Self-Sovereign Identity.
+
+## DID Syntax
+
+DIDs follow a simple URI scheme:
+
+```
+did:method:method-specific-identifier
+```
+
+**Examples:**
+```
+did:ethr:0x1234567890abcdef1234567890abcdef12345678
+did:web:example.com:user:alice
+did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
+did:ion:EiClWZ5MQmYPkjGkU0T4WD9Ar7z8E6fL2aB1Hd5zPsU3dA
+```
+
+### DID Components
+
+1. **Scheme**: Always `did:`
+2. **Method**: The DID method (determines how to create/resolve)
+3. **Method-Specific Identifier**: Unique within that method
+
+## DID Documents
+
+When you resolve a DID, you get back a **DID Document** - a JSON-LD document containing:
+
+- **Verification Methods**: Public keys for cryptographic verification
+- **Authentication**: Which keys can authenticate as this DID
+- **Service Endpoints**: Where to contact the DID subject
+- **DID Controller**: Who controls this DID
+
+### Example DID Document
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:example:123456789abcdefghi",
+  "controller": "did:example:123456789abcdefghi",
+
+  "verificationMethod": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "Ed25519VerificationKey2020",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-2",
+    "type": "JsonWebKey2020",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyJwk": {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
+    }
+  }],
+
+  "authentication": [
+    "did:example:123456789abcdefghi#keys-1",
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+
+  "assertionMethod": [
+    "did:example:123456789abcdefghi#keys-1"
+  ],
+
+  "capabilityInvocation": [
+    "did:example:123456789abcdefghi#keys-1"
+  ],
+
+  "capabilityDelegation": [
+    "did:example:123456789abcdefghi#keys-1"
+  ],
+
+  "keyAgreement": [{
+    "id": "did:example:123456789abcdefghi#keys-3",
+    "type": "X25519KeyAgreementKey2020",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyMultibase": "z9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
+  }],
+
+  "service": [{
+    "id": "did:example:123456789abcdefghi#vcs",
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  }, {
+    "id": "did:example:123456789abcdefghi#hub",
+    "type": "IdentityHub",
+    "serviceEndpoint": "https://hub.example.com/.identity/did:example:123456789abcdefghi"
+  }]
+}
+```
+
+### Verification Relationships
+
+DID Documents define multiple verification relationships:
+
+| Relationship | Purpose | Use Case |
+|--------------|---------|----------|
+| **authentication** | Prove you control this DID | Login, DID Auth |
+| **assertionMethod** | Sign Verifiable Credentials | Issue credentials as this DID |
+| **keyAgreement** | Establish encrypted communication | DIDComm messaging |
+| **capabilityInvocation** | Invoke cryptographic capabilities | Smart contract interaction |
+| **capabilityDelegation** | Delegate capabilities to others | Allow agent to act on your behalf |
+
+## DID Resolution
+
+**DID Resolution** is the process of retrieving a DID Document from a DID.
+
+```
+Input:  did:ethr:0x1234...
+        ↓
+      [DID Resolver]
+        ↓
+Output: DID Document (JSON)
+```
+
+### Resolution Process
+
+1. **Parse DID**: Extract method (`ethr`) and identifier (`0x1234...`)
+2. **Method-Specific Resolution**: Call the appropriate resolver for that method
+3. **Retrieve Document**: Fetch from blockchain, web server, IPFS, etc.
+4. **Validate**: Ensure document is valid and not revoked
+5. **Return**: DID Document in JSON-LD format
+
+### Universal Resolver
+
+The **Universal Resolver** (dev.uniresolver.io) supports 80+ DID methods:
+
+```bash
+curl -X GET "https://dev.uniresolver.io/1.0/identifiers/did:ethr:0x1234..."
+```
+
+Returns the DID Document for any supported method.
+          
+
+## DID Methods Comparison
+
+
+There are 150+ DID methods registered with W3C. Let's compare the most popular ones.
+
+## did:key - Simplest (No Blockchain)
+
+**Philosophy:** A DID that's just a public key, nothing more.
+
+**Format:**
+```
+did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH
+```
+
+**How it works:**
+1. Generate a public/private key pair
+2. Encode the public key in multibase format
+3. Prefix with `did:key:`
+4. **No registration anywhere**. The DID itself contains all information.
+
+**DID Document (derived on-the-fly):**
+```json
+{
+  "id": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+  "verificationMethod": [{
+    "id": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH#z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+    "type": "Ed25519VerificationKey2020",
+    "controller": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+    "publicKeyMultibase": "z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH"
+  }],
+  "authentication": ["did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH#z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH"]
+}
+```
+
+**Pros:**
+- ✅ **Simplest** - No blockchain, no registration, no network needed
+- ✅ **Offline** - Works completely offline
+- ✅ **Free** - No transaction costs
+- ✅ **Fast** - Instant creation and resolution
+- ✅ **Perfect for testing**
+
+**Cons:**
+- ❌ **No key rotation** - Can't update keys without changing DID
+- ❌ **No service endpoints** - Can't add contact information
+- ❌ **No multi-key** - Only one key per DID
+- ❌ **Temporary use only** - Not suitable for long-lived identities
+
+**Best for:** Testing, temporary sessions, peer-to-peer connections, development
+
+---
+
+## did:web - DNS-Based (Familiar Infrastructure)
+
+**Philosophy:** Use existing web infrastructure for DIDs.
+
+**Format:**
+```
+did:web:example.com
+did:web:example.com:user:alice
+did:web:example.com:path:to:document
+```
+
+**How it works:**
+1. Host a DID Document on your web server
+2. Serve it at a well-known location:
+   - `https://example.com/.well-known/did.json`
+   - `https://example.com/user/alice/did.json`
+
+**Resolution:**
+```
+did:web:example.com:user:alice
+         ↓
+GET https://example.com/user/alice/did.json
+         ↓
+Return DID Document
+```
+
+**Example did.json:**
+```json
+{
+  "id": "did:web:example.com:user:alice",
+  "verificationMethod": [{
+    "id": "did:web:example.com:user:alice#key-1",
+    "type": "EcdsaSecp256k1VerificationKey2019",
+    "controller": "did:web:example.com:user:alice",
+    "publicKeyJwk": {
+      "kty": "EC",
+      "crv": "secp256k1",
+      "x": "NtngWpJUr-rlNNbs0u-Aa8e16OwB5NbZB0HgZwgjA0M",
+      "y": "h0kkuJU4H2-l_7dUfB4HpbZqPDlPkIKWH9k8YUYkd8M"
+    }
+  }],
+  "authentication": ["did:web:example.com:user:alice#key-1"],
+  "service": [{
+    "id": "did:web:example.com:user:alice#hub",
+    "type": "IdentityHub",
+    "serviceEndpoint": "https://hub.example.com"
+  }]
+}
+```
+
+**Pros:**
+- ✅ **Familiar** - Uses existing web infrastructure (DNS, HTTPS)
+- ✅ **Easy setup** - Just host a JSON file
+- ✅ **No blockchain** - No transaction costs or delays
+- ✅ **Key rotation** - Update the file to change keys
+- ✅ **Service endpoints** - Full DID Document support
+- ✅ **Trust transfer** - If you trust example.com, you trust did:web:example.com
+
+**Cons:**
+- ❌ **Centralized** - Depends on DNS and web hosting
+- ❌ **Not censorship-resistant** - Domain can be seized
+- ❌ **Requires HTTPS** - SSL certificate management
+- ❌ **Single point of failure** - If server down, DID unreachable
+
+**Best for:** Organizations with existing web presence, enterprise SSI, government digital IDs
+
+**Real-world examples:**
+- `did:web:identity.foundation` - Decentralized Identity Foundation
+- `did:web:did.actor:alice` - DID hosting service
+
+---
+
+## did:ethr - Ethereum Blockchain
+
+**Philosophy:** Anchor DIDs to Ethereum addresses, leverage smart contract ecosystem.
+
+**Format:**
+```
+did:ethr:0x1234567890abcdef1234567890abcdef12345678
+did:ethr:mainnet:0x1234567890abcdef1234567890abcdef12345678
+did:ethr:0x1:0x1234567890abcdef1234567890abcdef12345678  // Mainnet
+did:ethr:0x89:0x1234567890abcdef1234567890abcdef12345678  // Polygon
+```
+
+**How it works:**
+1. Your Ethereum address IS your DID
+2. DID Document stored/updated via **ERC-1056 DID Registry** smart contract
+3. Pay gas fees to update document
+
+**ERC-1056 Registry Operations:**
+```solidity
+// Add a public key
+function setAttribute(address identity, bytes32 name, bytes value, uint validity) public;
+
+// Add a delegate (another key that can act on your behalf)
+function addDelegate(address identity, bytes32 delegateType, address delegate, uint validity) public;
+
+// Revoke a delegate
+function revokeDelegate(address identity, bytes32 delegateType, address delegate) public;
+```
+
+**Pros:**
+- ✅ **Decentralized** - No central authority (Ethereum blockchain)
+- ✅ **Ethereum ecosystem** - Works with smart contracts, wallets
+- ✅ **Key rotation** - Update keys via smart contract
+- ✅ **Delegates** - Allow others to act on your behalf (time-limited)
+- ✅ **Established** - Battle-tested, widely supported
+
+**Cons:**
+- ❌ **Gas fees** - Costs money to update DID Document (varies with network)
+- ❌ **Not offline** - Need Ethereum node to resolve
+- ❌ **Slow** - Block confirmation times (12 seconds on mainnet)
+- ❌ **Blockchain bloat** - Every update stored on-chain
+
+**Best for:** Ethereum dApps, crypto wallets, blockchain-native applications
+
+**Cost example (2025):**
+- Create DID: Free (just use your address)
+- Add public key: ~0.002 ETH (~$5) on mainnet, ~$0.01 on Polygon
+- Update delegate: ~0.001 ETH (~$2.50)
+
+---
+
+## did:ion - Microsoft's ION (Bitcoin + IPFS)
+
+**Philosophy:** Combine Bitcoin's security with IPFS scalability (Sidetree protocol).
+
+**Format:**
+```
+did:ion:EiClWZ5MQmYPkjGkU0T4WD9Ar7z8E6fL2aB1Hd5zPsU3dA
+```
+
+**How it works:**
+1. Create DID operations (create, update, recover, deactivate)
+2. Batch thousands of operations together
+3. Store batch in **IPFS** (content-addressed storage)
+4. Anchor IPFS hash to **Bitcoin blockchain**
+5. Result: Thousands of DID operations in one Bitcoin transaction
+
+**Architecture:**
+```
+  DID Operations (create, update)
+         ↓
+   Batch Operations
+         ↓
+  Store in IPFS → CID: QmXoypiz...
+         ↓
+  Anchor CID to Bitcoin
+         ↓
+  Bitcoin TX: 1 satoshi + OP_RETURN with CID
+```
+
+**Pros:**
+- ✅ **Highly scalable** - Thousands of DIDs per Bitcoin transaction
+- ✅ **Low cost** - Amortized cost across batches (~$0.01 per DID)
+- ✅ **Bitcoin security** - Inherits Bitcoin's immutability
+- ✅ **IPFS resilience** - Content-addressed, distributed storage
+- ✅ **Key rotation** - Full DID Document updates supported
+- ✅ **Microsoft backing** - Production-ready, used in Microsoft Entra
+
+**Cons:**
+- ❌ **Complex** - Most sophisticated DID method
+- ❌ **Not instant** - Batching delay (typically 10-15 minutes)
+- ❌ **Requires ION node** - Or rely on public nodes (trust issue)
+- ❌ **IPFS dependency** - Need IPFS gateway to resolve
+
+**Best for:** Enterprise SSI at scale, government digital IDs, long-lived identities
+
+**Real-world usage:**
+- Microsoft Entra Verified ID
+- Some EU Digital Identity Wallet implementations
+
+---
+
+## DID Method Comparison Table
+
+| Feature | did:key | did:web | did:ethr | did:ion |
+|---------|---------|---------|----------|---------|
+| **Decentralization** | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Simplicity** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐ |
+| **Cost** | Free | Low | Medium-High (gas) | Low (amortized) |
+| **Speed** | Instant | Fast (&lt;1s) | Medium (~12s) | Slow (~15min) |
+| **Key Rotation** | ❌ | ✅ | ✅ | ✅ |
+| **Offline** | ✅ | ❌ | ❌ | ❌ |
+| **Scalability** | ✅ | ✅ | ⚠️ (blockchain limits) | ✅ (batching) |
+| **Blockchain** | None | None | Ethereum | Bitcoin + IPFS |
+| **Best For** | Testing | Organizations | Ethereum dApps | Enterprise SSI |
+| **Maturity** | Stable | Stable | Stable | Production |
+
+## Choosing a DID Method
+
+### Decision Tree
+
+```
+Need long-lived identity?
+  No → did:key (testing, temporary)
+  Yes ↓
+
+Need to work offline?
+  Yes → did:key (limited) or did:peer (advanced)
+  No ↓
+
+Already have web domain?
+  Yes → did:web (simple, familiar)
+  No ↓
+
+Using Ethereum ecosystem?
+  Yes → did:ethr (smart contracts, wallets)
+  No ↓
+
+Need maximum decentralization + scale?
+  Yes → did:ion (enterprise, government)
+```
+
+### Recommendations by Use Case
+
+| Use Case | Recommended Method | Why |
+|----------|-------------------|-----|
+| **Testing/Development** | did:key | No setup, instant, free |
+| **Enterprise SSI** | did:web or did:ion | did:web for simplicity, did:ion for scale |
+| **Government Digital ID** | did:ion | Decentralized, scalable, battle-tested |
+| **Crypto Wallet** | did:ethr | Native Ethereum integration |
+| **Mobile App (offline)** | did:key or did:peer | Works without network |
+| **Organization Website** | did:web | Leverage existing domain trust |
+| **DIDComm Messaging** | did:key or did:peer | Lightweight, peer-to-peer |
+          
+

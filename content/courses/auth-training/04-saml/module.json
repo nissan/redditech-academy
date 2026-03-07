@@ -1,0 +1,25 @@
+{
+  "id": "04-saml",
+  "slug": "04-saml",
+  "order": 4,
+  "title": "SAML 2.0: Enterprise Federation",
+  "description": "Master enterprise Single Sign-On with SAML 2.0, XML-based federation, assertions, and security best practices.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2.5,
+  "prerequisiteModules": ["03-oidc"],
+  "badge": {
+    "name": "SAML Expert",
+    "icon": "🔐",
+    "description": "Mastered enterprise SSO with SAML 2.0"
+  },
+  "learningObjectives": [
+    "Understand SAML 2.0 architecture and core components",
+    "Learn how SAML assertions convey identity information",
+    "Master SAML bindings and protocols",
+    "Implement SAML-based enterprise SSO",
+    "Understand SAML security considerations and vulnerabilities",
+    "Compare SAML with OAuth 2.0 and OpenID Connect"
+  ],
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

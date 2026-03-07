@@ -1,0 +1,504 @@
+---
+title: "Google Zanzibar Architecture"
+slug: "google-zanzibar"
+duration: 40
+keyTakeaways:
+  - "Zanzibar stores relationships as tuples (object, relation, subject)"
+  - "Provides consistent, low-latency permission checks at Google scale"
+  - "Zookies enable change tracking and eventual consistency"
+  - "Namespace configuration defines objects, relations, and permissions"
+  - "Check API validates if user has permission, Expand API shows why"
+---
+
+# Google Zanzibar Architecture
+
+**Zanzibar** is Google's global authorization system that handles permission checks for:
+
+- **Google Drive** (file sharing)
+- **Google Docs** (collaborative editing)
+- **Google Calendar** (event sharing)
+- **Google Cloud** (resource permissions)
+- **YouTube** (video access)
+- **Google Photos** (album sharing)
+
+## Scale
+
+**Zanzibar handles:**
+- **Trillions** of access control lists
+- **Millions** of authorization requests per second
+- **`<1`0 millisecond** latency (95th percentile)
+- **Global consistency** across all data centers
+
+**Published:** Google published the Zanzibar paper in 2019 (USENIX ATC '19)
+
+## Core Concepts
+
+### 1. Relationship Tuples
+
+**Format:** `<object>#<relation>@<subject>`
+
+**Examples:**
+```
+doc:roadmap#owner@alice
+doc:roadmap#viewer@bob
+doc:roadmap#viewer@group:engineering#member
+folder:2023#parent@doc:roadmap
+group:engineering#member@charlie
+```
+
+**Breaking Down a Tuple:**
+
+```
+doc:roadmap#viewer@group:engineering#member
+│          │      │                   │
+│          │      │                   └─ subject type (member of group)
+│          │      └─ subject (the group)
+│          └─ relation (permission type)
+└─ object (the resource)
+```
+
+### 2. Namespace Configuration
+
+**Namespaces** define object types and their relationships:
+
+```yaml
+# Document namespace
+name: "document"
+relations:
+  - name: "owner"
+    # Owners are directly assigned users
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+
+  - name: "editor"
+    # Editors are owners OR directly assigned
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+        - computed_userset:
+            relation: "owner"
+
+  - name: "viewer"
+    # Viewers are editors OR directly assigned OR parent folder viewers
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+        - computed_userset:
+            relation: "editor"
+        - tuple_to_userset:
+            tupleset:
+              relation: "parent"
+            computed_userset:
+              object: "$TUPLE_USERSET_OBJECT"
+              relation: "viewer"
+```
+
+### 3. Check API
+
+**Question:** "Can user X perform action Y on resource Z?"
+
+```
+Check(
+  object: "doc:roadmap",
+  relation: "viewer",
+  subject: "charlie"
+)
+
+→ Returns: true/false
+```
+
+**Zanzibar's Answer:**
+1. Look up tuples for `doc:roadmap#viewer`
+2. Check if `charlie` is directly a viewer
+3. Check if `charlie` is in any group that's a viewer
+4. Check if parent folder grants viewer permission
+5. Return `true` if any path succeeds
+
+### 4. Expand API
+
+**Question:** "Who has access to resource Z with relation Y?"
+
+```
+Expand(
+  object: "doc:roadmap",
+  relation: "viewer"
+)
+
+→ Returns: Tree of all users/groups with access
+```
+
+**Example Output:**
+```json
+{"{"}
+  "tree": {"{"}
+    "union": {"{"}
+      "nodes": [
+        {"{"} "leaf": {"{"} "users": ["alice", "bob"] {"}"} {"}"},
+        {"{"}
+          "computed": {"{"}
+            "object": "group:engineering",
+            "relation": "member"
+          {"}"}
+        {"}"},
+        {"{"}
+          "tuple_to_userset": {"{"}
+            "tupleset": "doc:roadmap#parent",
+            "computed": {"{"}
+              "object": "folder:2023",
+              "relation": "viewer"
+            {"}"}
+          {"}"}
+        {"}"}
+      ]
+    {"}"}
+  {"}"}
+{"}"}
+```
+
+### 5. Zookie (Consistency Token)
+
+**Problem:** User shares document, immediately checks if friend can access → might see stale data
+
+**Solution:** **Zookie** is a consistency token
+
+```
+1. Write: Share doc with Bob → Returns zookie "abc123"
+2. Check: Can Bob view doc? (with zookie "abc123")
+   → Zanzibar waits until this replica has processed write
+   → Returns true (guaranteed fresh)
+```
+
+**Zookie ensures:**
+- Read-after-write consistency
+- No stale permission checks
+- User sees immediate effect of permission changes
+
+## Zanzibar Architecture
+
+### System Components
+
+#### 1. ACL Storage
+
+**Purpose:** Store relationship tuples
+
+**Technology:**
+- Spanner (Google's globally-distributed database)
+- Provides external consistency
+- Replicates across data centers
+
+**Schema:**
+```sql
+CREATE TABLE Tuples (
+  object_namespace STRING,
+  object_id STRING,
+  relation STRING,
+  subject_namespace STRING,
+  subject_id STRING,
+  subject_relation STRING,
+  created_at TIMESTAMP,
+  -- Zookie for consistency
+  commit_timestamp TIMESTAMP
+)
+```
+
+**Example Rows:**
+| object_namespace | object_id | relation | subject_namespace | subject_id | subject_relation |
+|------------------|-----------|----------|-------------------|------------|------------------|
+| document | roadmap | viewer | user | alice | |
+| document | roadmap | viewer | group | engineering | member |
+| folder | 2023 | parent | document | roadmap | |
+
+#### 2. Leopard Indexing System
+
+**Problem:** "What can Alice access?" is slow (scan all tuples)
+
+**Solution:** Leopard creates reverse index
+
+**Forward Index (ACL):**
+```
+doc:roadmap → [alice, bob, group:engineering]
+```
+
+**Reverse Index (Leopard):**
+```
+alice → [doc:roadmap, doc:budget, folder:2023]
+```
+
+**Enables Fast Queries:**
+- List all documents Alice can access
+- Revoke Alice's access from all documents
+- Audit: What does Alice have access to?
+
+#### 3. Zanzibar Servers
+
+**Stateless servers** that:
+- Receive Check/Expand requests
+- Query ACL storage
+- Evaluate namespace configurations
+- Return authorization decisions
+
+**Caching:**
+- Negative results cached (user doesn't have access)
+- Positive results cached with zookie
+- Cache invalidation via zookie comparison
+
+#### 4. Consistency Layer
+
+**Zookie Implementation:**
+```
+Zookie = (datacenter_id, commit_timestamp)
+
+Example: "us-central1:1234567890"
+```
+
+**Check with Zookie:**
+1. Client writes tuple → Gets zookie
+2. Client sends Check request with zookie
+3. Zanzibar server checks local commit timestamp
+4. If local timestamp < zookie timestamp → Wait for replication
+5. Once caught up → Evaluate check
+6. Return result (guaranteed fresh)
+
+## Zanzibar Performance
+
+**Latency Targets:**
+- **Median:** `<5`ms
+- **95th percentile:** `<1`0ms
+- **99th percentile:** `<1`00ms
+
+**Achieved At:**
+- Millions of QPS (queries per second)
+- Global scale (all Google services)
+- Consistent across data centers
+
+**How?**
+- Aggressive caching
+- Bloom filters for negative checks
+- Parallel query evaluation
+- Optimized graph traversal
+
+## Example: Google Docs Permissions
+
+### Namespace: Document
+
+```yaml
+name: "document"
+
+relations:
+  # Owner relation
+  - name: "owner"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}  # Directly assigned owners
+
+  # Editor relation
+  - name: "editor"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}  # Directly assigned editors
+        - computed_userset:
+            relation: "owner"  # Owners are also editors
+
+  # Commenter relation
+  - name: "commenter"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+        - computed_userset:
+            relation: "editor"  # Editors can comment
+
+  # Viewer relation
+  - name: "viewer"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}  # Directly assigned viewers
+        - computed_userset:
+            relation: "commenter"  # Commenters can view
+        # Inherit from parent folder
+        - tuple_to_userset:
+            tupleset:
+              relation: "parent"
+            computed_userset:
+              object: "$TUPLE_USERSET_OBJECT"
+              relation: "viewer"
+```
+
+### Namespace: Folder
+
+```yaml
+name: "folder"
+
+relations:
+  - name: "owner"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+
+  - name: "editor"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+        - computed_userset:
+            relation: "owner"
+
+  - name: "viewer"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+        - computed_userset:
+            relation: "editor"
+        # Inherit from parent folder (nested folders)
+        - tuple_to_userset:
+            tupleset:
+              relation: "parent"
+            computed_userset:
+              object: "$TUPLE_USERSET_OBJECT"
+              relation: "viewer"
+
+  # Parent relation (for folder hierarchy)
+  - name: "parent"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}
+```
+
+### Namespace: Group
+
+```yaml
+name: "group"
+
+relations:
+  # Member relation
+  - name: "member"
+    userset_rewrite:
+      union:
+        - this: {"{"}{"}"}{"}"}  # Direct members
+        # Nested groups: members of child groups are members
+        - tuple_to_userset:
+            tupleset:
+              relation: "member"
+            computed_userset:
+              object: "$TUPLE_USERSET_OBJECT"
+              relation: "member"
+```
+
+### Example Tuples (Relationship Data)
+
+```
+# Users
+group:engineering#member@alice
+group:engineering#member@bob
+group:marketing#member@charlie
+
+# Nested groups
+group:all-staff#member@group:engineering#member
+group:all-staff#member@group:marketing#member
+
+# Folders
+folder:company#owner@alice
+folder:company#viewer@group:all-staff#member
+
+# Documents in folder
+document:roadmap#parent@folder:company
+document:roadmap#owner@alice
+document:roadmap#editor@bob
+
+document:budget#parent@folder:company
+document:budget#viewer@charlie
+```
+
+### Example Check Queries
+
+**Query 1: Can Alice edit the roadmap?**
+```
+Check(
+  object: "document:roadmap",
+  relation: "editor",
+  subject: "alice"
+)
+# Result: ALLOWED
+# Reason: alice is owner, owners are editors
+```
+
+**Query 2: Can Bob view the roadmap?**
+```
+Check(
+  object: "document:roadmap",
+  relation: "viewer",
+  subject: "bob"
+)
+# Result: ALLOWED
+# Reason: bob is editor, editors can view
+```
+
+**Query 3: Can Charlie view the roadmap?**
+```
+Check(
+  object: "document:roadmap",
+  relation: "viewer",
+  subject: "charlie"
+)
+# Result: ALLOWED
+# Reason:
+#   1. roadmap is in folder:company
+#   2. folder:company is viewable by group:all-staff
+#   3. group:all-staff contains group:marketing
+#   4. charlie is member of group:marketing
+# Path: charlie → member → marketing → member → all-staff → viewer → company → parent → roadmap
+```
+
+**Query 4: Can Charlie edit the budget?**
+```
+Check(
+  object: "document:budget",
+  relation: "editor",
+  subject: "charlie"
+)
+# Result: DENIED
+# Reason: charlie is only a viewer, not editor
+```
+
+## Hands-On: Trace Zanzibar Check
+
+**Scenario:** Given these tuples, trace how Zanzibar checks permission:
+
+**Tuples:**
+```
+document:presentation#owner@alice
+document:presentation#parent@folder:q4-planning
+folder:q4-planning#viewer@group:leadership#member
+group:leadership#member@bob
+group:leadership#member@dave
+```
+
+**Question:** Can Bob view `document:presentation`?
+
+**Trace the Check:**
+
+1. Check direct viewer assignment → Not found
+2. Check if Bob is owner → Not found
+3. Check if Bob is editor → Not found
+4. Check parent folder permissions → Found: `document:presentation#parent@folder:q4-planning`
+5. Check if Bob can view `folder:q4-planning` → Found: `folder:q4-planning#viewer@group:leadership#member`
+6. Check if Bob is member of `group:leadership` → Found: `group:leadership#member@bob`
+
+**Result:** ALLOWED
+
+**Path:** bob → member → group:leadership → viewer → folder:q4-planning → parent → document:presentation
+
+<details>
+<summary>What if we check for Dave?</summary>
+
+**Same result:** ALLOWED
+
+Dave follows the same path through group:leadership membership.
+</details>
+
+<details>
+<summary>What if we check for Alice to edit?</summary>
+
+**Result:** ALLOWED
+
+Alice is the owner. The namespace config defines that owners are also editors (computed_userset).
+</details>

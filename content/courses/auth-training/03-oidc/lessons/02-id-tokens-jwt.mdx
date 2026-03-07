@@ -1,0 +1,240 @@
+---
+title: "ID Tokens: Structure, Claims, and Validation"
+slug: "02-id-tokens-jwt"
+duration: 30
+keyTakeaways:
+  - "ID Tokens are JWTs with three parts: header (algorithm), payload (claims), signature (verification)"
+  - "Standard claims: iss (issuer), sub (subject/user ID), aud (audience), exp (expiration), iat (issued at)"
+  - "JWT signature verification using RS256 (asymmetric) or HS256 (symmetric) ensures token integrity"
+  - "Always validate: signature, issuer, audience, expiration - never trust unverified tokens"
+  - "ID Token claims provide user identity information without additional API calls"
+---
+
+## What is an ID Token?
+
+An **ID Token** is a **JSON Web Token (JWT)** that contains claims about the authentication event and the end-user.
+
+**Key Characteristics:**
+- **Always a JWT** (unlike access tokens, which can be opaque)
+- **Issued by authorization server** alongside access tokens
+- **Short-lived** (typically 5-60 minutes)
+- **Signed** (always) and optionally **encrypted**
+- **Consumed by client application** (not sent to resource servers)
+
+**Purpose:**
+The ID Token is proof that authentication occurred. It answers:
+- **Who** is the user? (sub claim)
+- **When** did they log in? (iat claim)
+- **Where** was the token issued? (iss claim)
+- **For whom** was it issued? (aud claim)
+
+## ID Token Structure (JWT)
+
+```json
+// Header (Algorithm and Token Type)
+{
+  "alg": "RS256",    // RSA Signature with SHA-256
+  "typ": "JWT",
+  "kid": "abc123"    // Key ID for signature verification
+}
+
+// Payload (Claims about the user and authentication)
+{
+  // Standard OIDC Claims (required)
+  "iss": "https://accounts.google.com",        // Issuer
+  "sub": "10769150350006150715113082367",      // Subject (unique user ID)
+  "aud": "my-client-id.apps.googleusercontent.com", // Audience
+  "exp": 1708560000,                           // Expiration time (Unix timestamp)
+  "iat": 1708556400,                           // Issued at time
+
+  // Authentication-specific claims
+  "auth_time": 1708556395,                     // When user authenticated
+  "nonce": "n-0S6_WzA2Mj",                     // CSRF protection value
+  "at_hash": "HK6E_P6Dh8Y93mRNtsDB1Q",         // Access token hash
+
+  // User profile claims (if scope included 'profile' and 'email')
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "email_verified": true,
+  "picture": "https://example.com/photo.jpg",
+  "locale": "en-US"
+}
+
+// Signature (verifies token hasn't been tampered with)
+// HMACSHA256(
+//   base64UrlEncode(header) + "." + base64UrlEncode(payload),
+//   public_key_from_jwks_endpoint
+// )
+```
+
+## Required vs. Optional Claims
+
+**Required Claims (MUST be present):**
+- **iss** (Issuer): URL of the identity provider (e.g., https://accounts.google.com)
+- **sub** (Subject): Unique identifier for the user at the issuer (never reassigned)
+- **aud** (Audience): Client ID(s) this token was issued for
+- **exp** (Expiration): Unix timestamp when token expires
+- **iat** (Issued At): Unix timestamp when token was created
+
+**Commonly Used Optional Claims:**
+- **auth_time**: When user authenticated (useful for session management)
+- **nonce**: Client-provided value to prevent replay attacks
+- **at_hash**: Hash of access token (binds ID Token to access token)
+- **azp** (Authorized Party): Client ID that requested the token (for multiple audiences)
+- **acr** (Authentication Context Class Reference): Level of authentication (e.g., MFA)
+- **amr** (Authentication Methods References): How user authenticated (e.g., ["pwd", "mfa"])
+
+**Profile Claims** (if scope=profile):
+name, given_name, family_name, middle_name, nickname, picture, website, gender, birthdate, zoneinfo, locale, updated_at
+
+**Email Claims** (if scope=email):
+email, email_verified
+
+**Address Claim** (if scope=address):
+address (JSON object with street_address, locality, region, postal_code, country)
+
+**Phone Claims** (if scope=phone):
+phone_number, phone_number_verified
+
+## ID Token Validation (Critical Security Step)
+
+**Why Validate?**
+An attacker could create a fake ID Token. Validation ensures the token:
+1. Came from the expected issuer
+2. Was issued for your application
+3. Hasn't expired
+4. Hasn't been tampered with
+
+**Validation Steps (MUST perform all):**
+
+**1. Verify the signature using JWKS**
+- Fetch public keys from issuer's JWKS endpoint (e.g., /.well-known/jwks.json)
+- Use key matching the kid (Key ID) in token header
+- Verify signature using RS256 (or algorithm from header)
+
+**2. Validate issuer (iss claim)**
+- Must match expected identity provider URL
+- Example: "https://accounts.google.com"
+
+**3. Validate audience (aud claim)**
+- Must contain your client_id
+- Reject if aud is for a different application
+
+**4. Validate expiration (exp claim)**
+- Current time must be before exp timestamp
+- Add clock skew tolerance (typically 60 seconds)
+
+**5. Validate nonce (if present)**
+- Must match the nonce sent in authorization request
+- Prevents replay attacks
+
+**6. Validate at_hash (if access token received)**
+- Hash access token and compare to at_hash claim
+- Ensures ID Token and access token belong together
+
+**7. Check auth_time (if max_age was requested)**
+- User must have authenticated recently enough
+
+**Security Warning:**
+❌ **Never** trust an ID Token without validation
+❌ **Never** use ID Tokens to authorize API requests (use access tokens)
+✅ **Always** validate signatures using public keys from JWKS endpoint
+
+## ID Token Validation Example (Node.js)
+
+```typescript
+import jwt from 'jsonwebtoken';
+import jwksClient from 'jwks-rsa';
+
+// Create JWKS client to fetch public keys
+const client = jwksClient({
+  jwksUri: 'https://accounts.google.com/.well-known/jwks.json',
+  cache: true,
+  rateLimit: true
+});
+
+// Function to get signing key
+function getKey(header: any, callback: any) {
+  client.getSigningKey(header.kid, (err, key) => {
+    if (err) return callback(err);
+    const signingKey = key.getPublicKey();
+    callback(null, signingKey);
+  });
+}
+
+// Validate ID Token
+async function validateIdToken(idToken: string) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(
+      idToken,
+      getKey,
+      {
+        // Validation options
+        issuer: 'https://accounts.google.com',        // Expected issuer
+        audience: 'my-client-id.apps.googleusercontent.com', // Your client ID
+        algorithms: ['RS256'],                         // Allowed algorithms
+        clockTolerance: 60                             // 60 seconds clock skew
+      },
+      (err, decoded) => {
+        if (err) return reject(err);
+
+        // Additional custom validation
+        const claims = decoded as any;
+
+        // Validate nonce if present
+        if (claims.nonce && claims.nonce !== expectedNonce) {
+          return reject(new Error('Invalid nonce'));
+        }
+
+        // Validate auth_time if max_age was used
+        if (maxAge && (Date.now() / 1000) - claims.auth_time > maxAge) {
+          return reject(new Error('User authenticated too long ago'));
+        }
+
+        resolve(claims);
+      }
+    );
+  });
+}
+
+// Usage
+try {
+  const claims = await validateIdToken(idToken);
+  console.log('User authenticated:', claims.sub);
+  console.log('Email:', claims.email);
+} catch (error) {
+  console.error('ID Token validation failed:', error);
+}
+```
+
+## ID Token vs. Access Token
+
+**Common Misconception:**
+❌ "I can use the ID Token to call APIs"
+
+**Reality:**
+ID Tokens are **not** access tokens. Here's why:
+
+| Aspect | ID Token | Access Token |
+|--------|----------|--------------|
+| **Purpose** | Prove authentication occurred | Authorize API requests |
+| **Audience** | Client application | Resource server (API) |
+| **Contains** | User identity claims | Permissions/scopes |
+| **Validated By** | Client application | Resource server |
+| **Sent To** | Never leaves client | Sent to APIs in Authorization header |
+| **Format** | Always JWT | Opaque or JWT |
+| **Lifetime** | Short (5-60 min) | Longer (1-24 hours) |
+
+**Best Practice:**
+✅ Use ID Tokens to establish user sessions in your application
+✅ Use access tokens to call APIs on behalf of the user
+✅ Store ID Token claims in session, don't send ID Tokens to backends
+
+## Key Takeaways
+
+- ID Tokens are JWTs containing authentication and identity claims
+- The 'sub' claim is the unique, immutable user identifier
+- Always validate ID Token signatures using JWKS public keys
+- Check iss, aud, exp, and nonce claims during validation
+- ID Tokens prove authentication; access tokens authorize API calls
+- Never send ID Tokens to resource servers or APIs

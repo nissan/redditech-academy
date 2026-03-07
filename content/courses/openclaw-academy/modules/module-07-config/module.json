@@ -1,0 +1,16 @@
+{
+  "id": "module-07-config",
+  "slug": "module-07-config",
+  "order": 7,
+  "title": "Configuration Deep Dive",
+  "description": "Every major block of openclaw.json: model config, agent config, auth profiles, and the doctor tool.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Configuration Deep Dive Badge",
+    "icon": "\u2699\ufe0f",
+    "description": "Completed the Configuration Deep Dive module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

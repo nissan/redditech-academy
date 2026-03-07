@@ -1,0 +1,147 @@
+{
+  "id": "oauth2-quiz",
+  "moduleId": "oauth2-core",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What are the four roles defined in OAuth 2.0?",
+      "options": [
+        "User, Application, Database, Server",
+        "Resource Owner, Client, Authorization Server, Resource Server",
+        "Frontend, Backend, API, IdP",
+        "Admin, User, Guest, System"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OAuth 2.0 defines four roles: Resource Owner (user), Client (application), Authorization Server (issues tokens), and Resource Server (hosts protected APIs).",
+      "difficulty": "beginner",
+      "relatedLessonId": "oauth-roles"
+    },
+    {
+      "id": "q2",
+      "question": "What does PKCE stand for and what problem does it solve?",
+      "options": [
+        "Public Key Cryptography Extension - encrypts tokens",
+        "Proof Key for Code Exchange - prevents authorization code interception",
+        "Private Key Certificate Exchange - validates client identity",
+        "Protected Key Code Encryption - secures refresh tokens"
+      ],
+      "correctAnswer": 1,
+      "explanation": "PKCE (Proof Key for Code Exchange) prevents authorization code interception attacks by requiring the client to prove it initiated the OAuth flow. It uses a code verifier and code challenge.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "authorization-code-flow"
+    },
+    {
+      "id": "q3",
+      "question": "When should you use the Client Credentials Flow?",
+      "options": [
+        "For user-facing web applications",
+        "For mobile apps requiring user authentication",
+        "For machine-to-machine communication without user context",
+        "For single-page applications (SPAs)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Client Credentials Flow is designed for machine-to-machine authentication where no user is involved, such as backend services, daemons, or scheduled jobs.",
+      "difficulty": "beginner",
+      "relatedLessonId": "client-credentials"
+    },
+    {
+      "id": "q4",
+      "question": "What is the primary purpose of the Device Code Flow?",
+      "options": [
+        "To authenticate servers",
+        "To enable authentication on input-constrained devices like smart TVs",
+        "To validate mobile app certificates",
+        "To sync passwords across devices"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Device Code Flow enables authentication on devices without easy text input (smart TVs, IoT) by having users enter a code on a separate device like their phone or computer.",
+      "difficulty": "beginner",
+      "relatedLessonId": "device-code-flow"
+    },
+    {
+      "id": "q5",
+      "question": "What is the purpose of token introspection (RFC 7662)?",
+      "options": [
+        "To encrypt access tokens",
+        "To check a token's current status and metadata at the authorization server",
+        "To compress tokens for faster transmission",
+        "To convert JWT tokens to opaque tokens"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Token introspection allows resource servers to query the authorization server about a token's current state, including whether it's active, revoked, and what scopes/metadata it contains.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "token-lifecycle"
+    },
+    {
+      "id": "q6",
+      "question": "What happens when you revoke a refresh token?",
+      "options": [
+        "Only the refresh token is invalidated",
+        "The refresh token and all associated access tokens are invalidated",
+        "Nothing - refresh tokens cannot be revoked",
+        "Only access tokens are invalidated"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Revoking a refresh token creates a cascading effect that invalidates both the refresh token and all access tokens issued from it, due to the token family relationship.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "token-lifecycle"
+    },
+    {
+      "id": "q7",
+      "question": "Why is redirect URI validation critical for OAuth security?",
+      "options": [
+        "It improves performance",
+        "It prevents attackers from receiving authorization codes by manipulating the redirect_uri parameter",
+        "It encrypts the authorization code",
+        "It validates user passwords"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Strict redirect URI validation prevents attackers from manipulating the redirect_uri parameter to send authorization codes to attacker-controlled servers. URIs must be pre-registered and validated with exact matching.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "oauth-security"
+    },
+    {
+      "id": "q8",
+      "question": "What is the purpose of the 'state' parameter in OAuth 2.0?",
+      "options": [
+        "To store user session data",
+        "To prevent Cross-Site Request Forgery (CSRF) attacks",
+        "To encrypt the authorization code",
+        "To specify which US state the user is from"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The state parameter prevents CSRF attacks by providing a random value that must match between the authorization request and callback, ensuring the callback is in response to a request from the same client.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "oauth-security"
+    },
+    {
+      "id": "q9",
+      "question": "Why is the Implicit Flow deprecated and should not be used?",
+      "options": [
+        "It's too slow",
+        "Access tokens are exposed in URLs, leading to leakage via browser history and Referer headers",
+        "It doesn't support mobile apps",
+        "It requires too many API calls"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Implicit Flow is deprecated because access tokens appear in URL fragments, which are logged in browser history, leak via Referer headers, and can be intercepted. Authorization Code Flow with PKCE is now recommended instead.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "oauth-security"
+    },
+    {
+      "id": "q10",
+      "question": "What is refresh token rotation and why is it important?",
+      "options": [
+        "Changing refresh token format every month",
+        "Issuing a new refresh token each time the current one is used, limiting exposure from theft",
+        "Backing up refresh tokens to multiple servers",
+        "Encrypting refresh tokens differently each time"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Refresh token rotation issues a new refresh token each time one is used. This limits the window of exposure if a token is stolen and enables detection of token theft through reuse detection.",
+      "difficulty": "expert",
+      "relatedLessonId": "token-lifecycle"
+    }
+  ]
+}

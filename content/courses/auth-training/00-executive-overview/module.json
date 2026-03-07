@@ -1,0 +1,23 @@
+{
+  "id": "00-executive-overview",
+  "slug": "00-executive-overview",
+  "order": 0,
+  "title": "Executive Overview: Identity & Access Management",
+  "description": "A comprehensive 10,000-foot view of modern identity and access management, from authentication basics to cutting-edge decentralized identity. Perfect for executives and decision-makers.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.75,
+  "badge": {
+    "name": "IAM Strategist",
+    "icon": "🎯",
+    "description": "Completed executive overview of modern identity and access management"
+  },
+  "learningObjectives": [
+    "Understand the identity and access management landscape at a high level",
+    "Learn key concepts and terminology across all IAM domains",
+    "Make informed decisions about which technologies to adopt",
+    "Identify security risks and opportunities in your organization",
+    "Understand the future direction of digital identity",
+    "Prepare for deep-dive courses with foundational knowledge"
+  ],
+  "prerequisiteModules": []
+}

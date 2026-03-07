@@ -1,0 +1,89 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What are the two required frontmatter keys in a SKILL.md file?",
+      "options": [
+        "title and version",
+        "name and description",
+        "slug and instructions",
+        "id and allowed-tools"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Every SKILL.md requires at minimum a 'name' (unique identifier) and a 'description' (the one-line summary injected into the system prompt). Everything else is optional."
+    },
+    {
+      "id": "q2",
+      "question": "A skill exists in both ~/.openclaw/skills/ and the bundled skills. Which version wins?",
+      "options": [
+        "The bundled version \u2014 it ships with OpenClaw and is authoritative",
+        "The managed version in ~/.openclaw/skills/ \u2014 it has higher precedence",
+        "Neither \u2014 OpenClaw raises a conflict error and refuses to load either",
+        "Whichever was modified most recently"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Skill precedence is: workspace/skills > ~/.openclaw/skills > bundled skills. The managed/local version in ~/.openclaw/skills always beats the bundled copy. This lets you override any bundled skill without touching the OpenClaw package."
+    },
+    {
+      "id": "q3",
+      "question": "What does metadata.openclaw.requires.bins do in a SKILL.md?",
+      "options": [
+        "Lists the tools the agent must call when using this skill",
+        "Specifies binary executables that must exist on PATH for the skill to be eligible",
+        "Declares which npm packages to install before loading the skill",
+        "Defines which OpenClaw built-in tools the skill is allowed to use"
+      ],
+      "correctAnswer": 1,
+      "explanation": "requires.bins is a load-time gate. If any listed binary is missing from PATH, the skill is silently skipped \u2014 the agent never sees it. This prevents the agent from being told it can use a tool that isn't installed."
+    },
+    {
+      "id": "q4",
+      "question": "You want to add a skill that only your 'personal' agent uses (not the 'work' agent). Where do you put it?",
+      "options": [
+        "~/.openclaw/skills/ \u2014 it's shared but you can gate it with requires.config",
+        "Inside the OpenClaw npm package skills directory",
+        "In the personal agent's workspace: ~/.openclaw/workspace-personal/skills/",
+        "In ~/.openclaw/openclaw.json under skills.entries"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Per-agent skills live in <workspace>/skills/ for that specific agent. Skills in ~/.openclaw/skills/ are shared across all agents on the machine. Each agent's workspace directory is configured via agents.list[].workspace in openclaw.json."
+    },
+    {
+      "id": "q5",
+      "question": "Which ClawHub command updates all installed skills to their latest versions?",
+      "options": [
+        "clawhub sync --all",
+        "clawhub upgrade",
+        "clawhub update --all",
+        "clawhub refresh"
+      ],
+      "correctAnswer": 2,
+      "explanation": "clawhub update --all updates all installed skills by comparing local contents to the registry. clawhub sync --all is for publishing/uploading your own skills to the registry, not updating from it."
+    },
+    {
+      "id": "q6",
+      "question": "What does the 'session-memory' bundled hook do?",
+      "options": [
+        "Runs MEMORY.md as a startup checklist when the gateway boots",
+        "Saves a summary of the ending session to a dated memory file when /new is issued",
+        "Injects extra bootstrap files into the system prompt at session start",
+        "Logs all sessions to ~/.openclaw/logs/sessions.log for auditing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The session-memory hook listens for the command:new event. When you issue /new (session reset), it saves context from the ending session to memory/YYYY-MM-DD.md in the workspace. This is how the agent accumulates long-term memory across session resets."
+    },
+    {
+      "id": "q7",
+      "question": "BOOT.md is intended to be run:",
+      "options": [
+        "At the start of every new agent turn",
+        "At the start of every new session",
+        "Once per Gateway restart, after channels come online",
+        "On a fixed schedule, every 30 minutes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "BOOT.md is executed by the boot-md hook on the gateway:startup event \u2014 once per Gateway restart, after channels come online. It's a startup checklist, not a per-session or per-turn routine. HEARTBEAT.md is what runs periodically (every 30-60 minutes)."
+    }
+  ]
+}

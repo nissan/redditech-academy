@@ -1,0 +1,410 @@
+---
+title: "Implementing Zanzibar-Inspired Authorization"
+slug: "implementing-zanzibar"
+duration: 35
+keyTakeaways:
+  - "OpenFGA, SpiceDB, and Ory Keto are open-source Zanzibar implementations"
+  - "Permissions defined using ReBAC tuples and schema configurations"
+  - "Check API verifies permissions, Write API manages relationships"
+  - "Integration requires schema design and relationship management"
+  - "Production-ready systems handle millions of permission checks per second"
+---
+
+# Implementing Zanzibar-Inspired Authorization
+
+Since Google published the Zanzibar paper, several open-source implementations have emerged:
+
+## Open-Source Zanzibar Implementations
+
+### 1. SpiceDB (AuthZed)
+
+**Creator:** AuthZed Inc.
+**Language:** Go
+**License:** Apache 2.0
+
+**Features:**
+- ✅ Full Zanzibar implementation
+- ✅ gRPC API
+- ✅ Namespace configuration (schema)
+- ✅ Check, Expand, Write APIs
+- ✅ Zookies (consistency tokens)
+- ✅ PostgreSQL, MySQL, CockroachDB storage
+- ✅ Built-in caching
+
+**Use Case:** Production-ready, managed service available
+
+**Getting Started:**
+```bash
+# Docker
+docker run --rm -p 50051:50051 authzed/spicedb serve --grpc-preshared-key "somerandomkeyhere"
+
+# Or use managed service at authzed.com
+```
+
+### 2. Ory Keto
+
+**Creator:** Ory Corp
+**Language:** Go
+**License:** Apache 2.0
+
+**Features:**
+- ✅ Zanzibar-inspired
+- ✅ REST and gRPC APIs
+- ✅ Namespace configuration
+- ✅ Check, Expand APIs
+- ✅ PostgreSQL, MySQL, CockroachDB storage
+- ✅ Integration with Ory ecosystem (Hydra, Kratos)
+
+**Use Case:** Good for Ory users, REST API preference
+
+**Getting Started:**
+```bash
+# Docker
+docker run --rm -p 4466:4466 -p 4467:4467 oryd/keto serve
+```
+
+### 3. OpenFGA (Fine-Grained Authorization)
+
+**Creator:** Auth0/Okta
+**Language:** Go
+**License:** Apache 2.0
+
+**Features:**
+- ✅ Zanzibar-inspired
+- ✅ gRPC and HTTP APIs
+- ✅ Type system (like namespace config)
+- ✅ Check, Expand, ListObjects APIs
+- ✅ PostgreSQL, MySQL storage
+- ✅ DSL for authorization models
+
+**Use Case:** Auth0 users, good documentation
+
+**Getting Started:**
+```bash
+# Docker
+docker run --rm -p 8080:8080 -p 3000:3000 openfga/openfga run
+```
+
+### 4. Permify
+
+**Creator:** Permify Inc.
+**Language:** Go
+**License:** Apache 2.0
+
+**Features:**
+- ✅ Zanzibar-inspired
+- ✅ gRPC and REST APIs
+- ✅ Schema definition language
+- ✅ Check, Expand APIs
+- ✅ PostgreSQL, MySQL storage
+- ✅ Developer-friendly UI
+
+**Use Case:** Startups, easy to get started
+
+## Comparison
+
+| Feature | SpiceDB | Ory Keto | OpenFGA | Permify |
+|---------|---------|----------|---------|---------|
+| **Maturity** | High | High | Medium | Medium |
+| **API** | gRPC | REST + gRPC | gRPC + HTTP | gRPC + REST |
+| **Managed Service** | Yes (AuthZed) | No | No | Yes |
+| **Documentation** | Excellent | Good | Excellent | Good |
+| **Community** | Large | Large (Ory) | Growing | Small |
+| **Performance** | Excellent | Good | Good | Good |
+| **UI/Dashboard** | Yes (Cloud) | No | Limited | Yes |
+
+**Recommendation:**
+- **Production:** SpiceDB (most mature, managed service available)
+- **Ory Users:** Ory Keto (integrates with Ory ecosystem)
+- **Auth0 Users:** OpenFGA (from Okta/Auth0 team)
+- **Getting Started:** Permify (easiest to learn)
+
+## Implementing with SpiceDB
+
+Let's implement Google Docs-style permissions using SpiceDB.
+
+### Step 1: Define Schema
+
+**Create `schema.zed`:**
+
+```
+// Document definition
+definition document {
+  relation owner: user
+  relation editor: user | group#member
+  relation viewer: user | group#member
+
+  // Permissions
+  permission edit = owner + editor
+  permission view = viewer + edit
+
+  // Parent folder (for inheritance)
+  relation parent: folder
+  permission view_from_parent = parent->view
+}
+
+// Folder definition
+definition folder {
+  relation owner: user
+  relation editor: user | group#member
+  relation viewer: user | group#member
+
+  permission edit = owner + editor
+  permission view = viewer + edit + view_from_parent
+
+  // Nested folders
+  relation parent: folder
+  permission view_from_parent = parent->view
+}
+
+// Group definition (for teams, departments)
+definition group {
+  relation member: user | group#member  // Nested groups
+}
+```
+
+### Step 2: Write Relationships
+
+```javascript
+// Node.js client
+const { v1 } = require('@authzed/authzed-node')
+
+const client = v1.NewClient(
+  "somerandomkeyhere",  // Token
+  "localhost:50051"      // Endpoint
+)
+
+// Create relationships
+async function setupPermissions() {
+  // Alice owns the roadmap document
+  await client.WriteRelationships({
+    updates: [
+      {
+        operation: v1.RelationshipUpdate_Operation.OPERATION_CREATE,
+        relationship: {
+          resource: { objectType: 'document', objectId: 'roadmap' },
+          relation: 'owner',
+          subject: { object: { objectType: 'user', objectId: 'alice' } }
+        }
+      },
+      // Bob is an editor
+      {
+        operation: v1.RelationshipUpdate_Operation.OPERATION_CREATE,
+        relationship: {
+          resource: { objectType: 'document', objectId: 'roadmap' },
+          relation: 'editor',
+          subject: { object: { objectType: 'user', objectId: 'bob' } }
+        }
+      },
+      // Engineering group can view
+      {
+        operation: v1.RelationshipUpdate_Operation.OPERATION_CREATE,
+        relationship: {
+          resource: { objectType: 'document', objectId: 'roadmap' },
+          relation: 'viewer',
+          subject: {
+            object: { objectType: 'group', objectId: 'engineering' },
+            optionalRelation: 'member'
+          }
+        }
+      },
+      // Charlie is member of engineering
+      {
+        operation: v1.RelationshipUpdate_Operation.OPERATION_CREATE,
+        relationship: {
+          resource: { objectType: 'group', objectId: 'engineering' },
+          relation: 'member',
+          subject: { object: { objectType: 'user', objectId: 'charlie' } }
+        }
+      }
+    ]
+  })
+
+  console.log("Relationships created")
+}
+```
+
+### Step 3: Check Permissions
+
+```javascript
+async function checkPermission(user, resource, permission) {
+  const response = await client.CheckPermission({
+    resource: {
+      objectType: resource.type,
+      objectId: resource.id
+    },
+    permission: permission,
+    subject: {
+      object: {
+        objectType: 'user',
+        objectId: user
+      }
+    }
+  })
+
+  return response.permissionship === v1.CheckPermissionResponse_Permissionship.PERMISSIONSHIP_HAS_PERMISSION
+}
+
+// Check if Charlie can view the roadmap
+const canView = await checkPermission(
+  'charlie',
+  { type: 'document', id: 'roadmap' },
+  'view'
+)
+
+console.log('Can Charlie view roadmap?', canView)  // true
+```
+
+### Step 4: List Accessible Resources
+
+```javascript
+async function listAccessibleDocuments(user, permission) {
+  const response = await client.LookupResources({
+    resourceObjectType: 'document',
+    permission: permission,
+    subject: {
+      object: {
+        objectType: 'user',
+        objectId: user
+      }
+    }
+  })
+
+  const documents = []
+  for await (const result of response) {
+    documents.push(result.resourceObjectId)
+  }
+
+  return documents
+}
+
+// List all documents Charlie can view
+const docs = await listAccessibleDocuments('charlie', 'view')
+console.log('Charlie can view:', docs)  // ['roadmap', ...]
+```
+
+### Step 5: Expand Permission Tree
+
+```javascript
+async function expandPermissions(resource, permission) {
+  const response = await client.ExpandPermissionTree({
+    resource: {
+      objectType: resource.type,
+      objectId: resource.id
+    },
+    permission: permission
+  })
+
+  return response.treeRoot
+}
+
+// See who has view permission on roadmap
+const tree = await expandPermissions(
+  { type: 'document', id: 'roadmap' },
+  'view'
+)
+
+console.log('Permission tree:', JSON.stringify(tree, null, 2))
+// Shows: alice (owner), bob (editor), group:engineering members
+```
+
+### Step 6: Using Consistency (Zookies)
+
+```javascript
+async function shareDocumentWithConsistency(docId, userId) {
+  // Write relationship and get zookie
+  const writeResponse = await client.WriteRelationships({
+    updates: [{
+      operation: v1.RelationshipUpdate_Operation.OPERATION_CREATE,
+      relationship: {
+        resource: { objectType: 'document', objectId: docId },
+        relation: 'viewer',
+        subject: { object: { objectType: 'user', objectId: userId } }
+      }
+    }]
+  })
+
+  const zookie = writeResponse.writtenAt
+
+  // Immediately check with zookie (guaranteed fresh)
+  const checkResponse = await client.CheckPermission({
+    consistency: {
+      atLeastAsFresh: zookie
+    },
+    resource: { objectType: 'document', objectId: docId },
+    permission: 'view',
+    subject: { object: { objectType: 'user', objectId: userId } }
+  })
+
+  console.log('Access granted immediately:',
+    checkResponse.permissionship === v1.CheckPermissionResponse_Permissionship.PERMISSIONSHIP_HAS_PERMISSION
+  )
+  // true (no stale reads!)
+}
+```
+
+## Exercise: Design Authorization Schema
+
+**Scenario:** Design a Zanzibar schema for a GitHub-like platform with:
+
+- **Organizations** (e.g., "acme-corp")
+- **Teams** within organizations (e.g., "backend-team")
+- **Repositories** owned by organizations
+- **Issues** within repositories
+
+**Requirements:**
+1. Organization owners can manage everything
+2. Team members can push to repos the team has access to
+3. Anyone can view public repos
+4. Only repo collaborators can view private repos
+5. Issue creators can edit their own issues
+6. Repo collaborators can comment on issues
+
+**Design Task:** Write the schema definitions
+
+<details>
+<summary>View Solution</summary>
+
+```
+definition organization {
+  relation owner: user
+  relation member: user
+
+  permission admin = owner
+  permission view = member + admin
+}
+
+definition team {
+  relation organization: organization
+  relation member: user
+
+  permission view = member + organization->admin
+}
+
+definition repository {
+  relation organization: organization
+  relation team_push: team#member
+  relation collaborator: user
+  relation public: user:*  // Anyone if public
+
+  permission admin = organization->admin
+  permission push = team_push + collaborator + admin
+  permission view = public + push
+}
+
+definition issue {
+  relation repository: repository
+  relation creator: user
+
+  permission edit = creator + repository->admin
+  permission comment = repository->view
+  permission view = repository->view
+}
+```
+
+**Key Concepts Used:**
+- **Relation to parent** (`organization: organization`)
+- **Wildcard** (`user:*` for public access)
+- **Permission inheritance** (`repository->admin`)
+- **Computed permissions** (`push = team_push + collaborator + admin`)
+</details>

@@ -1,0 +1,70 @@
+---
+title: What is OpenClaw?
+description: Lesson on What is OpenClaw?
+slug: what-is-openclaw
+duration: 10
+order: 1
+keyTakeaways:
+- Messages flow from your channels to your Gateway to your chosen LLM provider. No
+  third party sees your conversation history.
+- You pick the model, the tools, the channels, the persona.
+- The Gateway runs as a daemon (launchd/systemd), so it's available even when you're
+  not at your computer.
+- Adding capabilities means writing a Skill. No approval process, no plugin store.
+- WhatsApp (via Baileys Web API)
+- Telegram (via grammY)
+- Discord (via Carbon)
+- Slack (via Bolt)
+- Google Chat
+- Signal
+- iMessage (macOS, via BlueBubbles)
+- Microsoft Teams
+- Matrix
+- IRC
+- Mattermost (plugin)
+- WebChat (built-in browser UI)
+- macOS menu bar app
+- and more via plugins
+- iOS
+- Android
+- Anthropic (Claude Sonnet, Haiku, Opus)
+- OpenAI (GPT-4.1, GPT-5, o3, Codex)
+- Gemini (via Google AI or Vertex)
+- Ollama (local models)
+- OpenRouter (600+ models via one API)
+- Mistral, Qwen, GLM, MiniMax, Venice, Bedrock, and more
+- LiteLLM proxy (for unified multi-provider routing)
+- Uses ~50-200MB RAM depending on active channels
+- Stores state in `~/.openclaw/`
+- Runs as a launchd/systemd user service
+---
+
+OpenClaw is a self-hosted, multi-channel AI assistant gateway: your own AI running on your hardware, connected to the messaging apps you already use, talking to whichever LLM you configure.
+
+Think of it as the operating system for a personal AI assistant. It handles the plumbing so you can focus on what your assistant actually does.
+
+---
+
+## The one-sentence pitch
+
+> OpenClaw lets you chat with an LLM from WhatsApp, Telegram, Discord, iMessage, or any other channel — all managed from a single Gateway running on your own machine.
+
+---
+
+## Concepts at a glance
+
+| Concept | What it is |
+|---------|-----------|
+| **Gateway** | The long-running daemon (Node.js process) that owns all connections |
+| **Channel** | A messaging surface: Telegram, WhatsApp, Discord, Signal, etc. |
+| **Agent** | The LLM-backed AI running inside the Gateway |
+| **Session** | A conversation context (per DM, per group, per channel) |
+| **Skill** | A bundled capability (tool set + instructions) loaded by the agent |
+| **Node** | A companion device (iPhone, Android, macOS app) that connects to the Gateway |
+| **Workspace** | The directory containing your agent's files (AGENTS.md, SOUL.md, etc.) |
+
+---
+
+## Why self-hosted?
+
+Most AI assistants are cloud services: your messages leave your device, get processed on someone else's server, and the responses come back. OpenClaw keeps that pipeline on your hardware:

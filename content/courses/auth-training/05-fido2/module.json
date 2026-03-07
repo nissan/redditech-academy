@@ -1,0 +1,25 @@
+{
+  "id": "05-fido2",
+  "slug": "05-fido2",
+  "order": 5,
+  "title": "FIDO2 & WebAuthn: Passwordless Authentication",
+  "description": "Master passwordless authentication with FIDO2, WebAuthn, passkeys, and hardware-bound credentials for phishing-resistant security.",
+  "difficulty": "intermediate",
+  "estimatedHours": 3.5,
+  "prerequisiteModules": ["04-saml"],
+  "badge": {
+    "name": "Passwordless Expert",
+    "icon": "🔑",
+    "description": "Mastered FIDO2 and WebAuthn passwordless authentication"
+  },
+  "learningObjectives": [
+    "Understand FIDO2 architecture and WebAuthn API",
+    "Learn how public key cryptography enables passwordless authentication",
+    "Implement passkeys and hardware authenticators",
+    "Master registration and authentication ceremonies",
+    "Understand attestation and credential backup",
+    "Build phishing-resistant authentication flows"
+  ],
+  "requiresPassword": true,
+  "password": "NoAccess2025"
+}

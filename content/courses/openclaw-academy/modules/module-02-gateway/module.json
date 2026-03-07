@@ -1,0 +1,16 @@
+{
+  "id": "module-02-gateway",
+  "slug": "module-02-gateway",
+  "order": 2,
+  "title": "Gateway Architecture",
+  "description": "Deep dive into the control plane: WebSocket protocol, session management, and how the Gateway daemon works.",
+  "difficulty": "intermediate",
+  "estimatedHours": 0.5,
+  "badge": {
+    "name": "Gateway Architecture Badge",
+    "icon": "\ud83c\udfe0",
+    "description": "Completed the Gateway Architecture module"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}
