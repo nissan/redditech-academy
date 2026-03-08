@@ -1,0 +1,34 @@
+{
+  "id": "oauth-02-roles",
+  "spec": "Fill in the OAuth roles JSON. Scenario: IdentityQuest (client_id: iq_prod_8f3a) wants to read a developer's private GitHub repos. The developer is logged in. GitHub's OAuth service issues tokens. GitHub's API serves the repo data. Map each OAuth role to the correct actor.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "roles.resource_owner",
+        "acceptable_values": ["The developer (logged-in GitHub user)", "developer", "the developer", "logged-in github user", "user", "github user"]
+      },
+      {
+        "field": "roles.client",
+        "acceptable_values": ["IdentityQuest web app (client_id: iq_prod_8f3a)", "IdentityQuest", "identityquest web app", "iq_prod_8f3a", "identityquest"]
+      },
+      {
+        "field": "roles.authorization_server",
+        "acceptable_values": ["github.com/login/oauth (token issuance)", "github.com/login/oauth", "github oauth", "github authorization server", "github auth server"]
+      },
+      {
+        "field": "roles.resource_server",
+        "acceptable_values": ["api.github.com (serves repo data)", "api.github.com", "github api", "github resource server", "the github api"]
+      }
+    ]
+  },
+  "eli_notes": "Be lenient on exact string matching — conceptual accuracy matters. resource_owner must be the human developer, not IdentityQuest. client must be IdentityQuest. Common confusion: swapping authorization_server and resource_server. If swapped, explain: auth server issues tokens; resource server accepts tokens. Partial credit if 3/4 correct.",
+  "hints": [
+    "Think about whose data is being accessed, and who is asking for it.",
+    "The 'client' in OAuth is the app making the request — not the person using it. The 'resource owner' is the person whose data it is.",
+    "GitHub plays two separate roles here: one service issues the token (Authorization Server), a different endpoint serves the data (Resource Server). Map each URL to the right role."
+  ],
+  "prefilled": {
+    "template": "{\n  \"scenario\": \"IdentityQuest wants to read a developer's private GitHub repos\",\n  \"actors\": [\n    \"IdentityQuest web app (client_id: iq_prod_8f3a)\",\n    \"The developer (logged-in GitHub user)\",\n    \"github.com/login/oauth (token issuance)\",\n    \"api.github.com (serves repo data)\"\n  ],\n  \"roles\": {\n    \"resource_owner\": \"__FILL_IN__\",\n    \"client\": \"__FILL_IN__\",\n    \"authorization_server\": \"__FILL_IN__\",\n    \"resource_server\": \"__FILL_IN__\"\n  }\n}"
+  },
+  "success_text": "Role identification confirmed. Resource Owner: the developer. Client: IdentityQuest. Authorization Server: github.com/login/oauth. Resource Server: api.github.com."
+}

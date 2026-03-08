@@ -1,0 +1,33 @@
+{
+  "id": "oauth-04-token-exchange",
+  "spec": "Build the POST /token request to exchange the authorization code for tokens. The callback URL delivered: https://identityquest.dev/callback?code=gh_auth_7x9kQmP2&state=f8d3a1c9e2b7. You verified the state matches. App credentials: client_id=iq_prod_8f3a, client_secret=sk_vault_9d2f... Token endpoint: https://github.com/login/oauth/access_token. Set Accept header to application/json.",
+  "validation": {
+    "must_have": [
+      { "field": "method", "value": "POST" },
+      { "field": "body.grant_type", "value": "authorization_code" },
+      { "field": "body.code", "value": "gh_auth_7x9kQmP2" },
+      { "field": "body.redirect_uri", "value": "https://identityquest.dev/callback" },
+      { "field": "body.client_id", "value": "iq_prod_8f3a" },
+      { "field": "body.client_secret", "present": true, "non_empty": true }
+    ],
+    "must_not_have": [
+      { "location": "url_params", "field": "client_secret" }
+    ]
+  },
+  "eli_notes": "grant_type must be exactly 'authorization_code' (spec-defined string). code must match 'gh_auth_7x9kQmP2' exactly (case-sensitive). client_secret in URL params: WARN but don't hard fail — explain it's a security smell. Common mistakes: GET instead of POST; grant_type='code' instead of 'authorization_code'; code in wrong field.",
+  "hints": [
+    "This is a server-to-server request — think about the HTTP method that sends data in a request body rather than a URL.",
+    "You need five body parameters: what you're exchanging (grant_type), what you're exchanging it for (code), where you sent the user (redirect_uri), and who you are (client_id + client_secret).",
+    "grant_type must be exactly 'authorization_code'. The code value is 'gh_auth_7x9kQmP2' from the callback URL. The redirect_uri must exactly match what you sent in the previous step."
+  ],
+  "prefilled": {
+    "method": "POST",
+    "endpoint": "https://github.com/login/oauth/access_token",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "body": {}
+  },
+  "success_text": "Token exchange successful. The authorization code has been consumed and is now invalid. Store the access_token securely — and never log it."
+}

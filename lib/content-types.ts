@@ -2,6 +2,13 @@
  * TypeScript type definitions for MDX-based content
  */
 
+export type LessonType = 'standard' | 'interactive';
+export type EnvironmentType =
+  | 'http-request-builder'
+  | 'jwt-inspector'
+  | 'json-editor'
+  | 'sequence-completer';
+
 export interface LessonFrontmatter {
   title: string;
   description: string;
@@ -10,6 +17,12 @@ export interface LessonFrontmatter {
   order: number;
   keyTakeaways: string[];
   prerequisites?: string[];
+  // Interactive lesson fields
+  type?: LessonType;
+  environment?: EnvironmentType;
+  challengeId?: string;
+  missionTitle?: string;
+  estimatedMinutes?: number;
 }
 
 export interface ModuleMetadata {

@@ -1,0 +1,35 @@
+{
+  "id": "oauth-01-why-oauth",
+  "spec": "Order the steps of a 'Login with Google' OAuth flow into the correct sequence. Drag the steps into the right order.",
+  "validation": {
+    "must_have": [
+      { "field": "order[0]", "value": "A" },
+      { "field": "order[1]", "value": "D" },
+      { "field": "order[4]", "value": "F" },
+      { "field": "order[5]", "value": "B" },
+      { "field": "order[6]", "value": "G" },
+      { "field": "order[7]", "value": "H" }
+    ],
+    "ordering_tolerance": "strict_on_critical"
+  },
+  "eli_notes": "Correct order: A → D → E → C → F → B → G → H. E and C may swap (both defensible). B/G/H must be in order. If user puts H before G: FAIL. If state param isn't understood yet, note it's covered in Chapter 3.",
+  "hints": [
+    "Think about who initiates the flow, and where each party's responsibility ends.",
+    "The authorization code appears after the user says 'yes' — not before. Where does the code exchange fit relative to using the token?",
+    "Order: User clicks → App redirects to Google → Google checks identity → Google shows consent → User approves → Code issued to app → App exchanges code for token → App uses token."
+  ],
+  "prefilled": {
+    "steps": [
+      { "id": "A", "label": "User clicks 'Login with Google' on IdentityQuest" },
+      { "id": "B", "label": "IdentityQuest receives an authorization code from Google" },
+      { "id": "C", "label": "Google asks: 'Allow IdentityQuest to access your profile?'" },
+      { "id": "D", "label": "IdentityQuest redirects browser to Google's authorization server" },
+      { "id": "E", "label": "Google verifies the user's identity" },
+      { "id": "F", "label": "User approves the consent screen" },
+      { "id": "G", "label": "IdentityQuest exchanges the code for an access token" },
+      { "id": "H", "label": "IdentityQuest uses the access token to fetch the user's profile" }
+    ],
+    "correctOrder": ["A", "D", "E", "C", "F", "B", "G", "H"]
+  },
+  "success_text": "Sequence validated. You've mapped the exact flow that separates modern auth from password-sharing. At no point did IdentityQuest see your Google password — it received a short-lived authorization code, then exchanged it for a scoped token."
+}

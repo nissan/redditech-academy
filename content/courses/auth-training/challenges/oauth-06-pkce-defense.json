@@ -1,0 +1,32 @@
+{
+  "id": "oauth-06-pkce-defense",
+  "spec": "The HTTP Request Builder is pre-loaded with The Drift's malicious authorization request. Part A: Identify the attacks (add findings to notes). Part B: Fix the request — correct the redirect_uri to https://identityquest.dev/callback, add a state parameter, and add PKCE parameters. Use code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM and code_challenge_method=S256. Optionally remove admin:org from scope.",
+  "validation": {
+    "must_have": [
+      { "field": "params.redirect_uri", "value": "https://identityquest.dev/callback" },
+      { "field": "params.state", "present": true, "non_empty": true },
+      { "field": "params.code_challenge", "value": "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM" },
+      { "field": "params.code_challenge_method", "value": "S256" }
+    ],
+    "must_not_have": [
+      { "field": "params.redirect_uri", "value": "evil-syndicate.io" }
+    ]
+  },
+  "eli_notes": "Part A findings (two required to pass): 1) redirect_uri hijack to evil-syndicate.io — REQUIRED. 2) missing state / CSRF — REQUIRED. 3) excessive scope admin:org — BONUS. Part B: redirect_uri fix REQUIRED; state REQUIRED; PKCE (code_challenge + code_challenge_method=S256) REQUIRED. code_challenge_method=plain: warn, ask for S256. Scope fix: bonus. Common mistake: adding PKCE but leaving malicious redirect_uri.",
+  "hints": [
+    "Look very carefully at the redirect_uri. Where will the authorization code actually be delivered? Then check what's missing from the request entirely.",
+    "The redirect_uri is pointing to a domain controlled by the attacker — the code will be delivered directly to them. The state parameter is completely absent.",
+    "For Part B: fix redirect_uri to 'https://identityquest.dev/callback', add state (any random string), then add code_challenge='E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM' and code_challenge_method='S256'."
+  ],
+  "prefilled": {
+    "method": "GET",
+    "endpoint": "https://github.com/login/oauth/authorize",
+    "params": {
+      "response_type": "code",
+      "client_id": "iq_prod_8f3a",
+      "redirect_uri": "https://evil-syndicate.io/steal?legit=https://identityquest.dev",
+      "scope": "openid repo:read admin:org"
+    }
+  },
+  "success_text": "Keystone threat neutralised. Phishing request defanged. redirect_uri corrected, state added, PKCE applied. Even if The Drift intercepts the authorization code in transit, they cannot exchange it without the code_verifier."
+}

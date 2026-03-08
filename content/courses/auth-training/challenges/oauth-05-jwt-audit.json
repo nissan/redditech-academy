@@ -1,0 +1,31 @@
+{
+  "id": "oauth-05-jwt-audit",
+  "spec": "Inspect the pre-loaded JWT and identify the THREE security problems that mean this token should be rejected. For each finding, identify the claim, describe what's wrong, and state the fix.",
+  "validation": {
+    "must_have": [
+      {
+        "finding_present": "alg_none",
+        "acceptable_descriptions": ["references alg and none", "mentions no signature or unsigned or algorithm none", "alg=none"]
+      },
+      {
+        "finding_present": "expired",
+        "acceptable_descriptions": ["references exp and expired or past or old", "mentions timestamp in the past", "2023", "token expired"]
+      },
+      {
+        "finding_present": "wrong_audience",
+        "acceptable_descriptions": ["references aud and wrong or mismatch or incorrect", "mentions eavesdrop_app_001 or wrong client", "audience mismatch"]
+      }
+    ]
+  },
+  "eli_notes": "Three distinct findings must be present. Finding 1 (alg=none): most dangerous — anyone can forge this token. Finding 2 (expired): exp=1700000000 is 2023-11-14. Finding 3 (wrong audience): aud=eavesdrop_app_001 not IdentityQuest. Missing scope is NOT a problem in this token — scope is 'repo:read' which is correct. If user claims scope is wrong, correct them gently. Partial credit if 2 of 3 found.",
+  "hints": [
+    "A JWT has three parts. The header tells you how the token was signed. The payload tells you what it claims. Check each claim against what you'd expect for IdentityQuest.",
+    "Look carefully at the algorithm in the header, the expiry timestamp (convert it to a date), and who the token claims to be for.",
+    "Hint 1: alg=none means the signature was skipped entirely — this is a known attack vector. Hint 2: exp 1700000000 is November 2023. Hint 3: aud 'eavesdrop_app_001' — that's not IdentityQuest's client_id."
+  ],
+  "prefilled": {
+    "jwt": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1c2VyXzQ5MjEiLCJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vbG9naW4vb2F1dGgiLCJhdWQiOiJlYXZlc2Ryb3BfYXBwXzAwMSIsImV4cCI6MTcwMDAwMDAwMCwiaWF0IjoxNjk5OTk2NDAwLCJzY29wZSI6InJlcG86cmVhZCJ9.UNSIGNED",
+    "mode": "audit"
+  },
+  "success_text": "Three vulnerabilities confirmed. Token quarantined. alg=none (critical — forgeable), expired 2023-11-14 (high), audience mismatch eavesdrop_app_001 (high). All three are real-world CVE patterns used by The Drift."
+}

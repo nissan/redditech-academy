@@ -1,0 +1,30 @@
+{
+  "id": "oauth-03-authcode-request",
+  "spec": "Build the OAuth 2.0 authorization request URL for IdentityQuest's GitHub integration. Method: GET, endpoint: https://github.com/login/oauth/authorize. App details: client_id=iq_prod_8f3a, redirect_uri=https://identityquest.dev/callback, scopes: openid and repo:read. Include a state parameter (any non-empty random string). Set response_type correctly for the authorization code flow.",
+  "validation": {
+    "must_have": [
+      { "field": "method", "value": "GET" },
+      { "field": "params.response_type", "value": "code" },
+      { "field": "params.client_id", "value": "iq_prod_8f3a" },
+      { "field": "params.redirect_uri", "value": "https://identityquest.dev/callback" },
+      { "field": "params.scope", "must_contain": ["openid", "repo:read"] },
+      { "field": "params.state", "present": true, "non_empty": true }
+    ],
+    "must_not_have": [
+      { "field": "params.response_type", "value": "token" },
+      { "field": "method", "value": "POST" }
+    ]
+  },
+  "eli_notes": "Scope matching: accept 'openid repo:read' or 'repo:read openid' — order independent, both must be present. redirect_uri must be exactly 'https://identityquest.dev/callback' — no trailing slash, must be https. state: any non-empty string is acceptable. response_type=token: FAIL — implicit flow, deprecated. Common mistake: using POST instead of GET for /authorize.",
+  "hints": [
+    "The authorization code flow is named for what the server sends back — what type of thing is that, and what parameter tells the server you want it?",
+    "There are 5 parameters you need: response_type, client_id, redirect_uri, scope, and one more that protects the callback from CSRF attacks.",
+    "response_type should be 'code' (not 'token'). scope takes both 'openid' and 'repo:read' separated by a space. Don't forget the state parameter — use any random string."
+  ],
+  "prefilled": {
+    "method": "GET",
+    "endpoint": "https://github.com/login/oauth/authorize",
+    "params": {}
+  },
+  "success_text": "Authorization URL correctly formed. The user will now see GitHub's consent screen. The authorization code that comes back is short-lived and single-use."
+}
