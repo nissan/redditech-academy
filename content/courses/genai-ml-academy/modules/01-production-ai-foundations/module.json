@@ -1,0 +1,16 @@
+{
+  "id": "01-production-ai-foundations",
+  "slug": "01-production-ai-foundations",
+  "order": 1,
+  "title": "Production AI Foundations",
+  "description": "Intermediate builders already know how to get model output. Production teams need more: predictable quality, controlled cost, and clear ownership across data, application, and platform layers. This module gives you a system-level operating model you can use to design and review real production AI services.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "Production AI Foundations Badge",
+    "icon": "🤖",
+    "description": "Completed Production AI Foundations"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

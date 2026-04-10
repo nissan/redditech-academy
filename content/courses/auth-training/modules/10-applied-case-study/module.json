@@ -20,7 +20,7 @@
   ],
   "prerequisiteModules": [
     "01-auth-fundamentals",
-    "02-oauth2-core",
+    "02-oauth2",
     "03-oidc"
   ]
 }

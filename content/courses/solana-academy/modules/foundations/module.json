@@ -1,0 +1,20 @@
+{
+  "id": "foundations",
+  "slug": "foundations",
+  "order": 1,
+  "title": "Solana + Blockchain Fundamentals",
+  "description": "Understand Solana’s architecture, accounts model, and core blockchain primitives.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.3,
+  "badge": {
+    "name": "Solana + Blockchain Fundamentals Badge",
+    "icon": "🟣",
+    "description": "Completed Solana + Blockchain Fundamentals"
+  },
+  "learningObjectives": [
+    "Explain Solana’s core architecture in plain language",
+    "Differentiate accounts, programs, and transactions",
+    "Map blockchain primitives to real product behavior"
+  ],
+  "prerequisiteModules": []
+}

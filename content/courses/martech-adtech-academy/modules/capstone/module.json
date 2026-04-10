@@ -1,0 +1,23 @@
+{
+  "id": "capstone",
+  "slug": "capstone",
+  "order": 10,
+  "title": "Capstone Revenue Engine Plan",
+  "description": "Create a full-funnel operating plan",
+  "difficulty": "intermediate",
+  "estimatedHours": 2.5,
+  "badge": {
+    "name": "Capstone Revenue Engine Plan Badge",
+    "icon": "📈",
+    "description": "Completed Capstone Revenue Engine Plan"
+  },
+  "learningObjectives": [
+    "Create a full-funnel operating plan",
+    "Define KPI tree with owners and cadences",
+    "Produce a 90-day implementation roadmap",
+    "Choose the first organisational principle for week one"
+  ],
+  "prerequisiteModules": [
+    "vendor-evaluation"
+  ]
+}

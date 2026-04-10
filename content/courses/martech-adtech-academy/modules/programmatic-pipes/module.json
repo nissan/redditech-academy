@@ -1,0 +1,23 @@
+{
+  "id": "programmatic-pipes",
+  "slug": "programmatic-pipes",
+  "order": 4,
+  "title": "Programmatic and Ad Delivery Mechanics",
+  "description": "Understand bidstream fundamentals",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.8,
+  "badge": {
+    "name": "Programmatic and Ad Delivery Mechanics Badge",
+    "icon": "📈",
+    "description": "Completed Programmatic and Ad Delivery Mechanics"
+  },
+  "learningObjectives": [
+    "Understand bidstream fundamentals",
+    "Identify supply chain risk and fraud vectors",
+    "Improve media quality controls",
+    "Set a supply-path exclusion rule"
+  ],
+  "prerequisiteModules": [
+    "crm-map-cdp"
+  ]
+}

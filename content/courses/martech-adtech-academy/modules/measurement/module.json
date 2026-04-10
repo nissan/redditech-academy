@@ -1,0 +1,23 @@
+{
+  "id": "measurement",
+  "slug": "measurement",
+  "order": 6,
+  "title": "Attribution, MMM, and Experimentation",
+  "description": "Build a triangulated measurement system",
+  "difficulty": "intermediate",
+  "estimatedHours": 2.2,
+  "badge": {
+    "name": "Attribution, MMM, and Experimentation Badge",
+    "icon": "📈",
+    "description": "Completed Attribution, MMM, and Experimentation"
+  },
+  "learningObjectives": [
+    "Build a triangulated measurement system",
+    "Design incrementality tests",
+    "Use measurement for budget reallocation",
+    "Choose the metric that governs spend under disagreement"
+  ],
+  "prerequisiteModules": [
+    "privacy-consent"
+  ]
+}

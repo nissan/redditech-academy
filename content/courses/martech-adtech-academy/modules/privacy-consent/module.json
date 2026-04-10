@@ -1,0 +1,23 @@
+{
+  "id": "privacy-consent",
+  "slug": "privacy-consent",
+  "order": 5,
+  "title": "Privacy, Consent, and Signal Resilience",
+  "description": "Implement consent-aware measurement",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.7,
+  "badge": {
+    "name": "Privacy, Consent, and Signal Resilience Badge",
+    "icon": "📈",
+    "description": "Completed Privacy, Consent, and Signal Resilience"
+  },
+  "learningObjectives": [
+    "Implement consent-aware measurement",
+    "Design resilient signal pipelines",
+    "Map compliance obligations into system design",
+    "Pair consent mode with deduplicated server events"
+  ],
+  "prerequisiteModules": [
+    "programmatic-pipes"
+  ]
+}

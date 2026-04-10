@@ -1,0 +1,63 @@
+{
+  "id": "industry-map-quiz",
+  "moduleId": "industry-map",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m1q1",
+      "question": "What is the main risk of buying many disconnected tools without a shared data model?",
+      "options": [
+        "Faster campaign launch",
+        "Inconsistent reporting and decision errors",
+        "Lower storage costs",
+        "Guaranteed attribution accuracy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Without shared taxonomy and ownership, metrics fragment and decisions become unreliable.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m1q2",
+      "question": "A practical first move in stack rationalization is:",
+      "options": [
+        "Replace everything with one suite immediately",
+        "Build a core/edge/legacy inventory with owners",
+        "Pause all acquisition activity",
+        "Delete legacy data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "You need visibility and ownership before making consolidation decisions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m1q3",
+      "question": "Scenario: 8.6% of vendors disappeared last year. What should you protect first?",
+      "options": [
+        "Logo count",
+        "Data contracts and reporting ownership",
+        "Campaign volume at all costs",
+        "Office location"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Contracts and ownership survive churn better than a list of tools.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m1q4",
+      "question": "If two teams disagree on the stack map, what resolves the argument fastest?",
+      "options": [
+        "Title hierarchy",
+        "A shared inventory with renewal dates and owners",
+        "Vendor demos",
+        "A rebrand"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Concrete ownership and timing make the operating model visible.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

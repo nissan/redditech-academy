@@ -1,0 +1,50 @@
+# Testing + Debugging
+
+## Summary
+
+Create reliable test coverage and debugging workflow for Solana apps.
+
+## Outcomes
+
+- Write core happy-path and failure-path tests
+- Diagnose common transaction/program failures
+- Set a repeatable debug checklist
+
+## Theory
+
+- Unit vs integration in web3
+- Deterministic test design
+- Program logs and failure analysis
+- Regression strategy
+
+## Practical
+
+- Write baseline integration tests
+- Capture and classify failures
+- Build debugging runbook
+
+## Tools
+
+Anchor tests, Jest/Vitest, Program logs
+
+## Case Study
+
+- **Protagonist:** QA-minded dev
+- **Context:** Frequent flaky tests block release confidence.
+- **Dilemma:** Ship with flaky tests or pause and harden?
+- **Options:**
+  - Ship now
+  - Harden first
+  - Split release tracks
+- **Recommendation:** Harden first on critical paths, then ship progressively.
+- **Discussion questions:**
+  - Which failures are true blockers vs tolerable noise?
+  - How do you prove a fix eliminated a flaky class permanently?
+
+## Video Guidance
+
+Video: Solana Developer Bootcamp 2026: Learn Blockchain and Full-Stack Crypto Development (ID: 2pcm7ICRJKU)
+
+- Testing + Debugging clip 1 (00:08) (8s): applications on Salana using the latest
+- Testing + Debugging clip 2 (04:53) (293s): network of independent validators spread
+- Testing + Debugging clip 3 (09:09) (549s): Surfpool. This is a local test validator

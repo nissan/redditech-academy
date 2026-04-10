@@ -1,0 +1,77 @@
+{
+  "id": "10-advanced-ai-solutions-in-production-quiz",
+  "moduleId": "10-advanced-ai-solutions-in-production",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m10q1",
+      "question": "When composing LangChain and LangGraph in a single production system, what is the most common integration pattern?",
+      "options": [
+        "LangGraph replaces LangChain entirely; they cannot be used together",
+        "LangChain LCEL runnables are used as nodes within a LangGraph StateGraph",
+        "LangChain manages state; LangGraph handles prompt templates",
+        "LangGraph is only used for local development; LangChain handles production"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LangGraph and LangChain are designed to be composable. LCEL chains (e.g., prompt | model | parser) can be called inside LangGraph nodes, giving you LangGraph's state and routing with LangChain's composable primitives.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-advanced-ai-solutions-in-production"
+    },
+    {
+      "id": "m10q2",
+      "question": "What is the primary risk of running multiple concurrent LangGraph agents without resource controls?",
+      "options": [
+        "State corruption between agents due to shared memory",
+        "Uncontrolled LLM API spend and rate limit exhaustion",
+        "Automatic model fine-tuning triggered by agent outputs",
+        "Loss of conversation history due to checkpoint conflicts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Concurrent agents can each trigger LLM calls independently, leading to rapid API token consumption and hitting provider rate limits. Production systems need token budgets, concurrency limits, and cost monitoring.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-advanced-ai-solutions-in-production"
+    },
+    {
+      "id": "m10q3",
+      "question": "Which pattern best describes 'graceful degradation' in a production AI system?",
+      "options": [
+        "Returning a cached previous response when a new model call fails",
+        "Automatically upgrading to a more capable model when quality drops",
+        "Scaling down infrastructure during low-traffic periods",
+        "Archiving conversation history after session timeout"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Graceful degradation means the system remains functional when components fail. Returning a cached response, using a cheaper fallback model, or providing a safe default answer ensures users aren't left with hard errors.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-advanced-ai-solutions-in-production"
+    },
+    {
+      "id": "m10q4",
+      "question": "Which defence is most effective against prompt injection attacks in agentic AI systems?",
+      "options": [
+        "Encrypting all prompts before sending to the model",
+        "Validating and sanitising untrusted input before it enters the prompt, and restricting tool permissions",
+        "Running the LLM on a private network with no internet access",
+        "Using only open-source models to avoid vendor dependencies"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prompt injection occurs when untrusted input manipulates the model's instructions. Defence requires input sanitisation, strict tool permission scoping, and never allowing untrusted content to override system instructions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-advanced-ai-solutions-in-production"
+    },
+    {
+      "id": "m10q5",
+      "question": "For an agentic AI system with long-running tasks (minutes to hours), which deployment pattern is most appropriate?",
+      "options": [
+        "Synchronous REST API with a large request timeout",
+        "Async task queue with background workers, status polling, and webhook callbacks",
+        "WebSocket connection held open for the full duration of the task",
+        "Serverless function with a 5-second invocation limit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Long-running agentic tasks exceed the timeout limits of synchronous patterns. Async queues (Celery, RQ, Cloud Tasks) let agents run as background jobs, with clients polling status or receiving webhook notifications on completion.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-advanced-ai-solutions-in-production"
+    }
+  ]
+}

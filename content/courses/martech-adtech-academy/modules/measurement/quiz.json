@@ -1,0 +1,63 @@
+{
+  "id": "measurement-quiz",
+  "moduleId": "measurement",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m6q1",
+      "question": "Why combine experiments with MMM and platform reports?",
+      "options": [
+        "To avoid all uncertainty",
+        "To triangulate decision confidence",
+        "To remove finance from planning",
+        "To reduce campaign volume"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Each method has bias; triangulation improves reliability of budget decisions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m6q2",
+      "question": "What is incrementality testing trying to isolate?",
+      "options": [
+        "Total clicks",
+        "Causal lift beyond baseline",
+        "Audience size",
+        "Ad server latency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Incrementality estimates the additional impact caused by marketing activity.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m6q3",
+      "question": "Scenario: platform ROAS improves but payback worsens. What governs budget?",
+      "options": [
+        "The best-looking dashboard",
+        "The measure tied to business value and causality",
+        "The loudest channel owner",
+        "The oldest attribution window"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Budget should follow the metric that best captures true value, not vanity lift.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m6q4",
+      "question": "A holdout test is mainly used to estimate:",
+      "options": [
+        "Creative colour preference",
+        "Incremental impact versus a control",
+        "Warehouse latency",
+        "CRM field completeness"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Holdouts isolate causal lift by comparing treatment to control.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

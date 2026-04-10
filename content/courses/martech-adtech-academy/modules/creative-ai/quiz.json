@@ -1,0 +1,63 @@
+{
+  "id": "creative-ai-quiz",
+  "moduleId": "creative-ai",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m8q1",
+      "question": "High creative volume without governance often causes:",
+      "options": [
+        "Guaranteed CPA improvement",
+        "Noise and poor learning quality",
+        "Perfect attribution",
+        "Lower compliance risk"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Without hypotheses and promotion rules, you get output but weak insight.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m8q2",
+      "question": "A strong winner-promotion policy should include:",
+      "options": [
+        "No thresholds",
+        "Predefined statistical and business gates",
+        "Only designer preference",
+        "Single-platform results only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Promotion criteria should include both significance and business impact thresholds.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m8q3",
+      "question": "Scenario: the best CTR creative does not improve revenue. What should you do?",
+      "options": [
+        "Promote it anyway",
+        "Judge it on downstream conversion or revenue",
+        "Ignore the result",
+        "Stop testing forever"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The winner should be the creative that improves the business outcome that matters.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m8q4",
+      "question": "What makes component-based creative useful?",
+      "options": [
+        "It removes judgment",
+        "It generalizes across placements and contexts",
+        "It guarantees one ad winner",
+        "It eliminates testing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reusable components help scale across surfaces while preserving learning.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

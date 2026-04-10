@@ -1,0 +1,77 @@
+{
+  "id": "03-multi-agent-systems-and-frameworks-quiz",
+  "moduleId": "03-multi-agent-systems-and-frameworks",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m3q1",
+      "question": "In a multi-agent system, what is the primary role of a 'critic' agent?",
+      "options": [
+        "To execute tool calls and API requests on behalf of the planner",
+        "To review and score the outputs of other agents against defined quality criteria",
+        "To manage the conversation history and memory state",
+        "To route tasks to the appropriate specialist agents"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A critic agent evaluates the quality, correctness, or completeness of another agent's output — enabling self-correction loops without requiring human review on every step.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-multi-agent-systems-and-frameworks"
+    },
+    {
+      "id": "m3q2",
+      "question": "LangGraph is primarily designed to solve which limitation of standard LangChain agent loops?",
+      "options": [
+        "LangChain cannot call external APIs",
+        "Standard agent loops are stateless and don't support complex branching or human-in-the-loop pauses",
+        "LangChain doesn't support streaming output",
+        "Standard agents cannot use RAG retrieval tools"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LangGraph adds explicit state management and a graph-based execution model, enabling conditional branching, cyclical flows, and human-in-the-loop interrupts that simple linear agent chains can't support.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-multi-agent-systems-and-frameworks"
+    },
+    {
+      "id": "m3q3",
+      "question": "Which agent framework is best characterised by a 'roles and goals' design where agents are assigned to teams with defined missions?",
+      "options": [
+        "LangGraph",
+        "AutoGen",
+        "CrewAI",
+        "OpenAI Swarm"
+      ],
+      "correctAnswer": 2,
+      "explanation": "CrewAI organises agents into crews with explicit roles, goals, and backstories. Agents collaborate on tasks based on their defined mission, making it well-suited to document workflows and structured multi-step research.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-multi-agent-systems-and-frameworks"
+    },
+    {
+      "id": "m3q4",
+      "question": "What does 'tool calling' require from a language model in an agent system?",
+      "options": [
+        "Access to the internet and live APIs during training",
+        "The ability to generate structured function call requests that can be parsed and executed by the host application",
+        "A separate fine-tuned model dedicated to tool use",
+        "Memory of all previous tool results across sessions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tool calling (function calling) requires the model to produce structured JSON matching a tool's schema. The host application parses this, executes the function, and returns the result to the model for the next step.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-multi-agent-systems-and-frameworks"
+    },
+    {
+      "id": "m3q5",
+      "question": "A guardrail in a multi-agent system is best described as:",
+      "options": [
+        "A hardware rate limiter on the GPU running inference",
+        "A check or constraint that validates, filters, or blocks agent actions before they execute",
+        "A logging system that records all agent decisions",
+        "A fallback model used when the primary model is unavailable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Guardrails are policy enforcement mechanisms — they can block harmful tool calls, validate output format, enforce rate limits, or require human approval before an agent takes a consequential action.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-multi-agent-systems-and-frameworks"
+    }
+  ]
+}

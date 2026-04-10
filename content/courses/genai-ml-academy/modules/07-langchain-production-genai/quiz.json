@@ -1,0 +1,77 @@
+{
+  "id": "07-langchain-production-genai-quiz",
+  "moduleId": "07-langchain-production-genai",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m7q1",
+      "question": "What does LCEL (LangChain Expression Language) primarily provide?",
+      "options": [
+        "A Python DSL for writing SQL queries against LLM outputs",
+        "A composable pipe-operator syntax for chaining runnables (prompts, models, parsers) declaratively",
+        "A visual drag-and-drop interface for building LangChain agents",
+        "A token optimisation layer that compresses prompts before sending to the model"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LCEL uses Python's pipe operator (|) to compose runnables into chains. It provides a consistent interface for streaming, batching, async execution, and tracing across all LangChain components.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langchain-production-genai"
+    },
+    {
+      "id": "m7q2",
+      "question": "In a LangChain agent built with AgentExecutor, what is the role of the 'tool' abstraction?",
+      "options": [
+        "A configuration file specifying which models the agent can call",
+        "A callable with a defined name, description, and function that the agent can invoke to take actions",
+        "A persistent memory store for conversation history",
+        "A fallback prompt template used when the primary response fails"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LangChain tools are Python callables wrapped with a name and description. The agent's LLM reads these descriptions to decide which tool to call, then the AgentExecutor invokes the function and feeds the result back to the model.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langchain-production-genai"
+    },
+    {
+      "id": "m7q3",
+      "question": "Which LangChain memory type is most appropriate for long conversations where exact message history is too large for the context window?",
+      "options": [
+        "ConversationBufferMemory",
+        "ConversationSummaryMemory",
+        "VectorStoreRetrieverMemory",
+        "CombinedMemory"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ConversationSummaryMemory uses the LLM to progressively summarise older conversation history, keeping the context window manageable while preserving the key points of long conversations.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langchain-production-genai"
+    },
+    {
+      "id": "m7q4",
+      "question": "What does LangSmith primarily enable for production LangChain applications?",
+      "options": [
+        "Automatic fine-tuning of the model based on user feedback",
+        "Tracing, debugging, and evaluating LangChain runs with full visibility into every chain step",
+        "Hosting and scaling LangChain applications on managed infrastructure",
+        "Generating LCEL chain definitions from natural language descriptions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LangSmith provides full tracing of LangChain runs — showing every LLM call, tool invocation, and intermediate output. It supports evaluation, debugging, and regression testing, making it the observability backbone for production LangChain apps.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langchain-production-genai"
+    },
+    {
+      "id": "m7q5",
+      "question": "Which pattern allows a LangChain chain to stream partial output to a client as it is generated?",
+      "options": [
+        "Using a streaming=True flag on the ChatModel and consuming the chain with .stream()",
+        "Batching multiple inputs and returning all at once via .batch()",
+        "Configuring a webhook callback that posts chunks to an external URL",
+        "Enabling parallel invocation with .amap() across input sets"
+      ],
+      "correctAnswer": 0,
+      "explanation": "LangChain's streaming support requires a streaming-capable ChatModel and using .stream() (or .astream() for async) on the runnable. This yields tokens or chunks incrementally, enabling real-time UI updates.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langchain-production-genai"
+    }
+  ]
+}

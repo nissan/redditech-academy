@@ -1,0 +1,68 @@
+# Module 9 — Applied Data Science Case Studies
+
+## Beginner track
+
+In this beginner pass, you will work through practical ML case-study patterns using pandas, scikit-learn, and entry-level PyTorch.
+
+## Why it matters
+
+Many ML projects fail not because of model choice, but because data handling and baseline discipline are weak. This module teaches repeatable workflows you can apply to real business datasets.
+
+## Key Concepts
+
+### 1) Reliable data preparation with pandas
+Core habits:
+- inspect schema early
+- handle nulls explicitly
+- separate train/test before heavy transforms
+- document assumptions
+
+### 2) Baselines before complexity
+Always start with a simple baseline model.
+If a complex model does not beat baseline meaningfully, it is not ready.
+
+### 3) Scikit-learn pipelines
+Use `Pipeline` and `ColumnTransformer` so preprocessing and model steps stay reproducible between training and inference.
+
+### 4) Intro PyTorch workflow
+Understand the minimum loop:
+- dataset and dataloader
+- model definition
+- loss + optimizer
+- train/eval loop
+
+### 5) Model comparison
+Compare models on:
+- performance metric (accuracy/F1/RMSE)
+- training time
+- inference cost
+- interpretability
+
+## Build Lab (Beginner)
+
+Run a mini case study:
+1. Select one public tabular dataset.
+2. Build a pandas cleaning + feature prep notebook.
+3. Train one scikit-learn baseline model.
+4. Train one simple PyTorch MLP.
+5. Compare both models in a short report.
+
+Deliverable: notebook + comparison table.
+
+## Operator Case
+
+**Scenario:** Your fraud classifier has good accuracy but poor recall on fraud cases.
+
+As operator, propose:
+- better metric choice
+- threshold strategy
+- next experiment to improve minority-class detection
+
+## Checkpoint Quiz
+
+See `content/quizzes/09-applied-data-science-cases.json`
+
+## Tools and Further Reading
+- [pandas user guide](https://pandas.pydata.org/docs/user_guide/index.html)
+- [scikit-learn pipeline docs](https://scikit-learn.org/stable/modules/compose.html)
+- [PyTorch tutorials](https://pytorch.org/tutorials/)

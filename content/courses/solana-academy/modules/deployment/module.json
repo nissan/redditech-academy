@@ -1,0 +1,22 @@
+{
+  "id": "deployment",
+  "slug": "deployment",
+  "order": 7,
+  "title": "Deployment + Mainnet Readiness",
+  "description": "Move from devnet to production with security, operations, and release discipline.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.4,
+  "badge": {
+    "name": "Deployment + Mainnet Readiness Badge",
+    "icon": "🟣",
+    "description": "Completed Deployment + Mainnet Readiness"
+  },
+  "learningObjectives": [
+    "Define a safe promotion path to production",
+    "Set pre-deploy and post-deploy checks",
+    "Create incident and rollback protocols"
+  ],
+  "prerequisiteModules": [
+    "testing"
+  ]
+}

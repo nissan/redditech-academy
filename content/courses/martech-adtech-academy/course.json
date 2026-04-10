@@ -1,0 +1,24 @@
+{
+  "id": "martech-adtech-academy",
+  "slug": "martech-adtech-academy",
+  "title": "MarTech + AdTech Academy",
+  "description": "Operator-focused curriculum for marketing technology and advertising technology systems, measurement, and growth operations.",
+  "tagline": "Design and operate modern MarTech + AdTech systems",
+  "icon": "📈",
+  "difficulty": "intermediate",
+  "estimatedHours": 15,
+  "tags": [
+    "martech",
+    "adtech",
+    "measurement",
+    "growth"
+  ],
+  "badge": {
+    "name": "MarTech + AdTech Academy Graduate",
+    "icon": "📈",
+    "description": "Completed the MarTech + AdTech Academy course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true
+}

@@ -1,0 +1,63 @@
+{
+  "id": "onchain-quiz",
+  "moduleId": "onchain",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "o1",
+      "question": "PDAs are primarily used for:",
+      "options": [
+        "UI routing",
+        "Deterministic program-owned addresses",
+        "Wallet backups",
+        "RPC failover"
+      ],
+      "correctAnswer": 1,
+      "explanation": "PDAs provide deterministic addresses controlled by program logic.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "o2",
+      "question": "What should account constraints enforce?",
+      "options": [
+        "Brand style",
+        "Authority and state invariants",
+        "Explorer aesthetics",
+        "Marketing copy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Constraints encode safety rules for authority and valid state transitions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "o3",
+      "question": "A robust instruction contract should include:",
+      "options": [
+        "Unvalidated inputs",
+        "Expected accounts and explicit failure paths",
+        "No signer checks",
+        "Only happy path comments"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Clear account requirements and failures improve reliability and security.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "o4",
+      "question": "Why test one failure path for each instruction?",
+      "options": [
+        "To increase compile time",
+        "To prove invalid transitions are blocked",
+        "To avoid local validator",
+        "To skip audits"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Failure-path tests protect invariant boundaries.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

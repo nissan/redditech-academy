@@ -1,0 +1,63 @@
+{
+  "id": "wallets-quiz",
+  "moduleId": "wallets",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "w1",
+      "question": "What should never be sent to the frontend in plain text?",
+      "options": [
+        "Public key",
+        "Private key / seed phrase",
+        "Program ID",
+        "RPC URL"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Private keys and seed phrases must remain protected and never exposed client-side.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "w2",
+      "question": "What is a secure wallet connection pattern?",
+      "options": [
+        "Auto-sign every request",
+        "Prompt explicit user approval for each signature",
+        "Share one key across users",
+        "Store seed in localStorage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "User-approved signing is core to safe wallet UX.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "w3",
+      "question": "Which boundary is critical in wallet-integrated apps?",
+      "options": [
+        "Hide transaction intent",
+        "Separate read operations from signing operations",
+        "Disable error messages",
+        "Reuse dev key in production"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Clear read vs sign boundaries reduce accidental risk.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "w4",
+      "question": "What is a good devnet funding practice?",
+      "options": [
+        "Hardcode private keys in repo",
+        "Use controlled airdrop flow and environment separation",
+        "Reuse mainnet secrets",
+        "Disable logs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Environment separation and controlled funding avoid preventable security issues.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

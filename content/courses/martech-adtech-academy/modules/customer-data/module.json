@@ -1,0 +1,23 @@
+{
+  "id": "customer-data",
+  "slug": "customer-data",
+  "order": 2,
+  "title": "Customer Data Foundations",
+  "description": "Design a reliable event taxonomy",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Customer Data Foundations Badge",
+    "icon": "📈",
+    "description": "Completed Customer Data Foundations"
+  },
+  "learningObjectives": [
+    "Design a reliable event taxonomy",
+    "Define identity resolution across touchpoints",
+    "Implement quality and governance guardrails",
+    "Choose the canonical source when schemas conflict"
+  ],
+  "prerequisiteModules": [
+    "industry-map"
+  ]
+}

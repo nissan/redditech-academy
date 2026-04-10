@@ -1,0 +1,77 @@
+{
+  "id": "04-langgraph-stateful-agents-quiz",
+  "moduleId": "04-langgraph-stateful-agents",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m4q1",
+      "question": "In LangGraph, what does a 'node' represent?",
+      "options": [
+        "A data schema definition for the graph state",
+        "A single unit of work — a function that reads from and writes to the graph state",
+        "A connection between two different agents",
+        "An external API endpoint called during execution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In LangGraph, nodes are Python functions (or runnables) that receive the current state, perform some work (LLM call, tool use, logic), and return an updated state dict. The graph is built by connecting nodes with edges.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langgraph-stateful-agents"
+    },
+    {
+      "id": "m4q2",
+      "question": "What is the purpose of a conditional edge in a LangGraph StateGraph?",
+      "options": [
+        "To persist state to a database between graph executions",
+        "To route execution to different nodes based on the current state value",
+        "To pause the graph and wait for a human input",
+        "To define the initial state schema for the workflow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Conditional edges use a routing function that inspects the current state and returns the name of the next node to execute. This enables branching logic — e.g., 'if quality check fails, retry; else finish'.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langgraph-stateful-agents"
+    },
+    {
+      "id": "m4q3",
+      "question": "LangGraph's 'interrupt' mechanism enables which production pattern?",
+      "options": [
+        "Automatic retry of failed nodes up to a configurable limit",
+        "Human-in-the-loop: pausing the graph mid-execution for human review or approval",
+        "Parallel execution of multiple nodes simultaneously",
+        "Streaming token-by-token output to the client"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LangGraph's interrupt_before and interrupt_after features pause execution at specific nodes, allowing a human to review the state, modify it if needed, and then resume — critical for agentic systems with high-stakes actions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langgraph-stateful-agents"
+    },
+    {
+      "id": "m4q4",
+      "question": "What does LangGraph's checkpointing feature provide for production agent systems?",
+      "options": [
+        "Automatic code version control for graph definitions",
+        "Persistent state storage that allows workflows to be paused, resumed, and replayed across sessions",
+        "Rate limiting to prevent agents from making too many LLM calls",
+        "Logging of all LLM token usage for cost attribution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Checkpointing saves the full graph state at each step to a persistent store (e.g., Postgres, Redis). This means a long-running agent can survive restarts, be resumed after human review, or be debugged by replaying state history.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langgraph-stateful-agents"
+    },
+    {
+      "id": "m4q5",
+      "question": "How does LangGraph differ from a simple LangChain LCEL chain in handling cycles?",
+      "options": [
+        "LCEL supports cycles natively; LangGraph does not",
+        "LangGraph supports cyclic graphs (loops and retries); LCEL chains are directed acyclic graphs only",
+        "Neither supports cycles — both require external orchestration",
+        "LangGraph uses async; LCEL uses synchronous execution only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LCEL chains are DAGs — data flows in one direction. LangGraph uses a stateful graph model that explicitly supports cycles, enabling retry loops, self-correction agents, and iterative refinement patterns.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langgraph-stateful-agents"
+    }
+  ]
+}

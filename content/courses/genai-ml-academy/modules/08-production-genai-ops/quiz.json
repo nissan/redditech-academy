@@ -1,0 +1,77 @@
+{
+  "id": "08-production-genai-ops-quiz",
+  "moduleId": "08-production-genai-ops",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m8q1",
+      "question": "What is the main role of a golden eval set?",
+      "options": [
+        "To increase token generation speed",
+        "To compare system quality consistently across versions",
+        "To replace production monitoring",
+        "To remove all human review"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A fixed eval set allows apples-to-apples comparison and regression detection before release.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-genai-ops"
+    },
+    {
+      "id": "m8q2",
+      "question": "Which metric is most directly related to user-perceived responsiveness?",
+      "options": [
+        "Token price",
+        "Latency",
+        "Embedding dimension",
+        "Prompt length variance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Latency directly affects how fast users receive answers.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-genai-ops"
+    },
+    {
+      "id": "m8q3",
+      "question": "Why is request tracing important in GenAI systems?",
+      "options": [
+        "It guarantees model correctness",
+        "It helps debug failures by linking prompts, retrieval, model output, and timing",
+        "It replaces logging infrastructure",
+        "It reduces GPU memory usage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tracing makes production failures diagnosable and speeds root-cause analysis.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-genai-ops"
+    },
+    {
+      "id": "m8q4",
+      "question": "Which is a common low-risk first step for cost optimization?",
+      "options": [
+        "Disable all safety checks",
+        "Add caching for repeated requests",
+        "Increase max tokens for every prompt",
+        "Run all requests on the largest model"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Caching repeated or similar requests can lower cost and latency with minimal quality risk.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-genai-ops"
+    },
+    {
+      "id": "m8q5",
+      "question": "What is the purpose of a regression gate in deployment?",
+      "options": [
+        "To ensure new versions meet minimum quality and performance thresholds",
+        "To remove old telemetry data",
+        "To change model provider automatically",
+        "To enforce one prompt template forever"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Regression gates block releases that degrade quality, latency, or cost beyond accepted limits.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-genai-ops"
+    }
+  ]
+}

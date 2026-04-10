@@ -1,0 +1,77 @@
+{
+  "id": "01-production-ai-foundations-quiz",
+  "moduleId": "01-production-ai-foundations",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m1q1",
+      "question": "Which of the following best describes the core difference between a GenAI application and a classical ML system?",
+      "options": [
+        "GenAI apps always use neural networks; classical ML does not",
+        "GenAI apps generate new content via foundation models; classical ML predicts from trained feature patterns",
+        "Classical ML requires more compute at inference time",
+        "GenAI apps cannot be evaluated offline"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GenAI applications use foundation models (LLMs, diffusion, etc.) to generate content. Classical ML systems predict structured outputs from engineered features. The distinction drives different architecture, eval, and operational patterns.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-ai-foundations"
+    },
+    {
+      "id": "m1q2",
+      "question": "An eval-driven development loop in production AI systems primarily helps teams:",
+      "options": [
+        "Reduce GPU costs by pruning model parameters",
+        "Detect when model outputs degrade before users notice",
+        "Automatically generate training data from user inputs",
+        "Eliminate the need for human review of outputs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Eval-driven development means continuously running offline or online evaluations against golden benchmarks or user signals, catching regressions before they reach users at scale.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-ai-foundations"
+    },
+    {
+      "id": "m1q3",
+      "question": "In an AI system architecture, which component is responsible for reducing hallucination risk by grounding model responses in retrieved documents?",
+      "options": [
+        "Fine-tuning the base model on proprietary data",
+        "A retrieval step that injects relevant context into the prompt",
+        "Increasing the temperature parameter at inference",
+        "A semantic cache layer"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Retrieval-Augmented Generation (RAG) injects retrieved context into the model's prompt, grounding its response in real documents and reducing confabulation.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-ai-foundations"
+    },
+    {
+      "id": "m1q4",
+      "question": "Which of the following is a data flywheel effect in a production AI system?",
+      "options": [
+        "Serving the same model version indefinitely to reduce drift",
+        "User interactions generating signal that improves model quality, which drives more engagement",
+        "Caching model outputs to avoid repeated inference costs",
+        "Deploying models across multiple cloud regions simultaneously"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A data flywheel means that as more users interact with the system, the resulting signal (clicks, corrections, feedback) is used to improve the model, which attracts more usage — a compounding improvement loop.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-ai-foundations"
+    },
+    {
+      "id": "m1q5",
+      "question": "Which risk is most unique to GenAI systems compared to traditional software?",
+      "options": [
+        "Infrastructure downtime",
+        "Security vulnerabilities in dependencies",
+        "Non-deterministic outputs that can vary between identical inputs",
+        "Database connection pool exhaustion"
+      ],
+      "correctAnswer": 2,
+      "explanation": "LLM outputs are probabilistic. Temperature, sampling, and model state mean identical prompts can produce different answers — requiring eval strategies that account for variance, not just deterministic test assertions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-ai-foundations"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "02-rag-in-practice-quiz",
+  "moduleId": "02-rag-in-practice",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m2q1",
+      "question": "What is the primary purpose of chunking documents before embedding them for a RAG pipeline?",
+      "options": [
+        "To compress documents for faster network transfer",
+        "To fit content into the embedding model's context window and improve retrieval granularity",
+        "To remove personally identifiable information before storage",
+        "To split documents by language for multilingual retrieval"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Embedding models have context window limits, and large documents embedded as a whole lose granularity. Chunking breaks documents into semantically meaningful units that can be retrieved precisely.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-rag-in-practice"
+    },
+    {
+      "id": "m2q2",
+      "question": "In a hybrid retrieval pipeline, what are the two retrieval signals being combined?",
+      "options": [
+        "User profile vectors and document sentiment scores",
+        "Dense (semantic) embeddings and sparse (keyword/BM25) retrieval",
+        "Fine-tuned and base model embeddings",
+        "GPU and CPU inference results"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hybrid retrieval blends dense semantic search (vector embeddings) with sparse keyword search (BM25 or TF-IDF), leveraging the strengths of both to handle both semantic and exact-match queries.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-rag-in-practice"
+    },
+    {
+      "id": "m2q3",
+      "question": "Which failure mode describes a RAG system retrieving technically relevant chunks that don't actually answer the user's question?",
+      "options": [
+        "Index staleness",
+        "Embedding model collapse",
+        "Low recall / missing evidence",
+        "Retrieval relevance gap (high recall, low precision)"
+      ],
+      "correctAnswer": 3,
+      "explanation": "High recall means many relevant documents are retrieved, but low precision means they don't specifically answer the question. This is the retrieval relevance gap — the model gets context, but the wrong context.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-rag-in-practice"
+    },
+    {
+      "id": "m2q4",
+      "question": "What does metadata filtering in a vector database enable?",
+      "options": [
+        "Sorting results by embedding similarity before displaying them",
+        "Restricting retrieval to documents matching structured attributes like date, source, or document type",
+        "Deduplicating identical chunks during indexing",
+        "Compressing embedding dimensions at query time"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Metadata filtering lets you pre-filter the candidate set before or during vector search. For example, only retrieve from documents published after a certain date or from a specific product category.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-rag-in-practice"
+    },
+    {
+      "id": "m2q5",
+      "question": "Which technique helps a RAG system provide citations grounding its answer in the retrieved sources?",
+      "options": [
+        "Increasing the LLM temperature to generate more varied answers",
+        "Passing source document IDs alongside chunks and instructing the model to attribute claims",
+        "Using a smaller embedding model for faster retrieval",
+        "Disabling semantic caching to ensure fresh retrievals"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Citation grounding requires including document identifiers (URL, filename, chunk ID) in the prompt context and explicitly instructing the model to attribute statements to their source documents.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-rag-in-practice"
+    }
+  ]
+}

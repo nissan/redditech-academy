@@ -1,0 +1,63 @@
+{
+  "id": "tooling-quiz",
+  "moduleId": "tooling",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "t1",
+      "question": "Which setup practice reduces team environment drift most?",
+      "options": [
+        "Manual setup docs only",
+        "Pinned versions plus bootstrap scripts",
+        "Different OS per developer",
+        "Skipping validator checks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pinned tool versions and scripts make setup reproducible.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "t2",
+      "question": "Why run a local validator during development?",
+      "options": [
+        "To avoid writing tests",
+        "To iterate quickly with deterministic local state",
+        "To deploy to mainnet faster",
+        "To bypass key management"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A local validator gives fast, controlled feedback loops.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "t3",
+      "question": "What should a setup verification checklist include?",
+      "options": [
+        "Only wallet screenshots",
+        "CLI version checks and sample command outputs",
+        "Only repo star count",
+        "Only UI snapshots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Verification should prove the toolchain actually works, not just installs.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "t4",
+      "question": "Best first step when onboarding a new engineer?",
+      "options": [
+        "Ask them to guess versions",
+        "Run the project bootstrap and verify outputs",
+        "Deploy directly to mainnet",
+        "Skip Rust install"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A shared bootstrap process avoids hidden local blockers.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

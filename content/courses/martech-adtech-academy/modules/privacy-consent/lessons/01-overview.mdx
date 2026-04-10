@@ -1,0 +1,49 @@
+# Privacy, Consent, and Signal Resilience
+
+## Summary
+
+Implement consent-aware measurement
+
+## Outcomes
+
+- Implement consent-aware measurement
+- Design resilient signal pipelines
+- Map compliance obligations into system design
+- Pair consent mode with deduplicated server events
+
+## Theory
+
+- Consent mode patterns and defaults
+- Client-side versus server-side collection
+- Data minimization and retention strategy
+- Event deduplication across browser and server
+- Compliance as measurement design, not afterthought
+- Modeling fallbacks when signals are missing
+
+## Practical
+
+- Build a consent-state matrix
+- Classify events by legal basis and purpose
+- Define fallback measurement strategy
+- Mark which events require server-side handling
+- Document deduplication keys for critical events
+
+## Tools
+
+GTM Server-Side, OneTrust, Didomi, Meta CAPI
+
+## Case Study
+
+- **Protagonist:** Regional marketing director (EU launch)
+- **Context:** Legal requires strict consent implementation before expansion.
+- **Dilemma:** Comply quickly and lose attribution quality, or delay launch?
+- **Options:**
+  - Ship with minimal tracking
+  - Build consent mode + server-side implementation
+  - Delay market launch until full stack rebuild
+- **Recommendation:** Launch with consent mode, server-side critical events, and model-based measurement fallback.
+- **Discussion questions:**
+  - Legal says consent controls must go live before launch. What is your minimum viable compliant measurement stack?
+  - What performance loss will you explicitly accept to stay compliant in quarter one?
+  - Where do browser and server events need deduplication?
+  - What is your fallback metric if deterministic attribution drops?

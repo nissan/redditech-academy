@@ -1,0 +1,63 @@
+{
+  "id": "customer-data-quiz",
+  "moduleId": "customer-data",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m2q1",
+      "question": "Which is foundational for reliable lifecycle analytics?",
+      "options": [
+        "Creative rotation",
+        "Consistent event taxonomy",
+        "Daily bid adjustments",
+        "Audience expansion only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A clean taxonomy is the base layer for attribution, segmentation, and journey logic.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m2q2",
+      "question": "Why map anonymous-to-known identity transitions?",
+      "options": [
+        "To reduce page load speed",
+        "To improve continuity across touchpoints",
+        "To remove first-party data",
+        "To avoid consent collection"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Identity transitions connect behavior before and after authentication/conversion.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m2q3",
+      "question": "Scenario: product analytics, CRM, and paid media disagree. What becomes system-of-record first?",
+      "options": [
+        "The noisiest dataset",
+        "The source tied to the critical launch decision",
+        "The prettiest dashboard",
+        "The oldest platform"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pick the source that governs the decision and make it authoritative first.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m2q4",
+      "question": "What best reduces schema drift over time?",
+      "options": [
+        "More ad spend",
+        "Named ownership and change approval",
+        "Extra dashboards",
+        "Shorter emails"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Ownership plus approval reduces accidental breaking changes.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

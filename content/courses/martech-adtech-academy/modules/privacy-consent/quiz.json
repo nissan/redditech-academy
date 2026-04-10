@@ -1,0 +1,63 @@
+{
+  "id": "privacy-consent-quiz",
+  "moduleId": "privacy-consent",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m5q1",
+      "question": "Consent mode mainly helps by:",
+      "options": [
+        "Designing your cookie banner",
+        "Adapting tag behavior to user consent choices",
+        "Replacing legal review",
+        "Eliminating all compliance obligations"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Consent mode consumes consent states and modifies measurement behavior.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m5q2",
+      "question": "A resilient signal strategy typically uses:",
+      "options": [
+        "Client-side tags only",
+        "Hybrid client + server critical events",
+        "No event tracking",
+        "Only modeled data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hybrid pipelines improve reliability under browser/privacy constraints.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m5q3",
+      "question": "Scenario: browser and server both send the same conversion. What must happen?",
+      "options": [
+        "Count both for confidence",
+        "Deduplicate with a shared event key",
+        "Delete consent logs",
+        "Lower the media budget"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Deduplication keeps browser and server events trustworthy.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m5q4",
+      "question": "What is the safest fallback when deterministic tracking weakens?",
+      "options": [
+        "Assume nothing changed",
+        "Use modeled reporting and guardrail KPIs",
+        "Remove reporting entirely",
+        "Double the spend"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Modeled reporting plus guardrails preserves decision-making under data loss.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

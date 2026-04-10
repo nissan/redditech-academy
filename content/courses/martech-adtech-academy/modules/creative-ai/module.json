@@ -1,0 +1,23 @@
+{
+  "id": "creative-ai",
+  "slug": "creative-ai",
+  "order": 8,
+  "title": "Creative Intelligence and AI Ops",
+  "description": "Run structured creative testing",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "Creative Intelligence and AI Ops Badge",
+    "icon": "📈",
+    "description": "Completed Creative Intelligence and AI Ops"
+  },
+  "learningObjectives": [
+    "Run structured creative testing",
+    "Use AI for asset generation with controls",
+    "Operationalize winner promotion",
+    "Judge creative on downstream outcomes, not just CTR"
+  ],
+  "prerequisiteModules": [
+    "lifecycle"
+  ]
+}

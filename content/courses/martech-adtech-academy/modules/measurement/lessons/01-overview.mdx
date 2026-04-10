@@ -1,0 +1,49 @@
+# Attribution, MMM, and Experimentation
+
+## Summary
+
+Build a triangulated measurement system
+
+## Outcomes
+
+- Build a triangulated measurement system
+- Design incrementality tests
+- Use measurement for budget reallocation
+- Choose the metric that governs spend under disagreement
+
+## Theory
+
+- MTA limitations and bias
+- MMM design basics
+- Experiment hierarchy and causal inference
+- Baseline versus incremental value
+- Attribution triangulation under signal loss
+- Decision rules when metrics conflict
+
+## Practical
+
+- Draft a channel-level test plan
+- Create an MMM input data checklist
+- Build a budget decision tree
+- Write one holdout design for a spend cutover
+- Define the reporting order for platform, MMM, and experiment data
+
+## Tools
+
+GA4, Amplitude, Statsig, Northbeam, Lightweight MMM scripts
+
+## Case Study
+
+- **Protagonist:** CFO and CMO
+- **Context:** Platform ROAS says up, finance says payback period worsened.
+- **Dilemma:** Trust platform dashboards or cut spend aggressively?
+- **Options:**
+  - Use last-click only
+  - Run geo holdout + blend with MMM
+  - Freeze acquisition until reconciliation complete
+- **Recommendation:** Run holdout tests and triangulate with MMM before major budget cuts.
+- **Discussion questions:**
+  - ROAS and payback disagree. Which source governs budget this quarter, and why?
+  - What is the first experiment you run to resolve the conflict, and what result changes spend?
+  - Which number is baseline, incremental, or marketing-induced incremental value?
+  - What would you do if the platform looked strong but holdout results were weak?

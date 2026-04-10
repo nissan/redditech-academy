@@ -1,0 +1,77 @@
+{
+  "id": "11-ml-deployment-cloud-quiz",
+  "moduleId": "11-ml-deployment-cloud",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m11q1",
+      "question": "When is batch inference usually preferred over realtime inference?",
+      "options": [
+        "When every request needs sub-second response",
+        "When predictions are scheduled and immediate response is not required",
+        "When model versioning is disabled",
+        "When using only GPU instances"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Batch is ideal for periodic scoring jobs where latency is less critical.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-ml-deployment-cloud"
+    },
+    {
+      "id": "m11q2",
+      "question": "What is a primary benefit of containerizing an ML service?",
+      "options": [
+        "Eliminates need for monitoring",
+        "Improves portability across environments and clouds",
+        "Automatically tunes hyperparameters",
+        "Guarantees zero downtime"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Containers package dependencies and runtime consistently for deployment portability.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-ml-deployment-cloud"
+    },
+    {
+      "id": "m11q3",
+      "question": "What should a CI/CD gate for ML deployments commonly include?",
+      "options": [
+        "Only unit tests on API routes",
+        "Evaluation threshold checks before promotion",
+        "Manual SSH into production",
+        "Disabling rollback"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ML deployments should be blocked if evaluation metrics fail minimum thresholds.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-ml-deployment-cloud"
+    },
+    {
+      "id": "m11q4",
+      "question": "Which is the best immediate response when inference latency suddenly spikes in production?",
+      "options": [
+        "Delete logs to reduce storage",
+        "Rollback or route traffic to a stable version while investigating",
+        "Increase prompt length",
+        "Turn off alerting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Stabilize user impact first, then investigate root cause with telemetry.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-ml-deployment-cloud"
+    },
+    {
+      "id": "m11q5",
+      "question": "Which signal best indicates potential model drift?",
+      "options": [
+        "CPU usage decreased",
+        "Prediction distribution changes significantly over time",
+        "Container image size increased",
+        "Deployment completed successfully"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Large shifts in output distributions can indicate data or concept drift requiring review.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-ml-deployment-cloud"
+    }
+  ]
+}

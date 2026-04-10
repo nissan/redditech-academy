@@ -1,0 +1,75 @@
+# Module 11 — Deploying ML Systems on AWS, Azure, and GCP
+
+## Beginner track
+
+In this beginner pass, you will learn cloud deployment patterns for ML systems and how to choose the right serving architecture.
+
+## Why it matters
+
+A good model in a notebook has no business value until it is deployed, monitored, and recoverable. Cloud deployment adds reliability, scalability, and operational controls.
+
+## Key Concepts
+
+### 1) Batch vs realtime serving
+- **Batch**: scheduled predictions for many records
+- **Realtime**: low-latency prediction per request
+
+Pick based on user experience and cost constraints.
+
+### 2) Packaging models for production
+Common beginner stack:
+- FastAPI service wrapper
+- Docker container
+- environment-locked dependencies
+
+This gives portability across clouds.
+
+### 3) Cloud-native options
+- **AWS**: SageMaker endpoints, Lambda, Step Functions
+- **Azure**: Azure ML managed endpoints, Azure Functions
+- **GCP**: Vertex AI endpoints, Cloud Run
+
+Each cloud offers both managed ML and general compute options.
+
+### 4) CI/CD for ML
+Deployment pipelines should include:
+- model artifact versioning
+- evaluation gate
+- staged rollout (canary/shadow)
+- rollback automation
+
+### 5) Monitoring after deployment
+Track:
+- latency and error rate
+- feature/data drift
+- prediction distribution shifts
+- business KPI impact
+
+## Build Lab (Beginner)
+
+Design a 3-cloud deployment blueprint:
+1. Pick one ML use case.
+2. Choose batch or realtime pattern.
+3. Map an AWS, Azure, and GCP architecture.
+4. Define one CI/CD gate and one rollback trigger.
+5. Define a basic monitoring dashboard spec.
+
+Deliverable: deployment decision matrix + architecture diagram.
+
+## Operator Case
+
+**Scenario:** Latency doubles after a model version upgrade in production.
+
+As operator, identify:
+- likely root causes
+- immediate mitigation steps
+- long-term guardrails to prevent recurrence
+
+## Checkpoint Quiz
+
+See `content/quizzes/11-ml-deployment-cloud.json`
+
+## Tools and Further Reading
+- [AWS SageMaker docs](https://docs.aws.amazon.com/sagemaker/)
+- [Azure ML docs](https://learn.microsoft.com/azure/machine-learning/)
+- [Vertex AI docs](https://cloud.google.com/vertex-ai/docs)

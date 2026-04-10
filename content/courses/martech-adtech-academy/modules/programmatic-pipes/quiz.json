@@ -1,0 +1,63 @@
+{
+  "id": "programmatic-pipes-quiz",
+  "moduleId": "programmatic-pipes",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m4q1",
+      "question": "What do sellers.json and supply chain object primarily improve?",
+      "options": [
+        "Creative quality",
+        "Supply path transparency",
+        "Landing page speed",
+        "Email deliverability"
+      ],
+      "correctAnswer": 1,
+      "explanation": "They make intermediaries and seller identities more transparent in programmatic paths.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m4q2",
+      "question": "If CPA rises after scaling open exchange, first action should be:",
+      "options": [
+        "Increase bids everywhere",
+        "Audit supply quality and path efficiency",
+        "Turn off all retargeting",
+        "Stop all measurement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Quality and path inefficiencies are common drivers of performance decay at scale.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m4q3",
+      "question": "Scenario: a reseller chain is opaque. What is the operator move?",
+      "options": [
+        "Ignore it if clicks are cheap",
+        "Exclude or downgrade the path until verified",
+        "Raise frequency caps only",
+        "Change the logo"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Opaque paths should not earn full trust without verification.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m4q4",
+      "question": "What does ads.txt let publishers do?",
+      "options": [
+        "Bid on creative",
+        "Publicly declare authorised sellers",
+        "Encrypt audiences",
+        "Increase page speed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ads.txt creates a public authorization list for buyers to inspect.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

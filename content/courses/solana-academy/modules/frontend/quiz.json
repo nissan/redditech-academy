@@ -1,0 +1,63 @@
+{
+  "id": "frontend-quiz",
+  "moduleId": "frontend",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "fr1",
+      "question": "Best UX for pending transactions is:",
+      "options": [
+        "No feedback",
+        "Clear pending, success, and failure states",
+        "Auto-reload every second",
+        "Hide signatures"
+      ],
+      "correctAnswer": 1,
+      "explanation": "State clarity reduces user confusion and duplicate actions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "fr2",
+      "question": "After a successful on-chain action, UI should:",
+      "options": [
+        "Assume state changed",
+        "Refresh relevant account state and confirm outcome",
+        "Clear wallet connection",
+        "Disable navigation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Refreshing account data confirms real chain outcome.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "fr3",
+      "question": "A safe signing prompt should include:",
+      "options": [
+        "Only tx hash",
+        "Human-readable action context",
+        "No destination accounts",
+        "Random warning text"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Users need understandable intent before approving signatures.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "fr4",
+      "question": "If transaction confirmation fails intermittently, first step is:",
+      "options": [
+        "Retry blindly forever",
+        "Add explicit retry + error handling policy",
+        "Hide errors",
+        "Disable wallet adapter"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Controlled retries and clear errors make failures recoverable.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}
