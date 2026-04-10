@@ -1,0 +1,77 @@
+{
+  "id": "12-databricks-spark-capstone-quiz",
+  "moduleId": "12-databricks-spark-capstone",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m12q1",
+      "question": "What is the primary role of a Spark DataFrame in data pipelines?",
+      "options": [
+        "Manage API authentication",
+        "Represent distributed tabular data for scalable transforms",
+        "Replace SQL entirely",
+        "Track model experiments"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Spark DataFrames are the main abstraction for distributed data processing in Spark.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-databricks-spark-capstone"
+    },
+    {
+      "id": "m12q2",
+      "question": "In a medallion architecture, which layer is typically cleaned and validated data?",
+      "options": [
+        "Bronze",
+        "Silver",
+        "Gold only",
+        "Raw"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Silver usually contains cleaned and standardized data derived from raw Bronze inputs.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-databricks-spark-capstone"
+    },
+    {
+      "id": "m12q3",
+      "question": "What key capability does Delta Lake add on top of plain data lake files?",
+      "options": [
+        "Automatic model training",
+        "ACID transactions and table versioning",
+        "Built-in BI dashboards",
+        "Language translation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Delta Lake provides reliable table operations including ACID semantics and time travel.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-databricks-spark-capstone"
+    },
+    {
+      "id": "m12q4",
+      "question": "Why should a capstone include a measurable success metric?",
+      "options": [
+        "To make the project longer",
+        "To objectively evaluate whether outcomes meet goals",
+        "To avoid choosing a dataset",
+        "To skip deployment considerations"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Clear metrics let you judge project success and communicate impact.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-databricks-spark-capstone"
+    },
+    {
+      "id": "m12q5",
+      "question": "If dashboard metrics fluctuate unexpectedly each week, what is a strong first control?",
+      "options": [
+        "Add schema and data-quality checks before publishing curated outputs",
+        "Delete historical tables",
+        "Increase cluster size only",
+        "Remove medallion layers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Quality gates and contracts before publishing Gold outputs reduce inconsistent downstream metrics.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-databricks-spark-capstone"
+    }
+  ]
+}

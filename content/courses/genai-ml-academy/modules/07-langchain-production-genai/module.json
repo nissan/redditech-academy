@@ -1,0 +1,18 @@
+{
+  "id": "07-langchain-production-genai",
+  "slug": "07-langchain-production-genai",
+  "order": 7,
+  "title": "LangChain for Production GenAI Engineering",
+  "description": "LangChain is the most widely adopted GenAI application framework. Understanding it deeply — not just the tutorials, but the production patterns — is a forcing function for building real systems. This module goes from basics to production: LCEL, agents, memory, tool integration, streaming, and observability.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "LangChain for Production GenAI Engineering Badge",
+    "icon": "🤖",
+    "description": "Completed LangChain for Production GenAI Engineering"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": [
+    "06-fine-tuning-open-models"
+  ]
+}

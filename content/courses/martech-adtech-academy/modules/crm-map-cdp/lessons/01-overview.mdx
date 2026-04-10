@@ -1,0 +1,49 @@
+# CRM, MAP, and CDP Architecture
+
+## Summary
+
+Separate CRM, MAP, and CDP concerns
+
+## Outcomes
+
+- Separate CRM, MAP, and CDP concerns
+- Design activation and orchestration flows
+- Evaluate composable versus packaged CDP models
+- State the lock-in risk you will accept explicitly
+
+## Theory
+
+- System responsibilities and integration boundaries
+- Warehouse-native activation patterns
+- Latency, freshness, and personalization tradeoffs
+- Composable CDP ownership and data control
+- Packaged platform convenience versus flexibility
+- Failure modes in integration-heavy programmes
+
+## Practical
+
+- Build a reference architecture diagram
+- Define activation SLA targets by audience type
+- Choose the canonical profile source
+- Mark which workflows must stay real-time
+- Set one rule for when not to replicate data
+
+## Tools
+
+Salesforce, HubSpot, Braze, mParticle, Tealium, Snowplow
+
+## Case Study
+
+- **Protagonist:** CTO + CMO steering committee
+- **Context:** Board asks for one platform to reduce cost and complexity.
+- **Dilemma:** Single suite purchase vs composable data-first stack.
+- **Options:**
+  - Standardize on one suite vendor
+  - Keep warehouse as source of truth and use a light orchestration layer
+  - Hybrid: suite for CRM workflows + composable activation
+- **Recommendation:** Hybrid architecture with explicit contracts gives speed now and flexibility later.
+- **Discussion questions:**
+  - Choose one architecture today: suite, composable, or hybrid. Defend your choice in one sentence.
+  - Which lock-in risk are you willing to accept this year, and which is unacceptable?
+  - What would you refuse to outsource to the vendor?
+  - Which integration would you simplify first?

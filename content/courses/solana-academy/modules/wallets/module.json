@@ -1,0 +1,22 @@
+{
+  "id": "wallets",
+  "slug": "wallets",
+  "order": 3,
+  "title": "Wallets + Key Management",
+  "description": "Learn wallet flows, key handling boundaries, and secure account patterns.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.2,
+  "badge": {
+    "name": "Wallets + Key Management Badge",
+    "icon": "🟣",
+    "description": "Completed Wallets + Key Management"
+  },
+  "learningObjectives": [
+    "Implement safe wallet connection flow",
+    "Describe key custody boundaries",
+    "Define devnet-safe account funding process"
+  ],
+  "prerequisiteModules": [
+    "tooling"
+  ]
+}

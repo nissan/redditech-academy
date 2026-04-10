@@ -1,0 +1,63 @@
+{
+  "id": "capstone-quiz",
+  "moduleId": "capstone",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m10q1",
+      "question": "In a 90-day operating plan, what should be explicit?",
+      "options": [
+        "Only goals",
+        "Owners, milestones, and success metrics",
+        "Only vendor names",
+        "Only ad creatives"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Execution requires clear ownership and measurable checkpoints.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m10q2",
+      "question": "A dual-track plan means:",
+      "options": [
+        "Ignore fundamentals",
+        "Run quick wins while hardening architecture",
+        "Do only research",
+        "Delay all campaign activity"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dual-track balances immediate impact with long-term system health.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m10q3",
+      "question": "Scenario: finance and growth disagree on the KPI tree. What should come first?",
+      "options": [
+        "A prettier dashboard",
+        "A shared decision rule and owner map",
+        "More channels",
+        "A new agency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Shared rules and ownership resolve cross-functional disagreement.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m10q4",
+      "question": "If you need to prove cross-channel contribution, what is the first discipline to set?",
+      "options": [
+        "Attribution chaos",
+        "A consistent measurement and review cadence",
+        "Only creative testing",
+        "No KPIs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Contribution claims require a repeatable measurement rhythm.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

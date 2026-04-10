@@ -1,0 +1,74 @@
+# Module 12 — Databricks, Spark, and the Final Capstone
+
+## Beginner track
+
+In this beginner pass, you will learn core Spark and Databricks concepts, then scope a realistic capstone project.
+
+## Why it matters
+
+Production AI and ML systems depend on clean, scalable data pipelines. Spark and Databricks are widely used for large-scale data engineering and model operations.
+
+## Key Concepts
+
+### 1) Spark DataFrames and transformations
+You should be able to:
+- read raw files (JSON/CSV/Parquet)
+- apply filters and joins
+- aggregate by business dimensions
+- write transformed outputs
+
+### 2) Lakehouse and medallion layers
+A common pattern:
+- **Bronze**: raw ingested data
+- **Silver**: cleaned and validated data
+- **Gold**: business-ready curated tables
+
+### 3) Delta Lake basics
+Delta adds:
+- ACID transactions
+- schema enforcement
+- time travel/versioning
+
+This improves reliability of analytics and ML training inputs.
+
+### 4) Databricks workspace fundamentals
+Core platform capabilities:
+- notebooks and jobs/workflows
+- Unity Catalog governance
+- MLflow experiment tracking
+
+### 5) Capstone framing
+A strong capstone has:
+- clear business question
+- measurable success metric
+- scoped timeline
+- data + model + deployment story
+
+## Build Lab (Beginner)
+
+Create a starter Spark + capstone package:
+1. Build a Spark job: raw JSON -> cleaned Silver table.
+2. Add one quality check (null threshold or schema check).
+3. Save outputs in Delta format.
+4. Draft capstone brief with objective, dataset, and metric.
+5. Define milestone plan (week-by-week).
+
+Deliverable: Spark notebook/script + capstone brief.
+
+## Operator Case
+
+**Scenario:** Your weekly pipeline succeeds, but downstream dashboard numbers keep changing unexpectedly.
+
+As operator, explain:
+- which Delta/Spark checks to add
+- how medallion layering reduces this issue
+- what data contract to enforce before Gold outputs
+
+## Checkpoint Quiz
+
+See `content/quizzes/12-databricks-spark-capstone.json`
+
+## Tools and Further Reading
+- [Apache Spark SQL guide](https://spark.apache.org/docs/latest/sql-programming-guide.html)
+- [Delta Lake docs](https://docs.delta.io/latest/index.html)
+- [Databricks docs](https://docs.databricks.com/)

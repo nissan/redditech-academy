@@ -1,0 +1,24 @@
+{
+  "id": "solana-academy",
+  "slug": "solana-academy",
+  "title": "Solana Developer Academy",
+  "description": "Practical Solana development curriculum covering architecture, wallet integration, on-chain programs, testing, and deployment.",
+  "tagline": "Ship production-ready Solana applications",
+  "icon": "🟣",
+  "difficulty": "intermediate",
+  "estimatedHours": 12,
+  "tags": [
+    "solana",
+    "blockchain",
+    "web3",
+    "smart-contracts"
+  ],
+  "badge": {
+    "name": "Solana Developer Academy Graduate",
+    "icon": "🟣",
+    "description": "Completed the Solana Developer Academy course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true
+}

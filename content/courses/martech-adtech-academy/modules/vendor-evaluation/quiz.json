@@ -1,0 +1,63 @@
+{
+  "id": "vendor-evaluation-quiz",
+  "moduleId": "vendor-evaluation",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m9q1",
+      "question": "The most useful vendor scorecard combines:",
+      "options": [
+        "Brand popularity only",
+        "Capability fit, TCO, risk, and integration effort",
+        "Only license price",
+        "Only UI preference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Decision quality requires multidimensional criteria, not sticker price alone.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m9q2",
+      "question": "A governance charter helps mainly by:",
+      "options": [
+        "Blocking all experimentation",
+        "Controlling tool sprawl and ownership",
+        "Eliminating procurement",
+        "Avoiding security review"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Governance clarifies adoption gates and ownership to reduce stack entropy.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m9q3",
+      "question": "Scenario: the board demands a 30% cost cut. What do you protect first?",
+      "options": [
+        "The cheapest vendor",
+        "Capabilities tied to measurable lift or control",
+        "The loudest request",
+        "The newest feature"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Protect the capabilities that still earn their keep.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m9q4",
+      "question": "Which criterion is most dangerous to ignore in vendor selection?",
+      "options": [
+        "Logo design",
+        "Switching cost and data portability",
+        "Meeting length",
+        "Slide count"
+      ],
+      "correctAnswer": 1,
+      "explanation": "If you cannot exit cleanly, the tool can become structural debt.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

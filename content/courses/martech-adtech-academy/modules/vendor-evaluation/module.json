@@ -1,0 +1,23 @@
+{
+  "id": "vendor-evaluation",
+  "slug": "vendor-evaluation",
+  "order": 9,
+  "title": "Vendor Evaluation and Stack Governance",
+  "description": "Score vendors with defensible criteria",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.3,
+  "badge": {
+    "name": "Vendor Evaluation and Stack Governance Badge",
+    "icon": "📈",
+    "description": "Completed Vendor Evaluation and Stack Governance"
+  },
+  "learningObjectives": [
+    "Score vendors with defensible criteria",
+    "Model cost and lock-in risk",
+    "Create governance for tool sprawl",
+    "Protect high-value capabilities while cutting waste"
+  ],
+  "prerequisiteModules": [
+    "creative-ai"
+  ]
+}

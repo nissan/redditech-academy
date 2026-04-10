@@ -1,0 +1,23 @@
+{
+  "id": "crm-map-cdp",
+  "slug": "crm-map-cdp",
+  "order": 3,
+  "title": "CRM, MAP, and CDP Architecture",
+  "description": "Separate CRM, MAP, and CDP concerns",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "CRM, MAP, and CDP Architecture Badge",
+    "icon": "📈",
+    "description": "Completed CRM, MAP, and CDP Architecture"
+  },
+  "learningObjectives": [
+    "Separate CRM, MAP, and CDP concerns",
+    "Design activation and orchestration flows",
+    "Evaluate composable versus packaged CDP models",
+    "State the lock-in risk you will accept explicitly"
+  ],
+  "prerequisiteModules": [
+    "customer-data"
+  ]
+}

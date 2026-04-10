@@ -1,0 +1,77 @@
+{
+  "id": "06-fine-tuning-open-models-quiz",
+  "moduleId": "06-fine-tuning-open-models",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m6q1",
+      "question": "What is usually the best order before deciding to fine-tune?",
+      "options": [
+        "Fine-tune first, then try prompt engineering",
+        "Prompt improvements, then retrieval improvements, then fine-tuning if needed",
+        "Only change model size",
+        "Skip evaluation and rely on user feedback"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prompt and retrieval improvements are often faster and cheaper. Fine-tuning is best when those are not enough.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-fine-tuning-open-models"
+    },
+    {
+      "id": "m6q2",
+      "question": "What is a core benefit of LoRA/QLoRA?",
+      "options": [
+        "No training data is required",
+        "Train fewer parameters with lower compute cost",
+        "Guaranteed perfect accuracy",
+        "No need for validation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LoRA and QLoRA are parameter-efficient fine-tuning methods that reduce compute and memory requirements.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-fine-tuning-open-models"
+    },
+    {
+      "id": "m6q3",
+      "question": "Why is a holdout validation set important in fine-tuning?",
+      "options": [
+        "It prevents the model from using a tokenizer",
+        "It helps estimate real performance on unseen examples",
+        "It increases training speed",
+        "It removes the need for prompts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Validation on unseen data helps detect overfitting and gives a realistic quality signal before deployment.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-fine-tuning-open-models"
+    },
+    {
+      "id": "m6q4",
+      "question": "Which dataset trait is most important for beginner fine-tuning success?",
+      "options": [
+        "Largest possible size regardless of quality",
+        "Consistent, clean instruction-response pairs",
+        "Only multilingual samples",
+        "Randomly mixed output formats"
+      ],
+      "correctAnswer": 1,
+      "explanation": "High-quality, consistent examples are more valuable than noisy volume, especially for narrow tasks.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-fine-tuning-open-models"
+    },
+    {
+      "id": "m6q5",
+      "question": "When should a team avoid shipping a fine-tuned model?",
+      "options": [
+        "When fine-tuned performance gain is small versus prompt-only baseline",
+        "When dataset has exactly 500 rows",
+        "When using open-source models",
+        "When latency is under 1 second"
+      ],
+      "correctAnswer": 0,
+      "explanation": "If gains are marginal, extra complexity may not be worth operational overhead.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-fine-tuning-open-models"
+    }
+  ]
+}

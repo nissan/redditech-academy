@@ -1,0 +1,18 @@
+{
+  "id": "05-text2sql-enterprise-data",
+  "slug": "05-text2sql-enterprise-data",
+  "order": 5,
+  "title": "Text2SQL and Enterprise Data Interfaces",
+  "description": "Most business data lives in SQL databases, but most business users do not write SQL. Text2SQL bridges that gap by letting users ask questions in natural language while still querying trusted enterprise data.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "Text2SQL and Enterprise Data Interfaces Badge",
+    "icon": "🤖",
+    "description": "Completed Text2SQL and Enterprise Data Interfaces"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": [
+    "04-langgraph-stateful-agents"
+  ]
+}

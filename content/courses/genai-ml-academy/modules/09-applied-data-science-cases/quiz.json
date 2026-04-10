@@ -1,0 +1,77 @@
+{
+  "id": "09-applied-data-science-cases-quiz",
+  "moduleId": "09-applied-data-science-cases",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m9q1",
+      "question": "Why should teams build a baseline model first?",
+      "options": [
+        "To avoid feature engineering",
+        "To create a simple benchmark before adding complexity",
+        "To skip train/test split",
+        "To guarantee state-of-the-art results"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Baselines provide a reference point so improvements from complex models are measurable.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-applied-data-science-cases"
+    },
+    {
+      "id": "m9q2",
+      "question": "What is the key benefit of scikit-learn Pipelines?",
+      "options": [
+        "They remove the need for model evaluation",
+        "They keep preprocessing and model steps reproducible together",
+        "They automatically deploy models to cloud",
+        "They replace PyTorch completely"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pipelines ensure train/inference transformations stay consistent and reduce leakage bugs.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-applied-data-science-cases"
+    },
+    {
+      "id": "m9q3",
+      "question": "If fraud recall is low, what is a sensible first action?",
+      "options": [
+        "Ignore recall and optimize accuracy only",
+        "Review threshold and minority-class handling",
+        "Delete minority-class samples",
+        "Increase feature count randomly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Low recall on minority classes often requires threshold tuning and class-imbalance strategies.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-applied-data-science-cases"
+    },
+    {
+      "id": "m9q4",
+      "question": "In a basic PyTorch workflow, what does the DataLoader do?",
+      "options": [
+        "Deploys the model endpoint",
+        "Loads and batches training/evaluation data",
+        "Tracks experiment metadata",
+        "Converts SQL to tensors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DataLoader handles batching and iteration so training loops can process data efficiently.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-applied-data-science-cases"
+    },
+    {
+      "id": "m9q5",
+      "question": "Which comparison is most useful when choosing between two models?",
+      "options": [
+        "Only training time",
+        "Only one accuracy score",
+        "Quality metric plus cost/time/interpretability trade-offs",
+        "Only parameter count"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Production model choice is multi-objective, not quality-only.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-applied-data-science-cases"
+    }
+  ]
+}

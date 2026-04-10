@@ -1,0 +1,22 @@
+{
+  "id": "frontend",
+  "slug": "frontend",
+  "order": 5,
+  "title": "Frontend + Wallet Integration",
+  "description": "Connect UI flows to on-chain actions with resilient client behavior.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.3,
+  "badge": {
+    "name": "Frontend + Wallet Integration Badge",
+    "icon": "🟣",
+    "description": "Completed Frontend + Wallet Integration"
+  },
+  "learningObjectives": [
+    "Connect wallet state to UI state",
+    "Handle pending/success/failure transaction UX",
+    "Build user-safe signing prompts"
+  ],
+  "prerequisiteModules": [
+    "onchain"
+  ]
+}

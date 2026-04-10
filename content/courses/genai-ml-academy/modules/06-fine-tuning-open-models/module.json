@@ -1,0 +1,18 @@
+{
+  "id": "06-fine-tuning-open-models",
+  "slug": "06-fine-tuning-open-models",
+  "order": 6,
+  "title": "Fine-Tuning and Open Model Workflows",
+  "description": "Teams often jump to fine-tuning too early. In production, the best sequence is usually:",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "Fine-Tuning and Open Model Workflows Badge",
+    "icon": "🤖",
+    "description": "Completed Fine-Tuning and Open Model Workflows"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": [
+    "05-text2sql-enterprise-data"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "11-ml-deployment-cloud",
+  "slug": "11-ml-deployment-cloud",
+  "order": 11,
+  "title": "Deploying ML Systems on AWS, Azure, and GCP",
+  "description": "A good model in a notebook has no business value until it is deployed, monitored, and recoverable. Cloud deployment adds reliability, scalability, and operational controls.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "Deploying ML Systems on AWS, Azure, and GCP Badge",
+    "icon": "🤖",
+    "description": "Completed Deploying ML Systems on AWS, Azure, and GCP"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": [
+    "10-advanced-ai-solutions-in-production"
+  ]
+}

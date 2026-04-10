@@ -1,0 +1,18 @@
+{
+  "id": "09-applied-data-science-cases",
+  "slug": "09-applied-data-science-cases",
+  "order": 9,
+  "title": "Applied Data Science Case Studies",
+  "description": "Many ML projects fail not because of model choice, but because data handling and baseline discipline are weak. This module teaches repeatable workflows you can apply to real business datasets.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "Applied Data Science Case Studies Badge",
+    "icon": "🤖",
+    "description": "Completed Applied Data Science Case Studies"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": [
+    "08-production-genai-ops"
+  ]
+}

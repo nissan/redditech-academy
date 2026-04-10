@@ -1,0 +1,21 @@
+{
+  "id": "industry-map",
+  "slug": "industry-map",
+  "order": 1,
+  "title": "MarTech + AdTech Industry Map",
+  "description": "Differentiate MarTech and AdTech responsibilities in an operating model",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "MarTech + AdTech Industry Map Badge",
+    "icon": "📈",
+    "description": "Completed MarTech + AdTech Industry Map"
+  },
+  "learningObjectives": [
+    "Differentiate MarTech and AdTech responsibilities in an operating model",
+    "Map stack layers from capture to activation with clear owners",
+    "Explain why vendor churn changes governance priorities",
+    "Set the first 90-day control mechanism for stack decisions"
+  ],
+  "prerequisiteModules": []
+}

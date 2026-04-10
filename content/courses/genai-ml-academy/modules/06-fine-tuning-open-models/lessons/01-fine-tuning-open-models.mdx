@@ -1,0 +1,80 @@
+# Module 6 — Fine-Tuning and Open Model Workflows
+
+## Beginner track
+
+In this beginner pass, you will learn when fine-tuning helps, when it does not, and how to run a simple open-model workflow safely.
+
+## Why it matters
+
+Teams often jump to fine-tuning too early. In production, the best sequence is usually:
+1) prompt improvements
+2) retrieval improvements
+3) fine-tuning only when needed
+
+Learning this order saves time, cost, and rework.
+
+## Key Concepts
+
+### 1) Fine-tuning vs prompt engineering vs RAG
+Use:
+- **Prompt engineering** for instruction clarity
+- **RAG** for up-to-date or private knowledge
+- **Fine-tuning** for stable behaviour/style across many requests
+
+### 2) Dataset quality basics
+For beginner fine-tuning, prioritize:
+- clean instruction-response pairs
+- consistent format
+- de-duplication
+- removing low-quality examples
+
+Bad data usually creates bad model behaviour.
+
+### 3) Supervised fine-tuning (SFT)
+SFT teaches a model to follow your task format better by training on labeled examples.
+Good first target: 300–1,000 high-quality samples for a narrow task.
+
+### 4) LoRA and QLoRA
+These are parameter-efficient methods:
+- train fewer parameters
+- reduce VRAM cost
+- keep the base model mostly unchanged
+
+Great for beginner and small-team workflows.
+
+### 5) Evaluation before deployment
+Evaluate on a holdout set and compare:
+- base model
+- prompt-only baseline
+- fine-tuned model
+
+If gain is small, do not ship fine-tuning yet.
+
+## Build Lab (Beginner)
+
+Create a beginner fine-tuning plan:
+1. Pick one narrow task (for example, structured support summarisation).
+2. Prepare 500 instruction-response pairs in JSONL format.
+3. Define a LoRA config for a 7B model (rank, alpha, dropout).
+4. Split train/validation sets.
+5. Propose an evaluation rubric (accuracy, format compliance, hallucination rate).
+
+Deliverable: dataset sample + configuration + eval plan.
+
+## Operator Case
+
+**Scenario:** Your team wants a model that always responds in strict JSON for internal ticket triage.
+
+As operator, decide:
+- whether prompt-only is enough
+- what examples must be in the training data
+- what regression checks are required before rollout
+
+## Checkpoint Quiz
+
+See `content/quizzes/06-fine-tuning-open-models.json`
+
+## Tools and Further Reading
+- [Hugging Face PEFT docs](https://huggingface.co/docs/peft/index)
+- [QLoRA paper](https://arxiv.org/abs/2305.14314)
+- [Hugging Face TRL](https://huggingface.co/docs/trl/index)

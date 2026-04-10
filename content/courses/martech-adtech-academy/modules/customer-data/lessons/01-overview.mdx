@@ -1,0 +1,49 @@
+# Customer Data Foundations
+
+## Summary
+
+Design a reliable event taxonomy
+
+## Outcomes
+
+- Design a reliable event taxonomy
+- Define identity resolution across touchpoints
+- Implement quality and governance guardrails
+- Choose the canonical source when schemas conflict
+
+## Theory
+
+- First-party data architecture and transparency
+- Identity graph basics and stitching logic
+- Data contracts, QA, and observability
+- System-of-record decisions under launch pressure
+- Server-side activation patterns for trusted events
+- Governance for schema change and versioning
+
+## Practical
+
+- Draft an event schema for lead-to-revenue lifecycle
+- Map anonymous-to-known transitions across touchpoints
+- Create a data quality checklist with failure thresholds
+- Define a schema owner and change approval path
+- Write one reconciliation rule for analytics and CRM
+
+## Tools
+
+Segment, RudderStack, dbt, BigQuery, Snowflake
+
+## Case Study
+
+- **Protagonist:** Head of Marketing Ops
+- **Context:** Web and app teams send conflicting conversion events.
+- **Dilemma:** Ship faster with partial fixes or halt launch to refactor tracking?
+- **Options:**
+  - Patch in GTM only
+  - Enforce cross-team event naming contract
+  - Move all tracking to server-side immediately
+- **Recommendation:** Enforce a naming contract and QA gates first, then phase server-side migration for critical events.
+- **Discussion questions:**
+  - You launch in 7 days with conflicting event definitions. What do you ship now and what do you block?
+  - Which event source becomes system-of-record first, and why?
+  - Who has final authority over schema changes?
+  - What explicit failure would stop launch?

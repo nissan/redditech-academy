@@ -1,0 +1,18 @@
+{
+  "id": "03-multi-agent-systems-and-frameworks",
+  "slug": "03-multi-agent-systems-and-frameworks",
+  "order": 3,
+  "title": "Multi-Agent Systems and AI Agent Frameworks",
+  "description": "Intermediate teams move from single prompts to coordinated systems. Multi-agent architectures can increase throughput and quality, but only when role boundaries, handoff contracts, and failure controls are explicit.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.0,
+  "badge": {
+    "name": "Multi-Agent Systems and AI Agent Frameworks Badge",
+    "icon": "🤖",
+    "description": "Completed Multi-Agent Systems and AI Agent Frameworks"
+  },
+  "learningObjectives": [],
+  "prerequisiteModules": [
+    "02-rag-in-practice"
+  ]
+}

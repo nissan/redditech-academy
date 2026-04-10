@@ -1,0 +1,23 @@
+{
+  "id": "lifecycle",
+  "slug": "lifecycle",
+  "order": 7,
+  "title": "Lifecycle and Journey Orchestration",
+  "description": "Design lifecycle funnels",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.7,
+  "badge": {
+    "name": "Lifecycle and Journey Orchestration Badge",
+    "icon": "📈",
+    "description": "Completed Lifecycle and Journey Orchestration"
+  },
+  "learningObjectives": [
+    "Design lifecycle funnels",
+    "Build trigger-based journeys",
+    "Reduce churn and message fatigue",
+    "Select the signals that matter and exclude the rest"
+  ],
+  "prerequisiteModules": [
+    "measurement"
+  ]
+}

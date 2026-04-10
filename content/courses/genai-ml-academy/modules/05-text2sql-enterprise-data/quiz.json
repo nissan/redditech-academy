@@ -1,0 +1,77 @@
+{
+  "id": "05-text2sql-enterprise-data-quiz",
+  "moduleId": "05-text2sql-enterprise-data",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m5q1",
+      "question": "What is the main purpose of schema grounding in a Text2SQL system?",
+      "options": [
+        "To reduce database storage costs",
+        "To help the model map user questions to the correct tables and columns",
+        "To encrypt SQL queries before execution",
+        "To replace SQL with natural language permanently"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Schema grounding gives the model table, column, and relationship context so it can generate accurate SQL instead of guessing field names.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-text2sql-enterprise-data"
+    },
+    {
+      "id": "m5q2",
+      "question": "Which query should be blocked by a production Text2SQL safety layer?",
+      "options": [
+        "SELECT customer_id, total_spend FROM customers",
+        "SELECT COUNT(*) FROM orders",
+        "DROP TABLE orders",
+        "SELECT region, SUM(revenue) FROM sales GROUP BY region"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Destructive statements like DROP should be blocked for safety. Most Text2SQL assistants should be read-only in production.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-text2sql-enterprise-data"
+    },
+    {
+      "id": "m5q3",
+      "question": "Why is specifying SQL dialect (for example PostgreSQL vs BigQuery) important in prompts?",
+      "options": [
+        "It improves GPU utilization",
+        "Different dialects use different SQL syntax and functions",
+        "It automatically improves database indexing",
+        "It removes the need for validation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SQL syntax differs across engines, so model outputs can fail if dialect context is missing.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-text2sql-enterprise-data"
+    },
+    {
+      "id": "m5q4",
+      "question": "What does a semantic layer primarily help with?",
+      "options": [
+        "Automatic model fine-tuning",
+        "Consistent metric definitions across teams",
+        "Faster token generation",
+        "Converting SQL to Python"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A semantic layer standardizes business metrics so teams do not calculate the same KPI differently.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-text2sql-enterprise-data"
+    },
+    {
+      "id": "m5q5",
+      "question": "Which output best builds trust in a Text2SQL assistant?",
+      "options": [
+        "Return only final chart image",
+        "Return only SQL without context",
+        "Return SQL plus plain-English explanation and assumptions",
+        "Hide all query details from users"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Showing SQL and explanation helps users audit logic and catch mistakes early.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-text2sql-enterprise-data"
+    }
+  ]
+}

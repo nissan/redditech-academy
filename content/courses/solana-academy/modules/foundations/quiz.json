@@ -1,0 +1,63 @@
+{
+  "id": "foundations-quiz",
+  "moduleId": "foundations",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "f1",
+      "question": "On Solana, what stores long-lived state?",
+      "options": [
+        "Transactions",
+        "Accounts",
+        "Signatures",
+        "RPC endpoints"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Accounts hold state. Transactions carry instructions that read and write account data.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "f2",
+      "question": "What is the role of a program in Solana?",
+      "options": [
+        "A wallet UI",
+        "Executable logic that processes instructions",
+        "A block explorer",
+        "A validator key"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Programs are executable on-chain logic invoked by transaction instructions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "f3",
+      "question": "Why is explicit account mapping important when moving from web2 to Solana?",
+      "options": [
+        "It removes signing requirements",
+        "It clarifies authority, data ownership, and state transitions",
+        "It avoids all fees",
+        "It hides business logic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Explicit mapping prevents web2 assumptions from causing authority and state bugs.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "f4",
+      "question": "Which statement best describes a transaction?",
+      "options": [
+        "A database row",
+        "A signed container of one or more instructions",
+        "A permanent account",
+        "A wallet seed phrase"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Solana transaction bundles instructions and signatures for atomic execution.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

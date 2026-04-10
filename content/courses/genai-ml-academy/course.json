@@ -1,0 +1,25 @@
+{
+  "id": "genai-ml-academy",
+  "slug": "genai-ml-academy",
+  "title": "GenAI + ML Production Academy",
+  "description": "Production-focused curriculum spanning GenAI architecture, RAG, multi-agent systems, ML deployment, and capstone delivery.",
+  "tagline": "Build, evaluate, and operate production AI systems",
+  "icon": "🤖",
+  "difficulty": "intermediate",
+  "estimatedHours": 20,
+  "tags": [
+    "genai",
+    "machine-learning",
+    "rag",
+    "agents",
+    "mlops"
+  ],
+  "badge": {
+    "name": "GenAI Production Operator",
+    "icon": "🤖",
+    "description": "Completed the GenAI + ML Production Academy course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true
+}

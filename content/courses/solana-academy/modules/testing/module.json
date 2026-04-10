@@ -1,0 +1,22 @@
+{
+  "id": "testing",
+  "slug": "testing",
+  "order": 6,
+  "title": "Testing + Debugging",
+  "description": "Create reliable test coverage and debugging workflow for Solana apps.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.2,
+  "badge": {
+    "name": "Testing + Debugging Badge",
+    "icon": "🟣",
+    "description": "Completed Testing + Debugging"
+  },
+  "learningObjectives": [
+    "Write core happy-path and failure-path tests",
+    "Diagnose common transaction/program failures",
+    "Set a repeatable debug checklist"
+  ],
+  "prerequisiteModules": [
+    "frontend"
+  ]
+}

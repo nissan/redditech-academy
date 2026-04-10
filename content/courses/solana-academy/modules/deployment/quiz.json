@@ -1,0 +1,63 @@
+{
+  "id": "deployment-quiz",
+  "moduleId": "deployment",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "d1",
+      "question": "Before production release, a non-waivable gate should be:",
+      "options": [
+        "Social media post drafted",
+        "Security and rollback readiness verified",
+        "New logo approved",
+        "All meetings canceled"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Security and rollback checks protect users and uptime.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "d2",
+      "question": "A safe promotion path is usually:",
+      "options": [
+        "Local directly to mainnet",
+        "Local → devnet/staging → production",
+        "Production first",
+        "No environment separation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Progressive environments catch issues before user impact.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "d3",
+      "question": "Post-deploy monitoring should prioritize:",
+      "options": [
+        "Theme colors",
+        "Error rate, transaction success, and latency",
+        "Follower count",
+        "Office network speed"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Operational metrics reveal user-impacting regressions fast.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "d4",
+      "question": "Rollback readiness means:",
+      "options": [
+        "Hope nothing breaks",
+        "Documented rollback steps rehearsed before launch",
+        "Delete old versions",
+        "Disable alerts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rehearsed rollback procedures reduce incident response time.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

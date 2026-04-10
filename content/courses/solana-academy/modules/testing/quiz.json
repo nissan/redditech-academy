@@ -1,0 +1,63 @@
+{
+  "id": "testing-quiz",
+  "moduleId": "testing",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "te1",
+      "question": "Most valuable baseline test mix is:",
+      "options": [
+        "UI snapshots only",
+        "Happy-path plus critical failure-path integration tests",
+        "No automated tests",
+        "Only linting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Core integration tests provide release confidence for chain behavior.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "te2",
+      "question": "What reduces flaky tests most?",
+      "options": [
+        "Random sleeps",
+        "Deterministic setup and explicit assertions",
+        "More console logs only",
+        "Skipping cleanup"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Deterministic fixtures and assertions remove timing ambiguity.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "te3",
+      "question": "Program logs are useful because they:",
+      "options": [
+        "Replace tests",
+        "Provide precise failure diagnostics",
+        "Hide transaction errors",
+        "Increase gas"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Logs help identify failed constraints and instruction paths quickly.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "te4",
+      "question": "A good debug runbook should contain:",
+      "options": [
+        "Only owner names",
+        "Repro steps, expected output, and likely root-cause checks",
+        "Only screenshots",
+        "Only links"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A structured runbook speeds triage and reduces repeated debugging.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

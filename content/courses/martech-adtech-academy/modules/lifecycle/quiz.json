@@ -1,0 +1,63 @@
+{
+  "id": "lifecycle-quiz",
+  "moduleId": "lifecycle",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m7q1",
+      "question": "Suppression logic in journeys is used to:",
+      "options": [
+        "Increase random message volume",
+        "Prevent over-messaging and conflicts",
+        "Disable segmentation",
+        "Lower data quality"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Suppression prevents fatigue and contradictory messaging.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m7q2",
+      "question": "If activation is weak, first fix should focus on:",
+      "options": [
+        "Only top-funnel spend",
+        "Early onboarding milestones",
+        "Unrelated brand colors",
+        "Removing all CRM fields"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Activation bottlenecks are often solved by improving early product/value moments.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m7q3",
+      "question": "Scenario: declared identity and behaviour disagree. Which signal gets priority?",
+      "options": [
+        "Whatever is easiest to export",
+        "The signal closest to the decision use case",
+        "The newest dashboard",
+        "Neither signal ever"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Signal priority depends on the job, not the convenience of extraction.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m7q4",
+      "question": "What should you exclude from a trigger set if it creates fatigue?",
+      "options": [
+        "Only logo size",
+        "Low-value, high-frequency events",
+        "All behavioural data",
+        "All defaults"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Trigger design should exclude noisy events that do not predict intent.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}

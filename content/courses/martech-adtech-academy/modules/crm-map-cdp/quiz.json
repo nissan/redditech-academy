@@ -1,0 +1,63 @@
+{
+  "id": "crm-map-cdp-quiz",
+  "moduleId": "crm-map-cdp",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "m3q1",
+      "question": "In a composable architecture, what typically stays as source of truth?",
+      "options": [
+        "Ad platform UI",
+        "Data warehouse/lakehouse",
+        "Email template builder",
+        "Tag manager only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Composable setups generally keep core customer data in the warehouse.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m3q2",
+      "question": "A key tradeoff between suite and composable stack is:",
+      "options": [
+        "No tradeoff exists",
+        "Speed-to-value vs flexibility/control",
+        "Only branding differences",
+        "Only storage pricing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Suite tools can move faster initially, while composable often improves control over time.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m3q3",
+      "question": "Scenario: the board wants one platform. What risk should you state explicitly?",
+      "options": [
+        "You will never need integrations",
+        "You may trade control for speed",
+        "Data quality becomes automatic",
+        "Latency disappears"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Every architecture choice makes a visible tradeoff, especially around control and lock-in.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    },
+    {
+      "id": "m3q4",
+      "question": "Which workflow should stay real-time if freshness matters?",
+      "options": [
+        "Quarterly finance close",
+        "Triggered cart recovery",
+        "Annual procurement review",
+        "Static brand guidelines"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Time-sensitive triggers need low-latency activation.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-overview"
+    }
+  ]
+}
