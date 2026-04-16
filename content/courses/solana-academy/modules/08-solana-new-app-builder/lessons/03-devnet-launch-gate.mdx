@@ -17,6 +17,12 @@ keyTakeaways:
 
 # Devnet Launch Gate
 
+## 😄 Meme Opener
+**Meme concept:** "All checks passed, except the one we forgot to run in the right order."  
+**Why this hurts in real life:** launch failures are often sequencing failures, not capability failures.
+
+![Module meme](/assets/courses/solana-academy/memes/08-solana-new-app-builder.png)
+
 ## Quick Recap
 The fastest teams still have a release sequence. The difference is they make the sequence explicit and repeatable.
 
@@ -28,3 +34,21 @@ You will put critical release steps in the correct order, from devnet validation
 
 ## Why this matters
 Outages usually come from skipped sequencing, not missing intelligence. If the order is wrong, good engineering work can still fail in production.
+
+## Harvard-Style Case
+### Case: Devnet confidence, mainnet incident
+**Context:** A team completed feature development and green tests, but pushed to launch without a strict go/no-go sequence tied to rollback readiness.
+
+**Decision point:** Keep a flexible launch checklist, or enforce a strict ordered gate (simulation, signer policy verification, incident owner confirmation, rollback dry run, release sign-off)?
+
+**Action taken:** They instituted a hard ordered gate and required explicit owner sign-off at each stage.
+
+**Outcome:** A mismatched environment dependency was caught before release, preventing a production outage.
+
+**Discussion questions:**
+1. Which launch checks are currently optional but should be mandatory in your flow?
+2. Who has final authority to block release when one gate fails?
+
+**Sources:**
+- https://solana.com/docs/intro/installation
+- https://solana.com/developers/courses

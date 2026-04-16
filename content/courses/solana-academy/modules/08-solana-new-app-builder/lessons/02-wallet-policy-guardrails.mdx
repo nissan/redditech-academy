@@ -17,6 +17,12 @@ keyTakeaways:
 
 # Wallet Policy Guardrails
 
+## 😄 Meme Opener
+**Meme concept:** "We shipped wallet connect in one sprint, then spent three sprints explaining why admin signing lived in the same flow as user actions."  
+**Why this hurts in real life:** most wallet incidents are authorization design failures, not chain failures.
+
+![Module meme](/assets/courses/solana-academy/memes/08-solana-new-app-builder.png)
+
 ## Quick Recap
 `solana.new` gets you moving fast, but wallet policy is where teams either build trust or create avoidable incidents. Before feature velocity, define signing boundaries and fail-safe behavior.
 
@@ -32,3 +38,21 @@ You will complete a policy JSON that proves your first release has:
 
 ## Why this matters
 Most Web3 product incidents are not due to “hard cryptography”, they are due to unsafe defaults and loose authorization patterns around wallet actions.
+
+## Harvard-Style Case
+### Case: Wallet scope collapse before mainnet launch
+**Context:** A small team moved quickly with generated scaffolding and reused one wallet scope for user actions, treasury updates, and admin workflows.
+
+**Decision point:** Launch with a single signing profile for speed, or split signer scope by role and enforce policy checks before release?
+
+**Action taken:** The team introduced strict policy separation (user signer, service signer, admin signer), hard-blocked key custody in frontend code, and added rollback authorization rules.
+
+**Outcome:** Release date moved by four days, but the team avoided a high-risk authorization flaw discovered in pre-launch review.
+
+**Discussion questions:**
+1. Which signer actions in your current app should never share the same policy scope?
+2. What is your minimum rollback authority model if a wallet exploit is suspected?
+
+**Sources:**
+- https://solana.com/docs/core/accounts
+- https://solana.com/docs/references/security
