@@ -1,50 +1,66 @@
-# Deployment + Mainnet Readiness
+---
+title: "Deployment + Mainnet Readiness — Overview"
+description: "Promotion gates, incident runbooks, rollback drills, and production launch governance."
+slug: "deployment-overview"
+duration: 26
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-07-deployment-architecture"
+missionTitle: "Mission 07A — Architecture Map"
+estimatedMinutes: 24
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
 
-## Summary
+# Deployment + Mainnet Readiness — Overview
 
-Move from devnet to production with security, operations, and release discipline.
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
 
-## Outcomes
+![Module meme](/assets/courses/solana-academy/memes/deployment.png)
 
-- Define a safe promotion path to production
-- Set pre-deploy and post-deploy checks
-- Create incident and rollback protocols
+## Quick Recap
+- Focus area: Promotion gates, incident runbooks, rollback drills, and production launch governance.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
 
-## Theory
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
 
-- Environment promotion model
-- Security and operational safeguards
-- Release management
-- Post-launch monitoring
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
 
-## Practical
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
 
-- Build launch checklist
-- Simulate failure + rollback drill
-- Define production SLOs
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
 
-## Tools
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
 
-Devnet/Mainnet, CI, Runbooks, Monitoring
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
 
-## Case Study
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
 
-- **Protagonist:** Engineering manager
-- **Context:** First mainnet release under time pressure.
-- **Dilemma:** Hit date or enforce readiness gates?
-- **Options:**
-  - Date-first
-  - Gate-first
-  - Phased launch
-- **Recommendation:** Phased launch with explicit readiness gates and owner signoff.
-- **Discussion questions:**
-  - What gate should never be waived before mainnet?
-  - What does rollback readiness look like in your team?
+## Primary References
+- https://solana.com/docs/security
+- https://solana.com/docs/rpc
+- https://solana.com/docs/core/fees
 
-## Video Guidance
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/07-deployment-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/07-deployment-quality-matrix.csv)
 
-Video: Solana Developer Bootcamp 2026: Learn Blockchain and Full-Stack Crypto Development (ID: 2pcm7ICRJKU)
-
-- Deployment + Mainnet Readiness clip 1 (00:18) (18s): build and deploy productionready Salana
-- Deployment + Mainnet Readiness clip 2 (01:07) (67s): productionready applications. I'm
-- Deployment + Mainnet Readiness clip 3 (01:39) (99s): explaining some Salana security issues.
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

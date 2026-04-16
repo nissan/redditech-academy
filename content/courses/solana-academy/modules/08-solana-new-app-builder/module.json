@@ -1,0 +1,21 @@
+{
+  "id": "solana-new-app-builder",
+  "slug": "08-solana-new-app-builder",
+  "order": 8,
+  "title": "Start Here: solana.new Beginner Onramp",
+  "description": "Beginner-friendly intro to Solana app creation using solana.new, with guided missions that teach fundamentals before advanced labs.",
+  "difficulty": "beginner",
+  "estimatedHours": 2.2,
+  "badge": {
+    "name": "solana.new Builder Badge",
+    "icon": "\ud83e\uddf0",
+    "description": "Completed the solana.new app-building workflow module"
+  },
+  "learningObjectives": [
+    "Explain what solana.new provides and where it fits in a Solana build pipeline",
+    "Use a structured workflow from ideation to scaffolding to deployment prep",
+    "Apply guardrails to validate AI-generated code before shipping",
+    "Enforce wallet policy and devnet launch gates before release decisions"
+  ],
+  "prerequisiteModules": []
+}

@@ -1,0 +1,46 @@
+---
+title: "GPQA and Humanity's Last Exam: Core Concepts"
+description: "Use frontier-hard benchmarks to stress deep reasoning limits and model brittleness."
+slug: "core-concepts"
+duration: 26
+order: 1
+keyTakeaways:
+  - "Benchmark architecture determines what a score means"
+  - "Benchmark choice must follow deployment risk"
+  - "Interpretation quality matters as much as raw score"
+---
+
+# GPQA and Humanity's Last Exam: Core Concepts
+
+## Quick Recap
+- GPQA is engineered to be hard even for strong retrieval-based systems.
+- Humanity's Last Exam explores frontier-level capability ceilings over difficult tasks.
+- Hard benchmarks are excellent stress tests but weak as sole operational gates.
+
+## Concept Clarity
+GPQA-style tasks reduce reward from shallow memorization and search shortcuts, surfacing deeper reasoning limits. Humanity's Last Exam pushes this frontier logic wider, helping teams observe where state-of-the-art systems still fail systematically.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Use case + risk] --> B[Benchmark family]
+  B --> C[Protocol + scoring]
+  C --> D[Result interpretation]
+  D --> E[Promotion or hold]
+```
+
+## Applied Case
+A lab tuned for easier math and coding leaderboards saw no GPQA gain. Product teams wrongly assumed broad reasoning had improved. Adding GPQA/HLE into release criteria prevented a high-stakes domain assistant rollout that would have over-promised expert reliability.
+
+## Practical Application Checklist
+1. Define the deployment decision this benchmark should influence.
+2. State one blind spot this benchmark will not cover.
+3. Pair with at least one complementary benchmark family.
+4. Record thresholds and rollback conditions before comparing candidates.
+
+## Primary References
+- https://arxiv.org/abs/2311.12022
+- https://agi.safe.ai/
+
+## Anti-Pattern to Avoid
+Assuming frontier-hard gains directly translate to everyday product UX improvements.

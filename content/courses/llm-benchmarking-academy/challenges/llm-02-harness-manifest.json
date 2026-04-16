@@ -1,0 +1,23 @@
+{
+  "id": "llm-02-harness-manifest",
+  "spec": "Fill in the eval harness manifest JSON so two candidate runs are comparable and governance-safe. Scenario: You are comparing models for a retrieval-heavy copilot. Ensure protocol drift is blocked before score comparison.",
+  "validation": {
+    "must_have": [
+      { "field": "manifest.protocol_hash", "non_empty": true },
+      { "field": "manifest.suites", "must_contain": ["nq_open", "hotpotqa", "long_context_needle"] },
+      { "field": "manifest.retrieval.top_k", "non_empty": true },
+      { "field": "manifest.context.max_tokens", "non_empty": true },
+      { "field": "manifest.gates", "must_contain": ["fail on protocol drift", "block promotion on red-line failure"] }
+    ]
+  },
+  "eli_notes": "Pass if the student includes concrete reproducibility controls and explicit gate policy. If they allow score comparison without protocol-hash parity, fail. If suites are blended without family-level traces, nudge to suite separation.",
+  "hints": [
+    "Comparable runs need a stable protocol hash and fixed retrieval settings.",
+    "Treat NQ-open, HotpotQA, and long-context needle as separate suites.",
+    "Governance gates should block promotion when drift or red-lines appear."
+  ],
+  "prefilled": {
+    "template": "{\n  \"manifest\": {\n    \"run_id\": \"__FILL_IN__\",\n    \"protocol_hash\": \"__FILL_IN__\",\n    \"suites\": [\"__FILL_IN__\"],\n    \"retrieval\": {\n      \"index_version\": \"__FILL_IN__\",\n      \"top_k\": \"__FILL_IN__\"\n    },\n    \"context\": {\n      \"max_tokens\": \"__FILL_IN__\",\n      \"needle_positions\": [\"early\", \"mid\", \"late\"]\n    },\n    \"gates\": [\"__FILL_IN__\"]\n  }\n}"
+  },
+  "success_text": "Harness manifest accepted. Your run is now reproducible, comparable, and gate-safe for promotion decisions."
+}

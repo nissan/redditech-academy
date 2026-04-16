@@ -142,6 +142,18 @@
       "explanation": "Refresh token rotation issues a new refresh token each time one is used. This limits the window of exposure if a token is stolen and enables detection of token theft through reuse detection.",
       "difficulty": "expert",
       "relatedLessonId": "token-lifecycle"
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: Your team is implementing OAuth 2.0: Delegated Authorization for a customer-facing app with strict fraud controls and conversion targets. Which rollout approach is most resilient?",
+      "options": [
+        "Deploy adaptive MFA + device-bound tokens, then phase in risk-based authz checks",
+        "Disable MFA for low-friction onboarding and revisit after launch",
+        "Use one static API key per customer to simplify auth",
+        "Skip logs to reduce storage costs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A phased approach balances security and UX, reducing takeover risk while preserving conversion and operability."
     }
   ]
 }

@@ -1,0 +1,66 @@
+---
+title: "On-Chain Program Design — Implementation Lab"
+description: "Program architecture, PDA strategy, account constraints, and secure instruction design."
+slug: "onchain-implementation-lab"
+duration: 32
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-04-onchain-implementation"
+missionTitle: "Mission 04B — Implementation Lab"
+estimatedMinutes: 30
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
+
+# On-Chain Program Design — Implementation Lab
+
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
+
+![Module meme](/assets/courses/solana-academy/memes/onchain.png)
+
+## Quick Recap
+- Focus area: Program architecture, PDA strategy, account constraints, and secure instruction design.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
+
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
+
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
+
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
+
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
+
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
+
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
+
+## Primary References
+- https://solana.com/docs/core/programs
+- https://www.anchor-lang.com/docs/high-level-overview
+- https://www.anchor-lang.com/docs/references/account-constraints
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/04-onchain-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/04-onchain-quality-matrix.csv)
+
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

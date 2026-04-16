@@ -1,0 +1,63 @@
+{
+  "id": "11-challenger-selling-quiz",
+  "moduleId": "11-challenger-selling",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the core objective of Challenger selling?",
+      "options": [
+        "Increase call volume",
+        "Disrupt status quo with commercial insight",
+        "Avoid discovery",
+        "Reduce stakeholder engagement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Challenger reframes buyer thinking by exposing hidden cost/risk in current approach.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Which action best reflects 'tailor'?",
+      "options": [
+        "Use same deck for every role",
+        "Customize insight narrative by stakeholder priorities",
+        "Skip finance stakeholders",
+        "Lead with product tour"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tailoring requires role-specific value framing.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "What does 'take control' mean in practice?",
+      "options": [
+        "Pressure buyer into signing",
+        "Drive clear next steps and decision criteria",
+        "Escalate internally by default",
+        "Wait for buyer to lead process"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Control means structured progression, not coercion.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "Scenario: Buyer likes your product but sees no urgency. Best challenger move?",
+      "options": [
+        "Offer discount immediately",
+        "Share insight quantifying status-quo risk and align a time-bound next step",
+        "Wait one month",
+        "Mark as commit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Urgency is built by credible cost-of-inaction framing plus a controlled progression step.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "09-meddpicc-upgrade-quiz",
+  "moduleId": "09-meddpicc-upgrade",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the practical purpose of adding Paper Process to MEDDIC?",
+      "options": [
+        "Increase slide count in deal reviews",
+        "Model close risk from legal/procurement friction",
+        "Replace discovery calls",
+        "Avoid stakeholder mapping"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Paper Process makes non-technical close blockers visible early enough to manage.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "In MEDDPICC, Competition should include which hidden rival?",
+      "options": [
+        "Only direct vendors",
+        "Only incumbent product",
+        "No-decision / status quo",
+        "Only your own pricing model"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Many enterprise deals are lost to inaction, so no-decision must be tracked as a true competitor.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Which gate best reflects MEDDPICC discipline before commit?",
+      "options": [
+        "Champion says 'looks good'",
+        "Demo attendance is high",
+        "Paper Process milestones have owner/date proof and competition plan is explicit",
+        "Quarter-end pressure is high"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Commit quality comes from evidence-backed execution controls, not optimism signals.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "Scenario: Technical buyers approve, but security review timing is unknown and incumbent renewal is in flight. What is the best next step?",
+      "options": [
+        "Move to commit and wait for procurement emails",
+        "Discount aggressively to force decision",
+        "Open a MEDDPICC risk plan for paper-process timeline and incumbent/no-decision counterstrategy",
+        "Escalate to leadership and skip stage gates"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Unknown paper-process timing and active incumbent pressure are material risk gaps that must be managed before commit.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

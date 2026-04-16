@@ -1,0 +1,22 @@
+{
+  "id": "running-a-validator-ops-and-economics",
+  "slug": "20-running-a-validator-ops-and-economics",
+  "order": 20,
+  "title": "Advanced Validators \u2014 Operations and Economics",
+  "description": "Model hardware, bandwidth, reliability, key management, and cost realities of running a validator if sufficient resources are available.",
+  "difficulty": "advanced",
+  "estimatedHours": 4.0,
+  "badge": {
+    "name": "Advanced Validators \u2014 Operations and Economics Badge",
+    "icon": "\ud83d\udef0\ufe0f",
+    "description": "Completed Advanced Validators \u2014 Operations and Economics module"
+  },
+  "learningObjectives": [
+    "Map validator architecture and consensus-critical responsibilities",
+    "Evaluate infra/economic requirements for sustainable operations",
+    "Design launch gates and incident playbooks before mainnet exposure"
+  ],
+  "prerequisiteModules": [
+    "18-litesvm-testing-lab"
+  ]
+}

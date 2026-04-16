@@ -1,0 +1,22 @@
+{
+  "id": "03-spin-live-discovery",
+  "slug": "03-spin-live-discovery",
+  "order": 3,
+  "title": "SPIN in Live Discovery",
+  "description": "Run structured discovery calls and capture evidence-quality notes.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "SPIN in Live Discovery Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed SPIN in Live Discovery"
+  },
+  "learningObjectives": [
+    "Explain the core model used in SPIN in Live Discovery",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "02-spin-foundations"
+  ]
+}

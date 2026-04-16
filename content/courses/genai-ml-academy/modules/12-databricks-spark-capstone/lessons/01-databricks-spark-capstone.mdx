@@ -1,3 +1,11 @@
+---
+title: "Module 12 — Databricks, Spark, and the Final Capstone"
+description: "Applied lesson for 12 databricks spark capstone"
+slug: "01-databricks-spark-capstone"
+duration: 20
+order: 1
+---
+
 # Module 12 — Databricks, Spark, and the Final Capstone
 
 ## Beginner track
@@ -72,3 +80,63 @@ See `content/quizzes/12-databricks-spark-capstone.json`
 - [Apache Spark SQL guide](https://spark.apache.org/docs/latest/sql-programming-guide.html)
 - [Delta Lake docs](https://docs.delta.io/latest/index.html)
 - [Databricks docs](https://docs.databricks.com/)
+
+
+<!-- VNEXT_AUGMENTATION -->
+## vNext Lesson Augmentation
+
+### Meme opener
+![Databricks, Spark, and the Final Capstone meme](/assets/courses/genai-ml-academy/memes/12-databricks-spark-capstone.png)
+
+### Quick Recap
+- Start with a business outcome and measurable success criteria.
+- Design the operating workflow before selecting tools.
+- Add validation, observability, and rollback controls from day one.
+- Use lightweight artifacts so decisions are auditable and repeatable.
+
+### Concept Clarity
+Think of this module like building a smart kitchen. The recipe (process), ingredients (data), and tasting checks (evaluation) matter more than buying the fanciest oven. If one part fails, you need a backup plan so dinner still gets served.
+
+### System map (mermaid)
+```mermaid
+flowchart TD
+    A[Business Goal] --> B[Databricks, Spark, and the Final Capstone Design]
+    B --> C[Data and Context]
+    B --> D[Model or Decision Layer]
+    C --> E[Validation and QA]
+    D --> E
+    E --> F[Production Rollout]
+    F --> G[Telemetry and Feedback Loop]
+    G --> B
+```
+
+### Harvard-style case
+**Case:** Databricks, Spark, and the Final Capstone in a mid-market business unit.  
+**Background:** Team needs faster execution without losing governance.  
+**Complication:** Metrics are improving in pilots but unstable in production.  
+**Analysis:** Missing control points (ownership, QA gates, and incident rules) increase variance.  
+**Recommendation:** Introduce a phased operating model with explicit guardrails, then scale only when KPI and risk thresholds hold for two consecutive cycles.
+
+### Primary references
+- [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Google SRE Workbook (SLOs)](https://sre.google/workbook/)
+- [Harvard Business Review (Analytics & AI)](https://hbr.org/topic/analytics-and-ai)
+
+### Downloadable artifacts
+- [Module worksheet](/assets/courses/genai-ml-academy/downloads/12-databricks-spark-capstone-worksheet.md)
+- [Execution checklist (CSV)](/assets/courses/genai-ml-academy/downloads/12-databricks-spark-capstone-checklist.csv)
+
+### Media links
+- [Module media list](/assets/courses/genai-ml-academy/videos/12-databricks-spark-capstone-media.md)
+- [MIT Sloan AI channel](https://www.youtube.com/@mitsloan)
+- [Stanford HAI talks](https://www.youtube.com/@stanfordhai)
+
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/12-databricks-spark-capstone.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/genai-ml-academy/videos/12-databricks-spark-capstone-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/genai-ml-academy/videos/12-databricks-spark-capstone-concept-clarity.mp4)

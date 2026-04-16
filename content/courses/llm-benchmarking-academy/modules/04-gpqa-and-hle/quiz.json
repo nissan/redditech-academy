@@ -1,0 +1,49 @@
+{
+  "id": "04-gpqa-and-hle-quiz",
+  "moduleId": "04-gpqa-and-hle",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is GPQA primarily designed to reduce?",
+      "options": [
+        "Model latency",
+        "Score inflation from shallow lookup and memorization shortcuts",
+        "GPU memory usage",
+        "Prompt length"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GPQA targets deeper reasoning under harder, less gameable conditions.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Best use of Humanity's Last Exam in an enterprise eval stack?",
+      "options": [
+        "Single pass/fail gate for all use cases",
+        "Frontier stress-test signal combined with practical reliability benchmarks",
+        "Replacement for internal evals",
+        "Only for vision models"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HLE is high-value as a stress benchmark, not as a lone operational gate.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "GPQA gain with no real product KPI lift most likely means:",
+      "options": [
+        "Benchmark over-optimization or capability mismatch to task needs",
+        "The KPI is wrong by default",
+        "Model is unusable everywhere",
+        "Need to remove all benchmarks"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Always map hard-benchmark gains to task-level product outcomes.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

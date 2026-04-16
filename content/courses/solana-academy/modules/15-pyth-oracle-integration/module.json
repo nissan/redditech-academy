@@ -1,0 +1,22 @@
+{
+  "id": "pyth-oracle-integration",
+  "slug": "15-pyth-oracle-integration",
+  "order": 15,
+  "title": "Oracle Layer 2 \u2014 Pyth Integration",
+  "description": "Consume Pyth updates with confidence interval checks and freshness limits for safer execution policy.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "Oracle Layer 2 \u2014 Pyth Integration Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Oracle Layer 2 \u2014 Pyth Integration module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

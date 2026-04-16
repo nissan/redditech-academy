@@ -72,6 +72,20 @@
       "explanation": "Guardrails are policy enforcement mechanisms — they can block harmful tool calls, validate output format, enforce rate limits, or require human approval before an agent takes a consequential action.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-multi-agent-systems-and-frameworks"
+    },
+    {
+      "id": "03-multi-agent-systems-and-frameworks-scenario-q",
+      "question": "Scenario: Your team is applying 'Multi-Agent Systems and AI Agent Frameworks' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-multi-agent-systems-and-frameworks"
     }
   ]
 }

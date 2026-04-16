@@ -1,0 +1,67 @@
+---
+title: "Module Briefing: Case Study: Our Setup"
+description: "Fast orientation for Case Study: Our Setup with TL;DR, ELI5, map, case, references, and assets."
+slug: "module-briefing"
+duration: 10
+order: 0
+keyTakeaways:
+  - "Get a quick orientation before diving into deep lessons"
+  - "Understand practical tradeoffs with a real-world case"
+  - "Use references and assets to accelerate implementation"
+---
+
+# Module Briefing: Case Study: Our Setup
+
+**Meme opener:** "When someone says ‘it’s just a chatbot’ and you point at channels, sessions, tools, and policy layers."
+
+## Quick Recap
+
+- This module explains one OpenClaw subsystem and its operational tradeoffs.
+- Learn where reliability, security, and developer speed can conflict.
+- Prefer observable, reversible changes over brittle one-shot edits.
+
+## Concept Clarity
+
+OpenClaw is like a mission-control desk. Messages come in from many apps, one brain decides what to do, and tools act carefully with receipts.
+
+## System sketch (mermaid)
+
+```mermaid
+graph TD
+  C[Channel Message] --> G[Gateway]
+  G --> S[Session Context]
+  S --> M[Model Inference]
+  M --> T[Tool Calls]
+  T --> R[Response + Logs]
+  R --> C
+```
+
+## Case snapshot
+
+A team running OpenClaw across Telegram and Discord sees rising load and intermittent tool timeouts. They add safer routing, tighter tool boundaries, and better runbook checkpoints before scaling.
+
+## Primary references
+
+- [Node.js child_process docs](https://nodejs.org/api/child_process.html)
+- [OWASP Prompt Injection Cheat Sheet](https://cheatsheetseries.owasp.org/)
+- [OpenClaw Gateway architecture docs](https://github.com/search?q=openclaw+gateway&type=repositories)
+
+## Downloadable artifacts
+
+- [Module Briefing Checklist](/assets/courses/openclaw-academy/module-briefing-checklist.md)
+- [Scenario Worksheet](/assets/courses/openclaw-academy/scenario-worksheet.md)
+- [Primary References](/assets/courses/openclaw-academy/primary-references.md)
+
+## Media links
+
+- [Agent architecture talks (YouTube)](https://www.youtube.com/results?search_query=agent+architecture+tool+use)
+- [Production incident review examples](https://sre.google/workbook/postmortem-culture/)
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-10-case-study.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/openclaw-academy/videos/module-10-case-study-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/openclaw-academy/videos/module-10-case-study-concept-clarity.mp4)

@@ -1,0 +1,55 @@
+---
+title: "Failure Analysis Playbook for Retrieval and Long-Context"
+description: "Diagnose why models fail retrieval, multi-hop synthesis, and long-context recall in production-like conditions."
+slug: "failure-analysis-playbook"
+duration: 24
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "llm-03-failure-triage-loop"
+missionTitle: "Mission 03 — Failure Triage Loop"
+estimatedMinutes: 14
+keyTakeaways:
+  - "Classify failures into retrieval miss, synthesis miss, and context miss"
+  - "Use position and length slices to expose long-context brittleness"
+  - "Promotion should be blocked on unresolved red-line error classes"
+---
+
+# Failure Analysis Playbook for Retrieval and Long-Context
+
+## Quick Recap
+- Not all misses are equal, classify first, optimize second.
+- Needle pass rates should be sliced by early/mid/late position.
+- A high average score can hide catastrophic long-context tails.
+
+## Concept Clarity
+Use a simple taxonomy:
+- **Retrieval miss**: key evidence never surfaced.
+- **Synthesis miss**: evidence retrieved but combined incorrectly.
+- **Context miss**: evidence exists in context but model fails to recover it reliably.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Failed sample] --> B{Failure class}
+  B --> C[Retrieval miss]
+  B --> D[Synthesis miss]
+  B --> E[Context miss]
+  C --> F[Retrieval/index fixes]
+  D --> G[Reasoning/prompt fixes]
+  E --> H[Context strategy fixes]
+```
+
+## Applied Case
+A long-doc assistant scored well overall but failed late-position needle slices. The issue was truncation and poor segment strategy, not general reasoning. Fixing chunking and retrieval windowing improved long-context robustness without changing the base model.
+
+## Practical Application Checklist
+1. Label at least 50 failed samples by failure class.
+2. Break metrics by context length and needle position.
+3. Track regression deltas for each failure class separately.
+4. Require zero red-line breaches before promotion.
+
+## Primary References
+- https://arxiv.org/abs/2307.03172
+- https://arxiv.org/abs/2405.00332
+- https://arxiv.org/abs/2310.17567

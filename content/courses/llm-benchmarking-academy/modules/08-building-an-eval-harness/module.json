@@ -1,0 +1,22 @@
+{
+  "id": "08-building-an-eval-harness",
+  "slug": "08-building-an-eval-harness",
+  "order": 8,
+  "title": "Building an Evaluation Harness",
+  "description": "Implement reproducible benchmark pipelines with versioning, sampling, and auditing.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Building an Evaluation Harness Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed Building an Evaluation Harness"
+  },
+  "learningObjectives": [
+    "Build a reproducible eval harness architecture",
+    "Track dataset/model/prompt provenance",
+    "Automate reporting and regression alerts"
+  ],
+  "prerequisiteModules": [
+    "07-benchmark-selection-and-scorecards"
+  ]
+}

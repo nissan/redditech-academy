@@ -1,0 +1,63 @@
+{
+  "id": "solana-new-app-builder-quiz",
+  "moduleId": "solana-new-app-builder",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the best use of solana.new in a professional team workflow?",
+      "options": [
+        "Skip architecture and ship directly to mainnet",
+        "Accelerate ideation/scaffolding while keeping explicit review and testing gates",
+        "Replace all engineering review with prompts",
+        "Use only for social posts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "solana.new is strongest as a speed layer around a disciplined engineering process.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-solana-new-workflow"
+    },
+    {
+      "id": "q2",
+      "question": "Which risk is most important to control when using AI-generated Solana code?",
+      "options": [
+        "Too many comments",
+        "Unknown account constraints/security assumptions",
+        "High monitor brightness",
+        "Long file names"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Security and account constraints must be verified with tests and review before deployment.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-solana-new-workflow"
+    },
+    {
+      "id": "q3",
+      "question": "Scenario: solana.new produced an MVP quickly, but tests are incomplete. What should happen before deploy?",
+      "options": [
+        "Deploy to mainnet to gather feedback",
+        "Run audit checklist, complete test coverage for critical paths, then stage on devnet",
+        "Only update README",
+        "Skip CI because generated code is already validated"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Speed is useful, but deploy readiness requires explicit testing and validation.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-solana-new-workflow"
+    },
+    {
+      "id": "q4",
+      "question": "Which sequence best reflects the solana.new philosophy mentioned in docs and repo?",
+      "options": [
+        "Build, ignore feedback, launch",
+        "Think/idea, build, launch, then iterate/fundraise with context",
+        "Start with token launch, then discover use case",
+        "Write marketing first, then architecture later"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The platform emphasizes a full journey from idea to build to launch with iterative refinement.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-solana-new-workflow"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "10-meddpicc-deal-inspection",
+  "slug": "10-meddpicc-deal-inspection",
+  "order": 10,
+  "title": "MEDDPICC Deal Inspection Mechanics",
+  "description": "Operationalize MEDDPICC in weekly inspections with RAG risk rules and owner/date accountability.",
+  "difficulty": "advanced",
+  "estimatedHours": 1.8,
+  "badge": {
+    "name": "MEDDPICC Inspection Badge",
+    "icon": "📈",
+    "description": "Completed MEDDPICC Deal Inspection Mechanics"
+  },
+  "learningObjectives": [
+    "Run evidence-based weekly MEDDPICC inspections",
+    "Score champion quality and paper-process certainty",
+    "Use RAG gates to protect forecast integrity"
+  ],
+  "prerequisiteModules": [
+    "09-meddpicc-upgrade"
+  ]
+}

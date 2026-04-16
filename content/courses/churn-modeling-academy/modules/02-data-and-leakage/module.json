@@ -1,0 +1,22 @@
+{
+  "id": "02-data-and-leakage",
+  "slug": "02-data-and-leakage",
+  "order": 2,
+  "title": "Data Design & Leakage Prevention",
+  "description": "Design training data windows and prevent leakage that fakes model performance.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Data Design & Leakage Prevention Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Data Design & Leakage Prevention"
+  },
+  "learningObjectives": [
+    "Explain the key churn modeling decision in this stage",
+    "Apply the method to a realistic retention scenario",
+    "Translate model output into actionable retention steps"
+  ],
+  "prerequisiteModules": [
+    "01-churn-fundamentals"
+  ]
+}

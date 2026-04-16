@@ -1,0 +1,67 @@
+---
+title: "Advanced Validators — Architecture and Consensus — Implementation and Runbook"
+description: "Deep dive into Solana validator roles, vote flow, cluster behavior, and what changes when operating a consensus node versus RPC-only infrastructure."
+slug: "implementation-and-runbook"
+duration: 36
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-19-validator-arch-implementation"
+missionTitle: "Mission 19B — Implementation Runbook"
+estimatedMinutes: 32
+keyTakeaways:
+  - "Separate architecture assumptions from operational facts"
+  - "Quantify cost and reliability constraints before launch"
+  - "Use explicit adversarial go-live gates for validator safety"
+---
+
+# Advanced Validators — Architecture and Consensus — Implementation and Runbook
+
+## 😄 Meme Opener
+**Meme concept:** "We can run a validator" before counting hardware, bandwidth, and on-call reality.
+**Why this hurts in real life:** validator ops fail from reliability and process gaps, not enthusiasm.
+
+![Module meme](/assets/courses/solana-academy/memes/19-validator-architecture-and-consensus.svg)
+
+## Quick Recap
+- Deep dive into Solana validator roles, vote flow, cluster behavior, and what changes when operating a consensus node versus RPC-only infrastructure.
+- This module is intentionally advanced and operations-heavy.
+- Mission pass requires evidence-backed decisions, not hand-wavy plans.
+
+## Concept Clarity
+We use a three-stage method: architecture design, implementation runbook, and adversarial go-live gating.
+No stage can be skipped if the goal is a resilient validator operation.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture + assumptions] --> B[Infra + runbook plan]
+  B --> C[Adversarial failure drills]
+  C --> D[Go/No-Go governance]
+```
+
+## Harvard-Style Case
+**Context:** Team wants to run a validator but has limited staff and budget clarity.
+
+**Decision point:** launch early with partial prep, or delay until reliability/economic thresholds are met?
+
+**Action taken:** establish measurable requirements and hard release blockers.
+
+**Outcome:** slower launch, significantly lower operational risk.
+
+**Discussion questions:**
+1. Which metric (latency, uptime, or cost) should be your hard blocker first?
+2. What single incident would force immediate rollback?
+
+## Primary References
+- https://docs.anza.xyz/
+- https://docs.anza.xyz/clusters/
+- https://solana.com/validators
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/19-validator-architecture-and-consensus-hardware-and-network-checklist.md)
+- [Artifact](/assets/courses/solana-academy/downloads/19-validator-architecture-and-consensus-cost-model-template.csv)
+- [Artifact](/assets/courses/solana-academy/downloads/19-validator-architecture-and-consensus-incident-runbook.md)
+
+## Anti-Pattern to Avoid
+Running consensus infra with no tested incident plan, no cost envelope, and no validated recovery path.

@@ -180,6 +180,18 @@
       ],
       "correctAnswer": 1,
       "explanation": "The listObjects API enables reverse lookup - instead of asking 'can Alice view document X?', you can ask 'what are ALL documents Alice can view?'. This is essential for features like 'show my documents' or 'list accessible folders'. Cedar doesn't have this capability built-in, which is a key difference from Zanzibar-inspired systems."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: Your team is implementing Fine-Grained Authorization for a customer-facing app with strict fraud controls and conversion targets. Which rollout approach is most resilient?",
+      "options": [
+        "Deploy adaptive MFA + device-bound tokens, then phase in risk-based authz checks",
+        "Disable MFA for low-friction onboarding and revisit after launch",
+        "Use one static API key per customer to simplify auth",
+        "Skip logs to reduce storage costs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A phased approach balances security and UX, reducing takeover risk while preserving conversion and operability."
     }
   ]
 }

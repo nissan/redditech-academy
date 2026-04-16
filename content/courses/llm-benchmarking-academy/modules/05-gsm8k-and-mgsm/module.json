@@ -1,0 +1,22 @@
+{
+  "id": "05-gsm8k-and-mgsm",
+  "slug": "05-gsm8k-and-mgsm",
+  "order": 5,
+  "title": "GSM8K and MGSM for Reasoning Fidelity",
+  "description": "Evaluate arithmetic and multilingual reasoning robustness with GSM8K and MGSM.",
+  "difficulty": "intermediate",
+  "estimatedHours": 3,
+  "badge": {
+    "name": "GSM8K and MGSM for Reasoning Fidelity Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed GSM8K and MGSM for Reasoning Fidelity"
+  },
+  "learningObjectives": [
+    "Analyze reasoning vs answer-only performance",
+    "Compare monolingual and multilingual math benchmark signals",
+    "Decide when GSM8K/MGSM should gate deployment"
+  ],
+  "prerequisiteModules": [
+    "04-gpqa-and-hle"
+  ]
+}

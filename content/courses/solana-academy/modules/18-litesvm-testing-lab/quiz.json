@@ -1,0 +1,63 @@
+{
+  "id": "litesvm-testing-lab-quiz",
+  "moduleId": "litesvm-testing-lab",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the first requirement before building the harness?",
+      "options": [
+        "Ship to mainnet",
+        "Define deterministic pass/fail invariants",
+        "Write marketing copy",
+        "Disable negative tests"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Deterministic invariants are the foundation of reliable testing.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Strong harness quality is shown by:",
+      "options": [
+        "Single manual run",
+        "Repeatable local runs + explicit logs",
+        "No assertions",
+        "Skipping edge cases"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Repeatability and observability are required.",
+      "difficulty": "advanced",
+      "relatedLessonId": "02-harness-implementation"
+    },
+    {
+      "id": "q3",
+      "question": "When should release be blocked?",
+      "options": [
+        "Invariant fails under adversarial test",
+        "README has typo",
+        "Build is slow",
+        "Meme not present"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Invariant failures are hard blockers.",
+      "difficulty": "advanced",
+      "relatedLessonId": "03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "id": "q4",
+      "question": "Best go-live policy for this module:",
+      "options": [
+        "CI only",
+        "CI + adversarial matrix + rollback notes",
+        "Manual checks only",
+        "Deploy then monitor"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Layered evidence gates reduce production risk.",
+      "difficulty": "advanced",
+      "relatedLessonId": "03-adversarial-testing-and-launch-gate"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+---
+title: "MMLU/MMMLU Implementation Patterns"
+description: "How to run broad-knowledge and multilingual screening in a production evaluation pipeline."
+slug: "implementation-patterns"
+duration: 22
+order: 2
+keyTakeaways:
+  - "Use MMLU for broad screening, not final promotion alone"
+  - "Run MMMLU on your actual language mix"
+  - "Track per-domain and per-language slices, not only top-line"
+---
+
+# MMLU/MMMLU Implementation Patterns
+
+## Quick Recap
+- MMLU is useful as a fast broad-coverage filter.
+- MMMLU is mandatory when non-English quality matters.
+- Domain and language slices are more actionable than one average score.
+
+## Concept Clarity
+Treat MMLU/MMMLU as **screening benchmarks** in your stack:
+1. Eliminate weak candidates quickly.
+2. Keep shortlisted models for deeper task and policy evaluations.
+3. Track regressions by subject and language.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Candidate models] --> B[MMLU screening]
+  B --> C[MMMLU screening]
+  C --> D[Domain + language slices]
+  D --> E[Shortlist for deeper evals]
+```
+
+## Applied Case
+A team passed only top-line MMLU but found legal-domain regression in Japanese after slicing MMMLU by language and subject cluster. The slice-level dashboard prevented a bad launch in APAC.
+
+## Practical Application Checklist
+1. Align MMMLU language coverage with traffic distribution.
+2. Log subject-domain scores for root-cause analysis.
+3. Set floor thresholds for critical language/domain pairs.
+4. Require downstream eval families before promotion.
+
+## Primary References
+- https://arxiv.org/abs/2009.03300
+- https://arxiv.org/abs/2304.12986

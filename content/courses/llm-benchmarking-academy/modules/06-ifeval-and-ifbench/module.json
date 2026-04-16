@@ -1,0 +1,22 @@
+{
+  "id": "06-ifeval-and-ifbench",
+  "slug": "06-ifeval-and-ifbench",
+  "order": 6,
+  "title": "IFEval and IFBench for Instruction Following",
+  "description": "Measure constraint adherence, formatting discipline, and instruction faithfulness.",
+  "difficulty": "intermediate",
+  "estimatedHours": 3,
+  "badge": {
+    "name": "IFEval and IFBench for Instruction Following Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed IFEval and IFBench for Instruction Following"
+  },
+  "learningObjectives": [
+    "Explain instruction-following benchmark task structure",
+    "Evaluate compliance vs capability tradeoffs",
+    "Design instruction-following tests for production agents"
+  ],
+  "prerequisiteModules": [
+    "05-gsm8k-and-mgsm"
+  ]
+}

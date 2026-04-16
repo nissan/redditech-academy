@@ -1,0 +1,49 @@
+{
+  "id": "05-gsm8k-and-mgsm-quiz",
+  "moduleId": "05-gsm8k-and-mgsm",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Why pair GSM8K with MGSM?",
+      "options": [
+        "To reduce infrastructure costs",
+        "To test whether reasoning quality survives language shift",
+        "To increase benchmark run speed",
+        "To remove math from evaluation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MGSM complements GSM8K with multilingual robustness signal.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "What can answer-only scoring hide on GSM8K-style tasks?",
+      "options": [
+        "Reasoning shortcuts and brittle internal logic",
+        "Token usage only",
+        "Dataset licensing problems",
+        "Inference cost"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Correct answers can still come from fragile or non-generalizable reasoning paths.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "A model passes GSM8K English but fails MGSM Spanish. Most likely issue?",
+      "options": [
+        "GPU instability",
+        "Language-conditioned reasoning robustness gap",
+        "No need for multilingual support",
+        "Benchmark bug in every case"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cross-language failures often reveal reasoning transfer weaknesses.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

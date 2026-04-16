@@ -1,0 +1,55 @@
+---
+title: "Harness Implementation for Retrieval and Long-Context Evals"
+description: "Implement repeatable NQ-open, HotpotQA, and long-context needle runs with clean artifacts."
+slug: "harness-implementation"
+duration: 24
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "llm-02-harness-manifest"
+missionTitle: "Mission 02 — Harness Manifest Gate"
+estimatedMinutes: 16
+keyTakeaways:
+  - "Separate suites and artifacts by benchmark family"
+  - "Track context length, retrieval depth, and needle position explicitly"
+  - "Fail runs on protocol drift before comparing scores"
+---
+
+# Harness Implementation for Retrieval and Long-Context Evals
+
+## Quick Recap
+- Run NQ-open, HotpotQA, and long-context needle as distinct jobs.
+- Keep one immutable manifest per run with protocol metadata.
+- Log per-example failures for manual diagnosis.
+
+## Concept Clarity
+A robust harness has two layers:
+1. **Execution layer**: runs each suite under fixed settings.
+2. **Governance layer**: blocks promotion when protocol drift or red-line failures occur.
+
+## Mermaid Visual
+```mermaid
+flowchart TB
+  A[Candidate model] --> B[Run manifest]
+  B --> C[NQ-open job]
+  B --> D[HotpotQA job]
+  B --> E[Needle long-context job]
+  C --> F[Per-suite reports]
+  D --> F
+  E --> F
+  F --> G[Promotion gate]
+```
+
+## Applied Case
+A team compared two models and saw a 6-point jump. The manifest revealed different retrieval `top_k` settings between runs, invalidating the comparison. With drift checks in place, they reran and found only a 1-point gain.
+
+## Practical Application Checklist
+1. Version datasets and prompt templates by suite.
+2. Log retrieval index version and context windows.
+3. Store both aggregate metrics and failure examples.
+4. Enforce protocol hash equality in candidate comparisons.
+
+## Primary References
+- https://github.com/EleutherAI/lm-evaluation-harness
+- https://aclanthology.org/Q19-1026/
+- https://aclanthology.org/D18-1259/

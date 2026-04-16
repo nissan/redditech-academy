@@ -1,0 +1,49 @@
+---
+title: "Multilingual Regression Playbook (GSM8K/MGSM)"
+description: "A practical playbook for detecting and fixing cross-language reasoning regressions."
+slug: "multilingual-regression-playbook"
+duration: 22
+order: 3
+keyTakeaways:
+  - "Cross-language reasoning regressions are common and diagnosable"
+  - "Regression triage should separate translation, reasoning, and formatting faults"
+  - "Promotion gates should include multilingual red-line thresholds"
+---
+
+# Multilingual Regression Playbook (GSM8K/MGSM)
+
+## Quick Recap
+- Strong English math performance does not guarantee multilingual reliability.
+- Regression triage needs a clear taxonomy.
+- Fixes should be verified with targeted re-runs, not only full-suite averages.
+
+## Concept Clarity
+Use a triage tree:
+- **Translation fault**: prompt meaning changed.
+- **Reasoning fault**: logic/arithmetic failed.
+- **Output fault**: answer format/parsing failed.
+
+## Mermaid Visual
+```mermaid
+flowchart TB
+  A[MGSM failure] --> B{Fault type}
+  B --> C[Translation fault]
+  B --> D[Reasoning fault]
+  B --> E[Output fault]
+  C --> F[Localization fix]
+  D --> G[Reasoning/prompt fix]
+  E --> H[Format/compliance fix]
+```
+
+## Applied Case
+A model regressed in Indonesian MGSM while maintaining English performance. Triage showed mostly translation ambiguity, so prompt localization and glossary alignment fixed most failures without model swap.
+
+## Practical Application Checklist
+1. Track multilingual metrics per target market language.
+2. Label at least 30 failures before remediation.
+3. Re-run targeted slices after each fix.
+4. Enforce language-specific red lines for rollout.
+
+## Primary References
+- https://arxiv.org/abs/2210.03057
+- https://arxiv.org/abs/2110.14168

@@ -1,0 +1,67 @@
+---
+title: "Advanced Validators — Client Diversity (Agave, Firedancer, Frankendancer) — Core Concepts"
+description: "Explore client diversity and resilience strategy across Agave and Firedancer paths, including the Frankendancer hybrid operational posture."
+slug: "core-concepts"
+duration: 30
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-21-client-diversity-architecture"
+missionTitle: "Mission 21A — Architecture and Risk Model"
+estimatedMinutes: 26
+keyTakeaways:
+  - "Separate architecture assumptions from operational facts"
+  - "Quantify cost and reliability constraints before launch"
+  - "Use explicit adversarial go-live gates for validator safety"
+---
+
+# Advanced Validators — Client Diversity (Agave, Firedancer, Frankendancer) — Core Concepts
+
+## 😄 Meme Opener
+**Meme concept:** "We can run a validator" before counting hardware, bandwidth, and on-call reality.
+**Why this hurts in real life:** validator ops fail from reliability and process gaps, not enthusiasm.
+
+![Module meme](/assets/courses/solana-academy/memes/21-client-diversity-firedancer-frankendancer.svg)
+
+## Quick Recap
+- Explore client diversity and resilience strategy across Agave and Firedancer paths, including the Frankendancer hybrid operational posture.
+- This module is intentionally advanced and operations-heavy.
+- Mission pass requires evidence-backed decisions, not hand-wavy plans.
+
+## Concept Clarity
+We use a three-stage method: architecture design, implementation runbook, and adversarial go-live gating.
+No stage can be skipped if the goal is a resilient validator operation.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture + assumptions] --> B[Infra + runbook plan]
+  B --> C[Adversarial failure drills]
+  C --> D[Go/No-Go governance]
+```
+
+## Harvard-Style Case
+**Context:** Team wants to run a validator but has limited staff and budget clarity.
+
+**Decision point:** launch early with partial prep, or delay until reliability/economic thresholds are met?
+
+**Action taken:** establish measurable requirements and hard release blockers.
+
+**Outcome:** slower launch, significantly lower operational risk.
+
+**Discussion questions:**
+1. Which metric (latency, uptime, or cost) should be your hard blocker first?
+2. What single incident would force immediate rollback?
+
+## Primary References
+- https://docs.anza.xyz/
+- https://docs.firedancer.io/
+- https://github.com/firedancer-io/firedancer
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/21-client-diversity-firedancer-frankendancer-hardware-and-network-checklist.md)
+- [Artifact](/assets/courses/solana-academy/downloads/21-client-diversity-firedancer-frankendancer-cost-model-template.csv)
+- [Artifact](/assets/courses/solana-academy/downloads/21-client-diversity-firedancer-frankendancer-incident-runbook.md)
+
+## Anti-Pattern to Avoid
+Running consensus infra with no tested incident plan, no cost envelope, and no validated recovery path.

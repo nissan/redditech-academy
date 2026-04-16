@@ -1,0 +1,63 @@
+{
+  "id": "orca-whirlpools-integration-quiz",
+  "moduleId": "orca-whirlpools-integration",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Mission A requires what before implementation starts?",
+      "options": [
+        "Mainnet deployment",
+        "Documented invariants and threat assumptions",
+        "Social post",
+        "Wallet screenshot"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Architecture mission requires explicit invariants and threats first.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Mission B success criteria should prioritize:",
+      "options": [
+        "Fast coding only",
+        "Deterministic tests with observable failure handling",
+        "No test logs",
+        "Manual hope"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Implementation quality is measured by deterministic evidence.",
+      "difficulty": "advanced",
+      "relatedLessonId": "02-implementation-lab"
+    },
+    {
+      "id": "q3",
+      "question": "Mission C should block release when:",
+      "options": [
+        "A single invariant fails under adversarial test",
+        "README is short",
+        "Meme not added",
+        "Build is fast"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Any broken invariant is a release blocker.",
+      "difficulty": "advanced",
+      "relatedLessonId": "03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "id": "q4",
+      "question": "Best release policy for this module:",
+      "options": [
+        "CI only",
+        "CI + adversarial matrix + rollback proof",
+        "Manual QA only",
+        "Deploy then debug"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mission flow requires layered evidence before go-live.",
+      "difficulty": "advanced",
+      "relatedLessonId": "03-adversarial-testing-and-launch-gate"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "13-sandler-and-message-frameworks",
+  "slug": "13-sandler-and-message-frameworks",
+  "order": 13,
+  "title": "Sandler + Message Frameworks",
+  "description": "Use Sandler pain funnel and message-control patterns for cleaner multi-stakeholder progression.",
+  "difficulty": "advanced",
+  "estimatedHours": 1.6,
+  "badge": {
+    "name": "Sandler + Message Badge",
+    "icon": "📈",
+    "description": "Completed Sandler + Message Frameworks"
+  },
+  "learningObjectives": [
+    "Apply Sandler pain funnel and upfront contract discipline",
+    "Maintain message consistency across stakeholders",
+    "Convert discovery to decision narrative"
+  ],
+  "prerequisiteModules": [
+    "12-qualification-models"
+  ]
+}

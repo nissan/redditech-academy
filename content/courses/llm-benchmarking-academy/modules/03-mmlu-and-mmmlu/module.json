@@ -1,0 +1,22 @@
+{
+  "id": "03-mmlu-and-mmmlu",
+  "slug": "03-mmlu-and-mmmlu",
+  "order": 3,
+  "title": "MMLU and MMMLU Deep Dive",
+  "description": "Understand broad-knowledge testing and multilingual transfer using MMLU and MMMLU.",
+  "difficulty": "intermediate",
+  "estimatedHours": 3,
+  "badge": {
+    "name": "MMLU and MMMLU Deep Dive Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed MMLU and MMMLU Deep Dive"
+  },
+  "learningObjectives": [
+    "Describe MMLU/MMMLU construction and scope",
+    "Interpret what broad-knowledge gains do and do not imply",
+    "Apply MMLU-style tests in model screening"
+  ],
+  "prerequisiteModules": [
+    "02-benchmark-architecture-and-metrics"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "09-meddpicc-upgrade",
+  "slug": "09-meddpicc-upgrade",
+  "order": 9,
+  "title": "MEDDPICC Upgrade: Paper Process + Competition",
+  "description": "Upgrade MEDDIC to MEDDPICC by adding Paper Process and Competition evidence gates.",
+  "difficulty": "advanced",
+  "estimatedHours": 1.8,
+  "badge": {
+    "name": "MEDDPICC Upgrade Badge",
+    "icon": "📈",
+    "description": "Completed MEDDPICC Upgrade"
+  },
+  "learningObjectives": [
+    "Differentiate MEDDIC vs MEDDPICC evidence standards",
+    "Map Paper Process risk from legal to procurement",
+    "Build a Competition plan including no-decision risk"
+  ],
+  "prerequisiteModules": [
+    "08-capstone-deal-room"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "validator-architecture-and-consensus-quiz",
+  "moduleId": "validator-architecture-and-consensus",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What should happen before committing to validator launch?",
+      "options": [
+        "Buy hardware first",
+        "Define architecture assumptions and hard operational thresholds",
+        "Only test wallet UX",
+        "Skip cost model"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Launch decisions require explicit assumptions + thresholds.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "A production-grade runbook must include:",
+      "options": [
+        "Only startup commands",
+        "Recovery paths, key procedures, and monitoring signals",
+        "Memes only",
+        "No rollback section"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Runbooks are for repeatable operations and incident handling.",
+      "difficulty": "advanced",
+      "relatedLessonId": "02-implementation-and-runbook"
+    },
+    {
+      "id": "q3",
+      "question": "When should go-live be blocked?",
+      "options": [
+        "When adversarial drills expose unresolved critical failure modes",
+        "When docs are too long",
+        "When testnet is available",
+        "When logo is missing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Critical unresolved risks are non-negotiable blockers.",
+      "difficulty": "advanced",
+      "relatedLessonId": "03-adversarial-ops-and-go-live-gate"
+    },
+    {
+      "id": "q4",
+      "question": "Why does client diversity matter?",
+      "options": [
+        "Marketing only",
+        "Reduces single-client failure risk and improves network resilience",
+        "It does not matter",
+        "Only for devnet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Multiple independent clients reduce correlated bug risk.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

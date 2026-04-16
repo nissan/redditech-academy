@@ -1,0 +1,46 @@
+---
+title: "MMLU and MMMLU Deep Dive: Core Concepts"
+description: "Understand broad-knowledge testing and multilingual transfer using MMLU and MMMLU."
+slug: "core-concepts"
+duration: 26
+order: 1
+keyTakeaways:
+  - "Benchmark architecture determines what a score means"
+  - "Benchmark choice must follow deployment risk"
+  - "Interpretation quality matters as much as raw score"
+---
+
+# MMLU and MMMLU Deep Dive: Core Concepts
+
+## Quick Recap
+- MMLU measures broad academic/professional knowledge across many domains.
+- MMMLU extends this to multilingual settings and translation-sensitive contexts.
+- Strong MMLU scores do not guarantee instruction reliability or tool-use quality.
+
+## Concept Clarity
+MMLU is useful for broad capability screening because it offers wide topic coverage and straightforward scoring. MMMLU adds localization signal, helping detect whether capability survives language shift or if performance collapses outside English-centric patterns.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Use case + risk] --> B[Benchmark family]
+  B --> C[Protocol + scoring]
+  C --> D[Result interpretation]
+  D --> E[Promotion or hold]
+```
+
+## Applied Case
+A global edtech team selected a model using English-only MMLU gains. In LATAM rollout, answer quality dropped due to multilingual calibration gaps. Adding MMMLU to gating caught this before full launch in the second pilot.
+
+## Practical Application Checklist
+1. Define the deployment decision this benchmark should influence.
+2. State one blind spot this benchmark will not cover.
+3. Pair with at least one complementary benchmark family.
+4. Record thresholds and rollback conditions before comparing candidates.
+
+## Primary References
+- https://arxiv.org/abs/2009.03300
+- https://huggingface.co/datasets/openai/MMMLU
+
+## Anti-Pattern to Avoid
+Treating MMLU/MMMLU as a complete readiness test for agentic workflows.

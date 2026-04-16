@@ -1,50 +1,66 @@
-# Solana + Blockchain Fundamentals
+---
+title: "Solana + Blockchain Fundamentals — Overview"
+description: "Account model, transaction lifecycle, authority boundaries, and state transition design."
+slug: "foundations-overview"
+duration: 26
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-01-foundations-architecture"
+missionTitle: "Mission 01A — Architecture Map"
+estimatedMinutes: 24
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
 
-## Summary
+# Solana + Blockchain Fundamentals — Overview
 
-Understand Solana’s architecture, accounts model, and core blockchain primitives.
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
 
-## Outcomes
+![Module meme](/assets/courses/solana-academy/memes/foundations.png)
 
-- Explain Solana’s core architecture in plain language
-- Differentiate accounts, programs, and transactions
-- Map blockchain primitives to real product behavior
+## Quick Recap
+- Focus area: Account model, transaction lifecycle, authority boundaries, and state transition design.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
 
-## Theory
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
 
-- Why Solana is different
-- Account model basics
-- Transactions and instructions
-- Program execution lifecycle
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
 
-## Practical
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
 
-- Define a sample transaction flow
-- Label roles of accounts and programs
-- Write a one-page system diagram
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
 
-## Tools
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
 
-Solana Docs, Notion, Excalidraw
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
 
-## Case Study
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
 
-- **Protagonist:** Junior web2 developer
-- **Context:** Moving from REST APIs to on-chain app design.
-- **Dilemma:** Treat Solana like a normal backend or adopt chain-native patterns?
-- **Options:**
-  - Keep web2 mental model
-  - Full chain-native redesign
-  - Hybrid migration with explicit mapping
-- **Recommendation:** Use a hybrid mapping first, then progressively move to chain-native patterns.
-- **Discussion questions:**
-  - What is the biggest web2 assumption that breaks first on Solana?
-  - How would you explain accounts vs tables to a non-crypto PM?
+## Primary References
+- https://solana.com/docs/core/accounts
+- https://solana.com/docs/core/transactions
+- https://solana.com/docs/core/instructions
 
-## Video Guidance
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/01-foundations-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/01-foundations-quality-matrix.csv)
 
-Video: Solana Developer Bootcamp 2026: Learn Blockchain and Full-Stack Crypto Development (ID: 2pcm7ICRJKU)
-
-- Solana + Blockchain Fundamentals clip 1 (00:02) (2s): blockchain and smart contract boot camp.
-- Solana + Blockchain Fundamentals clip 2 (01:03) (63s): and writing your first Salana program to
-- Solana + Blockchain Fundamentals clip 3 (02:51) (171s): swift messages. Solana is what happens
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

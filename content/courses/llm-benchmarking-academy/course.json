@@ -1,0 +1,25 @@
+{
+  "id": "llm-benchmarking-academy",
+  "slug": "llm-benchmarking-academy",
+  "title": "LLM Benchmarking Academy",
+  "description": "First-principles course on designing, interpreting, and applying LLM benchmarks from MMLU to Humanity's Last Exam.",
+  "tagline": "Measure what matters, not what is easy to score",
+  "icon": "\ud83d\udccf",
+  "difficulty": "intermediate",
+  "estimatedHours": 25,
+  "tags": [
+    "llm",
+    "benchmarking",
+    "evaluation",
+    "ai-safety",
+    "mlops"
+  ],
+  "badge": {
+    "name": "LLM Benchmarking Strategist",
+    "icon": "\ud83d\udccf",
+    "description": "Completed the LLM Benchmarking Academy course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true
+}

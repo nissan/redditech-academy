@@ -1,0 +1,20 @@
+{
+  "id": "01-churn-fundamentals",
+  "slug": "01-churn-fundamentals",
+  "order": 1,
+  "title": "Churn Fundamentals & Business Framing",
+  "description": "Define churn precisely and tie model outputs to business decisions.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Churn Fundamentals & Business Framing Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Churn Fundamentals & Business Framing"
+  },
+  "learningObjectives": [
+    "Explain the key churn modeling decision in this stage",
+    "Apply the method to a realistic retention scenario",
+    "Translate model output into actionable retention steps"
+  ],
+  "prerequisiteModules": []
+}

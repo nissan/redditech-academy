@@ -1,0 +1,63 @@
+{
+  "id": "02-spin-foundations-quiz",
+  "moduleId": "02-spin-foundations",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the primary outcome of SPIN Foundations?",
+      "options": [
+        "Higher vanity metrics only",
+        "Repeatable decision quality in deals",
+        "Skipping qualification",
+        "Reducing stakeholder discovery"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The module focuses on repeatable quality decisions and evidence-driven execution.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Which behavior best reflects strong SPIN + MEDDIC discipline?",
+      "options": [
+        "Pitch first, discover later",
+        "Assume buyer process",
+        "Capture pain, impact, and buying path evidence",
+        "Skip economic buyer mapping"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Strong discipline requires evidence of pain, impact, and decision path.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "What should happen before committing a forecasted close date?",
+      "options": [
+        "Trust intuition",
+        "Validate MEDDIC evidence and next-step owners",
+        "Wait for quarter end",
+        "Escalate without notes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Forecast quality depends on explicit evidence and owned next steps.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "Scenario: The champion loves your product, but Economic Buyer access is still unconfirmed and decision criteria are vague. What is the best next step?",
+      "options": [
+        "Move to commit because champion confidence is high",
+        "Send discounted proposal to force urgency",
+        "Hold stage advancement and run a targeted evidence-gap plan for buyer/process/criteria",
+        "Escalate internally and mark as likely close"
+      ],
+      "correctAnswer": 2,
+      "explanation": "High-confidence language without buyer/process/criteria proof is a qualification gap, not a commit signal.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

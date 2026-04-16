@@ -1,0 +1,26 @@
+{
+  "id": "sales-spin-meddic",
+  "slug": "sales-spin-meddic",
+  "title": "Sales Accelerator Academy (SPIN + MEDDIC + MEDDPICC)",
+  "description": "Practical online sales training focused on discovery quality, enterprise qualification, and case-study-based execution.",
+  "tagline": "Close better deals with SPIN, MEDDIC, and MEDDPICC discipline",
+  "icon": "📈",
+  "difficulty": "intermediate",
+  "estimatedHours": 25,
+  "tags": [
+    "sales",
+    "spin",
+    "meddic",
+    "meddpicc",
+    "b2b-saas",
+    "revenue-operations"
+  ],
+  "badge": {
+    "name": "Sales Accelerator Graduate",
+    "icon": "📈",
+    "description": "Completed SPIN + MEDDIC + MEDDPICC Sales Accelerator Academy"
+  },
+  "author": "Redditech Labs",
+  "version": "2.1",
+  "free": true
+}

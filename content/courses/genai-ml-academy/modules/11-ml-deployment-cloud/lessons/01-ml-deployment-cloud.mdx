@@ -1,3 +1,11 @@
+---
+title: "Module 11 — Deploying ML Systems on AWS, Azure, and GCP"
+description: "Applied lesson for 11 ml deployment cloud"
+slug: "01-ml-deployment-cloud"
+duration: 20
+order: 1
+---
+
 # Module 11 — Deploying ML Systems on AWS, Azure, and GCP
 
 ## Beginner track
@@ -73,3 +81,63 @@ See `content/quizzes/11-ml-deployment-cloud.json`
 - [AWS SageMaker docs](https://docs.aws.amazon.com/sagemaker/)
 - [Azure ML docs](https://learn.microsoft.com/azure/machine-learning/)
 - [Vertex AI docs](https://cloud.google.com/vertex-ai/docs)
+
+
+<!-- VNEXT_AUGMENTATION -->
+## vNext Lesson Augmentation
+
+### Meme opener
+![Deploying ML Systems on AWS, Azure, and GCP meme](/assets/courses/genai-ml-academy/memes/11-ml-deployment-cloud.png)
+
+### Quick Recap
+- Start with a business outcome and measurable success criteria.
+- Design the operating workflow before selecting tools.
+- Add validation, observability, and rollback controls from day one.
+- Use lightweight artifacts so decisions are auditable and repeatable.
+
+### Concept Clarity
+Think of this module like building a smart kitchen. The recipe (process), ingredients (data), and tasting checks (evaluation) matter more than buying the fanciest oven. If one part fails, you need a backup plan so dinner still gets served.
+
+### System map (mermaid)
+```mermaid
+flowchart TD
+    A[Business Goal] --> B[Deploying ML Systems on AWS, Azure, and GCP Design]
+    B --> C[Data and Context]
+    B --> D[Model or Decision Layer]
+    C --> E[Validation and QA]
+    D --> E
+    E --> F[Production Rollout]
+    F --> G[Telemetry and Feedback Loop]
+    G --> B
+```
+
+### Harvard-style case
+**Case:** Deploying ML Systems on AWS, Azure, and GCP in a mid-market business unit.  
+**Background:** Team needs faster execution without losing governance.  
+**Complication:** Metrics are improving in pilots but unstable in production.  
+**Analysis:** Missing control points (ownership, QA gates, and incident rules) increase variance.  
+**Recommendation:** Introduce a phased operating model with explicit guardrails, then scale only when KPI and risk thresholds hold for two consecutive cycles.
+
+### Primary references
+- [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Google SRE Workbook (SLOs)](https://sre.google/workbook/)
+- [Harvard Business Review (Analytics & AI)](https://hbr.org/topic/analytics-and-ai)
+
+### Downloadable artifacts
+- [Module worksheet](/assets/courses/genai-ml-academy/downloads/11-ml-deployment-cloud-worksheet.md)
+- [Execution checklist (CSV)](/assets/courses/genai-ml-academy/downloads/11-ml-deployment-cloud-checklist.csv)
+
+### Media links
+- [Module media list](/assets/courses/genai-ml-academy/videos/11-ml-deployment-cloud-media.md)
+- [MIT Sloan AI channel](https://www.youtube.com/@mitsloan)
+- [Stanford HAI talks](https://www.youtube.com/@stanfordhai)
+
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/11-ml-deployment-cloud.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/genai-ml-academy/videos/11-ml-deployment-cloud-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/genai-ml-academy/videos/11-ml-deployment-cloud-concept-clarity.mp4)

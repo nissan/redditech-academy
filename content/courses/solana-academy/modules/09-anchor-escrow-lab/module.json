@@ -1,0 +1,22 @@
+{
+  "id": "anchor-escrow-lab",
+  "slug": "09-anchor-escrow-lab",
+  "order": 9,
+  "title": "Anchor Escrow Lab",
+  "description": "Build a production-safe escrow in Anchor using PDA seeds, account constraints, signer checks, and deterministic settlement paths.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "Anchor Escrow Lab Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Anchor Escrow Lab module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

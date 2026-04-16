@@ -1,0 +1,22 @@
+{
+  "id": "client-diversity-firedancer-frankendancer",
+  "slug": "21-client-diversity-firedancer-frankendancer",
+  "order": 21,
+  "title": "Advanced Validators \u2014 Client Diversity (Agave, Firedancer, Frankendancer)",
+  "description": "Explore client diversity and resilience strategy across Agave and Firedancer paths, including the Frankendancer hybrid operational posture.",
+  "difficulty": "advanced",
+  "estimatedHours": 4.0,
+  "badge": {
+    "name": "Advanced Validators \u2014 Client Diversity (Agave, Firedancer, Frankendancer) Badge",
+    "icon": "\ud83d\udef0\ufe0f",
+    "description": "Completed Advanced Validators \u2014 Client Diversity (Agave, Firedancer, Frankendancer) module"
+  },
+  "learningObjectives": [
+    "Map validator architecture and consensus-critical responsibilities",
+    "Evaluate infra/economic requirements for sustainable operations",
+    "Design launch gates and incident playbooks before mainnet exposure"
+  ],
+  "prerequisiteModules": [
+    "18-litesvm-testing-lab"
+  ]
+}

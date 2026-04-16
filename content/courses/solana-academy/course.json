@@ -2,23 +2,25 @@
   "id": "solana-academy",
   "slug": "solana-academy",
   "title": "Solana Developer Academy",
-  "description": "Practical Solana development curriculum covering architecture, wallet integration, on-chain programs, testing, and deployment.",
-  "tagline": "Ship production-ready Solana applications",
-  "icon": "🟣",
-  "difficulty": "intermediate",
-  "estimatedHours": 12,
+  "description": "Mission-based Solana curriculum from beginner onramp to validator operations: solana.new onboarding, architecture, wallets, programs, multi-framework escrow labs, DeFi integrations, oracle operations, verifiable randomness, advanced testing (Surfpool/LiteSVM), and validator operations (Agave, Firedancer, Frankendancer).",
+  "tagline": "Start beginner-friendly, finish production-ready",
+  "icon": "\ud83d\udfe3",
+  "difficulty": "advanced",
+  "estimatedHours": 62,
   "tags": [
     "solana",
     "blockchain",
     "web3",
-    "smart-contracts"
+    "smart-contracts",
+    "validator-operations",
+    "solana-infrastructure"
   ],
   "badge": {
     "name": "Solana Developer Academy Graduate",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed the Solana Developer Academy course"
   },
   "author": "Redditech Labs",
-  "version": "1.0",
+  "version": "1.4",
   "free": true
 }

@@ -1,0 +1,63 @@
+{
+  "id": "07-benchmark-selection-and-scorecards-quiz",
+  "moduleId": "07-benchmark-selection-and-scorecards",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "In a scorecard, when should NQ-open get higher weight?",
+      "options": [
+        "When factual retrieval precision is business-critical",
+        "When UI theming is unstable",
+        "When you want lower cloud spend",
+        "When no retrieval is used"
+      ],
+      "correctAnswer": 0,
+      "explanation": "NQ-open weight should track factual retrieval risk in production.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Which portfolio design is strongest for long-document copilots?",
+      "options": [
+        "Single composite score only",
+        "NQ-open + HotpotQA + long-context needle subscores with red-line gates",
+        "Only instruction-following benchmarks",
+        "Only latency benchmarks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Long-doc copilots need explicit retrieval, multi-hop, and long-context quality gates.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Why should family-level subscores be published beside weighted totals?",
+      "options": [
+        "To hide weak dimensions",
+        "To catch critical regressions masked by a high blended score",
+        "To avoid governance",
+        "To reduce test coverage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Family-level visibility prevents high-level averages from hiding failures.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "A candidate model has top composite score but fails long-context needle red-line threshold. What should happen?",
+      "options": [
+        "Promote anyway",
+        "Hold/rollback per governance policy",
+        "Delete long-context tests",
+        "Average in more easy tasks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Red-line gates should block promotion despite strong composite performance.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

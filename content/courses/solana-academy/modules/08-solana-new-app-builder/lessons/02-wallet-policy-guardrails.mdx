@@ -1,0 +1,34 @@
+---
+title: "Wallet Policy Guardrails"
+description: "Define a safe wallet and signing policy before your Solana app leaves devnet."
+slug: "wallet-policy-guardrails"
+duration: 22
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-02-wallet-policy"
+missionTitle: "Mission 02 — Wallet Safety Policy"
+estimatedMinutes: 16
+keyTakeaways:
+  - "Apply least-privilege wallet design for dApp actions"
+  - "Separate read, sign, and admin capabilities"
+  - "Reject private key custody patterns in frontend apps"
+---
+
+# Wallet Policy Guardrails
+
+## Quick Recap
+`solana.new` gets you moving fast, but wallet policy is where teams either build trust or create avoidable incidents. Before feature velocity, define signing boundaries and fail-safe behavior.
+
+## Concept Clarity
+Treat wallet policy like seatbelts in a race car. You still go fast, but crashes do not become catastrophic.
+
+## What this mission tests
+You will complete a policy JSON that proves your first release has:
+- least-privilege signing
+- explicit scope boundaries
+- no key custody in app code
+- clear rollback and incident escalation behavior
+
+## Why this matters
+Most Web3 product incidents are not due to “hard cryptography”, they are due to unsafe defaults and loose authorization patterns around wallet actions.

@@ -1,3 +1,11 @@
+---
+title: "Module 1 — Production AI Foundations (Intermediate)"
+description: "Applied lesson for 01 production ai foundations"
+slug: "01-production-ai-foundations"
+duration: 20
+order: 1
+---
+
 # Module 1 — Production AI Foundations (Intermediate)
 
 ## Why it matters
@@ -92,3 +100,63 @@ See `content/quizzes/01-production-ai-foundations.json`
 - [Google SRE Workbook — Service Level Objectives](https://sre.google/workbook/)
 - [OpenAI Evals Cookbook](https://cookbook.openai.com/)
 - [Lilian Weng — LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
+
+
+<!-- VNEXT_AUGMENTATION -->
+## vNext Lesson Augmentation
+
+### Meme opener
+![Production AI Foundations meme](/assets/courses/genai-ml-academy/memes/01-production-ai-foundations.png)
+
+### Quick Recap
+- Start with a business outcome and measurable success criteria.
+- Design the operating workflow before selecting tools.
+- Add validation, observability, and rollback controls from day one.
+- Use lightweight artifacts so decisions are auditable and repeatable.
+
+### Concept Clarity
+Think of this module like building a smart kitchen. The recipe (process), ingredients (data), and tasting checks (evaluation) matter more than buying the fanciest oven. If one part fails, you need a backup plan so dinner still gets served.
+
+### System map (mermaid)
+```mermaid
+flowchart TD
+    A[Business Goal] --> B[Production AI Foundations Design]
+    B --> C[Data and Context]
+    B --> D[Model or Decision Layer]
+    C --> E[Validation and QA]
+    D --> E
+    E --> F[Production Rollout]
+    F --> G[Telemetry and Feedback Loop]
+    G --> B
+```
+
+### Harvard-style case
+**Case:** Production AI Foundations in a mid-market business unit.  
+**Background:** Team needs faster execution without losing governance.  
+**Complication:** Metrics are improving in pilots but unstable in production.  
+**Analysis:** Missing control points (ownership, QA gates, and incident rules) increase variance.  
+**Recommendation:** Introduce a phased operating model with explicit guardrails, then scale only when KPI and risk thresholds hold for two consecutive cycles.
+
+### Primary references
+- [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Google SRE Workbook (SLOs)](https://sre.google/workbook/)
+- [Harvard Business Review (Analytics & AI)](https://hbr.org/topic/analytics-and-ai)
+
+### Downloadable artifacts
+- [Module worksheet](/assets/courses/genai-ml-academy/downloads/01-production-ai-foundations-worksheet.md)
+- [Execution checklist (CSV)](/assets/courses/genai-ml-academy/downloads/01-production-ai-foundations-checklist.csv)
+
+### Media links
+- [Module media list](/assets/courses/genai-ml-academy/videos/01-production-ai-foundations-media.md)
+- [MIT Sloan AI channel](https://www.youtube.com/@mitsloan)
+- [Stanford HAI talks](https://www.youtube.com/@stanfordhai)
+
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/01-production-ai-foundations.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/genai-ml-academy/videos/01-production-ai-foundations-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/genai-ml-academy/videos/01-production-ai-foundations-concept-clarity.mp4)

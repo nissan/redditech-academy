@@ -1,0 +1,67 @@
+---
+title: "Advanced Validators — Launch Readiness Mission — Core Concepts"
+description: "Build an end-to-end validator launch plan covering architecture, funding assumptions, operations, incident response, and go/no-go criteria."
+slug: "core-concepts"
+duration: 30
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-22-validator-launch-architecture"
+missionTitle: "Mission 22A — Architecture and Risk Model"
+estimatedMinutes: 26
+keyTakeaways:
+  - "Separate architecture assumptions from operational facts"
+  - "Quantify cost and reliability constraints before launch"
+  - "Use explicit adversarial go-live gates for validator safety"
+---
+
+# Advanced Validators — Launch Readiness Mission — Core Concepts
+
+## 😄 Meme Opener
+**Meme concept:** "We can run a validator" before counting hardware, bandwidth, and on-call reality.
+**Why this hurts in real life:** validator ops fail from reliability and process gaps, not enthusiasm.
+
+![Module meme](/assets/courses/solana-academy/memes/22-validator-launch-readiness-mission.svg)
+
+## Quick Recap
+- Build an end-to-end validator launch plan covering architecture, funding assumptions, operations, incident response, and go/no-go criteria.
+- This module is intentionally advanced and operations-heavy.
+- Mission pass requires evidence-backed decisions, not hand-wavy plans.
+
+## Concept Clarity
+We use a three-stage method: architecture design, implementation runbook, and adversarial go-live gating.
+No stage can be skipped if the goal is a resilient validator operation.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture + assumptions] --> B[Infra + runbook plan]
+  B --> C[Adversarial failure drills]
+  C --> D[Go/No-Go governance]
+```
+
+## Harvard-Style Case
+**Context:** Team wants to run a validator but has limited staff and budget clarity.
+
+**Decision point:** launch early with partial prep, or delay until reliability/economic thresholds are met?
+
+**Action taken:** establish measurable requirements and hard release blockers.
+
+**Outcome:** slower launch, significantly lower operational risk.
+
+**Discussion questions:**
+1. Which metric (latency, uptime, or cost) should be your hard blocker first?
+2. What single incident would force immediate rollback?
+
+## Primary References
+- https://docs.anza.xyz/operations/setup-a-validator
+- https://docs.anza.xyz/operations/guides/validator-start
+- https://solana.com/validators
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/22-validator-launch-readiness-mission-hardware-and-network-checklist.md)
+- [Artifact](/assets/courses/solana-academy/downloads/22-validator-launch-readiness-mission-cost-model-template.csv)
+- [Artifact](/assets/courses/solana-academy/downloads/22-validator-launch-readiness-mission-incident-runbook.md)
+
+## Anti-Pattern to Avoid
+Running consensus infra with no tested incident plan, no cost envelope, and no validated recovery path.

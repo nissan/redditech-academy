@@ -1,0 +1,32 @@
+{
+  "id": "oidc-01-authentication-layer",
+  "spec": "Order the sequence that explains how OIDC adds authentication on top of OAuth 2.0 authorization.",
+  "validation": {
+    "must_have": [
+      { "field": "order[0]", "value": "A" },
+      { "field": "order[1]", "value": "B" },
+      { "field": "order[2]", "value": "D" },
+      { "field": "order[4]", "value": "E" },
+      { "field": "order[5]", "value": "F" }
+    ],
+    "ordering_tolerance": "strict_on_critical"
+  },
+  "eli_notes": "Expected order: A → B → D → C → E → F. D/C may swap if rationale is strong. Critical checks: openid scope is requested before ID Token issuance, and final app session creation occurs last.",
+  "hints": [
+    "OIDC starts as OAuth authorization, then adds identity via ID Token.",
+    "No ID Token should appear before consent and successful token exchange.",
+    "The app should create its local authenticated session only after token validation."
+  ],
+  "prefilled": {
+    "steps": [
+      { "id": "A", "label": "App sends user to authorization endpoint with scope=openid profile" },
+      { "id": "B", "label": "User authenticates and grants consent at the Identity Provider" },
+      { "id": "C", "label": "App exchanges authorization code at token endpoint" },
+      { "id": "D", "label": "Identity Provider returns authorization code to app redirect URI" },
+      { "id": "E", "label": "Token response includes ID Token and access token" },
+      { "id": "F", "label": "App validates ID Token claims and starts authenticated user session" }
+    ],
+    "correctOrder": ["A", "B", "D", "C", "E", "F"]
+  },
+  "success_text": "Flow confirmed. You mapped exactly how OIDC extends OAuth from delegated access into authenticated identity."
+}

@@ -1,0 +1,66 @@
+---
+title: "Pinocchio Escrow Lab — Architecture and Case Design"
+description: "Port escrow to Pinocchio and compare compute footprint, binary size, and low-level control decisions versus Anchor."
+slug: "core-concepts"
+duration: 28
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-10-pinocchio-escrow-architecture"
+missionTitle: "Mission 10A — Architecture and Case Design"
+estimatedMinutes: 25
+keyTakeaways:
+  - "Encode explicit invariants and threat assumptions"
+  - "Require deterministic test evidence before release"
+  - "Treat launch gates as hard blockers, not suggestions"
+---
+
+# Pinocchio Escrow Lab — Architecture and Case Design
+
+## 😄 Meme Opener
+**Meme concept:** "Works on my machine" meets Solana state invariants.
+**Why this hurts in real life:** production failures usually come from untested assumptions, not syntax mistakes.
+
+![Module meme](/assets/courses/solana-academy/memes/10-pinocchio-escrow-lab.svg)
+
+## Quick Recap
+- Module focus: Port escrow to Pinocchio and compare compute footprint, binary size, and low-level control decisions versus Anchor.
+- Escrow case study remains the continuity backbone across framework layers.
+- You pass by showing evidence, not by saying "done".
+
+## Concept Clarity
+This mission is a three-step ladder: architecture first, implementation second, adversarial launch gate third.
+If any rung is weak, the release is blocked.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation path]
+  B --> C[Test and adversarial matrix]
+  C --> D[Go/No-Go release gate]
+```
+
+## Harvard-Style Case
+**Context:** Team velocity is high, but a single unchecked account/signature rule can create irreversible loss.
+
+**Decision point:** prioritize feature speed or enforce strict gate policy per mission step?
+
+**Action taken:** team enforces mission-based gating with explicit invariants and rollback notes.
+
+**Outcome:** fewer regressions and cleaner incident response posture.
+
+**Discussion questions:**
+1. Which invariant would fail first under malicious input?
+2. Which check must block deployment even when functional tests pass?
+
+## Primary References
+- https://github.com/anza-xyz/pinocchio
+- https://solana.com/developers/templates/pinocchio-counter
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/10-pinocchio-escrow-lab-implementation-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/10-pinocchio-escrow-lab-adversarial-test-matrix.csv)
+- [Artifact](/assets/courses/solana-academy/downloads/10-pinocchio-escrow-lab-release-gate-checklist.md)
+
+## Anti-Pattern to Avoid
+Treating devnet success as proof of production safety without adversarial evidence and release gate documentation.

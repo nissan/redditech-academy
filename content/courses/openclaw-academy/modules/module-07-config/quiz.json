@@ -10,6 +10,18 @@
       ],
       "correctAnswer": 0,
       "explanation": "This module's quiz is still being written. Check back after the lesson content is complete."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: During Configuration Deep Dive, your OpenClaw environment starts timing out under peak traffic. Which first response best protects reliability and safety?",
+      "options": [
+        "Introduce request shaping, stricter tool allowlists, and per-channel fallback handling",
+        "Add more channels immediately and debug after failures occur",
+        "Disable logging to improve throughput",
+        "Route all commands to unrestricted exec by default"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Controlled scaling with guardrails and fallback paths improves resilience without sacrificing security."
     }
   ]
 }

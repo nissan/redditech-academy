@@ -1,0 +1,46 @@
+---
+title: "MMLU/MMMLU Pitfalls and Case Review"
+description: "Common interpretation mistakes and governance traps when using broad-knowledge benchmarks."
+slug: "pitfalls-and-case-review"
+duration: 22
+order: 3
+keyTakeaways:
+  - "Top-line gains can hide critical slice regressions"
+  - "Translation and cultural context affect multilingual benchmark behavior"
+  - "MMLU/MMMLU should never be treated as end-to-end readiness proof"
+---
+
+# MMLU/MMMLU Pitfalls and Case Review
+
+## Quick Recap
+- Beware over-indexing on single aggregate scores.
+- Language transfer quality can break under production phrasing.
+- Governance needs slice-level red lines.
+
+## Concept Clarity
+Most MMLU/MMMLU failures come from interpretation, not execution:
+- treating broad knowledge as product quality
+- skipping subject/language breakdowns
+- ignoring confidence intervals for close model comparisons
+
+## Mermaid Visual
+```mermaid
+flowchart TB
+  A[High top-line score] --> B{Slice checks done?}
+  B -->|No| C[False confidence]
+  B -->|Yes| D[Domain/language truth]
+  D --> E[Safer promotion decision]
+```
+
+## Applied Case
+A support assistant gained +3 top-line MMLU but dropped on healthcare policy questions. Slice-level review caught the regression and forced model hold until remediation.
+
+## Practical Application Checklist
+1. Always compare confidence intervals, not just point estimates.
+2. Add language-specific QA samples beyond benchmark prompts.
+3. Block promotion on red-line slice failures.
+4. Keep historical slice trends for drift detection.
+
+## Primary References
+- https://arxiv.org/abs/2009.03300
+- https://arxiv.org/abs/2304.12986

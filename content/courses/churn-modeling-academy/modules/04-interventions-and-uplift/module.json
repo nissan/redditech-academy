@@ -1,0 +1,22 @@
+{
+  "id": "04-interventions-and-uplift",
+  "slug": "04-interventions-and-uplift",
+  "order": 4,
+  "title": "Interventions, Uplift, and Prioritization",
+  "description": "Convert churn risk into intervention plans and estimate retention ROI.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Interventions, Uplift, and Prioritization Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Interventions, Uplift, and Prioritization"
+  },
+  "learningObjectives": [
+    "Explain the key churn modeling decision in this stage",
+    "Apply the method to a realistic retention scenario",
+    "Translate model output into actionable retention steps"
+  ],
+  "prerequisiteModules": [
+    "03-modeling-and-evaluation"
+  ]
+}

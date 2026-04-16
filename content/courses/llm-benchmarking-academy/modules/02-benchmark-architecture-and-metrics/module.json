@@ -1,0 +1,22 @@
+{
+  "id": "02-benchmark-architecture-and-metrics",
+  "slug": "02-benchmark-architecture-and-metrics",
+  "order": 2,
+  "title": "Benchmark Architecture and Metric Design",
+  "description": "How benchmark datasets, prompts, protocols, and scoring pipelines are architected.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Benchmark Architecture and Metric Design Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed Benchmark Architecture and Metric Design"
+  },
+  "learningObjectives": [
+    "Explain benchmark architecture components",
+    "Compare exact-match, rubric, and pairwise scoring",
+    "Choose metrics aligned to real deployment risk"
+  ],
+  "prerequisiteModules": [
+    "01-benchmarking-first-principles"
+  ]
+}

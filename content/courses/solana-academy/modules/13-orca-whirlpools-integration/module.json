@@ -1,0 +1,22 @@
+{
+  "id": "orca-whirlpools-integration",
+  "slug": "13-orca-whirlpools-integration",
+  "order": 13,
+  "title": "DeFi Layer 2 \u2014 Orca Whirlpools",
+  "description": "Extend the flow with concentrated-liquidity logic using Orca Whirlpools for pool-aware strategy execution.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "DeFi Layer 2 \u2014 Orca Whirlpools Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed DeFi Layer 2 \u2014 Orca Whirlpools module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

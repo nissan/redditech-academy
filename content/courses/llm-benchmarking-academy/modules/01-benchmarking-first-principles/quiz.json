@@ -1,0 +1,49 @@
+{
+  "id": "01-benchmarking-first-principles-quiz",
+  "moduleId": "01-benchmarking-first-principles",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the strongest benchmark-design principle in Benchmarking First Principles?",
+      "options": [
+        "Optimize public rankings first",
+        "Define deployment decision and failure costs before metric selection",
+        "Use a single benchmark for all products",
+        "Hide protocol details to prevent comparison"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Decision-first benchmark design avoids vanity optimization.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Which risk is most common if Benchmarking First Principles is applied without complementary benchmarks?",
+      "options": [
+        "Overconfident promotion despite blind spots",
+        "Lower build times",
+        "Reduced variance",
+        "Fewer governance requirements"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Any single benchmark family leaves important blind spots.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "What most improves trust in benchmark outcomes over time?",
+      "options": [
+        "Best-of-N cherry-picked runs",
+        "Reproducible protocol + versioned artifacts + transparent reporting",
+        "Changing metrics each sprint",
+        "Avoiding failed run logs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Trust comes from reproducibility and governance, not selective reporting.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+---
+title: "Benchmarking First Principles: Core Concepts"
+description: "Why we benchmark models, what makes a benchmark valid, and how to avoid vanity metrics."
+slug: "core-concepts"
+duration: 26
+order: 1
+keyTakeaways:
+  - "Benchmark architecture determines what a score means"
+  - "Benchmark choice must follow deployment risk"
+  - "Interpretation quality matters as much as raw score"
+---
+
+# Benchmarking First Principles: Core Concepts
+
+## Quick Recap
+- Benchmarks are decision instruments, not vanity scoreboards.
+- Validity means the benchmark actually measures the capability you care about.
+- Reliability means repeated runs and evaluators produce stable conclusions.
+
+## Concept Clarity
+First-principles benchmarking starts with deployment risk, then works backwards to measurement design. If your model will write customer-facing support answers, your benchmark portfolio should punish hallucination and instruction drift, not just reward trivia recall.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Use case + risk] --> B[Benchmark family]
+  B --> C[Protocol + scoring]
+  C --> D[Result interpretation]
+  D --> E[Promotion or hold]
+```
+
+## Applied Case
+A support copiloting team promoted a model because it led on a public benchmark. Live deployment spiked escalations because the benchmark underweighted policy adherence and abstention behavior. Rebuilding the eval stack around real ticket constraints reduced escalation rate by 27%.
+
+## Practical Application Checklist
+1. Define the deployment decision this benchmark should influence.
+2. State one blind spot this benchmark will not cover.
+3. Pair with at least one complementary benchmark family.
+4. Record thresholds and rollback conditions before comparing candidates.
+
+## Primary References
+- https://arxiv.org/abs/2404.18824
+- https://www.anthropic.com/research/forecasting-rare-behaviors
+
+## Anti-Pattern to Avoid
+Optimizing leaderboard rank before defining business-critical failure costs.

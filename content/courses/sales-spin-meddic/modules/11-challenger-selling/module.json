@@ -1,0 +1,22 @@
+{
+  "id": "11-challenger-selling",
+  "slug": "11-challenger-selling",
+  "order": 11,
+  "title": "Challenger Selling: Teach, Tailor, Take Control",
+  "description": "Use commercial teaching and controlled tension to move complex deals beyond status quo.",
+  "difficulty": "advanced",
+  "estimatedHours": 1.8,
+  "badge": {
+    "name": "Challenger Selling Badge",
+    "icon": "📈",
+    "description": "Completed Challenger Selling"
+  },
+  "learningObjectives": [
+    "Apply teach-tailor-take-control in discovery and progression",
+    "Build quantified status-quo cost narratives",
+    "Use challenger motions without relationship damage"
+  ],
+  "prerequisiteModules": [
+    "10-meddpicc-deal-inspection"
+  ]
+}

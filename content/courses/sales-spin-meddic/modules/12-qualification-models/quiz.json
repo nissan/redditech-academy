@@ -1,0 +1,63 @@
+{
+  "id": "12-qualification-models-quiz",
+  "moduleId": "12-qualification-models",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "When is BANT most suitable?",
+      "options": [
+        "Highly regulated enterprise committees",
+        "Transactional deals with short cycles",
+        "Complex multi-region procurement",
+        "Unknown buyer process"
+      ],
+      "correctAnswer": 1,
+      "explanation": "BANT tends to work best in lower-complexity, faster motions.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "What should trigger escalation into MEDDPICC?",
+      "options": [
+        "Higher ACV and stakeholder/process complexity",
+        "Any inbound lead",
+        "Only when quarter ends",
+        "When champion is friendly"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Complexity and risk should trigger deeper qualification rigor.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Which is the best model choice for a small SMB expansion renewal?",
+      "options": [
+        "BANT",
+        "MEDDPICC only",
+        "No qualification",
+        "Full legal-procurement map first"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Simpler, lower-risk deals can often be managed with lighter qualification.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "Scenario: Deal started as SMB but expanded to enterprise security + procurement review. Best response?",
+      "options": [
+        "Keep BANT unchanged",
+        "Pause all activity",
+        "Escalate to MEDDPICC evidence gates and update qualification model",
+        "Push discount to close faster"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Deal shape changed; qualification rigor must scale with complexity.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

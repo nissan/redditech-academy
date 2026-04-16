@@ -1,3 +1,11 @@
+---
+title: "MarTech + AdTech Industry Map"
+description: "Applied lesson for industry map"
+slug: "01-overview"
+duration: 20
+order: 1
+---
+
 # MarTech + AdTech Industry Map
 
 ## Summary
@@ -47,3 +55,63 @@ Miro, Notion, Lucidchart
   - What metric would prove you chose correctly?
   - Which system becomes the first source of truth, and who owns it?
   - Where would you accept temporary duplication, and where would you not?
+
+
+<!-- VNEXT_AUGMENTATION -->
+## vNext Lesson Augmentation
+
+### Meme opener
+![MarTech + AdTech Industry Map meme](/assets/courses/martech-adtech-academy/memes/industry-map.png)
+
+### Quick Recap
+- Start with a business outcome and measurable success criteria.
+- Design the operating workflow before selecting tools.
+- Add validation, observability, and rollback controls from day one.
+- Use lightweight artifacts so decisions are auditable and repeatable.
+
+### Concept Clarity
+Think of this module like building a smart kitchen. The recipe (process), ingredients (data), and tasting checks (evaluation) matter more than buying the fanciest oven. If one part fails, you need a backup plan so dinner still gets served.
+
+### System map (mermaid)
+```mermaid
+flowchart TD
+    A[Business Goal] --> B[MarTech + AdTech Industry Map Design]
+    B --> C[Data and Context]
+    B --> D[Model or Decision Layer]
+    C --> E[Validation and QA]
+    D --> E
+    E --> F[Production Rollout]
+    F --> G[Telemetry and Feedback Loop]
+    G --> B
+```
+
+### Harvard-style case
+**Case:** MarTech + AdTech Industry Map in a mid-market business unit.  
+**Background:** Team needs faster execution without losing governance.  
+**Complication:** Metrics are improving in pilots but unstable in production.  
+**Analysis:** Missing control points (ownership, QA gates, and incident rules) increase variance.  
+**Recommendation:** Introduce a phased operating model with explicit guardrails, then scale only when KPI and risk thresholds hold for two consecutive cycles.
+
+### Primary references
+- [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Google SRE Workbook (SLOs)](https://sre.google/workbook/)
+- [Harvard Business Review (Analytics & AI)](https://hbr.org/topic/analytics-and-ai)
+
+### Downloadable artifacts
+- [Module worksheet](/assets/courses/martech-adtech-academy/downloads/industry-map-worksheet.md)
+- [Execution checklist (CSV)](/assets/courses/martech-adtech-academy/downloads/industry-map-checklist.csv)
+
+### Media links
+- [Module media list](/assets/courses/martech-adtech-academy/videos/industry-map-media.md)
+- [MIT Sloan AI channel](https://www.youtube.com/@mitsloan)
+- [Stanford HAI talks](https://www.youtube.com/@stanfordhai)
+
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/martech-adtech-academy/memes/industry-map.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/martech-adtech-academy/videos/industry-map-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/martech-adtech-academy/videos/industry-map-concept-clarity.mp4)

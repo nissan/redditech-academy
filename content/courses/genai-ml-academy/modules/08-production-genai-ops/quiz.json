@@ -72,6 +72,20 @@
       "explanation": "Regression gates block releases that degrade quality, latency, or cost beyond accepted limits.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-production-genai-ops"
+    },
+    {
+      "id": "08-production-genai-ops-scenario-q",
+      "question": "Scenario: Your team is applying 'Production GenAI Ops: Evals, Observability, Optimisation' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-genai-ops"
     }
   ]
 }

@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "d1",
-      "question": "Before production release, a non-waivable gate should be:",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "Social media post drafted",
-        "Security and rollback readiness verified",
-        "New logo approved",
-        "All meetings canceled"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "Security and rollback checks protect users and uptime.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "d2",
-      "question": "A safe promotion path is usually:",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "Local directly to mainnet",
-        "Local → devnet/staging → production",
-        "Production first",
-        "No environment separation"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "Progressive environments catch issues before user impact.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "d3",
-      "question": "Post-deploy monitoring should prioritize:",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "Theme colors",
-        "Error rate, transaction success, and latency",
-        "Follower count",
-        "Office network speed"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Operational metrics reveal user-impacting regressions fast.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "d4",
-      "question": "Rollback readiness means:",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "Hope nothing breaks",
-        "Documented rollback steps rehearsed before launch",
-        "Delete old versions",
-        "Disable alerts"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "Rehearsed rollback procedures reduce incident response time.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

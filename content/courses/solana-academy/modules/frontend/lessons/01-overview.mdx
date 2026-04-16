@@ -1,50 +1,66 @@
-# Frontend + Wallet Integration
+---
+title: "Frontend + RPC Integration — Overview"
+description: "Client architecture, RPC reliability, confirmation strategy, and observability for dApps."
+slug: "frontend-overview"
+duration: 26
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-05-frontend-architecture"
+missionTitle: "Mission 05A — Architecture Map"
+estimatedMinutes: 24
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
 
-## Summary
+# Frontend + RPC Integration — Overview
 
-Connect UI flows to on-chain actions with resilient client behavior.
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
 
-## Outcomes
+![Module meme](/assets/courses/solana-academy/memes/frontend.png)
 
-- Connect wallet state to UI state
-- Handle pending/success/failure transaction UX
-- Build user-safe signing prompts
+## Quick Recap
+- Focus area: Client architecture, RPC reliability, confirmation strategy, and observability for dApps.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
 
-## Theory
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
 
-- Client architecture for web3
-- Transaction UX patterns
-- Error handling and retries
-- State synchronization
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
 
-## Practical
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
 
-- Wire a React flow to on-chain call
-- Add robust error states
-- Implement post-transaction refresh
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
 
-## Tools
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
 
-React, Next.js, Wallet Adapter, TypeScript
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
 
-## Case Study
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
 
-- **Protagonist:** Frontend engineer
-- **Context:** Users drop during signing and confirmation.
-- **Dilemma:** Optimize speed or trust/clarity in UI?
-- **Options:**
-  - Speed only
-  - Trust-first UX
-  - Adaptive UX by user segment
-- **Recommendation:** Trust-first UX with clear state transitions and concise context.
-- **Discussion questions:**
-  - What one UI state causes the highest confusion?
-  - How can you reduce failed-sign retries without extra friction?
+## Primary References
+- https://solana.com/docs/rpc
+- https://solana.com/docs/core/transactions
+- https://solana.com/docs/rpc/http/getlatestblockhash
 
-## Video Guidance
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/05-frontend-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/05-frontend-quality-matrix.csv)
 
-Video: Solana Developer Bootcamp 2026: Learn Blockchain and Full-Stack Crypto Development (ID: 2pcm7ICRJKU)
-
-- Frontend Integration clip 1 (00:06) (6s): design, build, and ship real full stack
-- Frontend Integration clip 2 (00:36) (36s): this boot camp is designed to equip you
-- Frontend Integration clip 3 (01:05) (65s): designing and building complex
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

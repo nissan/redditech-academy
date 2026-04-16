@@ -1,0 +1,22 @@
+{
+  "id": "surfpool-testing-lab",
+  "slug": "17-surfpool-testing-lab",
+  "order": 17,
+  "title": "Testing Lab \u2014 Surfpool Workflows",
+  "description": "Build fast local-test loops with Surfpool as a drop-in validator replacement, including runbooks, cheatcodes, and deterministic test gates.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.8,
+  "badge": {
+    "name": "Testing Lab \u2014 Surfpool Workflows Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Testing Lab \u2014 Surfpool Workflows module"
+  },
+  "learningObjectives": [
+    "Design deterministic test harnesses before feature coding",
+    "Implement high-signal local/in-process test loops for fast feedback",
+    "Use adversarial matrices and go/no-go launch gates to block unsafe releases"
+  ],
+  "prerequisiteModules": [
+    "16-verifiable-randomness-auctions"
+  ]
+}

@@ -17,9 +17,9 @@
       "id": "q2",
       "question": "A skill exists in both ~/.openclaw/skills/ and the bundled skills. Which version wins?",
       "options": [
-        "The bundled version \u2014 it ships with OpenClaw and is authoritative",
-        "The managed version in ~/.openclaw/skills/ \u2014 it has higher precedence",
-        "Neither \u2014 OpenClaw raises a conflict error and refuses to load either",
+        "The bundled version — it ships with OpenClaw and is authoritative",
+        "The managed version in ~/.openclaw/skills/ — it has higher precedence",
+        "Neither — OpenClaw raises a conflict error and refuses to load either",
         "Whichever was modified most recently"
       ],
       "correctAnswer": 1,
@@ -35,13 +35,13 @@
         "Defines which OpenClaw built-in tools the skill is allowed to use"
       ],
       "correctAnswer": 1,
-      "explanation": "requires.bins is a load-time gate. If any listed binary is missing from PATH, the skill is silently skipped \u2014 the agent never sees it. This prevents the agent from being told it can use a tool that isn't installed."
+      "explanation": "requires.bins is a load-time gate. If any listed binary is missing from PATH, the skill is silently skipped — the agent never sees it. This prevents the agent from being told it can use a tool that isn't installed."
     },
     {
       "id": "q4",
       "question": "You want to add a skill that only your 'personal' agent uses (not the 'work' agent). Where do you put it?",
       "options": [
-        "~/.openclaw/skills/ \u2014 it's shared but you can gate it with requires.config",
+        "~/.openclaw/skills/ — it's shared but you can gate it with requires.config",
         "Inside the OpenClaw npm package skills directory",
         "In the personal agent's workspace: ~/.openclaw/workspace-personal/skills/",
         "In ~/.openclaw/openclaw.json under skills.entries"
@@ -83,7 +83,19 @@
         "On a fixed schedule, every 30 minutes"
       ],
       "correctAnswer": 2,
-      "explanation": "BOOT.md is executed by the boot-md hook on the gateway:startup event \u2014 once per Gateway restart, after channels come online. It's a startup checklist, not a per-session or per-turn routine. HEARTBEAT.md is what runs periodically (every 30-60 minutes)."
+      "explanation": "BOOT.md is executed by the boot-md hook on the gateway:startup event — once per Gateway restart, after channels come online. It's a startup checklist, not a per-session or per-turn routine. HEARTBEAT.md is what runs periodically (every 30-60 minutes)."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: During Skills & Hooks, your OpenClaw environment starts timing out under peak traffic. Which first response best protects reliability and safety?",
+      "options": [
+        "Introduce request shaping, stricter tool allowlists, and per-channel fallback handling",
+        "Add more channels immediately and debug after failures occur",
+        "Disable logging to improve throughput",
+        "Route all commands to unrestricted exec by default"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Controlled scaling with guardrails and fallback paths improves resilience without sacrificing security."
     }
   ]
 }
