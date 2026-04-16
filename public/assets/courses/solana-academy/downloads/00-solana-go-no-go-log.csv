@@ -1,0 +1,5 @@
+timestamp,owner,gate,decision,notes
+2026-04-17T00:00:00Z,owner_name,test_evidence,pass,
+2026-04-17T00:00:00Z,owner_name,signer_policy,pass,
+2026-04-17T00:00:00Z,owner_name,rollback_dry_run,pass,
+2026-04-17T00:00:00Z,owner_name,go_no_go,go,

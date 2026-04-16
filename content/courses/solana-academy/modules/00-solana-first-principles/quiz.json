@@ -1,0 +1,63 @@
+{
+  "id": "00-solana-first-principles-quiz",
+  "moduleId": "00-solana-first-principles",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which statement best describes a Solana account model?",
+      "options": [
+        "Only programs hold data",
+        "Programs are stateless code; accounts hold state and lamports",
+        "Users can mutate any account directly",
+        "Transactions do not require account references"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Programs execute logic, while accounts store state and balances with explicit ownership rules.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-mental-models-and-vocabulary"
+    },
+    {
+      "id": "q2",
+      "question": "What is the safest default for signer scope in a beginner app?",
+      "options": [
+        "One signer for all actions",
+        "No signer requirements",
+        "Separate user and admin authority paths",
+        "Store private keys in frontend state"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Least-privilege signer separation reduces blast radius when things go wrong.",
+      "difficulty": "beginner",
+      "relatedLessonId": "02-transaction-lifecycle-and-signers"
+    },
+    {
+      "id": "q3",
+      "question": "Why is launch sequencing important even on devnet?",
+      "options": [
+        "It looks more professional",
+        "It catches dependency and policy gaps before promotion",
+        "It removes the need for testing",
+        "It guarantees no production failures"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A release gate surfaces missing checks and ownership gaps before risk increases.",
+      "difficulty": "beginner",
+      "relatedLessonId": "03-safe-first-launch-checklist"
+    },
+    {
+      "id": "q4",
+      "question": "Best beginner progression for Solana delivery is:",
+      "options": [
+        "Ship first, model later",
+        "Model fundamentals -> implement with guardrails -> run launch gate",
+        "Jump directly to validator operations",
+        "Skip cases and only do quizzes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "First principles plus structured mission gates builds durable understanding.",
+      "difficulty": "beginner",
+      "relatedLessonId": "03-safe-first-launch-checklist"
+    }
+  ]
+}

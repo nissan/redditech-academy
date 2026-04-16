@@ -1,0 +1,66 @@
+---
+title: "Solana First Principles — Safe First Launch Checklist"
+description: "Beginner release gate for moving from devnet confidence to controlled deployment readiness."
+slug: "safe-first-launch-checklist"
+duration: 24
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-00-first-principles-launch-gate"
+missionTitle: "Mission 00C — Beginner Launch Gate"
+estimatedMinutes: 18
+keyTakeaways:
+  - "Sequence launch checks in the right order"
+  - "Define go/no-go ownership and rollback readiness"
+  - "Convert confidence into evidence"
+---
+
+# Solana First Principles — Safe First Launch Checklist
+
+## 😄 Meme Opener
+**Meme concept:** "Every box was checked, just not in the same timeline."  
+**Why this hurts in real life:** most launch failures happen because controls were unordered or unowned.
+
+![Module meme](/assets/courses/solana-academy/memes/00-solana-first-principles.svg)
+
+## Quick Recap
+- Safe launch is a sequence, not a vibe.
+- A gate should prove: test evidence, signer policy, monitoring, rollback readiness, and ownership.
+- If one critical gate fails, release is blocked.
+
+## Concept Clarity
+A launch checklist is a risk compression tool.
+It turns messy uncertainty into explicit yes/no decisions.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Test evidence] --> B[Signer policy pass]
+  B --> C[Monitoring + alert readiness]
+  C --> D[Rollback dry run]
+  D --> E[Go/No-Go owner sign-off]
+```
+
+## Harvard-Style Case
+**Context:** A beginner team had strong feature momentum but no explicit release owner.
+
+**Decision point:** Keep informal release coordination or enforce a strict go/no-go sequence with named owners?
+
+**Action taken:** They enforced ordered gates and a mandatory rollback rehearsal.
+
+**Outcome:** A dependency mismatch was caught before release, preventing user-facing downtime.
+
+**Discussion questions:**
+1. Which gate in your current process is weakest and why?
+2. Who can stop launch, and is that authority clear to everyone?
+
+## Primary References
+- https://solana.com/developers/courses
+- https://solana.com/docs/references/security
+
+## Downloadable Practical Artifacts
+- [Beginner Launch Gate Template](/assets/courses/solana-academy/downloads/00-solana-beginner-launch-gate.md)
+- [Go/No-Go Decision Log](/assets/courses/solana-academy/downloads/00-solana-go-no-go-log.csv)
+
+## Anti-Pattern to Avoid
+Promoting to higher environments based on confidence language instead of explicit evidence.

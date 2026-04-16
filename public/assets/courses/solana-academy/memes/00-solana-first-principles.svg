@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1022"/>
+      <stop offset="100%" stop-color="#1f1147"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <text x="80" y="220" fill="#c4b5fd" font-size="54" font-family="Inter,Arial,sans-serif" font-weight="700">When you skip first principles...</text>
+  <text x="80" y="320" fill="#67e8f9" font-size="44" font-family="Inter,Arial,sans-serif">the bug report teaches them for you.</text>
+  <text x="80" y="430" fill="#e2e8f0" font-size="30" font-family="Inter,Arial,sans-serif">Accounts, signers, transactions, then launch gates.</text>
+  <rect x="76" y="470" rx="16" ry="16" width="760" height="96" fill="#111827" stroke="#6366f1"/>
+  <text x="110" y="530" fill="#a5b4fc" font-size="30" font-family="Inter,Arial,sans-serif">Beginner rule: clarity first, speed second.</text>
+</svg>

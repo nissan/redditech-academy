@@ -1,0 +1,25 @@
+{
+  "id": "solana-00-first-principles-mental-model",
+  "spec": "Map beginner Solana primitives into a correct mental model: accounts, programs, instructions, transactions, and signers.",
+  "validation": {
+    "must_have": [
+      { "field": "submission.summary", "non_empty": true },
+      { "field": "submission.account_model", "non_empty": true },
+      { "field": "submission.transaction_flow", "non_empty": true },
+      { "field": "submission.signer_role", "non_empty": true }
+    ],
+    "must_not_have": [
+      { "field": "submission.key_storage", "value": "frontend_private_key" }
+    ]
+  },
+  "eli_notes": "Reject vague summaries that do not separate program logic from account state.",
+  "hints": [
+    "Programs execute, accounts store.",
+    "Transactions bundle instructions and accounts.",
+    "Signers authorize state-affecting intent."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"summary\": \"__FILL_IN__\",\n    \"account_model\": [\"__FILL_IN__\"],\n    \"transaction_flow\": [\"__FILL_IN__\"],\n    \"signer_role\": [\"__FILL_IN__\"],\n    \"key_storage\": \"wallet\"\n  }\n}"
+  },
+  "success_text": "Nice work. Your beginner mental model cleanly separates state, logic, and authority."
+}

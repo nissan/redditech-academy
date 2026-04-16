@@ -1,0 +1,20 @@
+{
+  "id": "00-solana-first-principles",
+  "slug": "00-solana-first-principles",
+  "order": 0,
+  "title": "Start Here: Solana First Principles",
+  "description": "Beginner-safe mental model for accounts, transactions, signers, environments, and launch discipline.",
+  "difficulty": "beginner",
+  "estimatedHours": 2.4,
+  "badge": {
+    "name": "Solana First Principles Badge",
+    "icon": "🟣",
+    "description": "Completed beginner Solana first-principles grounding"
+  },
+  "learningObjectives": [
+    "Explain core Solana primitives in plain language",
+    "Design basic signer and authority boundaries for a small app",
+    "Apply a minimum safe release sequence before deployment"
+  ],
+  "prerequisiteModules": []
+}

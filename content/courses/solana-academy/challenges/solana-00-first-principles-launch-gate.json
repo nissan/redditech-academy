@@ -1,0 +1,24 @@
+{
+  "id": "solana-00-first-principles-launch-gate",
+  "spec": "Order beginner launch-gate checkpoints for a safe promotion path from devnet readiness to release decision.",
+  "validation": {
+    "must_have": [
+      { "field": "submission.sequence", "non_empty": true },
+      { "field": "submission.blocker_rule", "non_empty": true },
+      { "field": "submission.owner", "non_empty": true }
+    ],
+    "must_not_have": [
+      { "field": "submission.sequence", "value": "launch_before_checks" }
+    ]
+  },
+  "eli_notes": "Passing response must include ordered checks and a named blocker rule.",
+  "hints": [
+    "Evidence before release decision.",
+    "Signer policy verification before go-live.",
+    "Rollback readiness before final sign-off."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"sequence\": [\"test_evidence\", \"signer_policy\", \"monitoring\", \"rollback_dry_run\", \"go_no_go\"],\n    \"blocker_rule\": \"__FILL_IN__\",\n    \"owner\": \"__FILL_IN__\"\n  }\n}"
+  },
+  "success_text": "Launch-gate sequence accepted. You are operating with explicit risk controls."
+}

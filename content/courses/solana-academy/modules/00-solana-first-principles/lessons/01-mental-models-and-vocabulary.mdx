@@ -1,0 +1,71 @@
+---
+title: "Solana First Principles — Mental Models and Vocabulary"
+description: "Beginner foundation for accounts, programs, transactions, signers, and environments."
+slug: "mental-models-and-vocabulary"
+duration: 24
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-00-first-principles-mental-model"
+missionTitle: "Mission 00A — Mental Model Mapping"
+estimatedMinutes: 18
+keyTakeaways:
+  - "Understand what accounts, programs, and instructions each do"
+  - "Separate chain objects from application logic"
+  - "Use clear language before writing code"
+---
+
+# Solana First Principles — Mental Models and Vocabulary
+
+## 😄 Meme Opener
+**Meme concept:** "I thought program = app + database + wallet + vibes."  
+**Why this hurts in real life:** blurred vocabulary causes architecture mistakes before code even compiles.
+
+![Module meme](/assets/courses/solana-academy/memes/00-solana-first-principles.svg)
+
+## Quick Recap
+- Programs are executable logic.
+- Accounts store data and lamports.
+- Transactions bundle instructions and required accounts/signers.
+- Environment progression (local/devnet/testnet/mainnet) is a risk ladder, not just a speed ladder.
+
+## Concept Clarity
+Think of Solana like a theatre:
+- **Program** = script for actors to follow.
+- **Accounts** = props and state on stage.
+- **Transaction** = a scheduled scene with specific actors and props.
+- **Signer** = someone authorized to approve the scene.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[User intent] --> B[Transaction]
+  B --> C[Instruction]
+  C --> D[Program executes]
+  D --> E[Account state updates]
+```
+
+## Harvard-Style Case
+**Context:** A beginner team mixed up program ownership and account mutability, then spent a week debugging failed writes.
+
+**Decision point:** Continue patching ad-hoc or pause and create a shared first-principles model?
+
+**Action taken:** They defined vocabulary, ownership, and signer expectations before touching logic again.
+
+**Outcome:** Debug time dropped and code reviews became faster and clearer.
+
+**Discussion questions:**
+1. Which two Solana terms does your team currently use inconsistently?
+2. What confusion appears most often in PR reviews?
+
+## Primary References
+- https://solana.com/docs/core/accounts
+- https://solana.com/docs/core/transactions
+- https://solana.com/docs/core/instructions
+
+## Downloadable Practical Artifacts
+- [First Principles Glossary](/assets/courses/solana-academy/downloads/00-solana-first-principles-glossary.md)
+- [Mental Model Worksheet](/assets/courses/solana-academy/downloads/00-solana-first-principles-worksheet.md)
+
+## Anti-Pattern to Avoid
+Skipping shared vocabulary and hoping implementation will “self-document” architecture.

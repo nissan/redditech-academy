@@ -1,0 +1,25 @@
+{
+  "id": "solana-00-first-principles-signers",
+  "spec": "Design a least-privilege signer policy for a beginner Solana app with user, operator, and emergency boundaries.",
+  "validation": {
+    "must_have": [
+      { "field": "submission.summary", "non_empty": true },
+      { "field": "submission.user_permissions", "non_empty": true },
+      { "field": "submission.admin_permissions", "non_empty": true },
+      { "field": "submission.rollback_owner", "non_empty": true }
+    ],
+    "must_not_have": [
+      { "field": "submission.policy_mode", "value": "single_signer_for_all" }
+    ]
+  },
+  "eli_notes": "Policy fails if user and admin privileges are merged.",
+  "hints": [
+    "Separate normal user actions from privileged operations.",
+    "Name explicit rollback owner.",
+    "Keep frontend key custody out of scope."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"summary\": \"__FILL_IN__\",\n    \"policy_mode\": \"split_roles\",\n    \"user_permissions\": [\"__FILL_IN__\"],\n    \"admin_permissions\": [\"__FILL_IN__\"],\n    \"rollback_owner\": \"__FILL_IN__\"\n  }\n}"
+  },
+  "success_text": "Policy accepted. Signer boundaries are explicit and safer for beginner deployments."
+}
