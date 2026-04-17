@@ -1,0 +1,80 @@
+# docker-compose.local.yml — Dress rehearsal environment
+#
+# Simulates Vercel-deployed app + cloud LLM, but everything runs locally:
+#   - academy-app:  Next.js standalone (mirrors Vercel)
+#   - ollama:       Local LLM server (mirrors Anthropic/OpenAI endpoint)
+#
+# Usage:
+#   docker compose -f docker-compose.local.yml up --build
+#   # Then run integration tests:
+#   pnpm test:integration
+#
+# First run: Ollama needs the model pulled (see healthcheck below).
+# Subsequent runs: model is cached in the named volume `ollama_data`.
+
+services:
+  # ── Ollama — local LLM endpoint ─────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: academy-ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11435:11434"   # expose on 11435 to avoid conflict with host Ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/version"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+  # ── Model puller — runs once, pulls mistral if not cached ───────────────────
+  model-puller:
+    image: ollama/ollama:latest
+    container_name: academy-model-puller
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_healthy
+    # Pull the judge model then exit
+    entrypoint: ["ollama", "pull", "${JUDGE_MODEL:-mistral:latest}"]
+    restart: "no"
+
+  # ── Academy app — Next.js standalone ────────────────────────────────────────
+  academy-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: academy-app
+    ports:
+      - "3001:3000"   # app on 3001 to avoid conflict with any local dev server
+    environment:
+      # LLM wiring
+      JUDGE_PROVIDER: "ollama"
+      JUDGE_MODEL: "${JUDGE_MODEL:-mistral:latest}"
+      OLLAMA_BASE_URL: "http://ollama:11434"
+      # No Anthropic key needed in local mode
+      ANTHROPIC_API_KEY: "not-used-in-local-mode"
+      # App settings
+      NODE_ENV: "production"
+    depends_on:
+      ollama:
+        condition: service_healthy
+      model-puller:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+    name: academy-ollama-data
+    # Persist across rebuilds — model won't be re-downloaded each time

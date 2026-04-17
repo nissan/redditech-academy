@@ -13,7 +13,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/00-solana-first-principles-01-mental-models-and-vocabulary-d1.png",
     "source_hash": "6f81562cd5aa40e9116d47de19ee101aef6496e853cf0432039ba9e2492e03b6",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/00-solana-first-principles/lessons/02-transaction-lifecycle-and-signers.mdx",
@@ -29,7 +29,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/00-solana-first-principles-02-transaction-lifecycle-and-signers-d1.png",
     "source_hash": "702cc43e9b0f6ec7da8aaa7d85478f84851f4357641131948b60f2e7859143f6",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/00-solana-first-principles/lessons/03-safe-first-launch-checklist.mdx",
@@ -45,7 +45,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/00-solana-first-principles-03-safe-first-launch-checklist-d1.png",
     "source_hash": "2e0a471ec27040ac667b3bc0e8bd78bad903aca51ec72961e34fbe1734a00a13",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx",
@@ -61,7 +61,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/08-solana-new-app-builder-01-solana-new-workflow-d1.png",
     "source_hash": "70c791a73fe30d9fc54e4d625f32ca05a060a482f20aea2aab1464021194eeaa",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx",
@@ -77,7 +77,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/09-anchor-escrow-lab-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/02-implementation-lab.mdx",
@@ -93,7 +93,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/09-anchor-escrow-lab-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -109,7 +109,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/09-anchor-escrow-lab-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/01-core-concepts.mdx",
@@ -125,7 +125,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/10-pinocchio-escrow-lab-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/02-implementation-lab.mdx",
@@ -141,7 +141,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/10-pinocchio-escrow-lab-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -157,7 +157,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/10-pinocchio-escrow-lab-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/01-core-concepts.mdx",
@@ -173,7 +173,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/11-quasar-escrow-lab-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/02-implementation-lab.mdx",
@@ -189,7 +189,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/11-quasar-escrow-lab-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -205,7 +205,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/11-quasar-escrow-lab-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/01-core-concepts.mdx",
@@ -221,7 +221,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/12-jupiter-defi-integration-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/02-implementation-lab.mdx",
@@ -237,7 +237,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/12-jupiter-defi-integration-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -253,7 +253,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/12-jupiter-defi-integration-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.894Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/01-core-concepts.mdx",
@@ -269,7 +269,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/13-orca-whirlpools-integration-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/02-implementation-lab.mdx",
@@ -285,7 +285,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/13-orca-whirlpools-integration-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -301,7 +301,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/13-orca-whirlpools-integration-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/01-core-concepts.mdx",
@@ -317,7 +317,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/14-chainlink-oracle-integration-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/02-implementation-lab.mdx",
@@ -333,7 +333,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/14-chainlink-oracle-integration-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -349,7 +349,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/14-chainlink-oracle-integration-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/01-core-concepts.mdx",
@@ -365,7 +365,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/15-pyth-oracle-integration-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/02-implementation-lab.mdx",
@@ -381,7 +381,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/15-pyth-oracle-integration-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -397,7 +397,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/15-pyth-oracle-integration-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/01-core-concepts.mdx",
@@ -413,7 +413,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/16-verifiable-randomness-auctions-01-core-concepts-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/02-implementation-lab.mdx",
@@ -429,7 +429,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/16-verifiable-randomness-auctions-02-implementation-lab-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -445,7 +445,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/16-verifiable-randomness-auctions-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "2fc4df91dce3f8f32f8dea6c0ed74054a73dd983e1d65bc8d1ab799321f29c35",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/01-core-concepts.mdx",
@@ -461,7 +461,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/17-surfpool-testing-lab-01-core-concepts-d1.png",
     "source_hash": "20927b708c7bb50cfd997af239aa1951c0ff6995624ea4ba2ae35b9c06c9332b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/02-harness-implementation.mdx",
@@ -477,7 +477,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/17-surfpool-testing-lab-02-harness-implementation-d1.png",
     "source_hash": "20927b708c7bb50cfd997af239aa1951c0ff6995624ea4ba2ae35b9c06c9332b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -493,7 +493,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/17-surfpool-testing-lab-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "20927b708c7bb50cfd997af239aa1951c0ff6995624ea4ba2ae35b9c06c9332b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/01-core-concepts.mdx",
@@ -509,7 +509,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/18-litesvm-testing-lab-01-core-concepts-d1.png",
     "source_hash": "20927b708c7bb50cfd997af239aa1951c0ff6995624ea4ba2ae35b9c06c9332b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/02-harness-implementation.mdx",
@@ -525,7 +525,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/18-litesvm-testing-lab-02-harness-implementation-d1.png",
     "source_hash": "20927b708c7bb50cfd997af239aa1951c0ff6995624ea4ba2ae35b9c06c9332b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
@@ -541,7 +541,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/18-litesvm-testing-lab-03-adversarial-testing-and-launch-gate-d1.png",
     "source_hash": "20927b708c7bb50cfd997af239aa1951c0ff6995624ea4ba2ae35b9c06c9332b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/01-core-concepts.mdx",
@@ -557,7 +557,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/19-validator-architecture-and-consensus-01-core-concepts-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/02-implementation-and-runbook.mdx",
@@ -573,7 +573,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/19-validator-architecture-and-consensus-02-implementation-and-runbook-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/03-adversarial-ops-and-go-live-gate.mdx",
@@ -589,7 +589,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/19-validator-architecture-and-consensus-03-adversarial-ops-and-go-live-gate-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/01-core-concepts.mdx",
@@ -605,7 +605,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/20-running-a-validator-ops-and-economics-01-core-concepts-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/02-implementation-and-runbook.mdx",
@@ -621,7 +621,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/20-running-a-validator-ops-and-economics-02-implementation-and-runbook-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx",
@@ -637,7 +637,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/20-running-a-validator-ops-and-economics-03-adversarial-ops-and-go-live-gate-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/01-core-concepts.mdx",
@@ -653,7 +653,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/21-client-diversity-firedancer-frankendancer-01-core-concepts-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/02-implementation-and-runbook.mdx",
@@ -669,7 +669,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/21-client-diversity-firedancer-frankendancer-02-implementation-and-runbook-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/03-adversarial-ops-and-go-live-gate.mdx",
@@ -685,7 +685,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/21-client-diversity-firedancer-frankendancer-03-adversarial-ops-and-go-live-gate-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/01-core-concepts.mdx",
@@ -701,7 +701,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/22-validator-launch-readiness-mission-01-core-concepts-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.895Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/02-implementation-and-runbook.mdx",
@@ -717,7 +717,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/22-validator-launch-readiness-mission-02-implementation-and-runbook-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/03-adversarial-ops-and-go-live-gate.mdx",
@@ -733,7 +733,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/22-validator-launch-readiness-mission-03-adversarial-ops-and-go-live-gate-d1.png",
     "source_hash": "e7cd072bca5f291c80796bad1c033d9a5013663df8421747d439a06ba436ba7a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/deployment/lessons/01-overview.mdx",
@@ -749,7 +749,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/deployment-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/deployment/lessons/02-implementation-lab.mdx",
@@ -765,7 +765,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/deployment-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/deployment/lessons/03-adversarial-gate.mdx",
@@ -781,7 +781,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/deployment-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/foundations/lessons/01-overview.mdx",
@@ -797,7 +797,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/foundations-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/foundations/lessons/02-implementation-lab.mdx",
@@ -813,7 +813,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/foundations-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/foundations/lessons/03-adversarial-gate.mdx",
@@ -829,7 +829,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/foundations-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/frontend/lessons/01-overview.mdx",
@@ -845,7 +845,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/frontend-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/frontend/lessons/02-implementation-lab.mdx",
@@ -861,7 +861,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/frontend-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/frontend/lessons/03-adversarial-gate.mdx",
@@ -877,7 +877,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/frontend-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/onchain/lessons/01-overview.mdx",
@@ -893,7 +893,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/onchain-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/onchain/lessons/02-implementation-lab.mdx",
@@ -909,7 +909,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/onchain-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/onchain/lessons/03-adversarial-gate.mdx",
@@ -925,7 +925,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/onchain-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/testing/lessons/01-overview.mdx",
@@ -941,7 +941,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/testing-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/testing/lessons/02-implementation-lab.mdx",
@@ -957,7 +957,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/testing-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/testing/lessons/03-adversarial-gate.mdx",
@@ -973,7 +973,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/testing-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/tooling/lessons/01-overview.mdx",
@@ -989,7 +989,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/tooling-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/tooling/lessons/02-implementation-lab.mdx",
@@ -1005,7 +1005,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/tooling-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/tooling/lessons/03-adversarial-gate.mdx",
@@ -1021,7 +1021,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/tooling-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/wallets/lessons/01-overview.mdx",
@@ -1037,7 +1037,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/wallets-01-overview-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/wallets/lessons/02-implementation-lab.mdx",
@@ -1053,7 +1053,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/wallets-02-implementation-lab-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx",
@@ -1069,6 +1069,6 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/solana-academy/diagrams/wallets-03-adversarial-gate-d1.png",
     "source_hash": "7cf83b6c52f841840ae51dd9da7ace3539a206c391275cb86e84641209cd93b0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:17:30.896Z"
+    "rendered_at": "2026-04-17T19:27:09.692Z"
   }
 ]

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import path from "path";
 import fs from "fs";
-import { execSync } from "child_process";
+import { createJudgeLLM, judgeProviderLabel } from "@/lib/judge-llm";
 
 interface ChallengeStep {
   id: string;
@@ -12,6 +12,7 @@ interface ChallengeStep {
 interface ChallengePrefilled {
   steps?: ChallengeStep[];
   correctOrder?: string[];
+  template?: string;
   [key: string]: unknown;
 }
 
@@ -35,24 +36,10 @@ interface JudgeResponse {
   score: number;
   feedback: string;
   hints?: string[];
-}
-
-function getAnthropicKey(): string {
-  // Try env first
-  if (process.env.ANTHROPIC_API_KEY) return process.env.ANTHROPIC_API_KEY;
-  // Try 1Password
-  try {
-    return execSync('op read "op://OpenClaw/Anthropic API Key/notesPlain"', {
-      timeout: 5000,
-      encoding: "utf-8",
-    }).trim();
-  } catch {
-    throw new Error("ANTHROPIC_API_KEY not set and 1Password not available");
-  }
+  _provider?: string; // debug: which LLM answered
 }
 
 function loadChallenge(challengeId: string): ChallengeSpec | null {
-  // Search all courses for this challenge
   const coursesDir = path.join(process.cwd(), "content", "courses");
   try {
     const courses = fs.readdirSync(coursesDir);
@@ -74,8 +61,7 @@ function loadChallenge(challengeId: string): ChallengeSpec | null {
 }
 
 /**
- * Strip markdown code fences that some LLM responses include despite instructions.
- * Handles ```json ... ``` and ``` ... ``` wrappers.
+ * Strip markdown code fences — some LLMs wrap JSON in ```json ... ``` despite instructions.
  */
 function stripMarkdownFences(raw: string): string {
   return raw
@@ -87,10 +73,7 @@ function stripMarkdownFences(raw: string): string {
 
 /**
  * Grade a sequence-completer submission programmatically.
- * Compares submitted order (array of step IDs) against the correct order
- * from challenge.prefilled.correctOrder.
- *
- * Returns null if the challenge doesn't have a correctOrder to compare against.
+ * Returns null when the challenge has no correctOrder.
  */
 function gradeSequence(
   challenge: ChallengeSpec,
@@ -120,13 +103,12 @@ function gradeSequence(
   const toLabel = (id: string, idx: number) =>
     `${idx + 1}. ${stepMap[id] ?? id}`;
 
-  const correctLabels = correctOrder.map(toLabel).join("\n");
-  const submittedLabels =
-    submitted.length > 0
-      ? submitted.map(toLabel).join("\n")
-      : "(nothing submitted)";
-
-  return { score, pass, correctLabels, submittedLabels };
+  return {
+    score,
+    pass,
+    correctLabels: correctOrder.map(toLabel).join("\n"),
+    submittedLabels: submitted.length > 0 ? submitted.map(toLabel).join("\n") : "(nothing submitted)",
+  };
 }
 
 const SYSTEM_PROMPT = `You are Eli Vasquez, Senior Principal at Keystone, judging a trainee's work.
@@ -166,24 +148,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
   }
 
-  // ── Programmatic grading for sequence-completer challenges ──────────────
-  // Avoids sending raw IDs to the LLM; scores position accuracy directly,
-  // then calls Eli only for human-readable feedback.
+  // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
 
-  let apiKey: string;
-  try {
-    apiKey = getAnthropicKey();
-  } catch (err) {
-    return NextResponse.json(
-      { error: (err as Error).message },
-      { status: 500 }
-    );
-  }
-
-  const client = new Anthropic({ apiKey });
-
-  // Build the user message — for sequence challenges use labels, not raw IDs
+  // Build the user message
   const userMessage = seqGrade
     ? `Ordering challenge: "${challenge.spec}"
 
@@ -205,56 +173,53 @@ ${challenge.eli_notes ? `Judge notes:\n${challenge.eli_notes}\n\n` : ""}Environm
 Trainee's submission:
 ${JSON.stringify(userInput, null, 2)}`;
 
+  let raw = "";
+  const provider = judgeProviderLabel();
+
   try {
-    const message = await client.messages.create({
-      model: "claude-haiku-4-5",
-      max_tokens: 300,
-      temperature: 0.3,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: userMessage }],
-    });
+    const llm = createJudgeLLM();
+    const response = await llm.invoke([
+      new SystemMessage(SYSTEM_PROMPT),
+      new HumanMessage(userMessage),
+    ]);
 
-    const raw =
-      message.content[0].type === "text" ? message.content[0].text : "";
-
-    // Strip markdown fences — Haiku sometimes wraps JSON in ```json ... ``` despite instructions
-    const cleaned = stripMarkdownFences(raw);
-
-    let result: JudgeResponse;
-    try {
-      result = JSON.parse(cleaned) as JudgeResponse;
-    } catch {
-      // JSON parse still failed — use cleaned text as feedback but preserve
-      // programmatic score for sequence challenges
-      result = {
-        pass: seqGrade?.pass ?? false,
-        score: seqGrade?.score ?? 0,
-        feedback: cleaned || "Unable to evaluate — please try again.",
-      };
-    }
-
-    // For sequence challenges, enforce the programmatic score/pass (don't let
-    // Eli override what the position-comparison already determined)
-    if (seqGrade) {
-      result.pass = seqGrade.pass;
-      result.score = seqGrade.score;
-    }
-
-    // Attach hints if available
-    if (!result.pass && challenge.hints?.length) {
-      result.hints = challenge.hints;
-    }
-
-    return NextResponse.json(result);
+    raw = typeof response.content === "string"
+      ? response.content
+      : JSON.stringify(response.content);
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     return NextResponse.json(
-      {
-        pass: false,
-        score: 0,
-        feedback: `Evaluation service error: ${msg}`,
-      },
+      { pass: false, score: 0, feedback: `Evaluation service error: ${msg}`, _provider: provider },
       { status: 500 }
     );
   }
+
+  // Strip markdown fences (some models wrap JSON despite instructions)
+  const cleaned = stripMarkdownFences(raw);
+
+  let result: JudgeResponse;
+  try {
+    result = JSON.parse(cleaned) as JudgeResponse;
+  } catch {
+    result = {
+      pass: seqGrade?.pass ?? false,
+      score: seqGrade?.score ?? 0,
+      feedback: cleaned || "Unable to evaluate — please try again.",
+    };
+  }
+
+  // Enforce programmatic score for sequence challenges
+  if (seqGrade) {
+    result.pass = seqGrade.pass;
+    result.score = seqGrade.score;
+  }
+
+  result._provider = provider;
+
+  // Attach hints on failure
+  if (!result.pass && challenge.hints?.length) {
+    result.hints = challenge.hints;
+  }
+
+  return NextResponse.json(result);
 }

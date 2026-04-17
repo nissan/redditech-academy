@@ -10,6 +10,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./tests/setup.ts"],
     include: ["tests/**/*.test.{ts,tsx}"],
+    // Integration tests require a running server — exclude from default run
+    exclude: ["tests/integration/**", "node_modules/**"],
   },
   resolve: {
     alias: {
