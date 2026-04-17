@@ -13,7 +13,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/01-production-ai-foundations-01-production-ai-foundations-d1.png",
     "source_hash": "3fc6c7d8eade35bcbd809522f954e7c6a31d90b8eaf825c75128c9c43ebc0e44",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/01-rag-in-practice.mdx",
@@ -29,7 +29,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/02-rag-in-practice-01-rag-in-practice-d1.png",
     "source_hash": "e787bf5effea64454ee310918d42da064fbadc9a1222b98c25e1bcbd4af13378",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/01-multi-agent-systems-and-frameworks.mdx",
@@ -45,7 +45,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/03-multi-agent-systems-and-frameworks-01-multi-agent-systems-and-frameworks-d1.png",
     "source_hash": "15e41e976542286a8171b1f309377c195b1614efdf4a3b42dc7f726e775ea68a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/01-langgraph-stateful-agents.mdx",
@@ -61,7 +61,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/04-langgraph-stateful-agents-01-langgraph-stateful-agents-d1.png",
     "source_hash": "5c0792587a9c9515d99b621fc7ef4fe405da54772610934013ba4b75a9299c02",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/01-text2sql-enterprise-data.mdx",
@@ -77,7 +77,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/05-text2sql-enterprise-data-01-text2sql-enterprise-data-d1.png",
     "source_hash": "488a7aa01fb31385ea5f98ddd52bac3bfd7c3b89feed0d7d1853d1984d274054",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/06-fine-tuning-open-models/lessons/01-fine-tuning-open-models.mdx",
@@ -93,7 +93,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/06-fine-tuning-open-models-01-fine-tuning-open-models-d1.png",
     "source_hash": "cfe2e9a0396feac290a69b491f5ed1aef0969856eadb84eaa3dd9e4a8cb128c3",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/07-langchain-production-genai/lessons/01-langchain-production-genai.mdx",
@@ -109,7 +109,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/07-langchain-production-genai-01-langchain-production-genai-d1.png",
     "source_hash": "dad3917f3bb63564fa73eefbdbf332dfebec01c07d47a46f2fbeda44dd3c2cbe",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/08-production-genai-ops/lessons/01-production-genai-ops.mdx",
@@ -125,7 +125,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/08-production-genai-ops-01-production-genai-ops-d1.png",
     "source_hash": "7794da9dc0a510df3e2bf317b9eb49055f8549ea7cd9a1a5dc37bb3121be3add",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/09-applied-data-science-cases/lessons/01-applied-data-science-cases.mdx",
@@ -141,7 +141,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/09-applied-data-science-cases-01-applied-data-science-cases-d1.png",
     "source_hash": "9e79f822b45886c2c3a8483ff334a294d3d847997d674f02abd2a7174d5f3106",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/10-advanced-ai-solutions-in-production/lessons/01-advanced-ai-solutions-in-production.mdx",
@@ -157,7 +157,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/10-advanced-ai-solutions-in-production-01-advanced-ai-solutions-in-production-d1.png",
     "source_hash": "ca8434d009bd8bd8ea703da3eedadf7d80ae9356a953ab8a24bd5ba985acb695",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/11-ml-deployment-cloud/lessons/01-ml-deployment-cloud.mdx",
@@ -173,7 +173,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/11-ml-deployment-cloud-01-ml-deployment-cloud-d1.png",
     "source_hash": "3668ad2f2a03abe68db27490740e5708844c6b8bb7e6c852731c221fde3e3710",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/genai-ml-academy/modules/12-databricks-spark-capstone/lessons/01-databricks-spark-capstone.mdx",
@@ -189,6 +189,6 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/genai-ml-academy/diagrams/12-databricks-spark-capstone-01-databricks-spark-capstone-d1.png",
     "source_hash": "67c47fbaba0b328d7fb439f9c4e848315448a3e43c4a5bcd8ca44909a12c9b84",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T19:27:09.690Z"
+    "rendered_at": "2026-04-17T22:07:17.246Z"
   }
 ]

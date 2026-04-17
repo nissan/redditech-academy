@@ -1,0 +1,17 @@
+{
+  "slug": "00-course-intro",
+  "title": "Course Intro",
+  "description": "Coming soon.",
+  "order": 0,
+  "lessons": [],
+  "passingScore": 70,
+  "badge": {
+    "name": "Python Foundations",
+    "icon": "🐍",
+    "description": "Understood the interview format and learning approach"
+  },
+  "difficulty": "beginner",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

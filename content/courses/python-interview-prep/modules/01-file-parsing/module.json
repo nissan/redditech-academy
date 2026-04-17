@@ -1,0 +1,22 @@
+{
+  "slug": "01-file-parsing",
+  "title": "Reading & Parsing Files",
+  "description": "JSON, CSV, JSONL, pathlib. The first thing every real data problem requires.",
+  "order": 1,
+  "lessons": [
+    "01-reading-json",
+    "02-reading-csv",
+    "03-parsing-jsonl",
+    "04-pathlib-patterns"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "File Whisperer",
+    "icon": "📂",
+    "description": "Parsed CSV, JSON, and JSONL without panicking"
+  },
+  "difficulty": "beginner",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

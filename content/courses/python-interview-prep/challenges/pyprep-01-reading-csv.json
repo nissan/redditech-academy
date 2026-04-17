@@ -1,0 +1,24 @@
+{
+  "id": "pyprep-01-reading-csv",
+  "type": "json-editor",
+  "spec": "Explain how you load a CSV file in Python and why csv.DictReader is preferred over csv.reader. What type are numeric values after loading, and how do you fix that?",
+  "validation": {
+    "must_have": [
+      { "field": "submission.module_and_class", "non_empty": true },
+      { "field": "submission.dictreader_reason", "non_empty": true },
+      { "field": "submission.type_gotcha", "non_empty": true }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE — 3-STRIKE RULE:\nStrike 1: Ask 'You mentioned DictReader — what would you get with plain csv.reader instead, and when would that be a problem?'\nStrike 2: If still vague on types, ask 'If a quality_score column has value 8.42 in the CSV, what does Python give you and why?'\nStrike 3: Reveal: csv.DictReader gives {col: value} dicts. All values are strings. Must cast: float(row['quality_score']). Plain reader gives lists indexed by position — brittle if columns change.\nIf correct: acknowledge then ask 'What argument do you pass to open() to avoid Windows line-ending issues?'",
+  "hints": [
+    "Think about what happens when columns are reordered in the CSV.",
+    "Every value in a CSV file is text until you tell Python otherwise.",
+    "There's a special argument to open() just for CSV files."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"module_and_class\": \"I would import ___ and use ___ because...\",\n    \"dictreader_reason\": \"DictReader is better than reader because...\",\n    \"type_gotcha\": \"After loading, numeric values are ___ type, so I need to...\"\n  }\n}"
+  },
+  "success_text": "Solid. The string-to-float gotcha catches more candidates than any algorithm question.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

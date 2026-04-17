@@ -1,0 +1,17 @@
+{
+  "slug": "04-output-formatting",
+  "title": "Output Formatting",
+  "description": "Coming soon.",
+  "order": 4,
+  "lessons": [],
+  "passingScore": 70,
+  "badge": {
+    "name": "Output Architect",
+    "icon": "🖨️",
+    "description": "Formatted tables, rounded numbers, and conditional output"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

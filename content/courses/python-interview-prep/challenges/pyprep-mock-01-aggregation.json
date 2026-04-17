@@ -1,0 +1,25 @@
+{
+  "id": "pyprep-mock-01-aggregation",
+  "type": "json-editor",
+  "spec": "Mock problem: Given results.json with fields [model, provider, quality_score, ttft_ms (nullable), cost_per_1k_tokens], produce: (1) ranked summary table sorted by avg quality desc, (2) cheapest model with avg quality >= 8.0, (3) mark models with < 10 results with (*). Describe your complete approach step by step.",
+  "validation": {
+    "must_have": [
+      { "field": "submission.first_step", "non_empty": true },
+      { "field": "submission.null_handling", "non_empty": true },
+      { "field": "submission.threshold_logic", "non_empty": true },
+      { "field": "submission.output_approach", "non_empty": true }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE — 3-STRIKE RULE. This is a mock interview problem.\nStrike 1: Whatever they say, ask ONE gap question. Common gaps: not mentioning checking data shape first, ignoring ttft_ms nulls, not explaining how they find cheapest-above-threshold.\nExamples: 'Before you write any aggregation — what do you check about the data first?', 'ttft_ms can be null — does your median calculation handle that, or do you need to filter first?', 'For cheapest above 8.0, walk me through the exact filter + sort + first approach.'\nStrike 2: More targeted. If close, hint toward the missing piece.\nStrike 3: Full worked answer: load JSON → pd.DataFrame → groupby model → agg (mean quality, count, median ttft nullable=auto, mean cost) → reset_index → add (*) marker with np.where(df.count < 10) → sort by quality desc → filter quality>=8.0, sort cost asc, take iloc[0] for cheapest.\nIf correct on first try: 'Strong approach. One follow-up: how would you format the output as a readable table without importing tabulate?'",
+  "hints": [
+    "What's the very first thing you do after loading the data?",
+    "pandas handles NaN in median automatically — but do you know which parameter controls that?",
+    "Filter first, then sort, then take the first row — that's the cheapest-above-threshold pattern."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"first_step\": \"Before writing any aggregation code, I would first...\",\n    \"null_handling\": \"For the nullable ttft_ms field, I would handle nulls by...\",\n    \"threshold_logic\": \"To find cheapest model with quality >= 8.0, I would...\",\n    \"output_approach\": \"To print the ranked table, I would...\"\n  }\n}"
+  },
+  "success_text": "Interview-ready. That's the shape of a strong technical answer — load, inspect, aggregate, filter, output.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

@@ -1,0 +1,24 @@
+{
+  "id": "pyprep-01-parsing-jsonl",
+  "type": "json-editor",
+  "spec": "Explain how to parse a JSONL file where some lines may be malformed. What do you do with the bad lines, and how do you communicate that to the caller?",
+  "validation": {
+    "must_have": [
+      { "field": "submission.loop_approach", "non_empty": true },
+      { "field": "submission.error_handling", "non_empty": true },
+      { "field": "submission.bad_line_communication", "non_empty": true }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE — 3-STRIKE RULE:\nStrike 1: Ask 'You said loop over lines — what function do you call on each line before json.loads, and why?'\nStrike 2: If error handling is vague, ask 'What specific exception does json.loads raise on a bad line?'\nStrike 3: Reveal: strip() each line, skip empty, wrap json.loads in try/except json.JSONDecodeError. Return (rows, bad_count) tuple so caller knows data quality. Print warning with line number.\nIf correct: ask 'Why return a tuple instead of just logging the bad count inside the function?'",
+  "hints": [
+    "Each line needs cleaning before you parse it.",
+    "json has a specific exception class for parse errors.",
+    "Returning data quality metadata is a sign of professional code."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"loop_approach\": \"I would loop over the file and for each line I would...\",\n    \"error_handling\": \"When a line is malformed I catch ___ and...\",\n    \"bad_line_communication\": \"I communicate bad lines to the caller by...\"\n  }\n}"
+  },
+  "success_text": "Returning the error count — not just swallowing it — is exactly what production code does.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

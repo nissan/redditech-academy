@@ -187,6 +187,7 @@ export function InteractiveLessonClient({
             challengeId: challenge.id,
             environment,
             userInput,
+            attemptNumber: state.attempts + 1, // 1-indexed for Socratic 3-strike rule
           }),
         });
         if (!res.ok) throw new Error(`Judge API error: ${res.status}`);

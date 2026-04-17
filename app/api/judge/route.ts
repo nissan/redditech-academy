@@ -23,12 +23,15 @@ interface ChallengeSpec {
   eli_notes?: string;
   hints?: string[];
   prefilled?: ChallengePrefilled;
+  socratic_mode?: boolean;
+  max_strikes_before_reveal?: number;
 }
 
 interface JudgeRequest {
   challengeId: string;
   environment: string;
   userInput: Record<string, unknown>;
+  attemptNumber?: number; // 1-indexed, used for Socratic 3-strike rule
 }
 
 interface JudgeResponse {
@@ -123,6 +126,24 @@ Respond ONLY with valid JSON in this exact format:
 
 Do not include markdown code fences. Just the raw JSON object.`;
 
+const SOCRATIC_SYSTEM_PROMPT = `You are Eli Vasquez, Senior Principal at Keystone.
+You are coaching a trainee using the Socratic method with a strict 3-strike rule.
+
+You will be told which attempt number this is (1, 2, or 3+).
+
+Strike 1 (attempt=1): Never give the answer. Ask ONE probing question that identifies the gap in their thinking. Be encouraging but precise.
+Strike 2 (attempt=2): Still no answer. Ask a more targeted question. A small hint is acceptable if they are close.
+Strike 3+ (attempt>=3): Reveal the correct approach fully. Begin with "Three attempts — here's the pattern:" then explain clearly and concisely.
+
+If the answer is CORRECT on any attempt: Give brief acknowledgment then ask one follow-up question to deepen understanding. Never just say "correct" and stop.
+
+Never lecture. Never give multi-paragraph explanations unprompted. One question or one reveal — that is all.
+
+Respond ONLY with valid JSON:
+{"pass": true/false, "score": 0.0-1.0, "feedback": "..."}
+
+No markdown fences. Raw JSON only.`;
+
 export async function POST(req: NextRequest): Promise<NextResponse> {
   let body: JudgeRequest;
   try {
@@ -131,7 +152,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { challengeId, environment, userInput } = body;
+  const { challengeId, environment, userInput, attemptNumber = 1 } = body;
 
   if (!challengeId || !userInput) {
     return NextResponse.json(
@@ -151,6 +172,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
 
+  // Pick system prompt — Socratic mode for coaching challenges
+  const systemPrompt = challenge.socratic_mode
+    ? SOCRATIC_SYSTEM_PROMPT
+    : SYSTEM_PROMPT;
+
   // Build the user message
   const userMessage = seqGrade
     ? `Ordering challenge: "${challenge.spec}"
@@ -169,7 +195,7 @@ ${challenge.eli_notes ? `Judge notes:\n${challenge.eli_notes}\n\n` : ""}Give bri
 Correct answer criteria:
 ${JSON.stringify(challenge.validation, null, 2)}
 
-${challenge.eli_notes ? `Judge notes:\n${challenge.eli_notes}\n\n` : ""}Environment type: ${environment}
+${challenge.eli_notes ? `Judge notes:\n${challenge.eli_notes}\n\n` : ""}${challenge.socratic_mode ? `ATTEMPT NUMBER: ${attemptNumber}\n\n` : ""}Environment type: ${environment}
 Trainee's submission:
 ${JSON.stringify(userInput, null, 2)}`;
 
@@ -179,7 +205,7 @@ ${JSON.stringify(userInput, null, 2)}`;
   try {
     const llm = createJudgeLLM();
     const response = await llm.invoke([
-      new SystemMessage(SYSTEM_PROMPT),
+      new SystemMessage(systemPrompt),
       new HumanMessage(userMessage),
     ]);
 

@@ -1,0 +1,8 @@
+scene,duration_target,narration
+01,10,"This is Redditech Academy. Every course here ends with a mission — not a multiple choice quiz. Let's walk through the Solana Academy."
+02,10,"The Solana Academy takes you from first principles — accounts, programs, transactions — all the way to validator operations and production deployment."
+03,13,"Module Zero starts with mental models. Click the interactive lesson and you get a split-pane environment — concept on the left, your mission on the right."
+04,13,"The left pane gives you the concept. Programs execute, accounts store, transactions bundle instructions. The Mission HUD tracks your points, streak, and rank."
+05,15,"On the right — your mission. Five steps of Solana's execution model, shuffled. Drag them into the correct order: account creation, instruction, transaction, signer, runtime."
+06,20,"Submit. Eli Vasquez — your AI judge — gives you specific feedback immediately. Not just right or wrong. A real explanation. One hundred percent. Mission complete. Points awarded."
+07,12,"Your rank updates on the leaderboard. Every mission you complete builds toward mastery of Solana development — from mental models to mainnet."
