@@ -2,7 +2,7 @@
   "id": "python-interview-prep",
   "slug": "python-interview-prep",
   "title": "Python Interview Prep — Data Analysis Track",
-  "description": "A Socratic coaching course for Python technical interviews at data-heavy companies. Eli guides you with questions, not answers. 3-strike rule before any solution is revealed. Covers file parsing, aggregation, metrics, and full mock problems in the exact format used by companies like Artificial Analysis.",
+  "description": "A Socratic coaching course for Python technical interviews at data-heavy companies. Eli guides you with questions, not answers. 3-strike rule before any solution is revealed. Covers file parsing, aggregation, metrics, and full mock problems in the format used by real AI and LLM benchmarking roles.",
   "tagline": "Learn to break down real data problems the way interviewers want to see.",
   "icon": "🐍",
   "badge": {

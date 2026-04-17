@@ -13,7 +13,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-01-overview-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-01-overview/lessons/02-architecture-overview.mdx",
@@ -29,7 +29,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-01-overview-02-architecture-overview-d1.png",
     "source_hash": "d3cb5ce16ff3827d3f4bc7e70567b965e2d3dd3faa1c061ab2ddb7bf51c32eb0",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-01-overview/lessons/02-architecture-overview.mdx",
@@ -45,7 +45,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-01-overview-02-architecture-overview-d2.png",
     "source_hash": "27d2e1ebc0bb3f060ad8dca41e9e5212a7d89f62e4a43e29a21164b17b3e380d",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-01-overview/lessons/02-architecture-overview.mdx",
@@ -61,7 +61,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-01-overview-02-architecture-overview-d3.png",
     "source_hash": "47142715927c97976fbd8d238843a52de61ac070c11d8a470562a36beae2b8a9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-02-gateway/lessons/00-module-briefing.mdx",
@@ -77,7 +77,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-02-gateway-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-02-gateway/lessons/02-websocket-protocol.mdx",
@@ -93,7 +93,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-02-gateway-02-websocket-protocol-d1.png",
     "source_hash": "993853ddb66076da9d5d39cc08a51a15a6e60183724985741c7f87ad511b4550",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-03-channels/lessons/00-module-briefing.mdx",
@@ -109,7 +109,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-03-channels-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-03-channels/lessons/01-channel-plugin-architecture.mdx",
@@ -125,7 +125,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-03-channels-01-channel-plugin-architecture-d1.png",
     "source_hash": "a50c6baf7c1e4882e646cdd07760ea5c6b34aebe8521bbe2b2a1731e8b8c8e6b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-03-channels/lessons/01-channel-plugin-architecture.mdx",
@@ -141,7 +141,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-03-channels-01-channel-plugin-architecture-d2.png",
     "source_hash": "95a44db826e319bfa6a92c6d91ea84216b450f9ad4134a8d66f0ead1f20e646b",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-03-channels/lessons/02-telegram-whatsapp.mdx",
@@ -157,7 +157,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-03-channels-02-telegram-whatsapp-d1.png",
     "source_hash": "fbb094684988e2c558e6ab67a2315d8f3102552a3852685114b9d158a4043c52",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-03-channels/lessons/03-discord-slack-others.mdx",
@@ -173,7 +173,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-03-channels-03-discord-slack-others-d1.png",
     "source_hash": "11d0358bb4829d91215551f0aa1ca4d3f0083380073d605c28a746089332b8b4",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/00-module-briefing.mdx",
@@ -189,7 +189,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/01-agent-lifecycle.mdx",
@@ -205,7 +205,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-01-agent-lifecycle-d1.png",
     "source_hash": "727cff5c27552233f41ecedce7e4594c7b7e05b11c46a03013a1f711ba9cc4f9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/01-agent-lifecycle.mdx",
@@ -221,7 +221,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-01-agent-lifecycle-d2.png",
     "source_hash": "db497a849900b9d0ad216970426e2629e98a12d7d8eb1c696bf186ced1279634",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/02-tool-system.mdx",
@@ -237,7 +237,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-02-tool-system-d1.png",
     "source_hash": "42e1eecbe01a711ac0d1dfa67ca1fc9b3f7fe78af9a44a94dc5dcb66aa152b5f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/03-memory-and-compaction.mdx",
@@ -253,7 +253,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-03-memory-and-compaction-d1.png",
     "source_hash": "925410cfc0b7a272c7edc30b1ac50f6320d9ef983c71b40dae2f9a4810c444dc",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/04-multi-agent-routing.mdx",
@@ -269,7 +269,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-04-multi-agent-routing-d1.png",
     "source_hash": "7c3f2b321be4db3906ecf0dbf984a478cbaaa345f512479a88accdd58093525d",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-04-agents/lessons/04-multi-agent-routing.mdx",
@@ -285,7 +285,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-04-agents-04-multi-agent-routing-d2.png",
     "source_hash": "276dc78ced1f3f88bac6baf38e32b00bce2006393df87f6aa03437b09148033a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-05-skills/lessons/00-module-briefing.mdx",
@@ -301,7 +301,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-05-skills-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-05-skills/lessons/01-skill-anatomy.mdx",
@@ -317,7 +317,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-05-skills-01-skill-anatomy-d1.png",
     "source_hash": "0153ebba76dce345c3acffa7226552a64d852a279b929a2729055c34be9ceef3",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-05-skills/lessons/02-skill-loading.mdx",
@@ -333,7 +333,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-05-skills-02-skill-loading-d1.png",
     "source_hash": "3fc06f0731cba767467848d57c9b89a391cf3db2cb7682adb5ace75796a684ce",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-05-skills/lessons/02-skill-loading.mdx",
@@ -349,7 +349,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-05-skills-02-skill-loading-d2.png",
     "source_hash": "40610629bfef7a8998a7dfbdb50f4ca74452ed1036f70ebb5898149609ac547c",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-05-skills/lessons/03-hooks-workspace.mdx",
@@ -365,7 +365,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-05-skills-03-hooks-workspace-d1.png",
     "source_hash": "50ab56a714045039e352b5dd2949afe2b6a8f3819235ad10e91c3606cd761774",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-05-skills/lessons/03-hooks-workspace.mdx",
@@ -381,7 +381,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-05-skills-03-hooks-workspace-d2.png",
     "source_hash": "4f40dbe77581ff13adb7d930e60ad50b624240accbd6b8e1021fa1b08ff1c1ec",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-06-security/lessons/00-module-briefing.mdx",
@@ -397,7 +397,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-06-security-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-06-security/lessons/01-trust-hierarchy.mdx",
@@ -413,7 +413,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-06-security-01-trust-hierarchy-d1.png",
     "source_hash": "bd9eb7d8608f26cf7ffa50cb8d10fbe1401eb701d9bb82a9002b4c7ed5069915",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-06-security/lessons/02-prompt-injection.mdx",
@@ -429,7 +429,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-06-security-02-prompt-injection-d1.png",
     "source_hash": "1a9f9e419e8ba2f91edae5fbb7a606cf2ac1a330b326cffd264d81eeae76ab96",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-07-config/lessons/00-module-briefing.mdx",
@@ -445,7 +445,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-07-config-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-08-extending/lessons/00-module-briefing.mdx",
@@ -461,7 +461,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-08-extending-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-09-deployment/lessons/00-module-briefing.mdx",
@@ -477,7 +477,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-09-deployment-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-09-deployment/lessons/03-linux-vps.mdx",
@@ -493,7 +493,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-09-deployment-03-linux-vps-d1.png",
     "source_hash": "acc5c77c9b0f9adc901fb682e318f1ecc797c2b8fb557804079dda44ec998443",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-09-deployment/lessons/03-linux-vps.mdx",
@@ -509,7 +509,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-09-deployment-03-linux-vps-d2.png",
     "source_hash": "0df0a75f2122a779162650307783c58b14842386da3c83b20275609c1864b2e9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/openclaw-academy/modules/module-10-case-study/lessons/00-module-briefing.mdx",
@@ -525,6 +525,6 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/openclaw-academy/diagrams/module-10-case-study-00-module-briefing-d1.png",
     "source_hash": "eec1adaf97982bfc7d156bd5713b5b24ae7971b2863216777a7582e6597ef7c9",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.247Z"
+    "rendered_at": "2026-04-17T23:02:10.031Z"
   }
 ]
