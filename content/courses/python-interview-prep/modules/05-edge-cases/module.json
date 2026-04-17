@@ -3,11 +3,15 @@
   "title": "Edge Cases",
   "description": "Coming soon.",
   "order": 5,
-  "lessons": [],
+  "lessons": [
+    "01-null-semantics",
+    "02-deduplication",
+    "03-anomaly-detection"
+  ],
   "passingScore": 70,
   "badge": {
     "name": "Defensive Coder",
-    "icon": "🛡️",
+    "icon": "\ud83d\udee1\ufe0f",
     "description": "Handled missing fields, bad JSON, and edge cases gracefully"
   },
   "difficulty": "intermediate",

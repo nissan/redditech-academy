@@ -1,0 +1,56 @@
+---
+title: "Anomaly Detection"
+description: "Flag suspicious rows with boolean masks and a reason column."
+slug: "03-anomaly-detection"
+duration: 15
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-05-anomaly"
+missionTitle: "Mission 05C — Find the Weird Rows"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Boolean masks are enough for many anomaly checks"
+  - "Quantile thresholds are simple and explainable"
+  - "A reason column turns a filter into a diagnosis"
+---
+
+## Simple Rules Beat Fancy Stats
+
+> 🤔 Think it through:
+> - What values are impossible or obviously broken?
+> - Which threshold should be group-aware?
+> - How will you explain why each row was flagged?
+
+## The Pattern
+
+```python
+import numpy as np
+import pandas as pd
+
+
+def flag_anomalies(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    p95 = df.groupby("provider")["tokens_per_s"].transform(lambda s: s.quantile(0.95))
+
+    conditions = [
+        df["ttft_s"] <= 0,
+        df["price_per_1m"] < 0,
+        df["tokens_per_s"] > p95,
+    ]
+    choices = [
+        "nonpositive_ttft",
+        "negative_price",
+        "speed_outlier",
+    ]
+    df["reason"] = np.select(conditions, choices, default="ok")
+    return df[df["reason"] != "ok"]
+```
+
+## Narration
+
+"I’m not reaching for a fancy model here. A few clear boolean rules with a quantile threshold are easier to explain, easier to test, and exactly the sort of thing I’d want under interview pressure."
+
+## Your Mission
+
+Flag suspicious benchmark rows with a boolean mask, a threshold that makes sense, and a reason column that explains the call.

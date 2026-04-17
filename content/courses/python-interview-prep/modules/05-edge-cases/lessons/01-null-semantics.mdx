@@ -1,0 +1,45 @@
+---
+title: "Null Semantics"
+description: "Be explicit about missing values, skipna, and missing groups."
+slug: "01-null-semantics"
+duration: 15
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-05-nulls"
+missionTitle: "Mission 05A — Handle the Holes"
+estimatedMinutes: 15
+keyTakeaways:
+  - "isna() and fillna() make missingness visible"
+  - "skipna defaults can hide data-quality problems"
+  - "groupby(dropna=False) keeps missing groups in the output"
+---
+
+## Missing Values Need a Policy
+
+> 🤔 Think it through:
+> - Should missing scores be excluded, filled, or surfaced?
+> - What does skipna=True do by default in aggregations?
+> - Do you want NaN categories to appear as their own group?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def summarise_nulls(df: pd.DataFrame) -> pd.DataFrame:
+    missing = df.isna().sum().to_frame(name="missing_count")
+    df = df.copy()
+    df["quality_score"] = df["quality_score"].fillna(0)
+    summary = df.groupby("provider", dropna=False)["quality_score"].median()
+    return missing.join(summary.rename("median_quality"), how="left")
+```
+
+## Narration
+
+"I’m going to decide what missing means before I aggregate. If a null should stay visible, I’ll surface it with dropna=False instead of letting pandas quietly drop the group."
+
+## Your Mission
+
+Show how you would surface missing values, choose a fill policy only when it is justified, and keep missing groups visible in summaries.

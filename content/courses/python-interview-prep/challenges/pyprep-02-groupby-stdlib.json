@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-02-groupby-stdlib",
+  "type": "json-editor",
+  "spec": "Explain and sketch a pure-Python fallback for small benchmark files. Show how you'd accumulate counts/sums with defaultdict or dict.setdefault, and when you'd choose this over pandas.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.aggregation_strategy",
+        "non_empty": true
+      },
+      {
+        "field": "submission.loop_pattern",
+        "non_empty": true
+      },
+      {
+        "field": "submission.tool_choice",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what the accumulator needs to store per provider.\nStrike 2: Ask whether pandas adds value if the task is only count/sum/average on a tiny CSV.\nStrike 3: Reveal the pattern: use defaultdict or setdefault to accumulate counts and sums in one pass, then compute averages and explain that stdlib is cleaner for small files.\nIf correct: acknowledge the tool choice and ask what would tip the decision back toward pandas.",
+  "hints": [
+    "Look for a single-pass loop that updates an accumulator per provider.",
+    "defaultdict(int) or defaultdict(dict) both work if the accumulator shape is simple.",
+    "Explain why a tiny file does not need a DataFrame."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"aggregation_strategy\": \"Use a manual accumulator keyed by provider.\",\n    \"loop_pattern\": \"Loop through rows, update count and sum, then derive the average.\",\n    \"tool_choice\": \"Choose stdlib when the file is small and the logic is just counting/summing.\"\n  }\n}"
+  },
+  "success_text": "Yep. That fallback is perfectly reasonable for a small file, and you explained the trade-off cleanly.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

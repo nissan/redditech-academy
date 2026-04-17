@@ -1,0 +1,49 @@
+---
+title: "Leaderboard Sorting"
+description: "Rank models with deterministic tie-breaking."
+slug: "03-leaderboard"
+duration: 15
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-03-leaderboard"
+missionTitle: "Mission 03C — Build the Leaderboard"
+estimatedMinutes: 15
+keyTakeaways:
+  - "sort_values can take multiple keys with different directions"
+  - "Use secondary metrics to break ties deterministically"
+  - "Ranking is easier when the table is already sorted the right way"
+---
+
+## Deterministic Beats Clever
+
+> 🤔 Think it through:
+> - What is the primary metric?
+> - Which tie-breakers should come next?
+> - How do you make the rank column stable and human-friendly?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def build_leaderboard(df: pd.DataFrame) -> pd.DataFrame:
+    out = (
+        df.sort_values(
+            ["quality_score", "ttft_s", "blended_price"],
+            ascending=[False, True, True],
+        )
+        .reset_index(drop=True)
+    )
+    out["rank"] = out.index + 1
+    return out[["rank", "model", "quality_score", "ttft_s", "blended_price"]]
+```
+
+## Narration
+
+"I’ll sort by the primary score first, then use TTFT and price as explicit tie-breakers. After that I can assign rank from the sorted index, which keeps the ordering obvious and reproducible."
+
+## Your Mission
+
+Turn the summary table into a deterministic leaderboard with clear tie-breaking and a rank column.

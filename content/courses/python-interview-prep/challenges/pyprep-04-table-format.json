@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-04-table-format",
+  "type": "json-editor",
+  "spec": "Format a summary table for a human reviewer. Rename the technical columns, round the numbers, order the columns deliberately, and return a printable table string.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.rename_map",
+        "non_empty": true
+      },
+      {
+        "field": "submission.rounding_rule",
+        "non_empty": true
+      },
+      {
+        "field": "submission.display_method",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask which column names are too technical for a human.\nStrike 2: Ask how many decimals are actually useful.\nStrike 3: Reveal the pattern: rename, round, reorder columns, then use to_string(index=False) to print the table cleanly.\nIf correct: acknowledge the readable output and ask what they would keep in a machine-readable return value.",
+  "hints": [
+    "Rename first, then round, then reorder.",
+    "to_string(index=False) is a simple way to print a clean table.",
+    "Think like a reviewer, not a DataFrame debugger."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"rename_map\": \"Map technical column names to readable labels.\",\n    \"rounding_rule\": \"Round latency and price columns to the precision a reviewer needs.\",\n    \"display_method\": \"Use to_string(index=False) for the final output.\"\n  }\n}"
+  },
+  "success_text": "Nice. That output looks like a report instead of a dump.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

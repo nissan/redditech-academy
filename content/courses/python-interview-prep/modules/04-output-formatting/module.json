@@ -3,11 +3,14 @@
   "title": "Output Formatting",
   "description": "Coming soon.",
   "order": 4,
-  "lessons": [],
+  "lessons": [
+    "01-table-formatting",
+    "02-narration-patterns"
+  ],
   "passingScore": 70,
   "badge": {
     "name": "Output Architect",
-    "icon": "🖨️",
+    "icon": "\ud83d\udda8\ufe0f",
     "description": "Formatted tables, rounded numbers, and conditional output"
   },
   "difficulty": "intermediate",

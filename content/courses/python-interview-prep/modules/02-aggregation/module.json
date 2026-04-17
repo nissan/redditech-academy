@@ -6,12 +6,12 @@
   "lessons": [
     "01-groupby-pandas",
     "02-groupby-stdlib",
-    "03-sorting-ranking"
+    "03-join-and-merge"
   ],
   "passingScore": 70,
   "badge": {
     "name": "Groupby Guru",
-    "icon": "📊",
+    "icon": "\ud83d\udcca",
     "description": "Aggregated data cleanly with and without pandas"
   },
   "difficulty": "intermediate",

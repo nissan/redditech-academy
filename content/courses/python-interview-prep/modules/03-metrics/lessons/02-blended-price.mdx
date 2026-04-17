@@ -1,0 +1,50 @@
+---
+title: "Blended Token Price"
+description: "Use the 3:1 input-to-output ratio and keep the math readable."
+slug: "02-blended-price"
+duration: 15
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-03-blended-price"
+missionTitle: "Mission 03B — Price the Model"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Named constants make weighted formulas easier to review"
+  - "A 3:1 blend is just a weighted average with explicit weights"
+  - "Sort the result after computing the comparable price"
+---
+
+## Keep the Ratio Visible
+
+> 🤔 Think it through:
+> - What does 3:1 mean in the formula?
+> - Which columns are prices per 1M tokens?
+> - How will you explain the blend to an interviewer?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+INPUT_WEIGHT = 3
+OUTPUT_WEIGHT = 1
+TOTAL_WEIGHT = INPUT_WEIGHT + OUTPUT_WEIGHT
+
+
+def add_blended_price(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["blended_price_per_1m"] = (
+        INPUT_WEIGHT * df["input_price_per_1m"]
+        + OUTPUT_WEIGHT * df["output_price_per_1m"]
+    ) / TOTAL_WEIGHT
+    return df.sort_values("blended_price_per_1m")
+```
+
+## Narration
+
+"I’m keeping the ratio in constants so the formula reads like the business rule, not a magic number. Once the blend is computed, I’ll sort cheapest to most expensive so the output is immediately useful."
+
+## Your Mission
+
+Calculate a comparable blended token price from separate input and output rates, then order the models from cheapest to most expensive.

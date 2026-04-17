@@ -3,11 +3,15 @@
   "title": "Metrics",
   "description": "Coming soon.",
   "order": 3,
-  "lessons": [],
+  "lessons": [
+    "01-latency-metrics",
+    "02-blended-price",
+    "03-leaderboard"
+  ],
   "passingScore": 70,
   "badge": {
     "name": "Metrics Master",
-    "icon": "📐",
+    "icon": "\ud83d\udcd0",
     "description": "Calculated means, medians, percentiles, and pass rates"
   },
   "difficulty": "intermediate",

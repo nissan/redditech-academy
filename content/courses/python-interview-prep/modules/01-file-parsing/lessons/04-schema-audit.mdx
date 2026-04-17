@@ -1,0 +1,51 @@
+---
+title: "Schema Audit & Coercion"
+description: "Inspect dtypes, coerce carefully, and surface missing values before math."
+slug: "04-schema-audit"
+duration: 15
+order: 4
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-01-schema-audit"
+missionTitle: "Mission 01D — Clean the Schema"
+estimatedMinutes: 15
+keyTakeaways:
+  - "df.info() and df.head() beat blind assumptions"
+  - "pd.to_numeric(..., errors='coerce') reveals bad data safely"
+  - "pd.to_datetime(..., errors='coerce') turns bad timestamps into NaT"
+---
+
+## Audit Before You Compute
+
+> 🤔 Think it through:
+> - Which columns look numeric but are still strings?
+> - What should happen to a bad timestamp or a malformed number?
+> - How will you report the rows that failed coercion?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def clean_schema(df: pd.DataFrame) -> pd.DataFrame:
+    print(df.info())
+    print(df.head())
+
+    df = df.copy()
+    df["ttft_s"] = pd.to_numeric(df["ttft_s"], errors="coerce")
+    df["output_tokens"] = pd.to_numeric(df["output_tokens"], errors="coerce")
+    df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce", utc=True)
+
+    nulls = df[["ttft_s", "output_tokens", "timestamp"]].isna().sum()
+    print(nulls)
+    return df
+```
+
+## Narration
+
+"I’m going to inspect the shape first, then coerce only the columns that should be numeric or datetime. I’m using errors='coerce' so the bad rows become visible instead of silently poisoning later math. Then I’ll count nulls so I know exactly what broke."
+
+## Your Mission
+
+Audit the incoming frame, coerce the obvious number and timestamp columns, and return a short null summary alongside the cleaned data.

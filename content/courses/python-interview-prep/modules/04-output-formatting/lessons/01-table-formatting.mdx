@@ -1,0 +1,48 @@
+---
+title: "Table Formatting for Humans"
+description: "Rename, round, reorder, and print a clean summary table."
+slug: "01-table-formatting"
+duration: 15
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-04-table-format"
+missionTitle: "Mission 04A — Present the Answer"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Presentation is part of the solution"
+  - "rename(), round(), and column ordering make tables readable"
+  - "to_string(index=False) beats dumping the raw DataFrame"
+---
+
+## Make the Output Readable
+
+> 🤔 Think it through:
+> - Which column names are too technical for the final table?
+> - How many decimals should the reviewer actually see?
+> - What order makes the comparison easiest to scan?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def format_summary(df: pd.DataFrame) -> str:
+    out = df.rename(columns={
+        "median_ttft_s": "Median TTFT (s)",
+        "tokens_per_s": "Output tok/s",
+        "blended_price_per_1m": "Blended $/1M",
+    })
+    out = out[["model", "Median TTFT (s)", "Output tok/s", "Blended $/1M"]]
+    out = out.round({"Median TTFT (s)": 2, "Output tok/s": 1, "Blended $/1M": 4})
+    return out.to_string(index=False)
+```
+
+## Narration
+
+"I’m going to rename the columns, round the numbers, and order them for the human reader, not for the computer. The last step is to_string(index=False) so the answer looks like a report instead of a debug dump."
+
+## Your Mission
+
+Format the finished metrics table so a reviewer can read it at a glance without scrolling through noisy column names.

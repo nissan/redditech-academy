@@ -22,6 +22,7 @@ import { HttpRequestBuilder } from "@/components/environments/HttpRequestBuilder
 import { JwtInspector } from "@/components/environments/JwtInspector";
 import { JsonEditor } from "@/components/environments/JsonEditor";
 import { SequenceCompleter } from "@/components/environments/SequenceCompleter";
+import TutorChat from "@/components/TutorChat";
 
 interface MissionMapItem {
   slug: string;
@@ -331,6 +332,15 @@ export function InteractiveLessonClient({
   };
 
   const hints = challenge?.hints || [];
+  const isPythonInterviewPrep = courseSlug === "python-interview-prep";
+  const tutorContext = isPythonInterviewPrep
+    ? {
+        challengeId: challenge?.id,
+        lessonTitle,
+        moduleSlug,
+        attemptNumber: state.attempts + 1,
+      }
+    : null;
   const missionRank = missionProfile
     ? Math.max(1, leaderboard.findIndex((entry) => entry.userId === missionProfile.userId) + 1)
     : null;
@@ -574,6 +584,12 @@ export function InteractiveLessonClient({
 
           {/* Environment component */}
           <div className="flex-1">{renderEnvironment()}</div>
+
+          {isPythonInterviewPrep && tutorContext && (
+            <div className="mt-4">
+              <TutorChat context={tutorContext} className="w-full" />
+            </div>
+          )}
 
           {/* Feedback panel */}
           {state.feedback && (
