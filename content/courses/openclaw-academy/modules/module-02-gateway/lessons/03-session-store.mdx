@@ -12,7 +12,19 @@ keyTakeaways:
   \ origin"
 - Messages from non-approved members are filtered out before reaching the session
 - The agent only sees messages from approved participants
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-02-session-store"
+missionTitle: "Mission 06 — Session Store Design"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-02-gateway.svg)
+
+> *"Session state: the thing that makes your AI remember you, and also the thing that fills your disk."*
 
 Sessions are how OpenClaw remembers who you are and what you talked about. Each conversation gets its own session — a unique key, a transcript file on disk, and metadata tracking token counts and timestamps.
 
@@ -23,3 +35,28 @@ This isn't a database. It's a disciplined set of files that the Gateway reads an
 ## What is a session?
 
 A session is the unit of **conversation continuity**. Every time you send a message from a particular chat (a Telegram DM, a Discord channel, a WhatsApp group), OpenClaw maps it to a session:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Memory — Compaction
+
+**Context:** Session memory grows to 800KB after a long research conversation. The context window is exceeded and the model starts losing early conversation context.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Enable sliding-window compaction
+2. add a proactive compaction trigger at 500KB
+3. use QMD for long-term memory and compact aggressively.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

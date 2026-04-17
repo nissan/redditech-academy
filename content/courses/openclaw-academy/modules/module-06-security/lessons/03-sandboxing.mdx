@@ -16,7 +16,19 @@ keyTakeaways:
 - "`ro` \u2014 workspace mounted read-only at `/agent`; `write`/`edit`/`apply_patch`\
   \ are disabled"
 - "`rw` \u2014 workspace mounted read-write at `/workspace`"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-06-sandbox-policy"
+missionTitle: "Mission 20 — Sandbox Policy"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-06-security.svg)
+
+> *"Sandboxing: because 'eval(userInput)' looked fine in development."*
 
 Prompt injection defenses depend on the model making good decisions. Tool policy and sandboxing do not. These are hard controls, enforced by the Gateway regardless of what the model wants to do.
 
@@ -105,3 +117,28 @@ Example, deny all automation and runtime tools:
 ### Common profiles
 
 Three preset profiles cover the most common setups:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Skills — Rate-Limiting
+
+**Context:** A skill calls an external API without rate limiting. During a burst of messages, the external API returns 429s. The skill retries immediately. The gateway is now DDoSing a third-party service.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add rate limiting to all external tool calls
+2. add a circuit breaker per external dependency
+3. add backoff-aware retry logic.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

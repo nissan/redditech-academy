@@ -6,7 +6,19 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand model configuration
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-07-model-routing"
+missionTitle: "Mission 22 — Model Routing"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-07-config.svg)
+
+> *"Routing to GPT-5 when Sonnet was enough: a story about budget alerts."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +34,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Models — Cost
+
+**Context:** A model routing rule sends all high-priority tasks to GPT-5. Weekly spend triples. No alert fires because spend tracking wasn't wired into the routing decision.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add per-model spend tracking
+2. add routing rules with cost ceilings
+3. add spend-aware model downstep logic.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

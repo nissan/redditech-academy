@@ -11,7 +11,19 @@ keyTakeaways:
 - Canvas (agent-driven visual workspace)
 - iMessage access via AppleScript
 - '`system.run` for executing commands in a trusted context'
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-09-macos-launch"
+missionTitle: "Mission 28 — macOS Launch"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-09-deployment.svg)
+
+> *"launchctl: because cron was too simple and Docker was too complicated."*
 
 Your Mac is where most people start with OpenClaw, and for good reason: Node.js is already there, your development environment is there, and the tools you use every day are there. Running the Gateway on your Mac means your agent has access to your filesystem, your camera, AppleScript, and the macOS companion app's full capabilities.
 
@@ -188,3 +200,28 @@ The LaunchAgent's `KeepAlive: true` handles process crashes. The channels handle
 ## The macOS companion app
 
 The [OpenClaw macOS companion app](https://openclaw.ai/download) adds:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Deployment — Watchdog
+
+**Context:** After a macOS update, the OpenClaw LaunchAgent fails to restart. The plist is still registered. The gateway is not running. No alert fires because the health watchdog was never set up.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add a health watchdog LaunchAgent
+2. add an external uptime check
+3. add a startup-failure notification.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

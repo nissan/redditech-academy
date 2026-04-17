@@ -6,7 +6,19 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand hooks & workspace files
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-05-hooks-config"
+missionTitle: "Mission 17 — Hooks Config"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-05-skills.svg)
+
+> *"A hook runs before the model. A hook can block the model. This is by design."*
 
 Skills teach the agent what it *can* do. Workspace files tell it *who* it is and *how* to behave. Hooks wire up automations that trigger when things happen.
 
@@ -235,3 +247,28 @@ The workspace files provide identity. The hooks provide persistence and automati
 > 4. Check what was saved: `cat ~/.openclaw/workspace/memory/$(date +%Y-%m-%d)*.md`
 >
 > The agent now has a record of that session to draw from next time.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Hooks — Observability
+
+**Context:** A pre-model hook blocks a request incorrectly due to an overly broad pattern match. The user's legitimate message is silently dropped.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add hook-match logging
+2. add a hook dry-run mode
+3. add a hook override command for operators.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

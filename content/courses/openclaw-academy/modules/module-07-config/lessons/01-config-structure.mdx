@@ -6,7 +6,19 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand config structure and validation
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-07-config-layout"
+missionTitle: "Mission 21 — Config Layout"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-07-config.svg)
+
+> *"The config file is the contract. The defaults are the contract you didn't read."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +34,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Config — Validation
+
+**Context:** A configuration change to add a new model provider silently fails because the API key field name was wrong. The system falls back to the previous model without alerting the operator.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add config schema validation on startup
+2. add a validation dry-run command
+3. add a post-change health check.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

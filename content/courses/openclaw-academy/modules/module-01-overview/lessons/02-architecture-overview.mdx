@@ -6,7 +6,19 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand architecture overview
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-01-architecture-map"
+missionTitle: "Mission 02 — Architecture Map"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-01-overview.svg)
+
+> *"Drawing the architecture diagram vs actually understanding message routing."*
 
 OpenClaw's architecture is built around a single central concept: one Gateway, many surfaces.
 
@@ -283,3 +295,28 @@ This all happens in memory — no round-trips to a database. Fast and local.
 | Nodes | WS + device pairing | Mobile/companion devices |
 
 The next lesson traces a single message through the entire system, step by step.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Architecture — Runtime-Configuration
+
+**Context:** A developer adds a new channel mid-session. The gateway doesn't pick it up. They restart — now it works. They don't know why.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Document the startup-time channel registration contract
+2. add hot-reload
+3. add a health-check that detects missing channels.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

@@ -6,7 +6,19 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand linux vps deployment
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-09-vps-hardening"
+missionTitle: "Mission 30 — VPS Hardening"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-09-deployment.svg)
+
+> *"VPS deployment: where 'it worked locally' meets 'the firewall said no.'"*
 
 A VPS is how you run OpenClaw when you need it always on, not just when your laptop lid is open. For $5-6/month you get a machine that's up 24/7, doesn't sleep, and has a stable IP address that Telegram webhooks and WhatsApp sessions won't lose.
 
@@ -362,3 +374,28 @@ You now know how to deploy OpenClaw in three configurations:
 | Linux VPS + systemd | Always-on, 24/7, reliable | On boot (with linger) | $5-6/month |
 
 The deployment doesn't change what the Gateway does. It changes how reliably it stays running and how you access it. Pick the one that matches your reliability requirements.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Deployment — Watchdog
+
+**Context:** After a macOS update, the OpenClaw LaunchAgent fails to restart. The plist is still registered. The gateway is not running. No alert fires because the health watchdog was never set up.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add a health watchdog LaunchAgent
+2. add an external uptime check
+3. add a startup-failure notification.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

@@ -6,7 +6,19 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand telegram and whatsapp
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-03-telegram-config"
+missionTitle: "Mission 09 — Telegram Config"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-03-channels.svg)
+
+> *"Telegram says delivered. WhatsApp says read. The user says 'I never got it.'"*
 
 These are the two channels most people start with. Telegram is the fastest setup — five minutes from zero to a working bot. WhatsApp takes a bit more ceremony but gets your agent into the app half the planet already uses.
 
@@ -297,3 +309,28 @@ You don't have to choose — both can run simultaneously. The Gateway handles th
 ---
 
 The next lesson covers Discord, Slack, and the other channels — including when to use each one.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Channels — Monitoring
+
+**Context:** A Telegram bot token expires silently. The bot stops responding. No alert fires. The operator discovers the issue three days later from a user complaint.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add token expiry monitoring
+2. add a daily channel health check
+3. add webhook-failure alerting.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

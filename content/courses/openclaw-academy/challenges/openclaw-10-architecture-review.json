@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-10-architecture-review",
+  "type": "sequence-completer",
+  "title": "Mission 31 \u2014 Architecture Review",
+  "description": "Complete the mission brief for: Our Architecture. Document your configuration decisions and verify each field is correct.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    },
+    {
+      "type": "key_exists",
+      "key": "rationale"
+    }
+  ],
+  "hints": [
+    "Start by identifying the core configuration requirement",
+    "Each field should have an explicit reason \u2014 document it",
+    "The rationale field should explain why, not just what"
+  ],
+  "successMessage": "Well done \u2014 you've completed Mission 31 \u2014 Architecture Review.",
+  "points": 100
+}

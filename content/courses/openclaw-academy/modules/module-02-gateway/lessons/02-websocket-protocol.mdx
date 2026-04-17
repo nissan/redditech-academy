@@ -8,7 +8,19 @@ keyTakeaways:
 - The **Gateway continues the run** (it's not tied to the WebSocket connection)
 - On reconnect, the `snapshot` in the `connect` response includes any `runningRuns`
 - The client can attach to the run's event stream to catch up
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-02-websocket-flow"
+missionTitle: "Mission 05 — WebSocket Flow"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-02-gateway.svg)
+
+> *"WebSocket: because HTTP wasn't complicated enough."*
 
 The Gateway exposes a single WebSocket endpoint that every control client connects to — the CLI, the Web UI, the macOS menu bar app, and mobile nodes. Knowing the protocol helps when you hit connection issues and gives you a solid mental model of what the control plane is actually doing.
 
@@ -259,3 +271,28 @@ After reconnecting, the client re-sends `connect` and receives a fresh snapshot 
 ### What happens to in-progress runs?
 
 If the WebSocket drops mid-run:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Channels — Connectivity
+
+**Context:** WebSocket connections drop every 30 minutes on a cloud VPS. Telegram messages stop arriving. No error is logged because the reconnection logic is silently swallowing the error.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add connection-lost event logging
+2. add exponential backoff on reconnect
+3. add an external uptime check.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

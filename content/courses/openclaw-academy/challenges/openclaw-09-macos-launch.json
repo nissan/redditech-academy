@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-09-macos-launch",
+  "type": "sequence-completer",
+  "title": "Mission 28 \u2014 macOS Launch",
+  "description": "Complete the mission brief for: Macos Deployment. Document your configuration decisions and verify each field is correct.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    },
+    {
+      "type": "key_exists",
+      "key": "rationale"
+    }
+  ],
+  "hints": [
+    "Start by identifying the core configuration requirement",
+    "Each field should have an explicit reason \u2014 document it",
+    "The rationale field should explain why, not just what"
+  ],
+  "successMessage": "Well done \u2014 you've completed Mission 28 \u2014 macOS Launch.",
+  "points": 100
+}

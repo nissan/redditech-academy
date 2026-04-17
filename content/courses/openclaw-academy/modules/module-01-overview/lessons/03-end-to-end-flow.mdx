@@ -13,10 +13,47 @@ keyTakeaways:
 - 'Not found: creates a new session'
 - 'Sandboxed tools (exec): run in a restricted environment'
 - 'Skill tools: run their registered handler function'
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-01-end-to-end-sequence"
+missionTitle: "Mission 03 — End-to-End Sequence"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-01-overview.svg)
+
+> *"Me trying to explain to someone why their message went gateway → session → model → tool → response."*
 
 Let's trace a single message — "What's the weather like in Sydney?" — from the moment you type it to the moment you get a response. Concrete examples beat abstract explanations.
 
 ---
 
 ## The setup
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Tools — Idempotency
+
+**Context:** A message goes through the pipeline and triggers a tool call. The tool call times out. The model retries. The tool runs twice. The action executes twice.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add idempotency keys to tool calls
+2. add timeout-aware retry logic
+3. surface tool-call status to model context.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

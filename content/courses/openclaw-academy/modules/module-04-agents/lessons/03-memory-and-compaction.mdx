@@ -12,7 +12,19 @@ keyTakeaways:
 - At session start, read today's and yesterday's memory log (memory/YYYY-MM-DD.md)
 - At session end (or before /reset), summarize key decisions to today's memory log
 - Keep MEMORY.md for permanent facts only
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-04-memory-policy"
+missionTitle: "Mission 13 — Memory Policy"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-04-agents.svg)
+
+> *"Memory.md: where I keep facts. memory/2026-04-17.md: where I keep everything else."*
 
 LLMs have context windows — finite amounts of text they can hold in mind at once. Long conversations eventually exceed that limit. And even within the limit, you want some information to persist beyond a single session.
 
@@ -229,3 +241,28 @@ This is different from compaction: it only trims tool result content from older 
 ## Compaction hook points
 
 Plugins can observe and annotate compaction cycles:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Memory — Scaling
+
+**Context:** Daily memory files accumulate over 90 days. The QMD index grows to 100,000+ vectors. Search latency degrades. The agent starts returning stale or irrelevant results.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add a memory archival policy
+2. add a QMD index pruning schedule
+3. add a memory-quality audit command.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

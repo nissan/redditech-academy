@@ -6,7 +6,19 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand lessons learned
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-10-incident-postmortem"
+missionTitle: "Mission 33 — Incident Postmortem"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-10-case-study.svg)
+
+> *"Lessons learned: written after the incident. Should have been written before."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +34,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Ops — Postmortem
+
+**Context:** An incident occurs. The postmortem is written. The action items are assigned. Six weeks later, none of the action items have been completed because there was no tracking system.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add action-item tracking to a project management tool
+2. add weekly postmortem review cadence
+3. add automated reminders for overdue items.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

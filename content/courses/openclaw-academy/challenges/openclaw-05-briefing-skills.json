@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-05-briefing-skills",
+  "type": "json-editor",
+  "title": "Briefing 05 \u2014 Skills Orientation",
+  "description": "Review the module briefing and fill in your three key takeaways before advancing.",
+  "starterCode": "{\"takeaway_1\": \"\", \"takeaway_2\": \"\", \"takeaway_3\": \"\", \"one_question_i_have\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "takeaway_1"
+    },
+    {
+      "type": "key_exists",
+      "key": "one_question_i_have"
+    }
+  ],
+  "hints": [
+    "Reread the Quick Recap section",
+    "Your question is as important as your takeaways",
+    "Write in your own words, not a copy of the text"
+  ],
+  "successMessage": "Briefing complete. You're cleared to advance.",
+  "points": 50
+}

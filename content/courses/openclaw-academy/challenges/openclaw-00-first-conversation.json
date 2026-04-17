@@ -1,0 +1,20 @@
+{
+  "id": "openclaw-00-first-conversation",
+  "type": "json-editor",
+  "title": "Mission 00-C \u2014 First Conversation Config",
+  "description": "Fill in the config brief explaining each required field.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "channel_type"
+    }
+  ],
+  "hints": [
+    "Think about the core problem from a user perspective",
+    "Each field should explain your reasoning, not just repeat the question",
+    "There is no single right answer \u2014 your reasoning matters"
+  ],
+  "successMessage": "Well done \u2014 Mission 00-C \u2014 First Conversation Config complete.",
+  "points": 150
+}

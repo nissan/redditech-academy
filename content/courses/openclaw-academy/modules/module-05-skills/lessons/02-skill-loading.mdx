@@ -11,7 +11,19 @@ keyTakeaways:
   load.'
 - ClawHub requires a GitHub account at least one week old to publish. Skills with
   >3 unique reports are auto-hidden.
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-05-skill-loading"
+missionTitle: "Mission 16 — Skill Loading"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-05-skills.svg)
+
+> *"Skills load on startup. Unless they don't. Check the logs."*
 
 Where does OpenClaw find skills? How does it decide which ones are eligible? And what happens when the same skill name exists in two places?
 
@@ -248,3 +260,28 @@ sequenceDiagram
 ## Security: Treat Third-Party Skills as Code
 
 Skills are instructions to the agent. A malicious `SKILL.md` could instruct the agent to do almost anything. Before installing a skill from ClawHub or anywhere else:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Skills — Validation
+
+**Context:** A newly written skill is placed in the skills directory. It doesn't load. No error is shown. The issue is a missing SKILL.md file.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add a skill-load validation step
+2. add a skills health-check command
+3. add a pre-load linting step.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

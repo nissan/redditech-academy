@@ -1,0 +1,19 @@
+{
+  "id": "openclaw-first-principles",
+  "slug": "module-00-first-principles",
+  "order": 0,
+  "title": "OpenClaw First Principles",
+  "description": "Plain-language grounding in what OpenClaw solves, how messages flow from channel to agent and back, and how to configure your first conversation.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "OpenClaw Foundations",
+    "icon": "\ud83d\udc3e",
+    "description": "Completed the OpenClaw First Principles module"
+  },
+  "learningObjectives": [
+    "Explain what problem OpenClaw solves in one sentence",
+    "Draw the message flow: channel \u2192 gateway \u2192 agent \u2192 tool \u2192 response",
+    "Configure a minimal OpenClaw setup from scratch"
+  ]
+}

@@ -8,6 +8,12 @@ keyTakeaways:
   - "Get a quick orientation before diving into deep lessons"
   - "Understand practical tradeoffs with a real-world case"
   - "Use references and assets to accelerate implementation"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-06-briefing-security"
+missionTitle: "Briefing 06 — Security Orientation"
+estimatedMinutes: 10
 ---
 
 # Module Briefing: Security Model
@@ -65,3 +71,27 @@ A team running OpenClaw across Telegram and Discord sees rising load and intermi
 ## Video Boosters
 - **Quick Recap video:** [Watch](/assets/courses/openclaw-academy/videos/module-06-security-quick-recap.mp4)
 - **Concept Clarity video:** [Watch](/assets/courses/openclaw-academy/videos/module-06-security-concept-clarity.mp4)
+
+---
+
+## 🎓 Harvard-Style Case Study — Security — Compromise
+
+**Context:** A trusted user account is compromised. The attacker uses the trusted permissions to extract conversation history and invoke tools.
+
+**The tension:** Move fast vs build observability and resilience from the start.
+
+**Decision options:**
+1. Add anomaly detection on trusted-user behaviour
+2. add session audit logging
+3. add 2FA for elevated trust levels.
+
+**Discussion questions:**
+1. At what team size or usage scale does this become a critical priority rather than a nice-to-have?
+2. What is the minimum viable version of each option for a one-person team?
+3. Write a one-line checklist item that captures this lesson for future deployments.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Mentor Mode (Beginner):** "I am new to OpenClaw operations. Explain this scenario in simple terms, then walk me through which option you'd recommend for a small team and why."

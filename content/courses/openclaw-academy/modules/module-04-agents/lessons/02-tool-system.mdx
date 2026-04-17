@@ -6,7 +6,19 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand tool system
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-04-tool-manifest"
+missionTitle: "Mission 12 — Tool Manifest"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-04-agents.svg)
+
+> *"The tool runs. The tool returns. The model acts like it knew the answer all along."*
 
 Tools are what make the agent actually useful. Without tools, it's just a very smart chatbot that can write text and reason about things. With tools, it can read your files, run shell commands, browse websites, control your phone, and send messages on your behalf.
 
@@ -271,3 +283,28 @@ Skills can gate their tools with config or environment variable checks — a ski
 ---
 
 In the next lesson, we'll look at memory and compaction — how the agent maintains long-term knowledge and how the context window is managed.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Tools — Output-Size
+
+**Context:** A tool call succeeds but returns a large payload. The model includes the full payload in its next context window. The context exceeds limits. The conversation breaks.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add output truncation to tool results
+2. add a tool-result summary pass
+3. add max-token limits per tool.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."
