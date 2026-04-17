@@ -13,7 +13,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/00-executive-overview-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.312Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/01-auth-fundamentals/lessons/00-module-briefing.mdx",
@@ -29,7 +29,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/01-auth-fundamentals-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/01-auth-fundamentals/lessons/02-idps-and-rps.mdx",
@@ -45,7 +45,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/01-auth-fundamentals-02-idps-and-rps-d1.png",
     "source_hash": "55be88edf869a786d44b03eb138153a649c2f9d32b12c8d90d8b6f6ed2618e73",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/02-oauth2/lessons/00-module-briefing.mdx",
@@ -61,7 +61,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/02-oauth2-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/02-oauth2/lessons/01-oauth-roles.mdx",
@@ -77,7 +77,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/02-oauth2-01-oauth-roles-d1.png",
     "source_hash": "69dfc1a2d3fb10d37d23e00b135cbd20c193d97eba7d7a65aeac0845795efc43",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/02-oauth2/lessons/02-authorization-code-flow.mdx",
@@ -93,7 +93,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/02-oauth2-02-authorization-code-flow-d1.png",
     "source_hash": "cfa1a3065e70279a60fd9bab253d622e6712d875ddebab01022db0406b0b98eb",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/02-oauth2/lessons/03-client-credentials.mdx",
@@ -109,7 +109,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/02-oauth2-03-client-credentials-d1.png",
     "source_hash": "a75fe98587e28f1ef9d34be610647e7189f158139565696f9e91caa74de6384c",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/02-oauth2/lessons/04-device-code-flow.mdx",
@@ -125,7 +125,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/02-oauth2-04-device-code-flow-d1.png",
     "source_hash": "042ef4e9aea8fc6ead0857969b0102da860485838b1abc19f67dae69e1d234a3",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/03-oidc/lessons/00-module-briefing.mdx",
@@ -141,7 +141,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/03-oidc-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/04-saml/lessons/00-module-briefing.mdx",
@@ -157,7 +157,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/04-saml-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/04-saml/lessons/01-saml-fundamentals.mdx",
@@ -173,7 +173,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/04-saml-01-saml-fundamentals-d1.png",
     "source_hash": "0e61e5292d8347a02f4fce3a2126f4c552511155525786e85444d7fdd51893a2",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/04-saml/lessons/03-saml-bindings-profiles.mdx",
@@ -189,7 +189,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/04-saml-03-saml-bindings-profiles-d1.png",
     "source_hash": "5f337733c44ab11f7838cbac2f399b89606e6f0d83444b77a25475bb3d783940",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/04-saml/lessons/04-saml-vs-oidc.mdx",
@@ -205,7 +205,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/04-saml-04-saml-vs-oidc-d1.png",
     "source_hash": "f23d8aa4eb17a6361c704d8884700ba79c65c48f42fa1f615fd7e16afd180daf",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/05-fido2/lessons/00-module-briefing.mdx",
@@ -221,7 +221,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/05-fido2-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/06-zanzibar/lessons/00-module-briefing.mdx",
@@ -237,7 +237,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/06-zanzibar-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/07-emerging-trends/lessons/00-module-briefing.mdx",
@@ -253,7 +253,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/07-emerging-trends-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:44.792Z"
+    "rendered_at": "2026-04-17T19:17:29.313Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/07-emerging-trends/lessons/01-decentralized-identity.mdx",
@@ -301,7 +301,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/07-emerging-trends-03-zero-trust-architecture-d1.png",
     "source_hash": "197be39a9aca1c2f15717a24cbb780a25b16e9417ae9861ff2929017bfa07479",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:46.275Z"
+    "rendered_at": "2026-04-17T19:17:30.891Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/08-ssi-decentralized-identity/lessons/00-module-briefing.mdx",
@@ -317,7 +317,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/08-ssi-decentralized-identity-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:46.275Z"
+    "rendered_at": "2026-04-17T19:17:30.891Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/09-applied-applications/lessons/00-module-briefing.mdx",
@@ -333,7 +333,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/09-applied-applications-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:46.275Z"
+    "rendered_at": "2026-04-17T19:17:30.891Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/10-applied-case-study/lessons/00-module-briefing.mdx",
@@ -349,6 +349,6 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/auth-training/diagrams/10-applied-case-study-00-module-briefing-d1.png",
     "source_hash": "c58fc6299785fb44fedcd830db14d50d825847517da5931630f1b1b4fd78d5ca",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T10:47:46.275Z"
+    "rendered_at": "2026-04-17T19:17:30.891Z"
   }
 ]

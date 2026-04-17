@@ -1303,8 +1303,8 @@
     "module": "00-solana-first-principles",
     "lesson": "01-mental-models-and-vocabulary",
     "index": 1,
-    "start_line": 73,
-    "end_line": 79,
+    "start_line": 70,
+    "end_line": 76,
     "mermaid": "flowchart LR\n  A[User intent] --> B[Transaction]\n  B --> C[Instruction]\n  C --> D[Program executes]\n  D --> E[Account state updates]",
     "out": "public/assets/courses/solana-academy/diagrams/00-solana-first-principles-01-mental-models-and-vocabulary-d1.png"
   },
@@ -1336,8 +1336,8 @@
     "module": "08-solana-new-app-builder",
     "lesson": "01-solana-new-workflow",
     "index": 1,
-    "start_line": 68,
-    "end_line": 75,
+    "start_line": 66,
+    "end_line": 73,
     "mermaid": "flowchart LR\n  A[Idea and problem framing] --> B[solana.new skill-guided scaffolding]\n  B --> C[Program/client implementation]\n  C --> D[Test + security review gates]\n  D --> E[Devnet validation]\n  E --> F[Launch prep + GTM]",
     "out": "public/assets/courses/solana-academy/diagrams/08-solana-new-app-builder-01-solana-new-workflow-d1.png"
   },

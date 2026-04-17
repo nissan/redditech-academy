@@ -1,20 +1,26 @@
 {
   "id": "genai-11-cloud-checklist",
-  "type": "sequence-completer",
-  "title": "Mission 11-C \u2014 Cloud Deployment Checklist",
-  "description": "Sequence the steps required to safely deploy an ML model to a cloud platform.",
-  "starterCode": "[]",
-  "validationRules": [
-    {
-      "type": "key_exists",
-      "key": "0"
-    }
-  ],
+  "spec": "Place the five cloud ML deployment steps in the correct order: from model validation to production monitoring.",
+  "validation": {
+    "type": "sequence",
+    "description": "Correct position of all 5 steps earns full marks."
+  },
+  "eli_notes": "Correct order: validate model → containerize → configure cloud infra → deploy to staging → enable production monitoring. If wrong, name the misplaced step and explain why skipping it causes real-world incidents.",
   "hints": [
-    "Start by defining the core requirement",
-    "Every decision needs a rationale",
-    "Consider the tradeoffs explicitly"
+    "You can't containerize what isn't validated.",
+    "Staging comes before production — never skip it.",
+    "Monitoring is the last step, not an afterthought."
   ],
-  "successMessage": "Well done \u2014 Mission 11-C \u2014 Cloud Deployment Checklist complete.",
-  "points": 100
+  "prefilled": {
+    "steps": [
+      { "id": "c1", "label": "Validate model performance meets acceptance thresholds" },
+      { "id": "c2", "label": "Containerize model with dependencies (Docker/OCI image)" },
+      { "id": "c3", "label": "Configure cloud infrastructure (IAM, secrets, autoscaling)" },
+      { "id": "c4", "label": "Deploy to staging environment and run integration tests" },
+      { "id": "c5", "label": "Enable production monitoring, alerting, and rollback plan" }
+    ],
+    "correctOrder": ["c1", "c2", "c3", "c4", "c5"]
+  },
+  "success_text": "Deployment checklist confirmed. Your sequence respects the production risk ladder.",
+  "type": "sequence-completer"
 }
