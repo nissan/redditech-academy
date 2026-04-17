@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 02-C \u2014 RAG Failure Mode Triage complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "User query received"
+      },
+      {
+        "id": "s2",
+        "label": "Query embedded and matched against vector index"
+      },
+      {
+        "id": "s3",
+        "label": "Top-k chunks retrieved and reranked"
+      },
+      {
+        "id": "s4",
+        "label": "Chunks injected into prompt context"
+      },
+      {
+        "id": "s5",
+        "label": "LLM generates response grounded in retrieved context"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

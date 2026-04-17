@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 03 \u2014 End-to-End Sequence.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "User sends message from Telegram"
+      },
+      {
+        "id": "s2",
+        "label": "Gateway creates session and loads SOUL.md + memory"
+      },
+      {
+        "id": "s3",
+        "label": "Agent calls tools if needed"
+      },
+      {
+        "id": "s4",
+        "label": "Model generates response"
+      },
+      {
+        "id": "s5",
+        "label": "Response delivered to user via Telegram"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

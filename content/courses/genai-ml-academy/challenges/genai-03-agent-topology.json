@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 03-B \u2014 Agent Topology Design complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Orchestrator receives task and plans subtasks"
+      },
+      {
+        "id": "s2",
+        "label": "Orchestrator dispatches to specialist agent"
+      },
+      {
+        "id": "s3",
+        "label": "Specialist agent executes tool calls"
+      },
+      {
+        "id": "s4",
+        "label": "Results returned to orchestrator"
+      },
+      {
+        "id": "s5",
+        "label": "Orchestrator aggregates and returns final output"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

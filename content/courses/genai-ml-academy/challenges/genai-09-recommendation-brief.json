@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 09-C \u2014 Recommendation Brief complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Define the problem with a measurable success criterion"
+      },
+      {
+        "id": "s2",
+        "label": "Evaluate 2-3 solution options with tradeoffs"
+      },
+      {
+        "id": "s3",
+        "label": "Select recommended option with explicit rationale"
+      },
+      {
+        "id": "s4",
+        "label": "Identify top risks and mitigations"
+      },
+      {
+        "id": "s5",
+        "label": "Define success metrics and review timeline"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

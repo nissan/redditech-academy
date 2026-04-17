@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 06-C \u2014 Eval Sequence for Fine-Tuned Models complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Prepare training dataset with correct labels"
+      },
+      {
+        "id": "s2",
+        "label": "Fine-tune model on curated examples"
+      },
+      {
+        "id": "s3",
+        "label": "Evaluate on held-out test set (not training data)"
+      },
+      {
+        "id": "s4",
+        "label": "Run adversarial and edge-case evaluation"
+      },
+      {
+        "id": "s5",
+        "label": "Compare against base model on task-specific benchmark"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

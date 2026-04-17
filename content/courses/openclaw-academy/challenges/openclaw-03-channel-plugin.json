@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 08 \u2014 Channel Plugin Architecture.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Channel plugin loaded at gateway startup"
+      },
+      {
+        "id": "s2",
+        "label": "Channel registers message handler with the gateway"
+      },
+      {
+        "id": "s3",
+        "label": "Inbound message normalised to internal format"
+      },
+      {
+        "id": "s4",
+        "label": "Gateway routes to agent session"
+      },
+      {
+        "id": "s5",
+        "label": "Outbound response formatted for the specific channel"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

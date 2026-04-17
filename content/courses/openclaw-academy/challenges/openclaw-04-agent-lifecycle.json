@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 11 \u2014 Agent Lifecycle.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Session created or resumed"
+      },
+      {
+        "id": "s2",
+        "label": "SOUL.md and USER.md loaded into agent context"
+      },
+      {
+        "id": "s3",
+        "label": "Memory files read and recent context injected"
+      },
+      {
+        "id": "s4",
+        "label": "User message processed with tools available"
+      },
+      {
+        "id": "s5",
+        "label": "Response generated and session state persisted"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

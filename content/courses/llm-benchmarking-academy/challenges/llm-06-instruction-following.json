@@ -16,5 +16,36 @@
     "A good rationale explains what you're NOT measuring"
   ],
   "successMessage": "Benchmark strategy complete \u2014 06 ifeval and ifbench mission passed.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Identify the output format constraint (JSON, list, code)"
+      },
+      {
+        "id": "s2",
+        "label": "Run IFEval against the model on format-constrained prompts"
+      },
+      {
+        "id": "s3",
+        "label": "Check compliance rate against required threshold (e.g. 95%)"
+      },
+      {
+        "id": "s4",
+        "label": "Add output schema validation as a runtime gate"
+      },
+      {
+        "id": "s5",
+        "label": "Add IFEval to CI to catch regressions on model updates"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

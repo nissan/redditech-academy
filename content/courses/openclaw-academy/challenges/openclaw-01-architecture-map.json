@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 02 \u2014 Architecture Map.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Message arrives on channel (e.g. Telegram)"
+      },
+      {
+        "id": "s2",
+        "label": "Channel adapter receives and normalises the message"
+      },
+      {
+        "id": "s3",
+        "label": "Gateway creates or resumes a session"
+      },
+      {
+        "id": "s4",
+        "label": "Agent processes the message with context and tools"
+      },
+      {
+        "id": "s5",
+        "label": "Response sent back through the channel"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

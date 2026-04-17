@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 04-B \u2014 Graph State Machine Design complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Graph starts at the entry node"
+      },
+      {
+        "id": "s2",
+        "label": "Node executes its logic and updates state"
+      },
+      {
+        "id": "s3",
+        "label": "Checkpoint saved to persistence layer"
+      },
+      {
+        "id": "s4",
+        "label": "Edge condition evaluated to select next node"
+      },
+      {
+        "id": "s5",
+        "label": "Next node executes or graph terminates at END"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

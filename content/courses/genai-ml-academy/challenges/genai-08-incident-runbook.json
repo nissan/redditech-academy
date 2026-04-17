@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 08-C \u2014 GenAI Incident Runbook complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Alert fires on quality score drop or error rate spike"
+      },
+      {
+        "id": "s2",
+        "label": "On-call engineer acknowledges and checks Langfuse traces"
+      },
+      {
+        "id": "s3",
+        "label": "Root cause identified (model change, retrieval drift, input shift)"
+      },
+      {
+        "id": "s4",
+        "label": "Mitigation applied (rollback, circuit breaker, prompt fix)"
+      },
+      {
+        "id": "s5",
+        "label": "Postmortem written and eval suite updated to catch recurrence"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 14 \u2014 Agent Routing.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Incoming message arrives at the gateway"
+      },
+      {
+        "id": "s2",
+        "label": "Routing rules evaluated against message context"
+      },
+      {
+        "id": "s3",
+        "label": "Target agent identified by role and capability"
+      },
+      {
+        "id": "s4",
+        "label": "Message dispatched to target agent session"
+      },
+      {
+        "id": "s5",
+        "label": "Response returned through the original channel"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 10-C \u2014 Architecture Review complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Map all components and their dependencies"
+      },
+      {
+        "id": "s2",
+        "label": "Identify single points of failure"
+      },
+      {
+        "id": "s3",
+        "label": "Review against reliability, cost, and safety criteria"
+      },
+      {
+        "id": "s4",
+        "label": "Prioritise top 3 architectural risks"
+      },
+      {
+        "id": "s5",
+        "label": "Propose mitigations with effort/impact estimates"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

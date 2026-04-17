@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 28 \u2014 macOS Launch.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "LaunchAgent plist created in ~/Library/LaunchAgents/"
+      },
+      {
+        "id": "s2",
+        "label": "Plist loaded with launchctl bootstrap"
+      },
+      {
+        "id": "s3",
+        "label": "Gateway process starts and reads openclaw.json"
+      },
+      {
+        "id": "s4",
+        "label": "All channels connect and health check passes"
+      },
+      {
+        "id": "s5",
+        "label": "Watchdog LaunchAgent monitors gateway health every 5 minutes"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

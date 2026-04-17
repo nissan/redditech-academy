@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 31 \u2014 Architecture Review.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Document all components and their dependencies"
+      },
+      {
+        "id": "s2",
+        "label": "Identify single points of failure"
+      },
+      {
+        "id": "s3",
+        "label": "Review security posture \u2014 trust levels and hook policies"
+      },
+      {
+        "id": "s4",
+        "label": "Review reliability \u2014 watchdog, channel reconnect, session persistence"
+      },
+      {
+        "id": "s5",
+        "label": "Produce architecture decision record with open risks"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

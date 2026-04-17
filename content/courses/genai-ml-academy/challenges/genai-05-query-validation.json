@@ -16,5 +16,36 @@
     "Consider the tradeoffs explicitly"
   ],
   "successMessage": "Well done \u2014 Mission 05-C \u2014 Query Validation Sequence complete.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "LLM generates SQL from natural language query"
+      },
+      {
+        "id": "s2",
+        "label": "SQL parsed and checked for DML statements (INSERT/UPDATE/DELETE/DROP)"
+      },
+      {
+        "id": "s3",
+        "label": "Table and column references validated against allowed schema"
+      },
+      {
+        "id": "s4",
+        "label": "Query complexity checked (no unbounded scans)"
+      },
+      {
+        "id": "s5",
+        "label": "Safe query executed against read-only connection"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

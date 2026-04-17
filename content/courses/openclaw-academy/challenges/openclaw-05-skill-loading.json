@@ -20,5 +20,36 @@
     "The rationale field should explain why, not just what"
   ],
   "successMessage": "Well done \u2014 you've completed Mission 16 \u2014 Skill Loading.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Gateway starts and scans the skills directory"
+      },
+      {
+        "id": "s2",
+        "label": "SKILL.md parsed for intent triggers and description"
+      },
+      {
+        "id": "s3",
+        "label": "Skill registered with the agent's available tools"
+      },
+      {
+        "id": "s4",
+        "label": "Conflict check run against existing skill triggers"
+      },
+      {
+        "id": "s5",
+        "label": "Skill available for agent to invoke on matching messages"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }

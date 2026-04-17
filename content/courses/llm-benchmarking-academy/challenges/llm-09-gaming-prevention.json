@@ -16,5 +16,36 @@
     "A good rationale explains what you're NOT measuring"
   ],
   "successMessage": "Benchmark strategy complete \u2014 09 failure modes and gaming mission passed.",
-  "points": 100
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Build a held-out evaluation set never shown during training"
+      },
+      {
+        "id": "s2",
+        "label": "Run evaluations on the held-out set before any training run"
+      },
+      {
+        "id": "s3",
+        "label": "Rotate 20% of the golden set monthly"
+      },
+      {
+        "id": "s4",
+        "label": "Add a human evaluation sample as a sanity check"
+      },
+      {
+        "id": "s5",
+        "label": "Flag any score improvement >5% for closer inspection"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
 }
