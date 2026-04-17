@@ -1,0 +1,20 @@
+{
+  "id": "genai-06-eval-sequence",
+  "type": "sequence-completer",
+  "title": "Mission 06-C \u2014 Eval Sequence for Fine-Tuned Models",
+  "description": "Sequence the evaluation steps to verify a fine-tuned model meets quality, safety, and task-specific requirements.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 06-C \u2014 Eval Sequence for Fine-Tuned Models complete.",
+  "points": 100
+}

@@ -1,0 +1,20 @@
+{
+  "id": "genai-02-rag-failure-modes",
+  "type": "sequence-completer",
+  "title": "Mission 02-C \u2014 RAG Failure Mode Triage",
+  "description": "Identify and sequence the remediation steps for common RAG failure modes.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 02-C \u2014 RAG Failure Mode Triage complete.",
+  "points": 100
+}

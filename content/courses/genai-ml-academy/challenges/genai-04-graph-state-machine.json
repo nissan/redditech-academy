@@ -1,0 +1,20 @@
+{
+  "id": "genai-04-graph-state-machine",
+  "type": "sequence-completer",
+  "title": "Mission 04-B \u2014 Graph State Machine Design",
+  "description": "Design the nodes, edges, and state transitions for a LangGraph agent workflow.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 04-B \u2014 Graph State Machine Design complete.",
+  "points": 100
+}

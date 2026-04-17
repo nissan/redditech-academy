@@ -1,0 +1,20 @@
+{
+  "id": "genai-05-sql-safety-policy",
+  "type": "json-editor",
+  "title": "Mission 05-B \u2014 SQL Safety Policy",
+  "description": "Define a SQL safety policy for a Text2SQL system: allowed operations, schema access controls, and output validation.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 05-B \u2014 SQL Safety Policy complete.",
+  "points": 100
+}

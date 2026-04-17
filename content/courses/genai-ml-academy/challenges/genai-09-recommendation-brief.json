@@ -1,0 +1,20 @@
+{
+  "id": "genai-09-recommendation-brief",
+  "type": "sequence-completer",
+  "title": "Mission 09-C \u2014 Recommendation Brief",
+  "description": "Write a one-page recommendation brief for a data science solution: context, options, recommended path, and risks.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 09-C \u2014 Recommendation Brief complete.",
+  "points": 100
+}

@@ -4,6 +4,12 @@ description: "Applied lesson for 12 databricks spark capstone"
 slug: "01-databricks-spark-capstone"
 duration: 20
 order: 1
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "genai-12-core-concepts"
+missionTitle: "Mission 12 — Core Concepts"
+estimatedMinutes: 20
 ---
 
 # Module 12 — Databricks, Spark, and the Final Capstone
@@ -140,3 +146,27 @@ flowchart TD
 ## Video Boosters
 - **Quick Recap video:** [Watch](/assets/courses/genai-ml-academy/videos/12-databricks-spark-capstone-quick-recap.mp4)
 - **Concept Clarity video:** [Watch](/assets/courses/genai-ml-academy/videos/12-databricks-spark-capstone-concept-clarity.mp4)
+
+---
+
+## 🎓 Harvard-Style Case Study — Data quality gates in ML pipelines
+
+**Context:** A Databricks ML pipeline ran daily feature computation jobs. A schema change in an upstream table silently produced null features for 30% of rows. The model continued scoring — with degraded accuracy — for two weeks.
+
+**The tension:** Move fast vs build safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add schema validation checks at the ingestion stage
+2. add data quality assertions at the feature computation stage
+3. add a model quality monitor that triggers on feature drift
+
+**Discussion questions:**
+1. What observable signal would have caught this before it reached production?
+2. Which option gives the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this Databricks, Spark, and Capstone system. Assume it fails in production. Find the top 3 failure modes and propose the minimum viable fix for each."

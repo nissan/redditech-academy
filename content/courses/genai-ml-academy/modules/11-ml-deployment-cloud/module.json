@@ -5,10 +5,10 @@
   "title": "Deploying ML Systems on AWS, Azure, and GCP",
   "description": "A good model in a notebook has no business value until it is deployed, monitored, and recoverable. Cloud deployment adds reliability, scalability, and operational controls.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Deploying ML Systems on AWS, Azure, and GCP Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Deploying ML Systems on AWS, Azure, and GCP"
   },
   "learningObjectives": [],

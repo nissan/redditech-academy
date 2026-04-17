@@ -1,0 +1,20 @@
+{
+  "id": "genai-10-architecture-review",
+  "type": "sequence-completer",
+  "title": "Mission 10-C \u2014 Architecture Review",
+  "description": "Conduct a structured review of a production AI architecture against reliability, cost, and safety criteria.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 10-C \u2014 Architecture Review complete.",
+  "points": 100
+}

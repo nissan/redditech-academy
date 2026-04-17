@@ -1,0 +1,70 @@
+---
+title: "RAG Failure Mode Triage"
+description: "Identify and sequence the remediation steps for common RAG failure modes."
+slug: "rag-failure-mode-triage"
+duration: 20
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-02-rag-failure-modes"
+missionTitle: "Mission 02-C — RAG Failure Mode Triage"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Retrieval-Augmented Generation concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/02-rag-in-practice.svg)
+
+> *"The retrieval returned 5 documents. None of them answered the question. The model hallucinated confidently anyway."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Retrieval-Augmented Generation | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Chunking strategy and retrieval quality
+
+**Context:** A legal team deployed a contract Q&A system using RAG. Chunk boundaries split key clauses across documents. The model answered with partial evidence and presented it as complete.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Rebuild with clause-aware chunking
+2. add a chunk-overlap strategy
+3. add a confidence score gate before generation
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Retrieval-Augmented Generation decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

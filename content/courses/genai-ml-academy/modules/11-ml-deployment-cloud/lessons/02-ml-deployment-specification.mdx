@@ -1,0 +1,70 @@
+---
+title: "ML Deployment Specification"
+description: "Write a deployment spec for an ML model: compute requirements, scaling policy, monitoring plan, and rollback procedure."
+slug: "ml-deployment-specification"
+duration: 20
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "genai-11-deployment-spec"
+missionTitle: "Mission 11-B — Deployment Spec"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply ML Deployment on AWS, Azure, and GCP concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/11-ml-deployment-cloud.svg)
+
+> *"It scaled to zero. Unfortunately, the traffic didn't."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+{}
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| ML Deployment on AWS, Azure, and GCP | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Latency vs cost tradeoffs in cloud ML deployment
+
+**Context:** An ML team deployed a model to a serverless endpoint to save costs. Cold start latency averaged 12 seconds. Users reported the product as broken. Provisioned concurrency would have cost $200/month — less than 1 customer complaint.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Enable provisioned concurrency
+2. migrate to a container endpoint
+3. add a warm-up ping to keep the function warm
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this ML Deployment on AWS, Azure, and GCP decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

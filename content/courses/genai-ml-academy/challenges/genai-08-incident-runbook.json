@@ -1,0 +1,20 @@
+{
+  "id": "genai-08-incident-runbook",
+  "type": "sequence-completer",
+  "title": "Mission 08-C \u2014 GenAI Incident Runbook",
+  "description": "Sequence the incident response steps for a GenAI quality degradation event.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 08-C \u2014 GenAI Incident Runbook complete.",
+  "points": 100
+}

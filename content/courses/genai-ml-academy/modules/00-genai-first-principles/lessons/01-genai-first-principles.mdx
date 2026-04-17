@@ -1,0 +1,77 @@
+---
+title: "GenAI First Principles"
+description: "What makes GenAI systems different from traditional software, and why that matters for production reliability."
+slug: "genai-first-principles"
+duration: 20
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeId: "genai-00-first-principles"
+missionTitle: "Mission 00 — First Principles"
+estimatedMinutes: 15
+keyTakeaways:
+  - "A GenAI system is probabilistic, not deterministic — test accordingly"
+  - "Quality degrades silently without instrumented evaluation"
+  - "The right architecture pattern depends on task type, not just model capability"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/00-genai-first-principles.svg)
+
+> *"Traditional software fails loudly. GenAI systems fail politely and confidently."*
+
+## Quick Recap
+
+GenAI systems break the rules of traditional software in three important ways:
+
+| Property | Traditional software | GenAI system |
+|---|---|---|
+| Output | Deterministic | Probabilistic |
+| Failure mode | Error / exception | Wrong but confident answer |
+| Testing strategy | Unit/integration tests | Evals with golden sets |
+
+**The production implication:** you cannot test your way to safety with traditional tests alone. You need evaluation frameworks that measure quality continuously in production.
+
+## The Three Common Production Failures
+
+1. **Silent quality degradation** — the model keeps answering, just worse
+2. **Context window mismanagement** — early context lost, decisions made on partial information
+3. **Retrieval drift** — the knowledge source changes, the model doesn't know
+
+## Mission Brief
+
+Fill in the first-principles assessment below.
+
+```json
+{
+  "task_type": "",
+  "why_genai_not_traditional": "",
+  "top_failure_risk": "",
+  "eval_strategy": ""
+}
+```
+
+---
+
+## 🎓 Harvard-Style Case Study — When GenAI Fails Politely
+
+**Context:** A team deployed a GenAI customer support system. After 3 weeks, customer satisfaction scores dropped 15%. Investigation revealed the model had started giving outdated pricing information. No error was raised — the model answered confidently with stale data.
+
+**The tension:** Ship fast with the initial golden set vs invest in continuous evaluation from day one.
+
+**Decision options:**
+1. Add a daily eval run against a golden set of pricing questions
+2. Add a retrieval freshness check before any pricing-related response
+3. Add a human review gate for all responses mentioning specific prices
+
+**Discussion questions:**
+1. What is the minimum eval infrastructure you would put in place before going live?
+2. How would you detect this failure mode within 24 hours of it starting?
+3. Write a one-sentence quality gate that would have caught this.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Mentor Mode (Beginner):** "I am new to GenAI systems. Walk me through the three most important differences between traditional software and GenAI systems in production, using a concrete example for each."

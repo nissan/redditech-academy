@@ -1,0 +1,20 @@
+{
+  "id": "genai-05-query-validation",
+  "type": "sequence-completer",
+  "title": "Mission 05-C \u2014 Query Validation Sequence",
+  "description": "Sequence the validation steps that must run before any LLM-generated SQL query is executed on production data.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 05-C \u2014 Query Validation Sequence complete.",
+  "points": 100
+}

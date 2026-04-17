@@ -1,0 +1,20 @@
+{
+  "id": "genai-07-production-checklist",
+  "type": "sequence-completer",
+  "title": "Mission 07-C \u2014 Production Readiness Checklist",
+  "description": "Sequence the production readiness checks before launching a LangChain application.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 07-C \u2014 Production Readiness Checklist complete.",
+  "points": 100
+}

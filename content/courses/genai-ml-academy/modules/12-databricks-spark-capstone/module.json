@@ -5,10 +5,10 @@
   "title": "Databricks, Spark, and the Final Capstone",
   "description": "Production AI and ML systems depend on clean, scalable data pipelines. Spark and Databricks are widely used for large-scale data engineering and model operations.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Databricks, Spark, and the Final Capstone Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Databricks, Spark, and the Final Capstone"
   },
   "learningObjectives": [],

@@ -1,0 +1,44 @@
+{
+  "moduleId": "00-genai-first-principles",
+  "questions": [
+    {
+      "id": "gq1",
+      "question": "What is the key difference between how traditional software and GenAI systems fail?",
+      "type": "multiple-choice",
+      "options": [
+        "Traditional software fails loudly with errors; GenAI systems can fail silently with wrong but confident answers",
+        "GenAI systems never fail in production",
+        "Traditional software is slower than GenAI",
+        "GenAI systems produce deterministic outputs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "GenAI systems produce probabilistic outputs and can degrade quality silently \u2014 which is why continuous evaluation is essential."
+    },
+    {
+      "id": "gq2",
+      "question": "Which testing approach is most important for GenAI systems that isn't needed for traditional software?",
+      "type": "multiple-choice",
+      "options": [
+        "Unit tests",
+        "Integration tests",
+        "Continuous quality evaluation against a golden set",
+        "Load tests"
+      ],
+      "correctAnswer": 2,
+      "explanation": "GenAI systems require continuous eval against a golden set of representative prompts because quality can degrade without any code changes."
+    },
+    {
+      "id": "gq3",
+      "question": "What is 'retrieval drift' in a RAG system?",
+      "type": "multiple-choice",
+      "options": [
+        "The vector database running out of storage",
+        "The knowledge source changing while the model's retrieval behaviour stays the same",
+        "The model forgetting previous conversations",
+        "The embedding model being retrained"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Retrieval drift occurs when the underlying knowledge source changes (documents updated/deleted/added) while the retrieval pipeline isn't updated to reflect those changes, leading to stale or irrelevant context."
+    }
+  ]
+}

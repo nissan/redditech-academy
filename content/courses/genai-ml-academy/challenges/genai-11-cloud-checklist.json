@@ -1,0 +1,20 @@
+{
+  "id": "genai-11-cloud-checklist",
+  "type": "sequence-completer",
+  "title": "Mission 11-C \u2014 Cloud Deployment Checklist",
+  "description": "Sequence the steps required to safely deploy an ML model to a cloud platform.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 11-C \u2014 Cloud Deployment Checklist complete.",
+  "points": 100
+}

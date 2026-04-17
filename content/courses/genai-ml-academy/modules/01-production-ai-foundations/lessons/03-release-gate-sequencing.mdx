@@ -1,0 +1,70 @@
+---
+title: "Release Gate Sequencing"
+description: "Sequence the steps from development to production release for an AI system."
+slug: "release-gate-sequencing"
+duration: 20
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-01-release-gate"
+missionTitle: "Mission 01-C — Release Gate Sequence"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Production AI Foundations concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/01-production-ai-foundations.svg)
+
+> *"You have 12 LLM providers, 3 eval frameworks, and 1 production incident. Which one do you fix first?"*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Production AI Foundations | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Evaluation as a release gate
+
+**Context:** A product team shipped a RAG system without a golden evaluation set. Quality degraded over 6 weeks as the retrieval index drifted. No alert fired because quality was never instrumented.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add a golden set retroactively and run evals on the current system
+2. freeze the index and investigate drift
+3. instrument quality first, then fix
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Production AI Foundations decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

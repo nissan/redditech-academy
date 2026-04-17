@@ -4,6 +4,12 @@ description: "Applied lesson for 01 production ai foundations"
 slug: "01-production-ai-foundations"
 duration: 20
 order: 1
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "genai-01-core-concepts"
+missionTitle: "Mission 1 — Core Concepts"
+estimatedMinutes: 20
 ---
 
 # Module 1 — Production AI Foundations (Intermediate)
@@ -160,3 +166,27 @@ flowchart TD
 ## Video Boosters
 - **Quick Recap video:** [Watch](/assets/courses/genai-ml-academy/videos/01-production-ai-foundations-quick-recap.mp4)
 - **Concept Clarity video:** [Watch](/assets/courses/genai-ml-academy/videos/01-production-ai-foundations-concept-clarity.mp4)
+
+---
+
+## 🎓 Harvard-Style Case Study — Evaluation as a release gate
+
+**Context:** A product team shipped a RAG system without a golden evaluation set. Quality degraded over 6 weeks as the retrieval index drifted. No alert fired because quality was never instrumented.
+
+**The tension:** Move fast vs build safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add a golden set retroactively and run evals on the current system
+2. freeze the index and investigate drift
+3. instrument quality first, then fix
+
+**Discussion questions:**
+1. What observable signal would have caught this before it reached production?
+2. Which option gives the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this Production AI Foundations system. Assume it fails in production. Find the top 3 failure modes and propose the minimum viable fix for each."

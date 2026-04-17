@@ -1,0 +1,19 @@
+{
+  "id": "00-genai-first-principles",
+  "slug": "00-genai-first-principles",
+  "order": 0,
+  "title": "GenAI First Principles",
+  "description": "Plain-language grounding in what GenAI systems are, how they differ from traditional software, and what makes them fail in production.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "GenAI Foundations",
+    "icon": "\ud83e\udde0",
+    "description": "Completed the GenAI First Principles module"
+  },
+  "learningObjectives": [
+    "Explain the difference between a model, a pipeline, and a system",
+    "Identify the top 3 ways GenAI systems fail in production",
+    "Map a GenAI use case to the right architecture pattern"
+  ]
+}

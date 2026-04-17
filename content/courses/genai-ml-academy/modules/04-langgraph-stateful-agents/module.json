@@ -5,10 +5,10 @@
   "title": "LangGraph: Stateful Agents and Multi-Step Workflows",
   "description": "At intermediate maturity, the challenge is not writing one good prompt. The challenge is running long, branching workflows safely, with resumability and traceability. LangGraph is a strong fit because it treats workflow state and control flow as first-class concerns.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "LangGraph: Stateful Agents and Multi-Step Workflows Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed LangGraph: Stateful Agents and Multi-Step Workflows"
   },
   "learningObjectives": [],

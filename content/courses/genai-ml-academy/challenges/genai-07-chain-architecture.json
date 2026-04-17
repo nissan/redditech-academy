@@ -1,0 +1,20 @@
+{
+  "id": "genai-07-chain-architecture",
+  "type": "json-editor",
+  "title": "Mission 07-B \u2014 Chain Architecture Design",
+  "description": "Design a LangChain application architecture with defined components, retry logic, and fallback paths.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 07-B \u2014 Chain Architecture Design complete.",
+  "points": 100
+}

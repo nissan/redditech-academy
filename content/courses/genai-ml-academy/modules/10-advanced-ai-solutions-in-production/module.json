@@ -3,12 +3,12 @@
   "slug": "10-advanced-ai-solutions-in-production",
   "order": 10,
   "title": "Advanced AI Solutions in Production: Patterns and Practice",
-  "description": "You've learned LangChain, LangGraph, RAG, agents, and evals separately. This module is where they come together. Real production AI systems aren't single components — they're composed stacks with reliability requirements, cost constraints, security policies, and operational runbooks. This module teaches you to think like a production AI engineer, not just a prototype builder.",
+  "description": "You've learned LangChain, LangGraph, RAG, agents, and evals separately. This module is where they come together. Real production AI systems aren't single components \u2014 they're composed stacks with reliability requirements, cost constraints, security policies, and operational runbooks. This module teaches you to think like a production AI engineer, not just a prototype builder.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Advanced AI Solutions in Production: Patterns and Practice Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Advanced AI Solutions in Production: Patterns and Practice"
   },
   "learningObjectives": [],

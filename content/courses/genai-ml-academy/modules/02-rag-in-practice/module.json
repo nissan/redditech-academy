@@ -5,10 +5,10 @@
   "title": "Retrieval-Augmented Generation in Practice",
   "description": "Beginner RAG gets demos working. Intermediate RAG gets production answers right under noise, scale, and changing corpora. This module focuses on retrieval quality engineering, evaluation strategy, and operational tradeoffs.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Retrieval-Augmented Generation in Practice Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Retrieval-Augmented Generation in Practice"
   },
   "learningObjectives": [],

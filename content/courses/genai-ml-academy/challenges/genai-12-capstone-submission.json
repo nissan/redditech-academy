@@ -1,0 +1,20 @@
+{
+  "id": "genai-12-capstone-submission",
+  "type": "sequence-completer",
+  "title": "Mission 12-C \u2014 Capstone Submission",
+  "description": "Produce a complete design document for a production GenAI system: architecture, eval contract, deployment spec, and incident runbook.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 12-C \u2014 Capstone Submission complete.",
+  "points": 100
+}

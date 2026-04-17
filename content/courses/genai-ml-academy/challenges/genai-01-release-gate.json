@@ -1,0 +1,20 @@
+{
+  "id": "genai-01-release-gate",
+  "type": "sequence-completer",
+  "title": "Mission 01-C \u2014 Release Gate Sequence",
+  "description": "Sequence the steps from development to production release for an AI system.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 01-C \u2014 Release Gate Sequence complete.",
+  "points": 100
+}

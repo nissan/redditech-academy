@@ -1,0 +1,70 @@
+---
+title: "State Machine Design for Agent Workflows"
+description: "Design the nodes, edges, and state transitions for a LangGraph agent workflow."
+slug: "state-machine-design-for-agents"
+duration: 20
+order: 2
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-04-graph-state-machine"
+missionTitle: "Mission 04-B — Graph State Machine Design"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply LangGraph Stateful Agents concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/04-langgraph-stateful-agents.svg)
+
+> *"It's not spaghetti code. It's a directed acyclic graph. With cycles."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| LangGraph Stateful Agents | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Checkpointing and idempotent tool execution
+
+**Context:** A LangGraph workflow processed user research tasks. On network failure mid-graph, the workflow restarted from the beginning. Without checkpointing, duplicate tool calls ran twice — including an external API write.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add checkpointing at every node boundary
+2. add idempotency to all tool calls
+3. add a restart-from-checkpoint policy with explicit node IDs
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this LangGraph Stateful Agents decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

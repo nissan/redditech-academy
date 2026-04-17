@@ -1,0 +1,20 @@
+{
+  "id": "genai-00-first-principles",
+  "type": "json-editor",
+  "title": "Mission 00 \u2014 First Principles",
+  "description": "Fill in the first-principles assessment for a GenAI system.",
+  "starterCode": "{\"task_type\":\"\",\"why_genai_not_traditional\":\"\",\"top_failure_risk\":\"\",\"eval_strategy\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "task_type"
+    }
+  ],
+  "hints": [
+    "Consider: classification, generation, or reasoning task?",
+    "Think about what makes this different from a lookup or rule-based system",
+    "What would a quality degradation look like in production?"
+  ],
+  "successMessage": "First Principles complete. You understand why GenAI production systems are different.",
+  "points": 150
+}

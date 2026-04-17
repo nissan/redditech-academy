@@ -1,0 +1,20 @@
+{
+  "id": "genai-03-agent-topology",
+  "type": "sequence-completer",
+  "title": "Mission 03-B \u2014 Agent Topology Design",
+  "description": "Map the coordination patterns for multi-agent systems: hub-spoke, mesh, pipeline, and hierarchical.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 03-B \u2014 Agent Topology Design complete.",
+  "points": 100
+}

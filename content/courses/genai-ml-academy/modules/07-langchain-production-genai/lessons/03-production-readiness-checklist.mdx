@@ -1,0 +1,70 @@
+---
+title: "Production Readiness Checklist"
+description: "Sequence the production readiness checks before launching a LangChain application."
+slug: "production-readiness-checklist"
+duration: 20
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-07-production-checklist"
+missionTitle: "Mission 07-C — Production Readiness Checklist"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply LangChain for Production GenAI concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/07-langchain-production-genai.svg)
+
+> *"It works in the notebook. The notebook is not production."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| LangChain for Production GenAI | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Resilience and fallback design
+
+**Context:** A LangChain application worked perfectly in development with a fast local model. In production with a remote model at high load, chain steps timed out. No retry or fallback was configured.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add per-step timeouts with retries
+2. add a model fallback chain
+3. add a circuit breaker that returns a degraded response on repeated failures
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this LangChain for Production GenAI decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."
