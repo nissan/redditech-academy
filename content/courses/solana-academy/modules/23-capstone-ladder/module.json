@@ -1,0 +1,22 @@
+{
+  "id": "capstone-ladder",
+  "slug": "23-capstone-ladder",
+  "order": 23,
+  "title": "Capstone — From First Principles to Production",
+  "description": "Three-tier capstone ladder: beginner guided build, intermediate scaffolded architecture, advanced open-ended adversarial challenge. Choose your level.",
+  "difficulty": "advanced",
+  "estimatedHours": 8.0,
+  "badge": {
+    "name": "Solana Builder",
+    "icon": "🏗️",
+    "description": "Completed the Solana Academy Capstone"
+  },
+  "learningObjectives": [
+    "Apply first-principles understanding to a real build problem",
+    "Demonstrate safe wallet/signer design under adversarial review",
+    "Ship a production-ready Solana component with documented evidence"
+  ],
+  "prerequisiteModules": [
+    "00-solana-first-principles"
+  ]
+}

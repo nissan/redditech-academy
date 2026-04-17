@@ -64,3 +64,38 @@ flowchart LR
 
 ## Anti-Pattern to Avoid
 Treating devnet success as proof of production safety without adversarial evidence and release gate documentation.
+
+
+---
+
+## 🎓 Harvard-Style Case Study — Oracle Drift and Unsafe Liquidation
+
+**Context:** During a volatile market period, oracle feed lag of ~3 seconds caused a DeFi protocol on Solana to execute liquidations at stale prices. Several users were liquidated at positions that would have been safe under real-time prices.
+
+**The tension:** Keep the protocol live and fully functional vs activate a conservative safety mode that pauses liquidations until oracle freshness is confirmed.
+
+**Decision options:**
+1. Stay live: monitor closely, accept short-term risk while fixing the oracle feed refresh rate
+2. Pause liquidations: halt the most risky operations until staleness window is resolved
+3. Add a staleness guard: deploy a price freshness check (reject prices older than N slots) before any liquidation can proceed
+
+**What happened:** Teams that stayed live with option 1 faced user compensation claims. Teams that added option 3 guards recovered user trust fastest.
+
+**Class focus:** Failure budgets, fallback data sources, incident communication.
+
+**Discussion questions:**
+1. What is an acceptable oracle staleness threshold for a liquidation operation? How would you derive this number?
+2. How would you design a circuit breaker for price-sensitive operations on Solana?
+3. Draft a one-paragraph incident response communication for users affected by a stale-price liquidation.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT — paste the case context above first.
+
+**Red Team:** "You are red-teaming my case decision. Assume my plan will fail. Find the top 5 failure modes, explain blast radius, and propose stronger guardrails. Then ask me to revise the plan and compare v1 vs v2."
+
+**Interview Panel:** "Run this like a production design interview for a Solana role. Ask architecture, signer-policy, test-gate, and incident-response questions based on this case. Score each answer out of 10 and identify weak spots."
+
+**Mentor Mode (Beginner):** "I am a beginner. Explain this case in simple language first, then walk me through a safe decision framework. Give me one tiny action item per step and check my understanding before moving on."

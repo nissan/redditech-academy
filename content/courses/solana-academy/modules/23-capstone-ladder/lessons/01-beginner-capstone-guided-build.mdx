@@ -1,0 +1,122 @@
+---
+title: "Beginner Capstone — Guided Build"
+description: "Build and document your first safe Solana program using the guided template. Demonstrate first-principles understanding of wallets, accounts, signers, and transactions."
+slug: "beginner-capstone-guided-build"
+duration: 45
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-capstone-beginner-build"
+missionTitle: "Capstone Mission 01 — Guided Build"
+estimatedMinutes: 45
+keyTakeaways:
+  - "Apply wallet/account/signer mental models to a real build"
+  - "Complete a go/no-go checklist before any simulated devnet deploy"
+  - "Document your decisions and tradeoffs in a mission log"
+---
+
+## 😄 Meme Opener
+
+![Capstone meme](/assets/courses/solana-academy/memes/23-capstone-ladder.svg)
+
+> *"We are building a time-lock vault. The hardest part isn't the code. It's knowing who is allowed to unlock it."*
+
+## Quick Recap
+
+You've learned wallets, accounts, transactions, signers, testing, and deployment gates. Now you apply it all.
+
+This tier is **guided** — you follow the template, fill in the decisions, and document your reasoning. There is no single right answer. There is a wrong answer: shipping without evidence.
+
+## Mission Brief
+
+You are an engineer at a small protocol. Your task is to design and document a minimal **time-lock vault** on Solana:
+
+- One depositor
+- One beneficiary
+- A lock duration (in slots)
+- No emergency withdrawal without both signatures
+
+You will NOT write Rust today. You will **design** the program and fill in a build brief that a senior engineer could take directly to implementation.
+
+## Guided Template
+
+Fill in the JSON below:
+
+```json
+{
+  "program_name": "",
+  "accounts": [
+    {
+      "name": "vault",
+      "type": "PDA",
+      "seeds": [],
+      "data_fields": []
+    }
+  ],
+  "instructions": [
+    {
+      "name": "initialize_vault",
+      "signers": [],
+      "validations": []
+    },
+    {
+      "name": "withdraw",
+      "signers": [],
+      "validations": ["lock_duration_expired", "beneficiary_signed"]
+    }
+  ],
+  "test_cases": [
+    {"case": "withdraw before lock expires", "expected": "error"},
+    {"case": "withdraw after lock expires, correct beneficiary", "expected": "success"}
+  ],
+  "go_no_go_checklist": {
+    "signer_policy_documented": false,
+    "authority_escrow_modeled": false,
+    "rollback_path_defined": false,
+    "adversarial_test_written": false
+  }
+}
+```
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Account design | Vault PDA fields and seed derivation |
+| Signer authority | Who can call each instruction |
+| Validation rules | What on-chain checks block unsafe operations |
+| Go/no-go discipline | Explicit gate before "deploy" |
+
+## Submission Criteria
+
+Your build brief passes the beginner gate if:
+- All accounts have defined types and data fields
+- All instructions list required signers
+- At least 2 test cases cover edge paths
+- All 4 go/no-go checklist items are `true`
+
+---
+
+## 🎓 Harvard-Style Case Study — The Vault That Forgot the Beneficiary
+
+**Context:** A beginner Solana developer shipped a time-lock vault to devnet. The `withdraw` instruction checked the lock duration but not the beneficiary's signature. Anyone who knew the vault PDA address could drain it after the lock expired.
+
+**The tension:** The program passed all the developer's tests. The tests only checked the happy path.
+
+**Decision options:**
+1. Add the beneficiary signer check and redeploy
+2. Add an on-chain authority field and upgrade the program
+3. Deprecate the program and deploy v2 from scratch
+
+**Discussion questions:**
+1. What is the minimum signer set for a time-lock withdrawal instruction?
+2. How would you write the failing test case that would have caught this bug before deployment?
+3. Write a one-sentence signer policy rule that every Solana program should document before mainnet.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Mentor Mode:** "I am a beginner. Review my time-lock vault build brief and ask me one question at a time to find any gaps in my signer policy, account design, or test coverage. Be kind but thorough."
+
+**Red Team:** "You are red-teaming my vault design. Assume an attacker has read access to the blockchain. Find three ways they could drain the vault or prevent legitimate withdrawal. Propose fixes."

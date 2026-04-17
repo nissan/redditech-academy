@@ -6,7 +6,7 @@
   "tagline": "Start beginner-friendly, finish production-ready",
   "icon": "\ud83d\udfe3",
   "difficulty": "advanced",
-  "estimatedHours": 64,
+  "estimatedHours": 72,
   "tags": [
     "solana",
     "blockchain",
@@ -21,6 +21,6 @@
     "description": "Completed the Solana Developer Academy course"
   },
   "author": "Redditech Labs",
-  "version": "1.5",
+  "version": "1.6",
   "free": true
 }

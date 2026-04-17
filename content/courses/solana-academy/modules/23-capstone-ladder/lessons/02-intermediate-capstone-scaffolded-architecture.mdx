@@ -1,0 +1,118 @@
+---
+title: "Intermediate Capstone — Scaffolded Architecture"
+description: "Design a complete escrow program architecture with authority modeling, state machine transitions, testing strategy, and a structured go/no-go document."
+slug: "intermediate-capstone-scaffolded-architecture"
+duration: 90
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-capstone-intermediate-architecture"
+missionTitle: "Capstone Mission 02 — Scaffolded Architecture"
+estimatedMinutes: 90
+keyTakeaways:
+  - "Model a complete state machine with all transitions and guards"
+  - "Define a layered test strategy (unit, integration, adversarial)"
+  - "Produce a structured go/no-go document with explicit sign-off criteria"
+---
+
+## 😄 Meme Opener
+
+![Capstone meme](/assets/courses/solana-academy/memes/23-capstone-ladder.svg)
+
+> *"Intermediate means you know all the ways it can go wrong. And you write tests for them anyway."*
+
+## Quick Recap
+
+At this tier you move beyond filling templates. You design a **complete escrow program** — state machine, authority model, testing layers, and a sign-off document — from first principles.
+
+You'll produce three artifacts:
+1. State machine diagram and transition table
+2. Layered test strategy (unit, integration, adversarial)
+3. Go/no-go sign-off document
+
+## Mission Brief
+
+Design a **marketplace escrow** for a two-sided NFT trade:
+
+- Maker deposits NFT + escrow fee
+- Taker sends SOL payment
+- Vault releases NFT to Taker and SOL to Maker atomically
+- Either party can cancel before Taker accepts (with defined refund logic)
+- Admin can emergency-cancel with both party signatures
+
+## Part 1 — State Machine
+
+Document all states and valid transitions:
+
+| State | Valid next states | Guard condition |
+|---|---|---|
+| `Uninitialised` | `Open` | maker signs |
+| `Open` | `Filled`, `Cancelled` | taker accepts OR maker cancels |
+| `Filled` | `Completed` | atomic swap succeeds |
+| `Cancelled` | — | final state |
+| `Completed` | — | final state |
+
+Add any missing guards. Specify what on-chain data each state requires.
+
+## Part 2 — Test Strategy
+
+Design a test matrix with at least:
+
+- **Unit tests (5+):** each instruction in isolation, input validation, signer checks
+- **Integration tests (3+):** full happy path, cancellation path, atomic swap failure path
+- **Adversarial tests (3+):** replay attack, unauthorized cancel, wrong authority withdrawal
+
+## Part 3 — Go/No-Go Document
+
+Produce a structured sign-off doc:
+
+```json
+{
+  "program_name": "marketplace_escrow",
+  "version": "1.0.0",
+  "reviewed_by": [],
+  "gates": {
+    "all_unit_tests_pass": false,
+    "integration_tests_pass": false,
+    "adversarial_tests_pass": false,
+    "authority_model_reviewed": false,
+    "state_transitions_documented": false,
+    "rollback_plan_defined": false,
+    "emergency_authority_scoped": false
+  },
+  "open_risks": [],
+  "sign_off": {
+    "engineering_lead": null,
+    "security_lead": null,
+    "decision": "no-go"
+  }
+}
+```
+
+All gates must be `true` and `decision` must be `"go"` to pass this capstone.
+
+---
+
+## 🎓 Harvard-Style Case Study — The Escrow That Lost the Taker's SOL
+
+**Context:** An intermediate team built an NFT marketplace escrow. The atomic swap logic correctly transferred the NFT to the Taker. But a transaction ordering bug in the SOL payment branch meant Maker could receive SOL while the NFT transfer failed — leaving Taker with neither NFT nor refund.
+
+**The tension:** The team had tested the happy path exhaustively. The adversarial path — partial success — was untested because "the runtime should handle atomicity."
+
+**Decision options:**
+1. Emergency upgrade: patch the state machine to treat partial success as `Cancelled`
+2. Freeze new escrows: halt opens while investigating, protect current users
+3. Accept risk: continue operating, monitor for exploits
+
+**Discussion questions:**
+1. What property of Solana transactions should prevent the partial-success scenario? Was it actually guaranteed here?
+2. Design the adversarial test that would have caught this before deployment.
+3. Write the emergency response communication for users whose funds are at risk.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Interview Panel:** "Run this like a senior Solana architecture review. Challenge every authority assumption, state transition, and test coverage gap I have. Score each area out of 10 and give a final hire/no-hire verdict on my architecture quality."
+
+**Red Team:** "You are a sophisticated attacker reviewing this escrow design. Find the top 3 attack surfaces. For each, explain the exploit path, the blast radius, and the minimum code change that would close it."

@@ -1,0 +1,18 @@
+{
+  "id": "solana-capstone-intermediate-architecture",
+  "type": "json-editor",
+  "title": "Intermediate Architecture",
+  "description": "Complete the capstone mission brief with all required fields. All go/no-go checklist items must be true.",
+  "starterCode": "{}",
+  "validationRules": [
+    {"type": "key_exists", "key": "program_name"},
+    {"type": "key_exists", "key": "go_no_go_checklist"}
+  ],
+  "hints": [
+    "Start by naming your program and defining the core accounts",
+    "Every instruction must list its required signers explicitly",
+    "The go/no-go checklist must have all items set to true before submission"
+  ],
+  "successMessage": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
+  "points": 500
+}
