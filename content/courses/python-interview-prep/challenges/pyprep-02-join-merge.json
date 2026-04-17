@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-02-join-merge",
+  "type": "json-editor",
+  "spec": "Join benchmark results with model metadata, but prove that the merge is safe. Show the merge call, the validate setting, and how you would inspect unmatched rows with indicator=True.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.join_code",
+        "non_empty": true
+      },
+      {
+        "field": "submission.cardinality_check",
+        "non_empty": true
+      },
+      {
+        "field": "submission.mismatch_check",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what cardinality you expect on the metadata side.\nStrike 2: Ask how indicator=True helps detect bad matches.\nStrike 3: Reveal the pattern: merge with validate='many_to_one', keep indicator=True, inspect _merge, then drop it after verifying the join.\nIf correct: acknowledge the safe merge and ask what row-explosion symptom they would watch for downstream.",
+  "hints": [
+    "validate=... is the guardrail that catches row explosions.",
+    "indicator=True tells you whether keys matched on both sides.",
+    "Check the join keys before you trust any downstream numbers."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"join_code\": \"results.merge(models, on='model_id', how='left', validate='many_to_one', indicator=True)\",\n    \"cardinality_check\": \"Use validate='many_to_one' because many results rows map to one metadata row.\",\n    \"mismatch_check\": \"Inspect the _merge column and the rows that are not both.\"\n  }\n}"
+  },
+  "success_text": "Good join hygiene. You made the cardinality explicit instead of hoping it was fine.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

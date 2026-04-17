@@ -1,0 +1,47 @@
+---
+title: "Deduplication Policy"
+description: "Detect repeats, choose a keep rule, and explain the policy."
+slug: "02-deduplication"
+duration: 15
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-05-dedup"
+missionTitle: "Mission 05B — Canonicalise the Runs"
+estimatedMinutes: 15
+keyTakeaways:
+  - "duplicated() is for inspection, drop_duplicates() is for policy"
+  - "Sort first if your keep rule depends on latest or best rows"
+  - "Explain why the chosen duplicate policy matches the business meaning"
+---
+
+## Duplicates Are a Policy Decision
+
+> 🤔 Think it through:
+> - What key defines a logical run?
+> - Do you keep the latest retry, the first row, or the successful one?
+> - How will you count duplicates before deleting them?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def dedupe_runs(df: pd.DataFrame) -> pd.DataFrame:
+    key_cols = ["provider", "model", "prompt_id"]
+    dupes = df.duplicated(subset=key_cols, keep=False)
+    print("duplicate rows:", dupes.sum())
+
+    ordered = df.sort_values(["created_at", "status"], ascending=[False, False])
+    canonical = ordered.drop_duplicates(subset=key_cols, keep="first")
+    return canonical
+```
+
+## Narration
+
+"I’ll identify the logical key first, then count duplicates before I remove them. The keep rule has to match the business meaning, so I’m sorting before drop_duplicates instead of trusting row order."
+
+## Your Mission
+
+Choose and justify a duplicate policy for retried benchmark runs, then return one canonical row per logical run.

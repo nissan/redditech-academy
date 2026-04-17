@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-03-leaderboard",
+  "type": "json-editor",
+  "spec": "Build a deterministic leaderboard from model metrics. Sort by the primary score, then use TTFT and blended price as tie-breakers, and assign a human-friendly rank column.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.sort_keys",
+        "non_empty": true
+      },
+      {
+        "field": "submission.tie_breaking",
+        "non_empty": true
+      },
+      {
+        "field": "submission.ranking_column",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what the primary metric is.\nStrike 2: Ask which fields should break ties next.\nStrike 3: Reveal the pattern: sort_values with mixed ascending flags, reset_index, and assign rank from the final order.\nIf correct: acknowledge the deterministic ranking and ask how they would present ties to a reviewer.",
+  "hints": [
+    "Multiple sort keys can have different ascending directions.",
+    "Reset the index before deriving a rank column.",
+    "Tie-breaking should be deterministic, not implicit."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"sort_keys\": \"Sort by quality_score descending, then ttft_s ascending, then blended_price ascending.\",\n    \"tie_breaking\": \"Use secondary metrics so ties resolve the same way every time.\",\n    \"ranking_column\": \"Assign rank from the sorted index.\"\n  }\n}"
+  },
+  "success_text": "Clean leaderboard. Your tie-break rule is explicit instead of accidental.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

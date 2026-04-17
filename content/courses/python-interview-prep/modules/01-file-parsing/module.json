@@ -7,12 +7,12 @@
     "01-reading-json",
     "02-reading-csv",
     "03-parsing-jsonl",
-    "04-pathlib-patterns"
+    "04-schema-audit"
   ],
   "passingScore": 70,
   "badge": {
     "name": "File Whisperer",
-    "icon": "📂",
+    "icon": "\ud83d\udcc2",
     "description": "Parsed CSV, JSON, and JSONL without panicking"
   },
   "difficulty": "beginner",

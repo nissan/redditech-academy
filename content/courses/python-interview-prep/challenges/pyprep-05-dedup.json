@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-05-dedup",
+  "type": "json-editor",
+  "spec": "De-duplicate repeated benchmark runs. Show the logical key, the keep policy, and how you would count duplicates before removing them.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.duplicate_key",
+        "non_empty": true
+      },
+      {
+        "field": "submission.keep_policy",
+        "non_empty": true
+      },
+      {
+        "field": "submission.audit_count",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what combination of columns defines one logical run.\nStrike 2: Ask whether first, last, or successful rows should survive.\nStrike 3: Reveal the pattern: count duplicates with duplicated(keep=False), sort to enforce the policy, then drop_duplicates with the right keep rule.\nIf correct: acknowledge the policy choice and ask what bad outcome an unsafe dedupe would create downstream.",
+  "hints": [
+    "The logical key is usually provider + model + prompt_id.",
+    "Sort first if you keep the latest row.",
+    "Always count duplicates before dropping them."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"duplicate_key\": \"Use the logical run key, not the raw run_id.\",\n    \"keep_policy\": \"Keep the latest successful row after sorting by timestamp and status.\",\n    \"audit_count\": \"Count duplicates with duplicated(..., keep=False) before dropping them.\"\n  }\n}"
+  },
+  "success_text": "Yep. You treated duplicates as a policy problem, which is the right instinct.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

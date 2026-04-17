@@ -1,0 +1,50 @@
+---
+title: "Latency Metrics"
+description: "Define TTFT, tokens/sec, and end-to-end time with clean units."
+slug: "01-latency-metrics"
+duration: 15
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-03-latency"
+missionTitle: "Mission 03A — Measure the Run"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Define the metric in words before you write the formula"
+  - "Use datetime arithmetic for TTFT and end-to-end latency"
+  - "Protect throughput calculations from zero or negative durations"
+---
+
+## Say the Formula Out Loud First
+
+> 🤔 Think it through:
+> - What exactly is TTFT measuring?
+> - Which timestamps belong in the numerator and denominator?
+> - How will you keep seconds, milliseconds, and tokens straight?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def add_latency_metrics(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["sent_at"] = pd.to_datetime(df["sent_at"], utc=True)
+    df["first_token_at"] = pd.to_datetime(df["first_token_at"], utc=True)
+    df["completed_at"] = pd.to_datetime(df["completed_at"], utc=True)
+
+    df["ttft_s"] = (df["first_token_at"] - df["sent_at"]).dt.total_seconds()
+    df["end_to_end_s"] = (df["completed_at"] - df["sent_at"]).dt.total_seconds()
+    generation_s = (df["completed_at"] - df["first_token_at"]).dt.total_seconds()
+    df["tokens_per_s"] = df["output_tokens"] / generation_s.where(generation_s > 0)
+    return df
+```
+
+## Narration
+
+"I’ll define TTFT as send-to-first-token, then compute end-to-end as send-to-complete. After that I can derive throughput from the generation window only, because mixing the prompt phase into tokens/sec makes the number meaningless."
+
+## Your Mission
+
+Compute TTFT, tokens/sec, and total latency from raw timestamps, and keep the units obvious enough that nobody has to guess what the columns mean.

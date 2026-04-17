@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-03-latency",
+  "type": "json-editor",
+  "spec": "Given sent_at, first_token_at, completed_at, and output_tokens, define TTFT, end-to-end latency, and output throughput. Be clear about units and avoid divide-by-zero mistakes.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.formula_notes",
+        "non_empty": true
+      },
+      {
+        "field": "submission.unit_notes",
+        "non_empty": true
+      },
+      {
+        "field": "submission.safety_notes",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask how they would define TTFT in plain English.\nStrike 2: Ask which timestamps belong in the throughput denominator.\nStrike 3: Reveal the pattern: parse timestamps, compute time deltas with .dt.total_seconds(), and divide output_tokens by the generation window with a safety guard.\nIf correct: acknowledge the clean units and ask why median latency often matters more than mean latency.",
+  "hints": [
+    "TTFT is send-to-first-token.",
+    "Throughput should use the generation window, not the whole request.",
+    "Protect the denominator before dividing."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"formula_notes\": \"TTFT = first_token_at - sent_at; end_to_end = completed_at - sent_at; tokens_per_s = output_tokens / generation_window.\",\n    \"unit_notes\": \"Keep the columns in seconds and tokens per second.\",\n    \"safety_notes\": \"Use a guard so zero or negative durations do not produce bad throughput.\"\n  }\n}"
+  },
+  "success_text": "Nice. You defined the metrics before computing them, which is the right move.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

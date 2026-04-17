@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-mock-03-debug",
+  "type": "json-editor",
+  "spec": "Debug a subtly wrong result. Explain the likely root cause, show the sanity checks you would run first, and describe the minimal fix that makes the result trustworthy.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.bug_hunt_steps",
+        "non_empty": true
+      },
+      {
+        "field": "submission.root_cause_statement",
+        "non_empty": true
+      },
+      {
+        "field": "submission.fix_summary",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what they would inspect first if the answer looked suspicious.\nStrike 2: Ask whether the bug could come from joins, null handling, or dtype coercion.\nStrike 3: Reveal the pattern: inspect dtypes and keys, reproduce the issue with a small sample, and apply the minimal fix that restores trust in the result.\nIf correct: acknowledge the disciplined debugging and ask how they would prove the fix did not break anything else.",
+  "hints": [
+    "Start with dtypes, key uniqueness, and a sample of the rows.",
+    "The bug could be a bad join, a dropped null group, or string sorting.",
+    "Explain the root cause before you change the code."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"bug_hunt_steps\": \"Inspect dtypes, sample rows, and join keys before changing logic.\",\n    \"root_cause_statement\": \"State the most likely hidden issue that caused the wrong result.\",\n    \"fix_summary\": \"Describe the smallest code change that corrects the output.\"\n  }\n}"
+  },
+  "success_text": "Good. You debugged from evidence instead of guessing.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

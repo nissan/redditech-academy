@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-01-schema-audit",
+  "type": "json-editor",
+  "spec": "You are given a DataFrame where numeric columns and timestamps arrived as strings. Show how you would inspect the schema, coerce ttft_s/output_tokens/timestamp safely, and report what became null after coercion.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.inspection_notes",
+        "non_empty": true
+      },
+      {
+        "field": "submission.coercion_steps",
+        "non_empty": true
+      },
+      {
+        "field": "submission.null_summary",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask which columns are still strings before arithmetic.\nStrike 2: Ask what errors='coerce' does to bad values.\nStrike 3: Reveal the pattern: inspect with df.info()/df.head(), coerce with pd.to_numeric and pd.to_datetime using errors='coerce', then count nulls to surface bad rows.\nIf correct: acknowledge the clean schema audit and ask how they would decide whether to drop or keep the coerced rows.",
+  "hints": [
+    "Start with df.info() and df.head() so you see the problem before fixing it.",
+    "Use errors='coerce' so malformed values become visible as NaN or NaT.",
+    "Always count the rows that failed conversion."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"inspection_notes\": \"Inspect the DataFrame shape, dtypes, and sample rows first.\",\n    \"coercion_steps\": \"Use pd.to_numeric and pd.to_datetime with errors='coerce' on the obvious columns.\",\n    \"null_summary\": \"Report how many values became null after coercion.\"\n  }\n}"
+  },
+  "success_text": "Good. You audited before you computed, which is exactly the habit this problem is testing.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

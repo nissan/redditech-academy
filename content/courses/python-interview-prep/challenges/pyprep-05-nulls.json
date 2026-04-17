@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-05-nulls",
+  "type": "json-editor",
+  "spec": "Handle missing values explicitly. Show how you would inspect nulls, decide whether to fill or surface them, and keep missing groups visible with groupby(dropna=False).",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.missing_strategy",
+        "non_empty": true
+      },
+      {
+        "field": "submission.fill_policy",
+        "non_empty": true
+      },
+      {
+        "field": "submission.groupby_setting",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask which rows disappear by default in the aggregation.\nStrike 2: Ask whether fillna is appropriate or whether the null should stay visible.\nStrike 3: Reveal the pattern: inspect with isna(), fill only where justified, and use groupby(dropna=False) when missing categories must remain in the output.\nIf correct: acknowledge the explicit null policy and ask how they would explain skipna to a reviewer.",
+  "hints": [
+    "Nulls are a policy decision, not an afterthought.",
+    "groupby(dropna=False) keeps NaN groups visible.",
+    "State whether median/mean should ignore missing values or not."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"missing_strategy\": \"Inspect missingness with isna() before choosing a policy.\",\n    \"fill_policy\": \"Fill only the columns where a default value is defensible.\",\n    \"groupby_setting\": \"Use groupby(..., dropna=False) when missing categories should remain visible.\"\n  }\n}"
+  },
+  "success_text": "Good. You made the null policy explicit instead of letting pandas decide for you.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

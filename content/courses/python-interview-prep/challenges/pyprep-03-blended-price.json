@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-03-blended-price",
+  "type": "json-editor",
+  "spec": "Compute a blended token price using a 3:1 input-to-output ratio from per-1M-token prices. Keep the formula readable and sort the models by the final blended price.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.ratio_formula",
+        "non_empty": true
+      },
+      {
+        "field": "submission.constant_names",
+        "non_empty": true
+      },
+      {
+        "field": "submission.sort_check",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what the 3:1 ratio means in the formula.\nStrike 2: Ask whether the values are prices or token counts and how that affects weighting.\nStrike 3: Reveal the pattern: use named constants for the weights, compute a weighted average, then sort by the blended price.\nIf correct: acknowledge the clear formula and ask how they would explain the ratio to a non-technical interviewer.",
+  "hints": [
+    "The 3:1 ratio should show up as named constants, not magic numbers.",
+    "A weighted average is the right mental model here.",
+    "Sort the result after the price is computed."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"ratio_formula\": \"blended = (3 * input_price_per_1m + 1 * output_price_per_1m) / 4\",\n    \"constant_names\": \"Use named constants for the input and output weights.\",\n    \"sort_check\": \"Sort ascending by blended_price_per_1m.\"\n  }\n}"
+  },
+  "success_text": "Yep. That blended price is now comparable across models.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

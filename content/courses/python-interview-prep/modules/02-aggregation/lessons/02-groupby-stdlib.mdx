@@ -1,0 +1,56 @@
+---
+title: "Grouping With the Standard Library"
+description: "For small files, defaultdict can be cleaner than pandas."
+slug: "02-groupby-stdlib"
+duration: 15
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-02-groupby-stdlib"
+missionTitle: "Mission 02B — Fallback Without Pandas"
+estimatedMinutes: 15
+keyTakeaways:
+  - "defaultdict reduces boilerplate for manual aggregation"
+  - "dict.setdefault works too when you want zero imports"
+  - "Small CSVs do not need pandas if the logic is simple"
+---
+
+## Sometimes the Stdlib Wins
+
+> 🤔 Think it through:
+> - Is the file small enough that a manual loop is clearer?
+> - What values do you need to accumulate, count, or average?
+> - How would you explain why pandas is unnecessary here?
+
+## The Pattern
+
+```python
+from collections import defaultdict
+
+
+def summarise(rows: list[dict[str, str]]) -> list[dict[str, float]]:
+    buckets = defaultdict(lambda: {"count": 0, "ttft_sum": 0.0})
+
+    for row in rows:
+        provider = row["provider"]
+        bucket = buckets[provider]
+        bucket["count"] += 1
+        bucket["ttft_sum"] += float(row["ttft_s"])
+
+    out = []
+    for provider, bucket in buckets.items():
+        out.append({
+            "provider": provider,
+            "count": bucket["count"],
+            "avg_ttft_s": bucket["ttft_sum"] / bucket["count"],
+        })
+    return sorted(out, key=lambda x: x["avg_ttft_s"])
+```
+
+## Narration
+
+"For a tiny file, I’d keep this in the standard library. defaultdict lets me express the accumulator cleanly, and I can still explain the policy out loud without dragging in a DataFrame just to count rows."
+
+## Your Mission
+
+Show how you would aggregate a small list of benchmark rows by provider using a manual loop, then explain why you chose stdlib over pandas.

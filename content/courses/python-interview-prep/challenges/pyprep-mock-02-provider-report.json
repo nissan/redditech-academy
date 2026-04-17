@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-mock-02-provider-report",
+  "type": "json-editor",
+  "spec": "Produce a provider report from raw endpoint logs. Show how you classify success, timeout, and error rows, then aggregate success rate, timeout rate, and tail latency per provider.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.status_classification",
+        "non_empty": true
+      },
+      {
+        "field": "submission.rate_formula",
+        "non_empty": true
+      },
+      {
+        "field": "submission.percentile_formula",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask how they would classify a log row before aggregation.\nStrike 2: Ask what denominator each rate should use.\nStrike 3: Reveal the pattern: classify first, group by provider, compute counts and rates, and use p95 latency for tail behaviour.\nIf correct: acknowledge the operational report and ask what would make them distrust the latency numbers.",
+  "hints": [
+    "Classify the log rows before aggregating them.",
+    "Rates are counts divided by the request total.",
+    "p95 is a useful tail metric when latency has spikes."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"status_classification\": \"Map each request into success, timeout, or error buckets first.\",\n    \"rate_formula\": \"success_rate = success_count / request_count; timeout_rate = timeout_count / request_count.\",\n    \"percentile_formula\": \"Use the 95th percentile for tail latency.\"\n  }\n}"
+  },
+  "success_text": "Nice. You turned noisy logs into a useful operational report.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

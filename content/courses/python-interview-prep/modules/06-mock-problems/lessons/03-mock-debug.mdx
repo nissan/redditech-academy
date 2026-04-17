@@ -1,0 +1,49 @@
+---
+title: "Mock Problem, Debug a Wrong Result"
+description: "Find the hidden bug, explain it, and show the fix."
+slug: "03-mock-debug"
+duration: 15
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-mock-03-debug"
+missionTitle: "Mission 06C — Debug Under Pressure"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Sanity checks beat blind trust in a nearly correct table"
+  - "Dtype inspection catches many silent bugs"
+  - "Explain the root cause before you change the code"
+---
+
+## Debug Like an Adult
+
+> 🤔 Think it through:
+> - What would you inspect first if the answer looked suspicious?
+> - Could the bug be a bad join, a dropped null group, or string-sorted numbers?
+> - How will you prove the fix works?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def debug_result(df: pd.DataFrame) -> pd.DataFrame:
+    print(df.info())
+    print(df.head())
+    print(df.dtypes)
+
+    df = df.copy()
+    df["score"] = pd.to_numeric(df["score"], errors="coerce")
+    assert df["model_id"].is_unique, "model_id should be unique here"
+    fixed = df.sort_values(["provider", "score"], ascending=[True, False])
+    return fixed
+```
+
+## Narration
+
+"I’d start by checking dtypes, key uniqueness, and a few sample rows before changing anything. Debugging under screen-share is really just disciplined inspection plus a quick sanity check after the fix."
+
+## Your Mission
+
+Debug a subtly wrong result, identify the root cause, and describe the minimal fix that makes the numbers trustworthy again.

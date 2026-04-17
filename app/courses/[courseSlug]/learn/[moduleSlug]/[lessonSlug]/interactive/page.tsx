@@ -71,8 +71,13 @@ export default async function InteractiveLessonPage({ params }: PageProps) {
   }
 
   const moduleMetadata = getModuleMetadata(courseSlug, moduleSlug);
-  const { environment, challengeId, missionTitle, estimatedMinutes } =
-    lesson.frontmatter;
+  const frontmatter = lesson.frontmatter as typeof lesson.frontmatter & {
+    challengeid?: string;
+  };
+  const environment = frontmatter.environment;
+  const challengeId = frontmatter.challengeId || frontmatter.challengeid;
+  const missionTitle = frontmatter.missionTitle;
+  const estimatedMinutes = frontmatter.estimatedMinutes;
 
   // Load challenge spec
   const challenge = challengeId ? loadChallenge(courseSlug, challengeId) : null;

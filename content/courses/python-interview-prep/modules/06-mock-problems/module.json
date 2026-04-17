@@ -5,13 +5,13 @@
   "order": 6,
   "lessons": [
     "01-mock-aggregation",
-    "02-mock-parser",
-    "03-mock-comparator"
+    "02-mock-provider-report",
+    "03-mock-debug"
   ],
   "passingScore": 70,
   "badge": {
     "name": "Interview Ready",
-    "icon": "✅",
+    "icon": "\u2705",
     "description": "Completed a full timed mock problem under Eli's watch"
   },
   "difficulty": "intermediate",

@@ -1,0 +1,51 @@
+---
+title: "Join Benchmark Results with Metadata"
+description: "Merge with validation and check the cardinality before trusting the output."
+slug: "03-join-and-merge"
+duration: 15
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-02-join-merge"
+missionTitle: "Mission 02C — Safe Metadata Joins"
+estimatedMinutes: 15
+keyTakeaways:
+  - "merge(validate=...) catches accidental row explosions"
+  - "indicator=True reveals unmatched keys immediately"
+  - "Always verify join cardinality before trusting metrics"
+---
+
+## Join Carefully, Not Hopefully
+
+> 🤔 Think it through:
+> - Is the right-hand table one row per model_id?
+> - How will you spot keys that did not match?
+> - What validate=... setting matches the real relationship?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def enrich(results: pd.DataFrame, models: pd.DataFrame) -> pd.DataFrame:
+    merged = results.merge(
+        models,
+        on="model_id",
+        how="left",
+        validate="many_to_one",
+        indicator=True,
+    )
+
+    print(merged["_merge"].value_counts())
+    print(merged[merged["_merge"] != "both"])
+    return merged.drop(columns=["_merge"])
+```
+
+## Narration
+
+"I’m going to check the key cardinality before I trust the merge. validate='many_to_one' makes the assumption explicit, and indicator=True tells me right away if any rows missed the metadata table."
+
+## Your Mission
+
+Enrich the benchmark results with model metadata and prove the join did not duplicate or drop rows unexpectedly.

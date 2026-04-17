@@ -1,0 +1,33 @@
+{
+  "id": "pyprep-05-anomaly",
+  "type": "json-editor",
+  "spec": "Flag suspicious benchmark rows with a boolean mask, a quantile threshold, and a reason column that explains why each row was flagged.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.mask_logic",
+        "non_empty": true
+      },
+      {
+        "field": "submission.threshold_logic",
+        "non_empty": true
+      },
+      {
+        "field": "submission.reason_column",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask what values are obviously impossible.\nStrike 2: Ask whether the threshold should be global or grouped by provider.\nStrike 3: Reveal the pattern: build boolean masks, apply a quantile-based threshold, and attach a reason column so the filter is explainable.\nIf correct: acknowledge the clear flagging rule and ask how they would sanity-check the threshold.",
+  "hints": [
+    "A reason column makes the filter easier to debug.",
+    "Group-aware quantiles are often better than one global threshold.",
+    "Use clear boolean masks for impossible values."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"mask_logic\": \"Combine obvious impossible-value checks with one outlier mask.\",\n    \"threshold_logic\": \"Use a quantile threshold or grouped quantile threshold for speed outliers.\",\n    \"reason_column\": \"Write a reason string for every flagged row.\"\n  }\n}"
+  },
+  "success_text": "Good. You made the anomaly rule explainable instead of mysterious.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

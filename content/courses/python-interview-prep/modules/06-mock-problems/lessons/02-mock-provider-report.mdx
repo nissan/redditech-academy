@@ -1,0 +1,55 @@
+---
+title: "Mock Problem, Provider Report"
+description: "Derive success and timeout rates from raw endpoint logs."
+slug: "02-mock-provider-report"
+duration: 15
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-mock-02-provider-report"
+missionTitle: "Mission 06B — Operational Report"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Classify status codes before you aggregate"
+  - "Rates are counts divided by the right denominator"
+  - "p95 latency is useful when tail behaviour matters"
+---
+
+## Turn Logs Into a Report
+
+> 🤔 Think it through:
+> - How will you classify success vs timeout vs other errors?
+> - What is the denominator for each rate?
+> - Which percentile best captures tail latency?
+
+## The Pattern
+
+```python
+import pandas as pd
+
+
+def provider_report(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["status_group"] = pd.cut(
+        df["status_code"],
+        bins=[0, 299, 499, 599],
+        labels=["success", "client_error", "server_error"],
+    )
+    summary = df.groupby("provider").agg(
+        request_count=("request_id", "count"),
+        success_count=("status_group", lambda s: (s == "success").sum()),
+        timeout_count=("error_type", lambda s: (s == "timeout").sum()),
+        p95_latency_ms=("latency_ms", lambda s: s.quantile(0.95)),
+    )
+    summary["success_rate"] = summary["success_count"] / summary["request_count"]
+    summary["timeout_rate"] = summary["timeout_count"] / summary["request_count"]
+    return summary.reset_index()
+```
+
+## Narration
+
+"I’ll classify the log rows first, then aggregate by provider. That keeps the denominator honest and lets me explain the report in plain English: how many requests, how many succeeded, how many timed out, and how bad the tail latency was."
+
+## Your Mission
+
+Build a provider report from raw endpoint logs, with success and timeout rates plus a tail-latency column.
