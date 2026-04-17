@@ -1,0 +1,55 @@
+{
+  "id": "openclaw-08-routing-rules",
+  "type": "sequence-completer",
+  "title": "Mission 26 \u2014 Routing Rules",
+  "description": "Complete the mission brief for: Custom Routing. Document your configuration decisions and verify each field is correct.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    },
+    {
+      "type": "key_exists",
+      "key": "rationale"
+    }
+  ],
+  "hints": [
+    "Start by identifying the core configuration requirement",
+    "Each field should have an explicit reason \u2014 document it",
+    "The rationale field should explain why, not just what"
+  ],
+  "successMessage": "Well done \u2014 you've completed Mission 26 \u2014 Routing Rules.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Message arrives at the gateway"
+      },
+      {
+        "id": "s2",
+        "label": "Message content matched against routing rule patterns"
+      },
+      {
+        "id": "s3",
+        "label": "Matching rule found \u2014 target agent identified"
+      },
+      {
+        "id": "s4",
+        "label": "Message dispatched to target agent with context"
+      },
+      {
+        "id": "s5",
+        "label": "No match \u2014 falls back to default agent"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

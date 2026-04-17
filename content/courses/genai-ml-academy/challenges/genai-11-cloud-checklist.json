@@ -1,0 +1,26 @@
+{
+  "id": "genai-11-cloud-checklist",
+  "spec": "Place the five cloud ML deployment steps in the correct order: from model validation to production monitoring.",
+  "validation": {
+    "type": "sequence",
+    "description": "Correct position of all 5 steps earns full marks."
+  },
+  "eli_notes": "Correct order: validate model → containerize → configure cloud infra → deploy to staging → enable production monitoring. If wrong, name the misplaced step and explain why skipping it causes real-world incidents.",
+  "hints": [
+    "You can't containerize what isn't validated.",
+    "Staging comes before production — never skip it.",
+    "Monitoring is the last step, not an afterthought."
+  ],
+  "prefilled": {
+    "steps": [
+      { "id": "c1", "label": "Validate model performance meets acceptance thresholds" },
+      { "id": "c2", "label": "Containerize model with dependencies (Docker/OCI image)" },
+      { "id": "c3", "label": "Configure cloud infrastructure (IAM, secrets, autoscaling)" },
+      { "id": "c4", "label": "Deploy to staging environment and run integration tests" },
+      { "id": "c5", "label": "Enable production monitoring, alerting, and rollback plan" }
+    ],
+    "correctOrder": ["c1", "c2", "c3", "c4", "c5"]
+  },
+  "success_text": "Deployment checklist confirmed. Your sequence respects the production risk ladder.",
+  "type": "sequence-completer"
+}

@@ -1,0 +1,108 @@
+{
+  "suite_id": "retrieval-long-context-v1",
+  "run_date": "YYYY-MM-DD",
+  "model": {
+    "provider": "openai|anthropic|google|local",
+    "name": "model-name",
+    "snapshot": "optional-version-or-checkpoint"
+  },
+  "protocol": {
+    "temperature": 0,
+    "max_tokens": 1024,
+    "seed": 42,
+    "judge_model": "optional-judge",
+    "notes": "Keep identical protocol across candidates"
+  },
+  "suites": [
+    {
+      "name": "squad",
+      "dataset_version": "squad-v2",
+      "sample_size": 200,
+      "retrieval": {
+        "enabled": false,
+        "top_k": 0,
+        "index_version": "not-applicable"
+      },
+      "metrics": {
+        "exact_match": 0,
+        "f1": 0,
+        "no_answer_accuracy": 0
+      },
+      "red_lines": {
+        "exact_match_min": 0.7,
+        "f1_min": 0.8
+      }
+    },
+    {
+      "name": "nq_open",
+      "dataset_version": "nq-open-vX",
+      "sample_size": 200,
+      "retrieval": {
+        "enabled": true,
+        "top_k": 5,
+        "index_version": "index-v1"
+      },
+      "metrics": {
+        "exact_match": 0,
+        "f1": 0,
+        "abstain_accuracy": 0
+      },
+      "red_lines": {
+        "exact_match_min": 0.35,
+        "abstain_accuracy_min": 0.8
+      }
+    },
+    {
+      "name": "hotpotqa",
+      "dataset_version": "hotpotqa-vX",
+      "sample_size": 200,
+      "retrieval": {
+        "enabled": true,
+        "top_k": 8,
+        "index_version": "index-v1"
+      },
+      "metrics": {
+        "answer_f1": 0,
+        "supporting_fact_f1": 0,
+        "joint_f1": 0
+      },
+      "red_lines": {
+        "joint_f1_min": 0.28
+      }
+    },
+    {
+      "name": "long_context_needle",
+      "dataset_version": "needle-vX",
+      "sample_size": 150,
+      "context_lengths": [
+        32000,
+        64000,
+        128000
+      ],
+      "needle_positions": [
+        "early",
+        "middle",
+        "late"
+      ],
+      "metrics": {
+        "needle_recall": 0,
+        "position_robustness": 0,
+        "hallucination_rate": 0
+      },
+      "red_lines": {
+        "needle_recall_min": 0.75,
+        "position_robustness_min": 0.65
+      }
+    }
+  ],
+  "decision": {
+    "composite_score": 0,
+    "status": "promote|hold|rollback",
+    "rationale": "Include family-level pass/fail and any red-line breaches"
+  },
+  "artifacts": {
+    "manifest_path": "path/to/run-manifest.json",
+    "errors_path": "path/to/failure-cases.jsonl",
+    "report_path": "path/to/report.md"
+  }
+}

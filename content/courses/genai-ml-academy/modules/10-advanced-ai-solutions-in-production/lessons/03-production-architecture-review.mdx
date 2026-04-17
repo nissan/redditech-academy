@@ -1,0 +1,70 @@
+---
+title: "Production Architecture Review"
+description: "Conduct a structured review of a production AI architecture against reliability, cost, and safety criteria."
+slug: "production-architecture-review"
+duration: 20
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-10-architecture-review"
+missionTitle: "Mission 10-C — Architecture Review"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Advanced AI Solutions in Production concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/10-advanced-ai-solutions-in-production.svg)
+
+> *"We used the most advanced architecture available. We should have used a lookup table."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Advanced AI Solutions in Production | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Architecture fitness and over-engineering
+
+**Context:** An enterprise deployed a multi-agent reasoning system for structured report generation. After 3 months, the team discovered that 70% of queries were simple lookups that a direct database query would handle in 50ms vs 8 seconds.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add a query classifier to route simple lookups to a fast path
+2. redesign the system with a tiered approach
+3. profile all queries and optimise the most common paths first
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Advanced AI Solutions in Production decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

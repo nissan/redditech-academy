@@ -1,0 +1,5 @@
+Quick Recap
+
+High-signal summary to lock in the framework.
+
+Module: 05-text2sql-enterprise-data

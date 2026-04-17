@@ -18,6 +18,12 @@ missionTitle: "Mission 3: The Authorization Request"
 estimatedMinutes: 9
 ---
 
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/02-oauth2.svg)
+
+> *"We stored the token in localStorage. We regret this."*
+
 # Authorization Code Flow with PKCE
 
 The **Authorization Code Flow** is the most secure and widely used OAuth 2.0 flow. Enhanced with **PKCE (Proof Key for Code Exchange)**, it's suitable for both server-side web apps and public clients like mobile apps and SPAs.
@@ -207,3 +213,30 @@ Codes should expire in seconds (typically 60s) and be single-use only.
 - **Web apps**: Store tokens server-side in encrypted sessions
 - **Mobile apps**: Use secure storage (Keychain on iOS, Keystore on Android)
 - **SPAs**: Store in memory, not localStorage (XSS risk)
+
+
+---
+
+## 🎓 Harvard-Style Case Study — Token storage security in OAuth flows
+
+**Context:** An OAuth 2.0 implementation stored the access token in localStorage. An XSS vulnerability on the same domain exfiltrated all tokens within 24 hours of deployment.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Move tokens to httpOnly cookies
+2. add a Content Security Policy that blocks XSS
+3. add token rotation with short expiry
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

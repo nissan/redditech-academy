@@ -1,0 +1,26 @@
+{
+  "id": "genai-12-capstone-submission",
+  "spec": "Place the five production GenAI system design components in the correct order: from problem scoping to incident response.",
+  "validation": {
+    "type": "sequence",
+    "description": "Correct position of all 5 components earns full marks."
+  },
+  "eli_notes": "Correct order: define problem + success metrics → design architecture → write eval contract → specify deployment → write incident runbook. If wrong, name the misplaced component and explain the downstream failure it causes.",
+  "hints": [
+    "You can't evaluate what you haven't defined.",
+    "Architecture precedes deployment spec — always.",
+    "The incident runbook is last because it depends on knowing what can break."
+  ],
+  "prefilled": {
+    "steps": [
+      { "id": "g1", "label": "Define problem statement and measurable success criteria" },
+      { "id": "g2", "label": "Design system architecture (retrieval, generation, guardrails)" },
+      { "id": "g3", "label": "Write evaluation contract (benchmarks, acceptance thresholds)" },
+      { "id": "g4", "label": "Specify deployment pipeline (infra, scaling, rollback)" },
+      { "id": "g5", "label": "Write incident runbook (failure modes, escalation, recovery)" }
+    ],
+    "correctOrder": ["g1", "g2", "g3", "g4", "g5"]
+  },
+  "success_text": "Capstone design document structure accepted. You know how production GenAI systems get built.",
+  "type": "sequence-completer"
+}

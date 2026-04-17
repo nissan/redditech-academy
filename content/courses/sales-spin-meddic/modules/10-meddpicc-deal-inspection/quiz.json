@@ -1,0 +1,63 @@
+{
+  "id": "10-meddpicc-deal-inspection-quiz",
+  "moduleId": "10-meddpicc-deal-inspection",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the main function of a MEDDPICC inspection cadence?",
+      "options": [
+        "Increase meeting frequency without changing criteria",
+        "Standardize evidence-based deal progression decisions",
+        "Replace discovery work",
+        "Reduce stakeholder mapping"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inspection cadence makes progression decisions repeatable and auditable.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Which behavior reflects strong champion-quality assessment?",
+      "options": [
+        "Any enthusiastic contact counts as champion",
+        "Champion status is based on title only",
+        "Champion is scored on influence, access, intent, and political safety",
+        "Champion quality is reviewed only at contract stage"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Champion quality must be observable and rubric-based, not assumed.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "When should a red gate block stage advancement?",
+      "options": [
+        "When close date is near",
+        "When rep confidence is low",
+        "When critical paper-process evidence or competition plan is missing",
+        "When there are too many stakeholders"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Red gates exist to prevent unqualified deals from being forecast as reliable closes.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "Scenario: Legal review start date is unknown, champion access is intermittent, and incumbent discounting has begun. What is the right move?",
+      "options": [
+        "Advance stage to maintain pipeline optics",
+        "Mark upside and wait for next quarter",
+        "Set red gate, assign recovery owners/dates, and rerun inspection after evidence updates",
+        "Offer maximum discount immediately"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Multiple unresolved high-risk signals require explicit recovery actions before progression.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

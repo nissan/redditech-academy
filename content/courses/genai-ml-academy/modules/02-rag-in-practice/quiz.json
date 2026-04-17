@@ -72,6 +72,20 @@
       "explanation": "Citation grounding requires including document identifiers (URL, filename, chunk ID) in the prompt context and explicitly instructing the model to attribute statements to their source documents.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-rag-in-practice"
+    },
+    {
+      "id": "02-rag-in-practice-scenario-q",
+      "question": "Scenario: Your team is applying 'Retrieval-Augmented Generation in Practice' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-rag-in-practice"
     }
   ]
 }

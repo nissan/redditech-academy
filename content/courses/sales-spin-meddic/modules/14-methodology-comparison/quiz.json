@@ -1,0 +1,63 @@
+{
+  "id": "14-methodology-comparison-quiz",
+  "moduleId": "14-methodology-comparison",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the best way to choose a sales methodology?",
+      "options": [
+        "Rep preference",
+        "Deal-shape rules (complexity, ACV, stakeholders, risk)",
+        "Latest trend on social media",
+        "Only manager intuition"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Method selection should be systematic and tied to objective deal signals.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "For high-complexity enterprise motions, which blend is most robust?",
+      "options": [
+        "BANT only",
+        "SPIN only",
+        "SPIN + MEDDPICC + Challenger + message control",
+        "Sandler only"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Complex deals usually require discovery, qualification rigor, commercial insight, and messaging discipline together.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Why define fallback frameworks?",
+      "options": [
+        "To increase process complexity",
+        "To preserve execution quality when deal shape changes",
+        "To avoid inspections",
+        "To remove accountability"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Fallbacks protect quality when opportunities evolve beyond initial assumptions.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "Scenario: Mid-market deal expands into multi-country enterprise with legal/procurement complexity. Best policy action?",
+      "options": [
+        "Keep original lightweight framework",
+        "Route to high-complexity playbook and enforce MEDDPICC-led evidence gates",
+        "Pause indefinitely",
+        "Skip buyer-process mapping"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Expanded complexity requires escalation to stronger framework controls and governance.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+graph TB
+    A["Token count nears limit\n(reserveTokensFloor threshold)"] --> B{"Memory flush\nenabled?"}
+    B -->|Yes| C["Silent flush turn:\nagent writes important notes\nto memory/YYYY-MM-DD.md"]
+    B -->|No| D
+    C --> D["Compaction runs:\nolder messages summarized"]
+    D --> E["New summary prepended\nto transcript"]
+    E --> F["Older raw messages\nreplaced by summary on disk"]
+    F --> G["Agent turn continues\n(or retries on next message)"]

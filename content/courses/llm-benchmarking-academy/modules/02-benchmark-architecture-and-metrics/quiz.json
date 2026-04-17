@@ -1,0 +1,63 @@
+{
+  "id": "02-benchmark-architecture-and-metrics-quiz",
+  "moduleId": "02-benchmark-architecture-and-metrics",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does NQ-open primarily stress-test in an eval stack?",
+      "options": [
+        "Long-context position robustness",
+        "Open-domain factual retrieval and short answer correctness",
+        "Instruction formatting compliance",
+        "Code execution safety"
+      ],
+      "correctAnswer": 1,
+      "explanation": "NQ-open is primarily used for open-domain factual retrieval QA.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Why is HotpotQA complementary to NQ-open?",
+      "options": [
+        "It replaces retrieval benchmarks entirely",
+        "It measures multi-hop evidence synthesis, not just single-fact lookup",
+        "It only tests latency",
+        "It is a pure safety benchmark"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HotpotQA adds multi-hop reasoning pressure beyond single-fact retrieval.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "What is the core value of long-context needle tests in benchmark architecture?",
+      "options": [
+        "They reduce compute cost",
+        "They directly test whether a model can recover key facts buried in long context",
+        "They replace human evaluation",
+        "They only validate UI rendering"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Needle tests focus on recall and utilization across long contexts.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "A team scores well on NQ-open but fails contract QA requiring cross-section reasoning across long docs. What is the best benchmark fix?",
+      "options": [
+        "Increase NQ-open sample size only",
+        "Add HotpotQA and long-context needle suites with separate thresholds",
+        "Remove all retrieval benchmarks",
+        "Use only one blended score"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The failure pattern indicates missing multi-hop and long-context benchmark coverage.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

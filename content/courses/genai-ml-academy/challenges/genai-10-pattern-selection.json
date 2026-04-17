@@ -1,0 +1,20 @@
+{
+  "id": "genai-10-pattern-selection",
+  "type": "json-editor",
+  "title": "Mission 10-B \u2014 Pattern Selection",
+  "description": "Select and justify the appropriate production AI pattern for a given use case from: RAG, agent, fine-tune, hybrid.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 10-B \u2014 Pattern Selection complete.",
+  "points": 100
+}

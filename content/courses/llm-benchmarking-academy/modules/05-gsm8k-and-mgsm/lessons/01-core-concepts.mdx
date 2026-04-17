@@ -1,0 +1,84 @@
+---
+title: "GSM8K and MGSM for Reasoning Fidelity: Core Concepts"
+description: "Evaluate arithmetic and multilingual reasoning robustness with GSM8K and MGSM."
+slug: "core-concepts"
+duration: 26
+order: 1
+keyTakeaways:
+  - "Benchmark architecture determines what a score means"
+  - "Benchmark choice must follow deployment risk"
+  - "Interpretation quality matters as much as raw score"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-05-multilingual-eval"
+missionTitle: "Mission — 05 Gsm8K And Mgsm"
+estimatedMinutes: 15
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/05-gsm8k-and-mgsm.svg)
+
+> *"The model solved 8-step math problems. It got the tip calculation wrong at dinner."*
+
+# GSM8K and MGSM for Reasoning Fidelity: Core Concepts
+
+## Quick Recap
+- GSM8K tracks arithmetic chain accuracy in natural language word problems.
+- MGSM reveals whether reasoning fidelity persists across languages.
+- Answer-only accuracy can hide brittle reasoning paths and shortcut behavior.
+
+## Concept Clarity
+GSM8K is a compact, interpretable benchmark for reasoning consistency, especially under prompt variations. MGSM extends this across languages where translation artifacts, number formatting, and phrasing changes can expose unstable reasoning behavior.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Use case + risk] --> B[Benchmark family]
+  B --> C[Protocol + scoring]
+  C --> D[Result interpretation]
+  D --> E[Promotion or hold]
+```
+
+## Applied Case
+A fintech assistant passed English arithmetic tests but failed in Indonesian and Spanish customer prompts due to parsing assumptions. Adding MGSM-like multilingual checks reduced critical numeric misinterpretations in production QA.
+
+## Practical Application Checklist
+1. Define the deployment decision this benchmark should influence.
+2. State one blind spot this benchmark will not cover.
+3. Pair with at least one complementary benchmark family.
+4. Record thresholds and rollback conditions before comparing candidates.
+
+## Primary References
+- https://arxiv.org/abs/2110.14168
+- https://arxiv.org/abs/2210.03057
+
+## Anti-Pattern to Avoid
+Relying on single-prompt GSM8K runs and calling it robust reasoning.
+
+---
+
+## 🎓 Harvard-Style Case Study — Multilingual eval coverage and market readiness
+
+**Context:** A multilingual product team evaluated their model on GSM8K (English only) and shipped to 12 markets. In 3 non-English markets, math reasoning degraded significantly. MGSM scores for those languages were never checked.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add MGSM coverage for all target languages before shipping
+2. add a language-specific regression gate
+3. require MGSM parity within 5 points of English baseline
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

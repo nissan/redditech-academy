@@ -1,0 +1,22 @@
+{
+  "id": "07-failure-postmortems",
+  "slug": "07-failure-postmortems",
+  "order": 7,
+  "title": "Failure Case Studies: What Broke",
+  "description": "Analyze failed sales motions to create prevention guardrails.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "Failure Case Studies: What Broke Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed Failure Case Studies: What Broke"
+  },
+  "learningObjectives": [
+    "Explain the core model used in Failure Case Studies: What Broke",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "06-growth-wins"
+  ]
+}

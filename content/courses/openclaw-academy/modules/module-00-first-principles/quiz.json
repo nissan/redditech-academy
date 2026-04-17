@@ -1,0 +1,44 @@
+{
+  "moduleId": "openclaw-first-principles",
+  "questions": [
+    {
+      "id": "oc-q1",
+      "question": "What is the OpenClaw Gateway's primary role?",
+      "type": "multiple-choice",
+      "options": [
+        "Execute LLM inference requests",
+        "Own all channel connections and route messages to agents",
+        "Store conversation history",
+        "Manage API key rotation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Gateway is the long-running process that owns all connections, creates sessions, and routes messages to the appropriate agent."
+    },
+    {
+      "id": "oc-q2",
+      "question": "What is the correct order of message processing in OpenClaw?",
+      "type": "multiple-choice",
+      "options": [
+        "Agent \u2192 Channel \u2192 Gateway \u2192 Tool \u2192 Response",
+        "Channel \u2192 Gateway \u2192 Agent \u2192 Tool \u2192 Response",
+        "Gateway \u2192 Channel \u2192 Tool \u2192 Agent \u2192 Response",
+        "Tool \u2192 Agent \u2192 Gateway \u2192 Channel \u2192 Response"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Messages flow: Channel receives \u2192 Gateway creates session \u2192 Agent processes \u2192 Tool executes (if needed) \u2192 Response returns via Channel."
+    },
+    {
+      "id": "oc-q3",
+      "question": "What is the minimum required configuration for a working OpenClaw deployment?",
+      "type": "multiple-choice",
+      "options": [
+        "Channel + Model + Agent persona (SOUL.md)",
+        "Channel + Database + API gateway",
+        "Model + Memory + Tool manifest",
+        "Gateway + Webhook + Cloud storage"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The minimum viable OpenClaw setup needs one channel (messaging platform), one model (LLM provider), and an agent persona defined in SOUL.md."
+    }
+  ]
+}

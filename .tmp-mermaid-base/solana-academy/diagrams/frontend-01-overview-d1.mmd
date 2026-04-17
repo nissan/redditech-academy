@@ -1,0 +1,6 @@
+flowchart LR
+  A[User clicks action] --> B[Wallet signature prompt]
+  B --> C[Pending confirmation]
+  C --> D{Confirmed?}
+  D -- Yes --> E[Refresh account state + success]
+  D -- No --> F[Show recoverable error + retry path]

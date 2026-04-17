@@ -1,0 +1,22 @@
+{
+  "id": "07-benchmark-selection-and-scorecards",
+  "slug": "07-benchmark-selection-and-scorecards",
+  "order": 7,
+  "title": "Benchmark Portfolio Design and Scorecards",
+  "description": "Create a benchmark portfolio that reflects your product reality and risk envelope.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Benchmark Portfolio Design and Scorecards Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed Benchmark Portfolio Design and Scorecards"
+  },
+  "learningObjectives": [
+    "Map product requirements to benchmark families",
+    "Build weighted benchmark scorecards",
+    "Set promotion thresholds with confidence intervals"
+  ],
+  "prerequisiteModules": [
+    "06-ifeval-and-ifbench"
+  ]
+}

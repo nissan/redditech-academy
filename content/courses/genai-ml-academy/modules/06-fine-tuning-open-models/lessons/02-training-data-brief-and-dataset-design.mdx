@@ -1,0 +1,70 @@
+---
+title: "Training Data Brief and Dataset Design"
+description: "Write a training brief for a fine-tuning run: task definition, dataset design, quality criteria, and known failure modes."
+slug: "training-data-brief-and-dataset-design"
+duration: 20
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "genai-06-training-brief"
+missionTitle: "Mission 06-B — Training Brief"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Fine-Tuning Open Models concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/06-fine-tuning-open-models.svg)
+
+> *"We fine-tuned the model. It now confidently does the wrong thing faster."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+{}
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Fine-Tuning Open Models | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Training data balance and alignment
+
+**Context:** A team fine-tuned Llama for customer support. The training dataset was 80% positive examples. The fine-tuned model refused to acknowledge product defects — which was not in the training objective.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add adversarial negative examples to the training set
+2. add a post-generation safety check
+3. revert to a prompted base model with a defect-acknowledgement system prompt
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Fine-Tuning Open Models decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

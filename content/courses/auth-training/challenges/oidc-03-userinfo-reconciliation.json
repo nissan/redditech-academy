@@ -1,0 +1,22 @@
+{
+  "id": "oidc-03-userinfo-reconciliation",
+  "spec": "Complete the reconciliation JSON. Scenario: The app has a validated ID Token and then calls UserInfo. Ensure identity consistency and safe claim usage before creating/updating the local profile.",
+  "validation": {
+    "must_have": [
+      { "field": "reconciliation.primary_identity_key", "acceptable_values": ["sub", "subject"] },
+      { "field": "reconciliation.checks", "must_contain": ["userinfo.sub must match id_token.sub", "reject mismatch"] },
+      { "field": "reconciliation.claim_policy", "must_contain": ["id token for auth", "userinfo for profile enrichment"] },
+      { "field": "reconciliation.token_requirements", "must_contain": ["openid scope", "access token required"] }
+    ]
+  },
+  "eli_notes": "Pass when learner enforces sub-claim consistency and clear separation of responsibilities: ID Token proves authentication, UserInfo enriches claims. Fail if they allow profile linking without sub-match checks.",
+  "hints": [
+    "Never link accounts by email alone, use subject identifier consistency.",
+    "ID Token answers 'who authenticated'; UserInfo adds optional profile claims.",
+    "On mismatch between ID Token sub and UserInfo sub, stop and reject."
+  ],
+  "prefilled": {
+    "template": "{\n  \"reconciliation\": {\n    \"primary_identity_key\": \"__FILL_IN__\",\n    \"token_requirements\": [\"__FILL_IN__\"],\n    \"checks\": [\"__FILL_IN__\"],\n    \"claim_policy\": [\"__FILL_IN__\"],\n    \"failure_action\": \"__FILL_IN__\"\n  }\n}"
+  },
+  "success_text": "Reconciliation policy accepted. Identity proof and profile enrichment are now safely separated and consistent."
+}

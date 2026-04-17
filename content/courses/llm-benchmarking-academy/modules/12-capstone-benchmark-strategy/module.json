@@ -1,0 +1,22 @@
+{
+  "id": "12-capstone-benchmark-strategy",
+  "slug": "12-capstone-benchmark-strategy",
+  "order": 12,
+  "title": "Capstone: Production Benchmark Strategy",
+  "description": "Deliver a full benchmarking strategy for a target LLM use case.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Capstone: Production Benchmark Strategy Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed Capstone: Production Benchmark Strategy"
+  },
+  "learningObjectives": [
+    "Assemble an end-to-end benchmark architecture",
+    "Defend metric choices and thresholds",
+    "Present rollout and governance plan"
+  ],
+  "prerequisiteModules": [
+    "11-retrieval-and-long-context-evals"
+  ]
+}

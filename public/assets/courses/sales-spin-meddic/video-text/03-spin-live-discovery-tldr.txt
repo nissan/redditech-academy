@@ -1,0 +1,5 @@
+TLDR Summary
+
+Multi-thread stakeholders before proposal stage.
+
+Module: 03-spin-live-discovery

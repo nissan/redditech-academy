@@ -1,0 +1,107 @@
+---
+title: "Dedicated Module: Retrieval and Long-Context Evals: Core Concepts"
+description: "How to evaluate retrieval fidelity, multi-hop synthesis, and long-context recall with SQuAD, NQ-open, HotpotQA, and needle-style tests."
+slug: "core-concepts"
+duration: 28
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeId: "llm-01-retrieval-suite-design"
+missionTitle: "Mission 01 — Retrieval Eval Suite Design"
+estimatedMinutes: 18
+keyTakeaways:
+  - "SQuAD, NQ-open, HotpotQA, and long-context needle tests are complementary, not interchangeable"
+  - "Family-specific thresholds prevent misleading blended-score promotions"
+  - "Failure analysis must include retrieval evidence and position-robustness slices"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/11-retrieval-and-long-context-evals.svg)
+
+> *"Context window: 128k tokens. The answer was in token 127,999. The model started hallucinating at token 4,000."*
+
+# Dedicated Module: Retrieval and Long-Context Evals: Core Concepts
+
+## Quick Recap
+- **SQuAD** tests closed-context extractive QA where evidence is already provided.
+- **NQ-open** tests open-domain factual retrieval and short-answer correctness.
+- **HotpotQA** tests multi-hop reasoning across multiple evidence passages.
+- **Long-context needle tests** stress context utilization and position robustness at large context windows.
+
+## Concept Clarity
+Most teams under-measure retrieval and context handling. They rely on generic reasoning benchmarks, then get surprised in production by citation errors, missed facts in long docs, or shallow synthesis failures.
+
+This dedicated module separates the capability families and enforces explicit gates:
+- Closed-context QA gate (SQuAD slice)
+- Retrieval quality gate (NQ-open slice)
+- Multi-hop synthesis gate (HotpotQA slice)
+- Long-context recall gate (needle-style slice with early/mid/late position checks)
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Candidate model] --> B[SQuAD suite]
+  A --> C[NQ-open suite]
+  A --> D[HotpotQA suite]
+  A --> E[Long-context needle suite]
+  B --> F[Closed-context QA subscore]
+  C --> G[Retrieval subscore]
+  D --> H[Multi-hop subscore]
+  E --> I[Context robustness subscore]
+  F --> J[Promotion board]
+  G --> J
+  H --> J
+  I --> J
+  J --> K[Promote / Hold / Rollback]
+```
+
+## Applied Case
+A support copilot looked strong on aggregate benchmark score but failed real escalations requiring document-grounded responses. Dedicated retrieval and long-context slices exposed poor recall in late-context sections and weak evidence chaining, preventing a high-risk promotion.
+
+## Practical Application Checklist
+1. Run all four suites under a fixed protocol and store full run manifests.
+2. Report family-level subscores before any blended composite.
+3. Set red-line thresholds for retrieval, multi-hop, and long-context robustness.
+4. Include error buckets: retrieval miss, synthesis miss, position miss, hallucinated link.
+5. Keep representative failure examples for manual QA.
+
+## Primary References
+- https://arxiv.org/abs/1606.05250
+- https://aclanthology.org/Q19-1026/
+- https://aclanthology.org/D18-1259/
+- https://arxiv.org/abs/2307.03172
+
+## Downloadable Practical Artifacts
+- [Retrieval + Long-Context Eval Template (JSON)](/assets/courses/llm-benchmarking-academy/downloads/retrieval-long-context-eval-template.json)
+- [Eval Run Manifest Template (JSON)](/assets/courses/llm-benchmarking-academy/downloads/eval-run-manifest-template.json)
+- [Benchmark Portfolio Scorecard (CSV)](/assets/courses/llm-benchmarking-academy/downloads/benchmark-portfolio-scorecard.csv)
+
+## Anti-Pattern to Avoid
+Approving model promotion on a high composite score when any retrieval or long-context red-line gate fails.
+
+---
+
+## 🎓 Harvard-Style Case Study — Long-context and retrieval evaluation
+
+**Context:** A RAG system was evaluated on short-context retrieval. In production, long documents caused the model to lose context and hallucinate. The eval suite had no test cases longer than 2,000 tokens.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add long-context test cases (8k, 32k, 128k) to the eval suite
+2. add a needle-in-a-haystack test
+3. add a retrieval quality gate that checks context relevance before generation
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

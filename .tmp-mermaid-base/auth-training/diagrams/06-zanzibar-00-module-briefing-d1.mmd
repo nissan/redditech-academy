@@ -1,0 +1,6 @@
+graph TD
+  U[User/Client] --> A[Authenticate Identity]
+  A --> T[Issue Token/Credential]
+  T --> P[Policy Evaluation]
+  P --> R[Resource Access Decision]
+  R --> O[Audit + Monitoring]

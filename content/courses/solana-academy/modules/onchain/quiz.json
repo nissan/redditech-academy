@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "o1",
-      "question": "PDAs are primarily used for:",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "UI routing",
-        "Deterministic program-owned addresses",
-        "Wallet backups",
-        "RPC failover"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "PDAs provide deterministic addresses controlled by program logic.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "o2",
-      "question": "What should account constraints enforce?",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "Brand style",
-        "Authority and state invariants",
-        "Explorer aesthetics",
-        "Marketing copy"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "Constraints encode safety rules for authority and valid state transitions.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "o3",
-      "question": "A robust instruction contract should include:",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "Unvalidated inputs",
-        "Expected accounts and explicit failure paths",
-        "No signer checks",
-        "Only happy path comments"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Clear account requirements and failures improve reliability and security.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "o4",
-      "question": "Why test one failure path for each instruction?",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "To increase compile time",
-        "To prove invalid transitions are blocked",
-        "To avoid local validator",
-        "To skip audits"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "Failure-path tests protect invariant boundaries.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

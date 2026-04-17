@@ -1,0 +1,22 @@
+{
+  "id": "12-qualification-models",
+  "slug": "12-qualification-models",
+  "order": 12,
+  "title": "Qualification Alternatives: BANT, ANUM, SPICED",
+  "description": "Choose and apply lighter qualification models by deal complexity and sales motion.",
+  "difficulty": "advanced",
+  "estimatedHours": 1.6,
+  "badge": {
+    "name": "Qualification Models Badge",
+    "icon": "📈",
+    "description": "Completed Qualification Alternatives"
+  },
+  "learningObjectives": [
+    "Differentiate BANT, ANUM, and SPICED use cases",
+    "Select qualification model by segment and ACV",
+    "Avoid under-qualifying complex committee deals"
+  ],
+  "prerequisiteModules": [
+    "11-challenger-selling"
+  ]
+}

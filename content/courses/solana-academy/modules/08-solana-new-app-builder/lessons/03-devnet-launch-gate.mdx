@@ -1,0 +1,87 @@
+---
+title: "Devnet Launch Gate"
+description: "Sequence the final go-live checks so fast builds still ship safely."
+slug: "devnet-launch-gate"
+duration: 20
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-03-devnet-launch-gate"
+missionTitle: "Mission 03 — Devnet Go/No-Go"
+estimatedMinutes: 14
+keyTakeaways:
+  - "Order launch checks from validation to release decision"
+  - "Run simulation and test gates before promotion"
+  - "Capture rollback readiness before go-live"
+---
+
+# Devnet Launch Gate
+
+## 😄 Meme Opener
+**Meme concept:** "All checks passed, except the one we forgot to run in the right order."  
+**Why this hurts in real life:** launch failures are often sequencing failures, not capability failures.
+
+![Module meme](/assets/courses/solana-academy/memes/08-solana-new-app-builder.png)
+
+## Quick Recap
+The fastest teams still have a release sequence. The difference is they make the sequence explicit and repeatable.
+
+## Concept Clarity
+A launch gate is not bureaucracy. It is a compression tool for risk.
+
+## What this mission tests
+You will put critical release steps in the correct order, from devnet validation through release decision.
+
+## Why this matters
+Outages usually come from skipped sequencing, not missing intelligence. If the order is wrong, good engineering work can still fail in production.
+
+## Harvard-Style Case
+### Case: Devnet confidence, mainnet incident
+**Context:** A team completed feature development and green tests, but pushed to launch without a strict go/no-go sequence tied to rollback readiness.
+
+**Decision point:** Keep a flexible launch checklist, or enforce a strict ordered gate (simulation, signer policy verification, incident owner confirmation, rollback dry run, release sign-off)?
+
+**Action taken:** They instituted a hard ordered gate and required explicit owner sign-off at each stage.
+
+**Outcome:** A mismatched environment dependency was caught before release, preventing a production outage.
+
+**Discussion questions:**
+1. Which launch checks are currently optional but should be mandatory in your flow?
+2. Who has final authority to block release when one gate fails?
+
+**Sources:**
+- https://solana.com/docs/intro/installation
+- https://solana.com/developers/courses
+
+
+---
+
+## 🎓 Harvard-Style Case Study — Launch Sequence Failure Despite Green Tests
+
+**Context:** A Solana team passed all automated tests on devnet. Pressured to ship on a deadline, they skipped the ordered launch gate checklist. A config mismatch between the devnet and mainnet IDL caused the program to reject valid client transactions on launch day.
+
+**The tension:** Ship on the announced date vs enforce a hard gate with rollback dry-run evidence.
+
+**Decision options:**
+1. Launch now: accept the risk, have the team on-call for a hotfix window
+2. Partial launch: enable read-only operations only, gate write operations until config is verified
+3. Enforce the gate: delay 24h, run the full go/no-go checklist with documented sign-off
+
+**What happened:** Option 1 led to a 6-hour outage and a community trust setback. Option 3 would have caught the config mismatch in under 30 minutes.
+
+**Class focus:** Operational sequencing, ownership culture, no-go criteria.
+
+**Discussion questions:**
+1. Name three non-negotiable checks that must pass before any mainnet program deployment — regardless of deadline pressure.
+2. Who owns the final go/no-go decision? How should dissent be handled?
+3. Write a one-page launch gate template for a Solana devnet-to-mainnet promotion.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT — paste the case context above first.
+
+**Operator Board:** "Simulate a go/no-go operations board with three personas: engineering lead, security lead, and product lead. Debate the launch decision from this case and end with a majority decision plus dissent note."
+
+**Socratic Coach:** "Act as a strict but supportive Solana architecture coach. Ask me one question at a time about this case, force me to justify each decision with risk controls, and do not let me skip tradeoffs. After 10 questions, grade me on clarity, correctness, and operational realism."

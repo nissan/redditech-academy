@@ -1,0 +1,20 @@
+{
+  "id": "llm-00-first-principles",
+  "type": "json-editor",
+  "title": "Mission 00 \u2014 First Principles",
+  "description": "Fill in the first-principles benchmarking assessment.",
+  "starterCode": "{\"what_does_a_benchmark_actually_measure\":\"\",\"why_a_high_score_might_not_matter\":\"\",\"how_would_you_catch_a_silent_quality_regression\":\"\",\"one_thing_you_would_always_test_before_shipping\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "what_does_a_benchmark_actually_measure"
+    }
+  ],
+  "hints": [
+    "Think: what does the test set look like vs your real users?",
+    "Consider: what can a benchmark not measure by design?",
+    "What signal would tell you the model got worse?"
+  ],
+  "successMessage": "First Principles complete. You understand why benchmarks lie.",
+  "points": 150
+}

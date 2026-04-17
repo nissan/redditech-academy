@@ -1,0 +1,66 @@
+---
+title: "Developer Tooling + Environments — Implementation Lab"
+description: "CLI, local environments, deterministic tooling, and team workflow hygiene."
+slug: "tooling-implementation-lab"
+duration: 32
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-02-tooling-implementation"
+missionTitle: "Mission 02B — Implementation Lab"
+estimatedMinutes: 30
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
+
+# Developer Tooling + Environments — Implementation Lab
+
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
+
+![Module meme](/assets/courses/solana-academy/memes/tooling.png)
+
+## Quick Recap
+- Focus area: CLI, local environments, deterministic tooling, and team workflow hygiene.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
+
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
+
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
+
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
+
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
+
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
+
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
+
+## Primary References
+- https://solana.com/docs/intro/installation
+- https://docs.anza.xyz/cli/usage
+- https://solana.com/docs/intro/quick-start/writing-to-network
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/02-tooling-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/02-tooling-quality-matrix.csv)
+
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

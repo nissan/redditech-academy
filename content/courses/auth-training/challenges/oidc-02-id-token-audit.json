@@ -1,0 +1,23 @@
+{
+  "id": "oidc-02-id-token-audit",
+  "spec": "Audit this ID Token and record the security findings. Identify what is wrong and what must be fixed before trusting it for authentication.",
+  "validation": {
+    "must_have": [
+      { "field": "findings", "finding_present": "alg=none is unacceptable for trusted ID Tokens" },
+      { "field": "findings", "finding_present": "exp claim is expired" },
+      { "field": "findings", "finding_present": "aud mismatch with expected client_id" }
+    ]
+  },
+  "eli_notes": "Pass if learner identifies the three critical failures: unsigned/alg=none, expired token, and audience mismatch. They should recommend signature verification with issuer JWKS, expiration checks, and strict aud/client_id match.",
+  "hints": [
+    "Start with the header: algorithm choice can immediately invalidate trust.",
+    "Then inspect temporal validity (exp) and intended recipient (aud).",
+    "A token can look structurally valid yet still be unsafe for authentication."
+  ],
+  "environment": "jwt-inspector",
+  "prefilled": {
+    "mode": "audit",
+    "jwt": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2lkcC5leGFtcGxlLmNvbSIsInN1YiI6InVzZXItMTIzIiwiYXVkIjoiY2xpZW50X3dyb25nXzk5OSIsImV4cCI6MTcwMDAwMDAwMCwiaWF0IjoxNjk5OTk2NDAwfQ.UNSIGNED"
+  },
+  "success_text": "Audit accepted. You blocked a high-risk token before it could become an authentication incident."
+}

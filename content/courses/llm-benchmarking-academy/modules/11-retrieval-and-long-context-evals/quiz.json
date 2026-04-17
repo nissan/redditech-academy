@@ -1,0 +1,63 @@
+{
+  "id": "11-retrieval-and-long-context-evals-quiz",
+  "moduleId": "11-retrieval-and-long-context-evals",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "How should SQuAD and NQ-open be used together in a retrieval QA eval stack?",
+      "options": [
+        "Use only one, they measure the same thing",
+        "Use SQuAD for closed-context baseline and NQ-open for open-domain retrieval reality",
+        "Use SQuAD only for multilingual reasoning",
+        "Use NQ-open only for UI formatting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SQuAD and NQ-open are complementary, closed-context vs open-domain retrieval QA signals.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Why is HotpotQA important even when NQ-open scores are strong?",
+      "options": [
+        "It adds multi-hop reasoning pressure beyond single-fact lookup",
+        "It replaces long-context tests",
+        "It only measures latency",
+        "It is identical to NQ-open"
+      ],
+      "correctAnswer": 0,
+      "explanation": "HotpotQA helps detect failures in combining evidence across multiple sources.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "What is the main governance value of long-context needle-style tests?",
+      "options": [
+        "They reduce compute costs",
+        "They test whether models recover key facts across long context and varied positions",
+        "They replace human QA entirely",
+        "They only improve formatting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Needle tests directly stress context utilization and position robustness.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "A candidate model leads on composite score but fails long-context robustness threshold. What is the correct decision?",
+      "options": [
+        "Promote anyway due to high average",
+        "Hold promotion and investigate red-line failure",
+        "Drop long-context tests from reporting",
+        "Increase sampling temperature"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Red-line threshold failures should block promotion despite strong blended scores.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

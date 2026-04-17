@@ -1,0 +1,20 @@
+{
+  "id": "openclaw-00-problem-framing",
+  "type": "json-editor",
+  "title": "Mission 00-A \u2014 Problem Framing",
+  "description": "Fill in the problem framing document with your own understanding of what OpenClaw solves.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "problem_statement"
+    }
+  ],
+  "hints": [
+    "Think about the core problem from a user perspective",
+    "Each field should explain your reasoning, not just repeat the question",
+    "There is no single right answer \u2014 your reasoning matters"
+  ],
+  "successMessage": "Well done \u2014 Mission 00-A \u2014 Problem Framing complete.",
+  "points": 150
+}

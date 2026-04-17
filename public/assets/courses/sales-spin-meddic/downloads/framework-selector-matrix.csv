@@ -1,0 +1,4 @@
+segment,acv_range,stakeholder_complexity,compliance_risk,primary_framework,fallback_framework,escalation_trigger
+smb,low,low,low,SPIN+BANT,SPIN+ANUM,stakeholder_count>3
+mid_market,medium,medium,medium,SPIN+ANUM/SPICED,SPIN+MEDDPICC,legal_or_procurement_gate_present
+enterprise,high,high,high,SPIN+MEDDPICC+Challenger,SPIN+MEDDPICC+Message_Control,multi_stage_paper_process_or_no_decision_risk

@@ -1,20 +1,20 @@
 {
   "id": "testing",
   "slug": "testing",
-  "order": 6,
-  "title": "Testing + Debugging",
-  "description": "Create reliable test coverage and debugging workflow for Solana apps.",
-  "difficulty": "intermediate",
-  "estimatedHours": 1.2,
+  "order": 7,
+  "title": "Testing + Quality Gates",
+  "description": "Unit/integration/e2e patterns, adversarial tests, and release-blocking quality gates.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.2,
   "badge": {
     "name": "Testing + Debugging Badge",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed Testing + Debugging"
   },
   "learningObjectives": [
-    "Write core happy-path and failure-path tests",
-    "Diagnose common transaction/program failures",
-    "Set a repeatable debug checklist"
+    "Explain key architecture and risk boundaries for this domain",
+    "Implement a mission-style plan with deterministic acceptance checks",
+    "Apply adversarial gates before promotion to higher environments"
   ],
   "prerequisiteModules": [
     "frontend"

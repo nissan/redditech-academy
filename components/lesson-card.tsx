@@ -41,21 +41,21 @@ export function LessonCard({
           isCompleted ? "border-green-500/50 bg-green-500/5" : ""
         }`}
       >
-        <CardHeader>
-          <div className="flex items-start justify-between gap-2">
-            <div className="flex-1">
-              <CardTitle className="flex items-center gap-2 text-base group-hover:text-orange-500">
-                {isCompleted && <span className="text-green-400">✓</span>}
-                <span>
+        <CardHeader className="pb-2 sm:pb-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <CardTitle className="flex items-start gap-2 text-sm sm:text-base group-hover:text-orange-500 leading-snug">
+                {isCompleted && <span className="text-green-400 flex-shrink-0 mt-0.5">✓</span>}
+                <span className="break-words">
                   Lesson {lesson.order}: {lesson.title}
                 </span>
               </CardTitle>
-              <CardDescription className="mt-1 line-clamp-2">
+              <CardDescription className="mt-1 line-clamp-2 text-xs sm:text-sm">
                 {lesson.description}
               </CardDescription>
             </div>
-            <div className="text-xs text-muted-foreground whitespace-nowrap">
-              {lesson.duration} min
+            <div className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0 mt-0.5">
+              {lesson.duration}m
             </div>
           </div>
         </CardHeader>

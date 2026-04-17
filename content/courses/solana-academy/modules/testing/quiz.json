@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "te1",
-      "question": "Most valuable baseline test mix is:",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "UI snapshots only",
-        "Happy-path plus critical failure-path integration tests",
-        "No automated tests",
-        "Only linting"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "Core integration tests provide release confidence for chain behavior.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "te2",
-      "question": "What reduces flaky tests most?",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "Random sleeps",
-        "Deterministic setup and explicit assertions",
-        "More console logs only",
-        "Skipping cleanup"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "Deterministic fixtures and assertions remove timing ambiguity.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "te3",
-      "question": "Program logs are useful because they:",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "Replace tests",
-        "Provide precise failure diagnostics",
-        "Hide transaction errors",
-        "Increase gas"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Logs help identify failed constraints and instruction paths quickly.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "te4",
-      "question": "A good debug runbook should contain:",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "Only owner names",
-        "Repro steps, expected output, and likely root-cause checks",
-        "Only screenshots",
-        "Only links"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "A structured runbook speeds triage and reduces repeated debugging.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

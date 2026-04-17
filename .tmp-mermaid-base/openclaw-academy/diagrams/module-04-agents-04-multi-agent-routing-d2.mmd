@@ -1,0 +1,7 @@
+graph TB
+    MAIN["Main Agent\n(coordinator)"] -->|spawn| W1["Worker 1\n(data analysis)"]
+    MAIN -->|spawn| W2["Worker 2\n(content writing)"]
+    MAIN -->|spawn| W3["Worker 3\n(code review)"]
+    W1 -->|report| MAIN
+    W2 -->|report| MAIN
+    W3 -->|report| MAIN

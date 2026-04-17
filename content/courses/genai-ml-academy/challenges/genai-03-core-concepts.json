@@ -1,0 +1,23 @@
+{
+  "id": "genai-03-core-concepts",
+  "spec": "Describe an agent topology for a two-step research + synthesis task: define agent roles, handoff contracts, and failure boundaries.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.answer",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "Evaluate whether the answer demonstrates genuine understanding of the concept, not just surface-level recall.",
+  "hints": [
+    "Focus on practical tradeoffs, not textbook definitions.",
+    "Name specific failure modes or risks.",
+    "Your reasoning matters as much as the answer."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"answer\": \"__FILL_IN__\"\n  }\n}"
+  },
+  "success_text": "Good answer. Your reasoning is grounded in production reality.",
+  "type": "json-editor"
+}

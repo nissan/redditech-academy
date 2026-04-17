@@ -1,0 +1,20 @@
+{
+  "id": "genai-04-langgraph-config",
+  "type": "json-editor",
+  "title": "Mission 04-C \u2014 LangGraph Config",
+  "description": "Configure a LangGraph workflow with checkpointing, memory, and interruption handling.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 04-C \u2014 LangGraph Config complete.",
+  "points": 100
+}

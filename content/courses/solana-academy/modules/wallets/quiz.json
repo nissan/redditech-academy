@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "w1",
-      "question": "What should never be sent to the frontend in plain text?",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "Public key",
-        "Private key / seed phrase",
-        "Program ID",
-        "RPC URL"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "Private keys and seed phrases must remain protected and never exposed client-side.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "w2",
-      "question": "What is a secure wallet connection pattern?",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "Auto-sign every request",
-        "Prompt explicit user approval for each signature",
-        "Share one key across users",
-        "Store seed in localStorage"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "User-approved signing is core to safe wallet UX.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "w3",
-      "question": "Which boundary is critical in wallet-integrated apps?",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "Hide transaction intent",
-        "Separate read operations from signing operations",
-        "Disable error messages",
-        "Reuse dev key in production"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Clear read vs sign boundaries reduce accidental risk.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "w4",
-      "question": "What is a good devnet funding practice?",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "Hardcode private keys in repo",
-        "Use controlled airdrop flow and environment separation",
-        "Reuse mainnet secrets",
-        "Disable logs"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "Environment separation and controlled funding avoid preventable security issues.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

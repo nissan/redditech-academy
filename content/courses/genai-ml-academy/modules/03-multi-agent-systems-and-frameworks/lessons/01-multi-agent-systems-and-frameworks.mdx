@@ -1,3 +1,26 @@
+---
+title: "Module 3 — Multi-Agent Systems and AI Agent Frameworks (Intermediate)"
+description: "Applied lesson for 03 multi agent systems and frameworks"
+slug: "01-multi-agent-systems-and-frameworks"
+duration: 20
+order: 1
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "genai-03-core-concepts"
+missionTitle: "Mission 3 — Core Concepts"
+estimatedMinutes: 20
+---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A production RAG system for a legal document review team — reliable, evaluated, and observable.
+**What this module adds:** Add an agent layer that can reason across multiple steps and tools.
+**What you'll have at the end:** A concrete, testable piece of the complete system.
+
+> *Every architecture decision carries forward. Get it right before you build on top of it.*
+
 # Module 3 — Multi-Agent Systems and AI Agent Frameworks (Intermediate)
 
 ## Why it matters
@@ -99,3 +122,87 @@ See `content/quizzes/03-multi-agent-systems-and-frameworks.json`
 - [CrewAI docs](https://docs.crewai.com/)
 - [AutoGen docs](https://microsoft.github.io/autogen/)
 - [OpenAI function calling](https://platform.openai.com/docs/guides/function-calling)
+
+
+<!-- VNEXT_AUGMENTATION -->
+## vNext Lesson Augmentation
+
+### Meme opener
+![Multi-Agent Systems and AI Agent Frameworks meme](/assets/courses/genai-ml-academy/memes/03-multi-agent-systems-and-frameworks.png)
+
+### Quick Recap
+- Start with a business outcome and measurable success criteria.
+- Design the operating workflow before selecting tools.
+- Add validation, observability, and rollback controls from day one.
+- Use lightweight artifacts so decisions are auditable and repeatable.
+
+### Concept Clarity
+Think of this module like building a smart kitchen. The recipe (process), ingredients (data), and tasting checks (evaluation) matter more than buying the fanciest oven. If one part fails, you need a backup plan so dinner still gets served.
+
+### System map (mermaid)
+```mermaid
+flowchart TD
+    A[Business Goal] --> B[Multi-Agent Systems and AI Agent Frameworks Design]
+    B --> C[Data and Context]
+    B --> D[Model or Decision Layer]
+    C --> E[Validation and QA]
+    D --> E
+    E --> F[Production Rollout]
+    F --> G[Telemetry and Feedback Loop]
+    G --> B
+```
+
+### Harvard-style case
+**Case:** Multi-Agent Systems and AI Agent Frameworks in a mid-market business unit.  
+**Background:** Team needs faster execution without losing governance.  
+**Complication:** Metrics are improving in pilots but unstable in production.  
+**Analysis:** Missing control points (ownership, QA gates, and incident rules) increase variance.  
+**Recommendation:** Introduce a phased operating model with explicit guardrails, then scale only when KPI and risk thresholds hold for two consecutive cycles.
+
+### Primary references
+- [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Google SRE Workbook (SLOs)](https://sre.google/workbook/)
+- [Harvard Business Review (Analytics & AI)](https://hbr.org/topic/analytics-and-ai)
+
+### Downloadable artifacts
+- [Module worksheet](/assets/courses/genai-ml-academy/downloads/03-multi-agent-systems-and-frameworks-worksheet.md)
+- [Execution checklist (CSV)](/assets/courses/genai-ml-academy/downloads/03-multi-agent-systems-and-frameworks-checklist.csv)
+
+### Media links
+- [Module media list](/assets/courses/genai-ml-academy/videos/03-multi-agent-systems-and-frameworks-media.md)
+- [MIT Sloan AI channel](https://www.youtube.com/@mitsloan)
+- [Stanford HAI talks](https://www.youtube.com/@stanfordhai)
+
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/03-multi-agent-systems-and-frameworks.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/genai-ml-academy/videos/03-multi-agent-systems-and-frameworks-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/genai-ml-academy/videos/03-multi-agent-systems-and-frameworks-concept-clarity.mp4)
+
+---
+
+## 🎓 Harvard-Style Case Study — State handoffs and failure propagation
+
+**Context:** A multi-agent research workflow had 4 specialist agents. When Agent 2 timed out, Agent 3 assumed it had completed. The downstream output was fabricated from incomplete context.
+
+**The tension:** Move fast vs build safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add explicit state handoff contracts between agents
+2. add timeout-aware retry at the orchestrator
+3. add a validation step before any downstream agent consumes output
+
+**Discussion questions:**
+1. What observable signal would have caught this before it reached production?
+2. Which option gives the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this Multi-Agent Systems system. Assume it fails in production. Find the top 3 failure modes and propose the minimum viable fix for each."

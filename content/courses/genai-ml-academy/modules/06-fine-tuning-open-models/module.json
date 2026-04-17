@@ -5,10 +5,10 @@
   "title": "Fine-Tuning and Open Model Workflows",
   "description": "Teams often jump to fine-tuning too early. In production, the best sequence is usually:",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Fine-Tuning and Open Model Workflows Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Fine-Tuning and Open Model Workflows"
   },
   "learningObjectives": [],

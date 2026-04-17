@@ -72,6 +72,20 @@
       "explanation": "LLM outputs are probabilistic. Temperature, sampling, and model state mean identical prompts can produce different answers — requiring eval strategies that account for variance, not just deterministic test assertions.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-production-ai-foundations"
+    },
+    {
+      "id": "01-production-ai-foundations-scenario-q",
+      "question": "Scenario: Your team is applying 'Production AI Foundations' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-production-ai-foundations"
     }
   ]
 }

@@ -1,0 +1,115 @@
+---
+title: "Start Here with solana.new"
+description: "Beginner-friendly guided workflow to ship your first Solana app with solana.new, then harden it with quality gates."
+slug: "solana-new-workflow"
+duration: 26
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-01-app-builder-brief"
+missionTitle: "Mission 01 — Beginner Build Brief"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Use solana.new to accelerate, not replace, engineering discipline"
+  - "Pair AI scaffolding with explicit security/test gates"
+  - "Keep idea → build → launch context traceable"
+---
+
+## 🎮 The Game
+
+**Your first whole-game attempt:**
+
+Right now, before this lesson teaches you anything, go to [solana.new](https://solana.new) and scaffold a project.
+
+Don't read the docs. Don't follow a tutorial. Just click through and see what happens.
+
+**Then come back and fill in:**
+
+> 🤔 **Think it through — no Googling:**
+>
+> - What it generated?
+> - What i dont understand yet?
+> - One thing that surprised me?
+
+This is your baseline. Everything this module teaches you connects back to what you just experienced.
+
+---
+
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** An NFT marketplace on Solana — production-grade, end-to-end.
+**What this module adds:** Scaffold the first working version of your marketplace using solana.new. This is your junior game.
+**What you'll have at the end:** A concrete deliverable that builds directly on the previous module.
+
+> *This module is one piece of a game you've been playing since Module 0. Every decision you make here carries forward.*
+
+# Start Here with solana.new
+
+## 😄 Meme Opener
+**Meme concept:** "AI scaffolded the dApp in 30 minutes... then the first devnet tx taught us what account constraints we forgot."  
+**Why this hurts in real life:** generation speed is only useful when paired with validation discipline.
+
+![Module meme](/assets/courses/solana-academy/memes/08-solana-new-app-builder.png)
+
+## Quick Recap
+- `solana.new` is an open workflow/tooling stack focused on going from idea to shipped Solana product faster.
+- It provides curated skills/journeys around ideation, build, and launch steps.
+- Use it as a force multiplier, then apply hard engineering gates (tests, audits, deployment checklists).
+
+## Concept Clarity
+Think of `solana.new` like a very fast project co-pilot for Solana.  
+It helps you start in the right direction quickly, but you still need your map, seatbelt, and road checks before highway speed.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Idea and problem framing] --> B[solana.new skill-guided scaffolding]
+  B --> C[Program/client implementation]
+  C --> D[Test + security review gates]
+  D --> E[Devnet validation]
+  E --> F[Launch prep + GTM]
+```
+
+## Harvard-Style Case
+### Case: Team shifts from blank-page start to guided Solana workflow
+**Context:** A small team struggled with slow starts and inconsistent architecture decisions when beginning new Solana projects.
+
+**Decision point:** Continue manual blank-page workflow or adopt a guided acceleration layer (`solana.new`) while enforcing QA gates?
+
+**Options considered:**
+- Keep manual setup and ad-hoc docs
+- Use `solana.new` for ideation/scaffold, then apply strict review/testing gates
+- Fully trust generated code and skip deep review
+
+**Action taken:** The team used `solana.new` for early structure and prompt-driven build sequencing, then required test coverage, security checklist pass, and devnet verification before release decisions.
+
+**Outcome:** Faster MVP start with clearer phase context, while maintaining production standards.
+
+**What we'd do differently:** Define reusable acceptance tests earlier so each generated iteration can be checked automatically.
+
+**Discussion questions:**
+1. Which step in your current Solana workflow is the biggest bottleneck that `solana.new` could reduce?
+2. Which guardrails are non-negotiable before any generated code reaches production branches?
+
+**Sources:**
+- https://www.solana.new/
+- https://github.com/sendaifun/solana-new
+
+## Primary References
+- https://www.solana.new/
+- https://github.com/sendaifun/solana-new
+- https://solana.com/docs/programs/examples
+
+## Downloadable Practical Artifacts
+- [solana.new Build Readiness Checklist](/assets/courses/solana-academy/downloads/solana-new-build-readiness-checklist.md)
+- [AI-Generated Code Review Template](/assets/courses/solana-academy/downloads/solana-new-code-review-template.md)
+- [Devnet Go/No-Go Checklist](/assets/courses/solana-academy/downloads/solana-new-devnet-gate.md)
+
+## Concept Clarity + TLDR Video
+- **Concept Clarity video:** [Watch](/assets/courses/solana-academy/videos/08-solana-new-app-builder-eli5.mp4)
+- **Quick Recap video:** [Watch](/assets/courses/solana-academy/videos/08-solana-new-app-builder-tldr.mp4)
+
+## Anti-Pattern to Avoid
+Do not confuse generated output with production-ready security posture.

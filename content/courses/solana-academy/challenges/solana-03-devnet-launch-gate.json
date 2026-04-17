@@ -1,0 +1,32 @@
+{
+  "id": "solana-03-devnet-launch-gate",
+  "spec": "Order the Solana release steps into a safe devnet go/no-go sequence.",
+  "validation": {
+    "must_have": [
+      { "field": "order[0]", "value": "A" },
+      { "field": "order[1]", "value": "B" },
+      { "field": "order[2]", "value": "D" },
+      { "field": "order[4]", "value": "E" },
+      { "field": "order[5]", "value": "F" }
+    ],
+    "ordering_tolerance": "strict_on_critical"
+  },
+  "eli_notes": "Expected order: A → B → D → C → E → F. D and C can swap if rationale is strong. Final release decision (F) must be last. If rollback plan appears after release decision, fail.",
+  "hints": [
+    "You cannot approve launch before security and simulation checks.",
+    "Rollback readiness must exist before final release approval.",
+    "Think: test baseline first, then risk checks, then go/no-go decision."
+  ],
+  "prefilled": {
+    "steps": [
+      { "id": "A", "label": "Run unit and integration test suite on current branch" },
+      { "id": "B", "label": "Deploy candidate to devnet and execute smoke transactions" },
+      { "id": "C", "label": "Verify rollback checklist, feature flags, and owner escalation path" },
+      { "id": "D", "label": "Run signer/account-constraint security review on changed flows" },
+      { "id": "E", "label": "Review results against go/no-go thresholds" },
+      { "id": "F", "label": "Approve release decision for next stage" }
+    ],
+    "correctOrder": ["A", "B", "D", "C", "E", "F"]
+  },
+  "success_text": "Launch sequence validated. You kept release speed while preserving risk control in the right order."
+}

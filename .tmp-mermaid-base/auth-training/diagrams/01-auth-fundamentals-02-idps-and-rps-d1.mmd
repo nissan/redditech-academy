@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant User
+    participant RP as Relying Party (App)
+    participant IdP as Identity Provider (Google)
+
+    User->>RP: Click "Sign in with Google"
+    RP->>IdP: Redirect to Google login (with client_id)
+    User->>IdP: Enter credentials
+    IdP->>User: Issue authorization code
+    User->>RP: Return code to app
+    RP->>IdP: Exchange code for access token
+    IdP->>RP: Return access token + ID token
+    RP->>RP: Validate tokens
+    RP->>User: Grant access

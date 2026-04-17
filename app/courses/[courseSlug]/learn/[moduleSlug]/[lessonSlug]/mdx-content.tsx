@@ -11,6 +11,32 @@ interface MDXContentProps {
   lessonSlug: string;
 }
 
+function preprocessMermaidBlocks(
+  markdown: string,
+  courseSlug: string,
+  moduleSlug: string,
+  lessonSlug: string
+): string {
+  let diagramIndex = 0;
+
+  return markdown.replace(/```mermaid\s*([\s\S]*?)```/g, (_match, mermaidSource) => {
+    diagramIndex += 1;
+
+    const imagePath = `/assets/courses/${courseSlug}/diagrams/${moduleSlug}-${lessonSlug}-d${diagramIndex}.png`;
+    const imageDiskPath = path.join(process.cwd(), "public", imagePath.replace(/^\//, ""));
+
+    if (!fs.existsSync(imageDiskPath)) {
+      return `\n\`\`\`mermaid\n${String(mermaidSource).trim()}\n\`\`\`\n`;
+    }
+
+    return [
+      `<figure class="my-8 rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-cyan-400/5 to-fuchsia-500/10 p-3 shadow-[0_0_0_1px_rgba(99,102,241,0.15),0_12px_40px_rgba(14,116,144,0.25)]">`,
+      `  <img src="${imagePath}" alt="Diagram ${diagramIndex}" class="w-full rounded-xl border border-slate-700/70 bg-slate-950/70 p-2" loading="lazy" />`,
+      `</figure>`,
+    ].join("\n");
+  });
+}
+
 export function MDXContent({ courseSlug, moduleSlug, lessonSlug }: MDXContentProps) {
   const lessonPath = path.join(
     process.cwd(),
@@ -33,6 +59,7 @@ export function MDXContent({ courseSlug, moduleSlug, lessonSlug }: MDXContentPro
 
   const fileContents = fs.readFileSync(lessonPath, "utf8");
   const { content } = matter(fileContents);
+  const renderedContent = preprocessMermaidBlocks(content, courseSlug, moduleSlug, lessonSlug);
 
   return (
     <div className="prose prose-invert max-w-none">
@@ -97,7 +124,7 @@ export function MDXContent({ courseSlug, moduleSlug, lessonSlug }: MDXContentPro
           },
         }}
       >
-        {content}
+        {renderedContent}
       </ReactMarkdown>
     </div>
   );

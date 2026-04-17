@@ -1,0 +1,49 @@
+{
+  "id": "03-mmlu-and-mmmlu-quiz",
+  "moduleId": "03-mmlu-and-mmmlu",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which interpretation of MMLU performance is most defensible?",
+      "options": [
+        "High MMLU means perfect tool use and policy adherence",
+        "High MMLU indicates stronger broad-domain knowledge coverage, but not full production readiness",
+        "MMLU cannot compare models at all",
+        "MMLU is only useful for multilingual tasks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MMLU is a broad knowledge signal, not a complete readiness score.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "When should MMMLU be added to your gate?",
+      "options": [
+        "Only after public launch",
+        "When deployment requires multilingual quality and localization reliability",
+        "Never, because translation is solved",
+        "Only for speech models"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MMMLU is essential when language transfer quality matters to users.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "A model gains on MMLU but drops on instruction adherence. Best action?",
+      "options": [
+        "Promote anyway because knowledge is higher",
+        "Block promotion and rebalance benchmark portfolio thresholds",
+        "Ignore adherence benchmarks",
+        "Remove hard constraints from prompts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Portfolio-based gating prevents single-benchmark overpromotion.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

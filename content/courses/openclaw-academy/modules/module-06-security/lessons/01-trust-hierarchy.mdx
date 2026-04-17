@@ -6,7 +6,28 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand trust hierarchy
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-06-trust-levels"
+missionTitle: "Mission 18 — Trust Levels"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Lock down the trust hierarchy so only the right people can do the right things.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-06-security.svg)
+
+> *"User trust levels: admin, trusted, untrusted. The untrusted user always tries the admin commands first."*
 
 Your agent can execute shell commands, read files, browse the web, and send messages. That's a lot of power, and it makes one question unavoidable: *whose instructions does it follow?*
 
@@ -147,3 +168,28 @@ If you need adversarial-user isolation, say, a shared team bot where users shoul
 > 1. Ask your agent: "What does this page say? https://example.com"
 > 2. Open the session transcript: `~/.openclaw/agents/main/sessions/*.jsonl`
 > 3. Find the tool result entry for `web_fetch` and see how the content was wrapped before being passed back to the model.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Security — Audit
+
+**Context:** A new user is added to a Telegram group where OpenClaw is running. They immediately try `/exec rm -rf /`. The trust hierarchy blocks it. But the attempt is not logged.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add security-event logging
+2. add per-user trust level auditing
+3. add an alert for privilege-escalation attempts.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "fr1",
-      "question": "Best UX for pending transactions is:",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "No feedback",
-        "Clear pending, success, and failure states",
-        "Auto-reload every second",
-        "Hide signatures"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "State clarity reduces user confusion and duplicate actions.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "fr2",
-      "question": "After a successful on-chain action, UI should:",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "Assume state changed",
-        "Refresh relevant account state and confirm outcome",
-        "Clear wallet connection",
-        "Disable navigation"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "Refreshing account data confirms real chain outcome.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "fr3",
-      "question": "A safe signing prompt should include:",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "Only tx hash",
-        "Human-readable action context",
-        "No destination accounts",
-        "Random warning text"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Users need understandable intent before approving signatures.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "fr4",
-      "question": "If transaction confirmation fails intermittently, first step is:",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "Retry blindly forever",
-        "Add explicit retry + error handling policy",
-        "Hide errors",
-        "Disable wallet adapter"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "Controlled retries and clear errors make failures recoverable.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

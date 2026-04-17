@@ -1,0 +1,22 @@
+{
+  "id": "chainlink-oracle-integration",
+  "slug": "14-chainlink-oracle-integration",
+  "order": 16,
+  "title": "Oracle Layer 1 \u2014 Chainlink Data Feeds",
+  "description": "Use Chainlink Solana Data Feeds as guardrails for price checks, settlement bounds, and circuit-breakers.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "Oracle Layer 1 \u2014 Chainlink Data Feeds Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Oracle Layer 1 \u2014 Chainlink Data Feeds module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

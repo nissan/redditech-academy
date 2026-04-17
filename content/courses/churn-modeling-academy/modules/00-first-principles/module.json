@@ -1,0 +1,19 @@
+{
+  "id": "00-churn-modeling-academy-first-principles",
+  "slug": "00-first-principles",
+  "order": 0,
+  "title": "Churn Modelling First Principles",
+  "description": "Plain-language grounding in what churn is, why it matters, and how ML helps predict and prevent it.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "Churn Modelling First Principles Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed the Churn Modelling First Principles module"
+  },
+  "learningObjectives": [
+    "Explain why churn prediction is different from other ML problems",
+    "Identify the three most common churn modelling mistakes",
+    "Frame a churn prediction problem with a correct label definition"
+  ]
+}

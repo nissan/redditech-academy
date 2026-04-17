@@ -1,0 +1,77 @@
+---
+title: "Testing Lab — LiteSVM In-Process Testing — Core Concepts"
+description: "Use LiteSVM for in-process Solana testing, compare speed/coverage tradeoffs, and enforce adversarial test suites for escrow continuity."
+slug: "core-concepts"
+duration: 28
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-18-litesvm-architecture"
+missionTitle: "Mission 18A — Test Architecture"
+estimatedMinutes: 24
+keyTakeaways:
+  - "Define pass/fail invariants before writing test code"
+  - "Prefer deterministic, reproducible test harnesses over flaky validation"
+  - "Use adversarial evidence as a hard launch gate"
+---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** An NFT marketplace on Solana — production-grade, end-to-end.
+**What this module adds:** Run in-process tests against the full marketplace stack with LiteSVM.
+**What you'll have at the end:** A concrete deliverable that builds directly on the previous module.
+
+> *This module is one piece of a game you've been playing since Module 0. Every decision you make here carries forward.*
+
+# Testing Lab — LiteSVM In-Process Testing — Core Concepts
+
+## 😄 Meme Opener
+**Meme concept:** "All tests passed" (except the ones we forgot to write).
+**Why this hurts in real life:** speed without coverage creates expensive incidents.
+
+![Module meme](/assets/courses/solana-academy/memes/18-litesvm-testing-lab.svg)
+
+## Quick Recap
+- Use LiteSVM for in-process Solana testing, compare speed/coverage tradeoffs, and enforce adversarial test suites for escrow continuity.
+- This module extends the escrow continuity case through testing infrastructure.
+- Mission success requires reproducible evidence, not claims.
+
+## Concept Clarity
+We build in three passes: architecture, harness implementation, and adversarial release gating.
+Missing any pass means no-go for deployment.
+
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Test architecture] --> B[Harness implementation]
+  B --> C[Adversarial matrix]
+  C --> D[Go/No-Go gate]
+```
+
+## Harvard-Style Case
+**Context:** The team ships quickly but sees post-merge regressions from weak local test loops.
+
+**Decision point:** keep loose tests for velocity, or enforce strict deterministic harness policy?
+
+**Action taken:** standardized mission-based harnesses with explicit negative tests and release gates.
+
+**Outcome:** faster triage, fewer regressions, more predictable releases.
+
+**Discussion questions:**
+1. Which tests are required to block unsafe merges?
+2. What evidence should be attached to every release PR?
+
+## Primary References
+- https://litesvm.com/docs/getting-started
+- https://docs.rs/litesvm/latest/litesvm/
+- https://www.anchor-lang.com/docs/testing/litesvm
+- https://github.com/LiteSVM/litesvm
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/18-litesvm-testing-lab-harness-template.md)
+- [Artifact](/assets/courses/solana-academy/downloads/18-litesvm-testing-lab-test-matrix.csv)
+- [Artifact](/assets/courses/solana-academy/downloads/18-litesvm-testing-lab-release-gate.md)
+
+## Anti-Pattern to Avoid
+Treating one-off green runs as proof of reliability without repeatability and adversarial evidence.

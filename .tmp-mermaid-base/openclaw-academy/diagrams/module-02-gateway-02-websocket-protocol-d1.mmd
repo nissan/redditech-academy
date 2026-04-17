@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant C as CLI / Web UI
+    participant GW as Gateway
+
+    C->>GW: {type:"req", method:"agent", params:{message:"Hello!"}}
+    GW-->>C: {type:"res", ok:true, payload:{runId:"run_xyz", acceptedAt:"..."}}
+
+    Note over GW: Agent turn starts asynchronously
+
+    GW-->>C: {type:"event", event:"agent", payload:{stream:"lifecycle", phase:"start", runId:"run_xyz"}}
+    GW-->>C: {type:"event", event:"agent", payload:{stream:"assistant", delta:"Hi there!"}}
+    GW-->>C: {type:"event", event:"agent", payload:{stream:"assistant", delta:" How can I help?"}}
+    GW-->>C: {type:"event", event:"agent", payload:{stream:"lifecycle", phase:"end", runId:"run_xyz"}}

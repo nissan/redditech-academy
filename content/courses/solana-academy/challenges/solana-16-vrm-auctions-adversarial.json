@@ -1,0 +1,40 @@
+{
+  "id": "solana-16-vrm-auctions-adversarial",
+  "spec": "Adversarial mission for VRM Lab \u2014 Commit-Reveal and Dutch Auction: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.summary",
+        "non_empty": true
+      },
+      {
+        "field": "submission.invariants",
+        "non_empty": true
+      },
+      {
+        "field": "submission.test_evidence",
+        "non_empty": true
+      },
+      {
+        "field": "submission.risk_controls",
+        "non_empty": true
+      }
+    ],
+    "must_not_have": [
+      {
+        "field": "submission.network",
+        "value": "mainnet"
+      }
+    ]
+  },
+  "eli_notes": "Reject submissions that skip explicit invariants, negative tests, or rollback planning.",
+  "hints": [
+    "Define invariants before code details.",
+    "Include at least one adversarial/negative test case.",
+    "Treat launch-gate failures as hard blockers."
+  ],
+  "prefilled": {
+    "template": "{\\n  \"submission\": {\\n    \"network\": \"devnet\",\\n    \"summary\": \"__FILL_IN__\",\\n    \"invariants\": [\"__FILL_IN__\"],\\n    \"test_evidence\": [\"__FILL_IN__\"],\\n    \"risk_controls\": [\"__FILL_IN__\"]\\n  }\\n}"
+  },
+  "success_text": "Mission accepted. Submission includes enforceable controls and evidence-backed quality gates."
+}

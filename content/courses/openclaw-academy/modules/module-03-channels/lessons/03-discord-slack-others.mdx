@@ -14,7 +14,19 @@ keyTakeaways:
   install
 - "Routing is always deterministic \u2014 replies go back to the channel they came\
   \ from"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-03-multi-channel-routing"
+missionTitle: "Mission 10 — Multi-Channel Routing"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-03-channels.svg)
+
+> *"One brain, twelve channels, zero identity crises."*
 
 Telegram and WhatsApp cover the personal messaging use cases. This lesson covers the channels you'd reach for when the context is a community server, a work team, or a more specialised platform.
 
@@ -336,3 +348,28 @@ flowchart TD
 ## Module 3 summary
 
 You now understand:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Agents — Routing
+
+**Context:** An OpenClaw agent routes a message to Kit for code work. Kit's session is already at context capacity. The message is processed but context is partial. The output is wrong.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add session-capacity checks before routing
+2. add context overflow handling in the router
+3. enforce max-context per agent.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

@@ -1,0 +1,23 @@
+{
+  "id": "11-retrieval-and-long-context-evals",
+  "slug": "11-retrieval-and-long-context-evals",
+  "order": 11,
+  "title": "Dedicated Module: Retrieval and Long-Context Evals",
+  "description": "Deep dive on NQ-open, HotpotQA, and long-context needle-style benchmarks for production LLM systems.",
+  "difficulty": "intermediate",
+  "estimatedHours": 3,
+  "badge": {
+    "name": "Retrieval + Long-Context Evals Badge",
+    "icon": "🧪",
+    "description": "Completed Dedicated Module: Retrieval and Long-Context Evals"
+  },
+  "learningObjectives": [
+    "Distinguish retrieval QA, multi-hop QA, and long-context recall benchmarks",
+    "Implement repeatable harness runs for NQ-open, HotpotQA, and needle suites",
+    "Diagnose and remediate retrieval, synthesis, and context-position failure patterns"
+  ],
+  "prerequisiteModules": [
+    "08-building-an-eval-harness",
+    "09-failure-modes-and-gaming"
+  ]
+}

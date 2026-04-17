@@ -1,0 +1,6 @@
+flowchart TD
+  A[Define critical path] --> B[Write happy-path test]
+  A --> C[Write failure-path test]
+  B --> D[Run local validator tests]
+  C --> D
+  D --> E[Capture logs + classify failures]

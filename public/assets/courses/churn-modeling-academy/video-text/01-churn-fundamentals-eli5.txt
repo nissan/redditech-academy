@@ -1,0 +1,5 @@
+ELI5 Summary
+
+Define churn clearly before modeling.
+
+Module: 01-churn-fundamentals

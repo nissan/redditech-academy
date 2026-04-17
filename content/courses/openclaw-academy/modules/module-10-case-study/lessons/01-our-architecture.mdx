@@ -6,7 +6,28 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand our architecture
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-10-architecture-review"
+missionTitle: "Mission 31 — Architecture Review"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Review a real production deployment: what worked, what didn't, and why.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-10-case-study.svg)
+
+> *"Reviewing your own architecture: humbling, necessary, occasionally horrifying."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +43,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Agents — Testing
+
+**Context:** An agent team builds a multi-agent workflow with 6 specialised agents. After 3 months, the workflow breaks whenever one agent is updated. There are no integration tests for the agent interactions.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add cross-agent integration tests
+2. add contract tests for agent interfaces
+3. add a staging environment for agent-workflow testing.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

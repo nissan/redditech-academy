@@ -1,0 +1,48 @@
+{
+  "id": "solana-01-app-builder-brief",
+  "spec": "Fill in the Solana app build brief JSON for a production-minded first milestone. Scenario: You are building a token-gated learning dApp with solana.new acceleration. Keep scope realistic for a first sprint, include quality gates, and avoid over-permissioned wallet behavior.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "brief.app_name",
+        "non_empty": true
+      },
+      {
+        "field": "brief.network",
+        "acceptable_values": ["devnet", "Devnet"]
+      },
+      {
+        "field": "brief.milestone",
+        "non_empty": true
+      },
+      {
+        "field": "brief.quality_gates.tests",
+        "must_contain": ["unit", "integration"]
+      },
+      {
+        "field": "brief.quality_gates.security",
+        "must_contain": ["account constraints", "signer checks"]
+      },
+      {
+        "field": "brief.wallet_policy",
+        "must_contain": ["least privilege", "no private key storage"]
+      }
+    ],
+    "must_not_have": [
+      {
+        "field": "brief.network",
+        "value": "mainnet"
+      }
+    ]
+  },
+  "eli_notes": "Student should show disciplined first-sprint planning, not hype. Devnet is required for this stage. If they use broad words for security, nudge them toward concrete checks (account constraints, signer checks, simulation, and test coverage). Reject any suggestion of private key storage in app code.",
+  "hints": [
+    "Think milestone-first: what can be validated safely on devnet in one sprint?",
+    "Quality gates should be explicit, not vague. Name concrete tests and security checks.",
+    "Wallet policy should minimize risk: least privilege, no key custody in the frontend."
+  ],
+  "prefilled": {
+    "template": "{\n  \"brief\": {\n    \"app_name\": \"__FILL_IN__\",\n    \"network\": \"__FILL_IN__\",\n    \"milestone\": \"__FILL_IN__\",\n    \"solana_new_scope\": [\n      \"project scaffold\",\n      \"starter workflow\",\n      \"developer task breakdown\"\n    ],\n    \"quality_gates\": {\n      \"tests\": [\"__FILL_IN__\"],\n      \"security\": [\"__FILL_IN__\"],\n      \"deployment\": [\"devnet smoke test\", \"rollback checklist\"]\n    },\n    \"wallet_policy\": [\"__FILL_IN__\"],\n    \"out_of_scope\": [\n      \"mainnet launch\",\n      \"tokenomics expansion\",\n      \"cross-chain bridge support\"\n    ]\n  }\n}"
+  },
+  "success_text": "Build brief accepted. You've scoped a practical Solana first milestone with explicit test/security gates and safe wallet policy, exactly how accelerated delivery should be run."
+}

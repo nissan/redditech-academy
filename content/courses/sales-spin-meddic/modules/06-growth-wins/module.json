@@ -1,0 +1,22 @@
+{
+  "id": "06-growth-wins",
+  "slug": "06-growth-wins",
+  "order": 6,
+  "title": "Growth Case Studies: Success Patterns",
+  "description": "Deconstruct high-growth online sales wins and reuse playbook patterns.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "Growth Case Studies: Success Patterns Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed Growth Case Studies: Success Patterns"
+  },
+  "learningObjectives": [
+    "Explain the core model used in Growth Case Studies: Success Patterns",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "05-spin-to-meddic"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "churn-modeling-academy",
+  "slug": "churn-modeling-academy",
+  "title": "Churn Modeling Academy",
+  "description": "Build production-ready churn prediction systems with strong data hygiene, evaluation rigor, and retention action design.",
+  "tagline": "Predict churn, design interventions, and prove retention impact",
+  "icon": "\ud83d\udcc9",
+  "difficulty": "intermediate",
+  "estimatedHours": 12,
+  "tags": [
+    "machine-learning",
+    "retention",
+    "churn",
+    "data-science",
+    "product-analytics"
+  ],
+  "badge": {
+    "name": "Churn Modeling Graduate",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Churn Modeling Academy"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": true,
+  "runningProject": {
+    "title": "You are building a churn prediction and intervention system for a subscription business",
+    "description": "You are building a churn prediction and intervention system for a subscription business \u2014 from raw data to production model to retention campaigns.",
+    "juniorGameBrief": "Before any ML, define what churn means for your business and list the 3 signals you think predict it. That is your feature brief.",
+    "finalOutcome": "A production churn prediction model with feature engineering, evaluation, deployment, and intervention campaigns wired to model output."
+  },
+  "learningApproach": "whole-game"
+}

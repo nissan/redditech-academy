@@ -1,0 +1,20 @@
+{
+  "id": "auth-01-02-idps-and-rps",
+  "type": "json-editor",
+  "title": "Mission 01 \u2014 01 Auth Fundamentals",
+  "description": "Complete the IAM mission brief for 02-idps-and-rps.",
+  "starterCode": "{\"decision\":\"\",\"rationale\":\"\",\"security_control\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start with the threat model",
+    "Every IAM decision needs an explicit security rationale",
+    "Name the attack this control prevents"
+  ],
+  "successMessage": "Mission complete \u2014 01 Auth Fundamentals passed.",
+  "points": 100
+}

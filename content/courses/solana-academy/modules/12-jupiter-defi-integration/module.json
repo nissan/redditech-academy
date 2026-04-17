@@ -1,0 +1,22 @@
+{
+  "id": "jupiter-defi-integration",
+  "slug": "12-jupiter-defi-integration",
+  "order": 14,
+  "title": "DeFi Layer 1 \u2014 Jupiter Integration",
+  "description": "Layer Jupiter quote/build/order APIs over escrow settlement with slippage and route-policy controls.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "DeFi Layer 1 \u2014 Jupiter Integration Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed DeFi Layer 1 \u2014 Jupiter Integration module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

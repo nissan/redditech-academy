@@ -1,0 +1,27 @@
+{
+  "id": "solana-02-wallet-policy",
+  "spec": "Complete the wallet policy JSON for your first Solana sprint release. Scenario: A learner-facing dApp supports wallet connect, token-gated content access, and one on-chain progress-write action. Keep policy strict, least-privilege, and production-minded.",
+  "validation": {
+    "must_have": [
+      { "field": "policy.mode", "acceptable_values": ["least-privilege", "least privilege"] },
+      { "field": "policy.key_custody", "acceptable_values": ["no private key storage", "client never stores private keys", "non-custodial"] },
+      { "field": "policy.signing_scope.user_actions", "must_contain": ["explicit user consent", "per-transaction"] },
+      { "field": "policy.signing_scope.admin_actions", "must_contain": ["multisig", "separate admin wallet"] },
+      { "field": "policy.failure_handling", "must_contain": ["fail closed", "rollback"] }
+    ],
+    "must_not_have": [
+      { "field": "policy.key_custody", "value": "store seed phrase in app" },
+      { "field": "policy.mode", "value": "full access" }
+    ]
+  },
+  "eli_notes": "Prioritize conceptual safety over wording. Pass if the answer clearly enforces least privilege, no app key custody, explicit signing consent, and rollback/fail-closed handling. Reject if they imply storing private keys, broad wallet permissions, or silent signing.",
+  "hints": [
+    "Who should hold private keys? (Hint: not your app.)",
+    "User signing should be explicit and scoped per action, not blanket approval.",
+    "Operational safety means fail-closed behavior and a rollback path."
+  ],
+  "prefilled": {
+    "template": "{\n  \"policy\": {\n    \"mode\": \"__FILL_IN__\",\n    \"key_custody\": \"__FILL_IN__\",\n    \"signing_scope\": {\n      \"read_actions\": [\"balance check\", \"account state query\"],\n      \"user_actions\": [\"__FILL_IN__\"],\n      \"admin_actions\": [\"__FILL_IN__\"]\n    },\n    \"failure_handling\": [\"__FILL_IN__\"],\n    \"out_of_scope\": [\"auto-signing\", \"frontend key custody\"]\n  }\n}"
+  },
+  "success_text": "Wallet policy accepted. You preserved speed while keeping user trust and signing boundaries intact."
+}

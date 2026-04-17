@@ -1,0 +1,5 @@
+TLDR Summary
+
+Accelerate ideation and scaffolding, enforce test and security gates before deploy.
+
+Module: 08-solana-new-app-builder

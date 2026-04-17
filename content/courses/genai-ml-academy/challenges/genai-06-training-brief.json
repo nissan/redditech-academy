@@ -1,0 +1,20 @@
+{
+  "id": "genai-06-training-brief",
+  "type": "json-editor",
+  "title": "Mission 06-B \u2014 Training Brief",
+  "description": "Write a training brief for a fine-tuning run: task definition, dataset design, quality criteria, and known failure modes.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 06-B \u2014 Training Brief complete.",
+  "points": 100
+}

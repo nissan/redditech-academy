@@ -1,0 +1,12 @@
+graph TB
+    INTERNET["🌐 Internet"] -->|HTTPS| CADDY["Caddy / nginx\n(TLS termination)"]
+    CADDY -->|HTTP proxy| GW["OpenClaw Gateway\nlocalhost:18789"]
+
+    TAILSCALE["🔒 Tailscale network"] -->|WireGuard| VPS["VPS\n(your machine)"]
+    VPS --> GW
+
+    GW -->|long poll / webhook| TG["Telegram API"]
+    GW -->|WebSocket| WA["WhatsApp (Baileys)"]
+    GW -->|API calls| LLM["LLM Provider\n(Anthropic, OpenAI, etc.)"]
+
+    SYSTEMD["systemd\nopenclaw-gateway.service"] -->|supervises| GW

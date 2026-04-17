@@ -1,0 +1,22 @@
+{
+  "id": "pinocchio-escrow-lab",
+  "slug": "10-pinocchio-escrow-lab",
+  "order": 10,
+  "title": "Pinocchio Escrow Lab",
+  "description": "Port escrow to Pinocchio and compare compute footprint, binary size, and low-level control decisions versus Anchor.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "Pinocchio Escrow Lab Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Pinocchio Escrow Lab module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

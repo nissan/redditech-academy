@@ -1,0 +1,22 @@
+{
+  "id": "04-meddic-fundamentals",
+  "slug": "04-meddic-fundamentals",
+  "order": 4,
+  "title": "MEDDIC Fundamentals",
+  "description": "Qualify complex deals using Metrics, Economic Buyer, Decision Criteria/Process, Pain, and Champion.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "MEDDIC Fundamentals Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed MEDDIC Fundamentals"
+  },
+  "learningObjectives": [
+    "Explain the core model used in MEDDIC Fundamentals",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "03-spin-live-discovery"
+  ]
+}

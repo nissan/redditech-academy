@@ -4,9 +4,10 @@ interface FeedbackPanelProps {
   pass: boolean;
   score: number;
   feedback: string;
+  rewardText?: string;
 }
 
-export function FeedbackPanel({ pass, score, feedback }: FeedbackPanelProps) {
+export function FeedbackPanel({ pass, score, feedback, rewardText }: FeedbackPanelProps) {
   return (
     <div
       className={`rounded-lg border p-4 mt-4 transition-all animate-in fade-in slide-in-from-bottom-2 duration-300 ${
@@ -39,6 +40,11 @@ export function FeedbackPanel({ pass, score, feedback }: FeedbackPanelProps) {
           <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
             {feedback}
           </p>
+          {pass && rewardText && (
+            <div className="mt-3 rounded-md border border-lime-700/50 bg-lime-950/30 px-3 py-2 text-xs text-lime-300">
+              🎖️ {rewardText}
+            </div>
+          )}
         </div>
       </div>
     </div>

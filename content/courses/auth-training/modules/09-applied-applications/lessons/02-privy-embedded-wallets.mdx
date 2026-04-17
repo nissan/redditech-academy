@@ -9,7 +9,19 @@ keyTakeaways:
   - "Multi-authentication methods: social logins, email, SMS, external wallets (MetaMask, WalletConnect)"
   - "Security model: user shard (device), Privy shard (encrypted server), recovery shard (optional password/additional device)"
   - "Cross-chain support: Ethereum, Polygon, Base, Arbitrum, Optimism, Solana with unified SDK"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-09-02-privy-embedded-wallets"
+missionTitle: "Mission 09 — 09 Applied Applications"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/09-applied-applications.svg)
+
+> *"IAM: the thing between your users and your data."*
 
 ## Privy Embedded Wallets Overview
 
@@ -549,3 +561,30 @@ function MainApp() {
     publicClient.getBalance({
       address: embeddedWallet.address as `0x\${string}\
 
+
+
+---
+
+## 🎓 Harvard-Style Case Study — IAM security and detection
+
+**Context:** An IAM misconfiguration went undetected for 6 months.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add automated security tests
+2. add a quarterly audit
+3. add real-time anomaly detection
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

@@ -1,0 +1,44 @@
+{
+  "moduleId": "capstone-ladder",
+  "questions": [
+    {
+      "id": "cap-q1",
+      "question": "What is the minimum evidence required before promoting a Solana program from devnet to mainnet?",
+      "type": "multiple-choice",
+      "options": [
+        "All functional tests passing on devnet",
+        "Unit tests + integration tests + adversarial tests + go/no-go checklist completed with sign-off",
+        "External audit report",
+        "Program compiled without errors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A complete gate requires unit, integration, and adversarial test evidence plus explicit sign-off on a go/no-go checklist. An external audit is valuable but not sufficient alone."
+    },
+    {
+      "id": "cap-q2",
+      "question": "In a time-lock vault, what is the minimum required signer set for a withdrawal instruction?",
+      "type": "multiple-choice",
+      "options": [
+        "Any signer with knowledge of the PDA address",
+        "The program's upgrade authority",
+        "The designated beneficiary only",
+        "The beneficiary, plus the lock duration must have expired on-chain"
+      ],
+      "correctAnswer": 3,
+      "explanation": "A secure time-lock vault requires both a signer check (beneficiary signature) AND an on-chain state check (lock duration expired). Either alone is insufficient."
+    },
+    {
+      "id": "cap-q3",
+      "question": "An advanced capstone adversarial review must include which of the following?",
+      "type": "multiple-choice",
+      "options": [
+        "5 attack scenarios with pass/fail evidence",
+        "A marketing description of the program",
+        "Estimated gas costs for each instruction",
+        "A comparison to Ethereum equivalents"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Adversarial review requires concrete attack scenarios with documented evidence of each test passing. Marketing copy, gas estimates, and cross-chain comparisons are irrelevant to production safety."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "openclaw-02-websocket-flow",
+  "type": "sequence-completer",
+  "title": "Mission 05 \u2014 WebSocket Flow",
+  "description": "Complete the mission brief for: Websocket Protocol. Document your configuration decisions and verify each field is correct.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    },
+    {
+      "type": "key_exists",
+      "key": "rationale"
+    }
+  ],
+  "hints": [
+    "Start by identifying the core configuration requirement",
+    "Each field should have an explicit reason \u2014 document it",
+    "The rationale field should explain why, not just what"
+  ],
+  "successMessage": "Well done \u2014 you've completed Mission 05 \u2014 WebSocket Flow.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Gateway starts and registers channel adapters"
+      },
+      {
+        "id": "s2",
+        "label": "Channel connects via WebSocket to messaging platform"
+      },
+      {
+        "id": "s3",
+        "label": "Heartbeat maintained to keep connection alive"
+      },
+      {
+        "id": "s4",
+        "label": "Message received and dispatched to session handler"
+      },
+      {
+        "id": "s5",
+        "label": "Response sent and connection remains open for next message"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

@@ -4,7 +4,7 @@
   "title": "OpenClaw Academy",
   "description": "Learn to build, configure, and operate AI agent systems with OpenClaw. Covers gateway architecture, multi-agent routing, skills, memory, and production deployment.",
   "tagline": "Build and operate AI agents with OpenClaw",
-  "icon": "🦞",
+  "icon": "\ud83e\udd9e",
   "difficulty": "intermediate",
   "estimatedHours": 12,
   "tags": [
@@ -15,10 +15,17 @@
   ],
   "badge": {
     "name": "OpenClaw Operator",
-    "icon": "ð¦",
+    "icon": "\u00f0\u009f\u00a6\u009e",
     "description": "Completed the OpenClaw Academy course"
   },
   "author": "Redditech Labs",
   "version": "1.0",
-  "free": true
+  "free": true,
+  "runningProject": {
+    "title": "Self-Hosted AI Assistant",
+    "description": "You are deploying a self-hosted AI assistant for a 3-person startup. Each module hardens one layer. The capstone is a production-ready deployment.",
+    "juniorGameBrief": "Before you learn the architecture, install OpenClaw and send your first message. Don't configure anything. Just run it. Your experience of what works and what confuses you is your learning agenda.",
+    "finalOutcome": "A production-ready self-hosted AI assistant running on your own hardware, connected to your team's messaging apps, with a full security model, custom skills, and a documented deployment."
+  },
+  "learningApproach": "whole-game"
 }

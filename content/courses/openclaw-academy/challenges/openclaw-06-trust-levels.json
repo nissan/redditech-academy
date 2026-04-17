@@ -1,0 +1,55 @@
+{
+  "id": "openclaw-06-trust-levels",
+  "type": "sequence-completer",
+  "title": "Mission 18 \u2014 Trust Levels",
+  "description": "Complete the mission brief for: Trust Hierarchy. Document your configuration decisions and verify each field is correct.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    },
+    {
+      "type": "key_exists",
+      "key": "rationale"
+    }
+  ],
+  "hints": [
+    "Start by identifying the core configuration requirement",
+    "Each field should have an explicit reason \u2014 document it",
+    "The rationale field should explain why, not just what"
+  ],
+  "successMessage": "Well done \u2014 you've completed Mission 18 \u2014 Trust Levels.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Message received with sender identity"
+      },
+      {
+        "id": "s2",
+        "label": "Trust level looked up from configuration"
+      },
+      {
+        "id": "s3",
+        "label": "Requested operation checked against trust level permissions"
+      },
+      {
+        "id": "s4",
+        "label": "Denied if trust level insufficient \u2014 event logged"
+      },
+      {
+        "id": "s5",
+        "label": "Allowed if trust level sufficient \u2014 operation executes"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

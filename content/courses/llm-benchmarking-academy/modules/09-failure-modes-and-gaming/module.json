@@ -1,0 +1,22 @@
+{
+  "id": "09-failure-modes-and-gaming",
+  "slug": "09-failure-modes-and-gaming",
+  "order": 9,
+  "title": "Failure Modes and Benchmark Gaming",
+  "description": "Identify leakage, contamination, and metric gaming before they poison decisions.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Failure Modes and Benchmark Gaming Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed Failure Modes and Benchmark Gaming"
+  },
+  "learningObjectives": [
+    "Detect common benchmark anti-patterns",
+    "Distinguish real capability from benchmark gaming",
+    "Install controls against silent score inflation"
+  ],
+  "prerequisiteModules": [
+    "08-building-an-eval-harness"
+  ]
+}

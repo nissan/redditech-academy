@@ -6,7 +6,28 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand channel plugin architecture
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-03-channel-plugin"
+missionTitle: "Mission 08 — Channel Plugin Architecture"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Connect your first messaging channel so users can actually reach the assistant.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-03-channels.svg)
+
+> *"Supporting 12 messaging platforms with one codebase. What could go wrong?"*
 
 Every message that reaches your agent travels through a **channel plugin** — a piece of code that owns the full relationship between OpenClaw and one messaging surface. Before you configure Telegram or WhatsApp, it helps to understand what a channel actually is and how the lifecycle works. That understanding will save you hours of debugging later.
 
@@ -253,3 +274,28 @@ The agent doesn't know or care which channel it's responding to. That's the chan
 ---
 
 The next lesson covers the two most popular channels: Telegram and WhatsApp.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Channels — Debugging
+
+**Context:** A team deploys OpenClaw to both Telegram and Discord. Messages sent from Discord never reach the agent. Telegram works fine. The channel config was correct — the issue was a missing message-type handler.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add per-channel smoke test on startup
+2. add message-type capability matrix
+3. add a channel diagnostics command.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

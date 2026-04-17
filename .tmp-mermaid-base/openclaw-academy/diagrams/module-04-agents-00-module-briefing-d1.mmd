@@ -1,0 +1,7 @@
+graph TD
+  C[Channel Message] --> G[Gateway]
+  G --> S[Session Context]
+  S --> M[Model Inference]
+  M --> T[Tool Calls]
+  T --> R[Response + Logs]
+  R --> C

@@ -1,0 +1,20 @@
+{
+  "id": "genai-12-pipeline-design",
+  "type": "json-editor",
+  "title": "Mission 12-B \u2014 Pipeline Design",
+  "description": "Design an end-to-end ML data pipeline from raw ingestion to feature store using Spark/Databricks primitives.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 12-B \u2014 Pipeline Design complete.",
+  "points": 100
+}

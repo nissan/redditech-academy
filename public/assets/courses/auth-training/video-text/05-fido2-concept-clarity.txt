@@ -1,0 +1,5 @@
+Concept Clarity
+
+Plain-language walkthrough of the core concept.
+
+Module: 05-fido2

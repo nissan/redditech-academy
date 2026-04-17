@@ -1,20 +1,20 @@
 {
   "id": "tooling",
   "slug": "tooling",
-  "order": 2,
-  "title": "Dev Environment + Tooling",
-  "description": "Set up local tooling, CLI workflow, and project structure for reliable builds.",
+  "order": 3,
+  "title": "Developer Tooling + Environments",
+  "description": "CLI, local environments, deterministic tooling, and team workflow hygiene.",
   "difficulty": "intermediate",
-  "estimatedHours": 1,
+  "estimatedHours": 3.2,
   "badge": {
     "name": "Dev Environment + Tooling Badge",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed Dev Environment + Tooling"
   },
   "learningObjectives": [
-    "Install and verify full Solana dev toolchain",
-    "Run a clean local setup checklist",
-    "Create a repeatable setup script"
+    "Explain key architecture and risk boundaries for this domain",
+    "Implement a mission-style plan with deterministic acceptance checks",
+    "Apply adversarial gates before promotion to higher environments"
   ],
   "prerequisiteModules": [
     "foundations"

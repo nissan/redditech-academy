@@ -1,0 +1,20 @@
+{
+  "id": "genai-5-core-concepts",
+  "type": "json-editor",
+  "title": "Mission \u2014 Core Concepts: Text2SQL and Enterprise Data",
+  "description": "Complete the core concepts mission brief.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission \u2014 Core Concepts: Text2SQL and Enterprise Data complete.",
+  "points": 100
+}

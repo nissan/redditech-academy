@@ -1,0 +1,22 @@
+{
+  "id": "04-gpqa-and-hle",
+  "slug": "04-gpqa-and-hle",
+  "order": 4,
+  "title": "GPQA and Humanity's Last Exam",
+  "description": "Use frontier-hard benchmarks to stress deep reasoning limits and model brittleness.",
+  "difficulty": "intermediate",
+  "estimatedHours": 3,
+  "badge": {
+    "name": "GPQA and Humanity's Last Exam Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed GPQA and Humanity's Last Exam"
+  },
+  "learningObjectives": [
+    "Explain why GPQA is \u201cGoogle-proof\u201d by design",
+    "Contrast GPQA with Humanity's Last Exam objectives",
+    "Use hard benchmarks without overfitting strategy to them"
+  ],
+  "prerequisiteModules": [
+    "03-mmlu-and-mmmlu"
+  ]
+}

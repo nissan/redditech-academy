@@ -72,6 +72,20 @@
       "explanation": "Showing SQL and explanation helps users audit logic and catch mistakes early.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-text2sql-enterprise-data"
+    },
+    {
+      "id": "05-text2sql-enterprise-data-scenario-q",
+      "question": "Scenario: Your team is applying 'Text2SQL and Enterprise Data Interfaces' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-text2sql-enterprise-data"
     }
   ]
 }

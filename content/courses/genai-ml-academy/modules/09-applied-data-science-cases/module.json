@@ -5,10 +5,10 @@
   "title": "Applied Data Science Case Studies",
   "description": "Many ML projects fail not because of model choice, but because data handling and baseline discipline are weak. This module teaches repeatable workflows you can apply to real business datasets.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Applied Data Science Case Studies Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Applied Data Science Case Studies"
   },
   "learningObjectives": [],

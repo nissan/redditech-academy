@@ -1,3 +1,25 @@
+---
+title: "Creative Intelligence and AI Ops"
+description: "Applied lesson for creative ai"
+slug: "01-overview"
+duration: 20
+order: 1
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "marte-creative-01-overview"
+missionTitle: "Mission creative — Creative Ai"
+estimatedMinutes: 15
+---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** You are building a full-funnel campaign for a SaaS product launch — from audience targeting to conversion measurement.
+**What this module adds:** Build the creative ai component.
+
+> *Every decision here carries forward.*
+
 # Creative Intelligence and AI Ops
 
 ## Summary
@@ -47,3 +69,88 @@ Meta Ads Creative Hub, Google Ads Asset Groups, Canva, Runway, Midjourney
   - Define the promotion rule a creative must meet before it gets scaled.
   - Which winner matters most, headline CTR or downstream conversion?
   - What makes a component system better than a single ad winner?
+
+
+<!-- VNEXT_AUGMENTATION -->
+## vNext Lesson Augmentation
+
+### Meme opener
+![Creative Intelligence and AI Ops meme](/assets/courses/martech-adtech-academy/memes/creative-ai.png)
+
+### Quick Recap
+- Start with a business outcome and measurable success criteria.
+- Design the operating workflow before selecting tools.
+- Add validation, observability, and rollback controls from day one.
+- Use lightweight artifacts so decisions are auditable and repeatable.
+
+### Concept Clarity
+Think of this module like building a smart kitchen. The recipe (process), ingredients (data), and tasting checks (evaluation) matter more than buying the fanciest oven. If one part fails, you need a backup plan so dinner still gets served.
+
+### System map (mermaid)
+```mermaid
+flowchart TD
+    A[Business Goal] --> B[Creative Intelligence and AI Ops Design]
+    B --> C[Data and Context]
+    B --> D[Model or Decision Layer]
+    C --> E[Validation and QA]
+    D --> E
+    E --> F[Production Rollout]
+    F --> G[Telemetry and Feedback Loop]
+    G --> B
+```
+
+### Harvard-style case
+**Case:** Creative Intelligence and AI Ops in a mid-market business unit.  
+**Background:** Team needs faster execution without losing governance.  
+**Complication:** Metrics are improving in pilots but unstable in production.  
+**Analysis:** Missing control points (ownership, QA gates, and incident rules) increase variance.  
+**Recommendation:** Introduce a phased operating model with explicit guardrails, then scale only when KPI and risk thresholds hold for two consecutive cycles.
+
+### Primary references
+- [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Google SRE Workbook (SLOs)](https://sre.google/workbook/)
+- [Harvard Business Review (Analytics & AI)](https://hbr.org/topic/analytics-and-ai)
+
+### Downloadable artifacts
+- [Module worksheet](/assets/courses/martech-adtech-academy/downloads/creative-ai-worksheet.md)
+- [Execution checklist (CSV)](/assets/courses/martech-adtech-academy/downloads/creative-ai-checklist.csv)
+
+### Media links
+- [Module media list](/assets/courses/martech-adtech-academy/videos/creative-ai-media.md)
+- [MIT Sloan AI channel](https://www.youtube.com/@mitsloan)
+- [Stanford HAI talks](https://www.youtube.com/@stanfordhai)
+
+
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/martech-adtech-academy/memes/creative-ai.png)
+
+## Video Boosters
+- **Quick Recap video:** [Watch](/assets/courses/martech-adtech-academy/videos/creative-ai-quick-recap.mp4)
+- **Concept Clarity video:** [Watch](/assets/courses/martech-adtech-academy/videos/creative-ai-concept-clarity.mp4)
+
+
+---
+
+## 🎓 Harvard-Style Case Study — AI creative governance and brand compliance
+
+**Context:** A team used AI to generate 200 ad creatives. Click-through was high. Brand consistency was zero. Legal flagged 30% for guideline violations.
+
+**The tension:** Ship the campaign vs build the process control that prevents the failure.
+
+**Decision options:**
+1. Add brand guideline compliance checks before any AI-generated creative is published
+2. use AI for ideation only and human review for final approval
+3. build a brand-safe prompt library for all AI creative tools
+
+**Discussion questions:**
+1. What signal would have caught this before it damaged the business?
+2. Which option gives the best risk/effort tradeoff for a lean team?
+3. Write a one-sentence policy that would prevent this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this marketing decision. Find the top 2 ways it will fail and how to close those gaps."

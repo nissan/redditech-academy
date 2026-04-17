@@ -1,20 +1,20 @@
 {
   "id": "wallets",
   "slug": "wallets",
-  "order": 3,
-  "title": "Wallets + Key Management",
-  "description": "Learn wallet flows, key handling boundaries, and secure account patterns.",
+  "order": 4,
+  "title": "Wallet Integration + Signing Flows",
+  "description": "Wallet UX, signer policy, transaction signing paths, and custody boundaries.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.2,
+  "estimatedHours": 3.2,
   "badge": {
     "name": "Wallets + Key Management Badge",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed Wallets + Key Management"
   },
   "learningObjectives": [
-    "Implement safe wallet connection flow",
-    "Describe key custody boundaries",
-    "Define devnet-safe account funding process"
+    "Explain key architecture and risk boundaries for this domain",
+    "Implement a mission-style plan with deterministic acceptance checks",
+    "Apply adversarial gates before promotion to higher environments"
   ],
   "prerequisiteModules": [
     "tooling"

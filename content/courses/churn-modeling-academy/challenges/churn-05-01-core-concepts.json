@@ -1,0 +1,20 @@
+{
+  "id": "churn-05-01-core-concepts",
+  "type": "json-editor",
+  "title": "Mission 05 \u2014 05 Production And Monitoring",
+  "description": "Complete the mission brief.",
+  "starterCode": "{\"decision\":\"\",\"rationale\":\"\",\"key_insight\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start with the business context",
+    "Your rationale should name a specific risk or outcome",
+    "The key insight should be one thing you'll change in your practice"
+  ],
+  "successMessage": "Mission complete \u2014 05 Production And Monitoring.",
+  "points": 100
+}

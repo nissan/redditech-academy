@@ -37,7 +37,28 @@ keyTakeaways:
 - Uses ~50-200MB RAM depending on active channels
 - Stores state in `~/.openclaw/`
 - Runs as a launchd/systemd user service
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-01-gateway-config"
+missionTitle: "Mission 01 — Gateway Config Basics"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Get a complete picture of your assistant's architecture before building any piece.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-01-overview.svg)
+
+> *"When someone says 'it's just a chatbot' and you point at channels, sessions, tools, and policy layers."*
 
 OpenClaw is a self-hosted, multi-channel AI assistant gateway: your own AI running on your hardware, connected to the messaging apps you already use, talking to whichever LLM you configure.
 
@@ -68,3 +89,28 @@ Think of it as the operating system for a personal AI assistant. It handles the 
 ## Why self-hosted?
 
 Most AI assistants are cloud services: your messages leave your device, get processed on someone else's server, and the responses come back. OpenClaw keeps that pipeline on your hardware:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Ops — Session-Management
+
+**Context:** A team running OpenClaw in production notices the gateway process consuming 2GB RAM after 72 hours uptime. Session state is growing unbounded because compaction was never configured.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Enable session compaction to cap state size
+2. restart the gateway on a cron schedule
+3. redesign the session store limits.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

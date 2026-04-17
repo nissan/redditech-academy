@@ -1,50 +1,75 @@
-# Wallets + Key Management
+---
+title: "Wallet Integration + Signing Flows — Overview"
+description: "Wallet UX, signer policy, transaction signing paths, and custody boundaries."
+slug: "wallets-overview"
+duration: 26
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-03-wallets-architecture"
+missionTitle: "Mission 03A — Architecture Map"
+estimatedMinutes: 24
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
+---
 
-## Summary
+## 🏗️ Your Running Project
 
-Learn wallet flows, key handling boundaries, and secure account patterns.
+**What you're building:** An NFT marketplace on Solana — production-grade, end-to-end.
+**What this module adds:** Let buyers and sellers connect their wallets. Implement signing flows and authority patterns.
+**What you'll have at the end:** A concrete deliverable that builds directly on the previous module.
 
-## Outcomes
+> *This module is one piece of a game you've been playing since Module 0. Every decision you make here carries forward.*
 
-- Implement safe wallet connection flow
-- Describe key custody boundaries
-- Define devnet-safe account funding process
+# Wallet Integration + Signing Flows — Overview
 
-## Theory
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
 
-- Wallet UX fundamentals
-- Keypair lifecycle
-- Signing flows
-- Security boundaries
+![Module meme](/assets/courses/solana-academy/memes/wallets.png)
 
-## Practical
+## Quick Recap
+- Focus area: Wallet UX, signer policy, transaction signing paths, and custody boundaries.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
 
-- Connect wallet in a sample app
-- Implement account gating by signer
-- Write a key handling policy
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
 
-## Tools
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
 
-Wallet Adapter, Phantom, Devnet Airdrop
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
 
-## Case Study
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
 
-- **Protagonist:** Product engineer
-- **Context:** Needs quick wallet auth for MVP.
-- **Dilemma:** Fast implementation or hardened key flow from day one?
-- **Options:**
-  - Fast and loose
-  - Security-first
-  - MVP with staged hardening
-- **Recommendation:** MVP with explicit staged hardening and risk acceptance notes.
-- **Discussion questions:**
-  - What key handling rule is non-negotiable even in MVP?
-  - How should you communicate signing risk to users?
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
 
-## Video Guidance
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
 
-Video: Solana Developer Bootcamp 2026: Learn Blockchain and Full-Stack Crypto Development (ID: 2pcm7ICRJKU)
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
 
-- Wallets + Key Management clip 1 (08:47) (527s): create wallets, deploy programs, check
-- Wallets + Key Management clip 2 (12:00) (720s): your local wallet on your computer. So
-- Wallets + Key Management clip 3 (12:50) (770s): you're going to access your wallet in
+## Primary References
+- https://solana.com/docs/core/transactions
+- https://solana.com/docs/core/accounts
+- https://solana.com/docs/rpc/http/sendtransaction
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/03-wallets-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/03-wallets-quality-matrix.csv)
+
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

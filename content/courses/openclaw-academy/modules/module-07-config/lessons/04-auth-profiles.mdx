@@ -6,7 +6,19 @@ duration: 10
 order: 1
 keyTakeaways:
 - Understand auth profiles
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-07-auth-profiles"
+missionTitle: "Mission 24 — Auth Profiles"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-07-config.svg)
+
+> *"Storing API keys in plaintext: not recommended. 1Password integration: strongly recommended."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +34,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Security — Secret-Management
+
+**Context:** A developer accidentally commits an API key to the git repository. The key is for a third-party service used by OpenClaw. The commit is public for 6 minutes before it's detected.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add pre-commit secret scanning
+2. migrate all secrets to 1Password
+3. add automated key rotation on exposure.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

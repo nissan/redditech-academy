@@ -1,50 +1,75 @@
-# Dev Environment + Tooling
+---
+title: "Developer Tooling + Environments — Overview"
+description: "CLI, local environments, deterministic tooling, and team workflow hygiene."
+slug: "tooling-overview"
+duration: 26
+order: 1
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "solana-02-tooling-architecture"
+missionTitle: "Mission 02A — Architecture Map"
+estimatedMinutes: 24
+keyTakeaways:
+  - "Translate concepts into explicit constraints and acceptance checks"
+  - "Prefer repeatable implementation patterns over one-off fixes"
+  - "Use adversarial evidence as a hard release gate"
+---
+---
 
-## Summary
+## 🏗️ Your Running Project
 
-Set up local tooling, CLI workflow, and project structure for reliable builds.
+**What you're building:** An NFT marketplace on Solana — production-grade, end-to-end.
+**What this module adds:** Set up the tools you'll use to build, test, and deploy the marketplace — CLI, local validator, Anchor.
+**What you'll have at the end:** A concrete deliverable that builds directly on the previous module.
 
-## Outcomes
+> *This module is one piece of a game you've been playing since Module 0. Every decision you make here carries forward.*
 
-- Install and verify full Solana dev toolchain
-- Run a clean local setup checklist
-- Create a repeatable setup script
+# Developer Tooling + Environments — Overview
 
-## Theory
+## 😄 Meme Opener
+**Meme concept:** "Looks fine in dev" until assumptions meet production traffic.
+**Why this hurts in real life:** reliability depends on explicit constraints, not optimism.
 
-- Toolchain anatomy
-- Version compatibility
-- Local validator concepts
-- Project layout conventions
+![Module meme](/assets/courses/solana-academy/memes/tooling.png)
 
-## Practical
+## Quick Recap
+- Focus area: CLI, local environments, deterministic tooling, and team workflow hygiene.
+- This is part of the standard + mission-mode learning flow.
+- Mission pass requires concrete evidence and explicit risk controls.
 
-- Run setup and verification commands
-- Document expected outputs
-- Commit bootstrap scripts
+## Concept Clarity
+The learning flow has three steps: architecture map, implementation lab, and adversarial gate.
+Each step sharpens the model before you move toward production-like environments.
 
-## Tools
+## Mermaid Visual
+```mermaid
+flowchart LR
+  A[Architecture assumptions] --> B[Implementation design]
+  B --> C[Adversarial checks]
+  C --> D[Go/No-Go decision]
+```
 
-solana-cli, Rust, Anchor, Node.js
+## Harvard-Style Case
+**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
 
-## Case Study
+**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
 
-- **Protagonist:** Team lead
-- **Context:** Onboarding 3 engineers with inconsistent local setups.
-- **Dilemma:** Move fast now or standardize tooling first?
-- **Options:**
-  - Ad hoc setup
-  - Strict bootstrap first
-  - Pairing-led setup
-- **Recommendation:** Standardize bootstrap first to reduce hidden setup debt.
-- **Discussion questions:**
-  - What setup checks should block a PR from starting?
-  - How do you avoid version drift across machines?
+**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
 
-## Video Guidance
+**Outcome:** slower initial cycle, significantly better reliability and review quality.
 
-Video: Solana Developer Bootcamp 2026: Learn Blockchain and Full-Stack Crypto Development (ID: 2pcm7ICRJKU)
+**Discussion questions:**
+1. Which assumption is most likely to fail under real usage?
+2. What should block progression to the next stage?
 
-- Dev Environment + Tooling clip 1 (01:01) (61s): setting up your development environment
-- Dev Environment + Tooling clip 2 (01:32) (92s): X42 client side development and real
-- Dev Environment + Tooling clip 3 (08:28) (508s): be installing. First, Rust. Salana
+## Primary References
+- https://solana.com/docs/intro/installation
+- https://docs.anza.xyz/cli/usage
+- https://solana.com/docs/intro/quick-start/writing-to-network
+
+## Downloadable Practical Artifacts
+- [Artifact](/assets/courses/solana-academy/downloads/02-tooling-mission-runbook.md)
+- [Artifact](/assets/courses/solana-academy/downloads/02-tooling-quality-matrix.csv)
+
+## Anti-Pattern to Avoid
+Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

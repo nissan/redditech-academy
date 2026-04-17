@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Mainnet Readiness meme">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="#111827" stroke="#8b5cf6" stroke-width="4"/>
+  <text x="80" y="160" fill="#c4b5fd" font-size="44" font-family="Arial, Helvetica, sans-serif" font-weight="700">Mainnet Readiness</text>
+  <text x="80" y="250" fill="#e5e7eb" font-size="34" font-family="Arial, Helvetica, sans-serif">Ship now?</text>
+  <text x="80" y="310" fill="#e5e7eb" font-size="34" font-family="Arial, Helvetica, sans-serif">Rollback says not ready</text>
+  <text x="80" y="500" fill="#a78bfa" font-size="28" font-family="Arial, Helvetica, sans-serif">Solana Academy vNext</text>
+</svg>

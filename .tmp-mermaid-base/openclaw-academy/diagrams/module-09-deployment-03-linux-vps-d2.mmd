@@ -1,0 +1,4 @@
+flowchart LR
+    PI["Raspberry Pi 4\n~$55 one-time\n0/mo"] --> HOME["Home network\n(stable internet)"]
+    HOME -->|Tailscale| YOU["Your devices\n(phone, laptop)"]
+    HOME -->|Optional DDNS + Caddy| WEBHOOKS["Telegram webhooks"]

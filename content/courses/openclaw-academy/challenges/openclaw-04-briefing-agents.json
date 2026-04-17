@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-04-briefing-agents",
+  "type": "json-editor",
+  "title": "Briefing 04 \u2014 Agents Orientation",
+  "description": "Review the module briefing and fill in your three key takeaways before advancing.",
+  "starterCode": "{\"takeaway_1\": \"\", \"takeaway_2\": \"\", \"takeaway_3\": \"\", \"one_question_i_have\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "takeaway_1"
+    },
+    {
+      "type": "key_exists",
+      "key": "one_question_i_have"
+    }
+  ],
+  "hints": [
+    "Reread the Quick Recap section",
+    "Your question is as important as your takeaways",
+    "Write in your own words, not a copy of the text"
+  ],
+  "successMessage": "Briefing complete. You're cleared to advance.",
+  "points": 50
+}

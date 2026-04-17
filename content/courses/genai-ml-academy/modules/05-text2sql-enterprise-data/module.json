@@ -5,10 +5,10 @@
   "title": "Text2SQL and Enterprise Data Interfaces",
   "description": "Most business data lives in SQL databases, but most business users do not write SQL. Text2SQL bridges that gap by letting users ask questions in natural language while still querying trusted enterprise data.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Text2SQL and Enterprise Data Interfaces Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Text2SQL and Enterprise Data Interfaces"
   },
   "learningObjectives": [],

@@ -1,0 +1,6 @@
+benchmark_family,weight_percent,metric,threshold,target_model,challenger_model,decision_note
+MMLU/MMMLU,20,macro_accuracy,>=0.72,,,
+GPQA/HLE,20,hard_reasoning_score,>=0.38,,,
+GSM8K/MGSM,20,reasoning_accuracy,>=0.80,,,
+IFEval/IFBench,25,constraint_adherence,>=0.92,,,
+Internal Product Eval,15,task_success_rate,>=0.88,,,

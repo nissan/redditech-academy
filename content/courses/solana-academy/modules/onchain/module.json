@@ -1,20 +1,20 @@
 {
   "id": "onchain",
   "slug": "onchain",
-  "order": 4,
-  "title": "On-chain Program Development",
-  "description": "Build and reason about Solana programs, instructions, and account constraints.",
+  "order": 5,
+  "title": "On-Chain Program Design",
+  "description": "Program architecture, PDA strategy, account constraints, and secure instruction design.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.8,
+  "estimatedHours": 3.2,
   "badge": {
     "name": "On-chain Program Development Badge",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed On-chain Program Development"
   },
   "learningObjectives": [
-    "Design instruction interfaces",
-    "Apply account constraints correctly",
-    "Implement and validate PDA usage"
+    "Explain key architecture and risk boundaries for this domain",
+    "Implement a mission-style plan with deterministic acceptance checks",
+    "Apply adversarial gates before promotion to higher environments"
   ],
   "prerequisiteModules": [
     "wallets"

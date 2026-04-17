@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCourseMetadata, getCourseSlugs } from "@/lib/courses";
-import { getCourseStructure } from "@/lib/content";
+import { getCourseStructure, getLesson, getLessonSlugs } from "@/lib/content";
 import { CourseOverviewClient } from "./course-overview-client";
 
 interface PageProps {
@@ -30,18 +30,27 @@ export default async function CourseOverviewPage({ params }: PageProps) {
 
   const structure = getCourseStructure(courseSlug);
 
-  const modules = structure.modules.map((m) => ({
-    id: m.metadata.id,
-    slug: m.metadata.slug,
-    order: m.metadata.order,
-    title: m.metadata.title,
-    description: m.metadata.description,
-    difficulty: m.metadata.difficulty,
-    estimatedHours: m.metadata.estimatedHours,
-    lessonCount: m.lessons.length,
-    badge: m.metadata.badge,
-    requiresPassword: m.metadata.requiresPassword || false,
-  }));
+  const modules = structure.modules.map((m) => {
+    const lessonSlugs = getLessonSlugs(courseSlug, m.metadata.slug);
+    const firstInteractiveLessonSlug = lessonSlugs.find((lessonSlug) => {
+      const lesson = getLesson(courseSlug, m.metadata.slug, lessonSlug);
+      return lesson?.frontmatter.type === "interactive";
+    });
+
+    return {
+      id: m.metadata.id,
+      slug: m.metadata.slug,
+      order: m.metadata.order,
+      title: m.metadata.title,
+      description: m.metadata.description,
+      difficulty: m.metadata.difficulty,
+      estimatedHours: m.metadata.estimatedHours,
+      lessonCount: m.lessons.length,
+      badge: m.metadata.badge,
+      requiresPassword: m.metadata.requiresPassword || false,
+      firstInteractiveLessonSlug: firstInteractiveLessonSlug || null,
+    };
+  });
 
   return (
     <div className="min-h-screen bg-[#0F172A]">

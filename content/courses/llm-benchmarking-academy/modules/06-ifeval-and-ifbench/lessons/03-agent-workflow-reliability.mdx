@@ -1,0 +1,89 @@
+---
+title: "Agent Workflow Reliability with Instruction Benchmarks"
+description: "Apply IFEval/IFBench principles to multi-step tool-using agent workflows."
+slug: "agent-workflow-reliability"
+duration: 22
+order: 3
+keyTakeaways:
+  - "Instruction failures compound across multi-step agent runs"
+  - "Compliance checks should exist at every critical handoff"
+  - "Reliability gates need both capability and adherence thresholds"
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "llm-06-instruction-following"
+missionTitle: "Mission — 06 Ifeval And Ifbench"
+estimatedMinutes: 15
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/06-ifeval-and-ifbench.svg)
+
+> *"Output format: JSON. Actual output: JSON with a paragraph of explanation before and after."*
+
+# Agent Workflow Reliability with Instruction Benchmarks
+
+## Quick Recap
+- Agent systems are brittle when instruction adherence is weak.
+- Workflow-level compliance metrics should be first-class.
+- Benchmark results must map to operational incident risk.
+
+## Concept Clarity
+A robust agent eval stack includes:
+- step-level instruction adherence
+- tool-call argument format compliance
+- end-to-end success under constraint bundles
+
+## Mermaid Visual
+```mermaid
+flowchart TB
+  A[User goal] --> B[Agent step 1]
+  B --> C[Tool call]
+  C --> D[Agent step 2]
+  D --> E[Final output]
+  B --> F[Compliance check]
+  C --> F
+  D --> F
+  E --> F
+  F --> G[Workflow reliability score]
+```
+
+## Applied Case
+A customer-support agent passed single-turn evals but failed multi-step workflows due to tool-argument formatting drift. Step-level compliance checks reduced incident rate after rollout.
+
+## Practical Application Checklist
+1. Define critical workflow checkpoints and required constraints.
+2. Measure step-level and end-to-end adherence.
+3. Store failed traces for replay and remediation.
+4. Gate deployment on workflow reliability minimums.
+
+## Primary References
+- https://arxiv.org/abs/2311.07911
+- https://arxiv.org/abs/2402.07814
+
+---
+
+## 🎓 Harvard-Style Case Study — Instruction following as a first-class eval dimension
+
+**Context:** A team built an agent that required strictly formatted JSON output. The model scored 91% on general benchmarks. In production, it added prose before and after JSON in 30% of responses — breaking the downstream parser.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add IFEval as a release gate for instruction-following
+2. add output schema validation as a hard gate
+3. add a post-processing step to strip non-JSON content
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

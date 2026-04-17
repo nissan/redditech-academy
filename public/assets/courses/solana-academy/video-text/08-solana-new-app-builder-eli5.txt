@@ -1,0 +1,5 @@
+ELI5 Summary
+
+Use solana.new to start faster, then validate like a pro.
+
+Module: 08-solana-new-app-builder

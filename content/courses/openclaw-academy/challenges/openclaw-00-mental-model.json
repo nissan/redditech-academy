@@ -1,0 +1,20 @@
+{
+  "id": "openclaw-00-mental-model",
+  "type": "json-editor",
+  "title": "Mission 00-B \u2014 Mental Model",
+  "description": "Arrange the OpenClaw message flow steps in correct order.",
+  "starterCode": "{}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "correct_order"
+    }
+  ],
+  "hints": [
+    "Think about the core problem from a user perspective",
+    "Each field should explain your reasoning, not just repeat the question",
+    "There is no single right answer \u2014 your reasoning matters"
+  ],
+  "successMessage": "Well done \u2014 Mission 00-B \u2014 Mental Model complete.",
+  "points": 150
+}

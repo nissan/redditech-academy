@@ -1,0 +1,63 @@
+{
+  "id": "08-building-an-eval-harness-quiz",
+  "moduleId": "08-building-an-eval-harness",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the minimum reproducibility requirement for NQ-open/HotpotQA/needle harness runs?",
+      "options": [
+        "Store only final average score",
+        "Versioned dataset + prompt + model snapshot + run manifest",
+        "Manual notes in chat",
+        "Only screenshot evidence"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Without full provenance, run-to-run comparisons are not trustworthy.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Which harness pattern best supports diagnosing long-context failures?",
+      "options": [
+        "Only aggregate pass/fail",
+        "Store per-example outputs with context length, needle position, and miss type",
+        "Drop failed examples",
+        "Use random seeds but never log them"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Per-example diagnostics are required to understand why long-context failures happen.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Why keep NQ-open and HotpotQA as separate scheduled jobs?",
+      "options": [
+        "They measure identical capabilities",
+        "They stress different failure modes (single-hop retrieval vs multi-hop synthesis)",
+        "It makes dashboards prettier",
+        "It avoids governance requirements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Separate jobs preserve clear capability attribution.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "A score jump appears after a harness change. What is the first governance move?",
+      "options": [
+        "Ship immediately",
+        "Compare manifests/hashes and rerun under prior protocol before any promotion",
+        "Ignore and average across weeks",
+        "Delete old artifacts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Protocol drift must be ruled out before treating gains as real capability improvements.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

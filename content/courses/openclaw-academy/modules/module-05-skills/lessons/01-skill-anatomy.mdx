@@ -6,7 +6,28 @@ duration: 12
 order: 1
 keyTakeaways:
 - Understand skill anatomy
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-05-skill-structure"
+missionTitle: "Mission 15 — Skill Structure"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Add your first custom skill so the assistant can do something unique.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-05-skills.svg)
+
+> *"A Skill is just a SKILL.md and some intent. The hard part is writing the SKILL.md."*
 
 The agent doesn't know how to use `peekaboo` or `clawhub` or `himalaya` out of the box. Skills teach it.
 
@@ -210,3 +231,28 @@ Notice:
 > cat ~/.npm-global/lib/node_modules/openclaw/skills/weather/SKILL.md
 > ```
 > Read the instructions section (after the frontmatter). Notice how it guides the agent without over-specifying.
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Skills — Conflicts
+
+**Context:** A skill is deployed to production. It works in isolation. In the live agent context, it collides with another skill's trigger pattern and fires on unintended messages.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add trigger-pattern uniqueness validation on skill load
+2. add a skill-conflict detection command
+3. add explicit skill priority ordering.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

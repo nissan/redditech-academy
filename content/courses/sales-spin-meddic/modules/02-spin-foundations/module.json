@@ -1,0 +1,22 @@
+{
+  "id": "02-spin-foundations",
+  "slug": "02-spin-foundations",
+  "order": 2,
+  "title": "SPIN Foundations",
+  "description": "Master Situation, Problem, Implication, and Need-Payoff discovery mechanics.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "SPIN Foundations Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed SPIN Foundations"
+  },
+  "learningObjectives": [
+    "Explain the core model used in SPIN Foundations",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "01-sales-system"
+  ]
+}

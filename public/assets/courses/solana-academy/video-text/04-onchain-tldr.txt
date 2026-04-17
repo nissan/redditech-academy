@@ -1,0 +1,1 @@
+TLDR talking points for onchain module.

@@ -1,0 +1,20 @@
+{
+  "id": "genai-11-deployment-spec",
+  "type": "json-editor",
+  "title": "Mission 11-B \u2014 Deployment Spec",
+  "description": "Write a deployment spec for an ML model: compute requirements, scaling policy, monitoring plan, and rollback procedure.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 11-B \u2014 Deployment Spec complete.",
+  "points": 100
+}

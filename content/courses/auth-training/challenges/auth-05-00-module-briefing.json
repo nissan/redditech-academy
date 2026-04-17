@@ -1,0 +1,20 @@
+{
+  "id": "auth-05-00-module-briefing",
+  "type": "json-editor",
+  "title": "Mission 05 \u2014 05 Fido2",
+  "description": "Complete the IAM mission brief for 00-module-briefing.",
+  "starterCode": "{\"decision\":\"\",\"rationale\":\"\",\"security_control\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start with the threat model",
+    "Every IAM decision needs an explicit security rationale",
+    "Name the attack this control prevents"
+  ],
+  "successMessage": "Mission complete \u2014 05 Fido2 passed.",
+  "points": 100
+}

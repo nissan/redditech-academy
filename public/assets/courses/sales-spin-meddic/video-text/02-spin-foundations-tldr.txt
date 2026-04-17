@@ -1,0 +1,5 @@
+TLDR Summary
+
+Use Situation, Problem, Implication, Need-Payoff in order.
+
+Module: 02-spin-foundations

@@ -1,0 +1,40 @@
+{
+  "id": "solana-17-surfpool-architecture",
+  "spec": "Define architecture for Testing Lab \u2014 Surfpool Workflows: invariants, scope, failure taxonomy, and measurable acceptance boundaries.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.summary",
+        "non_empty": true
+      },
+      {
+        "field": "submission.invariants",
+        "non_empty": true
+      },
+      {
+        "field": "submission.test_evidence",
+        "non_empty": true
+      },
+      {
+        "field": "submission.risk_controls",
+        "non_empty": true
+      }
+    ],
+    "must_not_have": [
+      {
+        "field": "submission.network",
+        "value": "mainnet"
+      }
+    ]
+  },
+  "eli_notes": "Reject vague testing claims without deterministic evidence and negative-case coverage.",
+  "hints": [
+    "Document reproducibility steps.",
+    "Include at least one failing-path test.",
+    "Treat blockers as non-negotiable."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"network\": \"devnet\",\n    \"summary\": \"__FILL_IN__\",\n    \"invariants\": [\"__FILL_IN__\"],\n    \"test_evidence\": [\"__FILL_IN__\"],\n    \"risk_controls\": [\"__FILL_IN__\"]\n  }\n}"
+  },
+  "success_text": "Mission accepted. Submission demonstrates deterministic testing controls and launch-gate discipline."
+}

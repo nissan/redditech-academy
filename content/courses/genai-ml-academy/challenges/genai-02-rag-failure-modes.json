@@ -1,0 +1,51 @@
+{
+  "id": "genai-02-rag-failure-modes",
+  "type": "sequence-completer",
+  "title": "Mission 02-C \u2014 RAG Failure Mode Triage",
+  "description": "Identify and sequence the remediation steps for common RAG failure modes.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 02-C \u2014 RAG Failure Mode Triage complete.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "User query received"
+      },
+      {
+        "id": "s2",
+        "label": "Query embedded and matched against vector index"
+      },
+      {
+        "id": "s3",
+        "label": "Top-k chunks retrieved and reranked"
+      },
+      {
+        "id": "s4",
+        "label": "Chunks injected into prompt context"
+      },
+      {
+        "id": "s5",
+        "label": "LLM generates response grounded in retrieved context"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

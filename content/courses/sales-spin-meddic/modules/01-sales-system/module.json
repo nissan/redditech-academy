@@ -1,0 +1,20 @@
+{
+  "id": "01-sales-system",
+  "slug": "01-sales-system",
+  "order": 1,
+  "title": "Modern Online Sales System",
+  "description": "Map end-to-end online sales flow from lead to close with operational metrics.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "Modern Online Sales System Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed Modern Online Sales System"
+  },
+  "learningObjectives": [
+    "Explain the core model used in Modern Online Sales System",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": []
+}

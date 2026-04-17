@@ -1,0 +1,24 @@
+{
+  "id": "llm-01-retrieval-suite-design",
+  "spec": "Complete the eval-suite design JSON for a retrieval-heavy support copilot. Include explicit family gates for SQuAD, NQ-open, HotpotQA, and long-context needle tests, with promotion thresholds and failure buckets.",
+  "validation": {
+    "must_have": [
+      { "field": "suite.families.squad", "present": true },
+      { "field": "suite.families.nq_open", "present": true },
+      { "field": "suite.families.hotpotqa", "present": true },
+      { "field": "suite.families.long_context_needle", "present": true },
+      { "field": "suite.gates", "must_contain": ["family thresholds", "no blended-score override"] },
+      { "field": "suite.failure_buckets", "must_contain": ["retrieval miss", "position miss", "synthesis miss"] }
+    ]
+  },
+  "eli_notes": "Pass when student cleanly separates the four eval families and sets explicit gate policy. If they collapse everything into one composite score without red-lines, fail and explain why this causes false promotion confidence.",
+  "hints": [
+    "Do not let one high score hide a weak family. Use family-level gates.",
+    "Long-context robustness should include early/mid/late position checks.",
+    "Failure buckets are operational tools, not optional reporting extras."
+  ],
+  "prefilled": {
+    "template": "{\n  \"suite\": {\n    \"target_system\": \"retrieval-heavy support copilot\",\n    \"families\": {\n      \"squad\": {\n        \"goal\": \"__FILL_IN__\",\n        \"threshold\": \"__FILL_IN__\"\n      },\n      \"nq_open\": {\n        \"goal\": \"__FILL_IN__\",\n        \"threshold\": \"__FILL_IN__\"\n      },\n      \"hotpotqa\": {\n        \"goal\": \"__FILL_IN__\",\n        \"threshold\": \"__FILL_IN__\"\n      },\n      \"long_context_needle\": {\n        \"goal\": \"__FILL_IN__\",\n        \"threshold\": \"__FILL_IN__\",\n        \"position_slices\": [\"early\", \"mid\", \"late\"]\n      }\n    },\n    \"gates\": [\"__FILL_IN__\"],\n    \"failure_buckets\": [\"__FILL_IN__\"]\n  }\n}"
+  },
+  "success_text": "Suite design accepted. You separated capability families and enforced the exact gate discipline needed for reliable retrieval-system promotions."
+}

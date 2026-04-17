@@ -1,0 +1,70 @@
+---
+title: "Case Analysis Framework"
+description: "Apply a structured analysis framework to a data science case: problem definition, approach, tradeoffs, and outcome."
+slug: "case-analysis-framework"
+duration: 20
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "genai-09-case-analysis"
+missionTitle: "Mission 09-B — Case Analysis"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Applied Data Science Case Studies concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/09-applied-data-science-cases.svg)
+
+> *"The model is 95% accurate. The remaining 5% is all the interesting cases."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+{}
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Applied Data Science Case Studies | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Training data representation and business value alignment
+
+**Context:** A churn prediction model was deployed with 94% accuracy on the test set. In production, it failed to identify the highest-value churners because they were underrepresented in the training data.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Reweight the training data to oversample high-value customers
+2. add a separate high-value customer model
+3. add a post-prediction business-rule override for high-value accounts
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Applied Data Science Case Studies decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

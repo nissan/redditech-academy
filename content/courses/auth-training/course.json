@@ -3,17 +3,31 @@
   "slug": "auth-training",
   "title": "Auth & Identity Mastery",
   "description": "A complete course on OAuth 2.0, OpenID Connect, SAML, FIDO2, and modern identity architecture. From executive overview to applied case studies.",
-  "tagline": "OAuth, OIDC, SAML, FIDO2 — the complete identity stack",
-  "icon": "🔐",
+  "tagline": "OAuth, OIDC, SAML, FIDO2 \u2014 the complete identity stack",
+  "icon": "\ud83d\udd10",
   "difficulty": "intermediate",
   "estimatedHours": 18,
-  "tags": ["oauth", "oidc", "saml", "fido2", "identity", "security"],
+  "tags": [
+    "oauth",
+    "oidc",
+    "saml",
+    "fido2",
+    "identity",
+    "security"
+  ],
   "badge": {
     "name": "Identity Architect",
-    "icon": "🔐",
+    "icon": "\ud83d\udd10",
     "description": "Completed the full Auth & Identity Mastery course"
   },
   "author": "Redditech Labs",
   "version": "1.0",
-  "free": true
+  "free": true,
+  "runningProject": {
+    "title": "Secure Fintech API",
+    "description": "You are securing a fintech API. Each module closes a real attack surface. The capstone is a fully secured API with complete IAM.",
+    "juniorGameBrief": "Before any theory, identify 3 ways an attacker could compromise a login flow. That is your threat model.",
+    "finalOutcome": "A fintech API with complete IAM: authentication, authorisation, federated identity, FGA, and a security audit trail."
+  },
+  "learningApproach": "whole-game"
 }

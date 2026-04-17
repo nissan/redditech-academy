@@ -1,0 +1,9 @@
+graph LR
+    SKILL["skills/my-skill/\n SKILL.md\n script.sh"]
+    PROMPT["System prompt\n<available_skills>"]
+    AGENT["Agent Runtime"]
+    EXEC["exec tool\n runs script.sh"]
+
+    SKILL -->|"load-time injection"| PROMPT
+    PROMPT -->|"informs"| AGENT
+    AGENT -->|"when task matches"| EXEC

@@ -1,0 +1,63 @@
+{
+  "id": "09-failure-modes-and-gaming-quiz",
+  "moduleId": "09-failure-modes-and-gaming",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which is a common NQ-open gaming pattern?",
+      "options": [
+        "Robust multi-hop synthesis",
+        "Memorization contamination and retrieval shortcuting",
+        "Improved governance logging",
+        "Lower latency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "NQ-open can be inflated by contamination and shallow retrieval behaviors.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "What is the key risk in HotpotQA without evidence-chain auditing?",
+      "options": [
+        "Underfitting UI styles",
+        "Lexical shortcuts that look correct without genuine multi-hop reasoning",
+        "Faster build times",
+        "More deterministic seeds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Answer-only checks can miss shallow reasoning artifacts.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "How can long-context needle benchmarks be gamed?",
+      "options": [
+        "By overfitting to synthetic prompt layouts that do not match real documents",
+        "By adding governance checks",
+        "By randomizing seeds",
+        "By publishing failed runs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Synthetic-only optimization often fails on realistic long-document structure.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q4",
+      "question": "A model improved top-line score but regressed in HotpotQA and needle slices. What is the correct decision?",
+      "options": [
+        "Promote because average increased",
+        "Hold promotion and investigate family-level regressions before release",
+        "Drop those slices from reporting",
+        "Run best-of-N until pass"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Family-level regressions are production risk signals and must block promotion.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

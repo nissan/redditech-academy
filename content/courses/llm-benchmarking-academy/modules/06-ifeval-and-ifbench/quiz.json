@@ -1,0 +1,49 @@
+{
+  "id": "06-ifeval-and-ifbench-quiz",
+  "moduleId": "06-ifeval-and-ifbench",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "IFEval is most useful for products that require:",
+      "options": [
+        "Free-form creativity only",
+        "Strict adherence to format and constraints",
+        "Fastest generation speed only",
+        "Longest possible outputs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "IFEval surfaces constraint-following reliability.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "If model quality is high but parser errors are frequent, what is missing?",
+      "options": [
+        "More general knowledge benchmarks",
+        "Instruction-following and structured output compliance benchmarks",
+        "Bigger context windows only",
+        "Fewer tests"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Execution-discipline benchmarks are key for structured-output products.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Best policy before model promotion for agent workflows?",
+      "options": [
+        "Check one benchmark family",
+        "Require both capability and instruction-adherence minimums",
+        "Disable constraints in prompts",
+        "Trust human intuition only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Balanced gates prevent deployment of \u201csmart but non-compliant\u201d models.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

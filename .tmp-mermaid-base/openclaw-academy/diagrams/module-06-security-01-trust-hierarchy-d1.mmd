@@ -1,0 +1,16 @@
+graph TB
+    INTERNET["🌐 Internet\n(Untrusted)"]
+    CHANNEL["📱 Channels\n(Telegram, WhatsApp, Discord)"]
+    PAIRING["🔒 Pairing/Allowlist\nGate"]
+    AGENT["🤖 Agent\n(LLM + tools)"]
+    TOOLS["🔧 Tools\n(exec, browser, read)"]
+    EXT["📄 External Content\n(web_fetch, email, webhooks)"]
+    WORKSPACE["📁 Workspace Files\nAGENTS.md, SOUL.md..."]
+
+    INTERNET -->|"anyone can send"| CHANNEL
+    CHANNEL -->|"authorized senders only"| PAIRING
+    PAIRING -->|"inbound message\nwrapped as user-level"| AGENT
+    AGENT -->|"tool calls"| TOOLS
+    AGENT -->|"fetch requests"| EXT
+    EXT -->|"EXTERNAL_UNTRUSTED_CONTENT\nenvelope"| AGENT
+    WORKSPACE -->|"injected into\nsystem prompt"| AGENT

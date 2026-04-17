@@ -1,0 +1,51 @@
+{
+  "id": "genai-07-production-checklist",
+  "type": "sequence-completer",
+  "title": "Mission 07-C \u2014 Production Readiness Checklist",
+  "description": "Sequence the production readiness checks before launching a LangChain application.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 07-C \u2014 Production Readiness Checklist complete.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Eval suite passing at required thresholds"
+      },
+      {
+        "id": "s2",
+        "label": "Retry and fallback logic tested under simulated failures"
+      },
+      {
+        "id": "s3",
+        "label": "Observability stack wired (traces, metrics, eval scores)"
+      },
+      {
+        "id": "s4",
+        "label": "Incident runbook documented and reviewed"
+      },
+      {
+        "id": "s5",
+        "label": "Staged rollout to 5% of traffic before full release"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

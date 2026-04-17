@@ -1,0 +1,47 @@
+{
+  "id": "solana-00-first-principles-mental-model",
+  "spec": "Place the five Solana execution primitives in the correct order: from account creation through runtime execution.",
+  "validation": {
+    "type": "sequence",
+    "description": "Correct position of all 5 steps earns full marks. Score = correct_positions / total_steps."
+  },
+  "eli_notes": "The correct sequence is: account creation → instruction construction → transaction bundling → signer authorization → runtime execution. Accept if 4/5 or 5/5 positions are right. If wrong, name the specific misplaced step and explain why order matters for Solana's execution model.",
+  "hints": [
+    "Programs execute, accounts store — one must exist before the other can act on it.",
+    "Instructions target a program. Transactions bundle instructions. Order matters.",
+    "The signer authorizes state change — that must happen before the runtime validates anything."
+  ],
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Account created and initialized with lamports"
+      },
+      {
+        "id": "s2",
+        "label": "Instruction specifies which program to call and which accounts to use"
+      },
+      {
+        "id": "s3",
+        "label": "Transaction bundles one or more instructions"
+      },
+      {
+        "id": "s4",
+        "label": "Signer authorizes the transaction with their keypair"
+      },
+      {
+        "id": "s5",
+        "label": "Runtime validates accounts and executes the program"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  },
+  "success_text": "Sequence confirmed. Your mental model of Solana's execution pipeline is solid.",
+  "type": "sequence-completer"
+}

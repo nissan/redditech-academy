@@ -1,0 +1,51 @@
+{
+  "id": "genai-01-release-gate",
+  "type": "sequence-completer",
+  "title": "Mission 01-C \u2014 Release Gate Sequence",
+  "description": "Sequence the steps from development to production release for an AI system.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 01-C \u2014 Release Gate Sequence complete.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Define eval contract with quality/latency/cost/safety thresholds"
+      },
+      {
+        "id": "s2",
+        "label": "Run golden set evaluation against current model"
+      },
+      {
+        "id": "s3",
+        "label": "Compare results against pass/fail thresholds"
+      },
+      {
+        "id": "s4",
+        "label": "Fix regressions if any threshold is breached"
+      },
+      {
+        "id": "s5",
+        "label": "Sign off and promote to production"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

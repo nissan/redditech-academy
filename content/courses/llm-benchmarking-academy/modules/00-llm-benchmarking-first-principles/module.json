@@ -1,0 +1,19 @@
+{
+  "id": "00-llm-benchmarking-first-principles",
+  "slug": "00-llm-benchmarking-first-principles",
+  "order": 0,
+  "title": "LLM Benchmarking First Principles",
+  "description": "Why LLM evaluation is harder than it looks, what benchmarks actually measure, and how to avoid the most common mistakes.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "Benchmarking Foundations",
+    "icon": "\ud83d\udcca",
+    "description": "Completed the LLM Benchmarking First Principles module"
+  },
+  "learningObjectives": [
+    "Explain why a high benchmark score does not guarantee production quality",
+    "Identify the three most common benchmark evaluation mistakes",
+    "Select the right benchmark(s) for a given use case"
+  ]
+}

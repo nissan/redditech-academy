@@ -1,0 +1,16 @@
+flowchart TD
+    START[Who are you building for?] --> SELF[Just yourself]
+    START --> OTHERS[A specific person/group]
+    START --> WORK[Work/enterprise context]
+
+    SELF --> TG_FAST[Speed matters → Telegram]
+    SELF --> APPLE[macOS + iPhone → iMessage / BlueBubbles]
+    SELF --> PRIV[Privacy-first → Signal]
+
+    OTHERS --> WA_POPULAR[They're on WhatsApp → WhatsApp]
+    OTHERS --> DC_COMMUNITY[Server/community → Discord]
+    OTHERS --> TG_OTHERS[Tech-savvy users → Telegram]
+
+    WORK --> SLACK_WORK[Company uses Slack → Slack]
+    WORK --> TEAMS_WORK[Company uses Teams → MS Teams]
+    WORK --> GCHAT[Google Workspace → Google Chat]

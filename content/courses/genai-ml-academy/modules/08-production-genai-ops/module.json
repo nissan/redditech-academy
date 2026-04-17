@@ -5,10 +5,10 @@
   "title": "Production GenAI Ops: Evals, Observability, Optimisation",
   "description": "Shipping v1 is easy. Keeping quality stable under real traffic is the hard part. GenAI ops gives you the feedback loops to detect regressions, control cost, and improve safely.",
   "difficulty": "intermediate",
-  "estimatedHours": 1.0,
+  "estimatedHours": 3.0,
   "badge": {
     "name": "Production GenAI Ops: Evals, Observability, Optimisation Badge",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed Production GenAI Ops: Evals, Observability, Optimisation"
   },
   "learningObjectives": [],

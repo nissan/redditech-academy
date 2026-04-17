@@ -1,0 +1,5 @@
+test_id,category,scenario,expected,result
+T1,happy,primary path,all invariants hold,TODO
+T2,auth,invalid authority,reject,TODO
+T3,boundary,edge input,no invariant break,TODO
+T4,resilience,forced failure,safe recovery,TODO

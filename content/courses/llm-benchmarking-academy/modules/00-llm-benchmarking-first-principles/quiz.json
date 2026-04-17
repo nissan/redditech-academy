@@ -1,0 +1,44 @@
+{
+  "moduleId": "00-llm-benchmarking-first-principles",
+  "questions": [
+    {
+      "id": "bq1",
+      "question": "What does a high benchmark score guarantee about production quality?",
+      "type": "multiple-choice",
+      "options": [
+        "Nothing \u2014 it only guarantees performance on that specific test set",
+        "The model will perform well for your use case",
+        "The model won't hallucinate in production",
+        "The model is better than all alternatives"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Benchmarks measure a proxy. High scores guarantee performance on the benchmark's specific test set, not on your production use case."
+    },
+    {
+      "id": "bq2",
+      "question": "What is a golden set?",
+      "type": "multiple-choice",
+      "options": [
+        "The best publicly available benchmark",
+        "Your own curated examples representing real production inputs",
+        "A set of 100 randomly sampled model outputs",
+        "The official eval set provided by the model vendor"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A golden set is your own curated collection of examples that represent real production inputs. It's more valuable than any public benchmark for your specific use case."
+    },
+    {
+      "id": "bq3",
+      "question": "Which mistake is most likely to cause a model regression to go undetected?",
+      "type": "multiple-choice",
+      "options": [
+        "Using too many benchmarks",
+        "Never updating the eval suite after the first run",
+        "Running evals on a GPU instead of CPU",
+        "Using a 90/10 train/test split"
+      ],
+      "correctAnswer": 2,
+      "explanation": "An eval suite that never updates can't detect new failure modes introduced by model updates, prompt changes, or shifting user behaviour. It becomes less representative over time."
+    }
+  ]
+}

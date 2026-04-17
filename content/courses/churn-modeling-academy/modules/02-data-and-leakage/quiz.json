@@ -1,0 +1,49 @@
+{
+  "id": "02-data-and-leakage-quiz",
+  "moduleId": "02-data-and-leakage",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which practice best improves churn-model decision quality?",
+      "options": [
+        "Randomly changing threshold weekly",
+        "Using explicit business metrics and labeled windows",
+        "Ignoring class imbalance",
+        "Using only accuracy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Decision quality improves when labels and metrics match business objectives.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q2",
+      "question": "Scenario: A model AUC is high but retention campaign ROI is negative. What is most likely missing?",
+      "options": [
+        "More features only",
+        "Intervention targeting and decision-threshold alignment",
+        "Higher GPU budget",
+        "Larger chart colors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Predictive performance without intervention design and threshold policy can fail business ROI.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    },
+    {
+      "id": "q3",
+      "question": "Which artifact should be mandatory before production launch?",
+      "options": [
+        "Only confusion matrix screenshot",
+        "Drift/monitoring and retrain trigger plan",
+        "A meme",
+        "No documentation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Production readiness requires explicit monitoring and retraining policy.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-concepts"
+    }
+  ]
+}

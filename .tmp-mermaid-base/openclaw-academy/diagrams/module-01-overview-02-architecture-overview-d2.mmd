@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant CLI
+    participant Gateway
+
+    CLI->>Gateway: {type:"req", method:"connect", params:{...}}
+    Gateway-->>CLI: {type:"res", ok:true, payload:{snapshot:...}}
+    
+    CLI->>Gateway: {type:"req", method:"agent", params:{message:"Hello"}}
+    Gateway-->>CLI: {type:"res", ok:true, payload:{runId:"...", status:"accepted"}}
+    Gateway-->>CLI: {type:"event", event:"agent", payload:{delta:"Hi! I'm..."}}
+    Gateway-->>CLI: {type:"event", event:"agent", payload:{done:true}}

@@ -1,0 +1,79 @@
+---
+title: "Gateway, Channels, Agents — Mental Model"
+description: "Build a clear mental model of how OpenClaw's three core components relate and how a message travels through the system."
+slug: "gateway-channels-agents-mental-model"
+duration: 20
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "openclaw-00-mental-model"
+missionTitle: "Mission 00-B — Mental Model"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Gateway = the process that owns all connections"
+  - "Channel = the messaging surface (Telegram, WhatsApp, Discord)"
+  - "Agent = the LLM-backed brain that processes messages and calls tools"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-00-first-principles.svg)
+
+> *"Gateway, channel, agent. Three words. One architecture. Infinite configuration options."*
+
+## Quick Recap
+
+OpenClaw has three layers. Understanding how they relate is the key to everything else.
+
+```
+Message arrives → Channel receives → Gateway routes → Agent processes → Tool executes → Response returns
+```
+
+**Gateway:** the long-running process that owns all connections and routes messages.
+**Channel:** the adapter for a specific messaging platform (Telegram, Discord, etc).
+**Agent:** the LLM-backed brain — reads context, calls tools, writes responses.
+
+## The Message Journey (step by step)
+
+1. You send a message from Telegram
+2. The Telegram channel adapter receives it
+3. The Gateway creates or resumes a session for you
+4. The Agent reads the session context + your message
+5. The Agent calls tools if needed (read file, run command, search web)
+6. The Agent writes a response
+7. The channel sends the response back to Telegram
+
+## Mission Brief
+
+Put the following steps in the correct order:
+
+- Agent writes response
+- Channel receives message
+- Gateway creates session
+- Tool executes
+- Agent calls tool
+- Channel sends response
+
+---
+
+## 🎓 Harvard-Style Case Study — When the Mental Model Breaks Down
+
+**Context:** A new developer joins an OpenClaw-based team. They assume the agent reads messages directly from Telegram. When they try to debug a message-handling bug, they look in the wrong place — the Telegram channel code — and miss the gateway session logic entirely.
+
+**The tension:** Let the developer figure it out vs add a mandatory architecture orientation before any debugging.
+
+**Decision options:**
+1. Add a 1-page architecture diagram to the repository README
+2. Add inline code comments tracing the message flow
+3. Add a `openclaw trace <message-id>` diagnostic command
+
+**Discussion questions:**
+1. What is the first place you would look when a message is received but not processed?
+2. How would you verify that a session is being created correctly for a new user?
+3. Write a one-sentence description of the gateway's role that a non-technical stakeholder could understand.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Socratic Coach:** "I want to understand the OpenClaw message flow deeply. Ask me one question at a time about each step — channel, gateway, session, agent, tool, response. After 7 questions, tell me which step I understand least well."

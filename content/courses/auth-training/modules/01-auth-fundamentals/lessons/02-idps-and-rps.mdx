@@ -12,7 +12,19 @@ keyTakeaways:
   - "Examples: Google, Azure AD, Okta (IdPs); SaaS apps, corporate portals (RPs)"
 prerequisites:
   - "auth-vs-authz"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-01-02-idps-and-rps"
+missionTitle: "Mission 01 — 01 Auth Fundamentals"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/01-auth-fundamentals.svg)
+
+> *"Authentication: are you who you say you are? Authorisation: do you get to do that? These are different questions."*
 
 # Identity Providers and Relying Parties
 
@@ -102,3 +114,30 @@ In enterprise environments, federation enables:
 **Social Login**: Consumer apps trusting social IdPs
 - Users choose Google, Facebook, or Apple
 - No password management for the app
+
+
+---
+
+## 🎓 Harvard-Style Case Study — AuthN vs AuthZ distinction in implementation
+
+**Context:** A developer confused authentication with authorisation. They verified the user's identity but forgot to check permissions. Any authenticated user could access any resource.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add an authorisation middleware that runs after authentication
+2. use a role-based access library
+3. add integration tests for every protected route
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

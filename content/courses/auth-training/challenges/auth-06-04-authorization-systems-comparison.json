@@ -1,0 +1,20 @@
+{
+  "id": "auth-06-04-authorization-systems-comparison",
+  "type": "json-editor",
+  "title": "Mission 06 \u2014 06 Zanzibar",
+  "description": "Complete the IAM mission brief for 04-authorization-systems-comparison.",
+  "starterCode": "{\"decision\":\"\",\"rationale\":\"\",\"security_control\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start with the threat model",
+    "Every IAM decision needs an explicit security rationale",
+    "Name the attack this control prevents"
+  ],
+  "successMessage": "Mission complete \u2014 06 Zanzibar passed.",
+  "points": 100
+}

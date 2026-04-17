@@ -1,0 +1,22 @@
+{
+  "id": "litesvm-testing-lab",
+  "slug": "18-litesvm-testing-lab",
+  "order": 13,
+  "title": "Testing Lab \u2014 LiteSVM In-Process Testing",
+  "description": "Use LiteSVM for in-process Solana testing, compare speed/coverage tradeoffs, and enforce adversarial test suites for escrow continuity.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.8,
+  "badge": {
+    "name": "Testing Lab \u2014 LiteSVM In-Process Testing Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Testing Lab \u2014 LiteSVM In-Process Testing module"
+  },
+  "learningObjectives": [
+    "Design deterministic test harnesses before feature coding",
+    "Implement high-signal local/in-process test loops for fast feedback",
+    "Use adversarial matrices and go/no-go launch gates to block unsafe releases"
+  ],
+  "prerequisiteModules": [
+    "16-verifiable-randomness-auctions"
+  ]
+}

@@ -6,7 +6,19 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand our skills and workflows
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-10-skill-audit"
+missionTitle: "Mission 32 — Skill Audit"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-10-case-study.svg)
+
+> *"The skill worked in testing. It works differently in production. This is fine."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +34,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Skills — Conflicts
+
+**Context:** A skill is deployed to production. It works in isolation. In the live agent context, it collides with another skill's trigger pattern and fires on unintended messages.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add trigger-pattern uniqueness validation on skill load
+2. add a skill-conflict detection command
+3. add explicit skill priority ordering.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

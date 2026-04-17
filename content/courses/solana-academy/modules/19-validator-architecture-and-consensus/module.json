@@ -1,0 +1,22 @@
+{
+  "id": "validator-architecture-and-consensus",
+  "slug": "19-validator-architecture-and-consensus",
+  "order": 19,
+  "title": "Advanced Validators \u2014 Architecture and Consensus",
+  "description": "Deep dive into Solana validator roles, vote flow, cluster behavior, and what changes when operating a consensus node versus RPC-only infrastructure.",
+  "difficulty": "advanced",
+  "estimatedHours": 4.0,
+  "badge": {
+    "name": "Advanced Validators \u2014 Architecture and Consensus Badge",
+    "icon": "\ud83d\udef0\ufe0f",
+    "description": "Completed Advanced Validators \u2014 Architecture and Consensus module"
+  },
+  "learningObjectives": [
+    "Map validator architecture and consensus-critical responsibilities",
+    "Evaluate infra/economic requirements for sustainable operations",
+    "Design launch gates and incident playbooks before mainnet exposure"
+  ],
+  "prerequisiteModules": [
+    "18-litesvm-testing-lab"
+  ]
+}

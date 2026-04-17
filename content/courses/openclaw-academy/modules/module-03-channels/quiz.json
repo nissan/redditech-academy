@@ -11,7 +11,7 @@
         "signal-cli over a JSON-RPC socket"
       ],
       "correctAnswer": 1,
-      "explanation": "OpenClaw uses Baileys, an open-source Node.js library implementing the WhatsApp Web multi-device protocol. It requires a QR scan to link the session \u2014 the same way WhatsApp Web in a browser works."
+      "explanation": "OpenClaw uses Baileys, an open-source Node.js library implementing the WhatsApp Web multi-device protocol. It requires a QR scan to link the session — the same way WhatsApp Web in a browser works."
     },
     {
       "id": "q2",
@@ -35,14 +35,14 @@
         "main:discord:987654321"
       ],
       "correctAnswer": 1,
-      "explanation": "Guild channel sessions are keyed by channel ID, not user ID. The pattern is agent:<agentId>:<channel>:<type>:<id>. The user who sent the message doesn't change which session it goes to \u2014 the channel does."
+      "explanation": "Guild channel sessions are keyed by channel ID, not user ID. The pattern is agent:<agentId>:<channel>:<type>:<id>. The user who sent the message doesn't change which session it goes to — the channel does."
     },
     {
       "id": "q4",
       "question": "Telegram bots have Privacy Mode enabled by default. What does this affect?",
       "options": [
         "The bot can't see any messages at all, not even DMs",
-        "The bot only sees messages that @mention it in groups \u2014 it misses all other group messages",
+        "The bot only sees messages that @mention it in groups — it misses all other group messages",
         "The bot token is encrypted and rotated every 24 hours",
         "The bot can only respond to users in the allowFrom list"
       ],
@@ -56,7 +56,7 @@
         "Socket Mode requires two bot tokens; HTTP mode only needs one",
         "Socket Mode uses a persistent WebSocket (no public URL needed); HTTP mode requires a public HTTPS endpoint",
         "Socket Mode only works for DMs; HTTP mode is required for channel messages",
-        "They are identical in behaviour \u2014 Socket Mode is just HTTP with keep-alive"
+        "They are identical in behaviour — Socket Mode is just HTTP with keep-alive"
       ],
       "correctAnswer": 1,
       "explanation": "Socket Mode maintains a persistent outbound WebSocket from your gateway to Slack's servers, so no public URL or port forwarding is required. HTTP Events API mode requires a publicly-accessible HTTPS endpoint that Slack can POST events to."
@@ -79,11 +79,23 @@
       "options": [
         "Set channels.discord.dmPolicy to 'open'",
         "Set requireMention: false in the guild config under channels.discord.guilds",
-        "Enable the Message Content Intent in the Discord Developer Portal only \u2014 no config change needed",
+        "Enable the Message Content Intent in the Discord Developer Portal only — no config change needed",
         "Set channels.discord.groupPolicy to 'disabled'"
       ],
       "correctAnswer": 1,
       "explanation": "requireMention is a per-guild (and optionally per-channel) setting in channels.discord.guilds.<guildId>.requireMention. Setting it to false makes the bot respond to all messages in allowlisted channels without needing a direct @mention. Note: you still need Message Content Intent enabled in the Developer Portal or the bot won't see message content at all."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: During The Channel System, your OpenClaw environment starts timing out under peak traffic. Which first response best protects reliability and safety?",
+      "options": [
+        "Introduce request shaping, stricter tool allowlists, and per-channel fallback handling",
+        "Add more channels immediately and debug after failures occur",
+        "Disable logging to improve throughput",
+        "Route all commands to unrestricted exec by default"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Controlled scaling with guardrails and fallback paths improves resilience without sacrificing security."
     }
   ]
 }

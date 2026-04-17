@@ -72,6 +72,20 @@
       "explanation": "LangChain's streaming support requires a streaming-capable ChatModel and using .stream() (or .astream() for async) on the runnable. This yields tokens or chunks incrementally, enabling real-time UI updates.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-langchain-production-genai"
+    },
+    {
+      "id": "07-langchain-production-genai-scenario-q",
+      "question": "Scenario: Your team is applying 'LangChain for Production GenAI Engineering' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langchain-production-genai"
     }
   ]
 }

@@ -13,7 +13,28 @@ keyTakeaways:
   the config exists.'
 - '**Session**: a specific conversation. A transcript, a session key. Created per
   conversation context.'
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "openclaw-04-agent-lifecycle"
+missionTitle: "Mission 11 — Agent Lifecycle"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Wire the agent brain — lifecycle, tool system, and memory.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-04-agents.svg)
+
+> *"Agent startup: read SOUL.md, read USER.md, read memory, check heartbeat, then politely answer the question."*
 
 Every message you send goes through the same fundamental sequence: the agent receives it, thinks about it, possibly calls some tools, and replies. Simple in outline. Surprisingly deep in the details.
 
@@ -149,3 +170,28 @@ Across _different_ sessions, the Gateway can run multiple turns in parallel, up 
 ## Steering a running turn
 
 When `messages.queue.mode: "steer"`, inbound messages during a running turn are handled differently:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Memory — Freshness
+
+**Context:** An agent reads an outdated MEMORY.md from a previous session and makes a decision based on stale context. The decision causes a duplicate action.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add a memory-freshness check before reading MEMORY.md
+2. add timestamps to memory files
+3. enforce a single-write memory update protocol.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

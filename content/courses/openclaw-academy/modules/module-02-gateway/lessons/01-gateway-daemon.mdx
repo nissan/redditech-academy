@@ -29,7 +29,28 @@ keyTakeaways:
 - '**On restart**: channels reconnect, sessions resume from their on-disk JSONL transcripts'
 - "**In-progress turns**: any turn running when the Gateway crashed is lost \u2014\
   \ the session is clean on restart, but the incomplete turn won't be replayed"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-02-daemon-config"
+missionTitle: "Mission 04 — Daemon Config"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Stand up the gateway daemon — the process that will run your assistant 24/7.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-02-gateway.svg)
+
+> *"The gateway is a daemon. The daemon never sleeps. The daemon reads all your messages."*
 
 The Gateway isn't a script you run once. It's a long-lived process — the control plane that holds your entire AI setup together. Know what it owns and the rest of this module falls into place.
 
@@ -38,3 +59,28 @@ The Gateway isn't a script you run once. It's a long-lived process — the contr
 ## What is the Gateway?
 
 The Gateway is a **Node.js process** that runs continuously in the background on your machine. You start it once (usually at login, via a system service) and it stays alive indefinitely:
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Deployment — Resilience
+
+**Context:** A production OpenClaw instance stops responding after a macOS update. The LaunchAgent plist is still registered but the gateway process exited silently.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add a health-watchdog that restarts the daemon on failure
+2. use a process supervisor
+3. migrate to a containerised deployment.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

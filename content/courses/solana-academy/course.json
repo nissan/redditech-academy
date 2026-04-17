@@ -2,23 +2,32 @@
   "id": "solana-academy",
   "slug": "solana-academy",
   "title": "Solana Developer Academy",
-  "description": "Practical Solana development curriculum covering architecture, wallet integration, on-chain programs, testing, and deployment.",
-  "tagline": "Ship production-ready Solana applications",
-  "icon": "🟣",
-  "difficulty": "intermediate",
-  "estimatedHours": 12,
+  "description": "Mission-based Solana curriculum from first-principles beginner grounding to validator operations: core runtime mental models, solana.new onboarding, architecture, wallets, programs, multi-framework escrow labs, DeFi integrations, oracle operations, verifiable randomness, advanced testing (Surfpool/LiteSVM), and validator operations (Agave, Firedancer, Frankendancer).",
+  "tagline": "Start beginner-friendly, finish production-ready",
+  "icon": "\ud83d\udfe3",
+  "difficulty": "advanced",
+  "estimatedHours": 72,
   "tags": [
     "solana",
     "blockchain",
     "web3",
-    "smart-contracts"
+    "smart-contracts",
+    "validator-operations",
+    "solana-infrastructure"
   ],
   "badge": {
     "name": "Solana Developer Academy Graduate",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed the Solana Developer Academy course"
   },
   "author": "Redditech Labs",
-  "version": "1.0",
-  "free": true
+  "version": "1.7",
+  "free": true,
+  "runningProject": {
+    "title": "NFT Marketplace on Solana",
+    "description": "You are building a real NFT marketplace on Solana. Each module adds one production-grade piece. The capstone is the complete, production-ready version.",
+    "juniorGameBrief": "Before you learn anything, deploy a minimal Solana program using solana.new. It won't be production-ready. Your goal is to understand what the game feels like before we teach you how to play it well.",
+    "finalOutcome": "A production-ready NFT marketplace with atomic escrow, wallet integration, oracle-backed pricing, DeFi routing, and a complete test and deployment suite."
+  },
+  "learningApproach": "whole-game"
 }

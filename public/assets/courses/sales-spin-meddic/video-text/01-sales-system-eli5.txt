@@ -1,0 +1,5 @@
+ELI5 Summary
+
+Move deals with evidence, not optimism.
+
+Module: 01-sales-system

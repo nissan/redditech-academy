@@ -1,0 +1,70 @@
+---
+title: "Query Validation Sequence"
+description: "Sequence the validation steps that must run before any LLM-generated SQL query is executed on production data."
+slug: "query-validation-sequence"
+duration: 20
+order: 3
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-05-query-validation"
+missionTitle: "Mission 05-C — Query Validation Sequence"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Text2SQL and Enterprise Data concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/05-text2sql-enterprise-data.svg)
+
+> *"The model generated valid SQL. The SQL deleted production data. Both statements are true."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Text2SQL and Enterprise Data | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — SQL safety controls and permission boundaries
+
+**Context:** A Text2SQL system was deployed for an analytics team. A user asked 'delete all records from last month's test run.' The model generated a valid DELETE statement. No guard blocked it.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add a read-only mode that rejects all DML statements
+2. add a human-approval gate for any destructive query
+3. add a schema-level permission boundary that prevents the LLM from seeing write-capable tables
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Text2SQL and Enterprise Data decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

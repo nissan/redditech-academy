@@ -13,7 +13,19 @@ keyTakeaways:
   - "Modern systems use OIDC + OAuth + Zero Trust principles"
 prerequisites:
   - "claims-scopes-audience"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-01-05-iam-evolution"
+missionTitle: "Mission 01 — 01 Auth Fundamentals"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/01-auth-fundamentals.svg)
+
+> *"Authentication: are you who you say you are? Authorisation: do you get to do that? These are different questions."*
 
 # IAM Evolution: From LDAP to FIDO
 
@@ -178,3 +190,30 @@ Today's IAM systems combine lessons from this evolution:
 **Zero Trust**: Never trust, always verify (even inside network)
 
 The trend is clear: **fewer passwords, more cryptography, federated trust**.
+
+
+---
+
+## 🎓 Harvard-Style Case Study — AuthN vs AuthZ distinction in implementation
+
+**Context:** A developer confused authentication with authorisation. They verified the user's identity but forgot to check permissions. Any authenticated user could access any resource.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add an authorisation middleware that runs after authentication
+2. use a role-based access library
+3. add integration tests for every protected route
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

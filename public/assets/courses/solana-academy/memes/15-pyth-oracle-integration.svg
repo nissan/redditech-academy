@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Pyth Oracle Integration meme card">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1026"/>
+      <stop offset="50%" stop-color="#3b1f70"/>
+      <stop offset="100%" stop-color="#0a8f93"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <rect x="46" y="46" width="1188" height="628" rx="28" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.32)"/>
+  <text x="88" y="170" fill="#ffffff" font-size="42" font-family="Inter,Arial,sans-serif" font-weight="700">Pyth Oracle Integration</text>
+  <text x="88" y="232" fill="#dbeafe" font-size="30" font-family="Inter,Arial,sans-serif">Ship discipline, not vibes</text>
+  <text x="88" y="560" fill="#93c5fd" font-size="24" font-family="Inter,Arial,sans-serif">Solana Academy Mission Mode</text>
+  <text x="88" y="602" fill="#e2e8f0" font-size="22" font-family="Inter,Arial,sans-serif">"When tests are optional, incidents are inevitable."</text>
+</svg>

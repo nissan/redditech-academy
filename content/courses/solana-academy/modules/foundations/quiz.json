@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "f1",
-      "question": "On Solana, what stores long-lived state?",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "Transactions",
-        "Accounts",
-        "Signatures",
-        "RPC endpoints"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "Accounts hold state. Transactions carry instructions that read and write account data.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "f2",
-      "question": "What is the role of a program in Solana?",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "A wallet UI",
-        "Executable logic that processes instructions",
-        "A block explorer",
-        "A validator key"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "Programs are executable on-chain logic invoked by transaction instructions.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "f3",
-      "question": "Why is explicit account mapping important when moving from web2 to Solana?",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "It removes signing requirements",
-        "It clarifies authority, data ownership, and state transitions",
-        "It avoids all fees",
-        "It hides business logic"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Explicit mapping prevents web2 assumptions from causing authority and state bugs.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "f4",
-      "question": "Which statement best describes a transaction?",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "A database row",
-        "A signed container of one or more instructions",
-        "A permanent account",
-        "A wallet seed phrase"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "A Solana transaction bundles instructions and signatures for atomic execution.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

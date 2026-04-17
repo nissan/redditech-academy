@@ -1,0 +1,40 @@
+{
+  "id": "solana-20-validator-ops-adversarial",
+  "spec": "Run adversarial ops gate for Advanced Validators \u2014 Operations and Economics: incident simulation, recovery validation, and explicit go/no-go decision record.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.summary",
+        "non_empty": true
+      },
+      {
+        "field": "submission.invariants",
+        "non_empty": true
+      },
+      {
+        "field": "submission.test_evidence",
+        "non_empty": true
+      },
+      {
+        "field": "submission.risk_controls",
+        "non_empty": true
+      }
+    ],
+    "must_not_have": [
+      {
+        "field": "submission.network",
+        "value": "mainnet"
+      }
+    ]
+  },
+  "eli_notes": "Reject submissions without explicit thresholds, recovery strategy, and risk controls.",
+  "hints": [
+    "Quantify thresholds (uptime, cost, response).",
+    "Model at least one severe incident.",
+    "Document go/no-go criteria."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"network\": \"devnet\",\n    \"summary\": \"__FILL_IN__\",\n    \"invariants\": [\"__FILL_IN__\"],\n    \"test_evidence\": [\"__FILL_IN__\"],\n    \"risk_controls\": [\"__FILL_IN__\"]\n  }\n}"
+  },
+  "success_text": "Mission accepted. You supplied measurable controls and operational go-live discipline."
+}

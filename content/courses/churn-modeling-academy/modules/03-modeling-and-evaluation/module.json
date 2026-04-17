@@ -1,0 +1,22 @@
+{
+  "id": "03-modeling-and-evaluation",
+  "slug": "03-modeling-and-evaluation",
+  "order": 3,
+  "title": "Modeling & Evaluation Under Imbalance",
+  "description": "Train baseline and advanced models and evaluate with decision-aware metrics.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Modeling & Evaluation Under Imbalance Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Modeling & Evaluation Under Imbalance"
+  },
+  "learningObjectives": [
+    "Explain the key churn modeling decision in this stage",
+    "Apply the method to a realistic retention scenario",
+    "Translate model output into actionable retention steps"
+  ],
+  "prerequisiteModules": [
+    "02-data-and-leakage"
+  ]
+}

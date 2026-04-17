@@ -11,7 +11,19 @@ keyTakeaways:
   - "Self-Sovereign Identity gives users control over their data - EU mandating by 2026"
   - "75% of enterprises expected to be passwordless by 2027"
 prerequisites: []
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-00-04-authorization-zero-trust-summary"
+missionTitle: "Mission 00 — 00 Executive Overview"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/00-executive-overview.svg)
+
+> *"The exec approved the identity vendor. Nobody asked the security team. The breach was three months later."*
 
 ## Module 6: Fine-Grained Authorization - Beyond Roles
 
@@ -596,3 +608,30 @@ did:example:123456789abcdefghi
 - **2026:** EU digital wallets, CAE standard
 - **2027:** 75% enterprises passwordless
 - **2028-2030:** Decentralized identity goes mainstream
+
+
+---
+
+## 🎓 Harvard-Style Case Study — Executive IAM decision-making and security governance
+
+**Context:** An executive approved an IAM vendor without involving the security team. The vendor's SSO integration had no MFA enforcement. A credential stuffing attack succeeded 3 months later.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Require security review before any IAM vendor approval
+2. add MFA enforcement as a non-negotiable requirement
+3. add a post-deployment security audit gate
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

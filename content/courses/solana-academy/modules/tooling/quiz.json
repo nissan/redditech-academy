@@ -4,60 +4,60 @@
   "passingScore": 80,
   "questions": [
     {
-      "id": "t1",
-      "question": "Which setup practice reduces team environment drift most?",
+      "id": "q1",
+      "question": "What should be defined first in this module workflow?",
       "options": [
-        "Manual setup docs only",
-        "Pinned versions plus bootstrap scripts",
-        "Different OS per developer",
-        "Skipping validator checks"
+        "Mainnet launch date",
+        "Architecture assumptions and invariants",
+        "Marketing copy",
+        "Token emissions"
       ],
       "correctAnswer": 1,
-      "explanation": "Pinned tool versions and scripts make setup reproducible.",
+      "explanation": "Architecture assumptions anchor safe implementation.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-overview"
     },
     {
-      "id": "t2",
-      "question": "Why run a local validator during development?",
+      "id": "q2",
+      "question": "What demonstrates implementation quality best?",
       "options": [
-        "To avoid writing tests",
-        "To iterate quickly with deterministic local state",
-        "To deploy to mainnet faster",
-        "To bypass key management"
+        "A one-time manual success",
+        "Repeatable tests with explicit pass/fail conditions",
+        "No logs",
+        "Skipping edge cases"
       ],
       "correctAnswer": 1,
-      "explanation": "A local validator gives fast, controlled feedback loops.",
+      "explanation": "Deterministic, repeatable validation is required.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "02-implementation-lab"
     },
     {
-      "id": "t3",
-      "question": "What should a setup verification checklist include?",
+      "id": "q3",
+      "question": "When should progression be blocked?",
       "options": [
-        "Only wallet screenshots",
-        "CLI version checks and sample command outputs",
-        "Only repo star count",
-        "Only UI snapshots"
+        "If a critical adversarial test fails",
+        "If docs are long",
+        "If build is slow",
+        "If meme is missing"
       ],
-      "correctAnswer": 1,
-      "explanation": "Verification should prove the toolchain actually works, not just installs.",
+      "correctAnswer": 0,
+      "explanation": "Critical risk findings are hard blockers.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     },
     {
-      "id": "t4",
-      "question": "Best first step when onboarding a new engineer?",
+      "id": "q4",
+      "question": "Best release discipline from this module:",
       "options": [
-        "Ask them to guess versions",
-        "Run the project bootstrap and verify outputs",
-        "Deploy directly to mainnet",
-        "Skip Rust install"
+        "Demo-first, patch later",
+        "Gate-first with evidence and rollback clarity",
+        "Ship directly to production",
+        "Manual checks only"
       ],
       "correctAnswer": 1,
-      "explanation": "A shared bootstrap process avoids hidden local blockers.",
+      "explanation": "Evidence-based gating improves reliability.",
       "difficulty": "intermediate",
-      "relatedLessonId": "01-overview"
+      "relatedLessonId": "03-adversarial-gate"
     }
   ]
 }

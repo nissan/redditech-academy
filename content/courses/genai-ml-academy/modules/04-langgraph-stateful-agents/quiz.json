@@ -72,6 +72,20 @@
       "explanation": "LCEL chains are DAGs — data flows in one direction. LangGraph uses a stateful graph model that explicitly supports cycles, enabling retry loops, self-correction agents, and iterative refinement patterns.",
       "difficulty": "intermediate",
       "relatedLessonId": "01-langgraph-stateful-agents"
+    },
+    {
+      "id": "04-langgraph-stateful-agents-scenario-q",
+      "question": "Scenario: Your team is applying 'LangGraph: Stateful Agents and Multi-Step Workflows' and sees a 15% performance lift in staging but rising error rates in production. What is the best next action?",
+      "options": [
+        "Scale traffic immediately to maximize short-term gains",
+        "Freeze changes and remove all monitoring to reduce noise",
+        "Run a controlled rollout with explicit guardrails, monitor leading risk metrics, and prepare rollback triggers",
+        "Switch vendors first, then investigate root cause later"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Scenario-based execution should favor controlled rollout, active risk monitoring, and rollback readiness over premature scaling.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-langgraph-stateful-agents"
     }
   ]
 }

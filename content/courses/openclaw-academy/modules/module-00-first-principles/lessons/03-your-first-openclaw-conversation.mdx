@@ -1,0 +1,91 @@
+---
+title: "Your First OpenClaw Conversation"
+description: "Walk through configuring a minimal OpenClaw setup and understanding what each config field does."
+slug: "your-first-openclaw-conversation"
+duration: 25
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeId: "openclaw-00-first-conversation"
+missionTitle: "Mission 00-C — First Conversation Config"
+estimatedMinutes: 20
+keyTakeaways:
+  - "A minimal OpenClaw config needs: one channel, one model, one agent"
+  - "The SOUL.md file defines your agent's persona and core behaviour"
+  - "Every config field has a default — know what the defaults are"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-00-first-principles.svg)
+
+> *"First OpenClaw message: 'Hello.' First OpenClaw config: 300 lines of YAML."*
+
+## Quick Recap
+
+A minimal OpenClaw deployment needs three things:
+1. A channel configured (e.g. Telegram with a bot token)
+2. A model configured (e.g. Anthropic Claude with an API key)
+3. An agent persona defined (the SOUL.md file)
+
+Everything else is optional — but understanding the defaults is mandatory.
+
+## Minimal Config Structure
+
+```json
+{
+  "gateway": {
+    "port": 18789,
+    "logLevel": "info"
+  },
+  "channels": {
+    "telegram": {
+      "token": "<your-bot-token>",
+      "allowedUsers": ["your-telegram-id"]
+    }
+  },
+  "agents": {
+    "default": {
+      "model": "anthropic/claude-sonnet-4-6",
+      "soulFile": "SOUL.md"
+    }
+  }
+}
+```
+
+## Mission Brief
+
+Fill in the config brief below. You must explain each field and its default.
+
+> 🤔 **Think it through — no Googling:**
+>
+> - Channel type?
+> - Why this channel?
+> - Model choice?
+> - Why this model?
+> - Soul md first line?
+> - One thing to test first?
+
+---
+
+## 🎓 Harvard-Style Case Study — The Config That Launched Without a Soul
+
+**Context:** A developer deployed OpenClaw with a placeholder SOUL.md. The agent gave helpful technical answers but was inconsistent in tone — sometimes formal, sometimes casual, sometimes refusing requests it should have handled. Users were confused about what the assistant was for.
+
+**The tension:** Ship fast with a minimal placeholder vs invest time in a proper SOUL.md before first contact with real users.
+
+**Decision options:**
+1. Write a complete SOUL.md before any real users interact
+2. Ship with a minimal SOUL.md and iterate based on user feedback
+3. Copy a community SOUL.md template and customise later
+
+**Discussion questions:**
+1. What are the three most important things a SOUL.md should define?
+2. How would you measure whether a SOUL.md is working correctly?
+3. Write the first two sentences of a SOUL.md for a personal productivity assistant.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Mentor Mode (Beginner):** "I am setting up OpenClaw for the first time. Walk me through the minimum viable config step by step. Ask me what channel I want to use and what model, then help me write the three config blocks I need."

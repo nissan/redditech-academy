@@ -1,0 +1,22 @@
+{
+  "id": "06-case-studies-and-capstone",
+  "slug": "06-case-studies-and-capstone",
+  "order": 6,
+  "title": "Case Studies & Retention Capstone",
+  "description": "Apply lessons to growth and failure cases, then run end-to-end capstone review.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Case Studies & Retention Capstone Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Case Studies & Retention Capstone"
+  },
+  "learningObjectives": [
+    "Explain the key churn modeling decision in this stage",
+    "Apply the method to a realistic retention scenario",
+    "Translate model output into actionable retention steps"
+  ],
+  "prerequisiteModules": [
+    "05-production-and-monitoring"
+  ]
+}

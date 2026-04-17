@@ -1,0 +1,22 @@
+{
+  "id": "validator-launch-readiness-mission",
+  "slug": "22-validator-launch-readiness-mission",
+  "order": 22,
+  "title": "Advanced Validators \u2014 Launch Readiness Mission",
+  "description": "Build an end-to-end validator launch plan covering architecture, funding assumptions, operations, incident response, and go/no-go criteria.",
+  "difficulty": "advanced",
+  "estimatedHours": 4.0,
+  "badge": {
+    "name": "Advanced Validators \u2014 Launch Readiness Mission Badge",
+    "icon": "\ud83d\udef0\ufe0f",
+    "description": "Completed Advanced Validators \u2014 Launch Readiness Mission module"
+  },
+  "learningObjectives": [
+    "Map validator architecture and consensus-critical responsibilities",
+    "Evaluate infra/economic requirements for sustainable operations",
+    "Design launch gates and incident playbooks before mainnet exposure"
+  ],
+  "prerequisiteModules": [
+    "18-litesvm-testing-lab"
+  ]
+}

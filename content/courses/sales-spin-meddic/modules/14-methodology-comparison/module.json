@@ -1,0 +1,22 @@
+{
+  "id": "14-methodology-comparison",
+  "slug": "14-methodology-comparison",
+  "order": 14,
+  "title": "Methodology Comparison + Orchestration",
+  "description": "Select the right framework mix by deal shape and build a team-level operating playbook.",
+  "difficulty": "advanced",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Methodology Orchestration Badge",
+    "icon": "📈",
+    "description": "Completed Methodology Comparison + Orchestration"
+  },
+  "learningObjectives": [
+    "Compare SPIN, MEDDPICC, Challenger, BANT/ANUM/SPICED, and Sandler/message frameworks",
+    "Use a decision tree to select primary/fallback methodology",
+    "Build a segment-level sales methodology playbook"
+  ],
+  "prerequisiteModules": [
+    "13-sandler-and-message-frameworks"
+  ]
+}

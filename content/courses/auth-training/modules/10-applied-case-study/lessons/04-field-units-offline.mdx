@@ -11,7 +11,19 @@ keyTakeaways:
   - "Cryptographic proofs enable limited autonomous operation without network connectivity"
   - "Emergency activation procedures must balance security with operational necessity"
 prerequisites: ["executive-analysis", "command-control-platform", "cloud-telemetry-ai"]
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-10-04-field-units-offline"
+missionTitle: "Mission 10 — 10 Applied Case Study"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/10-applied-case-study.svg)
+
+> *"2 years later, 40% of IAM rules were orphaned. Nobody knew why they existed."*
 
 # Field Units & Offline Authorization
 
@@ -142,3 +154,30 @@ As you design for offline operation, think about:
 - **Mission Abort**: How do operators remotely disable units if mission parameters change?
 
 Your design should demonstrate understanding of hardware security modules (TPM), secure boot chains, and the challenges of authorization without real-time network connectivity.
+
+
+---
+
+## 🎓 Harvard-Style Case Study — IAM documentation and long-term governance
+
+**Context:** An enterprise deployed a complete IAM system. 2 years later the team had rotated twice. Nobody knew why certain access rules existed. An audit found 40% of rules were orphaned.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add decision documentation as a mandatory part of every IAM change
+2. add a quarterly IAM rule review process
+3. add automated orphan detection to the IAM governance workflow
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

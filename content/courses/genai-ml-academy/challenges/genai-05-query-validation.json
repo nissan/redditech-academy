@@ -1,0 +1,51 @@
+{
+  "id": "genai-05-query-validation",
+  "type": "sequence-completer",
+  "title": "Mission 05-C \u2014 Query Validation Sequence",
+  "description": "Sequence the validation steps that must run before any LLM-generated SQL query is executed on production data.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 05-C \u2014 Query Validation Sequence complete.",
+  "points": 100,
+  "prefilled": {
+    "steps": [
+      {
+        "id": "s1",
+        "label": "LLM generates SQL from natural language query"
+      },
+      {
+        "id": "s2",
+        "label": "SQL parsed and checked for DML statements (INSERT/UPDATE/DELETE/DROP)"
+      },
+      {
+        "id": "s3",
+        "label": "Table and column references validated against allowed schema"
+      },
+      {
+        "id": "s4",
+        "label": "Query complexity checked (no unbounded scans)"
+      },
+      {
+        "id": "s5",
+        "label": "Safe query executed against read-only connection"
+      }
+    ],
+    "correctOrder": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  }
+}

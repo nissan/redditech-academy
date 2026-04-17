@@ -1,0 +1,20 @@
+{
+  "id": "01-benchmarking-first-principles",
+  "slug": "01-benchmarking-first-principles",
+  "order": 1,
+  "title": "Benchmarking First Principles",
+  "description": "Why we benchmark models, what makes a benchmark valid, and how to avoid vanity metrics.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Benchmarking First Principles Badge",
+    "icon": "\ud83d\udccf",
+    "description": "Completed Benchmarking First Principles"
+  },
+  "learningObjectives": [
+    "Define validity, reliability, and usefulness in LLM evaluation",
+    "Separate benchmark score from product value",
+    "Design benchmark goals from first principles"
+  ],
+  "prerequisiteModules": []
+}

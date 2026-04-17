@@ -1,0 +1,70 @@
+---
+title: "Agent Topologies and Coordination Patterns"
+description: "Map the coordination patterns for multi-agent systems: hub-spoke, mesh, pipeline, and hierarchical."
+slug: "agent-topologies-and-coordination"
+duration: 20
+order: 2
+type: "interactive"
+environment: "sequence-completer"
+challengeId: "genai-03-agent-topology"
+missionTitle: "Mission 03-B — Agent Topology Design"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Multi-Agent Systems concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/03-multi-agent-systems-and-frameworks.svg)
+
+> *"Five agents, one task. Each agent thinks it's the orchestrator."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+[]
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Multi-Agent Systems | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — State handoffs and failure propagation
+
+**Context:** A multi-agent research workflow had 4 specialist agents. When Agent 2 timed out, Agent 3 assumed it had completed. The downstream output was fabricated from incomplete context.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add explicit state handoff contracts between agents
+2. add timeout-aware retry at the orchestrator
+3. add a validation step before any downstream agent consumes output
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Multi-Agent Systems decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

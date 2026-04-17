@@ -4,9 +4,9 @@
   "title": "GenAI + ML Production Academy",
   "description": "Production-focused curriculum spanning GenAI architecture, RAG, multi-agent systems, ML deployment, and capstone delivery.",
   "tagline": "Build, evaluate, and operate production AI systems",
-  "icon": "🤖",
+  "icon": "\ud83e\udd16",
   "difficulty": "intermediate",
-  "estimatedHours": 20,
+  "estimatedHours": 40,
   "tags": [
     "genai",
     "machine-learning",
@@ -16,10 +16,17 @@
   ],
   "badge": {
     "name": "GenAI Production Operator",
-    "icon": "🤖",
+    "icon": "\ud83e\udd16",
     "description": "Completed the GenAI + ML Production Academy course"
   },
   "author": "Redditech Labs",
-  "version": "1.0",
-  "free": true
+  "version": "2.0",
+  "free": true,
+  "runningProject": {
+    "title": "Production RAG System for Legal Document Review",
+    "description": "You are building a production RAG system for a legal document review team. Each module makes it more reliable, observable, and production-grade.",
+    "juniorGameBrief": "Before you architect anything, try to answer a legal question using only raw documents and a general-purpose LLM. Note where it fails. That's your design brief.",
+    "finalOutcome": "A production-grade RAG system deployed to the cloud with a complete eval contract, observability stack, and incident runbook."
+  },
+  "learningApproach": "whole-game"
 }

@@ -1,0 +1,120 @@
+---
+title: "Advanced Capstone — Open Adversarial Challenge"
+description: "No template. No scaffold. Design, document, and adversarially review a production-grade Solana program of your choosing. Your only constraint: it must be deployable and survivable."
+slug: "advanced-capstone-open-adversarial-challenge"
+duration: 180
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeId: "solana-capstone-advanced-adversarial"
+missionTitle: "Capstone Mission 03 — Open Adversarial Challenge"
+estimatedMinutes: 180
+keyTakeaways:
+  - "Design a production-grade Solana program with zero scaffolding"
+  - "Conduct a rigorous self-adversarial review before external review"
+  - "Produce submission-quality documentation: architecture, test evidence, incident runbook"
+---
+
+## 😄 Meme Opener
+
+![Capstone meme](/assets/courses/solana-academy/memes/23-capstone-ladder.svg)
+
+> *"Advanced means: no one is going to tell you what the right answer is. But they will notice if you skipped the adversarial tests."*
+
+## Mission Brief
+
+Choose one of the following challenge tracks or propose your own equivalent:
+
+### Track A — DeFi Primitive
+Design a production-grade Solana program for one of:
+- Constant-product AMM (no Orca/Jupiter dependency)
+- Single-asset staking with dynamic APY and cliff vesting
+- Prediction market with oracle-backed resolution
+
+### Track B — Governance
+Design an on-chain multisig or DAO governance primitive:
+- Proposal creation, voting, execution with time delay
+- Quorum-based decisions with anti-whale weight caps
+- Emergency veto by a guardian authority
+
+### Track C — Identity/Access
+Design a credentialing system on Solana:
+- Verifiable credential issuance (PDA per holder)
+- Credential revocation without token burns
+- Delegated verification with expiry
+
+---
+
+## What You Must Produce
+
+### 1. Program Architecture Document
+- Account model (all PDAs, seeds, data fields)
+- Instruction set (name, signers, validations, state transitions)
+- Authority model (who can do what, under what conditions)
+- Upgrade authority and freeze policy
+
+### 2. Test Evidence
+- Unit test coverage summary (by instruction)
+- Integration test evidence (full paths)
+- Adversarial test log: minimum 5 attack scenarios with pass/fail evidence
+- Simulation results from `solana-test-validator` or LiteSVM
+
+### 3. Go/No-Go Document
+- All gates with evidence links
+- Open risks with severity and mitigation
+- Rollback plan if a critical bug is found post-deploy
+- Signed off by: self-review + one peer
+
+### 4. Incident Runbook
+- What would you do if an attacker discovered a drain vector 12 hours after mainnet deploy?
+- Who do you contact, in what order?
+- What is the fastest safe path to freeze new interactions?
+
+---
+
+## Submission Rubric
+
+| Area | Passing bar |
+|---|---|
+| Account design | All accounts have explicit types, seeds, and data fields |
+| Authority model | No implicit privilege; all authority is declared and documented |
+| Test coverage | Unit + integration + adversarial all present with evidence |
+| Go/no-go doc | All gates completed with evidence; no open critical risks |
+| Incident runbook | Covers drain scenario, escalation, and freeze path |
+| Anti-patterns | No patterns from the anti-pattern hall of shame present |
+
+**Anti-pattern hall of shame:**
+- Authority check missing on write instructions
+- No lock/expiry on privileged operations
+- State machine with ambiguous transitions
+- "We'll add tests later" in submission
+
+---
+
+## 🎓 Harvard-Style Case Study — The Program That Survived Its Own Audit
+
+**Context:** An advanced team built a staking program on Solana. Before mainnet, they hired an external audit firm. The audit found three medium-severity findings and zero critical issues. The team fixed the mediums and shipped.
+
+Two weeks later, a white-hat researcher found a critical: the authority check on `update_reward_rate` was validating the wrong account. Any signer could change the APY.
+
+**The tension:** The audit was thorough by industry standards. The bug existed in a code path the auditors didn't reach because no adversarial test triggered it.
+
+**Decision options:**
+1. Emergency upgrade: fix the authority check, upgrade the program with admin key
+2. Freeze deposits: halt new stakes, protect existing holders while patching
+3. Full program deprecation: announce migration, protect all existing stakers
+
+**Discussion questions:**
+1. What adversarial test would have caught the wrong-account authority check before the audit?
+2. What should the incident runbook for this scenario look like? Write the first five steps.
+3. Is a "passed audit" sufficient evidence for production readiness? What additional evidence would you require?
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Operator Board:** "You are a panel of three experts: a Solana program auditor, a DeFi protocol operator, and a user advocate. Review my program architecture. Each persona raises their top concern and proposes a mitigation. End with a go/no-go recommendation and a dissent note if any persona disagrees."
+
+**Red Team:** "You are a sophisticated attacker with full read access to the Solana blockchain and knowledge of my program's IDL. You have 48 hours before mainnet launch. Walk me through your attack planning process step by step. Then tell me which single change to my program would most reduce your attack surface."
+
+**Socratic Coach:** "Act as a Solana program security researcher. For every architectural decision I state, ask me to justify it against at least one adversarial scenario. Do not accept 'the runtime handles it' as an answer. After 15 rounds, give me a final score and a one-paragraph recommendation."

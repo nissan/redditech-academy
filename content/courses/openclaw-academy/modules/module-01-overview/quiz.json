@@ -19,7 +19,7 @@
       "options": [
         "In a PostgreSQL database at localhost:5432",
         "In Redis at localhost:6379",
-        "In ~/.openclaw/ as JSON/JSONL files \u2014 no external database",
+        "In ~/.openclaw/ as JSON/JSONL files — no external database",
         "In the cloud at openclaw.ai"
       ],
       "correctAnswer": 2,
@@ -59,14 +59,14 @@
         "nodes (control paired iOS/Android devices)"
       ],
       "correctAnswer": 2,
-      "explanation": "OpenClaw's core tools include read, write, edit, exec, browser, canvas, nodes, message, web_search, web_fetch, image, and tts. 'deploy' is not a built-in tool \u2014 you'd implement that with exec or a custom skill."
+      "explanation": "OpenClaw's core tools include read, write, edit, exec, browser, canvas, nodes, message, web_search, web_fetch, image, and tts. 'deploy' is not a built-in tool — you'd implement that with exec or a custom skill."
     },
     {
       "id": "q6",
       "question": "What is a 'session' in OpenClaw terms?",
       "options": [
         "An authenticated HTTP session for the Web UI",
-        "A named conversation context \u2014 a unique key mapping to a JSONL transcript and metadata",
+        "A named conversation context — a unique key mapping to a JSONL transcript and metadata",
         "A running process managed by the Gateway supervisor",
         "A WebSocket connection from a control client"
       ],
@@ -84,6 +84,18 @@
       ],
       "correctAnswer": 1,
       "explanation": "Workspace files (AGENTS.md, SOUL.md, TOOLS.md, USER.md, IDENTITY.md) are injected into the system prompt at the start of each new session. They define operating instructions, persona, tool notes, user context, and agent identity."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: During OpenClaw Overview, your OpenClaw environment starts timing out under peak traffic. Which first response best protects reliability and safety?",
+      "options": [
+        "Introduce request shaping, stricter tool allowlists, and per-channel fallback handling",
+        "Add more channels immediately and debug after failures occur",
+        "Disable logging to improve throughput",
+        "Route all commands to unrestricted exec by default"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Controlled scaling with guardrails and fallback paths improves resilience without sacrificing security."
     }
   ]
 }

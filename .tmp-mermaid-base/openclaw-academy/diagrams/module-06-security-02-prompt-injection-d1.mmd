@@ -1,0 +1,14 @@
+graph TB
+    INJECT["Prompt Injection Attempt\n(in fetched content / email / webhook)"]
+
+    L1["Layer 1: Content Tagging\nEXTERNAL_UNTRUSTED_CONTENT wrapper\nModel recognizes untrusted origin"]
+    L2["Layer 2: System Prompt Precedence\nAGENTS.md security rules\nModel treats workspace instructions as authoritative"]
+    L3["Layer 3: Tool Policy\nDenied tools can't be called\nNo model judgment required"]
+    L4["Layer 4: Sandboxing\nExec runs in Docker container\nBlast radius limited to sandbox"]
+    L5["Layer 5: Pairing / Allowlists\nOnly authorized senders reach the agent\nReduces injection surface"]
+
+    INJECT --> L1
+    L1 -->|"survives layer 1"| L2
+    L2 -->|"survives layer 2"| L3
+    L3 -->|"survives layer 3"| L4
+    L4 -->|"survives layer 4"| L5

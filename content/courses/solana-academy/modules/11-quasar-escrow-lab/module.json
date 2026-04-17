@@ -1,0 +1,22 @@
+{
+  "id": "quasar-escrow-lab",
+  "slug": "11-quasar-escrow-lab",
+  "order": 11,
+  "title": "Quasar Escrow Lab",
+  "description": "Implement no_std zero-copy escrow in Quasar and document safety and performance tradeoffs.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "Quasar Escrow Lab Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed Quasar Escrow Lab module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

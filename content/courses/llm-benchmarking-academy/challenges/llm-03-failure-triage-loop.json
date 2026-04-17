@@ -1,0 +1,32 @@
+{
+  "id": "llm-03-failure-triage-loop",
+  "spec": "Order the failure-triage workflow for retrieval and long-context eval incidents.",
+  "validation": {
+    "must_have": [
+      { "field": "order[0]", "value": "A" },
+      { "field": "order[1]", "value": "B" },
+      { "field": "order[2]", "value": "C" },
+      { "field": "order[3]", "value": "E" },
+      { "field": "order[5]", "value": "F" }
+    ],
+    "ordering_tolerance": "strict_on_critical"
+  },
+  "eli_notes": "Expected order: A → B → C → E → D → F. D and E may swap if rationale is strong. Final promotion decision must be last and only after fixes are validated.",
+  "hints": [
+    "Classify failure type before selecting remediation.",
+    "Validate fixes on the same sliced evals before deciding promotion.",
+    "A promotion decision belongs at the end, not mid-loop."
+  ],
+  "prefilled": {
+    "steps": [
+      { "id": "A", "label": "Collect failed samples with run metadata and suite slices" },
+      { "id": "B", "label": "Classify failures into retrieval, synthesis, or context-position misses" },
+      { "id": "C", "label": "Assign remediation owner and patch plan by failure class" },
+      { "id": "D", "label": "Re-run sliced eval suites and compare against red-line gates" },
+      { "id": "E", "label": "Implement remediation changes in retrieval/prompt/context strategy" },
+      { "id": "F", "label": "Make go/hold/rollback promotion decision" }
+    ],
+    "correctOrder": ["A", "B", "C", "E", "D", "F"]
+  },
+  "success_text": "Triage flow validated. You now have a reliable failure-to-remediation loop before promotion decisions."
+}

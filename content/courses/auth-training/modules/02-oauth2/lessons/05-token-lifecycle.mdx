@@ -18,6 +18,12 @@ missionTitle: "Mission 5: JWT Autopsy"
 estimatedMinutes: 10
 ---
 
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/02-oauth2.svg)
+
+> *"We stored the token in localStorage. We regret this."*
+
 # Token Lifecycle: Introspection and Revocation
 
 Tokens aren't just issued and forgotten. Managing their complete lifecycle—validation, refresh, introspection, and revocation—is essential for security and compliance.
@@ -250,3 +256,30 @@ app.post('/oauth/token', async (req, res) => {
 - Shorter lifetimes = more secure, worse UX
 - Longer lifetimes = better UX, more risk
 - Solution: Short access tokens + long refresh tokens + rotation
+
+
+---
+
+## 🎓 Harvard-Style Case Study — Token storage security in OAuth flows
+
+**Context:** An OAuth 2.0 implementation stored the access token in localStorage. An XSS vulnerability on the same domain exfiltrated all tokens within 24 hours of deployment.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Move tokens to httpOnly cookies
+2. add a Content Security Policy that blocks XSS
+3. add token rotation with short expiry
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

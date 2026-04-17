@@ -1,0 +1,6 @@
+flowchart LR
+  A[Deal room brief] --> B[SPIN evidence check]
+  B --> C[MEDDIC completeness score]
+  C --> D{Commit?}
+  D -->|Yes| E[Forecast commit]
+  D -->|No| F[Gap closure sprint]

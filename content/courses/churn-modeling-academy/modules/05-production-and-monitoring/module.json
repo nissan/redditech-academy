@@ -1,0 +1,22 @@
+{
+  "id": "05-production-and-monitoring",
+  "slug": "05-production-and-monitoring",
+  "order": 5,
+  "title": "Production Pipeline & Monitoring",
+  "description": "Operationalize scoring, monitoring, drift checks, and retraining triggers.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Production Pipeline & Monitoring Badge",
+    "icon": "\ud83d\udcc9",
+    "description": "Completed Production Pipeline & Monitoring"
+  },
+  "learningObjectives": [
+    "Explain the key churn modeling decision in this stage",
+    "Apply the method to a realistic retention scenario",
+    "Translate model output into actionable retention steps"
+  ],
+  "prerequisiteModules": [
+    "04-interventions-and-uplift"
+  ]
+}

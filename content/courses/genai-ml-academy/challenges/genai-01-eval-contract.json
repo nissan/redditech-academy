@@ -1,0 +1,20 @@
+{
+  "id": "genai-01-eval-contract",
+  "type": "json-editor",
+  "title": "Mission 01-B \u2014 Eval Contract Design",
+  "description": "Design an evaluation contract for a production AI system with quality, latency, cost, and safety dimensions.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 01-B \u2014 Eval Contract Design complete.",
+  "points": 100
+}

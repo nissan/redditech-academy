@@ -6,7 +6,28 @@ duration: 15
 order: 1
 keyTakeaways:
 - Understand writing a skill
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "openclaw-08-skill-authoring"
+missionTitle: "Mission 25 — Skill Authoring"
+estimatedMinutes: 15
 ---
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A self-hosted AI assistant for a 3-person startup — gateway, channels, agents, skills, and deployment.
+**What this module adds:** Extend with a custom skill, routing rule, or MCP integration.
+**What you'll have at the end:** A working, testable piece of the complete assistant.
+
+> *Every decision you make here carries forward. Build it right the first time.*
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/openclaw-academy/memes/module-08-extending.svg)
+
+> *"Writing a new Skill at 2am because the existing one almost does the thing."*
 
 > Note: this lesson is coming soon. Content is under development.
 
@@ -22,3 +43,28 @@ This lesson will cover:
 ---
 
 *Check back soon.*
+---
+
+## 🎓 Harvard-Style Case Study — OpenClaw in Production: Skills — Resilience
+
+**Context:** A skill is written to automate a daily briefing. It works for two weeks. Then the data source changes its response format. The skill fails silently and produces empty output.
+
+**The tension:** Ship fast vs build a robust solution that doesn't require manual intervention.
+
+**Decision options:**
+1. Add output validation to the skill
+2. add a schema-version check on external data
+3. add a skill health-check that verifies output quality.
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it became a production incident?
+2. Which of the three options provides the best risk/effort tradeoff for a small team?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this OpenClaw configuration decision. Assume it will fail. Find the top 3 failure modes, explain their blast radius, and propose the minimum viable fix for each."
+
+**Socratic Coach:** "Act as a strict OpenClaw ops mentor. Ask me one question at a time about this case, force me to justify each decision with observable evidence, and do not let me skip the tradeoffs."

@@ -1,0 +1,1 @@
+test_id,scenario,expected,result\nT1,Happy path escrow flow,All state transitions valid,TODO\nT2,Unauthorized signer attempt,Transaction rejected,TODO\nT3,Replay/duplicate execution,Second call rejected,TODO\nT4,Boundary input stress,No invariant break,TODO\nT5,Failure rollback path,Safe revert/logging,TODO\n

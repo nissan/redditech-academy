@@ -216,6 +216,18 @@
       ],
       "correctAnswer": 1,
       "explanation": "LazorKit session keys solve the user experience problem of requiring biometric authentication for every transaction (which is annoying in fast-paced games or apps with frequent transactions). Session keys are ephemeral (short-lived, e.g., 1 hour), have scoped permissions (limited to specific programs and amounts), are revocable (user can cancel anytime), and have on-chain audit trails. Applications can use session keys to sign transactions without prompting for biometrics each time, while maintaining security through strict scoping and expiration."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: Your team is implementing Applied Applications: Real-World Case Studies for a customer-facing app with strict fraud controls and conversion targets. Which rollout approach is most resilient?",
+      "options": [
+        "Deploy adaptive MFA + device-bound tokens, then phase in risk-based authz checks",
+        "Disable MFA for low-friction onboarding and revisit after launch",
+        "Use one static API key per customer to simplify auth",
+        "Skip logs to reduce storage costs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A phased approach balances security and UX, reducing takeover risk while preserving conversion and operability."
     }
   ]
 }

@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant User
+    participant Client as Client App
+    participant API as Resource Server&lt;br/&gt;(CAE-enabled)
+    participant IdP as Identity Provider&lt;br/&gt;(with CAE)
+    participant Admin as Admin/Security
+
+    Note over User,IdP: Initial Authentication
+    User->>Client: Login
+    Client->>IdP: Authenticate
+    IdP->>Client: Access Token (valid 1 hour)
+    Client->>API: API Request + Token
+    API->>IdP: Validate token
+    IdP->>API: Token valid, claims
+    API->>Client: API Response
+
+    Note over API,IdP: CAE Subscription
+    API->>IdP: Subscribe to CAE events for user
+
+    Note over User,Admin: Normal Usage
+    Client->>API: API Request + Token
+    API->>Client: API Response (success)
+
+    Note over Admin,IdP: Critical Security Event
+    Admin->>IdP: Disable user account
+    IdP->>IdP: Trigger CAE event
+    IdP->>API: CAE Event: User revoked
+
+    Note over Client,API: Access Immediately Blocked
+    Client->>API: API Request + Token
+    API->>API: Check CAE status
+    API->>Client: 401 Unauthorized&lt;br/&gt;+ WWW-Authenticate: claims="insufficient_claims"
+    Client->>User: Re-authentication required
+    User->>Client: Attempt login
+    Client->>IdP: Authenticate
+    IdP->>Client: 403 Forbidden (account disabled)

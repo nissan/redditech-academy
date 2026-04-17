@@ -1,0 +1,22 @@
+{
+  "id": "05-spin-to-meddic",
+  "slug": "05-spin-to-meddic",
+  "order": 5,
+  "title": "SPIN to MEDDIC Handoff",
+  "description": "Translate discovery signals into qualification artifacts and risk checks.",
+  "difficulty": "intermediate",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "SPIN to MEDDIC Handoff Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed SPIN to MEDDIC Handoff"
+  },
+  "learningObjectives": [
+    "Explain the core model used in SPIN to MEDDIC Handoff",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "04-meddic-fundamentals"
+  ]
+}

@@ -17,10 +17,10 @@
       "id": "q2",
       "question": "Which workspace file controls the agent's personality, tone, and behavioral boundaries?",
       "options": [
-        "AGENTS.md \u2014 because it contains the agent's operating instructions",
-        "TOOLS.md \u2014 because it tells the agent which tools to use",
-        "SOUL.md \u2014 because it defines persona, voice, and what the agent won't do",
-        "IDENTITY.md \u2014 because it contains the agent's name and emoji"
+        "AGENTS.md — because it contains the agent's operating instructions",
+        "TOOLS.md — because it tells the agent which tools to use",
+        "SOUL.md — because it defines persona, voice, and what the agent won't do",
+        "IDENTITY.md — because it contains the agent's name and emoji"
       ],
       "correctAnswer": 2,
       "explanation": "SOUL.md defines the agent's persona: its voice, tone, characteristic phrases, and hard limits. IDENTITY.md has the name/emoji. AGENTS.md has operating instructions and memory patterns. TOOLS.md has tool usage notes (not access control)."
@@ -31,11 +31,11 @@
       "options": [
         "Which tools the agent is allowed to use (the tool allowlist)",
         "Tool execution timeouts and sandboxing behavior",
-        "Nothing \u2014 it's guidance notes for the agent, not a policy file",
+        "Nothing — it's guidance notes for the agent, not a policy file",
         "The list of skills loaded at startup"
       ],
       "correctAnswer": 2,
-      "explanation": "TOOLS.md does NOT control tool availability \u2014 it's a human-readable notes file for the agent about local tools and conventions (e.g., which SSH hosts to use, preferred CLI flags). Tool availability is controlled by the tools.allow/deny configuration in openclaw.json."
+      "explanation": "TOOLS.md does NOT control tool availability — it's a human-readable notes file for the agent about local tools and conventions (e.g., which SSH hosts to use, preferred CLI flags). Tool availability is controlled by the tools.allow/deny configuration in openclaw.json."
     },
     {
       "id": "q4",
@@ -55,11 +55,11 @@
       "options": [
         "Compaction deletes old sessions; pruning deletes old tool results",
         "Compaction summarizes old conversation history (modifies JSONL on disk); pruning trims oversized tool results from in-memory context only (disk unchanged)",
-        "Compaction and pruning are the same thing \u2014 different names for the same process",
+        "Compaction and pruning are the same thing — different names for the same process",
         "Compaction is manual (you trigger it); pruning is automatic"
       ],
       "correctAnswer": 1,
-      "explanation": "Compaction is triggered when the session approaches the context window limit \u2014 it summarizes older conversation history and updates the JSONL transcript on disk. Context pruning is a lighter in-memory operation that trims oversized tool result content before each LLM call, without touching the on-disk transcript."
+      "explanation": "Compaction is triggered when the session approaches the context window limit — it summarizes older conversation history and updates the JSONL transcript on disk. Context pruning is a lighter in-memory operation that trims oversized tool result content before each LLM call, without touching the on-disk transcript."
     },
     {
       "id": "q6",
@@ -84,6 +84,18 @@
       ],
       "correctAnswer": 1,
       "explanation": "Memory flush (agents.defaults.compaction.memoryFlush) runs a silent agent turn before compaction with a prompt like 'Write lasting notes to memory/YYYY-MM-DD.md; reply NO_REPLY if nothing to store.' This gives the agent a chance to crystallize important context before older history is summarized away."
+    },
+    {
+      "id": "scenario-q1",
+      "question": "Scenario: During Agent System, your OpenClaw environment starts timing out under peak traffic. Which first response best protects reliability and safety?",
+      "options": [
+        "Introduce request shaping, stricter tool allowlists, and per-channel fallback handling",
+        "Add more channels immediately and debug after failures occur",
+        "Disable logging to improve throughput",
+        "Route all commands to unrestricted exec by default"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Controlled scaling with guardrails and fallback paths improves resilience without sacrificing security."
     }
   ]
 }

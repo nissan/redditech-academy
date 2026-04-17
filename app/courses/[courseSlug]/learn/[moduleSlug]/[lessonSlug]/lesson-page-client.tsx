@@ -83,10 +83,10 @@ export function LessonPageClient({
             </span>
           )}
         </div>
-        <h1 className="font-fraunces text-3xl font-bold text-white sm:text-4xl mb-3">
+        <h1 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight break-words">
           {title}
         </h1>
-        <p className="text-slate-400 text-lg">{description}</p>
+        <p className="text-slate-400 text-sm sm:text-base lg:text-lg">{description}</p>
 
         {/* Registration CTA */}
         <div className="mt-4 rounded-lg border border-slate-700 bg-slate-800/50 p-4 text-sm text-slate-400">

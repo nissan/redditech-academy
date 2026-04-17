@@ -1,0 +1,5 @@
+flowchart LR
+  A[User action] --> B{Needs signature?}
+  B -- No --> C[Read-only RPC call]
+  B -- Yes --> D[Wallet prompt with intent]
+  D --> E[Signed transaction]

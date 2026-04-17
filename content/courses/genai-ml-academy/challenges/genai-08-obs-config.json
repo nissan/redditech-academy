@@ -1,0 +1,20 @@
+{
+  "id": "genai-08-obs-config",
+  "type": "json-editor",
+  "title": "Mission 08-B \u2014 Observability Config",
+  "description": "Design the observability stack for a production GenAI system: traces, metrics, eval scores, and alert thresholds.",
+  "starterCode": "{\"decision\": \"\", \"rationale\": \"\", \"tradeoffs\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start by defining the core requirement",
+    "Every decision needs a rationale",
+    "Consider the tradeoffs explicitly"
+  ],
+  "successMessage": "Well done \u2014 Mission 08-B \u2014 Observability Config complete.",
+  "points": 100
+}

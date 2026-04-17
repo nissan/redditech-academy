@@ -1,20 +1,20 @@
 {
   "id": "deployment",
   "slug": "deployment",
-  "order": 7,
+  "order": 8,
   "title": "Deployment + Mainnet Readiness",
-  "description": "Move from devnet to production with security, operations, and release discipline.",
-  "difficulty": "intermediate",
-  "estimatedHours": 1.4,
+  "description": "Promotion gates, incident runbooks, rollback drills, and production launch governance.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.2,
   "badge": {
     "name": "Deployment + Mainnet Readiness Badge",
-    "icon": "🟣",
+    "icon": "\ud83d\udfe3",
     "description": "Completed Deployment + Mainnet Readiness"
   },
   "learningObjectives": [
-    "Define a safe promotion path to production",
-    "Set pre-deploy and post-deploy checks",
-    "Create incident and rollback protocols"
+    "Explain key architecture and risk boundaries for this domain",
+    "Implement a mission-style plan with deterministic acceptance checks",
+    "Apply adversarial gates before promotion to higher environments"
   ],
   "prerequisiteModules": [
     "testing"

@@ -1,0 +1,22 @@
+{
+  "id": "08-capstone-deal-room",
+  "slug": "08-capstone-deal-room",
+  "order": 8,
+  "title": "Capstone: Deal Room Simulation",
+  "description": "Run a complete deal simulation with SPIN quality + MEDDIC completeness scoring.",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Capstone: Deal Room Simulation Badge",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed Capstone: Deal Room Simulation"
+  },
+  "learningObjectives": [
+    "Explain the core model used in Capstone: Deal Room Simulation",
+    "Apply the framework to a realistic online sales scenario",
+    "Capture actionable next steps with measurable criteria"
+  ],
+  "prerequisiteModules": [
+    "07-failure-postmortems"
+  ]
+}

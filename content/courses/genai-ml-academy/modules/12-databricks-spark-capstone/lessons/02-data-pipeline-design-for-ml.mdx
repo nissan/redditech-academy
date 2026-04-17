@@ -1,0 +1,70 @@
+---
+title: "Data Pipeline Design for ML"
+description: "Design an end-to-end ML data pipeline from raw ingestion to feature store using Spark/Databricks primitives."
+slug: "data-pipeline-design-for-ml"
+duration: 20
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeId: "genai-12-pipeline-design"
+missionTitle: "Mission 12-B — Pipeline Design"
+estimatedMinutes: 20
+keyTakeaways:
+  - "Apply Databricks, Spark, and Capstone concepts in a hands-on mission"
+  - "Document your architectural decisions with evidence"
+  - "Complete the go/no-go checklist before advancing"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/genai-ml-academy/memes/12-databricks-spark-capstone.svg)
+
+> *"Delta Lake, MLflow, Unity Catalog, Feature Store. All the tools. None of the data quality."*
+
+## Quick Recap
+
+This is the hands-on companion to the core concepts lesson. You apply, not just read.
+
+
+## Mission Brief
+
+Complete the mission brief below. All fields required before advancing.
+
+```json
+{}
+```
+
+
+## What You're Practising
+
+| Skill | Applied how |
+|---|---|
+| Databricks, Spark, and Capstone | Mission brief completion |
+| Decision documentation | Explicit rationale field |
+| Production thinking | Go/no-go gate before advancing |
+
+---
+
+## 🎓 Harvard-Style Case Study — Data quality gates in ML pipelines
+
+**Context:** A Databricks ML pipeline ran daily feature computation jobs. A schema change in an upstream table silently produced null features for 30% of rows. The model continued scoring — with degraded accuracy — for two weeks.
+
+**The tension:** Ship fast vs build in the safeguards that prevent silent quality degradation.
+
+**Decision options:**
+1. Add schema validation checks at the ingestion stage
+2. add data quality assertions at the feature computation stage
+3. add a model quality monitor that triggers on feature drift
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production?
+2. Which option provides the best risk/effort tradeoff for a team of 3 engineers?
+3. Write a one-sentence runbook entry for this failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompts
+
+**Red Team:** "You are reviewing this GenAI system design. Assume it will fail in production. Find the top 3 failure modes and propose the minimum fix for each."
+
+**Socratic Coach:** "Ask me one question at a time about this Databricks, Spark, and Capstone decision. Force me to justify each choice with evidence. After 8 questions, give me a score and recommendation."

@@ -1,0 +1,36 @@
+{
+  "id": "solana-13-orca-defi",
+  "spec": "Integrate Orca Whirlpools swap/liquidity actions and compare concentrated liquidity behavior vs Jupiter path.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.summary",
+        "non_empty": true
+      },
+      {
+        "field": "submission.invariants",
+        "non_empty": true
+      },
+      {
+        "field": "submission.test_evidence",
+        "non_empty": true
+      }
+    ],
+    "must_not_have": [
+      {
+        "field": "submission.network",
+        "value": "mainnet"
+      }
+    ]
+  },
+  "eli_notes": "Reject vague submissions without explicit invariants or test evidence.",
+  "hints": [
+    "Write invariants before implementation.",
+    "Add adversarial test cases.",
+    "Document rollback and failure mode."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"network\": \"devnet\",\n    \"summary\": \"__FILL_IN__\",\n    \"invariants\": [\"__FILL_IN__\"],\n    \"test_evidence\": [\"__FILL_IN__\"],\n    \"risk_controls\": [\"__FILL_IN__\"]\n  }\n}"
+  },
+  "success_text": "Mission accepted. Submission includes enforceable safety and evidence."
+}

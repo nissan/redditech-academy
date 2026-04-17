@@ -1,0 +1,14 @@
+graph TB
+    A["Inbound message"] --> B{peer match?}
+    B -->|Yes| PEER["→ peer-matched agent"]
+    B -->|No| C{parentPeer match?}
+    C -->|Yes| PARENT["→ parentPeer-matched agent"]
+    C -->|No| D{guildId + roles?}
+    D -->|Yes| GUILD_ROLE["→ guild+role-matched agent"]
+    D -->|No| E{guildId or teamId?}
+    E -->|Yes| GUILD["→ guild/team-matched agent"]
+    E -->|No| F{accountId match?}
+    F -->|Yes| ACC["→ account-matched agent"]
+    F -->|No| G{channel match?}
+    G -->|Yes| CHAN["→ channel-matched agent"]
+    G -->|No| DEFAULT["→ default agent (first in list or .default:true)"]

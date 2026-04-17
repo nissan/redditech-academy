@@ -1,0 +1,22 @@
+{
+  "id": "verifiable-randomness-auctions",
+  "slug": "16-verifiable-randomness-auctions",
+  "order": 18,
+  "title": "VRM Lab \u2014 Commit-Reveal and Dutch Auction",
+  "description": "Implement verifiable randomness with Switchboard commit-reveal and a Dutch-auction path using Chainlink guardrails.",
+  "difficulty": "advanced",
+  "estimatedHours": 3.6,
+  "badge": {
+    "name": "VRM Lab \u2014 Commit-Reveal and Dutch Auction Badge",
+    "icon": "\ud83e\uddea",
+    "description": "Completed VRM Lab \u2014 Commit-Reveal and Dutch Auction module"
+  },
+  "learningObjectives": [
+    "Model architecture and threat boundaries before coding",
+    "Implement mission logic with deterministic acceptance tests",
+    "Run adversarial checks and enforce explicit launch gates"
+  ],
+  "prerequisiteModules": [
+    "solana-new-app-builder"
+  ]
+}

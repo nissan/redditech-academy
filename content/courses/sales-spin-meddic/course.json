@@ -1,0 +1,33 @@
+{
+  "id": "sales-spin-meddic",
+  "slug": "sales-spin-meddic",
+  "title": "Sales Accelerator Academy (SPIN + MEDDIC + MEDDPICC)",
+  "description": "Practical online sales training focused on discovery quality, enterprise qualification, and case-study-based execution.",
+  "tagline": "Close better deals with SPIN, MEDDIC, and MEDDPICC discipline",
+  "icon": "\ud83d\udcc8",
+  "difficulty": "intermediate",
+  "estimatedHours": 25,
+  "tags": [
+    "sales",
+    "spin",
+    "meddic",
+    "meddpicc",
+    "b2b-saas",
+    "revenue-operations"
+  ],
+  "badge": {
+    "name": "Sales Accelerator Graduate",
+    "icon": "\ud83d\udcc8",
+    "description": "Completed SPIN + MEDDIC + MEDDPICC Sales Accelerator Academy"
+  },
+  "author": "Redditech Labs",
+  "version": "2.1",
+  "free": true,
+  "runningProject": {
+    "title": "You are closing a $250k enterprise deal using SPIN, MEDDIC, and Challenger selling",
+    "description": "You are closing a $250k enterprise deal using SPIN, MEDDIC, and Challenger selling \u2014 from discovery to signed contract.",
+    "juniorGameBrief": "Before any methodology, write down how you would qualify a $250k deal right now. That gap between your answer and a complete MEDDIC scorecard is what this course fills.",
+    "finalOutcome": "A fully qualified, multi-stakeholder enterprise deal with documented MEDDIC evidence, a Challenger insight, and a signed close plan."
+  },
+  "learningApproach": "whole-game"
+}
