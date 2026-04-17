@@ -1,0 +1,50 @@
+---
+title: "Mock Problem — Benchmark Aggregator"
+description: "20 minutes. Real data. Eli only speaks after 3 wrong moves."
+slug: "01-mock-aggregation"
+duration: 25
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-mock-01-aggregation"
+missionTitle: "Mock 01 — Benchmark Aggregator"
+estimatedMinutes: 25
+keyTakeaways:
+  - "Read the task fully before writing a line"
+  - "Check data shape first — always"
+  - "Structure your answer as functions, not a script"
+---
+
+## 🎯 Your Interview Problem
+
+Treat this exactly like the real interview. Set a timer for 20 minutes.
+
+**The brief:**
+
+You have a file of LLM benchmark results. Each record has: `model`, `provider`, `quality_score`, `ttft_ms` (nullable), `cost_per_1k_tokens`.
+
+Write a script that produces:
+- A ranked summary table (by avg quality, descending)
+- The cheapest model with avg quality ≥ 8.0
+- Mark any model with fewer than 10 results with `(*)`
+
+**What Eli is looking for:**
+1. Do you read the data shape before processing?
+2. Do you handle the nullable `ttft_ms`?
+3. Are your functions named and scoped correctly?
+4. Do you narrate your approach?
+
+---
+
+## How to Use This Mission
+
+Write your **approach** in the answer box below — not code, your thinking:
+
+- What do you do first?
+- How do you handle the null `ttft_ms`?
+- How do you find the cheapest model above the threshold?
+- What does your output function look like?
+
+Eli will ask Socratic questions. You get 3 attempts before he shows you the full answer.
+
+> ⏱️ Start your timer. Read the brief twice. Then answer below.

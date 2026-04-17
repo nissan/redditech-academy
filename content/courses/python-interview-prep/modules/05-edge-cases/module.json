@@ -1,0 +1,17 @@
+{
+  "slug": "05-edge-cases",
+  "title": "Edge Cases",
+  "description": "Coming soon.",
+  "order": 5,
+  "lessons": [],
+  "passingScore": 70,
+  "badge": {
+    "name": "Defensive Coder",
+    "icon": "🛡️",
+    "description": "Handled missing fields, bad JSON, and edge cases gracefully"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

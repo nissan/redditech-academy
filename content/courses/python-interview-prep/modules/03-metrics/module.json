@@ -1,0 +1,17 @@
+{
+  "slug": "03-metrics",
+  "title": "Metrics",
+  "description": "Coming soon.",
+  "order": 3,
+  "lessons": [],
+  "passingScore": 70,
+  "badge": {
+    "name": "Metrics Master",
+    "icon": "📐",
+    "description": "Calculated means, medians, percentiles, and pass rates"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

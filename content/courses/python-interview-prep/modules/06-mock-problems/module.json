@@ -1,0 +1,21 @@
+{
+  "slug": "06-mock-problems",
+  "title": "Full Mock Problems",
+  "description": "Timed. Real format. Eli watches and coaches. No hints for 20 minutes.",
+  "order": 6,
+  "lessons": [
+    "01-mock-aggregation",
+    "02-mock-parser",
+    "03-mock-comparator"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Interview Ready",
+    "icon": "✅",
+    "description": "Completed a full timed mock problem under Eli's watch"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

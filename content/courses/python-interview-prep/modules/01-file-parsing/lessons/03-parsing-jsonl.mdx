@@ -1,0 +1,60 @@
+---
+title: "Parsing JSONL Files"
+description: "One JSON object per line. Bad lines exist. Handle them."
+slug: "03-parsing-jsonl"
+duration: 15
+order: 3
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-01-parsing-jsonl"
+missionTitle: "Mission 01C — Survive Bad Data"
+estimatedMinutes: 15
+keyTakeaways:
+  - "JSONL = one JSON object per line, not a JSON array"
+  - "Always wrap json.loads() in try/except — real files have corrupt lines"
+  - "Log the bad line count — interviewers notice defensive coding"
+---
+
+## JSONL: The Format That Will Trip You Up
+
+JSONL (JSON Lines) is common in evaluation data, log files, and batch outputs. Every line is a separate JSON object. The whole file is NOT valid JSON.
+
+> 🤔 **Think it through:**
+>
+> - Why can't you use `json.load()` on a JSONL file?
+> - What happens when `json.loads()` hits a malformed line?
+> - How do you tell your interviewer you handled bad data?
+
+---
+
+## The Pattern
+
+```python
+import json
+from pathlib import Path
+
+def load_jsonl(filepath: str) -> tuple[list[dict], int]:
+    """Returns (valid_rows, bad_line_count)."""
+    rows = []
+    bad = 0
+    with open(Path(filepath)) as f:
+        for i, line in enumerate(f):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                bad += 1
+                print(f"Warning: skipping malformed line {i+1}")
+    return rows, bad
+```
+
+**Returning the bad count** is not just defensive — it's something you narrate out loud:
+*"I'm returning the bad line count so the caller knows data quality."*
+
+That sentence alone impresses interviewers.
+
+## Your Mission
+
+Describe the JSONL loading pattern including: how you loop, what you catch, and how you communicate bad data to the caller.

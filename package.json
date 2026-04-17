@@ -13,7 +13,11 @@
     "build": "pnpm mermaid:sync && next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "demo:screenshots": "npx tsx demo-video/capture-screenshots.ts",
+    "demo:tts": "bash demo-video/render-and-stitch.sh --skip-screenshots",
+    "demo:render": "bash demo-video/render-and-stitch.sh --skip-tts",
+    "demo:full": "bash demo-video/render-and-stitch.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
@@ -52,6 +56,7 @@
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -63,6 +68,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vitejs/plugin-react": "^6.0.1",
     "jsdom": "^29.0.2",
+    "playwright": "^1.59.1",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.5",
     "typescript": "^5",

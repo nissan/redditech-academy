@@ -1,0 +1,60 @@
+---
+title: "Groupby with Pandas"
+description: "groupby + agg in one pattern. You will use this in every data interview."
+slug: "01-groupby-pandas"
+duration: 20
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-02-groupby-pandas"
+missionTitle: "Mission 02A — Group the Models"
+estimatedMinutes: 20
+keyTakeaways:
+  - "df.groupby().agg() is the core pattern — know it without looking it up"
+  - "Named aggregations with pd.NamedAgg keep column names clean"
+  - "reset_index() after groupby to get a flat DataFrame back"
+---
+
+## The Pattern Interviewers Expect
+
+Given a list of benchmark results, grouped by model — what's the average quality score?
+
+> 🤔 **Before reading on:**
+>
+> - What's the difference between `.groupby().mean()` and `.groupby().agg()`?
+> - After `groupby().agg()`, what does the index look like?
+> - If you want to sort by average score descending, what do you call?
+
+---
+
+## The Core Pattern
+
+```python
+import pandas as pd
+
+df = pd.DataFrame(rows)  # rows = list of dicts from json.load()
+
+summary = (
+    df.groupby("model")
+    .agg(
+        avg_quality=pd.NamedAgg(column="quality_score", aggfunc="mean"),
+        call_count=pd.NamedAgg(column="quality_score", aggfunc="count"),
+        median_ttft=pd.NamedAgg(column="ttft_ms", aggfunc="median"),
+    )
+    .reset_index()
+    .sort_values("avg_quality", ascending=False)
+    .round(2)
+)
+```
+
+**`reset_index()`** — after `groupby`, the grouped column becomes the index. `reset_index()` makes it a regular column again.
+
+**`pd.NamedAgg`** — gives your output columns sensible names instead of `quality_score_mean`.
+
+**`.round(2)`** — always round at the end, not during aggregation.
+
+## Narrating This in an Interview
+
+> *"I'll load the JSON into a DataFrame, group by model, then aggregate with named columns so the output is self-documenting. Let me check what the shape looks like after groupby before I sort..."*
+
+That narration pattern — explain what you're doing, check intermediate state, then proceed — is exactly what separates good candidates.

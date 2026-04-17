@@ -1,0 +1,71 @@
+---
+title: "Reading JSON Files"
+description: "Before you can analyse anything, you have to read it. Let's get the data in."
+slug: "01-reading-json"
+duration: 15
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-01-reading-json"
+missionTitle: "Mission 01A — Load the Data"
+estimatedMinutes: 15
+keyTakeaways:
+  - "json.load() vs json.loads() — know which to use when"
+  - "Always open files with a context manager"
+  - "Check the shape of data before processing it"
+---
+
+## The First Question in Every Interview
+
+Before you write a single line of logic, you need to answer: **what does the data look like?**
+
+This sounds obvious. It isn't. Candidates who panic in interviews jump straight to processing before they understand the structure. Eli won't let you do that.
+
+> 🤔 **Think it through before reading on:**
+>
+> - If you receive a `.json` file path as a string, what's the first thing you write?
+> - What's the difference between `json.load()` and `json.loads()`?
+> - What would you print first to understand an unfamiliar dataset?
+
+---
+
+## The Pattern
+
+```python
+import json
+from pathlib import Path
+
+def load_data(filepath: str) -> list[dict]:
+    path = Path(filepath)
+    with open(path) as f:
+        data = json.load(f)
+    return data
+```
+
+Three things to notice:
+1. **`pathlib.Path`** — more robust than raw strings for file handling
+2. **`with open()`** — always a context manager. Never `f = open(...)` bare.
+3. **Return type hint** — signals to your interviewer you're thinking about the shape
+
+## Understanding the Shape
+
+Once loaded, always inspect before processing:
+
+```python
+data = load_data("results.json")
+
+print(type(data))          # list? dict?
+print(len(data))           # how many records?
+print(data[0])             # what does one record look like?
+print(data[0].keys())      # what fields exist?
+```
+
+This narration — saying "I'm going to check the shape first" — is exactly what interviewers want to hear.
+
+## Your Mission
+
+You've been given a dataset path. Write the function stub below to:
+1. Load the JSON file
+2. Return a summary dict with: `total_records`, `fields` (list of keys from first record), `sample` (first 2 records)
+
+Eli will ask you questions about your approach before evaluating your answer.

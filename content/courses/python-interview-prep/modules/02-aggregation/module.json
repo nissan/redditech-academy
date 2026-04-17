@@ -1,0 +1,21 @@
+{
+  "slug": "02-aggregation",
+  "title": "Aggregation & Grouping",
+  "description": "Group by model, by provider, by task type. With and without pandas.",
+  "order": 2,
+  "lessons": [
+    "01-groupby-pandas",
+    "02-groupby-stdlib",
+    "03-sorting-ranking"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Groupby Guru",
+    "icon": "📊",
+    "description": "Aggregated data cleanly with and without pandas"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1,
+  "learningObjectives": [],
+  "prerequisiteModules": []
+}

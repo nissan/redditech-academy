@@ -1,0 +1,62 @@
+---
+title: "Reading CSV Files"
+description: "csv.DictReader is your friend. Know it cold before any interview."
+slug: "02-reading-csv"
+duration: 15
+order: 2
+type: "interactive"
+environment: "json-editor"
+challengeid: "pyprep-01-reading-csv"
+missionTitle: "Mission 01B — CSV to Dicts"
+estimatedMinutes: 15
+keyTakeaways:
+  - "csv.DictReader gives you rows as dicts — no column indexing"
+  - "All values come in as strings — you must cast numbers yourself"
+  - "Always check header names before assuming field names"
+---
+
+## CSV: The Most Common Interview Data Format
+
+They almost always give you CSV. It's simple to reason about, easy to generate test data for, and reveals instantly whether you know your stdlib.
+
+> 🤔 **Before reading on:**
+>
+> - What module do you import?
+> - What's the difference between `csv.reader` and `csv.DictReader`?
+> - If a field says `"8.42"` in the CSV, what type is it in Python?
+
+---
+
+## The Pattern
+
+```python
+import csv
+from pathlib import Path
+
+def load_csv(filepath: str) -> list[dict]:
+    path = Path(filepath)
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+```
+
+**`newline=""`** — always pass this to `open()` when reading CSV. It prevents `\r\n` issues on Windows files.
+
+**`csv.DictReader`** — each row becomes a dict keyed by the header row. Far cleaner than `csv.reader` which gives you a list of values.
+
+## The Type Problem
+
+```python
+rows = load_csv("results.csv")
+print(rows[0])
+# {'model': 'gpt-4o', 'quality_score': '8.42', 'cost': '0.025'}
+#                                          ^^^^^ still a string!
+```
+
+You must cast:
+```python
+score = float(row["quality_score"])
+cost  = float(row["cost"])
+```
+
+Interviewers watch for this. Failing to cast and then wondering why `"8.42" > "9.1"` evaluates to `True` is a red flag.
