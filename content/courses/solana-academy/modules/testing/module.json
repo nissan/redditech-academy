@@ -1,7 +1,7 @@
 {
   "id": "testing",
   "slug": "testing",
-  "order": 6,
+  "order": 7,
   "title": "Testing + Quality Gates",
   "description": "Unit/integration/e2e patterns, adversarial tests, and release-blocking quality gates.",
   "difficulty": "advanced",

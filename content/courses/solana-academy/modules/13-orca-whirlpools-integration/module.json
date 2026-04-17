@@ -1,7 +1,7 @@
 {
   "id": "orca-whirlpools-integration",
   "slug": "13-orca-whirlpools-integration",
-  "order": 13,
+  "order": 15,
   "title": "DeFi Layer 2 \u2014 Orca Whirlpools",
   "description": "Extend the flow with concentrated-liquidity logic using Orca Whirlpools for pool-aware strategy execution.",
   "difficulty": "advanced",

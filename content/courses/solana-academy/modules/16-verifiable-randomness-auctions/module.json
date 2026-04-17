@@ -1,7 +1,7 @@
 {
   "id": "verifiable-randomness-auctions",
   "slug": "16-verifiable-randomness-auctions",
-  "order": 16,
+  "order": 18,
   "title": "VRM Lab \u2014 Commit-Reveal and Dutch Auction",
   "description": "Implement verifiable randomness with Switchboard commit-reveal and a Dutch-auction path using Chainlink guardrails.",
   "difficulty": "advanced",

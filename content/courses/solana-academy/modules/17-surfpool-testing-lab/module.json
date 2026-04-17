@@ -1,7 +1,7 @@
 {
   "id": "surfpool-testing-lab",
   "slug": "17-surfpool-testing-lab",
-  "order": 17,
+  "order": 12,
   "title": "Testing Lab \u2014 Surfpool Workflows",
   "description": "Build fast local-test loops with Surfpool as a drop-in validator replacement, including runbooks, cheatcodes, and deterministic test gates.",
   "difficulty": "advanced",

@@ -1,7 +1,7 @@
 {
   "id": "pyth-oracle-integration",
   "slug": "15-pyth-oracle-integration",
-  "order": 15,
+  "order": 17,
   "title": "Oracle Layer 2 \u2014 Pyth Integration",
   "description": "Consume Pyth updates with confidence interval checks and freshness limits for safer execution policy.",
   "difficulty": "advanced",

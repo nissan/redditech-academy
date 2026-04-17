@@ -1,7 +1,7 @@
 {
   "id": "litesvm-testing-lab",
   "slug": "18-litesvm-testing-lab",
-  "order": 18,
+  "order": 13,
   "title": "Testing Lab \u2014 LiteSVM In-Process Testing",
   "description": "Use LiteSVM for in-process Solana testing, compare speed/coverage tradeoffs, and enforce adversarial test suites for escrow continuity.",
   "difficulty": "advanced",

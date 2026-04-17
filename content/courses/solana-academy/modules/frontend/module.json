@@ -1,10 +1,10 @@
 {
   "id": "frontend",
   "slug": "frontend",
-  "order": 5,
+  "order": 6,
   "title": "Frontend + RPC Integration",
   "description": "Client architecture, RPC reliability, confirmation strategy, and observability for dApps.",
-  "difficulty": "advanced",
+  "difficulty": "intermediate",
   "estimatedHours": 3.2,
   "badge": {
     "name": "Frontend + Wallet Integration Badge",

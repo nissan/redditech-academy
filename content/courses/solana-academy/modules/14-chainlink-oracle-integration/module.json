@@ -1,7 +1,7 @@
 {
   "id": "chainlink-oracle-integration",
   "slug": "14-chainlink-oracle-integration",
-  "order": 14,
+  "order": 16,
   "title": "Oracle Layer 1 \u2014 Chainlink Data Feeds",
   "description": "Use Chainlink Solana Data Feeds as guardrails for price checks, settlement bounds, and circuit-breakers.",
   "difficulty": "advanced",

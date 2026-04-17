@@ -1,7 +1,7 @@
 {
   "id": "jupiter-defi-integration",
   "slug": "12-jupiter-defi-integration",
-  "order": 12,
+  "order": 14,
   "title": "DeFi Layer 1 \u2014 Jupiter Integration",
   "description": "Layer Jupiter quote/build/order APIs over escrow settlement with slippage and route-policy controls.",
   "difficulty": "advanced",

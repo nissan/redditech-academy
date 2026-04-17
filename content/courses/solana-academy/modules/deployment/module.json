@@ -1,7 +1,7 @@
 {
   "id": "deployment",
   "slug": "deployment",
-  "order": 7,
+  "order": 8,
   "title": "Deployment + Mainnet Readiness",
   "description": "Promotion gates, incident runbooks, rollback drills, and production launch governance.",
   "difficulty": "advanced",

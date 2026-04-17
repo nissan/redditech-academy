@@ -1,7 +1,7 @@
 {
   "id": "foundations",
   "slug": "foundations",
-  "order": 1,
+  "order": 2,
   "title": "Solana + Blockchain Fundamentals",
   "description": "Account model, transaction lifecycle, authority boundaries, and state transition design.",
   "difficulty": "intermediate",

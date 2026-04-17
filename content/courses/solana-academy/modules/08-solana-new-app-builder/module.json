@@ -1,7 +1,7 @@
 {
   "id": "solana-new-app-builder",
   "slug": "08-solana-new-app-builder",
-  "order": 8,
+  "order": 1,
   "title": "Start Here: solana.new Beginner Onramp",
   "description": "Beginner-friendly intro to Solana app creation using solana.new, with guided missions that teach fundamentals before advanced labs.",
   "difficulty": "beginner",

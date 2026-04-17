@@ -1,7 +1,7 @@
 {
   "id": "wallets",
   "slug": "wallets",
-  "order": 3,
+  "order": 4,
   "title": "Wallet Integration + Signing Flows",
   "description": "Wallet UX, signer policy, transaction signing paths, and custody boundaries.",
   "difficulty": "intermediate",

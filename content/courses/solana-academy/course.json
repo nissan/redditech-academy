@@ -21,6 +21,13 @@
     "description": "Completed the Solana Developer Academy course"
   },
   "author": "Redditech Labs",
-  "version": "1.6",
-  "free": true
+  "version": "1.7",
+  "free": true,
+  "runningProject": {
+    "title": "NFT Marketplace on Solana",
+    "description": "You are building a real NFT marketplace on Solana. Each module adds one production-grade piece. The capstone is the complete, production-ready version.",
+    "juniorGameBrief": "Before you learn anything, deploy a minimal Solana program using solana.new. It won't be production-ready. Your goal is to understand what the game feels like before we teach you how to play it well.",
+    "finalOutcome": "A production-ready NFT marketplace with atomic escrow, wallet integration, oracle-backed pricing, DeFi routing, and a complete test and deployment suite."
+  },
+  "learningApproach": "whole-game"
 }
