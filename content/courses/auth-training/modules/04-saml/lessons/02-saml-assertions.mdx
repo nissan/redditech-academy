@@ -10,7 +10,19 @@ keyTakeaways:
   - "SubjectConfirmation validates assertion is bearer token and includes expiration and recipient"
   - "AttributeStatement contains user claims for personalization and authorization"
 prerequisites: ["01-saml-fundamentals"]
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-04-02-saml-assertions"
+missionTitle: "Mission 04 — 04 Saml"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/04-saml.svg)
+
+> *"SAML: the protocol that makes OAuth look simple."*
 
 # SAML Assertions Deep Dive
 
@@ -364,3 +376,30 @@ When user doesn't exist in SP:
 4. **Salesforce** (`https://salesforce.com`)
 5. **Admin** and **Developer** (multi-valued attribute)
 </details>
+
+
+---
+
+## 🎓 Harvard-Style Case Study — SAML assertion validation and trust boundaries
+
+**Context:** A SAML implementation trusted the NameID value without checking the issuer. An attacker crafted a SAML assertion claiming to be an admin user. The system accepted it.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add issuer validation to every SAML assertion check
+2. add signed assertion verification
+3. add a SAML security audit before production deployment
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

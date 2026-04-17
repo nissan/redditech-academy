@@ -8,7 +8,19 @@ keyTakeaways:
   - "Use benchmark portfolios, not single-score governance"
   - "NQ-open, HotpotQA, and needle tests should be weighted by product risk"
   - "Promotion policy needs red-line metrics and rollback rules"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-07-scorecard-design"
+missionTitle: "Mission — 07 Benchmark Selection And Scorecards"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/07-benchmark-selection-and-scorecards.svg)
+
+> *"We have 47 benchmarks. None of them test what our users actually do."*
 
 # Benchmark Portfolio Design and Scorecards: Core Concepts
 
@@ -62,3 +74,29 @@ A legal copilot team initially over-weighted generic reasoning and under-weighte
 
 ## Anti-Pattern to Avoid
 Averaging unrelated benchmarks into one number without showing family-level failures.
+
+---
+
+## 🎓 Harvard-Style Case Study — Benchmark suite design and CI integration
+
+**Context:** A team assembled a 12-benchmark scorecard. It took 4 hours to run. It was never run before shipping because 'it takes too long.' The model degraded in production for 3 weeks before anyone noticed.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Reduce the scorecard to 3 critical benchmarks and run them as CI gates
+2. add a fast 15-minute subset run as a pre-merge gate
+3. keep the full suite but run it only on release branches
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

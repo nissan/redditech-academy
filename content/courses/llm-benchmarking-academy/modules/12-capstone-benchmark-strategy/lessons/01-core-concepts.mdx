@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark architecture determines what a score means"
   - "Benchmark choice must follow deployment risk"
   - "Interpretation quality matters as much as raw score"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-12-capstone-strategy"
+missionTitle: "Mission — 12 Capstone Benchmark Strategy"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/12-capstone-benchmark-strategy.svg)
+
+> *"The capstone: build an eval suite that doesn't lie to you."*
 
 # Capstone: Production Benchmark Strategy: Core Concepts
 
@@ -50,3 +62,29 @@ A platform team used this capstone framework to decide between two frontier mode
 
 ## Anti-Pattern to Avoid
 Ending with benchmark analysis but no deployment policy or ownership model.
+
+---
+
+## 🎓 Harvard-Style Case Study — Eval suite maintenance and continuous improvement
+
+**Context:** A team shipped a product with a comprehensive eval suite. 6 months later, the suite had never been updated. New model versions, new user behaviours, and new failure modes were accumulating invisibly.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add a monthly eval suite review cadence
+2. add a staleness detector that flags golden sets older than 90 days
+3. add a user-feedback-driven eval expansion pipeline
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

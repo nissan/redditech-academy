@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark architecture determines what a score means"
   - "Benchmark choice must follow deployment risk"
   - "Interpretation quality matters as much as raw score"
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "llm-03-eval-strategy"
+missionTitle: "Mission — 03 Mmlu And Mmmlu"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/03-mmlu-and-mmmlu.svg)
+
+> *"MMLU score: 89%. Can it answer a support ticket? Different question."*
 
 # MMLU and MMMLU Deep Dive: Core Concepts
 
@@ -44,3 +56,29 @@ A global edtech team selected a model using English-only MMLU gains. In LATAM ro
 
 ## Anti-Pattern to Avoid
 Treating MMLU/MMMLU as a complete readiness test for agentic workflows.
+
+---
+
+## 🎓 Harvard-Style Case Study — Multi-benchmark strategy and task-specific evaluation
+
+**Context:** A team used MMLU as their primary eval for a customer support LLM. The model scored 89%. It consistently mishandled ambiguous customer requests — a pattern MMLU's multiple-choice format never surfaces.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add an open-ended response quality eval
+2. add real support ticket samples to the eval set
+3. benchmark on MMLU + a task-specific eval together
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

@@ -1,0 +1,20 @@
+{
+  "id": "llm-11-retrieval-eval",
+  "type": "json-editor",
+  "title": "Mission \u2014 11 Retrieval And Long Context Evals",
+  "description": "Complete the benchmark strategy brief for: 11 retrieval and long context evals.",
+  "starterCode": "{\"benchmark_choice\": \"\", \"rationale\": \"\", \"failure_modes_covered\": \"\", \"gaps\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "benchmark_choice"
+    }
+  ],
+  "hints": [
+    "Start with the use case, not the benchmark",
+    "Every benchmark has blind spots \u2014 name yours explicitly",
+    "A good rationale explains what you're NOT measuring"
+  ],
+  "successMessage": "Benchmark strategy complete \u2014 11 retrieval and long context evals mission passed.",
+  "points": 100
+}

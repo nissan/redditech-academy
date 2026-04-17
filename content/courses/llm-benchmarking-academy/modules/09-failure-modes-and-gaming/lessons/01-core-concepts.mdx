@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark-family specific gaming patterns exist"
   - "NQ-open, HotpotQA, and long-context needle tests each have distinct failure modes"
   - "Governance must audit both scores and evidence traces"
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "llm-09-gaming-prevention"
+missionTitle: "Mission — 09 Failure Modes And Gaming"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/09-failure-modes-and-gaming.svg)
+
+> *"We improved the benchmark score by 8 points. We changed nothing about the model's actual behaviour."*
 
 # Failure Modes and Benchmark Gaming: Core Concepts
 
@@ -58,3 +70,29 @@ A release candidate improved benchmark scores after prompt tuning, but failed us
 
 ## Anti-Pattern to Avoid
 Publishing only top-line gains while hiding family-level regressions.
+
+---
+
+## 🎓 Harvard-Style Case Study — Benchmark gaming and eval integrity
+
+**Context:** A team optimised their model against a fixed benchmark. Scores improved 12 points over 3 months. A user study found no improvement in actual task performance. The model had learned the benchmark, not the task.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Rotate the golden set regularly to prevent overfitting
+2. add held-out evaluation sets never exposed during training
+3. add human evaluation as a sanity check alongside automated evals
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

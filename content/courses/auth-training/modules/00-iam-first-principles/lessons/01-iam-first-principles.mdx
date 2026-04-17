@@ -1,0 +1,82 @@
+---
+title: "IAM First Principles"
+description: "Identity, authentication, and authorisation — plain language, real consequences."
+slug: "iam-first-principles"
+duration: 20
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-00-first-principles"
+missionTitle: "Mission 00 — IAM First Principles"
+estimatedMinutes: 15
+keyTakeaways:
+  - "Authentication = who are you? Authorisation = what can you do?"
+  - "IAM failures are the leading cause of breaches — not exotic exploits"
+  - "Least privilege is a design constraint, not an afterthought"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/00-iam-first-principles.svg)
+
+> *"Authentication confirmed. Authorisation forgotten. Data breached."*
+
+## 🎮 The Game
+
+**Before you read anything, here's what you're going to secure:**
+
+> A fintech API that handles real money. Every endpoint either has the right access control — or it's a breach waiting to happen.
+
+**Your first question, from first principles:**
+
+```json
+{
+  "what_is_authentication": "",
+  "what_is_authorisation": "",
+  "why_are_they_different": "",
+  "one_thing_that_goes_wrong_when_you_confuse_them": ""
+}
+```
+
+Your answers are your starting point. Everything this course teaches builds on this distinction.
+
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** A secure fintech API — every endpoint protected, every identity verified, every permission explicit.
+**What this module adds:** The mental model that underpins every security decision in the course.
+
+---
+
+## Quick Recap
+
+| Concept | Question | Missing consequence |
+|---|---|---|
+| **Authentication** | Who are you? | Anyone can claim any identity |
+| **Authorisation** | What can you do? | Authenticated users access everything |
+| **Least privilege** | Minimum needed? | Breach blast radius is maximum |
+
+---
+
+## 🎓 Harvard-Style Case Study — The Developer Who Confused AuthN and AuthZ
+
+**Context:** A developer implemented authentication correctly but forgot authorisation. Every authenticated user could access every other user's data via direct object references.
+
+**The tension:** Ship the MVP with working login vs add a proper authorisation layer before launch.
+
+**Decision options:**
+1. Add row-level authorisation checks to every data access operation before launch
+2. Launch with authentication only, add authorisation in v1.1
+3. Add a middleware layer that checks ownership on all data requests
+
+**Discussion questions:**
+1. At what point in development is it cheapest to add authorisation?
+2. What is the blast radius if an authenticated user can access all other users' data?
+3. Write a one-sentence authorisation rule for a user profile endpoint.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Mentor Mode:** "I'm new to IAM. Walk me through the difference between authentication and authorisation using a banking app as the example. Then give me three real-world cases where confusing them caused a breach."

@@ -1,0 +1,20 @@
+{
+  "id": "auth-00-02-authentication-authorization-summary",
+  "type": "json-editor",
+  "title": "Mission 00 \u2014 00 Executive Overview",
+  "description": "Complete the IAM mission brief for 02-authentication-authorization-summary.",
+  "starterCode": "{\"decision\":\"\",\"rationale\":\"\",\"security_control\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "decision"
+    }
+  ],
+  "hints": [
+    "Start with the threat model",
+    "Every IAM decision needs an explicit security rationale",
+    "Name the attack this control prevents"
+  ],
+  "successMessage": "Mission complete \u2014 00 Executive Overview passed.",
+  "points": 100
+}

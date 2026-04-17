@@ -8,7 +8,19 @@ keyTakeaways:
   - "Harnesses need benchmark-family specific pipelines"
   - "SQuAD, NQ-open, HotpotQA, and long-context needle suites should run as first-class jobs"
   - "Auditable manifests are required for trustworthy comparisons"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-08-eval-harness"
+missionTitle: "Mission — 08 Building An Eval Harness"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/08-building-an-eval-harness.svg)
+
+> *"The eval harness is more complex than the system it evaluates. This is fine."*
 
 # Building an Evaluation Harness: Core Concepts
 
@@ -65,3 +77,29 @@ A team could not explain a sudden score jump because prompt templates had silent
 
 ## Anti-Pattern to Avoid
 Running ad hoc benchmarks without persisted metadata, seeds, and per-family diagnostics.
+
+---
+
+## 🎓 Harvard-Style Case Study — Build vs buy for eval infrastructure
+
+**Context:** A team built a custom eval harness from scratch. It took 3 months. By the time it was ready, the model had been updated twice and the golden set was stale. They ran evals once and never updated them.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Use an existing eval framework (Langfuse, RAGAS, Evals)
+2. build a thin adapter over an existing framework
+3. build fully custom but define a maintenance owner from day one
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

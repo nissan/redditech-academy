@@ -8,7 +8,19 @@ keyTakeaways:
   - "Hybrid Flow: Combines features of Code and Implicit for complex scenarios"
   - "Response types: code (auth code), id_token (ID Token), token (access token)"
   - "Flow selection based on client type: confidential (Code Flow) vs public (Code + PKCE)"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-03-04-oidc-flows"
+missionTitle: "Mission 03 — 03 Oidc"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/03-oidc.svg)
+
+> *"The ID token was valid. The aud claim was wrong. The system accepted it anyway."*
 
 ## OIDC Flow Overview
 
@@ -314,3 +326,30 @@ The authorization server will POST the code to your redirect_uri instead of usin
 - response_type=code triggers Authorization Code Flow in OIDC
 - Always include 'openid' in scope to activate OIDC authentication
 - response_mode=form_post prevents tokens from appearing in browser history
+
+
+---
+
+## 🎓 Harvard-Style Case Study — ID token claim validation
+
+**Context:** A team implemented OIDC but never validated the ID token's aud claim. A token issued for one application was accepted by another, allowing cross-application authentication bypass.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add aud claim validation to every ID token check
+2. add a token binding to prevent cross-app reuse
+3. add automated security tests for claim validation
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

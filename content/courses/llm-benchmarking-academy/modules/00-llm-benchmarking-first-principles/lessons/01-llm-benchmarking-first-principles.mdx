@@ -1,0 +1,97 @@
+---
+title: "LLM Benchmarking First Principles"
+description: "What benchmarks actually measure, why high scores don't guarantee production quality, and how to avoid the three most common evaluation mistakes."
+slug: "llm-benchmarking-first-principles"
+duration: 20
+order: 1
+type: "interactive"
+environment: "json-editor"
+challengeId: "llm-00-first-principles"
+missionTitle: "Mission 00 — Benchmarking First Principles"
+estimatedMinutes: 15
+keyTakeaways:
+  - "A benchmark measures a proxy — not the thing you actually care about"
+  - "High scores on the wrong benchmark are worse than no score"
+  - "Your golden set is your most important eval asset"
+---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/00-llm-benchmarking-first-principles.svg)
+
+> *"Our model scored 91% on the benchmark. It still doesn't work for our use case. These two facts are unrelated."*
+
+## 🎮 The Game
+
+**Before you read anything, here's what you're going to build:**
+
+> An LLM evaluation suite that tells your product team the truth about model quality — not just what looks good on a dashboard.
+
+**Here's the junior version. Try it now:**
+
+```json
+{
+  "what_does_a_benchmark_actually_measure": "",
+  "why_a_high_score_might_not_matter": "",
+  "how_would_you_catch_a_silent_quality_regression": "",
+  "one_thing_you_would_always_test_before_shipping": ""
+}
+```
+
+Write from first principles. Your answers reveal what you already know and what this course will fix.
+
+---
+
+## 🏗️ Your Running Project
+
+**What you're building:** An LLM evaluation suite for a product team — honest, actionable, and maintainable.
+**What this module adds:** The mental model you need before you pick a single benchmark.
+**What you'll have:** A clear framework for distinguishing proxy metrics from real production quality.
+
+---
+
+## Quick Recap
+
+Benchmarks measure a proxy. Not the thing you actually care about.
+
+| What you care about | What benchmarks often measure |
+|---|---|
+| "Works for my users" | Performance on a fixed test set |
+| "Doesn't hallucinate" | Accuracy on multiple-choice questions |
+| "Follows instructions" | Scores on formatted response tasks |
+
+**The three most common mistakes:**
+1. Picking the most popular benchmark, not the most relevant one
+2. Evaluating on the training distribution, not the production distribution
+3. Never updating the eval suite after the first run
+
+## Key Concepts
+
+- **Benchmark:** a standardised test with a fixed dataset and scoring method
+- **Golden set:** your own curated examples representing real production inputs
+- **Eval harness:** the infrastructure that runs benchmarks automatically
+- **Coverage gap:** the class of failures your eval suite cannot detect
+
+---
+
+## 🎓 Harvard-Style Case Study — The Score That Lied
+
+**Context:** A team evaluated a new model for a coding assistant. It scored 85% on HumanEval. They shipped it. Users reported the model was worse than the previous version on real code review tasks. HumanEval only tests code generation — not code review.
+
+**The tension:** Trust the benchmark score vs invest in a task-specific eval before shipping.
+
+**Decision options:**
+1. Add a code review golden set before any model upgrade
+2. Add HumanEval + a code review task-specific eval as a joint gate
+3. Run a user study on 5% of traffic before full rollout
+
+**Discussion questions:**
+1. What is the minimum eval you would run before upgrading a production model?
+2. How would you build a code review golden set from real user interactions?
+3. Write a one-sentence eval policy for model upgrades.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Mentor Mode:** "I am new to LLM evaluation. Walk me through the difference between a public benchmark and a production eval suite, using a concrete example. Then help me design the first 5 test cases for a coding assistant."

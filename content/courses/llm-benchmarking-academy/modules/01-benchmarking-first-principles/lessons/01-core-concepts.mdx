@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark architecture determines what a score means"
   - "Benchmark choice must follow deployment risk"
   - "Interpretation quality matters as much as raw score"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-01-benchmark-selection"
+missionTitle: "Mission 01 — Benchmark Selection"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/01-benchmarking-fundamentals.svg)
+
+> *"We measured the model. We just don't know what we measured."*
 
 # Benchmarking First Principles: Core Concepts
 
@@ -44,3 +56,28 @@ A support copiloting team promoted a model because it led on a public benchmark.
 
 ## Anti-Pattern to Avoid
 Optimizing leaderboard rank before defining business-critical failure costs.
+
+
+---
+
+## 🎓 Harvard-Style Case Study — Benchmark Selection and Use-Case Alignment
+
+**Context:** A product team shipped an LLM feature after evaluating only on MMLU. In production, the model failed on their actual use case — instruction following. MMLU never tested that.
+
+**The tension:** Use the most popular benchmark vs invest in use-case-specific evaluation before shipping.
+
+**Decision options:**
+1. Add use-case-specific evals before any production deployment
+2. Add a secondary benchmark that tests instruction following (IFEval)
+3. Build a golden set from real user queries and use that as the primary gate
+
+**Discussion questions:**
+1. What observable signal would have caught this before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this benchmark strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."

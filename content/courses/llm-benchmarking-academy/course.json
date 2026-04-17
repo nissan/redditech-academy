@@ -21,5 +21,12 @@
   },
   "author": "Redditech Labs",
   "version": "1.0",
-  "free": true
+  "free": true,
+  "runningProject": {
+    "title": "LLM Evaluation Suite",
+    "description": "You are building an LLM evaluation suite for a product team \u2014 honest, actionable, and maintainable.",
+    "juniorGameBrief": "Before you pick any benchmark, try to define what 'good' means for your use case in one sentence. Then name three ways you could measure it. This is your eval brief.",
+    "finalOutcome": "A complete, CI-integrated LLM evaluation suite with benchmark selection, golden set design, harness implementation, and failure mode coverage."
+  },
+  "learningApproach": "whole-game"
 }

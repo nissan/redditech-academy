@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark architecture determines what a score means"
   - "SQuAD and NQ-open measure different retrieval QA realities"
   - "HotpotQA and long-context needle tests add multi-hop and context-robustness coverage"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-02-golden-set-design"
+missionTitle: "Mission — 02 Benchmark Architecture And Metrics"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/02-benchmark-architecture-and-metrics.svg)
+
+> *"Accuracy: 94%. What does the other 6% contain? Exactly your use case."*
 
 # Benchmark Architecture and Metric Design: Core Concepts
 
@@ -57,3 +69,29 @@ A team looked strong on SQuAD-style closed-context QA but failed production task
 
 ## Anti-Pattern to Avoid
 Treating long-context ability as “already covered” by short-context QA benchmarks.
+
+---
+
+## 🎓 Harvard-Style Case Study — Golden set coverage and stratified sampling
+
+**Context:** A team reported 94% accuracy on their eval suite. A user filed a critical bug on day one. The bug was in the 6% — all from one underrepresented domain the golden set never covered.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Audit the golden set for coverage gaps
+2. add domain-stratified sampling
+3. add user-feedback-driven golden set expansion
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

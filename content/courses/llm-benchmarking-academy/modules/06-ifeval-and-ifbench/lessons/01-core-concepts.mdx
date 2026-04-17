@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark architecture determines what a score means"
   - "Benchmark choice must follow deployment risk"
   - "Interpretation quality matters as much as raw score"
+
+type: "interactive"
+environment: "sequence-completer"
+challengeid: "llm-06-instruction-following"
+missionTitle: "Mission — 06 Ifeval And Ifbench"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/06-ifeval-and-ifbench.svg)
+
+> *"Output format: JSON. Actual output: JSON with a paragraph of explanation before and after."*
 
 # IFEval and IFBench for Instruction Following: Core Concepts
 
@@ -44,3 +56,29 @@ An enterprise writing assistant had strong factual scores but repeatedly violate
 
 ## Anti-Pattern to Avoid
 Using only semantic answer quality metrics for structured-output products.
+
+---
+
+## 🎓 Harvard-Style Case Study — Instruction following as a first-class eval dimension
+
+**Context:** A team built an agent that required strictly formatted JSON output. The model scored 91% on general benchmarks. In production, it added prose before and after JSON in 30% of responses — breaking the downstream parser.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add IFEval as a release gate for instruction-following
+2. add output schema validation as a hard gate
+3. add a post-processing step to strip non-JSON content
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

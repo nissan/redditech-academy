@@ -1,0 +1,20 @@
+{
+  "id": "llm-02-golden-set-design",
+  "type": "json-editor",
+  "title": "Mission \u2014 02 Benchmark Architecture And Metrics",
+  "description": "Complete the benchmark strategy brief for: 02 benchmark architecture and metrics.",
+  "starterCode": "{\"benchmark_choice\": \"\", \"rationale\": \"\", \"failure_modes_covered\": \"\", \"gaps\": \"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "benchmark_choice"
+    }
+  ],
+  "hints": [
+    "Start with the use case, not the benchmark",
+    "Every benchmark has blind spots \u2014 name yours explicitly",
+    "A good rationale explains what you're NOT measuring"
+  ],
+  "successMessage": "Benchmark strategy complete \u2014 02 benchmark architecture and metrics mission passed.",
+  "points": 100
+}

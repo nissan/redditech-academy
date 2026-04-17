@@ -11,7 +11,19 @@ keyTakeaways:
   - "Device posture enforcement ensures operators access systems only from secure endpoints"
   - "Conditional access policies balance security requirements with operational usability"
 prerequisites: ["executive-analysis"]
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "auth-10-02-command-control-platform"
+missionTitle: "Mission 10 — 10 Applied Case Study"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/auth-training/memes/10-applied-case-study.svg)
+
+> *"2 years later, 40% of IAM rules were orphaned. Nobody knew why they existed."*
 
 # Command & Control Platform IAM Design
 
@@ -119,3 +131,30 @@ As you design this system, consider:
 - **Incident Response**: How do you handle compromised credentials or devices in the field?
 
 Your design should demonstrate how modern IAM standards (OIDC, FIDO2, ABAC) can meet defense-grade security requirements while maintaining operational effectiveness.
+
+
+---
+
+## 🎓 Harvard-Style Case Study — IAM documentation and long-term governance
+
+**Context:** An enterprise deployed a complete IAM system. 2 years later the team had rotated twice. Nobody knew why certain access rules existed. An audit found 40% of rules were orphaned.
+
+**The tension:** Ship the feature vs build the security control that prevents the breach.
+
+**Decision options:**
+1. Add decision documentation as a mandatory part of every IAM change
+2. add a quarterly IAM rule review process
+3. add automated orphan detection to the IAM governance workflow
+
+**Discussion questions:**
+1. At what stage in the development lifecycle should this control have been added?
+2. Which option provides the best security/usability tradeoff?
+3. Write a one-sentence security requirement that would have prevented this incident.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are an attacker reviewing this IAM implementation. Find the top 2 exploitable weaknesses and describe your attack plan for each."
+
+**Socratic Coach:** "Ask me one question at a time about this IAM decision. Force me to justify each choice against a specific threat model. After 6 questions, score my security thinking."

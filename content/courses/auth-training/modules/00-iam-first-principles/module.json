@@ -1,0 +1,19 @@
+{
+  "id": "00-iam-first-principles",
+  "slug": "00-iam-first-principles",
+  "order": 0,
+  "title": "IAM First Principles",
+  "description": "Plain-language grounding in identity, authentication, authorisation, and why getting them wrong leads to breaches.",
+  "difficulty": "beginner",
+  "estimatedHours": 1.5,
+  "badge": {
+    "name": "IAM Foundations",
+    "icon": "\ud83d\udd10",
+    "description": "Completed the IAM First Principles module"
+  },
+  "learningObjectives": [
+    "Explain the difference between authentication and authorisation",
+    "Describe three common IAM failure modes",
+    "Map an IAM requirement to the right technical control"
+  ]
+}

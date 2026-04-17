@@ -1,0 +1,44 @@
+{
+  "moduleId": "00-iam-first-principles",
+  "questions": [
+    {
+      "id": "aq1",
+      "question": "A user logs in successfully but can view another user's private data. Which control failed?",
+      "type": "multiple-choice",
+      "options": [
+        "Authentication",
+        "Authorisation",
+        "Encryption",
+        "Session management"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Authentication verified the user's identity. Authorisation \u2014 checking what they're allowed to do \u2014 failed."
+    },
+    {
+      "id": "aq2",
+      "question": "What does 'least privilege' mean?",
+      "type": "multiple-choice",
+      "options": [
+        "Users have minimum permissions needed to do their job",
+        "Admin accounts have no permissions by default",
+        "All permissions are revoked after 24 hours",
+        "Users log in with the least powerful account they own"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Least privilege means granting only the minimum permissions required. It limits breach blast radius."
+    },
+    {
+      "id": "aq3",
+      "question": "Which IAM failure most commonly causes real-world breaches?",
+      "type": "multiple-choice",
+      "options": [
+        "Weak encryption",
+        "Misconfigured or missing authorisation controls",
+        "Using passwords instead of passkeys",
+        "Not rotating TLS certificates"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Broken access control is consistently the top cause of data breaches according to OWASP and industry incident reports."
+    }
+  ]
+}

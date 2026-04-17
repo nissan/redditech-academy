@@ -8,7 +8,19 @@ keyTakeaways:
   - "Benchmark architecture determines what a score means"
   - "Benchmark choice must follow deployment risk"
   - "Interpretation quality matters as much as raw score"
+
+type: "interactive"
+environment: "json-editor"
+challengeid: "llm-05-multilingual-eval"
+missionTitle: "Mission — 05 Gsm8K And Mgsm"
+estimatedMinutes: 15
 ---
+
+## 😄 Meme Opener
+
+![Module meme](/assets/courses/llm-benchmarking-academy/memes/05-gsm8k-and-mgsm.svg)
+
+> *"The model solved 8-step math problems. It got the tip calculation wrong at dinner."*
 
 # GSM8K and MGSM for Reasoning Fidelity: Core Concepts
 
@@ -44,3 +56,29 @@ A fintech assistant passed English arithmetic tests but failed in Indonesian and
 
 ## Anti-Pattern to Avoid
 Relying on single-prompt GSM8K runs and calling it robust reasoning.
+
+---
+
+## 🎓 Harvard-Style Case Study — Multilingual eval coverage and market readiness
+
+**Context:** A multilingual product team evaluated their model on GSM8K (English only) and shipped to 12 markets. In 3 non-English markets, math reasoning degraded significantly. MGSM scores for those languages were never checked.
+
+**The tension:** Ship fast vs build evaluation infrastructure that catches real failures before users do.
+
+**Decision options:**
+1. Add MGSM coverage for all target languages before shipping
+2. add a language-specific regression gate
+3. require MGSM parity within 5 points of English baseline
+
+**Discussion questions:**
+1. What observable signal would have caught this issue before it reached production users?
+2. Which option gives the best coverage/effort tradeoff for a 2-engineer team?
+3. Write a one-sentence eval gate rule that would prevent this specific failure mode.
+
+---
+
+## 🤖 Solo AI Discussion Prompt
+
+**Red Team:** "You are reviewing this eval strategy. Assume it will miss a real failure in production. Describe the top 2 failure modes it won't catch and how you'd close those gaps."
+
+**Socratic Coach:** "Ask me one question at a time about this benchmark decision. Force me to justify each choice with evidence. After 6 questions, tell me what I'm missing."

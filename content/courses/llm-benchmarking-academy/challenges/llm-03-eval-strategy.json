@@ -1,0 +1,20 @@
+{
+  "id": "llm-03-eval-strategy",
+  "type": "sequence-completer",
+  "title": "Mission \u2014 03 Mmlu And Mmmlu",
+  "description": "Complete the benchmark strategy brief for: 03 mmlu and mmmlu.",
+  "starterCode": "[]",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "0"
+    }
+  ],
+  "hints": [
+    "Start with the use case, not the benchmark",
+    "Every benchmark has blind spots \u2014 name yours explicitly",
+    "A good rationale explains what you're NOT measuring"
+  ],
+  "successMessage": "Benchmark strategy complete \u2014 03 mmlu and mmmlu mission passed.",
+  "points": 100
+}

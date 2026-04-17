@@ -1,0 +1,28 @@
+{
+  "run_id": "eval_YYYYMMDD_HHMM",
+  "model": {
+    "provider": "",
+    "name": "",
+    "version": ""
+  },
+  "datasets": [
+    {"name": "MMLU", "version": "", "split": ""},
+    {"name": "GPQA", "version": "", "split": ""}
+  ],
+  "prompt_templates": {
+    "system": "",
+    "user_template_version": ""
+  },
+  "decoding": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 0
+  },
+  "judge": {
+    "type": "exact_match|rubric|pairwise",
+    "model": "",
+    "rubric_version": ""
+  },
+  "seed": 42,
+  "notes": ""
+}

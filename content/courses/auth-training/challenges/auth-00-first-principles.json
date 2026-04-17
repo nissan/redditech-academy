@@ -1,0 +1,20 @@
+{
+  "id": "auth-00-first-principles",
+  "type": "json-editor",
+  "title": "Mission 00 \u2014 IAM First Principles",
+  "description": "Fill in the IAM first principles assessment.",
+  "starterCode": "{\"what_is_authentication\":\"\",\"what_is_authorisation\":\"\",\"why_are_they_different\":\"\",\"one_thing_that_goes_wrong_when_you_confuse_them\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "what_is_authentication"
+    }
+  ],
+  "hints": [
+    "Think: what question does each one answer?",
+    "Consider: a door lock vs a guest list",
+    "What happens when you only check ID but not the invite list?"
+  ],
+  "successMessage": "First Principles complete \u2014 you know the difference that prevents breaches.",
+  "points": 150
+}
