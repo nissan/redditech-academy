@@ -22,10 +22,11 @@ services:
     ports:
       - "11435:11434"   # expose on 11435 to avoid conflict with host Ollama
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:11434/api/version"]
+      # ollama list queries the running server — returns 0 when ready, non-0 otherwise
+      test: ["CMD", "ollama", "list"]
       interval: 10s
-      timeout: 5s
-      retries: 12
+      timeout: 10s
+      retries: 18
       start_period: 30s
     restart: unless-stopped
 
