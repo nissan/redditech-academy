@@ -1,0 +1,32 @@
+graph TD
+    subgraph Traditional["Traditional Perimeter Security"]
+        T1[Corporate Network&lt;br/&gt;TRUSTED ZONE]
+        T2[Firewall]
+        T3[Internet&lt;br/&gt;UNTRUSTED ZONE]
+        T4[Employees inside = trusted]
+        T5[VPN = trusted tunnel]
+
+        T3 -->|Block| T2
+        T2 -->|Allow| T1
+        T1 -.-> T4
+        T3 -.->|VPN| T5
+        T5 -.-> T1
+    end
+
+    subgraph ZeroTrust["Zero Trust Architecture"]
+        Z1[User]
+        Z2[Policy Decision Point&lt;br/&gt;PDP]
+        Z3[Policy Enforcement Point&lt;br/&gt;PEP]
+        Z4[Resource]
+        Z5[Identity Provider]
+        Z6[Device Health Check]
+        Z7[Context: Location, Time, Risk]
+
+        Z1 -->|1. Request Access| Z3
+        Z3 -->|2. Check Policy| Z2
+        Z2 -.->|Verify| Z5
+        Z2 -.->|Verify| Z6
+        Z2 -.->|Analyze| Z7
+        Z2 -->|3. Decision| Z3
+        Z3 -->|4. Allow/Deny| Z4
+    end

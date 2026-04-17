@@ -1,0 +1,12 @@
+graph LR
+    INTERNET["🌐 Internet<br/>(Untrusted)"]
+    CHANNEL["Channel<br/>(e.g. Telegram)"]
+    GW["Gateway<br/>(Trusted)"]
+    LLM["LLM Provider<br/>(Semi-trusted)"]
+    TOOLS["Tools<br/>(Elevated trust)"]
+
+    INTERNET -->|"message from anyone"| CHANNEL
+    CHANNEL -->|"pairing check +<br/>allowlist filter"| GW
+    GW -->|"sanitized context"| LLM
+    LLM -->|"tool call requests"| GW
+    GW -->|"sandboxed exec"| TOOLS

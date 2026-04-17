@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant User
+    participant Gateway as Gateway (queue)
+    participant Agent as Agent Loop
+    participant LLM as LLM Provider
+    participant Tools as Tool Engine
+
+    User->>Gateway: Send message
+    Gateway->>Agent: Dequeue + start turn
+
+    loop Agent loop
+        Agent->>LLM: POST /messages (context + tools)
+        alt Text response
+            LLM-->>Agent: {stop_reason: "end_turn", content: "..."}
+            Agent-->>Gateway: Final reply
+        else Tool call
+            LLM-->>Agent: {stop_reason: "tool_use", content: [{type:"tool_use",...}]}
+            Agent->>Tools: Execute tool
+            Tools-->>Agent: Tool result
+            Agent->>LLM: POST /messages (with tool result appended)
+        end
+    end
+
+    Agent->>Gateway: Append turn to JSONL + emit events
+    Gateway->>User: Deliver response

@@ -1,0 +1,5 @@
+ELI5 Summary
+
+Convert usage signals into qualified expansion plans.
+
+Module: 06-growth-wins

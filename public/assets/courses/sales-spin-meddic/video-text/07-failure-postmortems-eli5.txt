@@ -1,0 +1,5 @@
+ELI5 Summary
+
+Spot vanity metrics before they become strategy.
+
+Module: 07-failure-postmortems

@@ -110,6 +110,12 @@ export default function HomePage() {
             </span>
           </Link>
           <nav className="flex items-center gap-4">
+            <Link
+              href="/desktop"
+              className="text-sm text-orange-400 hover:text-orange-300 transition-colors"
+            >
+              Desktop Beta
+            </Link>
             <a
               href="https://reddi.tech"
               target="_blank"
@@ -137,6 +143,14 @@ export default function HomePage() {
             Free technical courses from the lab. Master OAuth, OIDC, AI agents,
             and the tools we actually build with.
           </p>
+          <div className="mt-6">
+            <Link
+              href="/desktop"
+              className="inline-flex items-center rounded-lg border border-orange-400/40 bg-orange-500/10 px-4 py-2 text-sm font-medium text-orange-300 hover:bg-orange-500/20"
+            >
+              Open Desktop Experience →
+            </Link>
+          </div>
         </div>
       </section>
 

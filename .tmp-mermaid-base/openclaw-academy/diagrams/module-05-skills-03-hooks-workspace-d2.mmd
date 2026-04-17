@@ -1,0 +1,19 @@
+graph TB
+    BOOT["🌅 Gateway starts"]
+    BOOTMD["boot-md hook fires\nRuns BOOT.md:\n'Check weather, say good morning'"]
+    SESSION["🗣 User sends a message\nNew session starts"]
+    INJECT["Workspace injection:\nAGENTS.md, SOUL.md, USER.md,\nTOOLS.md, MEMORY.md"]
+    SKILLS["Skills injected:\nweather, peekaboo, clawhub..."]
+    TURN["Agent turn runs with full context"]
+    RESET["User sends /new\nSession reset"]
+    MEMORY["session-memory hook:\nSaves session summary to\nmemory/2026-02-27.md"]
+
+    BOOT --> BOOTMD
+    BOOTMD --> SESSION
+    SESSION --> INJECT
+    SESSION --> SKILLS
+    INJECT --> TURN
+    SKILLS --> TURN
+    TURN --> RESET
+    RESET --> MEMORY
+    MEMORY -->|"next session reads\ntoday's memory file"| SESSION

@@ -1,0 +1,5 @@
+TLDR Summary
+
+Run go/no-go on evidence, owners, and dates.
+
+Module: 08-capstone-deal-room

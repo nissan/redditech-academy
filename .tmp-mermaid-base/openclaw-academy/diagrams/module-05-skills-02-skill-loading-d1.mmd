@@ -1,0 +1,10 @@
+graph TB
+    WS["workspace/skills/<br/>(highest — yours)"]
+    MGD["~/.openclaw/skills/<br/>(ClawHub / managed)"]
+    BND["bundled skills<br/>(shipped with OpenClaw)"]
+    EXTRA["extraDirs<br/>(lowest)"]
+
+    WS -->|"conflict: workspace wins"| MERGE["Merged skill list"]
+    MGD --> MERGE
+    BND --> MERGE
+    EXTRA --> MERGE

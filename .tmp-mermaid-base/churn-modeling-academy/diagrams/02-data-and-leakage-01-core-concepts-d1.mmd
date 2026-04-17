@@ -1,0 +1,5 @@
+flowchart LR
+  A[Raw events] --> B[Feature window]
+  B --> C[Train/Test split by time]
+  C --> D[Leakage checks]
+  D --> E[Trusted dataset]

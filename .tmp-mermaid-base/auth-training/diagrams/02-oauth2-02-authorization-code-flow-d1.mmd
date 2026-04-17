@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant User
+    participant App as Client App
+    participant AS as Authorization Server
+    participant API as Resource Server
+
+    App->>App: Generate code_verifier & code_challenge
+    App->>AS: GET /authorize<br/>?code_challenge=CHALLENGE<br/>&code_challenge_method=S256<br/>&client_id=...&scope=...
+    AS->>User: Show login page
+    User->>AS: Enter credentials
+    AS->>User: Show consent screen
+    User->>AS: Approve scopes
+    AS->>AS: Store code_challenge with auth code
+    AS->>App: Redirect with authorization code
+    App->>AS: POST /token<br/>code=AUTH_CODE<br/>code_verifier=VERIFIER<br/>client_id=...
+    AS->>AS: Verify SHA256(code_verifier) === code_challenge
+    AS->>App: Return access_token + refresh_token
+    App->>API: GET /api/resource<br/>Authorization: Bearer ACCESS_TOKEN
+    API->>API: Validate token
+    API->>App: Return protected resource

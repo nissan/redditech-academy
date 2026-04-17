@@ -5,7 +5,9 @@
   "packageManager": "pnpm@10.9.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "mermaid:sync": "node scripts/mermaid-sync.mjs",
+    "mermaid:sync:openai": "MERMAID_USE_OPENAI=1 node scripts/mermaid-sync.mjs --openai",
+    "build": "pnpm mermaid:sync && next build",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit"

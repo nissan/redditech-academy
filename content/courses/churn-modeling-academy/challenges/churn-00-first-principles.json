@@ -1,0 +1,20 @@
+{
+  "id": "churn-00-first-principles",
+  "type": "json-editor",
+  "title": "Mission 00 \u2014 First Principles",
+  "description": "Fill in the first principles brief for your churn modelling project.",
+  "starterCode": "{\"what_am_i_building\":\"\",\"why_does_it_matter\":\"\",\"top_3_failure_modes\":\"\"}",
+  "validationRules": [
+    {
+      "type": "key_exists",
+      "key": "what_am_i_building"
+    }
+  ],
+  "hints": [
+    "Be specific about what you are building",
+    "The failure modes should be things you've seen or can imagine happening",
+    "Your 'why it matters' should reference a real business outcome"
+  ],
+  "successMessage": "First Principles complete. You have a clear brief.",
+  "points": 150
+}

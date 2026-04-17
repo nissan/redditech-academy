@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant Issuer as Issuer&lt;br/&gt;(University)
+    participant Holder as Holder&lt;br/&gt;(Graduate)
+    participant Verifier as Verifier&lt;br/&gt;(Employer)
+    participant Blockchain as DID Registry&lt;br/&gt;(Blockchain)
+
+    Note over Issuer,Blockchain: 1. Setup Phase
+    Issuer->>Blockchain: Register DID + Public Key
+    Holder->>Blockchain: Register DID + Public Key
+
+    Note over Issuer,Holder: 2. Credential Issuance
+    Holder->>Issuer: Request diploma credential
+    Issuer->>Issuer: Verify graduation
+    Issuer->>Issuer: Create VC, sign with private key
+    Issuer->>Holder: Issue Verifiable Credential
+    Holder->>Holder: Store in digital wallet
+
+    Note over Holder,Verifier: 3. Credential Presentation
+    Verifier->>Holder: Request proof of degree
+    Holder->>Holder: Create Verifiable Presentation
+    Holder->>Holder: Sign VP with holder's private key
+    Holder->>Verifier: Send Verifiable Presentation
+
+    Note over Verifier,Blockchain: 4. Verification
+    Verifier->>Blockchain: Resolve Issuer DID → Public Key
+    Verifier->>Verifier: Verify Issuer signature
+    Verifier->>Blockchain: Resolve Holder DID → Public Key
+    Verifier->>Verifier: Verify Holder signature
+    Verifier->>Issuer: Check revocation status (optional)
+    Verifier->>Verifier: Accept or reject credential

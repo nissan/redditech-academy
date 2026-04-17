@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant LLM
+    participant Agent as Agent Runtime
+    participant Policy as Tool Policy
+    participant Handler as Tool Handler
+
+    LLM->>Agent: {type:"tool_use", name:"exec", input:{command:"ls -la"}}
+    Agent->>Policy: Is exec allowed for this session?
+    alt Allowed
+        Policy-->>Agent: Proceed
+        Agent->>Handler: exec({command:"ls -la"})
+        Handler-->>Agent: {output: "total 8\n-rw-r--r-- ...", exitCode: 0}
+        Agent->>LLM: {type:"tool_result", content:"total 8\n..."}
+    else Denied
+        Policy-->>Agent: Denied
+        Agent->>LLM: {type:"tool_result", content:"Error: tool exec is not allowed"}
+    end

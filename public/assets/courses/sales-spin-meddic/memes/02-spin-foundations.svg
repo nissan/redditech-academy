@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <rect x="40" y="40" width="1520" height="820" rx="24" fill="none" stroke="#f97316" stroke-width="4"/>
+  <text x="800" y="210" text-anchor="middle" fill="#f97316" font-size="56" font-family="Arial, Helvetica, sans-serif" font-weight="700">SPIN Discipline</text>
+  <foreignObject x="140" y="280" width="1320" height="420">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;align-items:center;justify-content:center;height:100%;text-align:center;color:#e5e7eb;font-size:56px;font-family:Arial, Helvetica, sans-serif;line-height:1.2;font-weight:700;">Asking 12 situation questions and still no pain uncovered 👀</div>
+  </foreignObject>
+  <text x="800" y="780" text-anchor="middle" fill="#9ca3af" font-size="30" font-family="Arial, Helvetica, sans-serif">Redditech Academy • Sales Accelerator</text>
+</svg>

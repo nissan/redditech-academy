@@ -1,0 +1,11 @@
+flowchart LR
+    MSG[Incoming message] --> CHECK{DM Policy?}
+    CHECK -->|pairing| PAIR{Sender known?}
+    CHECK -->|allowlist| ALLOW{Sender in allowFrom?}
+    CHECK -->|open| PROCESS[Process message]
+    CHECK -->|disabled| DROP[Drop silently]
+
+    PAIR -->|yes| PROCESS
+    PAIR -->|no| CODE[Send pairing code\nDrop message]
+    ALLOW -->|yes| PROCESS
+    ALLOW -->|no| DROP2[Drop silently]

@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant GW as Gateway
+    participant FS as File System
+    participant SESS as Session
+
+    GW->>FS: Scan skill directories
+    GW->>GW: Filter eligible skills (gating check)
+    GW->>SESS: Snapshot injected into system prompt
+
+    Note over GW,SESS: Session is locked to this snapshot
+
+    FS-->>GW: SKILL.md changed (watcher fires)
+    GW->>GW: Re-evaluate eligibility
+    GW->>SESS: Refresh snapshot (next turn only)

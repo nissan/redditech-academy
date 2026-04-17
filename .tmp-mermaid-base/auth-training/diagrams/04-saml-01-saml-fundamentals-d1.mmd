@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant SP as Service Provider (Salesforce)
+    participant IdP as Identity Provider (Okta)
+
+    User->>SP: Access protected resource
+    SP->>SP: User not authenticated
+    SP->>User: Redirect to IdP with SAML AuthnRequest
+    User->>IdP: Present SAML AuthnRequest
+    IdP->>User: Show login page
+    User->>IdP: Enter credentials
+    IdP->>IdP: Authenticate user
+    IdP->>IdP: Generate SAML Assertion (signed)
+    IdP->>User: HTTP POST with SAML Response
+    User->>SP: Submit SAML Response (via browser)
+    SP->>SP: Validate assertion signature
+    SP->>SP: Extract user attributes
+    SP->>SP: Create session
+    SP->>User: Grant access to resource

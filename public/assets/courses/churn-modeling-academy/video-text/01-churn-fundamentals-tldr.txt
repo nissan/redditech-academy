@@ -1,0 +1,5 @@
+TLDR Summary
+
+Define churn clearly before modeling.
+
+Module: 01-churn-fundamentals

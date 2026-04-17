@@ -1,0 +1,5 @@
+TLDR Summary
+
+Map discovery notes into qualification evidence every call.
+
+Module: 05-spin-to-meddic

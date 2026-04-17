@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant Browser
+    participant SP as Service Provider
+    participant IdP as Identity Provider
+
+    Browser->>SP: GET /protected-resource
+    SP->>Browser: 302 Redirect to IdP (HTTP-Redirect)
+    Note over Browser,IdP: SAMLRequest in URL parameter
+    Browser->>IdP: GET /sso?SAMLRequest=...
+    IdP->>Browser: Show login page
+    Browser->>IdP: POST credentials
+    IdP->>IdP: Authenticate user
+    IdP->>IdP: Generate SAML assertion
+    IdP->>Browser: Return HTML form with SAMLResponse
+    Note over IdP,Browser: Form auto-submits via JavaScript
+    Browser->>SP: POST SAMLResponse to /saml/consume
+    SP->>SP: Validate assertion
+    SP->>Browser: Grant access (set session cookie)

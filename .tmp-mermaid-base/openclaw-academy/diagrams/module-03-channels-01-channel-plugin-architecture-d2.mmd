@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant GW as Gateway
+    participant CH as Channel Plugin
+    participant PLATFORM as Platform API
+
+    GW->>CH: initialize(config)
+    CH->>PLATFORM: connect (polling / WS / webhook register)
+    PLATFORM-->>CH: connected ✓
+
+    loop Every inbound message
+        PLATFORM->>CH: message event
+        CH->>CH: validate sender (pairing / allowlist)
+        CH->>GW: InboundMessage {text, sender, chat, channel, timestamp}
+        GW->>GW: session lookup → agent turn
+        GW->>CH: OutboundMessage {text, media}
+        CH->>PLATFORM: sendMessage(...)
+    end
+
+    GW->>CH: shutdown()
+    CH->>PLATFORM: disconnect

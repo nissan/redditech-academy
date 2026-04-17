@@ -1,0 +1,15 @@
+graph TB
+    A["New session detected"] --> B["Resolve workspace path"]
+    B --> C["Load skills snapshot"]
+    C --> D["Acquire session write lock"]
+    D --> E["Assemble system prompt"]
+    E --> F["Inject bootstrap files"]
+    F --> G["Agent loop starts"]
+
+    E --> E1["Base instructions"]
+    E --> E2["Skills prompt"]
+    F --> F1["AGENTS.md"]
+    F --> F2["SOUL.md"]
+    F --> F3["USER.md"]
+    F --> F4["TOOLS.md"]
+    F --> F5["IDENTITY.md"]

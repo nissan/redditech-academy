@@ -1,0 +1,5 @@
+flowchart LR
+  A[Batch scoring] --> B[Serving outputs]
+  B --> C[Performance monitor]
+  C --> D[Drift alert]
+  D --> E[Retrain trigger]

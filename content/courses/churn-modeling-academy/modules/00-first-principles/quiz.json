@@ -1,0 +1,18 @@
+{
+  "moduleId": "00-churn-modeling-academy-first-principles",
+  "questions": [
+    {
+      "id": "chu-q1",
+      "question": "What is the most important thing to define before starting a churn modelling project?",
+      "type": "multiple-choice",
+      "options": [
+        "Choose the right tool",
+        "Define the problem clearly with measurable success criteria",
+        "Pick the ML model or marketing channel",
+        "Set the project timeline"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Defining the problem clearly \u2014 including what success looks like and how you'll measure it \u2014 is the foundation. Without it, even technically correct solutions fail."
+    }
+  ]
+}

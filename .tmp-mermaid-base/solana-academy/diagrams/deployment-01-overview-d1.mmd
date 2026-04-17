@@ -1,0 +1,6 @@
+flowchart LR
+  A[Local validation] --> B[Devnet/staging soak]
+  B --> C[Security + ops gate review]
+  C --> D{Go/No-Go}
+  D -- Go --> E[Mainnet launch]
+  D -- No-Go --> F[Fix + rehearse rollback]

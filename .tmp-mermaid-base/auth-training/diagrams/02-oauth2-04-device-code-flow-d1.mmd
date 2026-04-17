@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant Device as Smart TV
+    participant AS as Authorization Server
+    participant User
+    participant Browser as User's Browser
+
+    Device->>AS: POST /device/code<br/>(client_id, scope)
+    AS->>Device: device_code, user_code,<br/>verification_uri
+    Device->>User: Display: "Visit example.com/device<br/>Enter code: A1B2-C3D4"
+
+    loop Polling
+        Device->>AS: POST /token<br/>(device_code)
+        AS->>Device: authorization_pending
+    end
+
+    User->>Browser: Opens verification_uri
+    Browser->>AS: Navigate to activation page
+    AS->>Browser: Show code entry form
+    User->>Browser: Enter user_code
+    Browser->>AS: Submit code
+    AS->>User: Authenticate (if needed)
+    AS->>User: Show consent screen
+    User->>AS: Approve scopes
+    AS->>AS: Mark device_code as authorized
+
+    Device->>AS: POST /token<br/>(device_code)
+    AS->>Device: access_token + refresh_token
+    Device->>User: "Login successful!"

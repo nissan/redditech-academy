@@ -1,0 +1,24 @@
+graph TD
+    A[Need Authentication/Authorization?] --> B{What's the primary use case?}
+
+    B -->|Enterprise SSO for SaaS apps| C{Does app support OIDC?}
+    C -->|Yes| D[Use OpenID Connect]
+    C -->|No| E[Use SAML 2.0]
+
+    B -->|User login for web/mobile app| F{Consumer or Enterprise?}
+    F -->|Consumer| G[Use OpenID Connect]
+    F -->|Enterprise with SAML requirement| E
+    F -->|Modern Enterprise| D
+
+    B -->|API access control| H{User involved?}
+    H -->|Yes - user delegates access| I[Use OAuth 2.0 with user consent]
+    H -->|No - machine to machine| J[Use OAuth 2.0 Client Credentials]
+
+    B -->|B2B Federation| K{Partner requirements?}
+    K -->|Partner uses SAML| E
+    K -->|Modern partner| D
+
+    D --> L[Benefits: Mobile support, modern, simple]
+    E --> M[Benefits: Enterprise compatibility, mature]
+    I --> N[Benefits: Delegated access, fine-grained scopes]
+    J --> O[Benefits: No user interaction, service auth]

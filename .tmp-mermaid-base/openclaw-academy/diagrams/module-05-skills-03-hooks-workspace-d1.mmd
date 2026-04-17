@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant GW as Gateway
+    participant WS as Workspace Files
+    participant SKILLS as Skill Directories
+    participant PROMPT as System Prompt
+
+    GW->>WS: Read AGENTS.md, SOUL.md, USER.md, TOOLS.md, IDENTITY.md
+    GW->>WS: Read MEMORY.md (if present)
+    GW->>WS: Read memory/YYYY-MM-DD.md (today + yesterday)
+    GW->>SKILLS: Scan & filter eligible skills
+    GW->>PROMPT: Inject workspace files
+    GW->>PROMPT: Inject available_skills XML block
+    GW->>PROMPT: Inject runtime context (date, time, timezone, model)
+    Note over PROMPT: Agent starts with full context

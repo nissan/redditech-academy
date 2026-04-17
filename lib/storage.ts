@@ -226,6 +226,193 @@ export function awardBadge(
   saveUserProgress(courseSlug, progress);
 }
 
+export interface MissionProfile {
+  userId: string;
+  displayName: string;
+  points: number;
+  missionsCompleted: number;
+  currentStreak: number;
+  bestStreak: number;
+  lastMissionId?: string;
+  updatedAt: Date;
+}
+
+export interface LeaderboardEntry {
+  userId: string;
+  displayName: string;
+  points: number;
+  missionsCompleted: number;
+  bestStreak: number;
+  updatedAt: Date;
+}
+
+const MISSION_PROFILE_KEY_PREFIX = "rt_academy_mission_profile_";
+const LEADERBOARD_KEY_PREFIX = "rt_academy_leaderboard_";
+
+const NPC_LEADERBOARD: Omit<LeaderboardEntry, "updatedAt">[] = [
+  {
+    userId: "npc-satoshi",
+    displayName: "SatoshiCat",
+    points: 2100,
+    missionsCompleted: 31,
+    bestStreak: 12,
+  },
+  {
+    userId: "npc-helius",
+    displayName: "HeliusHacker",
+    points: 1720,
+    missionsCompleted: 26,
+    bestStreak: 11,
+  },
+  {
+    userId: "npc-anchor",
+    displayName: "AnchorAce",
+    points: 1440,
+    missionsCompleted: 21,
+    bestStreak: 9,
+  },
+  {
+    userId: "npc-jito",
+    displayName: "JitoSprinter",
+    points: 1190,
+    missionsCompleted: 18,
+    bestStreak: 7,
+  },
+  {
+    userId: "npc-turbo",
+    displayName: "TurboValidator",
+    points: 910,
+    missionsCompleted: 14,
+    bestStreak: 6,
+  },
+];
+
+function missionProfileKey(courseSlug: string): string {
+  return `${MISSION_PROFILE_KEY_PREFIX}${courseSlug}`;
+}
+
+function leaderboardKey(courseSlug: string): string {
+  return `${LEADERBOARD_KEY_PREFIX}${courseSlug}`;
+}
+
+function defaultMissionProfile(): MissionProfile {
+  return {
+    userId: getUserId(),
+    displayName: "You",
+    points: 0,
+    missionsCompleted: 0,
+    currentStreak: 0,
+    bestStreak: 0,
+    updatedAt: new Date(),
+  };
+}
+
+export function getMissionProfile(courseSlug: string): MissionProfile {
+  if (typeof window === "undefined") return defaultMissionProfile();
+
+  const stored = localStorage.getItem(missionProfileKey(courseSlug));
+  if (!stored) {
+    return defaultMissionProfile();
+  }
+
+  try {
+    const parsed = JSON.parse(stored) as MissionProfile;
+    return {
+      ...parsed,
+      updatedAt: new Date(parsed.updatedAt),
+    };
+  } catch {
+    return defaultMissionProfile();
+  }
+}
+
+function saveMissionProfile(courseSlug: string, profile: MissionProfile): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(missionProfileKey(courseSlug), JSON.stringify(profile));
+}
+
+export function getLeaderboard(courseSlug: string): LeaderboardEntry[] {
+  const profile = getMissionProfile(courseSlug);
+
+  const npcs = NPC_LEADERBOARD.map((npc) => ({
+    ...npc,
+    updatedAt: new Date(),
+  }));
+
+  if (typeof window === "undefined") {
+    return [...npcs, profile]
+      .sort((a, b) => b.points - a.points || b.missionsCompleted - a.missionsCompleted)
+      .slice(0, 10);
+  }
+
+  const stored = localStorage.getItem(leaderboardKey(courseSlug));
+  let entries: LeaderboardEntry[] = [];
+
+  if (stored) {
+    try {
+      entries = (JSON.parse(stored) as LeaderboardEntry[]).map((entry) => ({
+        ...entry,
+        updatedAt: new Date(entry.updatedAt),
+      }));
+    } catch {
+      entries = [];
+    }
+  }
+
+  const merged = [...entries.filter((e) => e.userId !== profile.userId), ...npcs, {
+    userId: profile.userId,
+    displayName: profile.displayName,
+    points: profile.points,
+    missionsCompleted: profile.missionsCompleted,
+    bestStreak: profile.bestStreak,
+    updatedAt: profile.updatedAt,
+  }];
+
+  const unique = new Map<string, LeaderboardEntry>();
+  for (const entry of merged) {
+    const existing = unique.get(entry.userId);
+    if (!existing || entry.points > existing.points) {
+      unique.set(entry.userId, entry);
+    }
+  }
+
+  const ranked = Array.from(unique.values())
+    .sort((a, b) => b.points - a.points || b.missionsCompleted - a.missionsCompleted)
+    .slice(0, 10);
+
+  localStorage.setItem(leaderboardKey(courseSlug), JSON.stringify(ranked));
+
+  return ranked;
+}
+
+export function awardMissionPoints(
+  courseSlug: string,
+  points: number,
+  missionId: string
+): MissionProfile {
+  if (typeof window === "undefined") return defaultMissionProfile();
+
+  const profile = getMissionProfile(courseSlug);
+
+  if (profile.lastMissionId === missionId) {
+    return profile;
+  }
+
+  const next: MissionProfile = {
+    ...profile,
+    points: profile.points + Math.max(0, points),
+    missionsCompleted: profile.missionsCompleted + 1,
+    currentStreak: profile.currentStreak + 1,
+    bestStreak: Math.max(profile.bestStreak, profile.currentStreak + 1),
+    lastMissionId: missionId,
+    updatedAt: new Date(),
+  };
+
+  saveMissionProfile(courseSlug, next);
+  getLeaderboard(courseSlug);
+  return next;
+}
+
 export interface LearningStats {
   overallProgress: number;
   completedModules: number;

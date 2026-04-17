@@ -1,0 +1,5 @@
+flowchart TD
+  A[Instruction input] --> B[Account constraint checks]
+  B --> C{Valid invariants?}
+  C -- No --> D[Reject transaction]
+  C -- Yes --> E[Apply state transition]

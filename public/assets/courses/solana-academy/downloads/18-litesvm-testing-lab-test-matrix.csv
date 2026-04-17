@@ -1,0 +1,6 @@
+test_id,category,scenario,expected,result
+T1,happy,nominal flow,all invariants hold,TODO
+T2,auth,unauthorized signer,reject tx,TODO
+T3,replay,duplicate invoke,reject second invoke,TODO
+T4,boundary,max/min values,no invariant break,TODO
+T5,rollback,forced failure,safe rollback + logs,TODO

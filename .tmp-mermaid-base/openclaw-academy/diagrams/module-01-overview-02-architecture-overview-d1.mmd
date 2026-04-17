@@ -1,0 +1,47 @@
+graph TB
+    subgraph Channels["📨 Messaging Channels"]
+        WA[WhatsApp<br/>via Baileys]
+        TG[Telegram<br/>via grammY]
+        DC[Discord<br/>via Carbon]
+        SL[Slack<br/>via Bolt]
+        IM[iMessage<br/>via BlueBubbles]
+        WC[WebChat]
+    end
+
+    subgraph GW["🏠 Gateway (your machine)"]
+        direction TB
+        CHAN[Channel Manager]
+        SESS[Session Store]
+        AGENT[Agent Runtime<br/>pi-mono]
+        TOOLS[Tool Engine]
+        CONFIG[Config / Auth]
+    end
+
+    subgraph Providers["☁️ LLM Providers"]
+        ANT[Anthropic]
+        OAI[OpenAI]
+        OLL[Ollama<br/>local]
+        OR[OpenRouter]
+    end
+
+    subgraph Clients["💻 Control Clients"]
+        MAC[macOS App]
+        CLI[CLI]
+        WEBUI[Web UI]
+    end
+
+    subgraph Nodes["📱 Nodes"]
+        IOS[iOS]
+        AND[Android]
+    end
+
+    Channels <-->|inbound/outbound| CHAN
+    CHAN --> SESS
+    SESS --> AGENT
+    AGENT <-->|tool calls| TOOLS
+    AGENT -->|API calls| Providers
+    Providers -->|responses| AGENT
+    AGENT --> SESS
+    SESS --> CHAN
+    Clients <-->|WebSocket| GW
+    Nodes <-->|WebSocket| GW

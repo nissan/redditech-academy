@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant RO as Resource Owner (User)
+    participant Client as Client (App)
+    participant AS as Authorization Server
+    participant RS as Resource Server (API)
+
+    Client->>RO: Requests authorization
+    Client->>AS: Redirects user to /authorize
+    AS->>RO: Authenticates user
+    AS->>RO: Shows consent screen
+    RO->>AS: Grants permission
+    AS->>Client: Returns authorization code
+    Client->>AS: Exchanges code for tokens
+    AS->>Client: Returns access token
+    Client->>RS: Requests resource with token
+    RS->>RS: Validates token
+    RS->>Client: Returns protected resource

@@ -1,0 +1,23 @@
+graph TB
+    subgraph Gateway["🏠 Gateway (one process)"]
+        TG[Telegram plugin<br/>grammY long-poll]
+        WA[WhatsApp plugin<br/>Baileys socket]
+        DC[Discord plugin<br/>@buape/carbon]
+        SL[Slack plugin<br/>Bolt SDK]
+
+        ROUTER[Channel Router]
+        SESSION[Session Manager]
+        AGENT[Agent Runtime]
+    end
+
+    TG --> ROUTER
+    WA --> ROUTER
+    DC --> ROUTER
+    SL --> ROUTER
+    ROUTER --> SESSION
+    SESSION --> AGENT
+    AGENT --> SESSION
+    SESSION --> TG
+    SESSION --> WA
+    SESSION --> DC
+    SESSION --> SL
