@@ -16,6 +16,7 @@ interface Module {
   lessonCount: number;
   badge: { name: string; icon: string; description: string };
   requiresPassword: boolean;
+  firstInteractiveLessonSlug: string | null;
 }
 
 interface CourseOverviewClientProps {
@@ -53,6 +54,10 @@ export function CourseOverviewClient({
   const firstIncompleteModule = modules.find(
     (m) => !progress?.moduleProgress[m.id]?.completed
   );
+  const firstMissionModule =
+    modules.find(
+      (m) => m.firstInteractiveLessonSlug && !progress?.moduleProgress[m.id]?.completed
+    ) || modules.find((m) => m.firstInteractiveLessonSlug);
 
   const difficultyColors: Record<string, string> = {
     beginner: "text-green-400 border-green-400/30 bg-green-400/10",
@@ -73,36 +78,36 @@ export function CourseOverviewClient({
       </nav>
 
       {/* Course Hero */}
-      <div className="mb-10 rounded-2xl border border-slate-700 bg-slate-800 p-8">
-        <div className="flex items-start gap-6">
-          <div className="text-6xl">{course.icon}</div>
-          <div className="flex-1">
-            <div className="mb-2 flex flex-wrap gap-2">
+      <div className="mb-10 rounded-2xl border border-slate-700 bg-slate-800 p-4 sm:p-8">
+        <div className="flex items-start gap-3 sm:gap-6">
+          <div className="text-4xl sm:text-6xl flex-shrink-0">{course.icon}</div>
+          <div className="flex-1 min-w-0">
+            <div className="mb-2 flex flex-wrap gap-1.5 sm:gap-2">
               <span
-                className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${difficultyColors[course.difficulty] || difficultyColors.intermediate}`}
+                className={`rounded-full border px-2 py-0.5 text-xs font-medium ${difficultyColors[course.difficulty] || difficultyColors.intermediate}`}
               >
                 {course.difficulty}
               </span>
-              <span className="rounded-full border border-slate-600 px-2.5 py-0.5 text-xs text-slate-400">
+              <span className="rounded-full border border-slate-600 px-2 py-0.5 text-xs text-slate-400">
                 {modules.length} modules
               </span>
-              <span className="rounded-full border border-slate-600 px-2.5 py-0.5 text-xs text-slate-400">
+              <span className="rounded-full border border-slate-600 px-2 py-0.5 text-xs text-slate-400">
                 {totalLessons} lessons
               </span>
-              <span className="rounded-full border border-slate-600 px-2.5 py-0.5 text-xs text-slate-400">
+              <span className="rounded-full border border-slate-600 px-2 py-0.5 text-xs text-slate-400">
                 ~{Math.round(totalHours)}h
               </span>
               {course.free && (
-                <span className="rounded-full border border-green-500/30 bg-green-500/10 px-2.5 py-0.5 text-xs text-green-400">
+                <span className="rounded-full border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
                   Free
                 </span>
               )}
             </div>
-            <h1 className="font-fraunces mb-3 text-3xl font-bold text-white sm:text-4xl">
+            <h1 className="font-fraunces mb-2 sm:mb-3 text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight break-words">
               {course.title}
             </h1>
-            <p className="mb-4 text-slate-300">{course.description}</p>
-            <p className="text-sm text-slate-500">
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-slate-300">{course.description}</p>
+            <p className="text-xs sm:text-sm text-slate-500">
               By <span className="text-slate-300">{course.author}</span> ·{" "}
               v{course.version}
             </p>
@@ -146,6 +151,14 @@ export function CourseOverviewClient({
               Review Course →
             </Link>
           )}
+          {firstMissionModule?.firstInteractiveLessonSlug && (
+            <Link
+              href={`/courses/${courseSlug}/learn/${firstMissionModule.slug}/${firstMissionModule.firstInteractiveLessonSlug}/interactive`}
+              className="rounded-lg border border-fuchsia-500/50 bg-fuchsia-500/10 px-6 py-2.5 text-sm font-semibold text-fuchsia-300 hover:bg-fuchsia-500/20 transition-colors"
+            >
+              {completedModules > 0 ? "Continue Mission Mode →" : "Start Mission Mode →"}
+            </Link>
+          )}
           <Link
             href={`/courses/${courseSlug}/progress`}
             className="rounded-lg border border-slate-600 px-6 py-2.5 text-sm font-medium text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
@@ -153,6 +166,17 @@ export function CourseOverviewClient({
             View Progress
           </Link>
         </div>
+
+        {firstMissionModule?.firstInteractiveLessonSlug && (
+          <div className="mt-5 rounded-lg border border-fuchsia-500/30 bg-fuchsia-900/10 p-4">
+            <p className="text-xs font-mono uppercase tracking-wider text-fuchsia-300 mb-1">
+              Mission path (gamified)
+            </p>
+            <p className="text-sm text-slate-300">
+              Prefer CryptoZombies style? Run mission mode with goals, points, streaks, and leaderboard.
+            </p>
+          </div>
+        )}
 
         {/* Registration CTA */}
         <div className="mt-4 rounded-lg border border-slate-700 bg-slate-700/30 p-4 text-sm text-slate-400">
@@ -192,23 +216,23 @@ export function CourseOverviewClient({
                     : "border-slate-700 bg-slate-800"
                 }`}
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 text-sm font-bold text-white">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 text-xs sm:text-sm font-bold text-white">
                     {isCompleted ? "✓" : index + 1}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <h3 className="font-semibold text-white">{mod.title}</h3>
+                    <div className="flex items-start gap-2 flex-wrap mb-1">
+                      <h3 className="font-semibold text-white text-sm sm:text-base leading-snug break-words">{mod.title}</h3>
                       {mod.requiresPassword && (
-                        <span className="text-xs text-yellow-400">🔒 Password required</span>
+                        <span className="text-xs text-yellow-400 whitespace-nowrap">🔒 Password required</span>
                       )}
                     </div>
-                    <p className="text-sm text-slate-400 mb-3">{mod.description}</p>
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                    <p className="text-xs sm:text-sm text-slate-400 mb-2 sm:mb-3 line-clamp-2">{mod.description}</p>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
                       <span>{mod.lessonCount} lessons</span>
-                      <span>·</span>
+                      <span className="hidden sm:inline">·</span>
                       <span>~{mod.estimatedHours}h</span>
-                      <span>·</span>
+                      <span className="hidden sm:inline">·</span>
                       <span className={difficultyColors[mod.difficulty] || "text-slate-400"}>
                         {mod.difficulty}
                       </span>
@@ -227,12 +251,22 @@ export function CourseOverviewClient({
                       </div>
                     )}
                   </div>
-                  <Link
-                    href={`/courses/${courseSlug}/learn/${mod.slug}`}
-                    className="flex-shrink-0 rounded-lg border border-slate-600 px-4 py-2 text-sm text-slate-300 hover:border-orange-500 hover:text-orange-400 transition-colors"
-                  >
-                    {isCompleted ? "Review" : modProgress?.started ? "Continue" : "Start"}
-                  </Link>
+                  <div className="flex-shrink-0 flex flex-col sm:flex-row gap-2 items-end sm:items-center">
+                    {mod.firstInteractiveLessonSlug && (
+                      <Link
+                        href={`/courses/${courseSlug}/learn/${mod.slug}/${mod.firstInteractiveLessonSlug}/interactive`}
+                        className="rounded-lg border border-fuchsia-500/50 bg-fuchsia-500/10 px-2.5 py-1.5 text-xs text-fuchsia-300 hover:bg-fuchsia-500/20 transition-colors whitespace-nowrap"
+                      >
+                        Mission
+                      </Link>
+                    )}
+                    <Link
+                      href={`/courses/${courseSlug}/learn/${mod.slug}`}
+                      className="rounded-lg border border-slate-600 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-slate-300 hover:border-orange-500 hover:text-orange-400 transition-colors whitespace-nowrap"
+                    >
+                      {isCompleted ? "Review" : modProgress?.started ? "Continue" : "Start"}
+                    </Link>
+                  </div>
                 </div>
               </div>
             );

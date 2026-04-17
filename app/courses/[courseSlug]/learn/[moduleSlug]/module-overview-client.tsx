@@ -73,41 +73,41 @@ export function ModuleOverviewClient({
   const content = (
     <main className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-sm text-slate-500">
-        <Link href="/" className="hover:text-white transition-colors">Courses</Link>
+      <nav className="mb-4 sm:mb-6 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-slate-500 flex-wrap">
+        <Link href="/" className="hover:text-white transition-colors whitespace-nowrap">Courses</Link>
         <span>/</span>
-        <Link href={`/courses/${courseSlug}`} className="hover:text-white transition-colors">
+        <Link href={`/courses/${courseSlug}`} className="hover:text-white transition-colors truncate max-w-[120px] sm:max-w-none">
           {courseSlug.replace(/-/g, " ")}
         </Link>
         <span>/</span>
-        <span className="text-slate-300">{metadata.title}</span>
+        <span className="text-slate-300 truncate max-w-[160px] sm:max-w-none">{metadata.title}</span>
       </nav>
 
       {/* Module header */}
-      <div className={`mb-8 rounded-2xl border p-8 ${isCompleted ? "border-green-500/30 bg-green-500/5" : "border-slate-700 bg-slate-800"}`}>
-        <div className="flex items-start gap-4 mb-4">
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 text-lg font-bold text-white">
+      <div className={`mb-8 rounded-2xl border p-4 sm:p-8 ${isCompleted ? "border-green-500/30 bg-green-500/5" : "border-slate-700 bg-slate-800"}`}>
+        <div className="flex items-start gap-3 sm:gap-4 mb-4">
+          <div className="flex h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 text-base sm:text-lg font-bold text-white">
             {isCompleted ? "✓" : moduleIndex + 1}
           </div>
-          <div className="flex-1">
-            <div className="flex flex-wrap gap-2 mb-2">
-              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${difficultyColors[metadata.difficulty] || difficultyColors.intermediate}`}>
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2">
+              <span className={`rounded-full border px-2 py-0.5 text-xs font-medium ${difficultyColors[metadata.difficulty] || difficultyColors.intermediate}`}>
                 {metadata.difficulty}
               </span>
-              <span className="rounded-full border border-slate-600 px-2.5 py-0.5 text-xs text-slate-400">
+              <span className="rounded-full border border-slate-600 px-2 py-0.5 text-xs text-slate-400">
                 {lessons.length} lessons
               </span>
-              <span className="rounded-full border border-slate-600 px-2.5 py-0.5 text-xs text-slate-400">
+              <span className="rounded-full border border-slate-600 px-2 py-0.5 text-xs text-slate-400">
                 ~{metadata.estimatedHours}h
               </span>
-              <span className="rounded-full border border-slate-600 px-2.5 py-0.5 text-xs text-slate-400">
-                Module {moduleIndex + 1} of {totalModules}
+              <span className="rounded-full border border-slate-600 px-2 py-0.5 text-xs text-slate-400">
+                {moduleIndex + 1}/{totalModules}
               </span>
             </div>
-            <h1 className="font-fraunces text-3xl font-bold text-white mb-2">
+            <h1 className="font-fraunces text-xl sm:text-3xl font-bold text-white mb-2 break-words leading-tight">
               {metadata.title}
             </h1>
-            <p className="text-slate-300">{metadata.description}</p>
+            <p className="text-sm sm:text-base text-slate-300">{metadata.description}</p>
           </div>
         </div>
 
@@ -220,25 +220,25 @@ export function ModuleOverviewClient({
       )}
 
       {/* Navigation */}
-      <div className="mt-8 flex justify-between gap-4">
+      <div className="mt-8 flex flex-col sm:flex-row justify-between gap-3">
         {prevModule ? (
           <Link
             href={`/courses/${courseSlug}/learn/${prevModule.slug}`}
-            className="flex-1 max-w-xs rounded-xl border border-slate-700 p-4 text-left hover:border-slate-500 transition-colors"
+            className="flex-1 sm:max-w-xs rounded-xl border border-slate-700 p-3 sm:p-4 text-left hover:border-slate-500 transition-colors"
           >
             <p className="text-xs text-slate-500 mb-1">← Previous Module</p>
-            <p className="text-sm font-medium text-slate-300">{prevModule.title}</p>
+            <p className="text-sm font-medium text-slate-300 line-clamp-1">{prevModule.title}</p>
           </Link>
-        ) : <div />}
+        ) : <div className="hidden sm:block" />}
         {nextModule ? (
           <Link
             href={`/courses/${courseSlug}/learn/${nextModule.slug}`}
-            className="flex-1 max-w-xs rounded-xl border border-slate-700 p-4 text-right hover:border-slate-500 transition-colors"
+            className="flex-1 sm:max-w-xs rounded-xl border border-slate-700 p-3 sm:p-4 sm:text-right hover:border-slate-500 transition-colors"
           >
             <p className="text-xs text-slate-500 mb-1">Next Module →</p>
-            <p className="text-sm font-medium text-slate-300">{nextModule.title}</p>
+            <p className="text-sm font-medium text-slate-300 line-clamp-1">{nextModule.title}</p>
           </Link>
-        ) : <div />}
+        ) : <div className="hidden sm:block" />}
       </div>
 
       {/* Badge */}

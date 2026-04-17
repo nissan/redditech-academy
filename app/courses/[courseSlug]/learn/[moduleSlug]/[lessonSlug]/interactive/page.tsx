@@ -79,13 +79,23 @@ export default async function InteractiveLessonPage({ params }: PageProps) {
 
   // Count total interactive lessons in this module for progress dots
   const allLessonSlugs = getLessonSlugs(courseSlug, moduleSlug);
-  const interactiveLessons = allLessonSlugs.filter((s) => {
-    const l = getLesson(courseSlug, moduleSlug, s);
-    return l?.frontmatter.type === "interactive";
-  });
+  const interactiveLessons = allLessonSlugs
+    .map((s) => ({ slug: s, lesson: getLesson(courseSlug, moduleSlug, s) }))
+    .filter((x) => x.lesson?.frontmatter.type === "interactive");
+
+  const interactiveLessonSlugs = interactiveLessons.map((x) => x.slug);
   const currentStep =
-    interactiveLessons.indexOf(lessonSlug) + 1 || lesson.frontmatter.order;
-  const totalSteps = interactiveLessons.length || allLessonSlugs.length;
+    interactiveLessonSlugs.indexOf(lessonSlug) + 1 || lesson.frontmatter.order;
+  const totalSteps = interactiveLessonSlugs.length || allLessonSlugs.length;
+
+  const missionMap = interactiveLessons.map((x) => ({
+    slug: x.slug,
+    title: x.lesson?.frontmatter.title || x.slug,
+  }));
+
+  const rewardText = moduleMetadata?.badge?.name
+    ? `Badge progress updated: ${moduleMetadata.badge.name}`
+    : "Mission progress updated";
 
   return (
     <div className="min-h-screen bg-[#0F172A]">
@@ -128,6 +138,8 @@ export default async function InteractiveLessonPage({ params }: PageProps) {
         estimatedMinutes={estimatedMinutes || lesson.frontmatter.duration}
         environment={environment || "json-editor"}
         challenge={challenge}
+        missionMap={missionMap}
+        rewardText={rewardText}
       />
     </div>
   );
