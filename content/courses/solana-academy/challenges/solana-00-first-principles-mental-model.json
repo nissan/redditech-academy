@@ -1,37 +1,15 @@
 {
   "id": "solana-00-first-principles-mental-model",
-  "spec": "Map beginner Solana primitives into a correct mental model: accounts, programs, instructions, transactions, and signers.",
+  "spec": "Place the five Solana execution primitives in the correct order: from account creation through runtime execution.",
   "validation": {
-    "must_have": [
-      {
-        "field": "submission.summary",
-        "non_empty": true
-      },
-      {
-        "field": "submission.account_model",
-        "non_empty": true
-      },
-      {
-        "field": "submission.transaction_flow",
-        "non_empty": true
-      },
-      {
-        "field": "submission.signer_role",
-        "non_empty": true
-      }
-    ],
-    "must_not_have": [
-      {
-        "field": "submission.key_storage",
-        "value": "frontend_private_key"
-      }
-    ]
+    "type": "sequence",
+    "description": "Correct position of all 5 steps earns full marks. Score = correct_positions / total_steps."
   },
-  "eli_notes": "Reject vague summaries that do not separate program logic from account state.",
+  "eli_notes": "The correct sequence is: account creation → instruction construction → transaction bundling → signer authorization → runtime execution. Accept if 4/5 or 5/5 positions are right. If wrong, name the specific misplaced step and explain why order matters for Solana's execution model.",
   "hints": [
-    "Programs execute, accounts store.",
-    "Transactions bundle instructions and accounts.",
-    "Signers authorize state-affecting intent."
+    "Programs execute, accounts store — one must exist before the other can act on it.",
+    "Instructions target a program. Transactions bundle instructions. Order matters.",
+    "The signer authorizes state change — that must happen before the runtime validates anything."
   ],
   "prefilled": {
     "steps": [
@@ -64,6 +42,6 @@
       "s5"
     ]
   },
-  "success_text": "Nice work. Your beginner mental model cleanly separates state, logic, and authority.",
+  "success_text": "Sequence confirmed. Your mental model of Solana's execution pipeline is solid.",
   "type": "sequence-completer"
 }
