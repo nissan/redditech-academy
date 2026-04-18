@@ -13,7 +13,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/01-benchmarking-first-principles-01-core-concepts-d1.png",
     "source_hash": "376571e0d03c9f83e901ba47e016b429bbbf657c6fccde7011477201bcf7054f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/02-benchmark-architecture-and-metrics/lessons/01-core-concepts.mdx",
@@ -29,7 +29,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/02-benchmark-architecture-and-metrics-01-core-concepts-d1.png",
     "source_hash": "e8514c4d9908f452810200a229fd98b9092eeb050d3de4aabf1d23af06df48b4",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/01-core-concepts.mdx",
@@ -45,7 +45,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/03-mmlu-and-mmmlu-01-core-concepts-d1.png",
     "source_hash": "376571e0d03c9f83e901ba47e016b429bbbf657c6fccde7011477201bcf7054f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/02-implementation-patterns.mdx",
@@ -61,7 +61,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/03-mmlu-and-mmmlu-02-implementation-patterns-d1.png",
     "source_hash": "dff7d2400a68fb9e1b596f0b1da839bf1194236d25553d91dd711cd1125afa6c",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/03-pitfalls-and-case-review.mdx",
@@ -77,7 +77,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/03-mmlu-and-mmmlu-03-pitfalls-and-case-review-d1.png",
     "source_hash": "c33234b11e7441a882bb3af28856a2776bc91abffdbe8049b3799abf6f0f24ba",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/01-core-concepts.mdx",
@@ -93,7 +93,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/04-gpqa-and-hle-01-core-concepts-d1.png",
     "source_hash": "376571e0d03c9f83e901ba47e016b429bbbf657c6fccde7011477201bcf7054f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/02-frontier-eval-operations.mdx",
@@ -109,7 +109,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/04-gpqa-and-hle-02-frontier-eval-operations-d1.png",
     "source_hash": "cf14d8f2f76988c1d61615611ac58e3c717814894b8a2343ab94f152d1d5a7e4",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/03-risk-of-overfitting-hard-benchmarks.mdx",
@@ -125,7 +125,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/04-gpqa-and-hle-03-risk-of-overfitting-hard-benchmarks-d1.png",
     "source_hash": "aa138bc93bd24c5485b369bbbf16fa39e03db2a3572e4710d402df512db23cf2",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/05-gsm8k-and-mgsm/lessons/01-core-concepts.mdx",
@@ -141,7 +141,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/05-gsm8k-and-mgsm-01-core-concepts-d1.png",
     "source_hash": "376571e0d03c9f83e901ba47e016b429bbbf657c6fccde7011477201bcf7054f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/05-gsm8k-and-mgsm/lessons/02-reasoning-trace-evaluation.mdx",
@@ -157,7 +157,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/05-gsm8k-and-mgsm-02-reasoning-trace-evaluation-d1.png",
     "source_hash": "653cdf0fe4e260bd46c59b98b2916b47f5f3844cf12924bfe984c3799a2a0138",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/05-gsm8k-and-mgsm/lessons/03-multilingual-regression-playbook.mdx",
@@ -173,7 +173,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/05-gsm8k-and-mgsm-03-multilingual-regression-playbook-d1.png",
     "source_hash": "eebdc243e3b0f0e8150030bc73e0a511349de4010bbafb7344c74b8f4f84ffa6",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/06-ifeval-and-ifbench/lessons/01-core-concepts.mdx",
@@ -189,7 +189,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/06-ifeval-and-ifbench-01-core-concepts-d1.png",
     "source_hash": "376571e0d03c9f83e901ba47e016b429bbbf657c6fccde7011477201bcf7054f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/06-ifeval-and-ifbench/lessons/02-constraint-compliance-engineering.mdx",
@@ -205,7 +205,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/06-ifeval-and-ifbench-02-constraint-compliance-engineering-d1.png",
     "source_hash": "aeeaebb0415d30aa3024417cc6d3cffcc4fbb6b9e0bd042fd119a82436603c1c",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/06-ifeval-and-ifbench/lessons/03-agent-workflow-reliability.mdx",
@@ -221,7 +221,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/06-ifeval-and-ifbench-03-agent-workflow-reliability-d1.png",
     "source_hash": "80fcf619cdc5dfa419a33af8bd8886afb67d5253492e1a3f16b0a7bd57694cfd",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/07-benchmark-selection-and-scorecards/lessons/01-core-concepts.mdx",
@@ -237,7 +237,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/07-benchmark-selection-and-scorecards-01-core-concepts-d1.png",
     "source_hash": "5d2479f79d2c2c5c363acb30c70c46e137b81fc3635e1ef9a78b98b57a0165fe",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/08-building-an-eval-harness/lessons/01-core-concepts.mdx",
@@ -253,7 +253,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/08-building-an-eval-harness-01-core-concepts-d1.png",
     "source_hash": "2e7c81e1ef05396bdbfd9ace7e5197182b116bf933f38cebc796fc596887fa00",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/09-failure-modes-and-gaming/lessons/01-core-concepts.mdx",
@@ -269,7 +269,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/09-failure-modes-and-gaming-01-core-concepts-d1.png",
     "source_hash": "30885dd4951444e5da385614f83c007f4f03cd30eecd249ec2ffb6d7c95fb9e1",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/11-retrieval-and-long-context-evals/lessons/01-core-concepts.mdx",
@@ -285,7 +285,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/11-retrieval-and-long-context-evals-01-core-concepts-d1.png",
     "source_hash": "046480ff6d4b639e4ee21b36d2d9546454c61a25a5097e6dcfa01fffb0623887",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/11-retrieval-and-long-context-evals/lessons/02-harness-implementation.mdx",
@@ -301,7 +301,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/11-retrieval-and-long-context-evals-02-harness-implementation-d1.png",
     "source_hash": "d53e448145688435007bf0cf5388a6ccc3bc4282a96482f6ad2c5d6c50b00716",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/11-retrieval-and-long-context-evals/lessons/03-failure-analysis-playbook.mdx",
@@ -317,7 +317,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/11-retrieval-and-long-context-evals-03-failure-analysis-playbook-d1.png",
     "source_hash": "12c7de84ba3cf43b1bbf075169b10d484cc27537bf2b73e0d1e1e85d9621c72f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/llm-benchmarking-academy/modules/12-capstone-benchmark-strategy/lessons/01-core-concepts.mdx",
@@ -333,6 +333,6 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/llm-benchmarking-academy/diagrams/12-capstone-benchmark-strategy-01-core-concepts-d1.png",
     "source_hash": "376571e0d03c9f83e901ba47e016b429bbbf657c6fccde7011477201bcf7054f",
     "provider": "mmdc",
-    "rendered_at": "2026-04-17T22:07:17.246Z"
+    "rendered_at": "2026-04-17T23:02:10.030Z"
   }
 ]
