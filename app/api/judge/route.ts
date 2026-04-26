@@ -172,25 +172,37 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
 
+  // Sequence challenges must be fully deterministic and must not depend on an
+  // LLM/provider key. This prevents the production bug where a correct drag
+  // order was graded as 0 when the fallback LLM rejected the raw ID array or
+  // the provider was unavailable.
+  if (seqGrade) {
+    const feedback = seqGrade.pass
+      ? `Sequence confirmed at ${Math.round(seqGrade.score * 100)}%. Your ordering matches the execution model closely enough to proceed.`
+      : `Sequence is ${Math.round(seqGrade.score * 100)}% correct. Compare your submitted order with the expected flow:\n\nExpected:\n${seqGrade.correctLabels}\n\nSubmitted:\n${seqGrade.submittedLabels}`;
+
+    const result: JudgeResponse = {
+      pass: seqGrade.pass,
+      score: seqGrade.score,
+      feedback,
+      _provider: "deterministic-sequence-grader",
+    };
+
+    if (!result.pass && challenge.hints?.length) {
+      result.hints = challenge.hints;
+    }
+
+    return NextResponse.json(result);
+  }
+
   // Pick system prompt — Socratic mode for coaching challenges
   const systemPrompt = challenge.socratic_mode
     ? SOCRATIC_SYSTEM_PROMPT
     : SYSTEM_PROMPT;
 
-  // Build the user message
-  const userMessage = seqGrade
-    ? `Ordering challenge: "${challenge.spec}"
-
-Correct order:
-${seqGrade.correctLabels}
-
-Trainee's submitted order:
-${seqGrade.submittedLabels}
-
-Score: ${Math.round(seqGrade.score * 100)}% (${seqGrade.pass ? "PASS" : "FAIL"})
-
-${challenge.eli_notes ? `Judge notes:\n${challenge.eli_notes}\n\n` : ""}Give brief feedback as Eli. The score and pass/fail are already determined — do NOT change them. Reply with JSON only.`
-    : `Challenge: ${challenge.spec}
+  // Build the user message for non-sequence challenges. Sequence challenges
+  // have already returned above.
+  const userMessage = `Challenge: ${challenge.spec}
 
 Correct answer criteria:
 ${JSON.stringify(challenge.validation, null, 2)}
@@ -228,16 +240,10 @@ ${JSON.stringify(userInput, null, 2)}`;
     result = JSON.parse(cleaned) as JudgeResponse;
   } catch {
     result = {
-      pass: seqGrade?.pass ?? false,
-      score: seqGrade?.score ?? 0,
+      pass: false,
+      score: 0,
       feedback: cleaned || "Unable to evaluate — please try again.",
     };
-  }
-
-  // Enforce programmatic score for sequence challenges
-  if (seqGrade) {
-    result.pass = seqGrade.pass;
-    result.score = seqGrade.score;
   }
 
   result._provider = provider;
