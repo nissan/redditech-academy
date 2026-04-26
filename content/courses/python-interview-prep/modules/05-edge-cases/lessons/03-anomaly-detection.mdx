@@ -54,3 +54,26 @@ def flag_anomalies(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Flag suspicious benchmark rows with a boolean mask, a threshold that makes sense, and a reason column that explains the call.
+
+---
+
+## Code Practice
+
+Use the same `messy_scores.csv` drill file. This time focus on the anomaly policy, not just duplicates.
+
+Write or reuse:
+
+```python
+def anomaly_flags(path: str) -> pandas.DataFrame:
+    ...
+```
+
+Your result should include a human-readable `reason` column for every suspicious row.
+
+## What Eli Is Listening For
+
+- You define suspicious before filtering.
+- You use explicit boolean masks for each rule.
+- You do not delete anomalies before reporting them.
+- You can explain whether each anomaly is a data-quality issue or a possible real signal.
+

@@ -4,9 +4,18 @@
   "spec": "Describe how you would load a JSON file and inspect its structure. Answer the three questions: (1) what function do you use and why, (2) how do you safely open the file, (3) what do you print first to understand an unknown dataset?",
   "validation": {
     "must_have": [
-      { "field": "submission.load_function", "non_empty": true },
-      { "field": "submission.file_opening", "non_empty": true },
-      { "field": "submission.first_inspection", "non_empty": true }
+      {
+        "field": "submission.load_function",
+        "non_empty": true
+      },
+      {
+        "field": "submission.file_opening",
+        "non_empty": true
+      },
+      {
+        "field": "submission.first_inspection",
+        "non_empty": true
+      }
     ]
   },
   "eli_notes": "SOCRATIC MODE — 3-STRIKE RULE:\n\nStrike 1 (first attempt, any answer): Do NOT give the correct answer. Ask one probing question that points toward the gap. Examples: 'You mentioned json.load — when would you use json.loads instead?', 'What happens if you forget the context manager?', 'What would you check before assuming it's a list?'\n\nStrike 2 (second attempt, still incomplete): Still no answer. Ask a more targeted question. Give a hint only if the trainee is close. Example: 'You're close on the context manager — what keyword makes it automatic?'\n\nStrike 3 (third attempt, still wrong/vague): Now you may reveal the correct approach in full. Say 'Three attempts — here's the pattern:' and explain clearly.\n\nIf the answer is correct on any attempt: brief acknowledgment + one follow-up question to deepen understanding. Never just say 'correct' and move on.\n\nCorrect answer criteria:\n- json.load() for files (not json.loads which is for strings)\n- context manager: with open(path) as f\n- First inspection: type(), len(), data[0], data[0].keys()",
@@ -20,5 +29,22 @@
   },
   "success_text": "Good instincts. Understanding the shape of data before processing it separates strong candidates from panickers.",
   "socratic_mode": true,
-  "max_strikes_before_reveal": 3
+  "max_strikes_before_reveal": 3,
+  "code_practice": {
+    "function_signature": "def load_json_summary(path: str) -> dict:",
+    "fixture": "downloads/python-interview-prep-drill-pack/fixtures/sample_results.json",
+    "expected_output": "downloads/python-interview-prep-drill-pack/expected_outputs/json_summary.expected.json",
+    "solution": "downloads/python-interview-prep-drill-pack/solutions/01_load_json_summary.py",
+    "public_tests": [
+      "returns total_records == 12",
+      "returns sorted field names from the first record",
+      "returns the first two records as sample"
+    ],
+    "success_criteria": [
+      "uses json.load() with a file object",
+      "opens file with a context manager",
+      "handles empty data without crashing on data[0]",
+      "inspects shape before aggregation"
+    ]
+  }
 }

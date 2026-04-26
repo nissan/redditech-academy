@@ -1,0 +1,8 @@
+run_id,model,score,submitted_at
+r1,gpt-4o-mini,8.7,2026-04-20T10:00:00Z
+r2,qwen3:8b,8.9,2026-04-20T10:02:00Z
+r2,qwen3:8b,8.9,2026-04-20T10:02:00Z
+r3,claude-haiku,,2026-04-20T10:05:00Z
+r4,mistral-small,not_available,bad_timestamp
+r5,glm-4.5-air,10.0,2026-04-20T10:08:00Z
+r6,toy-model,1000,2026-04-20T10:09:00Z

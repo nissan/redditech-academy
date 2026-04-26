@@ -1,0 +1,6 @@
+provider,count,avg_quality_score,median_ttft_ms
+local,3,8.53,100.0
+openai,3,8.57,420.0
+z-ai,2,8.3,637.5
+anthropic,2,7.95,510.0
+mistral,2,7.65,317.5

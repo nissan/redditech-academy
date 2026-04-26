@@ -58,3 +58,26 @@ summary = (
 > *"I'll load the JSON into a DataFrame, group by model, then aggregate with named columns so the output is self-documenting. Let me check what the shape looks like after groupby before I sort..."*
 
 That narration pattern — explain what you're doing, check intermediate state, then proceed — is exactly what separates good candidates.
+
+---
+
+## Code Practice
+
+Use `downloads/python-interview-prep-drill-pack/fixtures/sample_results.json`.
+
+Write this function:
+
+```python
+def groupby_provider(path: str) -> pandas.DataFrame:
+    ...
+```
+
+Produce provider-level `count`, `avg_quality_score`, and `median_ttft_ms`, sorted by average quality descending. Compare with `expected_outputs/provider_groupby.expected.csv`.
+
+## What Eli Is Listening For
+
+- You use named aggregations so the output is self-documenting.
+- You explain the denominator for each metric.
+- You know pandas median skips nulls by default, but you still mention nullable TTFT.
+- You call `reset_index()` before returning a flat table.
+

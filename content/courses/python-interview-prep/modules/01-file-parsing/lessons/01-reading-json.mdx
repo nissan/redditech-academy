@@ -69,3 +69,28 @@ You've been given a dataset path. Write the function stub below to:
 2. Return a summary dict with: `total_records`, `fields` (list of keys from first record), `sample` (first 2 records)
 
 Eli will ask you questions about your approach before evaluating your answer.
+
+---
+
+## Code Practice
+
+Use the drill pack file: `downloads/python-interview-prep-drill-pack/fixtures/sample_results.json`.
+
+Write this function:
+
+```python
+def load_json_summary(path: str) -> dict:
+    ...
+```
+
+Your output should match `downloads/python-interview-prep-drill-pack/expected_outputs/json_summary.expected.json`: total record count, sorted field names, and the first two sample records.
+
+Run it locally against the fixture before asking Eli to judge your explanation.
+
+## What Eli Is Listening For
+
+- You use `json.load()` for a file object, not `json.loads()` for a string.
+- You open the file with a context manager.
+- You inspect shape before processing.
+- You avoid crashing on an empty list before touching `data[0]`.
+

@@ -1,0 +1,32 @@
+[
+  {
+    "model": "gpt-4o-mini",
+    "family": "closed",
+    "context_window": 128000,
+    "owner": "OpenAI"
+  },
+  {
+    "model": "claude-haiku",
+    "family": "closed",
+    "context_window": 200000,
+    "owner": "Anthropic"
+  },
+  {
+    "model": "qwen3:8b",
+    "family": "local",
+    "context_window": 32768,
+    "owner": "Qwen"
+  },
+  {
+    "model": "mistral-small",
+    "family": "closed",
+    "context_window": 32000,
+    "owner": "Mistral"
+  },
+  {
+    "model": "glm-4.5-air",
+    "family": "free-tier",
+    "context_window": 128000,
+    "owner": "Z.ai"
+  }
+]

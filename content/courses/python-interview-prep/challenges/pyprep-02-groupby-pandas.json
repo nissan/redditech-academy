@@ -4,9 +4,18 @@
   "spec": "Given a DataFrame of benchmark results with columns [model, quality_score, ttft_ms, cost_per_1k_tokens], write the groupby aggregation to get per-model: average quality, call count, and median TTFT. Describe the full chain including how you handle the index after groupby.",
   "validation": {
     "must_have": [
-      { "field": "submission.groupby_call", "non_empty": true },
-      { "field": "submission.agg_structure", "non_empty": true },
-      { "field": "submission.index_handling", "non_empty": true }
+      {
+        "field": "submission.groupby_call",
+        "non_empty": true
+      },
+      {
+        "field": "submission.agg_structure",
+        "non_empty": true
+      },
+      {
+        "field": "submission.index_handling",
+        "non_empty": true
+      }
     ]
   },
   "eli_notes": "SOCRATIC MODE — 3-STRIKE RULE:\nStrike 1: Ask 'You mentioned groupby — after calling .agg(), what happens to the model column and how does that affect downstream use?'\nStrike 2: If index handling is missing, ask 'If you try to do df[\"model\"] after groupby without reset_index, what happens?'\nStrike 3: Reveal: df.groupby(\"model\").agg(avg_quality=(\"quality_score\",\"mean\"), count=(\"quality_score\",\"count\"), median_ttft=(\"ttft_ms\",\"median\")).reset_index().sort_values(\"avg_quality\",ascending=False).round(2)\nIf correct: ask 'How would you handle the ttft_ms column having null values — does median handle that automatically?'",
@@ -20,5 +29,23 @@
   },
   "success_text": "Clean chain. reset_index() after groupby is the detail most candidates forget under pressure.",
   "socratic_mode": true,
-  "max_strikes_before_reveal": 3
+  "max_strikes_before_reveal": 3,
+  "code_practice": {
+    "function_signature": "def groupby_provider(path: str) -> pandas.DataFrame:",
+    "fixture": "downloads/python-interview-prep-drill-pack/fixtures/sample_results.json",
+    "expected_output": "downloads/python-interview-prep-drill-pack/expected_outputs/provider_groupby.expected.csv",
+    "solution": "downloads/python-interview-prep-drill-pack/solutions/03_groupby_provider.py",
+    "public_tests": [
+      "groups by provider",
+      "computes count, average quality, and median TTFT",
+      "sorts by avg_quality_score descending",
+      "rounds only final output"
+    ],
+    "success_criteria": [
+      "uses named aggregations",
+      "keeps denominator explicit",
+      "handles nullable TTFT median",
+      "resets index before returning"
+    ]
+  }
 }

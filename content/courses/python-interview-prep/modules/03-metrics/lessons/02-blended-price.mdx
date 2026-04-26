@@ -48,3 +48,26 @@ def add_blended_price(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Calculate a comparable blended token price from separate input and output rates, then order the models from cheapest to most expensive.
+
+---
+
+## Code Practice
+
+Use `downloads/python-interview-prep-drill-pack/fixtures/sample_results.json`.
+
+Write this function:
+
+```python
+def blended_price(path: str) -> dict[str, float]:
+    ...
+```
+
+Return model-level average `cost_per_1k_tokens`, rounded only at the final output. Compare with `expected_outputs/blended_price.expected.json`.
+
+## What Eli Is Listening For
+
+- You state the pricing unit before doing math.
+- You group at model level, not provider level, unless the prompt asks otherwise.
+- You avoid mixing raw token counts with per-1k pricing.
+- You round for presentation, not during intermediate aggregation.
+

@@ -1,0 +1,7 @@
+{
+  "gpt-4o-mini": 0.015,
+  "claude-haiku": 0.0098,
+  "qwen3:8b": 0.001075,
+  "mistral-small": 0.006125,
+  "glm-4.5-air": 0.0
+}

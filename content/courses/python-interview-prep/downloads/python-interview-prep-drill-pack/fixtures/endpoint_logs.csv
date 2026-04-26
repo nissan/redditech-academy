@@ -1,0 +1,13 @@
+request_id,provider,model,status_code,error_type,latency_ms
+req_001,openai,gpt-4o-mini,200,,820
+req_002,openai,gpt-4o-mini,200,,760
+req_003,openai,gpt-4o-mini,504,timeout,5000
+req_004,anthropic,claude-haiku,200,,990
+req_005,anthropic,claude-haiku,429,rate_limit,1200
+req_006,anthropic,claude-haiku,200,,1040
+req_007,local,qwen3:8b,200,,210
+req_008,local,qwen3:8b,500,server_error,1800
+req_009,local,qwen3:8b,200,,190
+req_010,z-ai,glm-4.5-air,200,,1320
+req_011,z-ai,glm-4.5-air,504,timeout,5200
+req_012,z-ai,glm-4.5-air,200,,1280

@@ -45,3 +45,26 @@ def dedupe_runs(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Choose and justify a duplicate policy for retried benchmark runs, then return one canonical row per logical run.
+
+---
+
+## Code Practice
+
+Use `downloads/python-interview-prep-drill-pack/fixtures/messy_scores.csv`.
+
+Write this function:
+
+```python
+def anomaly_flags(path: str) -> pandas.DataFrame:
+    ...
+```
+
+Flag duplicate `run_id` rows, missing/non-numeric scores, invalid timestamps, and out-of-range scores. Compare with `expected_outputs/anomaly_flags.expected.csv`.
+
+## What Eli Is Listening For
+
+- You state the deduplication policy before applying it.
+- You preserve enough row identity to debug the issue.
+- You use coercion to reveal bad data instead of silently dropping it.
+- You return reasons, not just a filtered DataFrame.
+

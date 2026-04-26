@@ -58,3 +58,26 @@ That sentence alone impresses interviewers.
 ## Your Mission
 
 Describe the JSONL loading pattern including: how you loop, what you catch, and how you communicate bad data to the caller.
+
+---
+
+## Code Practice
+
+Use `downloads/python-interview-prep-drill-pack/fixtures/batch_outputs.jsonl`. It contains valid JSON rows, one malformed line, and one blank line.
+
+Write this function:
+
+```python
+def parse_jsonl(path: str) -> dict:
+    ...
+```
+
+Return `valid_rows`, `bad_line_count`, `blank_line_count`, and the model names from valid rows. Compare your result with `expected_outputs/jsonl_parse_report.expected.json`.
+
+## What Eli Is Listening For
+
+- You loop line by line instead of using `json.load()`.
+- You intentionally skip blanks.
+- You catch `json.JSONDecodeError`, not a bare `except` unless you explain why.
+- You communicate data quality back to the caller.
+

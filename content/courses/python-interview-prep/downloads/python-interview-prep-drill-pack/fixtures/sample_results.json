@@ -1,0 +1,122 @@
+[
+  {
+    "model": "gpt-4o-mini",
+    "provider": "openai",
+    "task": "summarize",
+    "quality_score": 8.7,
+    "ttft_ms": 420,
+    "cost_per_1k_tokens": 0.015,
+    "input_tokens": 900,
+    "output_tokens": 300
+  },
+  {
+    "model": "gpt-4o-mini",
+    "provider": "openai",
+    "task": "classify",
+    "quality_score": 8.4,
+    "ttft_ms": 390,
+    "cost_per_1k_tokens": 0.012,
+    "input_tokens": 600,
+    "output_tokens": 200
+  },
+  {
+    "model": "claude-haiku",
+    "provider": "anthropic",
+    "task": "summarize",
+    "quality_score": 8.1,
+    "ttft_ms": 510,
+    "cost_per_1k_tokens": 0.01,
+    "input_tokens": 1200,
+    "output_tokens": 400
+  },
+  {
+    "model": "claude-haiku",
+    "provider": "anthropic",
+    "task": "format",
+    "quality_score": 7.8,
+    "ttft_ms": null,
+    "cost_per_1k_tokens": 0.009,
+    "input_tokens": 500,
+    "output_tokens": 160
+  },
+  {
+    "model": "qwen3:8b",
+    "provider": "local",
+    "task": "classify",
+    "quality_score": 8.9,
+    "ttft_ms": 95,
+    "cost_per_1k_tokens": 0.001,
+    "input_tokens": 450,
+    "output_tokens": 150
+  },
+  {
+    "model": "qwen3:8b",
+    "provider": "local",
+    "task": "summarize",
+    "quality_score": 8.2,
+    "ttft_ms": 110,
+    "cost_per_1k_tokens": 0.0012,
+    "input_tokens": 1000,
+    "output_tokens": 350
+  },
+  {
+    "model": "mistral-small",
+    "provider": "mistral",
+    "task": "format",
+    "quality_score": 7.4,
+    "ttft_ms": 330,
+    "cost_per_1k_tokens": 0.006,
+    "input_tokens": 700,
+    "output_tokens": 230
+  },
+  {
+    "model": "mistral-small",
+    "provider": "mistral",
+    "task": "classify",
+    "quality_score": 7.9,
+    "ttft_ms": 305,
+    "cost_per_1k_tokens": 0.0065,
+    "input_tokens": 550,
+    "output_tokens": 180
+  },
+  {
+    "model": "glm-4.5-air",
+    "provider": "z-ai",
+    "task": "format",
+    "quality_score": 8.6,
+    "ttft_ms": 620,
+    "cost_per_1k_tokens": 0.0,
+    "input_tokens": 800,
+    "output_tokens": 260
+  },
+  {
+    "model": "glm-4.5-air",
+    "provider": "z-ai",
+    "task": "summarize",
+    "quality_score": 8.0,
+    "ttft_ms": 655,
+    "cost_per_1k_tokens": 0.0,
+    "input_tokens": 1000,
+    "output_tokens": 320
+  },
+  {
+    "model": "gpt-4o-mini",
+    "provider": "openai",
+    "task": "analyze",
+    "quality_score": 8.6,
+    "ttft_ms": 440,
+    "cost_per_1k_tokens": 0.018,
+    "input_tokens": 1500,
+    "output_tokens": 500
+  },
+  {
+    "model": "qwen3:8b",
+    "provider": "local",
+    "task": "format",
+    "quality_score": 8.5,
+    "ttft_ms": 100,
+    "cost_per_1k_tokens": 0.0011,
+    "input_tokens": 650,
+    "output_tokens": 210
+  }
+]

@@ -1,0 +1,5 @@
+run_id,model,score,reason
+r2,qwen3:8b,8.9,duplicate run_id
+r3,claude-haiku,,missing score
+r4,mistral-small,not_available,non-numeric score; invalid timestamp
+r6,toy-model,1000,score outside expected 0-10 range

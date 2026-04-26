@@ -1,0 +1,12 @@
+{
+  "valid_rows": 5,
+  "bad_line_count": 1,
+  "blank_line_count": 1,
+  "models": [
+    "gpt-4o-mini",
+    "qwen3:8b",
+    "claude-haiku",
+    "glm-4.5-air",
+    "mistral-small"
+  ]
+}

@@ -18,7 +18,7 @@
       }
     ]
   },
-  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask how they would classify a log row before aggregation.\nStrike 2: Ask what denominator each rate should use.\nStrike 3: Reveal the pattern: classify first, group by provider, compute counts and rates, and use p95 latency for tail behaviour.\nIf correct: acknowledge the operational report and ask what would make them distrust the latency numbers.",
+  "eli_notes": "SOCRATIC MODE — 3-STRIKE RULE:\nStrike 1: Ask how they would classify a log row before aggregation.\nStrike 2: Ask what denominator each rate should use.\nStrike 3: Reveal the pattern: classify first, group by provider, compute counts and rates, and use p95 latency for tail behaviour.\nIf correct: acknowledge the operational report and ask what would make them distrust the latency numbers.",
   "hints": [
     "Classify the log rows before aggregating them.",
     "Rates are counts divided by the request total.",
@@ -29,5 +29,23 @@
   },
   "success_text": "Nice. You turned noisy logs into a useful operational report.",
   "socratic_mode": true,
-  "max_strikes_before_reveal": 3
+  "max_strikes_before_reveal": 3,
+  "code_practice": {
+    "function_signature": "def provider_report(path: str) -> pandas.DataFrame:",
+    "fixture": "downloads/python-interview-prep-drill-pack/fixtures/endpoint_logs.csv",
+    "expected_output": "downloads/python-interview-prep-drill-pack/expected_outputs/provider_report.expected.csv",
+    "solution": "downloads/python-interview-prep-drill-pack/solutions/06_provider_report.py",
+    "public_tests": [
+      "classifies HTTP 2xx as success",
+      "computes timeout count from error_type",
+      "computes rates using request_count denominator",
+      "computes p95 latency per provider"
+    ],
+    "success_criteria": [
+      "classifies before aggregating",
+      "uses honest denominator for rates",
+      "includes tail-latency metric",
+      "returns readable provider-level table"
+    ]
+  }
 }

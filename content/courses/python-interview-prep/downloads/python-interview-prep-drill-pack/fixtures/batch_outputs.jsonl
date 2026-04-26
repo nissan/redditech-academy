@@ -1,0 +1,7 @@
+{"request_id":"b001","model":"gpt-4o-mini","latency_ms":830,"ok":true}
+{"request_id":"b002","model":"qwen3:8b","latency_ms":205,"ok":true}
+{"request_id":"b003","model":"claude-haiku","latency_ms":null,"ok":false,"error":"timeout"}
+this is not valid json
+{"request_id":"b004","model":"glm-4.5-air","latency_ms":1290,"ok":true}
+
+{"request_id":"b005","model":"mistral-small","latency_ms":410,"ok":true}

@@ -1,0 +1,5 @@
+provider,request_count,success_count,timeout_count,success_rate,timeout_rate,p95_latency_ms
+anthropic,3,2,0,0.667,0.0,1025.0
+local,3,2,0,0.667,0.0,1641.0
+openai,3,2,1,0.667,0.333,4582.0
+z-ai,3,2,1,0.667,0.333,4812.0

@@ -53,3 +53,26 @@ def provider_report(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Build a provider report from raw endpoint logs, with success and timeout rates plus a tail-latency column.
+
+---
+
+## Code Practice
+
+Use `downloads/python-interview-prep-drill-pack/fixtures/endpoint_logs.csv`.
+
+Write this function:
+
+```python
+def provider_report(path: str) -> pandas.DataFrame:
+    ...
+```
+
+Return `request_count`, `success_count`, `timeout_count`, `success_rate`, `timeout_rate`, and `p95_latency_ms` by provider. Compare with `expected_outputs/provider_report.expected.csv`.
+
+## What Eli Is Listening For
+
+- You classify status rows before aggregation.
+- You use request count as the denominator for both rates.
+- You compute a tail metric, not only the average.
+- You return a readable table with provider as a normal column.
+

@@ -1,0 +1,35 @@
+{
+  "total_records": 12,
+  "fields": [
+    "cost_per_1k_tokens",
+    "input_tokens",
+    "model",
+    "output_tokens",
+    "provider",
+    "quality_score",
+    "task",
+    "ttft_ms"
+  ],
+  "sample": [
+    {
+      "model": "gpt-4o-mini",
+      "provider": "openai",
+      "task": "summarize",
+      "quality_score": 8.7,
+      "ttft_ms": 420,
+      "cost_per_1k_tokens": 0.015,
+      "input_tokens": 900,
+      "output_tokens": 300
+    },
+    {
+      "model": "gpt-4o-mini",
+      "provider": "openai",
+      "task": "classify",
+      "quality_score": 8.4,
+      "ttft_ms": 390,
+      "cost_per_1k_tokens": 0.012,
+      "input_tokens": 600,
+      "output_tokens": 200
+    }
+  ]
+}
