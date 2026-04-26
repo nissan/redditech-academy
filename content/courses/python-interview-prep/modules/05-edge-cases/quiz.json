@@ -1,0 +1,77 @@
+{
+  "id": "05-edge-cases-quiz",
+  "moduleId": "05-edge-cases",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the safest first step with null-heavy data?",
+      "options": [
+        "Drop all rows immediately",
+        "Count nulls by relevant column and decide policy",
+        "Replace every null with zero silently",
+        "Ignore nulls"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Counting nulls makes the missing-data policy visible.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-null-semantics"
+    },
+    {
+      "id": "q2",
+      "question": "Why explain a deduplication policy out loud?",
+      "options": [
+        "Duplicates are always impossible",
+        "The choice of keep first/latest/max can change results",
+        "It makes Python faster",
+        "It replaces testing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dedup rules are business logic; interviewers want to hear the assumption.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-deduplication"
+    },
+    {
+      "id": "q3",
+      "question": "What is an anomaly reason column useful for?",
+      "options": [
+        "Documenting why each row was flagged",
+        "Deleting all suspicious rows automatically",
+        "Changing row order randomly",
+        "Hiding validation logic"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Reason columns make anomaly detection auditable.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-anomaly-detection"
+    },
+    {
+      "id": "q4",
+      "question": "Which pandas default can hide missing groups in groupby?",
+      "options": [
+        "dropna=True on group keys",
+        "ascending=False",
+        "reset_index()",
+        "round(2)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "By default, null group keys may be dropped unless you handle them explicitly.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-anomaly-detection"
+    },
+    {
+      "id": "q5",
+      "question": "What should you return when skipping malformed JSONL lines?",
+      "options": [
+        "Only valid rows with no mention of skipped lines",
+        "Valid rows plus a bad-line count or warning",
+        "A crash every time",
+        "The original unparsed text only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Returning a bad-line count communicates data quality to the caller.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-anomaly-detection"
+    }
+  ]
+}

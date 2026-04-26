@@ -1,0 +1,77 @@
+{
+  "id": "00-course-intro-quiz",
+  "moduleId": "00-course-intro",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the first move when you receive an unfamiliar data file?",
+      "options": [
+        "Start writing groupby logic immediately",
+        "Inspect the file shape, fields, and a sample record",
+        "Ask the interviewer to solve the parsing step",
+        "Skip parsing and hard-code expected rows"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Strong candidates inspect shape first so later assumptions are explicit.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
+    },
+    {
+      "id": "q2",
+      "question": "Why does the course use Socratic coaching instead of instant answers?",
+      "options": [
+        "To slow the learner down for no reason",
+        "To force reasoning before revealing solutions",
+        "To avoid writing Python code",
+        "To replace timed practice"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Interview performance depends on explaining tradeoffs, not just recognising final code.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
+    },
+    {
+      "id": "q3",
+      "question": "Which narration loop should you practice?",
+      "options": [
+        "Read, shape, plan, code, check",
+        "Guess, code, apologise, retry",
+        "Import pandas, groupby, print, stop",
+        "Silence until the answer is finished"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The read-shape-plan-code-check loop keeps the interviewer oriented.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
+    },
+    {
+      "id": "q4",
+      "question": "When should you reveal a full solution during practice?",
+      "options": [
+        "Before attempting the problem",
+        "After one typo",
+        "Only after serious attempts and reflection",
+        "Never, even after practice"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The 3-strike pattern protects productive struggle while still teaching the final pattern.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
+    },
+    {
+      "id": "q5",
+      "question": "What should your final answer include besides code?",
+      "options": [
+        "Only the fastest possible one-liner",
+        "Narration, assumptions, edge cases, and a sanity check",
+        "A long apology for every mistake",
+        "No explanation unless asked"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Interviewers evaluate communication and validation, not just syntax.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "01-file-parsing-quiz",
+  "moduleId": "01-file-parsing",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "When should you use json.load() instead of json.loads()?",
+      "options": [
+        "When you have an already parsed dict",
+        "When reading JSON directly from a file object",
+        "When parsing one CSV row",
+        "When converting a DataFrame to JSON"
+      ],
+      "correctAnswer": 1,
+      "explanation": "json.load() reads from a file object; json.loads() parses a JSON string.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-reading-json"
+    },
+    {
+      "id": "q2",
+      "question": "Why is csv.DictReader usually better than csv.reader in interviews?",
+      "options": [
+        "It automatically converts strings to floats",
+        "It returns rows keyed by column names",
+        "It ignores malformed CSV files",
+        "It sorts rows by header"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DictReader avoids fragile column-index logic and makes field names explicit.",
+      "difficulty": "beginner",
+      "relatedLessonId": "02-reading-csv"
+    },
+    {
+      "id": "q3",
+      "question": "What is the key difference between JSON and JSONL?",
+      "options": [
+        "JSONL is always compressed",
+        "JSONL has one JSON object per line",
+        "JSONL cannot contain dictionaries",
+        "JSONL is parsed with csv.DictReader"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A JSONL file is a stream of independent JSON objects, not one JSON array.",
+      "difficulty": "beginner",
+      "relatedLessonId": "03-parsing-jsonl"
+    },
+    {
+      "id": "q4",
+      "question": "What does pd.to_numeric(..., errors=\"coerce\") help you do?",
+      "options": [
+        "Silently delete bad rows",
+        "Turn invalid numeric values into NaN for inspection",
+        "Convert every column to string",
+        "Guarantee the mean is correct"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Coercion surfaces bad numeric values so you can count and handle them deliberately.",
+      "difficulty": "beginner",
+      "relatedLessonId": "04-schema-audit"
+    },
+    {
+      "id": "q5",
+      "question": "What should you print first after loading unfamiliar data?",
+      "options": [
+        "The final leaderboard",
+        "type, length, sample row, and keys",
+        "Only the file path",
+        "Nothing until all math is complete"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Shape inspection catches wrong assumptions before they spread.",
+      "difficulty": "beginner",
+      "relatedLessonId": "04-schema-audit"
+    }
+  ]
+}

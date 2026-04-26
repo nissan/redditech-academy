@@ -11,11 +11,15 @@
   "passingScore": 70,
   "badge": {
     "name": "Interview Ready",
-    "icon": "\u2705",
+    "icon": "✅",
     "description": "Completed a full timed mock problem under Eli's watch"
   },
   "difficulty": "intermediate",
   "estimatedHours": 1,
-  "learningObjectives": [],
+  "learningObjectives": [
+    "Complete timed end-to-end Python data problems",
+    "Debug wrong results with disciplined inspections",
+    "Summarise final outputs with assumptions and sanity checks"
+  ],
   "prerequisiteModules": []
 }

@@ -1,0 +1,77 @@
+{
+  "id": "02-aggregation-quiz",
+  "moduleId": "02-aggregation",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Why call reset_index() after a pandas groupby aggregation?",
+      "options": [
+        "To delete duplicate rows",
+        "To turn grouped index labels back into columns",
+        "To convert floats to ints",
+        "To sort descending"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Groupby keys often become the index; reset_index gives a flat output table.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-groupby-pandas"
+    },
+    {
+      "id": "q2",
+      "question": "When can defaultdict be better than pandas?",
+      "options": [
+        "When the file is tiny and the aggregation is simple",
+        "When you need GPU acceleration",
+        "When columns have thousands of types",
+        "Never"
+      ],
+      "correctAnswer": 0,
+      "explanation": "For small simple problems, stdlib loops can be clearer and easier to narrate.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-groupby-stdlib"
+    },
+    {
+      "id": "q3",
+      "question": "What should you accumulate to compute an average manually?",
+      "options": [
+        "Only the latest row",
+        "A sum and a count",
+        "A sorted list of strings only",
+        "The column name"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Average = sum / count, with explicit denominator.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-join-and-merge"
+    },
+    {
+      "id": "q4",
+      "question": "Before trusting a merge, what should you check?",
+      "options": [
+        "Cardinality and unmatched keys",
+        "Terminal colour scheme",
+        "Whether pandas is imported as numpy",
+        "Only final row order"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Bad joins are common; validate key uniqueness and unmatched rows.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-join-and-merge"
+    },
+    {
+      "id": "q5",
+      "question": "Why use named aggregations in pandas?",
+      "options": [
+        "They make output columns self-documenting",
+        "They make code run only in notebooks",
+        "They hide missing data",
+        "They skip sorting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Named aggregations produce readable, interview-friendly result columns.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-join-and-merge"
+    }
+  ]
+}

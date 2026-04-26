@@ -1,0 +1,77 @@
+{
+  "id": "06-mock-problems-quiz",
+  "moduleId": "06-mock-problems",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "In a timed mock, what should you do before coding?",
+      "options": [
+        "Read the prompt twice and identify input/output shape",
+        "Immediately write the longest solution possible",
+        "Ask for the official answer",
+        "Skip sample data"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A short planning pass prevents wasted implementation time.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-mock-aggregation"
+    },
+    {
+      "id": "q2",
+      "question": "What makes a provider report trustworthy?",
+      "options": [
+        "Clear status classification, honest denominators, and tail-latency metric",
+        "Only average latency",
+        "Ignoring errors",
+        "Sorting alphabetically only"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Operational reports need counts, rates, and tail behaviour.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mock-provider-report"
+    },
+    {
+      "id": "q3",
+      "question": "When debugging a suspicious result, what should you inspect first?",
+      "options": [
+        "dtypes, sample rows, key uniqueness, and intermediate counts",
+        "CSS styles",
+        "Package version only",
+        "Final print formatting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Most subtle bugs reveal themselves through disciplined inspection.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-mock-debug"
+    },
+    {
+      "id": "q4",
+      "question": "What should you do after fixing a bug?",
+      "options": [
+        "Run a sanity check that proves the result changed correctly",
+        "Delete all logs",
+        "Stop without explaining",
+        "Rewrite everything from scratch"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The fix is not complete until you verify the corrected behaviour.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-mock-debug"
+    },
+    {
+      "id": "q5",
+      "question": "What is the best use of Eli/TutorChat during mock practice?",
+      "options": [
+        "Ask for hints only after attempting and explaining your reasoning",
+        "Paste the prompt and demand the full answer first",
+        "Avoid all reflection",
+        "Use it to bypass timed practice"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The tutor is for reasoning feedback, not answer substitution.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-mock-debug"
+    }
+  ]
+}

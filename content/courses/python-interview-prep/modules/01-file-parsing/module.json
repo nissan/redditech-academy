@@ -12,11 +12,15 @@
   "passingScore": 70,
   "badge": {
     "name": "File Whisperer",
-    "icon": "\ud83d\udcc2",
+    "icon": "📂",
     "description": "Parsed CSV, JSON, and JSONL without panicking"
   },
   "difficulty": "beginner",
   "estimatedHours": 1,
-  "learningObjectives": [],
+  "learningObjectives": [
+    "Load JSON, CSV, and JSONL data safely",
+    "Inspect record shape before processing",
+    "Handle malformed lines and schema coercion visibly"
+  ],
   "prerequisiteModules": []
 }

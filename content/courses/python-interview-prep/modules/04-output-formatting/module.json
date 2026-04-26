@@ -1,7 +1,7 @@
 {
   "slug": "04-output-formatting",
   "title": "Output Formatting",
-  "description": "Coming soon.",
+  "description": "Turn correct calculations into readable tables and clear spoken explanations under interview pressure.",
   "order": 4,
   "lessons": [
     "01-table-formatting",
@@ -10,11 +10,15 @@
   "passingScore": 70,
   "badge": {
     "name": "Output Architect",
-    "icon": "\ud83d\udda8\ufe0f",
+    "icon": "🖨️",
     "description": "Formatted tables, rounded numbers, and conditional output"
   },
   "difficulty": "intermediate",
   "estimatedHours": 1,
-  "learningObjectives": [],
+  "learningObjectives": [
+    "Format tables with useful column names and rounding",
+    "Explain assumptions and tradeoffs while coding",
+    "Return outputs in the shape the prompt requested"
+  ],
   "prerequisiteModules": []
 }

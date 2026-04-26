@@ -1,9 +1,11 @@
 {
   "slug": "00-course-intro",
   "title": "Course Intro",
-  "description": "Coming soon.",
+  "description": "Understand the interview format, the Socratic practice loop, and the repeatable approach for Python data problems.",
   "order": 0,
-  "lessons": [],
+  "lessons": [
+    "01-interview-game-plan"
+  ],
   "passingScore": 70,
   "badge": {
     "name": "Python Foundations",
@@ -12,6 +14,10 @@
   },
   "difficulty": "beginner",
   "estimatedHours": 1,
-  "learningObjectives": [],
+  "learningObjectives": [
+    "Explain the 60-minute Python data interview format",
+    "Use the read-shape-plan-code-check narration loop",
+    "Set up a practice routine that prioritizes reasoning over memorised snippets"
+  ],
   "prerequisiteModules": []
 }

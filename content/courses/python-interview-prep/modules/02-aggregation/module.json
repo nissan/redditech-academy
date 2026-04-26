@@ -11,11 +11,15 @@
   "passingScore": 70,
   "badge": {
     "name": "Groupby Guru",
-    "icon": "\ud83d\udcca",
+    "icon": "📊",
     "description": "Aggregated data cleanly with and without pandas"
   },
   "difficulty": "intermediate",
   "estimatedHours": 1,
-  "learningObjectives": [],
+  "learningObjectives": [
+    "Group rows with pandas and stdlib accumulators",
+    "Choose clear aggregation names and denominators",
+    "Validate join cardinality before trusting merged output"
+  ],
   "prerequisiteModules": []
 }

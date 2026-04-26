@@ -1,0 +1,77 @@
+{
+  "id": "04-output-formatting-quiz",
+  "moduleId": "04-output-formatting",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the main goal of output formatting in an interview?",
+      "options": [
+        "Make correct results easy to inspect and trust",
+        "Hide imperfect assumptions",
+        "Use as many columns as possible",
+        "Avoid explaining the answer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Readable output helps the interviewer verify the result quickly.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-table-formatting"
+    },
+    {
+      "id": "q2",
+      "question": "When should you rename columns like avg_quality_score?",
+      "options": [
+        "Only after exporting to PDF",
+        "When it makes the final table self-explanatory",
+        "Never; raw names are always best",
+        "Before you know the metric"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Clean column names are part of a professional final answer.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
+    },
+    {
+      "id": "q3",
+      "question": "What should narration include when you are stuck?",
+      "options": [
+        "Silence",
+        "What you are checking and why",
+        "A request to skip the problem immediately",
+        "Only jokes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Narrating inspection steps keeps the interview collaborative.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
+    },
+    {
+      "id": "q4",
+      "question": "Which output is best for a requested top-3 leaderboard?",
+      "options": [
+        "Every raw row unsorted",
+        "A sorted table with rank, key metric, and tie-break policy",
+        "Only a printed max value",
+        "A chart with no data"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Match the requested shape and expose the ranking logic.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
+    },
+    {
+      "id": "q5",
+      "question": "Why round after aggregation rather than before?",
+      "options": [
+        "To avoid compounding presentation rounding into calculations",
+        "Because pandas requires it",
+        "To make values less accurate on purpose",
+        "There is no difference"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Early rounding can change later metrics; final rounding is safer.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
+    }
+  ]
+}

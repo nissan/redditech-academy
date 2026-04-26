@@ -1,0 +1,77 @@
+{
+  "id": "03-metrics-quiz",
+  "moduleId": "03-metrics",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does TTFT usually mean?",
+      "options": [
+        "Total tokens from training",
+        "Time to first token",
+        "Timed test failure threshold",
+        "Token table formatting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TTFT is time to first token, a latency metric.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-latency-metrics"
+    },
+    {
+      "id": "q2",
+      "question": "Why keep units in column names like latency_ms or cost_per_1k_tokens?",
+      "options": [
+        "It makes formulas and output harder to read",
+        "It prevents unit confusion during aggregation",
+        "It replaces all validation",
+        "It is only for chart labels"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Explicit units prevent mixing milliseconds, seconds, dollars, and token-normalised costs.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-blended-price"
+    },
+    {
+      "id": "q3",
+      "question": "When computing a pass rate, what is the denominator?",
+      "options": [
+        "Only passing rows",
+        "All rows in the relevant group",
+        "The number of models in the course",
+        "The highest score"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rates are counts divided by the relevant total population.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-leaderboard"
+    },
+    {
+      "id": "q4",
+      "question": "Why use a deterministic tie-breaker in leaderboards?",
+      "options": [
+        "To make equal scores produce stable, explainable ordering",
+        "To hide identical results",
+        "To avoid sorting entirely",
+        "To change scores randomly"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Stable tie-breakers make output reproducible and easier to defend.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-leaderboard"
+    },
+    {
+      "id": "q5",
+      "question": "When should you round metrics?",
+      "options": [
+        "Before every intermediate operation",
+        "At final presentation/output time",
+        "Never show rounded values",
+        "Before loading files"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rounding at the end preserves precision during calculation.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-leaderboard"
+    }
+  ]
+}
