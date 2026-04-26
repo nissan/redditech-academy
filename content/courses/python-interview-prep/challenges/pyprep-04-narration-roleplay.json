@@ -1,0 +1,37 @@
+{
+  "id": "pyprep-04-narration-roleplay",
+  "type": "json-editor",
+  "spec": "Roleplay a live interview narration moment. Given a messy provider report task, write what you would say out loud at four moments: before inspecting data, before choosing pandas vs stdlib, when you find nulls, and when you hit a suspicious result.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.shape_opening",
+        "non_empty": true
+      },
+      {
+        "field": "submission.tool_choice",
+        "non_empty": true
+      },
+      {
+        "field": "submission.null_policy",
+        "non_empty": true
+      },
+      {
+        "field": "submission.debug_recovery",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 3-STRIKE RULE:\nStrike 1: Ask which sentence keeps the interviewer oriented before any code appears.\nStrike 2: Ask for the exact words they would say when uncertainty appears.\nStrike 3: Reveal the pattern: state input/output shape, name the tool tradeoff, make null policy explicit, and narrate the next diagnostic step instead of going silent.\nIf correct: acknowledge the communication clarity and ask which phrase they would use when a join unexpectedly multiplies rows.",
+  "hints": [
+    "Start with input/output shape, not implementation detail.",
+    "Narrate uncertainty as a next check, not as panic.",
+    "Use phrases that explain why a step matters to the result."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"shape_opening\": \"Before coding I would say...\",\n    \"tool_choice\": \"When choosing pandas vs stdlib I would say...\",\n    \"null_policy\": \"When I find nulls I would say...\",\n    \"debug_recovery\": \"When the result looks wrong I would say...\"\n  }\n}"
+  },
+  "success_text": "Good. That sounds like a candidate who can think clearly under screen share.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}
