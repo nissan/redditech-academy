@@ -1,0 +1,26 @@
+{
+  "slug": "07-visualisation-telemetry-benchmarking",
+  "title": "Visualisation, Telemetry & Benchmarking",
+  "description": "Use plots, telemetry logs, and benchmark summaries to understand model behaviour instead of only calculating tables.",
+  "order": 7,
+  "lessons": [
+    "01-visualisation-for-understanding",
+    "02-telemetry-log-analysis",
+    "03-benchmarking-scorecards"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Telemetry Storyteller",
+    "icon": "\ud83d\udcca",
+    "description": "Explained model behaviour with visualisations, telemetry, and benchmark evidence"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1,
+  "learningObjectives": [
+    "Choose charts that reveal distributions, trends, and outliers",
+    "Extract latency, error, and cost signals from telemetry logs",
+    "Build benchmark scorecards that compare quality, speed, and price",
+    "Narrate visual evidence with caveats an interviewer can trust"
+  ],
+  "prerequisiteModules": []
+}

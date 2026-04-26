@@ -1,0 +1,38 @@
+{
+  "id": "pyprep-07-benchmark-scorecard",
+  "type": "json-editor",
+  "spec": "Create a benchmark scorecard plan that compares models across quality, latency, cost, sample size, and recommendation rule.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.metrics",
+        "non_empty": true
+      },
+      {
+        "field": "submission.eligibility_rule",
+        "non_empty": true
+      },
+      {
+        "field": "submission.visualisation",
+        "non_empty": true
+      },
+      {
+        "field": "submission.recommendation_rule",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 Push against picking the highest score blindly. Ask for sample-size thresholds and constraint-aware recommendation.",
+  "hints": [
+    "Start with task and scoring definition.",
+    "Filter or flag models with too few samples.",
+    "Use quality, p95 latency, and cost together.",
+    "State when the recommendation would change."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"metrics\": \"n, accuracy, avg_score, p95_latency_ms, avg_cost_usd\",\n    \"eligibility_rule\": \"only recommend models with n >= 30 benchmark rows\",\n    \"visualisation\": \"scatterplot of cost vs accuracy, point size by n, color by p95 latency\",\n    \"recommendation_rule\": \"choose highest eligible accuracy unless latency or cost violates product constraint\"\n  }\n}"
+  },
+  "success_text": "Benchmark answer accepted. You made the recommendation defensible instead of score-chasing.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

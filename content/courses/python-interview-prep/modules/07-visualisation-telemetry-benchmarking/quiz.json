@@ -1,0 +1,105 @@
+{
+  "id": "07-visualisation-telemetry-benchmarking-quiz",
+  "moduleId": "07-visualisation-telemetry-benchmarking",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which chart is usually best for inspecting a latency distribution?",
+      "options": [
+        "Histogram",
+        "Pie chart",
+        "Single KPI card",
+        "Random table order"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A histogram shows spread, skew, and tail behaviour.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-visualisation-for-understanding"
+    },
+    {
+      "id": "q2",
+      "question": "For a quality-vs-cost model comparison, which visual is most useful?",
+      "options": [
+        "Scatterplot",
+        "Word cloud",
+        "Calendar heatmap only",
+        "Unsorted raw JSON"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A scatterplot makes trade-offs between two numeric metrics visible.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-visualisation-for-understanding"
+    },
+    {
+      "id": "q3",
+      "question": "Why report p95 latency in telemetry summaries?",
+      "options": [
+        "It captures tail experience better than only mean latency",
+        "It removes the need for error rate",
+        "It is always lower than p50",
+        "It hides outliers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "p95 helps reveal slow tail behaviour that averages can hide.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-telemetry-log-analysis"
+    },
+    {
+      "id": "q4",
+      "question": "What is the difference between telemetry and benchmarking?",
+      "options": [
+        "Telemetry is observed runtime behaviour; benchmarking is structured comparison under a task/scoring rule",
+        "They are identical words",
+        "Benchmarking only means drawing charts",
+        "Telemetry never has errors"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Telemetry comes from system runs; benchmarks are designed evaluations.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-telemetry-log-analysis"
+    },
+    {
+      "id": "q5",
+      "question": "Why include sample size in a benchmark scorecard?",
+      "options": [
+        "To show whether the comparison has enough evidence to trust",
+        "To make every model eligible",
+        "To replace scoring",
+        "To avoid caveats"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A model with too few runs may have a misleading score.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-benchmarking-scorecards"
+    },
+    {
+      "id": "q6",
+      "question": "A model has the highest accuracy but double the p95 latency and cost. What should you do?",
+      "options": [
+        "State the trade-off and recommend based on product constraints",
+        "Always choose it blindly",
+        "Delete latency columns",
+        "Average cost into the model name"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Benchmark recommendations depend on constraints, not a single metric.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-benchmarking-scorecards"
+    },
+    {
+      "id": "q7",
+      "question": "What should a visualisation narration include in an interview?",
+      "options": [
+        "Insight, units, caveat, and next check",
+        "Only the chart library name",
+        "No explanation",
+        "A claim without sample size"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Strong narration explains what the visual shows and what remains uncertain.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-visualisation-for-understanding"
+    }
+  ]
+}

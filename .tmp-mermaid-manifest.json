@@ -1,5 +1,115 @@
 [
   {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/01-shift-code-to-intelligence-systems/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "01-shift-code-to-intelligence-systems",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 61,
+    "end_line": 69,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/01-shift-code-to-intelligence-systems-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/02-llm-foundations-for-engineers/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "02-llm-foundations-for-engineers",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 47,
+    "end_line": 55,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/02-llm-foundations-for-engineers-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/03-first-agentic-workflow/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "03-first-agentic-workflow",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 63,
+    "end_line": 71,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/03-first-agentic-workflow-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/04-control-systems-guardrails-retries-safety/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "04-control-systems-guardrails-retries-safety",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 47,
+    "end_line": 55,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/04-control-systems-guardrails-retries-safety-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/05-evaluation-missing-layer/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "05-evaluation-missing-layer",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 63,
+    "end_line": 71,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/05-evaluation-missing-layer-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/06-memory-knowledge-rag-vectors-beyond/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "06-memory-knowledge-rag-vectors-beyond",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 47,
+    "end_line": 55,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/06-memory-knowledge-rag-vectors-beyond-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/07-real-time-ai-systems/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "07-real-time-ai-systems",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 47,
+    "end_line": 55,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/07-real-time-ai-systems-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/08-cost-latency-model-routing/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "08-cost-latency-model-routing",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 61,
+    "end_line": 69,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/08-cost-latency-model-routing-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/09-productionizing-ai-systems/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "09-productionizing-ai-systems",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 47,
+    "end_line": 55,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/09-productionizing-ai-systems-01-core-systems-pattern-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/agentic-ai-systems-engineering/modules/10-capstone-end-to-end-ai-system/lessons/01-core-systems-pattern.mdx",
+    "course": "agentic-ai-systems-engineering",
+    "module": "10-capstone-end-to-end-ai-system",
+    "lesson": "01-core-systems-pattern",
+    "index": 1,
+    "start_line": 63,
+    "end_line": 71,
+    "mermaid": "flowchart LR\n  A[User or system intent] --> B[Workflow decision]\n  B --> C[Model / tool action]\n  C --> D[Validation and evaluation]\n  D --> E[Observed product outcome]\n  E --> F[Feedback loop]\n  F --> B",
+    "out": "public/assets/courses/agentic-ai-systems-engineering/diagrams/10-capstone-end-to-end-ai-system-01-core-systems-pattern-d1.png"
+  },
+  {
     "file": "/Users/loki/redditech-academy/content/courses/auth-training/modules/00-executive-overview/lessons/00-module-briefing.mdx",
     "course": "auth-training",
     "module": "00-executive-overview",
@@ -1193,8 +1303,8 @@
     "module": "04-output-formatting",
     "lesson": "02-narration-patterns",
     "index": 1,
-    "start_line": 46,
-    "end_line": 54,
+    "start_line": 60,
+    "end_line": 68,
     "mermaid": "flowchart TD\n    A[Read prompt] --> B[Say input/output shape]\n    B --> C[Inspect sample rows]\n    C --> D[State plan]\n    D --> E[Code small function]\n    E --> F[Sanity-check output]\n    F --> G[Narrate caveat or next step]",
     "out": "public/assets/courses/python-interview-prep/diagrams/04-output-formatting-02-narration-patterns-d1.png"
   },
@@ -1230,6 +1340,39 @@
     "end_line": 101,
     "mermaid": "flowchart TD\n    A[Suspicious output] --> B[Inspect dtypes]\n    B --> C[Check duplicates]\n    C --> D[Coerce score/timestamp]\n    D --> E[Build anomaly masks]\n    E --> F[Attach reason column]\n    F --> G[Show before/after evidence]",
     "out": "public/assets/courses/python-interview-prep/diagrams/06-mock-problems-03-mock-debug-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/07-visualisation-telemetry-benchmarking/lessons/01-visualisation-for-understanding.mdx",
+    "course": "python-interview-prep",
+    "module": "07-visualisation-telemetry-benchmarking",
+    "lesson": "01-visualisation-for-understanding",
+    "index": 1,
+    "start_line": 59,
+    "end_line": 70,
+    "mermaid": "flowchart LR\n    A[Interview question] --> B{What are we trying to see?}\n    B -->|Distribution| C[Histogram or box plot]\n    B -->|Trend over time| D[Line chart]\n    B -->|Group comparison| E[Bar chart]\n    B -->|Trade-off| F[Scatterplot]\n    C --> G[State caveat + next check]\n    D --> G\n    E --> G\n    F --> G",
+    "out": "public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-01-visualisation-for-understanding-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/07-visualisation-telemetry-benchmarking/lessons/02-telemetry-log-analysis.mdx",
+    "course": "python-interview-prep",
+    "module": "07-visualisation-telemetry-benchmarking",
+    "lesson": "02-telemetry-log-analysis",
+    "index": 1,
+    "start_line": 59,
+    "end_line": 67,
+    "mermaid": "flowchart LR\n    A[Raw request logs] --> B[Validate required fields]\n    B --> C[Derive ok/error flags]\n    C --> D[Group by provider/model]\n    D --> E[Compute p50/p95/error/cost]\n    E --> F[Visualise trend or provider comparison]\n    F --> G[Narrate operational conclusion]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-02-telemetry-log-analysis-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/07-visualisation-telemetry-benchmarking/lessons/03-benchmarking-scorecards.mdx",
+    "course": "python-interview-prep",
+    "module": "07-visualisation-telemetry-benchmarking",
+    "lesson": "03-benchmarking-scorecards",
+    "index": 1,
+    "start_line": 58,
+    "end_line": 66,
+    "mermaid": "flowchart LR\n    A[Benchmark runs] --> B[Define task + scoring rule]\n    B --> C[Aggregate by model]\n    C --> D[Apply sample-size eligibility]\n    D --> E[Compare quality/latency/cost]\n    E --> F[Plot trade-off]\n    F --> G[Recommend with caveats]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-03-benchmarking-scorecards-d1.png"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx",

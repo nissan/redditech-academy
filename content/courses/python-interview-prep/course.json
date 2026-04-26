@@ -19,8 +19,19 @@
     "Calculate statistical metrics: mean, median, percentiles, pass rates",
     "Handle edge cases: nulls, bad JSON lines, missing fields",
     "Structure solutions as clean, narrated functions",
-    "Complete a full timed mock problem under interview conditions"
+    "Complete a full timed mock problem under interview conditions",
+    "Use visualisations, telemetry summaries, and benchmark scorecards to explain model behaviour"
   ],
   "prerequisiteModules": [],
-  "tags": ["python", "interview-prep", "data-analysis", "pandas", "csv", "json"]
+  "tags": ["python", "interview-prep", "data-analysis", "pandas", "csv", "json", "visualisation", "telemetry", "benchmarking"],
+  "modules": [
+    { "slug": "00-course-intro", "title": "Course Intro", "order": 0 },
+    { "slug": "01-file-parsing", "title": "File Parsing", "order": 1 },
+    { "slug": "02-aggregation", "title": "Aggregation", "order": 2 },
+    { "slug": "03-metrics", "title": "Metrics", "order": 3 },
+    { "slug": "04-output-formatting", "title": "Output Formatting", "order": 4 },
+    { "slug": "05-edge-cases", "title": "Edge Cases", "order": 5 },
+    { "slug": "06-mock-problems", "title": "Full Mock Problems", "order": 6 },
+    { "slug": "07-visualisation-telemetry-benchmarking", "title": "Visualisation, Telemetry & Benchmarking", "order": 7 }
+  ]
 }

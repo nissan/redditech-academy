@@ -1,0 +1,38 @@
+{
+  "id": "pyprep-07-visualisation-choice",
+  "type": "json-editor",
+  "spec": "Choose a visualisation strategy for a model-results dataset. Explain the chart type, columns, insight, and caveat.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.chart_type",
+        "non_empty": true
+      },
+      {
+        "field": "submission.columns",
+        "non_empty": true
+      },
+      {
+        "field": "submission.insight",
+        "non_empty": true
+      },
+      {
+        "field": "submission.caveat",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 Ask what analytical question the chart answers before discussing code. Push for units, axis labels, and a caveat.",
+  "hints": [
+    "Distribution -> histogram/box plot.",
+    "Trade-off -> scatterplot.",
+    "Trend -> line chart.",
+    "Group comparison -> bar chart."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"chart_type\": \"scatterplot\",\n    \"columns\": \"x=cost_per_1k, y=quality_score, color=p95_latency_ms\",\n    \"insight\": \"Shows whether quality gains come with cost or latency trade-offs.\",\n    \"caveat\": \"Check sample size and outliers before recommending a model.\"\n  }\n}"
+  },
+  "success_text": "Good visual choice. You used the chart to answer a data question, not decorate the result.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}

@@ -13,7 +13,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/01-file-parsing-02-reading-csv-d1.png",
     "source_hash": "7b0e9e7907fe27d570151d5084bd58b6ce36ede41601b313ee8100dc4037fc6a",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:00.598Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/01-file-parsing/lessons/04-schema-audit.mdx",
@@ -29,7 +29,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/01-file-parsing-04-schema-audit-d1.png",
     "source_hash": "0567ea22c53edb88ca59fed1b51cdd21efaa58c49133597e5316e7a4a036aed5",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:01.608Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/02-aggregation/lessons/03-join-and-merge.mdx",
@@ -45,7 +45,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/02-aggregation-03-join-and-merge-d1.png",
     "source_hash": "b0fb67070e6d412902e10fbb2ddbca2f679925ae77d04ecb3d7b180be2f70a86",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:02.676Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/03-metrics/lessons/03-leaderboard.mdx",
@@ -61,7 +61,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/03-metrics-03-leaderboard-d1.png",
     "source_hash": "06f9e4ab314df21e6c91b382eadc12a4d514cc87ee08705538851e2711deca8e",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:03.745Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/04-output-formatting/lessons/02-narration-patterns.mdx",
@@ -69,15 +69,15 @@
     "module": "04-output-formatting",
     "lesson": "02-narration-patterns",
     "index": 1,
-    "start_line": 46,
-    "end_line": 54,
+    "start_line": 60,
+    "end_line": 68,
     "mermaid": "flowchart TD\n    A[Read prompt] --> B[Say input/output shape]\n    B --> C[Inspect sample rows]\n    C --> D[State plan]\n    D --> E[Code small function]\n    E --> F[Sanity-check output]\n    F --> G[Narrate caveat or next step]",
     "out": "public/assets/courses/python-interview-prep/diagrams/04-output-formatting-02-narration-patterns-d1.png",
     "base_png": "/Users/loki/redditech-academy/.tmp-mermaid-base/python-interview-prep/diagrams/04-output-formatting-02-narration-patterns-d1.png",
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/04-output-formatting-02-narration-patterns-d1.png",
     "source_hash": "cc9a593d29c397af368058189dabf918fe7257347f56363d55cdcb1280b8392d",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:04.751Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/05-edge-cases/lessons/01-null-semantics.mdx",
@@ -93,7 +93,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/05-edge-cases-01-null-semantics-d1.png",
     "source_hash": "d8b3bac2e2d49fb00fd1d7eea1941dae5702eb51153950f7d153955ecc4838be",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:05.817Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/06-mock-problems/lessons/01-mock-aggregation.mdx",
@@ -109,7 +109,7 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/06-mock-problems-01-mock-aggregation-d1.png",
     "source_hash": "47ce47d47744baf02e5462000c81d359e607c156faf23e9c5be19e69ae3e25de",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:06.836Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   },
   {
     "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/06-mock-problems/lessons/03-mock-debug.mdx",
@@ -125,6 +125,54 @@
     "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/06-mock-problems-03-mock-debug-d1.png",
     "source_hash": "b922a322f0a68651250ae8c4bfead8ffe23d2675ee2ed0519175322dcc7b25f6",
     "provider": "mmdc",
-    "rendered_at": "2026-04-26T09:53:07.882Z"
+    "rendered_at": "2026-04-26T21:51:34.243Z"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/07-visualisation-telemetry-benchmarking/lessons/01-visualisation-for-understanding.mdx",
+    "course": "python-interview-prep",
+    "module": "07-visualisation-telemetry-benchmarking",
+    "lesson": "01-visualisation-for-understanding",
+    "index": 1,
+    "start_line": 59,
+    "end_line": 70,
+    "mermaid": "flowchart LR\n    A[Interview question] --> B{What are we trying to see?}\n    B -->|Distribution| C[Histogram or box plot]\n    B -->|Trend over time| D[Line chart]\n    B -->|Group comparison| E[Bar chart]\n    B -->|Trade-off| F[Scatterplot]\n    C --> G[State caveat + next check]\n    D --> G\n    E --> G\n    F --> G",
+    "out": "public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-01-visualisation-for-understanding-d1.png",
+    "base_png": "/Users/loki/redditech-academy/.tmp-mermaid-base/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-01-visualisation-for-understanding-d1.png",
+    "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-01-visualisation-for-understanding-d1.png",
+    "source_hash": "0e2d4e99de43c032002d89f713f362c6da5437f94ec30e01013ff6c38ff5a6b2",
+    "provider": "mmdc",
+    "rendered_at": "2026-04-26T21:51:34.243Z"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/07-visualisation-telemetry-benchmarking/lessons/02-telemetry-log-analysis.mdx",
+    "course": "python-interview-prep",
+    "module": "07-visualisation-telemetry-benchmarking",
+    "lesson": "02-telemetry-log-analysis",
+    "index": 1,
+    "start_line": 59,
+    "end_line": 67,
+    "mermaid": "flowchart LR\n    A[Raw request logs] --> B[Validate required fields]\n    B --> C[Derive ok/error flags]\n    C --> D[Group by provider/model]\n    D --> E[Compute p50/p95/error/cost]\n    E --> F[Visualise trend or provider comparison]\n    F --> G[Narrate operational conclusion]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-02-telemetry-log-analysis-d1.png",
+    "base_png": "/Users/loki/redditech-academy/.tmp-mermaid-base/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-02-telemetry-log-analysis-d1.png",
+    "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-02-telemetry-log-analysis-d1.png",
+    "source_hash": "88b76e6b46535fead0f0d908c6f25e89b1f52489071fb4ca3c2d2e4db2fa604e",
+    "provider": "mmdc",
+    "rendered_at": "2026-04-26T21:51:34.243Z"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/07-visualisation-telemetry-benchmarking/lessons/03-benchmarking-scorecards.mdx",
+    "course": "python-interview-prep",
+    "module": "07-visualisation-telemetry-benchmarking",
+    "lesson": "03-benchmarking-scorecards",
+    "index": 1,
+    "start_line": 58,
+    "end_line": 66,
+    "mermaid": "flowchart LR\n    A[Benchmark runs] --> B[Define task + scoring rule]\n    B --> C[Aggregate by model]\n    C --> D[Apply sample-size eligibility]\n    D --> E[Compare quality/latency/cost]\n    E --> F[Plot trade-off]\n    F --> G[Recommend with caveats]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-03-benchmarking-scorecards-d1.png",
+    "base_png": "/Users/loki/redditech-academy/.tmp-mermaid-base/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-03-benchmarking-scorecards-d1.png",
+    "final_png": "/Users/loki/redditech-academy/public/assets/courses/python-interview-prep/diagrams/07-visualisation-telemetry-benchmarking-03-benchmarking-scorecards-d1.png",
+    "source_hash": "5cba5002176315ff1681f96724cd5f1e205f31ec6fe72e980e9279967bdb106c",
+    "provider": "mmdc",
+    "rendered_at": "2026-04-26T21:51:34.243Z"
   }
 ]

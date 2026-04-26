@@ -1,0 +1,37 @@
+{
+  "id": "pyprep-07-telemetry-summary",
+  "type": "json-editor",
+  "spec": "Design a telemetry summary for model-call logs with reliability, latency, cost, and instrumentation caveats.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.grouping",
+        "non_empty": true
+      },
+      {
+        "field": "submission.metrics",
+        "non_empty": true
+      },
+      {
+        "field": "submission.visualisation",
+        "non_empty": true
+      },
+      {
+        "field": "submission.caveat",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "SOCRATIC MODE \u2014 Ensure the learner distinguishes request telemetry from offline benchmark rows. Ask about p95 latency and missing spans.",
+  "hints": [
+    "Group by provider or model if comparing backends.",
+    "Include request count, error rate, p50/p95 latency, and cost.",
+    "Missing span IDs may be instrumentation gaps, not model failures."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"grouping\": \"provider and model\",\n    \"metrics\": \"requests, error_rate, p50_latency_ms, p95_latency_ms, total_cost_usd\",\n    \"visualisation\": \"bar chart for provider error rate plus line chart for p95 latency over time\",\n    \"caveat\": \"Separate failed calls from missing telemetry spans before drawing conclusions.\"\n  }\n}"
+  },
+  "success_text": "Nice telemetry summary. You connected Python aggregation to operational judgement.",
+  "socratic_mode": true,
+  "max_strikes_before_reveal": 3
+}
