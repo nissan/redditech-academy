@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">Developer Role Shift</title><desc id="desc">From code producer to intelligence systems operator</desc>
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#020617"/><stop offset="1" stop-color="#172554"/></linearGradient></defs>
+<rect width="1200" height="640" fill="url(#bg)"/>
+<circle cx="1040" cy="110" r="180" fill="#38bdf8" opacity="0.08"/>
+<circle cx="180" cy="540" r="220" fill="#a78bfa" opacity="0.08"/>
+<text x="60" y="86" font-family="Inter,Arial" font-size="44" font-weight="900" fill="#f8fafc">Developer Role Shift</text>
+<text x="62" y="128" font-family="Inter,Arial" font-size="22" fill="#cbd5e1">From code producer to intelligence systems operator</text>
+<g>
+  <rect x="65" y="210" width="250" height="290" rx="28" fill="#111827" stroke="#38bdf8" stroke-width="4"/>
+  <circle cx="110" cy="260" r="22" fill="#38bdf8" opacity="0.9"/>
+  <text x="145" y="268" font-family="Inter,Arial" font-size="26" font-weight="800" fill="#f8fafc">Gunslinger</text>
+  <foreignObject x="93" y="305" width="194" height="160">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Inter,Arial;color:#cbd5e1;font-size:20px;line-height:1.35">Old value: write lots of code quickly, own syntax, ship deterministic features.</div>
+  </foreignObject>
+</g><g>
+  <rect x="350" y="210" width="250" height="290" rx="28" fill="#111827" stroke="#a78bfa" stroke-width="4"/>
+  <circle cx="395" cy="260" r="22" fill="#a78bfa" opacity="0.9"/>
+  <text x="430" y="268" font-family="Inter,Arial" font-size="26" font-weight="800" fill="#f8fafc">Sniper</text>
+  <foreignObject x="378" y="305" width="194" height="160">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Inter,Arial;color:#cbd5e1;font-size:20px;line-height:1.35">New value: intervene precisely at leverage points and critical failure paths.</div>
+  </foreignObject>
+</g><g>
+  <rect x="635" y="210" width="250" height="290" rx="28" fill="#111827" stroke="#f97316" stroke-width="4"/>
+  <circle cx="680" cy="260" r="22" fill="#f97316" opacity="0.9"/>
+  <text x="715" y="268" font-family="Inter,Arial" font-size="26" font-weight="800" fill="#f8fafc">Forensic Analyst</text>
+  <foreignObject x="663" y="305" width="194" height="160">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Inter,Arial;color:#cbd5e1;font-size:20px;line-height:1.35">Trace hallucinations, drift, bad retrieval, regressions, and hidden quality failures.</div>
+  </foreignObject>
+</g><g>
+  <rect x="920" y="210" width="250" height="290" rx="28" fill="#111827" stroke="#22c55e" stroke-width="4"/>
+  <circle cx="965" cy="260" r="22" fill="#22c55e" opacity="0.9"/>
+  <text x="1000" y="268" font-family="Inter,Arial" font-size="26" font-weight="800" fill="#f8fafc">Air Traffic Controller</text>
+  <foreignObject x="948" y="305" width="194" height="160">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Inter,Arial;color:#cbd5e1;font-size:20px;line-height:1.35">Route agents, models, tools, cost, latency, and escalation under uncertainty.</div>
+  </foreignObject>
+</g>
+<text x="60" y="575" font-family="Inter,Arial" font-size="22" fill="#93c5fd">Redditech Academy · Agentic AI Systems Engineering</text>
+</svg>

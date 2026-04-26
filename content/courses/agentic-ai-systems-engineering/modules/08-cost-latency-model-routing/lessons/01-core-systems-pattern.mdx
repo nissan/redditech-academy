@@ -40,6 +40,20 @@ You are no longer just implementing a feature. You are designing an intelligence
 - Caching and reuse strategies
 - Observability for cost tracking
 
+
+
+## The Business-Layer Tradeoff
+
+The AI-native engineer constantly arbitrages **cost, latency, and accuracy**. That means every workflow should define:
+
+- the cheapest acceptable model for low-risk work
+- the premium model threshold for high-risk work
+- cache keys and semantic reuse rules
+- when to stream partial output versus wait for a better answer
+- what telemetry proves the routing policy is saving money without destroying quality
+
+This is where fullstack engineering becomes product economics.
+
 ## Systems Pattern
 
 The core pattern for this module is:
