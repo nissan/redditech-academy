@@ -72,6 +72,34 @@
       "explanation": "The tutor is for reasoning feedback, not answer substitution.",
       "difficulty": "intermediate",
       "relatedLessonId": "03-mock-debug"
+    },
+    {
+      "id": "q6",
+      "question": "In the provider report mock, where should success/timeout classification happen?",
+      "options": [
+        "Before groupby aggregation",
+        "After printing the final chart only",
+        "Inside the README",
+        "Never; rates do not need classification"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Classify rows first so counts and denominators are honest.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-mock-debug"
+    },
+    {
+      "id": "q7",
+      "question": "In the debugging mock, what proves your fix worked?",
+      "options": [
+        "Before/after counts, dtype checks, and an anomaly table with reasons",
+        "A prettier variable name only",
+        "Deleting bad rows silently",
+        "No validation if the code runs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Debugging is not done until the corrected behavior is demonstrated.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-mock-debug"
     }
   ]
 }

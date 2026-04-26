@@ -72,6 +72,34 @@
       "explanation": "Shape inspection catches wrong assumptions before they spread.",
       "difficulty": "beginner",
       "relatedLessonId": "04-schema-audit"
+    },
+    {
+      "id": "q6",
+      "question": "Bug: `json.loads(open(path))` raises an error. What is the correct fix for reading a JSON file?",
+      "options": [
+        "Use `json.load(f)` inside `with open(path) as f`",
+        "Rename the file to `.jsonl`",
+        "Call `csv.DictReader`",
+        "Wrap the file object in `str()` and hope"
+      ],
+      "correctAnswer": 0,
+      "explanation": "`json.load()` accepts a file object; `json.loads()` expects a JSON string.",
+      "difficulty": "beginner",
+      "relatedLessonId": "04-schema-audit"
+    },
+    {
+      "id": "q7",
+      "question": "A JSONL parser crashes on one malformed line. What interview-ready behavior is best?",
+      "options": [
+        "Let the whole script crash",
+        "Catch `json.JSONDecodeError`, skip/log the bad line, and return a bad-line count",
+        "Delete the file",
+        "Use `eval()` on every line"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Real JSONL files can contain bad rows; reporting the count shows defensive coding.",
+      "difficulty": "beginner",
+      "relatedLessonId": "04-schema-audit"
     }
   ]
 }

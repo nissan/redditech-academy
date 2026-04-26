@@ -1,26 +1,48 @@
 ---
-title: "Mock Problem, Provider Report"
-description: "Derive success and timeout rates from raw endpoint logs."
+title: "Mock Problem — Provider Report"
+description: "30-minute operational report: classify endpoint logs, compute rates, and explain denominators."
 slug: "02-mock-provider-report"
-duration: 15
+duration: 35
 order: 2
 type: "interactive"
 environment: "json-editor"
 challengeid: "pyprep-mock-02-provider-report"
-missionTitle: "Mission 06B — Operational Report"
-estimatedMinutes: 15
+missionTitle: "Mock 02 — 30-Minute Operational Report"
+estimatedMinutes: 35
 keyTakeaways:
   - "Classify status codes before you aggregate"
   - "Rates are counts divided by the right denominator"
   - "p95 latency is useful when tail behaviour matters"
 ---
 
-## Turn Logs Into a Report
+## Timed Interview Room: 30 Minutes
 
-> 🤔 Think it through:
-> - How will you classify success vs timeout vs other errors?
-> - What is the denominator for each rate?
-> - Which percentile best captures tail latency?
+This is the operational analytics version of the interview. The trick is not pandas syntax; the trick is keeping your denominators honest.
+
+**Files:**
+
+- `downloads/python-interview-prep-drill-pack/fixtures/endpoint_logs.csv`
+- Expected output: `downloads/python-interview-prep-drill-pack/expected_outputs/provider_report.expected.csv`
+
+## Candidate Prompt
+
+Given raw endpoint logs, produce a provider-level report with:
+
+- `request_count`
+- `success_count`
+- `timeout_count`
+- `success_rate`
+- `timeout_rate`
+- `p95_latency_ms`
+
+A request is successful when `status_code` is 2xx. A timeout is indicated by `error_type == "timeout"`.
+
+## Starter Signature
+
+```python
+def provider_report(path: str) -> pandas.DataFrame:
+    ...
+```
 
 ## The Pattern
 
@@ -28,46 +50,51 @@ keyTakeaways:
 import pandas as pd
 
 
-def provider_report(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.copy()
-    df["status_group"] = pd.cut(
-        df["status_code"],
-        bins=[0, 299, 499, 599],
-        labels=["success", "client_error", "server_error"],
-    )
-    summary = df.groupby("provider").agg(
+def provider_report(path: str) -> pd.DataFrame:
+    df = pd.read_csv(path)
+    df["success"] = df["status_code"].between(200, 299)
+    df["timeout"] = df["error_type"].eq("timeout")
+
+    out = df.groupby("provider").agg(
         request_count=("request_id", "count"),
-        success_count=("status_group", lambda s: (s == "success").sum()),
-        timeout_count=("error_type", lambda s: (s == "timeout").sum()),
+        success_count=("success", "sum"),
+        timeout_count=("timeout", "sum"),
         p95_latency_ms=("latency_ms", lambda s: s.quantile(0.95)),
-    )
-    summary["success_rate"] = summary["success_count"] / summary["request_count"]
-    summary["timeout_rate"] = summary["timeout_count"] / summary["request_count"]
-    return summary.reset_index()
+    ).reset_index()
+
+    out["success_rate"] = out["success_count"] / out["request_count"]
+    out["timeout_rate"] = out["timeout_count"] / out["request_count"]
+    return out
 ```
 
-## Narration
+## Checkpoints
 
-"I’ll classify the log rows first, then aggregate by provider. That keeps the denominator honest and lets me explain the report in plain English: how many requests, how many succeeded, how many timed out, and how bad the tail latency was."
+- **Minute 0–5:** Inspect headers, dtypes, status-code range, and sample rows.
+- **Minute 5–12:** Create classification columns before grouping.
+- **Minute 12–20:** Aggregate counts and p95 latency.
+- **Minute 20–25:** Compute rates using `request_count`, not success count.
+- **Minute 25–30:** Hand-check one provider and narrate what the report says.
 
-## Your Mission
+## Common Bugs
 
-Build a provider report from raw endpoint logs, with success and timeout rates plus a tail-latency column.
+- Counting only successful requests in the denominator.
+- Treating 429 as a server error without explaining the policy.
+- Computing p95 across all providers instead of per provider.
+- Sorting or rounding before checking whether rates make sense.
 
----
+## Interviewer Rubric
+
+| Signal | Strong answer |
+|---|---|
+| Classification | Creates success/timeout indicators before aggregation |
+| Denominators | Uses all provider requests as denominator |
+| Tail latency | Computes provider-level p95 |
+| Output | Returns a readable provider-level table |
+| Narration | Explains operational meaning, not just code mechanics |
 
 ## Code Practice
 
-Use `downloads/python-interview-prep-drill-pack/fixtures/endpoint_logs.csv`.
-
-Write this function:
-
-```python
-def provider_report(path: str) -> pandas.DataFrame:
-    ...
-```
-
-Return `request_count`, `success_count`, `timeout_count`, `success_rate`, `timeout_rate`, and `p95_latency_ms` by provider. Compare with `expected_outputs/provider_report.expected.csv`.
+Run your function against `endpoint_logs.csv` and compare to `expected_outputs/provider_report.expected.csv` only after you have a result.
 
 ## What Eli Is Listening For
 
@@ -76,3 +103,6 @@ Return `request_count`, `success_count`, `timeout_count`, `success_rate`, `timeo
 - You compute a tail metric, not only the average.
 - You return a readable table with provider as a normal column.
 
+## Your Mission
+
+Describe your full approach: classification, aggregation, denominator policy, p95 latency, and final output formatting.

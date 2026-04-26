@@ -72,6 +72,34 @@
       "explanation": "Returning a bad-line count communicates data quality to the caller.",
       "difficulty": "intermediate",
       "relatedLessonId": "03-anomaly-detection"
+    },
+    {
+      "id": "q6",
+      "question": "Bug: `df.groupby(\"provider\")` silently drops rows where provider is missing. What should you consider?",
+      "options": [
+        "Use `dropna=False` or explicitly fill/flag missing provider",
+        "Ignore missing groups forever",
+        "Convert provider to score",
+        "Sort by timestamp only"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Missing group keys need an explicit policy; pandas may drop them by default.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-anomaly-detection"
+    },
+    {
+      "id": "q7",
+      "question": "A script drops anomalies before recording why they were suspicious. What is the better design?",
+      "options": [
+        "Create a reason column/anomaly report before filtering",
+        "Delete the source file",
+        "Keep only the largest anomaly",
+        "Assume anomalies are impossible"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A reason column preserves auditability and supports interviewer discussion.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-anomaly-detection"
     }
   ]
 }

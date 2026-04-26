@@ -1,50 +1,74 @@
 ---
 title: "Mock Problem — Benchmark Aggregator"
-description: "20 minutes. Real data. Eli only speaks after 3 wrong moves."
+description: "20-minute warmup mock: inspect benchmark JSON, aggregate quality, and explain tradeoffs."
 slug: "01-mock-aggregation"
-duration: 25
+duration: 30
 order: 1
 type: "interactive"
 environment: "json-editor"
 challengeid: "pyprep-mock-01-aggregation"
-missionTitle: "Mock 01 — Benchmark Aggregator"
-estimatedMinutes: 25
+missionTitle: "Mock 01 — 20-Minute Benchmark Aggregator"
+estimatedMinutes: 30
 keyTakeaways:
   - "Read the task fully before writing a line"
   - "Check data shape first — always"
   - "Structure your answer as functions, not a script"
 ---
 
-## 🎯 Your Interview Problem
+## Timed Interview Room: 20 Minutes
 
-Treat this exactly like the real interview. Set a timer for 20 minutes.
+Treat this like a real screen-share. Open the drill pack fixture, inspect the records, then build the smallest useful summary.
 
-**The brief:**
+**Files:**
 
-You have a file of LLM benchmark results. Each record has: `model`, `provider`, `quality_score`, `ttft_ms` (nullable), `cost_per_1k_tokens`.
+- `downloads/python-interview-prep-drill-pack/fixtures/sample_results.json`
+- Compare only at the end with `expected_outputs/provider_groupby.expected.csv` and `expected_outputs/blended_price.expected.json`
 
-Write a script that produces:
-- A ranked summary table (by avg quality, descending)
-- The cheapest model with avg quality ≥ 8.0
-- Mark any model with fewer than 10 results with `(*)`
+## Candidate Prompt
 
-**What Eli is looking for:**
-1. Do you read the data shape before processing?
-2. Do you handle the nullable `ttft_ms`?
-3. Are your functions named and scoped correctly?
-4. Do you narrate your approach?
+You have a JSON file of LLM benchmark results. Each record has `model`, `provider`, `task`, `quality_score`, nullable `ttft_ms`, `cost_per_1k_tokens`, and token counts.
 
----
+Produce:
 
-## How to Use This Mission
+1. A ranked summary table by model or provider, sorted by average quality descending.
+2. Median TTFT, preserving the fact that some TTFT values are null.
+3. The cheapest model with average quality >= 8.0.
+4. A `(*)` marker for any model with fewer than 10 results.
 
-Write your **approach** in the answer box below — not code, your thinking:
+## Starter Signature
 
-- What do you do first?
-- How do you handle the null `ttft_ms`?
-- How do you find the cheapest model above the threshold?
-- What does your output function look like?
+```python
+def benchmark_summary(path: str) -> tuple[object, object]:
+    """Return (ranked_table, cheapest_above_threshold)."""
+```
 
-Eli will ask Socratic questions. You get 3 attempts before he shows you the full answer.
+## Checkpoints
 
-> ⏱️ Start your timer. Read the brief twice. Then answer below.
+- **Minute 0–3:** Restate output shape; inspect `type(data)`, `len(data)`, first row, and keys.
+- **Minute 3–8:** Load into a DataFrame or explicit buckets. Name the denominator for every metric.
+- **Minute 8–14:** Aggregate, sort, mark low sample sizes, and find cheapest-above-threshold.
+- **Minute 14–18:** Sanity-check one model by hand.
+- **Minute 18–20:** Explain assumptions, null policy, and the biggest remaining risk.
+
+## Common Bugs
+
+- Sorting costs before filtering quality >= 8.0.
+- Rounding quality before ranking, changing ties.
+- Treating null TTFT as zero instead of leaving it missing.
+- Forgetting that fewer than 10 rows is a confidence warning, not a failure.
+
+## Interviewer Rubric
+
+| Signal | Strong answer |
+|---|---|
+| Shape inspection | Checks fields and sample rows before aggregation |
+| Metric correctness | Uses average quality, median TTFT, count, and cost clearly |
+| Edge policy | States null TTFT and low-sample policy |
+| Output quality | Sorted table with readable columns and deterministic ties |
+| Narration | Explains filter → sort → first for cheapest model |
+
+## Your Mission
+
+In the answer box, describe your approach before coding: what you inspect, how you aggregate, how you handle null TTFT, and how you find the cheapest model above threshold.
+
+Eli will push on gaps for the first two attempts. On attempt three, he reveals the full pattern.

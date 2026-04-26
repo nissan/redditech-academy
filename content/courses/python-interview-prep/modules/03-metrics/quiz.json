@@ -72,6 +72,34 @@
       "explanation": "Rounding at the end preserves precision during calculation.",
       "difficulty": "intermediate",
       "relatedLessonId": "03-leaderboard"
+    },
+    {
+      "id": "q6",
+      "question": "Bug: a leaderboard sorts `score` strings and ranks `9.5` above `10.0` incorrectly. What is the fix?",
+      "options": [
+        "Cast scores with `pd.to_numeric` or `float` before sorting",
+        "Reverse the alphabet",
+        "Round all scores to zero decimals first",
+        "Delete score 10.0"
+      ],
+      "correctAnswer": 0,
+      "explanation": "String comparison is lexicographic; numeric metrics must be numeric before ranking.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-leaderboard"
+    },
+    {
+      "id": "q7",
+      "question": "A pass rate uses only successful rows as the denominator. Why is that wrong?",
+      "options": [
+        "It makes every success rate look like 100%",
+        "It is faster",
+        "It changes status codes to strings",
+        "It only affects column names"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Rates need the relevant total population as denominator, not only successes.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-leaderboard"
     }
   ]
 }

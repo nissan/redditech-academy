@@ -72,6 +72,34 @@
       "explanation": "Interviewers evaluate communication and validation, not just syntax.",
       "difficulty": "beginner",
       "relatedLessonId": "01-interview-game-plan"
+    },
+    {
+      "id": "q6",
+      "question": "A learner immediately opens `solutions/01_load_json_summary.py` before attempting the drill. What should they do instead?",
+      "options": [
+        "Copy the solution and memorise it",
+        "Attempt the fixture first, then compare after a real try",
+        "Skip all drills and only take quizzes",
+        "Ask Eli to reveal the final answer on attempt one"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The practice loop requires productive struggle before solution review.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
+    },
+    {
+      "id": "q7",
+      "question": "During screen share, the candidate goes silent for five minutes. What is the better move?",
+      "options": [
+        "Narrate the next inspection step and assumption",
+        "Keep silent until perfect",
+        "Close the editor",
+        "Only paste code without context"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Interviewers need to hear reasoning, especially when the candidate is uncertain.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-interview-game-plan"
     }
   ]
 }

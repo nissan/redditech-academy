@@ -72,6 +72,34 @@
       "explanation": "Named aggregations produce readable, interview-friendly result columns.",
       "difficulty": "intermediate",
       "relatedLessonId": "03-join-and-merge"
+    },
+    {
+      "id": "q6",
+      "question": "Bug: after `groupby().agg()`, the provider is no longer a normal column. What should you do before returning?",
+      "options": [
+        "Call `reset_index()`",
+        "Call `dropna()`",
+        "Convert the DataFrame to JSON immediately",
+        "Sort by file path"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Group keys often become the index; reset_index returns a flat table.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-join-and-merge"
+    },
+    {
+      "id": "q7",
+      "question": "A merge unexpectedly multiplies rows. What should you inspect first?",
+      "options": [
+        "Join key uniqueness/cardinality on both sides",
+        "The terminal font",
+        "Whether the CSV filename is short",
+        "Only the final row order"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Many-to-many joins can inflate results; cardinality checks catch this early.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-join-and-merge"
     }
   ]
 }

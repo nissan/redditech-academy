@@ -72,6 +72,34 @@
       "explanation": "Early rounding can change later metrics; final rounding is safer.",
       "difficulty": "intermediate",
       "relatedLessonId": "02-narration-patterns"
+    },
+    {
+      "id": "q6",
+      "question": "Bug: final output prints raw columns `quality_score_mean` and `ttft_ms_median`. What improves it most?",
+      "options": [
+        "Rename columns to human-readable names before returning",
+        "Remove all numeric values",
+        "Print every intermediate object",
+        "Sort by random order"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Readable output is part of the deliverable in an interview.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
+    },
+    {
+      "id": "q7",
+      "question": "A candidate rounds each row before computing the average. What is the better policy?",
+      "options": [
+        "Round only the final presentation output",
+        "Round before every operation",
+        "Never calculate averages",
+        "Convert all values to strings first"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Intermediate rounding can change metrics; round at the end.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
     }
   ]
 }

@@ -1,49 +1,87 @@
 ---
-title: "Mock Problem, Debug a Wrong Result"
-description: "Find the hidden bug, explain it, and show the fix."
+title: "Mock Problem — Debug a Wrong Result"
+description: "45-minute debugging interview: diagnose dtype, duplicate, and outlier traps without rewriting everything."
 slug: "03-mock-debug"
-duration: 15
+duration: 45
 order: 3
 type: "interactive"
 environment: "json-editor"
 challengeid: "pyprep-mock-03-debug"
-missionTitle: "Mission 06C — Debug Under Pressure"
-estimatedMinutes: 15
+missionTitle: "Mock 03 — 45-Minute Debugging Interview"
+estimatedMinutes: 45
 keyTakeaways:
   - "Sanity checks beat blind trust in a nearly correct table"
   - "Dtype inspection catches many silent bugs"
   - "Explain the root cause before you change the code"
 ---
 
-## Debug Like an Adult
+## Timed Interview Room: 45 Minutes
 
-> 🤔 Think it through:
-> - What would you inspect first if the answer looked suspicious?
-> - Could the bug be a bad join, a dropped null group, or string-sorted numbers?
-> - How will you prove the fix works?
+Debugging interviews measure discipline. The table is almost right, which is more dangerous than obviously broken code.
 
-## The Pattern
+**Files:**
+
+- `downloads/python-interview-prep-drill-pack/fixtures/messy_scores.csv`
+- Expected anomaly report: `downloads/python-interview-prep-drill-pack/expected_outputs/anomaly_flags.expected.csv`
+
+## Candidate Prompt
+
+You inherit a script that ranks model scores, but the final table looks suspicious: one toy model is at the top, one model has no score, and duplicate run IDs appear in the raw file.
+
+Find the root causes, explain them, and produce an anomaly report with a human-readable reason for each suspicious row.
+
+## Starter Signature
+
+```python
+def anomaly_flags(path: str) -> pandas.DataFrame:
+    ...
+```
+
+## Debugging Workflow
 
 ```python
 import pandas as pd
 
 
-def debug_result(df: pd.DataFrame) -> pd.DataFrame:
-    print(df.info())
+def inspect_first(df: pd.DataFrame) -> None:
     print(df.head())
+    print(df.info())
     print(df.dtypes)
-
-    df = df.copy()
-    df["score"] = pd.to_numeric(df["score"], errors="coerce")
-    assert df["model_id"].is_unique, "model_id should be unique here"
-    fixed = df.sort_values(["provider", "score"], ascending=[True, False])
-    return fixed
+    print(df["run_id"].duplicated().sum())
 ```
 
-## Narration
+Then coerce deliberately:
 
-"I’d start by checking dtypes, key uniqueness, and a few sample rows before changing anything. Debugging under screen-share is really just disciplined inspection plus a quick sanity check after the fix."
+```python
+score = pd.to_numeric(df["score"], errors="coerce")
+submitted_at = pd.to_datetime(df["submitted_at"], errors="coerce", utc=True)
+```
+
+## Checkpoints
+
+- **Minute 0–5:** Inspect rows, dtypes, duplicates, nulls.
+- **Minute 5–15:** List possible root causes before editing code.
+- **Minute 15–25:** Add coercion and explicit anomaly masks.
+- **Minute 25–35:** Produce a reason column without deleting rows first.
+- **Minute 35–45:** Prove the fix with counts and explain the minimal change.
+
+## Common Bugs
+
+- Sorting score strings lexicographically instead of numerically.
+- Dropping rows before recording why they were suspicious.
+- Treating an outlier score like `1000` as valid because it is numeric.
+- Fixing duplicates without saying whether you keep first, latest, or max score.
+
+## Interviewer Rubric
+
+| Signal | Strong answer |
+|---|---|
+| Diagnosis | Checks dtypes, duplicates, nulls, and sample rows first |
+| Root cause | Explains string scores, invalid timestamps, duplicates, and outliers |
+| Minimal fix | Uses coercion and masks, not a full rewrite |
+| Evidence | Shows before/after counts or anomaly table |
+| Narration | Names the risk of silently dropping rows |
 
 ## Your Mission
 
-Debug a subtly wrong result, identify the root cause, and describe the minimal fix that makes the numbers trustworthy again.
+Describe your debugging plan: what you inspect first, which root causes you test, how you build the anomaly report, and how you prove the fix works.
