@@ -1,0 +1,26 @@
+{
+  "slug": "02-llm-foundations-for-engineers",
+  "title": "LLM Foundations for Engineers",
+  "description": "Learn tokens, context, embeddings, tool use, and failure modes without prompt-engineering fluff.",
+  "order": 2,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "LLM Foundations for Engineers",
+    "icon": "\ud83d\udd24",
+    "description": "Move from prompt tinkering to intentional system design."
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Move from prompt tinkering to intentional system design.",
+    "Tokens, context windows, and embeddings",
+    "Prompting vs structured control",
+    "Tool use and function calling"
+  ],
+  "prerequisiteModules": [
+    "01-shift-code-to-intelligence-systems"
+  ]
+}

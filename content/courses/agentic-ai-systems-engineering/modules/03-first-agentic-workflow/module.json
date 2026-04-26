@@ -1,0 +1,26 @@
+{
+  "slug": "03-first-agentic-workflow",
+  "title": "Building Your First Agentic Workflow",
+  "description": "Build workflows with routers, planners, and tool-callers instead of one-off function calls.",
+  "order": 3,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Building Your First Agentic Workflow",
+    "icon": "\ud83d\udee0\ufe0f",
+    "description": "Build your first end-to-end agent system and decompose problems into workflows."
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Build your first end-to-end agent system and decompose problems into workflows.",
+    "Single-agent vs multi-agent systems",
+    "Router, planner, and tool-caller patterns",
+    "Designing workflows instead of functions"
+  ],
+  "prerequisiteModules": [
+    "02-llm-foundations-for-engineers"
+  ]
+}

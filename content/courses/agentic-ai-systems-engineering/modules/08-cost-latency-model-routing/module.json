@@ -1,0 +1,26 @@
+{
+  "slug": "08-cost-latency-model-routing",
+  "title": "Cost, Latency, and Model Routing",
+  "description": "Make AI systems economically viable with routing, caching, budgets, and cost observability.",
+  "order": 8,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Cost, Latency, and Model Routing",
+    "icon": "\ud83d\udcb8",
+    "description": "Design systems that are economically viable at scale."
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Design systems that are economically viable at scale.",
+    "Why cost explodes in AI systems",
+    "Cheap vs premium model routing",
+    "Caching and reuse strategies"
+  ],
+  "prerequisiteModules": [
+    "07-real-time-ai-systems"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "04-control-systems-guardrails-retries-safety",
+  "title": "Control Systems \u2014 Guardrails, Retries, and Safety",
+  "description": "Design systems that fail safely using constraints, validation, retries, fallbacks, and moderation.",
+  "order": 4,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Control Systems",
+    "icon": "\ud83d\udee1\ufe0f",
+    "description": "Build robust AI systems that do not break in production."
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Build robust AI systems that do not break in production.",
+    "Why AI systems fail in production",
+    "Schema constraints, validation, and moderation",
+    "Retry and fallback strategies"
+  ],
+  "prerequisiteModules": [
+    "03-first-agentic-workflow"
+  ]
+}

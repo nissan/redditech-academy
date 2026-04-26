@@ -1,0 +1,35 @@
+{
+  "id": "agentic-ai-systems-engineering",
+  "slug": "agentic-ai-systems-engineering",
+  "title": "Agentic AI Systems Engineering",
+  "description": "From fullstack developer to AI orchestrator: design, build, evaluate, and operate production-grade AI-powered systems using LLMs, agents, tools, real-time orchestration, observability, and cost-aware model routing.",
+  "tagline": "Become the person companies trust to build AI systems that actually work.",
+  "icon": "\ud83e\udd16",
+  "badge": {
+    "icon": "\ud83e\udde0",
+    "name": "AI Systems Orchestrator",
+    "description": "Completed the Agentic AI Systems Engineering course"
+  },
+  "level": "advanced",
+  "difficulty": "advanced",
+  "estimatedHours": 14,
+  "learningObjectives": [
+    "Design agentic AI systems instead of isolated prompts",
+    "Build tool-using workflows with guardrails and fallbacks",
+    "Create evaluation pipelines for LLM quality and regression testing",
+    "Design memory systems using RAG, vectors, and semantic caching",
+    "Optimize AI products for latency, cost, reliability, and observability",
+    "Ship a portfolio-grade AI system with orchestration, evaluation, and production controls"
+  ],
+  "prerequisiteModules": [],
+  "tags": [
+    "agentic-ai",
+    "llms",
+    "agents",
+    "systems-engineering",
+    "evaluation",
+    "rag",
+    "observability",
+    "fullstack"
+  ]
+}

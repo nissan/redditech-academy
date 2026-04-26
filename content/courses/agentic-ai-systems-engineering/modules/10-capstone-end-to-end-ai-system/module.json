@@ -1,0 +1,26 @@
+{
+  "slug": "10-capstone-end-to-end-ai-system",
+  "title": "Capstone Project \u2014 Build an AI System End-to-End",
+  "description": "Ship a portfolio-grade AI system with workflow orchestration, guardrails, evaluation, and cost/latency controls.",
+  "order": 10,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Capstone Project",
+    "icon": "\ud83c\udfc1",
+    "description": "Produce a senior-level portfolio project that proves you can build AI systems that actually work."
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Produce a senior-level portfolio project that proves you can build AI systems that actually work.",
+    "AI customer support agent",
+    "Voice AI assistant",
+    "AI research analyst"
+  ],
+  "prerequisiteModules": [
+    "09-productionizing-ai-systems"
+  ]
+}

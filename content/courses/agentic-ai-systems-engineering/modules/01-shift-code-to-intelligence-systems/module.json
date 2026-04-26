@@ -1,0 +1,24 @@
+{
+  "slug": "01-shift-code-to-intelligence-systems",
+  "title": "The Shift \u2014 From Code to Intelligence Systems",
+  "description": "Move from deterministic feature delivery to probabilistic system design.",
+  "order": 1,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "The Shift",
+    "icon": "\ud83e\udded",
+    "description": "Understand the new mental model of software engineering and map your current fullstack skills to AI-native roles."
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Understand the new mental model of software engineering and map your current fullstack skills to AI-native roles.",
+    "Why coding is being commoditized",
+    "Deterministic vs probabilistic systems",
+    "What agentic AI means without hype"
+  ],
+  "prerequisiteModules": []
+}

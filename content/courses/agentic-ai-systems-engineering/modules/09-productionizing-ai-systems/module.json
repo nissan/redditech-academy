@@ -1,0 +1,26 @@
+{
+  "slug": "09-productionizing-ai-systems",
+  "title": "Productionizing AI Systems",
+  "description": "Deploy, observe, version, and improve AI services with real users and feedback loops.",
+  "order": 9,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Productionizing AI Systems",
+    "icon": "\ud83d\ude80",
+    "description": "Ship production-ready AI systems, not demos."
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Ship production-ready AI systems, not demos.",
+    "Deploying AI services with Docker and APIs",
+    "Logs, traces, and evaluation metrics",
+    "Versioning prompts, models, and evals"
+  ],
+  "prerequisiteModules": [
+    "08-cost-latency-model-routing"
+  ]
+}

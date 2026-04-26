@@ -1,0 +1,95 @@
+---
+title: "The Smallest Useful Agent"
+description: "Build workflows with routers, planners, and tool-callers instead of one-off function calls."
+slug: "01-core-systems-pattern"
+duration: 45
+order: 1
+type: "standard"
+estimatedMinutes: 45
+keyTakeaways:
+  - "Agents are workflows with model-mediated decisions"
+  - "Tool boundaries define safety"
+  - "Decomposition is the main engineering skill"
+---
+
+# The Smallest Useful Agent
+
+## 🎮 The Game
+
+You are no longer just implementing a feature. You are designing an intelligence system that has to make decisions, call tools, recover from failure, and prove that it works.
+
+**Scenario:** A startup asks you to build an AI product that real users will depend on. Your job is to turn the vague request into a controlled system: workflow, model decisions, tool boundaries, evals, observability, and cost controls.
+
+> 🤔 Think it through before reading on:
+> - Where can a deterministic function solve the problem better than an LLM?
+> - Where does the system need judgment, retrieval, or orchestration?
+> - What evidence would convince a senior engineer that this is production-ready?
+
+## 🏗️ Your Running Project
+
+**Course project:** Build an AI research/operator assistant that can take a complex user request, choose a workflow, call tools, retrieve knowledge, stream progress, evaluate its own output, and report cost/latency.
+
+**This module adds:** Build a research assistant workflow that classifies a request, selects tools, fetches evidence, and returns a cited answer.
+
+**Outcome:** Build your first end-to-end agent system and decompose problems into workflows.
+
+## Topics
+
+- Single-agent vs multi-agent systems
+- Router, planner, and tool-caller patterns
+- Designing workflows instead of functions
+- Hands-on: build a tool-using AI agent
+
+## Systems Pattern
+
+The core pattern for this module is:
+
+```mermaid
+flowchart LR
+  A[User or system intent] --> B[Workflow decision]
+  B --> C[Model / tool action]
+  C --> D[Validation and evaluation]
+  D --> E[Observed product outcome]
+  E --> F[Feedback loop]
+  F --> B
+```
+
+A senior AI engineer does not ask, "What prompt should I use?" first. They ask:
+
+1. **What decision is being made?**
+2. **What context is required?**
+3. **What tools or APIs are allowed?**
+4. **How do we know the answer is good?**
+5. **What happens when the model is wrong, slow, expensive, or unavailable?**
+
+## Design Table
+
+| Step | Concept | Engineering Question |
+| --- | --- | --- |
+| 1 | Single-agent vs multi-agent systems | What failure mode, metric, or handoff does this topic create? |
+| 2 | Router, planner, and tool-caller patterns | What failure mode, metric, or handoff does this topic create? |
+| 3 | Designing workflows instead of functions | What failure mode, metric, or handoff does this topic create? |
+| 4 | Hands-on: build a tool-using AI agent | What failure mode, metric, or handoff does this topic create? |
+
+## Build Exercise
+
+Create a one-page design note for this module's project slice:
+
+> **Build a research assistant workflow that classifies a request, selects tools, fetches evidence, and returns a cited answer.**
+
+Include:
+
+- Inputs and outputs
+- Workflow steps
+- Model/tool boundaries
+- Guardrails or validation rules
+- Evaluation metric or rubric
+- Cost/latency risk
+
+## What a Senior Reviewer Is Listening For
+
+- You separate deterministic code from model-mediated judgment.
+- You describe control points, not just prompts.
+- You name failure modes and recovery paths.
+- You define how quality will be measured.
+- You can explain cost and latency tradeoffs in product terms.

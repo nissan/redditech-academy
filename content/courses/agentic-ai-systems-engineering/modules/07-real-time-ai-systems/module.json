@@ -1,0 +1,26 @@
+{
+  "slug": "07-real-time-ai-systems",
+  "title": "Real-Time AI Systems",
+  "description": "Build low-latency voice, streaming, and event-driven AI systems.",
+  "order": 7,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Real-Time AI Systems",
+    "icon": "\u26a1",
+    "description": "Build low-latency AI systems for sub-second interactions."
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Build low-latency AI systems for sub-second interactions.",
+    "Streaming architectures with WebSockets and events",
+    "Voice pipelines: STT to LLM to TTS",
+    "Latency optimization strategies"
+  ],
+  "prerequisiteModules": [
+    "06-memory-knowledge-rag-vectors-beyond"
+  ]
+}

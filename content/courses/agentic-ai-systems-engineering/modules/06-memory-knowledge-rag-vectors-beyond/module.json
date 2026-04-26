@@ -1,0 +1,26 @@
+{
+  "slug": "06-memory-knowledge-rag-vectors-beyond",
+  "title": "Memory & Knowledge \u2014 RAG, Vectors, and Beyond",
+  "description": "Design useful memory systems with RAG, vector search, knowledge graphs, normalization, and caching.",
+  "order": 6,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Memory & Knowledge",
+    "icon": "\ud83e\udde0",
+    "description": "Design memory systems that make AI useful, not generic."
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Design memory systems that make AI useful, not generic.",
+    "RAG fundamentals and when not to use it",
+    "Vector database concepts",
+    "Knowledge graphs vs embeddings"
+  ],
+  "prerequisiteModules": [
+    "05-evaluation-missing-layer"
+  ]
+}

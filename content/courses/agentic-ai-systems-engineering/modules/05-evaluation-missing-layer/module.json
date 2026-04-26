@@ -1,0 +1,26 @@
+{
+  "slug": "05-evaluation-missing-layer",
+  "title": "Evaluation \u2014 The Missing Layer Most Devs Ignore",
+  "description": "Build LLM quality measurement with judges, humans-in-the-loop, benchmarks, and regression tests.",
+  "order": 5,
+  "lessons": [
+    "01-core-systems-pattern"
+  ],
+  "passingScore": 70,
+  "badge": {
+    "name": "Evaluation",
+    "icon": "\ud83d\udccf",
+    "description": "Build an evaluation pipeline and prove your AI system works."
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 1.4,
+  "learningObjectives": [
+    "Build an evaluation pipeline and prove your AI system works.",
+    "Why it works on my machine is dead",
+    "LLM-as-judge patterns",
+    "Human-in-the-loop vs automated evaluation"
+  ],
+  "prerequisiteModules": [
+    "04-control-systems-guardrails-retries-safety"
+  ]
+}

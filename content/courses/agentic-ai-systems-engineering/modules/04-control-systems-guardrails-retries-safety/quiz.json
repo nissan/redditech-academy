@@ -1,0 +1,49 @@
+{
+  "id": "04-control-systems-guardrails-retries-safety-quiz",
+  "moduleId": "04-control-systems-guardrails-retries-safety",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the primary outcome of Control Systems \u2014 Guardrails, Retries, and Safety?",
+      "options": [
+        "Build robust AI systems that do not break in production.",
+        "Memorize a list of prompt hacks",
+        "Avoid using observability",
+        "Replace all deterministic code with LLM calls"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Build robust AI systems that do not break in production.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-systems-pattern"
+    },
+    {
+      "id": "q2",
+      "question": "Which mindset best fits production AI systems engineering?",
+      "options": [
+        "Ship the first prompt that sounds good",
+        "Design workflows, controls, feedback loops, and measurable quality gates",
+        "Use only the largest model for every task",
+        "Disable retries to keep code simple"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AI systems need orchestration, controls, evals, and operations because outputs are probabilistic.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-systems-pattern"
+    },
+    {
+      "id": "q3",
+      "question": "In this module, which project exercise should the learner produce?",
+      "options": [
+        "A static landing page only",
+        "Add guardrails to the research assistant: JSON schema validation, tool allowlists, retry limits, and model fallback rules.",
+        "A list of model rumors",
+        "A prompt with no tests or metrics"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The project exercise turns the module concept into a concrete AI systems artifact.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-systems-pattern"
+    }
+  ]
+}

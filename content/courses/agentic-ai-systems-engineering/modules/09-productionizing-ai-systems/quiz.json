@@ -1,0 +1,49 @@
+{
+  "id": "09-productionizing-ai-systems-quiz",
+  "moduleId": "09-productionizing-ai-systems",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the primary outcome of Productionizing AI Systems?",
+      "options": [
+        "Ship production-ready AI systems, not demos.",
+        "Memorize a list of prompt hacks",
+        "Avoid using observability",
+        "Replace all deterministic code with LLM calls"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ship production-ready AI systems, not demos.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-systems-pattern"
+    },
+    {
+      "id": "q2",
+      "question": "Which mindset best fits production AI systems engineering?",
+      "options": [
+        "Ship the first prompt that sounds good",
+        "Design workflows, controls, feedback loops, and measurable quality gates",
+        "Use only the largest model for every task",
+        "Disable retries to keep code simple"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AI systems need orchestration, controls, evals, and operations because outputs are probabilistic.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-core-systems-pattern"
+    },
+    {
+      "id": "q3",
+      "question": "In this module, which project exercise should the learner produce?",
+      "options": [
+        "A static landing page only",
+        "Package the assistant as a production service with release notes, eval gates, telemetry, and rollback criteria.",
+        "A list of model rumors",
+        "A prompt with no tests or metrics"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The project exercise turns the module concept into a concrete AI systems artifact.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-core-systems-pattern"
+    }
+  ]
+}
