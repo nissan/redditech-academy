@@ -85,3 +85,25 @@ submitted_at = pd.to_datetime(df["submitted_at"], errors="coerce", utc=True)
 ## Your Mission
 
 Describe your debugging plan: what you inspect first, which root causes you test, how you build the anomaly report, and how you prove the fix works.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart TD
+    A[Suspicious output] --> B[Inspect dtypes]
+    B --> C[Check duplicates]
+    C --> D[Coerce score/timestamp]
+    D --> E[Build anomaly masks]
+    E --> F[Attach reason column]
+    F --> G[Show before/after evidence]
+```
+
+## What Eli Is Listening For
+
+- You diagnose before rewriting.
+- You prove whether scores are numeric.
+- You preserve suspicious rows with reasons.
+- You show evidence that the fix changed the right thing.
+

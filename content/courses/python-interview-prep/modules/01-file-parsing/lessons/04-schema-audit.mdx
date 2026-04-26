@@ -49,3 +49,24 @@ def clean_schema(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Audit the incoming frame, coerce the obvious number and timestamp columns, and return a short null summary alongside the cleaned data.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart TD
+    A[Raw DataFrame] --> B[df.info + df.head]
+    B --> C[Identify numeric/date columns]
+    C --> D[pd.to_numeric / pd.to_datetime]
+    D --> E[Count NaN and NaT]
+    E --> F[Return cleaned data + null summary]
+```
+
+## What Eli Is Listening For
+
+- You inspect dtypes before computing.
+- You use `errors="coerce"` deliberately.
+- You count failed coercions instead of hiding them.
+- You explain whether bad rows should be dropped, filled, or flagged.
+

@@ -60,3 +60,24 @@ cost  = float(row["cost"])
 ```
 
 Interviewers watch for this. Failing to cast and then wondering why `"8.42" > "9.1"` evaluates to `True` is a red flag.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart LR
+    A[CSV file] --> B[csv.DictReader]
+    B --> C[Rows as dicts]
+    C --> D[Inspect headers]
+    D --> E[Cast numeric fields]
+    E --> F[Validate row count]
+```
+
+## What Eli Is Listening For
+
+- You choose `csv.DictReader` when headers exist.
+- You remember CSV values arrive as strings.
+- You inspect headers before assuming field names.
+- You cast only the fields that should be numeric.
+

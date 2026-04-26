@@ -72,3 +72,26 @@ def benchmark_summary(path: str) -> tuple[object, object]:
 In the answer box, describe your approach before coding: what you inspect, how you aggregate, how you handle null TTFT, and how you find the cheapest model above threshold.
 
 Eli will push on gaps for the first two attempts. On attempt three, he reveals the full pattern.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart LR
+    A[Open fixture] --> B[Inspect shape]
+    B --> C[Group by model/provider]
+    C --> D[Compute quality, count, median TTFT]
+    D --> E[Mark low sample sizes]
+    E --> F[Filter quality >= 8]
+    F --> G[Sort cost ascending]
+    G --> H[Explain winner + caveats]
+```
+
+## What Eli Is Listening For
+
+- You inspect the data before aggregating.
+- You handle nullable TTFT without pretending it is zero.
+- You filter by quality before choosing cheapest.
+- You explain low sample size as confidence risk.
+

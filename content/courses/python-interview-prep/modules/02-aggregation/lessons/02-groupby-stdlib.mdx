@@ -54,3 +54,13 @@ def summarise(rows: list[dict[str, str]]) -> list[dict[str, float]]:
 ## Your Mission
 
 Show how you would aggregate a small list of benchmark rows by provider using a manual loop, then explain why you chose stdlib over pandas.
+
+---
+
+## What Eli Is Listening For
+
+- You can explain why stdlib is enough for a small file.
+- You accumulate both numerator and denominator.
+- You avoid dividing until after the loop.
+- You return sorted, readable output rather than a raw accumulator.
+

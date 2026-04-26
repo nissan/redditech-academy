@@ -47,3 +47,25 @@ def build_leaderboard(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Turn the summary table into a deterministic leaderboard with clear tie-breaking and a rank column.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart LR
+    A[Raw metrics] --> B[Coerce numeric scores]
+    B --> C[Aggregate per model]
+    C --> D[Apply threshold filters]
+    D --> E[Sort by primary metric]
+    E --> F[Apply deterministic tie-breaker]
+    F --> G[Round final display]
+```
+
+## What Eli Is Listening For
+
+- You coerce scores before sorting.
+- You apply filters before selecting winners.
+- You define tie-breakers so output is reproducible.
+- You round only at final presentation.
+

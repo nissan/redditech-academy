@@ -49,3 +49,26 @@ def enrich(results: pd.DataFrame, models: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Enrich the benchmark results with model metadata and prove the join did not duplicate or drop rows unexpectedly.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart TD
+    A[Left table] --> C{Check key uniqueness}
+    B[Right metadata] --> C
+    C --> D{Expected cardinality?}
+    D -->|many-to-one| E[merge validate=m:1]
+    D -->|unexpected many-to-many| F[Stop and inspect duplicates]
+    E --> G[Check unmatched keys]
+    G --> H[Only then trust output]
+```
+
+## What Eli Is Listening For
+
+- You inspect join keys before merging.
+- You name the expected cardinality.
+- You check unmatched rows after the merge.
+- You treat row multiplication as a bug until proven otherwise.
+

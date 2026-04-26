@@ -48,3 +48,13 @@ def add_latency_metrics(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Compute TTFT, tokens/sec, and total latency from raw timestamps, and keep the units obvious enough that nobody has to guess what the columns mean.
+
+---
+
+## What Eli Is Listening For
+
+- You keep latency units explicit: ms vs seconds.
+- You know average and p95 answer different questions.
+- You do not convert null latency to zero unless the prompt says so.
+- You sanity-check one metric by hand.
+

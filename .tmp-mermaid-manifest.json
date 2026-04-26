@@ -1144,6 +1144,94 @@
     "out": "public/assets/courses/openclaw-academy/diagrams/module-10-case-study-00-module-briefing-d1.png"
   },
   {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/01-file-parsing/lessons/02-reading-csv.mdx",
+    "course": "python-interview-prep",
+    "module": "01-file-parsing",
+    "lesson": "02-reading-csv",
+    "index": 1,
+    "start_line": 68,
+    "end_line": 75,
+    "mermaid": "flowchart LR\n    A[CSV file] --> B[csv.DictReader]\n    B --> C[Rows as dicts]\n    C --> D[Inspect headers]\n    D --> E[Cast numeric fields]\n    E --> F[Validate row count]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/01-file-parsing-02-reading-csv-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/01-file-parsing/lessons/04-schema-audit.mdx",
+    "course": "python-interview-prep",
+    "module": "01-file-parsing",
+    "lesson": "04-schema-audit",
+    "index": 1,
+    "start_line": 57,
+    "end_line": 64,
+    "mermaid": "flowchart TD\n    A[Raw DataFrame] --> B[df.info + df.head]\n    B --> C[Identify numeric/date columns]\n    C --> D[pd.to_numeric / pd.to_datetime]\n    D --> E[Count NaN and NaT]\n    E --> F[Return cleaned data + null summary]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/01-file-parsing-04-schema-audit-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/02-aggregation/lessons/03-join-and-merge.mdx",
+    "course": "python-interview-prep",
+    "module": "02-aggregation",
+    "lesson": "03-join-and-merge",
+    "index": 1,
+    "start_line": 57,
+    "end_line": 66,
+    "mermaid": "flowchart TD\n    A[Left table] --> C{Check key uniqueness}\n    B[Right metadata] --> C\n    C --> D{Expected cardinality?}\n    D -->|many-to-one| E[merge validate=m:1]\n    D -->|unexpected many-to-many| F[Stop and inspect duplicates]\n    E --> G[Check unmatched keys]\n    G --> H[Only then trust output]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/02-aggregation-03-join-and-merge-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/03-metrics/lessons/03-leaderboard.mdx",
+    "course": "python-interview-prep",
+    "module": "03-metrics",
+    "lesson": "03-leaderboard",
+    "index": 1,
+    "start_line": 55,
+    "end_line": 63,
+    "mermaid": "flowchart LR\n    A[Raw metrics] --> B[Coerce numeric scores]\n    B --> C[Aggregate per model]\n    C --> D[Apply threshold filters]\n    D --> E[Sort by primary metric]\n    E --> F[Apply deterministic tie-breaker]\n    F --> G[Round final display]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/03-metrics-03-leaderboard-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/04-output-formatting/lessons/02-narration-patterns.mdx",
+    "course": "python-interview-prep",
+    "module": "04-output-formatting",
+    "lesson": "02-narration-patterns",
+    "index": 1,
+    "start_line": 46,
+    "end_line": 54,
+    "mermaid": "flowchart TD\n    A[Read prompt] --> B[Say input/output shape]\n    B --> C[Inspect sample rows]\n    C --> D[State plan]\n    D --> E[Code small function]\n    E --> F[Sanity-check output]\n    F --> G[Narrate caveat or next step]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/04-output-formatting-02-narration-patterns-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/05-edge-cases/lessons/01-null-semantics.mdx",
+    "course": "python-interview-prep",
+    "module": "05-edge-cases",
+    "lesson": "01-null-semantics",
+    "index": 1,
+    "start_line": 51,
+    "end_line": 62,
+    "mermaid": "flowchart TD\n    A[Missing value found] --> B{What does missing mean?}\n    B -->|Unknown measurement| C[Keep NaN and skip in metric]\n    B -->|Zero real value| D[Fill with 0 explicitly]\n    B -->|Invalid record| E[Flag or exclude with reason]\n    B -->|Missing group key| F[Use dropna=false or fill label]\n    C --> G[Report policy]\n    D --> G\n    E --> G\n    F --> G",
+    "out": "public/assets/courses/python-interview-prep/diagrams/05-edge-cases-01-null-semantics-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/06-mock-problems/lessons/01-mock-aggregation.mdx",
+    "course": "python-interview-prep",
+    "module": "06-mock-problems",
+    "lesson": "01-mock-aggregation",
+    "index": 1,
+    "start_line": 80,
+    "end_line": 89,
+    "mermaid": "flowchart LR\n    A[Open fixture] --> B[Inspect shape]\n    B --> C[Group by model/provider]\n    C --> D[Compute quality, count, median TTFT]\n    D --> E[Mark low sample sizes]\n    E --> F[Filter quality >= 8]\n    F --> G[Sort cost ascending]\n    G --> H[Explain winner + caveats]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/06-mock-problems-01-mock-aggregation-d1.png"
+  },
+  {
+    "file": "/Users/loki/redditech-academy/content/courses/python-interview-prep/modules/06-mock-problems/lessons/03-mock-debug.mdx",
+    "course": "python-interview-prep",
+    "module": "06-mock-problems",
+    "lesson": "03-mock-debug",
+    "index": 1,
+    "start_line": 93,
+    "end_line": 101,
+    "mermaid": "flowchart TD\n    A[Suspicious output] --> B[Inspect dtypes]\n    B --> C[Check duplicates]\n    C --> D[Coerce score/timestamp]\n    D --> E[Build anomaly masks]\n    E --> F[Attach reason column]\n    F --> G[Show before/after evidence]",
+    "out": "public/assets/courses/python-interview-prep/diagrams/06-mock-problems-03-mock-debug-d1.png"
+  },
+  {
     "file": "/Users/loki/redditech-academy/content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx",
     "course": "sales-spin-meddic",
     "module": "01-sales-system",

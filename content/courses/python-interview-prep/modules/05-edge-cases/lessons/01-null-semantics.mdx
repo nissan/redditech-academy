@@ -43,3 +43,28 @@ def summarise_nulls(df: pd.DataFrame) -> pd.DataFrame:
 ## Your Mission
 
 Show how you would surface missing values, choose a fill policy only when it is justified, and keep missing groups visible in summaries.
+
+---
+
+## Visual Workflow
+
+```mermaid
+flowchart TD
+    A[Missing value found] --> B{What does missing mean?}
+    B -->|Unknown measurement| C[Keep NaN and skip in metric]
+    B -->|Zero real value| D[Fill with 0 explicitly]
+    B -->|Invalid record| E[Flag or exclude with reason]
+    B -->|Missing group key| F[Use dropna=false or fill label]
+    C --> G[Report policy]
+    D --> G
+    E --> G
+    F --> G
+```
+
+## What Eli Is Listening For
+
+- You ask what null means before choosing a policy.
+- You do not silently turn missing latency into zero.
+- You preserve missing group keys when they matter.
+- You report how many rows were affected.
+
