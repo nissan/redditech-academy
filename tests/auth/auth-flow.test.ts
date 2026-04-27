@@ -10,6 +10,7 @@ beforeEach(async () => {
   process.env.AUTH_SECRET = "test-secret";
   process.env.DATABASE_URL = "file::memory:";
   process.env.APP_URL = "http://academy.test";
+  delete process.env.GLOBAL_COURSE_ACCESS_EMAILS;
   await resetAuthDbForTests();
 });
 
@@ -52,6 +53,14 @@ describe("magic-link auth", () => {
 });
 
 describe("course access approvals", () => {
+  it("allows global tester emails across courses", async () => {
+    process.env.GLOBAL_COURSE_ACCESS_EMAILS = " anushasubedi49@gmail.com , other@example.com ";
+
+    await expect(userHasCourseAccess("python-interview-prep", "AnushaSubedi49@gmail.com")).resolves.toBe(true);
+    await expect(userHasCourseAccess("solana-academy", "anushasubedi49@gmail.com")).resolves.toBe(true);
+    await expect(userHasCourseAccess("python-interview-prep", "learner@example.com")).resolves.toBe(false);
+  });
+
   it("approves a request using a one-time approval link", async () => {
     const request = await requestCourseAccess({ courseSlug: "auth-training", email: "Learner@Example.com", reason: "pilot", requestUrl: "http://academy.test/request-access" });
     const token = new URL(request.approveLink).searchParams.get("token")!;

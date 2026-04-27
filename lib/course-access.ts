@@ -21,9 +21,19 @@ export function isCourseProtected(courseSlug: string) {
   return Boolean(course?.protected || course?.accessProtected);
 }
 
+function globalCourseAccessEmails() {
+  return new Set(
+    (process.env.GLOBAL_COURSE_ACCESS_EMAILS || "")
+      .split(",")
+      .map((email) => normalizeEmail(email))
+      .filter(Boolean),
+  );
+}
+
 export async function userHasCourseAccess(courseSlug: string, emailInput: string) {
   await ensureAuthSchema();
   const email = normalizeEmail(emailInput);
+  if (globalCourseAccessEmails().has(email)) return true;
   const rows = await getDb()
     .select()
     .from(courseAccess)
