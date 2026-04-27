@@ -28,5 +28,6 @@
     "juniorGameBrief": "Before you architect anything, try to answer a legal question using only raw documents and a general-purpose LLM. Note where it fails. That's your design brief.",
     "finalOutcome": "A production-grade RAG system deployed to the cloud with a complete eval contract, observability stack, and incident runbook."
   },
-  "learningApproach": "whole-game"
+  "learningApproach": "whole-game",
+  "protected": true
 }

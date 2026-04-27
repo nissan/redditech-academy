@@ -31,5 +31,6 @@
     "rag",
     "observability",
     "fullstack"
-  ]
+  ],
+  "protected": true
 }

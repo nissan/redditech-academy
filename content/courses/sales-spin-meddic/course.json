@@ -29,5 +29,6 @@
     "juniorGameBrief": "Before any methodology, write down how you would qualify a $250k deal right now. That gap between your answer and a complete MEDDIC scorecard is what this course fills.",
     "finalOutcome": "A fully qualified, multi-stakeholder enterprise deal with documented MEDDIC evidence, a Challenger insight, and a signed close plan."
   },
-  "learningApproach": "whole-game"
+  "learningApproach": "whole-game",
+  "protected": true
 }

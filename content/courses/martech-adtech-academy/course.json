@@ -27,5 +27,6 @@
     "juniorGameBrief": "Before any theory, sketch the customer journey from first ad impression to paying customer. Mark every place where data is collected. That sketch is your MarTech architecture brief.",
     "finalOutcome": "A fully instrumented, multi-channel campaign with audience targeting, attribution, CRM integration, and conversion measurement."
   },
-  "learningApproach": "whole-game"
+  "learningApproach": "whole-game",
+  "protected": true
 }

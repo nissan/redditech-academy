@@ -33,5 +33,6 @@
     { "slug": "05-edge-cases", "title": "Edge Cases", "order": 5 },
     { "slug": "06-mock-problems", "title": "Full Mock Problems", "order": 6 },
     { "slug": "07-visualisation-telemetry-benchmarking", "title": "Visualisation, Telemetry & Benchmarking", "order": 7 }
-  ]
+  ],
+  "protected": true
 }

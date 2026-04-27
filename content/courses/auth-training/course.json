@@ -29,5 +29,6 @@
     "juniorGameBrief": "Before any theory, identify 3 ways an attacker could compromise a login flow. That is your threat model.",
     "finalOutcome": "A fintech API with complete IAM: authentication, authorisation, federated identity, FGA, and a security audit trail."
   },
-  "learningApproach": "whole-game"
+  "learningApproach": "whole-game",
+  "protected": true
 }

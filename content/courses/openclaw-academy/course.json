@@ -27,5 +27,6 @@
     "juniorGameBrief": "Before you learn the architecture, install OpenClaw and send your first message. Don't configure anything. Just run it. Your experience of what works and what confuses you is your learning agenda.",
     "finalOutcome": "A production-ready self-hosted AI assistant running on your own hardware, connected to your team's messaging apps, with a full security model, custom skills, and a documented deployment."
   },
-  "learningApproach": "whole-game"
+  "learningApproach": "whole-game",
+  "protected": true
 }
