@@ -96,4 +96,6 @@ export interface CourseMetadata {
   version: string;
   free: boolean;
   comingSoon?: boolean;
+  protected?: boolean;
+  accessProtected?: boolean;
 }

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AuthGateMessage } from "@/components/auth/AuthGateMessage";
+import { requireCourseAccess } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import { getCourseMetadata } from "@/lib/courses";
 import { getModule, getAllModules, getModuleSlugs } from "@/lib/content";
@@ -35,6 +37,18 @@ export default async function ModuleOverviewPage({ params }: PageProps) {
   const { courseSlug, moduleSlug } = await params;
   const course = getCourseMetadata(courseSlug);
   if (!course) notFound();
+
+  const access = await requireCourseAccess(courseSlug);
+  if (!access.allowed) {
+    return (
+      <AuthGateMessage
+        course={course}
+        courseSlug={courseSlug}
+        reason={access.reason ?? "login_required"}
+        email={access.user?.email}
+      />
+    );
+  }
 
   const mod = getModule(courseSlug, moduleSlug);
   if (!mod) notFound();

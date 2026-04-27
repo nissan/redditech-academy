@@ -186,6 +186,7 @@ export function InteractiveLessonClient({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             challengeId: challenge.id,
+            courseSlug,
             environment,
             userInput,
             attemptNumber: state.attempts + 1, // 1-indexed for Socratic 3-strike rule

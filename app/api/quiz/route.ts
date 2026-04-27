@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getModule, getModuleMetadata } from "@/lib/content";
+import { requireCourseAccess } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -8,6 +9,14 @@ export async function GET(request: NextRequest) {
 
   if (!courseSlug || !moduleSlug) {
     return NextResponse.json({ error: "Missing params" }, { status: 400 });
+  }
+
+  const access = await requireCourseAccess(courseSlug);
+  if (!access.allowed) {
+    return NextResponse.json(
+      { error: access.reason === "login_required" ? "Login required" : "Access required" },
+      { status: access.reason === "login_required" ? 401 : 403 }
+    );
   }
 
   const mod = getModule(courseSlug, moduleSlug);

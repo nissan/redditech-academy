@@ -8,6 +8,8 @@ import {
 } from "@/lib/content";
 import { InteractiveLessonClient } from "./interactive-lesson-client";
 import Link from "next/link";
+import { AuthGateMessage } from "@/components/auth/AuthGateMessage";
+import { requireCourseAccess } from "@/lib/auth";
 import path from "path";
 import fs from "fs";
 import { ChallengeSpec } from "@/lib/challenge-types";
@@ -61,6 +63,18 @@ export default async function InteractiveLessonPage({ params }: PageProps) {
 
   const course = getCourseMetadata(courseSlug);
   if (!course) notFound();
+
+  const access = await requireCourseAccess(courseSlug);
+  if (!access.allowed) {
+    return (
+      <AuthGateMessage
+        course={course}
+        courseSlug={courseSlug}
+        reason={access.reason ?? "login_required"}
+        email={access.user?.email}
+      />
+    );
+  }
 
   const lesson = getLesson(courseSlug, moduleSlug, lessonSlug);
   if (!lesson) notFound();

@@ -1,34 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
-import path from "path";
-import fs from "fs";
 import { createJudgeLLM, judgeProviderLabel } from "@/lib/judge-llm";
-
-interface ChallengeStep {
-  id: string;
-  label: string;
-}
-
-interface ChallengePrefilled {
-  steps?: ChallengeStep[];
-  correctOrder?: string[];
-  template?: string;
-  [key: string]: unknown;
-}
-
-interface ChallengeSpec {
-  id: string;
-  spec: string;
-  validation: unknown;
-  eli_notes?: string;
-  hints?: string[];
-  prefilled?: ChallengePrefilled;
-  socratic_mode?: boolean;
-  max_strikes_before_reveal?: number;
-}
+import { requireCourseAccess } from "@/lib/auth";
+import { resolveChallenge, type ChallengeSpec, type ChallengePrefilled, type ChallengeStep } from "@/lib/challenge-access";
 
 interface JudgeRequest {
   challengeId: string;
+  courseSlug?: string;
   environment: string;
   userInput: Record<string, unknown>;
   attemptNumber?: number; // 1-indexed, used for Socratic 3-strike rule
@@ -40,27 +18,6 @@ interface JudgeResponse {
   feedback: string;
   hints?: string[];
   _provider?: string; // debug: which LLM answered
-}
-
-function loadChallenge(challengeId: string): ChallengeSpec | null {
-  const coursesDir = path.join(process.cwd(), "content", "courses");
-  try {
-    const courses = fs.readdirSync(coursesDir);
-    for (const course of courses) {
-      const challengePath = path.join(
-        coursesDir,
-        course,
-        "challenges",
-        `${challengeId}.json`
-      );
-      if (fs.existsSync(challengePath)) {
-        return JSON.parse(fs.readFileSync(challengePath, "utf-8")) as ChallengeSpec;
-      }
-    }
-  } catch {
-    // ignore
-  }
-  return null;
 }
 
 /**
@@ -152,7 +109,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { challengeId, environment, userInput, attemptNumber = 1 } = body;
+  const { challengeId, courseSlug, environment, userInput, attemptNumber = 1 } = body;
 
   if (!challengeId || !userInput) {
     return NextResponse.json(
@@ -161,13 +118,23 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
   }
 
-  const challenge = loadChallenge(challengeId);
-  if (!challenge) {
+  const resolved = resolveChallenge(challengeId, courseSlug);
+  if (!resolved) {
     return NextResponse.json(
       { error: `Challenge '${challengeId}' not found` },
       { status: 404 }
     );
   }
+
+  const access = await requireCourseAccess(resolved.courseSlug);
+  if (!access.allowed) {
+    return NextResponse.json(
+      { error: access.reason === "login_required" ? "Login required" : "Access required" },
+      { status: access.reason === "login_required" ? 401 : 403 }
+    );
+  }
+
+  const challenge = resolved.challenge;
 
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllCourses } from "@/lib/courses";
 import { getCourseStructure } from "@/lib/content";
+import { getCurrentUser } from "@/lib/auth";
 import type { CourseMetadata } from "@/lib/content-types";
 
 function CourseCard({ course }: { course: CourseMetadata }) {
@@ -66,6 +67,11 @@ function CourseCard({ course }: { course: CourseMetadata }) {
             Free
           </span>
         )}
+        {(course.protected || course.accessProtected) && (
+          <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-2.5 py-0.5 text-xs text-orange-300">
+            Protected
+          </span>
+        )}
       </div>
 
       <div className="flex flex-wrap gap-2 mb-5">
@@ -95,8 +101,9 @@ function CourseCard({ course }: { course: CourseMetadata }) {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   const courses = getAllCourses();
+  const user = await getCurrentUser();
 
   return (
     <div className="min-h-screen bg-[#0F172A]">
@@ -110,6 +117,17 @@ export default function HomePage() {
             </span>
           </Link>
           <nav className="flex items-center gap-4">
+            {user ? (
+              <form action="/api/auth/logout" method="post">
+                <button className="text-sm text-slate-400 hover:text-white transition-colors" type="submit">
+                  Sign out {user.email}
+                </button>
+              </form>
+            ) : (
+              <Link href="/login" className="text-sm text-slate-400 hover:text-white transition-colors">
+                Sign in
+              </Link>
+            )}
             <Link
               href="/desktop"
               className="text-sm text-orange-400 hover:text-orange-300 transition-colors"

@@ -17,6 +17,7 @@ type TutorMode = "socratic" | "syntax" | "tutorial" | "talkthrough";
 
 interface TutorContext {
   challengeId?: string;
+  courseSlug?: string;
   lessonTitle?: string;
   moduleTitle?: string;
   currentCode?: string;

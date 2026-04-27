@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AuthGateMessage } from "@/components/auth/AuthGateMessage";
+import { requireCourseAccess } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import { getCourseMetadata, getCourseSlugs } from "@/lib/courses";
 import { getCourseStructure, getLesson, getLessonSlugs } from "@/lib/content";
@@ -27,6 +29,18 @@ export default async function CourseOverviewPage({ params }: PageProps) {
   const { courseSlug } = await params;
   const course = getCourseMetadata(courseSlug);
   if (!course) notFound();
+
+  const access = await requireCourseAccess(courseSlug);
+  if (!access.allowed) {
+    return (
+      <AuthGateMessage
+        course={course}
+        courseSlug={courseSlug}
+        reason={access.reason ?? "login_required"}
+        email={access.user?.email}
+      />
+    );
+  }
 
   const structure = getCourseStructure(courseSlug);
 

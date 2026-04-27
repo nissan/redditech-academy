@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireCourseAccess } from "@/lib/auth";
 import { getCourseMetadata } from "@/lib/courses";
 import { getCourseStructure } from "@/lib/content";
 
@@ -8,6 +9,14 @@ export async function GET(request: NextRequest) {
 
   if (!courseSlug) {
     return NextResponse.json({ error: "Missing courseSlug" }, { status: 400 });
+  }
+
+  const access = await requireCourseAccess(courseSlug);
+  if (!access.allowed) {
+    return NextResponse.json(
+      { error: access.reason === "login_required" ? "Login required" : "Access required" },
+      { status: access.reason === "login_required" ? 401 : 403 }
+    );
   }
 
   const course = getCourseMetadata(courseSlug);

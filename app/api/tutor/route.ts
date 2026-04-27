@@ -14,6 +14,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { HumanMessage, SystemMessage, AIMessage } from "@langchain/core/messages";
 import { createJudgeLLM } from "@/lib/judge-llm";
+import { requireCourseAccess } from "@/lib/auth";
+import { resolveChallenge } from "@/lib/challenge-access";
 
 export interface TutorMessage {
   role: "user" | "assistant";
@@ -25,6 +27,7 @@ export interface TutorRequest {
   mode: "socratic" | "syntax" | "tutorial" | "talkthrough";
   context?: {
     challengeId?: string;
+    courseSlug?: string;
     lessonTitle?: string;
     moduleTitle?: string;
     currentCode?: string;
@@ -103,10 +106,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "messages array required" }, { status: 400 });
   }
 
+  const resolvedCourseSlug = context?.courseSlug || (context?.challengeId ? resolveChallenge(context.challengeId)?.courseSlug : null);
+  if (!resolvedCourseSlug) {
+    return NextResponse.json({ error: "course context required" }, { status: 400 });
+  }
+
+  const access = await requireCourseAccess(resolvedCourseSlug);
+  if (!access.allowed) {
+    return NextResponse.json(
+      { error: access.reason === "login_required" ? "Login required" : "Access required" },
+      { status: access.reason === "login_required" ? 401 : 403 }
+    );
+  }
+
   // Build context preamble if provided
   let contextBlock = "";
   if (context) {
     const parts: string[] = [];
+    if (context.courseSlug) parts.push(`Course: ${context.courseSlug}`);
     if (context.lessonTitle)  parts.push(`Lesson: ${context.lessonTitle}`);
     if (context.moduleTitle)  parts.push(`Module: ${context.moduleTitle}`);
     if (context.challengeId)  parts.push(`Challenge: ${context.challengeId}`);
