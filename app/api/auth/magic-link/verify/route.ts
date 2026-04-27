@@ -30,7 +30,7 @@ async function consumeMagicLink(request: NextRequest, token: string | null, next
   const user = await verifyMagicToken(token);
   if (!user) return invalidRedirect(request);
   await createSession(user.id);
-  return NextResponse.redirect(new URL(next, redirectBaseFor(request)));
+  return NextResponse.redirect(new URL(next, redirectBaseFor(request)), { status: 303 });
 }
 
 export async function GET(request: NextRequest) {
