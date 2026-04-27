@@ -26,6 +26,10 @@ export async function sendEmail(payload: EmailPayload): Promise<EmailResult> {
   }
 
   const resend = new Resend(apiKey);
-  await resend.emails.send({ from, ...payload });
+  const { error } = await resend.emails.send({ from, ...payload });
+  if (error) {
+    const message = typeof error === "object" && "message" in error ? String(error.message) : "Resend email send failed";
+    throw new Error(message);
+  }
   return { sent: true };
 }
