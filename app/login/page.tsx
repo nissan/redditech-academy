@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string; sent?: string; devLink?: string }> }) {
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string; sent?: string; devLink?: string; error?: string }> }) {
   const params = await searchParams;
   const next = params.next || "/";
   return (
@@ -9,17 +9,36 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <Link href="/" className="text-sm text-slate-400 hover:text-white">← Redditech Academy</Link>
         <h1 className="mt-6 font-fraunces text-3xl font-bold text-white">Sign in</h1>
         <p className="mt-2 text-sm text-slate-400">Enter your email. We’ll send a one-time magic link.</p>
+        {params.error === "tester-code" && (
+          <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">Invalid tester access code.</div>
+        )}
+        {params.error === "tester-email" && (
+          <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">That email is not on the tester allowlist.</div>
+        )}
         {params.sent ? (
           <div className="mt-6 rounded-lg border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-200">
             Check your email for a login link.
             {params.devLink && <p className="mt-3 break-all text-xs text-green-100">Dev link: <a className="underline" href={params.devLink}>{params.devLink}</a></p>}
           </div>
         ) : (
-          <form action="/api/auth/magic-link/request" method="post" className="mt-6 space-y-4">
-            <input type="hidden" name="next" value={next} />
-            <input name="email" type="email" required placeholder="you@example.com" className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white" />
-            <button className="w-full rounded-lg bg-orange-500 px-4 py-2.5 font-semibold text-slate-950 hover:bg-orange-400">Send magic link</button>
-          </form>
+          <div className="mt-6 space-y-6">
+            <form action="/api/auth/magic-link/request" method="post" className="space-y-4">
+              <input type="hidden" name="next" value={next} />
+              <input name="email" type="email" required placeholder="you@example.com" className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white" />
+              <button className="w-full rounded-lg bg-orange-500 px-4 py-2.5 font-semibold text-slate-950 hover:bg-orange-400">Send magic link</button>
+            </form>
+
+            <div className="border-t border-slate-800 pt-6">
+              <h2 className="text-sm font-semibold text-white">Tester access</h2>
+              <p className="mt-1 text-xs text-slate-400">For allowlisted course testers while email domain verification is pending.</p>
+              <form action="/api/auth/tester-login" method="post" className="mt-3 space-y-3">
+                <input type="hidden" name="next" value={next} />
+                <input name="email" type="email" required placeholder="tester@example.com" className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white" />
+                <input name="code" type="password" required placeholder="Tester access code" className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white" />
+                <button className="w-full rounded-lg border border-slate-600 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Sign in as tester</button>
+              </form>
+            </div>
+          </div>
         )}
       </div>
     </main>

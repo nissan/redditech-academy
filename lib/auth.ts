@@ -63,6 +63,21 @@ export async function createMagicLink(emailInput: string, requestUrl?: string, n
   return { email, expiresAt, magicLink: url.toString(), emailResult: result };
 }
 
+export async function getOrCreateEmailUser(emailInput: string) {
+  await ensureAuthSchema();
+  const email = normalizeEmail(emailInput);
+  const now = new Date();
+  const existing = await getDb().select().from(users).where(eq(users.email, email)).limit(1);
+  let user = existing[0];
+  if (!user) {
+    user = { id: randomUUID(), email, createdAt: now, lastLoginAt: now };
+    await getDb().insert(users).values(user);
+  } else {
+    await getDb().update(users).set({ lastLoginAt: now }).where(eq(users.id, user.id));
+  }
+  return { id: user.id, email: user.email, provider: "email" as const, courseAccess: {} } satisfies User;
+}
+
 export async function verifyMagicToken(rawToken: string) {
   await ensureAuthSchema();
   const tokenHash = hashToken(rawToken);
@@ -78,15 +93,7 @@ export async function verifyMagicToken(rawToken: string) {
     .returning({ id: authMagicTokens.id });
   if (consumed.length === 0) return null;
 
-  const existing = await getDb().select().from(users).where(eq(users.email, token.email)).limit(1);
-  let user = existing[0];
-  if (!user) {
-    user = { id: randomUUID(), email: token.email, createdAt: now, lastLoginAt: now };
-    await getDb().insert(users).values(user);
-  } else {
-    await getDb().update(users).set({ lastLoginAt: now }).where(eq(users.id, user.id));
-  }
-  return { id: user.id, email: user.email, provider: "email" as const, courseAccess: {} } satisfies User;
+  return getOrCreateEmailUser(token.email);
 }
 
 export async function createSession(userId: string) {

@@ -11,6 +11,7 @@ beforeEach(async () => {
   process.env.DATABASE_URL = "file::memory:";
   process.env.APP_URL = "http://academy.test";
   delete process.env.GLOBAL_COURSE_ACCESS_EMAILS;
+  delete process.env.TESTER_LOGIN_CODE;
   await resetAuthDbForTests();
 });
 
