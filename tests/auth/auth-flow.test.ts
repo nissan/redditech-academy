@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { resetAuthDbForTests, getDb } from "@/lib/db/client";
 import { authMagicTokens } from "@/lib/db/schema";
 import { createMagicLink, sanitizeRedirectPath, verifyMagicToken } from "@/lib/auth";
-import { approveAccessRequest, requestCourseAccess, userHasCourseAccess } from "@/lib/course-access";
+import { approveAccessRequest, grantTesterCodeAccess, requestCourseAccess, userHasCourseAccess } from "@/lib/course-access";
 import { hashToken } from "@/lib/tokens";
 
 beforeEach(async () => {
@@ -12,6 +12,7 @@ beforeEach(async () => {
   process.env.APP_URL = "http://academy.test";
   delete process.env.GLOBAL_COURSE_ACCESS_EMAILS;
   delete process.env.TESTER_LOGIN_CODE;
+  delete process.env.TESTER_LOGIN_CODES;
   await resetAuthDbForTests();
 });
 
@@ -60,6 +61,14 @@ describe("course access approvals", () => {
     await expect(userHasCourseAccess("python-interview-prep", "AnushaSubedi49@gmail.com")).resolves.toBe(true);
     await expect(userHasCourseAccess("solana-academy", "anushasubedi49@gmail.com")).resolves.toBe(true);
     await expect(userHasCourseAccess("python-interview-prep", "learner@example.com")).resolves.toBe(false);
+  });
+
+  it("grants course-specific access from tester codes without a pre-known email", async () => {
+    process.env.TESTER_LOGIN_CODES = "JAX-CODE:agentic-ai-systems-engineering,OTHER:python-interview-prep|solana-academy";
+
+    expect(await grantTesterCodeAccess("JAX-CODE", "Jax@Example.com", "agentic-ai-systems-engineering")).toBe(true);
+    expect(await userHasCourseAccess("agentic-ai-systems-engineering", "jax@example.com")).toBe(true);
+    expect(await userHasCourseAccess("python-interview-prep", "jax@example.com")).toBe(false);
   });
 
   it("approves a request using a one-time approval link", async () => {

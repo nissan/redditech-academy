@@ -30,6 +30,42 @@ function globalCourseAccessEmails() {
   );
 }
 
+export function courseSlugsForTesterCode(codeInput: string) {
+  const code = codeInput.trim();
+  if (!code) return [];
+
+  const rawCodes = process.env.TESTER_LOGIN_CODES || "";
+  for (const entry of rawCodes.split(",")) {
+    const [entryCode, rawSlugs = ""] = entry.split(":");
+    if (entryCode?.trim() !== code) continue;
+    const slugs = rawSlugs
+      .split(/[|;]/)
+      .map((slug) => slug.trim())
+      .filter(Boolean);
+    return slugs.length ? slugs : ["*"];
+  }
+  return [];
+}
+
+export async function grantTesterCodeAccess(codeInput: string, emailInput: string, requestedCourseSlug?: string) {
+  const code = codeInput.trim();
+  const legacyCode = process.env.TESTER_LOGIN_CODE?.trim();
+  if (legacyCode && code === legacyCode) {
+    return globalCourseAccessEmails().has(normalizeEmail(emailInput));
+  }
+
+  const slugs = courseSlugsForTesterCode(code);
+  if (slugs.length === 0) return false;
+  if (slugs.includes("*")) return true;
+
+  const nextSlug = requestedCourseSlug?.trim();
+  const grants = nextSlug && slugs.includes(nextSlug) ? [nextSlug] : slugs;
+  for (const courseSlug of grants) {
+    await approveCourseAccess(courseSlug, emailInput, "tester-code");
+  }
+  return true;
+}
+
 export async function userHasCourseAccess(courseSlug: string, emailInput: string) {
   await ensureAuthSchema();
   const email = normalizeEmail(emailInput);
