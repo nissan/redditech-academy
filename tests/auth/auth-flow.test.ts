@@ -74,12 +74,10 @@ describe("course access approvals", () => {
   });
 
   it("grants the shared demo user access across courses without persistent approvals", async () => {
-    process.env.DEMO_LOGIN_CODE = "DEMO-1234";
-
-    expect(await grantTesterCodeAccess("DEMO-1234", "demo@redditech.academy", "board-game-tutorial-academy")).toBe(true);
+    expect(await grantTesterCodeAccess("REDDI-DEMO-4H", "demo@redditech.academy", "board-game-tutorial-academy")).toBe(true);
     expect(await userHasCourseAccess("board-game-tutorial-academy", "demo@redditech.academy")).toBe(true);
     expect(await userHasCourseAccess("solana-academy", "demo@redditech.academy")).toBe(true);
-    expect(await grantTesterCodeAccess("DEMO-1234", "learner@example.com", "solana-academy")).toBe(false);
+    expect(await grantTesterCodeAccess("REDDI-DEMO-4H", "learner@example.com", "solana-academy")).toBe(false);
   });
 
   it("approves a request using a one-time approval link", async () => {

@@ -10,6 +10,7 @@ const APPROVAL_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const APPROVER_EMAIL = process.env.ACCESS_APPROVER_EMAIL || "nissan.dookeran@gmail.com";
 export const DEMO_SESSION_TTL_MS = 4 * 60 * 60 * 1000;
 export const DEFAULT_DEMO_EMAIL = "demo@redditech.academy";
+export const DEFAULT_DEMO_LOGIN_CODE = "REDDI-DEMO-4H";
 
 function appUrl(requestUrl?: string) {
   return process.env.APP_URL || (requestUrl ? new URL(requestUrl).origin : "http://localhost:3000");
@@ -37,8 +38,8 @@ export function demoUserEmail() {
 }
 
 export function isDemoLoginCode(codeInput: string) {
-  const configured = process.env.DEMO_LOGIN_CODE?.trim();
-  return Boolean(configured && codeInput.trim() === configured);
+  const configured = process.env.DEMO_LOGIN_CODE?.trim() || DEFAULT_DEMO_LOGIN_CODE;
+  return codeInput.trim() === configured;
 }
 
 export function demoResetBucket(now = Date.now()) {
