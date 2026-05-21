@@ -1,0 +1,22 @@
+{
+  "id": "09-production-costing-manufacturing",
+  "slug": "09-production-costing-manufacturing",
+  "title": "Production, Costing, and Manufacturing",
+  "description": "Identify cost drivers and simplify components.",
+  "order": 9,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Production, Costing, and Manufacturing",
+    "icon": "BG",
+    "description": "Completed Production, Costing, and Manufacturing"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Identify cost drivers and simplify components.",
+    "Create a BOM and rough unit-cost estimate.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["08-art-direction-component-design"]
+}

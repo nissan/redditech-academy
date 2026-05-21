@@ -1,0 +1,22 @@
+{
+  "id": "03-mechanics-toolkit",
+  "slug": "03-mechanics-toolkit",
+  "title": "Mechanics Toolkit",
+  "description": "Connect player promise to mechanics, resources, uncertainty, and interaction.",
+  "order": 3,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Mechanics Toolkit",
+    "icon": "BG",
+    "description": "Completed Mechanics Toolkit"
+  },
+  "difficulty": "beginner",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Connect player promise to mechanics, resources, uncertainty, and interaction.",
+    "Create a mechanic palette and core loop sketch.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["02-concept-generation-theme-audience-promise"]
+}

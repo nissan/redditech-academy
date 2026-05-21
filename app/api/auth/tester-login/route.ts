@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSession, getOrCreateEmailUser, normalizeEmail, sanitizeRedirectPath } from "@/lib/auth";
-import { grantTesterCodeAccess } from "@/lib/course-access";
+import { DEMO_SESSION_TTL_MS, demoResetBucket, demoUserEmail, grantTesterCodeAccess, isDemoLoginCode } from "@/lib/course-access";
 
 function redirectUrl(path: string) {
   return new URL(path, process.env.APP_URL || "http://localhost:3000");
@@ -12,8 +12,9 @@ export async function POST(request: NextRequest) {
     ? await request.json()
     : Object.fromEntries((await request.formData()).entries());
 
-  const email = normalizeEmail(String(body.email || ""));
   const code = String(body.code || "").trim();
+  const isDemo = isDemoLoginCode(code);
+  const email = isDemo ? demoUserEmail() : normalizeEmail(String(body.email || ""));
   const next = sanitizeRedirectPath(String(body.next || "/courses/agentic-ai-systems-engineering"), "/courses/agentic-ai-systems-engineering");
   const requestedCourseSlug = next.match(/^\/courses\/([^/?#]+)/)?.[1];
 
@@ -27,6 +28,9 @@ export async function POST(request: NextRequest) {
   }
 
   const user = await getOrCreateEmailUser(email);
-  await createSession(user.id);
+  await createSession(
+    user.id,
+    isDemo ? { ttlMs: DEMO_SESSION_TTL_MS, demoBucket: demoResetBucket() } : undefined,
+  );
   return NextResponse.redirect(redirectUrl(next), 303);
 }

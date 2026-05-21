@@ -1,0 +1,22 @@
+{
+  "id": "04-rapid-paper-prototyping",
+  "slug": "04-rapid-paper-prototyping",
+  "title": "Rapid Paper Prototyping",
+  "description": "Make a rough playable v0.1 fast.",
+  "order": 4,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Rapid Paper Prototyping",
+    "icon": "BG",
+    "description": "Completed Rapid Paper Prototyping"
+  },
+  "difficulty": "beginner",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Make a rough playable v0.1 fast.",
+    "Create a playable v0.1 prototype.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["03-mechanics-toolkit"]
+}

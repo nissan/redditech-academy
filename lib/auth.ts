@@ -9,6 +9,7 @@ import { createRawToken, hashToken, normalizeEmail } from "@/lib/tokens";
 export { createRawToken, hashToken, normalizeEmail } from "@/lib/tokens";
 
 export const SESSION_COOKIE = "rt_academy_session";
+export const DEMO_RESET_COOKIE = "rt_academy_demo_bucket";
 const MAGIC_TTL_MS = 15 * 60 * 1000;
 const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
@@ -96,11 +97,12 @@ export async function verifyMagicToken(rawToken: string) {
   return getOrCreateEmailUser(token.email);
 }
 
-export async function createSession(userId: string) {
+export async function createSession(userId: string, options?: { ttlMs?: number; demoBucket?: string }) {
   await ensureAuthSchema();
   const rawToken = createRawToken();
   const sessionHash = hashToken(rawToken);
-  const expiresAt = new Date(Date.now() + SESSION_TTL_MS);
+  const ttlMs = options?.ttlMs ?? SESSION_TTL_MS;
+  const expiresAt = new Date(Date.now() + ttlMs);
   await getDb().insert(sessions).values({
     id: randomUUID(),
     userId,
@@ -116,6 +118,15 @@ export async function createSession(userId: string) {
     path: "/",
     expires: expiresAt,
   });
+  if (options?.demoBucket) {
+    jar.set(DEMO_RESET_COOKIE, options.demoBucket, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      expires: expiresAt,
+    });
+  }
   return { rawToken, expiresAt };
 }
 
@@ -127,6 +138,7 @@ export async function destroySession() {
     await getDb().delete(sessions).where(eq(sessions.sessionHash, hashToken(rawToken)));
   }
   jar.delete(SESSION_COOKIE);
+  jar.delete(DEMO_RESET_COOKIE);
 }
 
 export async function getCurrentUser(): Promise<User | null> {

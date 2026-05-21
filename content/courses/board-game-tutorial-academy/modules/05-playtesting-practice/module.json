@@ -1,0 +1,22 @@
+{
+  "id": "05-playtesting-practice",
+  "slug": "05-playtesting-practice",
+  "title": "Playtesting Practice",
+  "description": "Run tests that produce usable evidence.",
+  "order": 5,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Playtesting Practice",
+    "icon": "BG",
+    "description": "Completed Playtesting Practice"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Run tests that produce usable evidence.",
+    "Create a playtest notes and scorecard.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["04-rapid-paper-prototyping"]
+}

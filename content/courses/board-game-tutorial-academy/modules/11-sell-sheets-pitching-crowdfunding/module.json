@@ -1,0 +1,22 @@
+{
+  "id": "11-sell-sheets-pitching-crowdfunding",
+  "slug": "11-sell-sheets-pitching-crowdfunding",
+  "title": "Sell Sheets, Pitching, and Crowdfunding Basics",
+  "description": "Explain the game quickly and persuasively.",
+  "order": 11,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Sell Sheets, Pitching, and Crowdfunding Basics",
+    "icon": "BG",
+    "description": "Completed Sell Sheets, Pitching, and Crowdfunding Basics"
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Explain the game quickly and persuasively.",
+    "Create a sell sheet and 5-minute pitch.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["10-publishing-paths-legal-basics"]
+}

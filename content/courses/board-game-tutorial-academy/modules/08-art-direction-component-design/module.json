@@ -1,0 +1,22 @@
+{
+  "id": "08-art-direction-component-design",
+  "slug": "08-art-direction-component-design",
+  "title": "Art Direction and Component Design",
+  "description": "Specify components and visual hierarchy before polishing art.",
+  "order": 8,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Art Direction and Component Design",
+    "icon": "BG",
+    "description": "Completed Art Direction and Component Design"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Specify components and visual hierarchy before polishing art.",
+    "Create a component spec and art direction notes.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["07-theme-narrative-ux-rules-writing"]
+}

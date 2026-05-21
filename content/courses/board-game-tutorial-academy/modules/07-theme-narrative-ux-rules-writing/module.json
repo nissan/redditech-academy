@@ -1,0 +1,22 @@
+{
+  "id": "07-theme-narrative-ux-rules-writing",
+  "slug": "07-theme-narrative-ux-rules-writing",
+  "title": "Theme, Narrative, UX, and Rules Writing",
+  "description": "Improve clarity, table feel, and independent rules comprehension.",
+  "order": 7,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Theme, Narrative, UX, and Rules Writing",
+    "icon": "BG",
+    "description": "Completed Theme, Narrative, UX, and Rules Writing"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Improve clarity, table feel, and independent rules comprehension.",
+    "Create a rules v0.3 and player aid.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["06-balance-probability-systems-tuning"]
+}

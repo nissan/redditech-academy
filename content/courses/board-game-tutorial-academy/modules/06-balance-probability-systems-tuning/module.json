@@ -1,0 +1,22 @@
+{
+  "id": "06-balance-probability-systems-tuning",
+  "slug": "06-balance-probability-systems-tuning",
+  "title": "Balance, Probability, and Systems Tuning",
+  "description": "Tune with small evidence-based changes.",
+  "order": 6,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Balance, Probability, and Systems Tuning",
+    "icon": "BG",
+    "description": "Completed Balance, Probability, and Systems Tuning"
+  },
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Tune with small evidence-based changes.",
+    "Create a v0.2 changelog and tuning rationale.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["05-playtesting-practice"]
+}

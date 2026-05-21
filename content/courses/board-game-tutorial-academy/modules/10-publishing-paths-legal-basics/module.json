@@ -1,0 +1,22 @@
+{
+  "id": "10-publishing-paths-legal-basics",
+  "slug": "10-publishing-paths-legal-basics",
+  "title": "Publishing Paths and Legal Basics",
+  "description": "Choose a realistic next route: self-publish, pitch, print-and-play, or crowdfunding.",
+  "order": 10,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Publishing Paths and Legal Basics",
+    "icon": "BG",
+    "description": "Completed Publishing Paths and Legal Basics"
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Choose a realistic next route: self-publish, pitch, print-and-play, or crowdfunding.",
+    "Create a publishing route memo.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["09-production-costing-manufacturing"]
+}

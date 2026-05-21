@@ -1,0 +1,22 @@
+{
+  "id": "12-final-showcase-next-iteration-plan",
+  "slug": "12-final-showcase-next-iteration-plan",
+  "title": "Final Showcase and Next Iteration Plan",
+  "description": "Present evidence-backed capstone packets and define next steps.",
+  "order": 12,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Final Showcase and Next Iteration Plan",
+    "icon": "BG",
+    "description": "Completed Final Showcase and Next Iteration Plan"
+  },
+  "difficulty": "advanced",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Present evidence-backed capstone packets and define next steps.",
+    "Create a final capstone packet and next 30-day plan.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["11-sell-sheets-pitching-crowdfunding"]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "01-tabletop-landscape-and-game-teardown",
+  "slug": "01-tabletop-landscape-and-game-teardown",
+  "title": "Tabletop Landscape and Game Teardown",
+  "description": "Analyze a game by audience, promise, loop, tension, and components.",
+  "order": 1,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Tabletop Landscape and Game Teardown",
+    "icon": "BG",
+    "description": "Completed Tabletop Landscape and Game Teardown"
+  },
+  "difficulty": "beginner",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Analyze a game by audience, promise, loop, tension, and components.",
+    "Create a teardown worksheet for two games.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": []
+}

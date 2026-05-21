@@ -1,0 +1,40 @@
+{
+  "id": "board-game-tutorial-academy",
+  "slug": "board-game-tutorial-academy",
+  "title": "Board Game Tutorial Academy",
+  "description": "A 12-module practical course for designing, prototyping, playtesting, pitching, and planning production for a tabletop board game. Learners finish with a playable prototype, rules, sell sheet, capstone packet, and next iteration plan.",
+  "tagline": "Design a tabletop game from first concept to playable, pitchable prototype.",
+  "icon": "BG",
+  "badge": {
+    "icon": "BG",
+    "name": "Board Game Prototype Builder",
+    "description": "Completed the Board Game Tutorial Academy capstone"
+  },
+  "level": "beginner",
+  "difficulty": "beginner",
+  "estimatedHours": 24,
+  "learningObjectives": [
+    "Analyze tabletop games by audience, promise, mechanics, tension, and components",
+    "Generate scoped concepts that can be prototyped and tested quickly",
+    "Build paper prototypes, run useful playtests, and tune from evidence",
+    "Write clearer rules, specify components, estimate production cost, and choose a publishing path",
+    "Prepare a sell sheet, pitch, capstone packet, and next 30-day iteration plan"
+  ],
+  "prerequisiteModules": [],
+  "tags": ["board-games", "game-design", "prototyping", "playtesting", "tabletop", "creative-production"],
+  "modules": [
+    { "slug": "01-tabletop-landscape-and-game-teardown", "title": "Tabletop Landscape and Game Teardown", "order": 1 },
+    { "slug": "02-concept-generation-theme-audience-promise", "title": "Concept Generation: Theme, Audience, Promise", "order": 2 },
+    { "slug": "03-mechanics-toolkit", "title": "Mechanics Toolkit", "order": 3 },
+    { "slug": "04-rapid-paper-prototyping", "title": "Rapid Paper Prototyping", "order": 4 },
+    { "slug": "05-playtesting-practice", "title": "Playtesting Practice", "order": 5 },
+    { "slug": "06-balance-probability-systems-tuning", "title": "Balance, Probability, and Systems Tuning", "order": 6 },
+    { "slug": "07-theme-narrative-ux-rules-writing", "title": "Theme, Narrative, UX, and Rules Writing", "order": 7 },
+    { "slug": "08-art-direction-component-design", "title": "Art Direction and Component Design", "order": 8 },
+    { "slug": "09-production-costing-manufacturing", "title": "Production, Costing, and Manufacturing", "order": 9 },
+    { "slug": "10-publishing-paths-legal-basics", "title": "Publishing Paths and Legal Basics", "order": 10 },
+    { "slug": "11-sell-sheets-pitching-crowdfunding", "title": "Sell Sheets, Pitching, and Crowdfunding Basics", "order": 11 },
+    { "slug": "12-final-showcase-next-iteration-plan", "title": "Final Showcase and Next Iteration Plan", "order": 12 }
+  ],
+  "protected": true
+}

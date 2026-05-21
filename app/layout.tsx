@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, DM_Sans, IBM_Plex_Mono } from "next/font/google";
+import { DemoReset } from "./demo-reset";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${dmSans.variable} ${ibmPlexMono.variable} antialiased min-h-screen bg-[#0F172A] text-slate-100`}
       >
+        <DemoReset />
         {children}
       </body>
     </html>

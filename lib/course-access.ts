@@ -8,6 +8,8 @@ import { sendEmail } from "@/lib/email/resend";
 
 const APPROVAL_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const APPROVER_EMAIL = process.env.ACCESS_APPROVER_EMAIL || "nissan.dookeran@gmail.com";
+export const DEMO_SESSION_TTL_MS = 4 * 60 * 60 * 1000;
+export const DEFAULT_DEMO_EMAIL = "demo@redditech.academy";
 
 function appUrl(requestUrl?: string) {
   return process.env.APP_URL || (requestUrl ? new URL(requestUrl).origin : "http://localhost:3000");
@@ -30,6 +32,19 @@ function globalCourseAccessEmails() {
   );
 }
 
+export function demoUserEmail() {
+  return normalizeEmail(process.env.DEMO_USER_EMAIL || DEFAULT_DEMO_EMAIL);
+}
+
+export function isDemoLoginCode(codeInput: string) {
+  const configured = process.env.DEMO_LOGIN_CODE?.trim();
+  return Boolean(configured && codeInput.trim() === configured);
+}
+
+export function demoResetBucket(now = Date.now()) {
+  return String(Math.floor(now / DEMO_SESSION_TTL_MS));
+}
+
 export function courseSlugsForTesterCode(codeInput: string) {
   const code = codeInput.trim();
   if (!code) return [];
@@ -49,6 +64,8 @@ export function courseSlugsForTesterCode(codeInput: string) {
 
 export async function grantTesterCodeAccess(codeInput: string, emailInput: string, requestedCourseSlug?: string) {
   const code = codeInput.trim();
+  if (isDemoLoginCode(code) && normalizeEmail(emailInput) === demoUserEmail()) return true;
+
   const legacyCode = process.env.TESTER_LOGIN_CODE?.trim();
   if (legacyCode && code === legacyCode) {
     return globalCourseAccessEmails().has(normalizeEmail(emailInput));
@@ -69,6 +86,7 @@ export async function grantTesterCodeAccess(codeInput: string, emailInput: strin
 export async function userHasCourseAccess(courseSlug: string, emailInput: string) {
   await ensureAuthSchema();
   const email = normalizeEmail(emailInput);
+  if (email === demoUserEmail()) return true;
   if (globalCourseAccessEmails().has(email)) return true;
   const rows = await getDb()
     .select()

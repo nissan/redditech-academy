@@ -1,0 +1,22 @@
+{
+  "id": "02-concept-generation-theme-audience-promise",
+  "slug": "02-concept-generation-theme-audience-promise",
+  "title": "Concept Generation: Theme, Audience, Promise",
+  "description": "Generate scoped concepts with a clear audience and emotional promise.",
+  "order": 2,
+  "lessons": ["01-workshop"],
+  "passingScore": 70,
+  "badge": {
+    "name": "Concept Generation: Theme, Audience, Promise",
+    "icon": "BG",
+    "description": "Completed Concept Generation: Theme, Audience, Promise"
+  },
+  "difficulty": "beginner",
+  "estimatedHours": 2,
+  "learningObjectives": [
+    "Generate scoped concepts with a clear audience and emotional promise.",
+    "Create a selected concept one-pager.",
+    "Explain what to test or improve next."
+  ],
+  "prerequisiteModules": ["01-tabletop-landscape-and-game-teardown"]
+}

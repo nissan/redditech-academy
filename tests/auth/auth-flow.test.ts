@@ -11,6 +11,8 @@ beforeEach(async () => {
   process.env.DATABASE_URL = "file::memory:";
   process.env.APP_URL = "http://academy.test";
   delete process.env.GLOBAL_COURSE_ACCESS_EMAILS;
+  delete process.env.DEMO_LOGIN_CODE;
+  delete process.env.DEMO_USER_EMAIL;
   delete process.env.TESTER_LOGIN_CODE;
   delete process.env.TESTER_LOGIN_CODES;
   await resetAuthDbForTests();
@@ -69,6 +71,15 @@ describe("course access approvals", () => {
     expect(await grantTesterCodeAccess("JAX-CODE", "Jax@Example.com", "agentic-ai-systems-engineering")).toBe(true);
     expect(await userHasCourseAccess("agentic-ai-systems-engineering", "jax@example.com")).toBe(true);
     expect(await userHasCourseAccess("python-interview-prep", "jax@example.com")).toBe(false);
+  });
+
+  it("grants the shared demo user access across courses without persistent approvals", async () => {
+    process.env.DEMO_LOGIN_CODE = "DEMO-1234";
+
+    expect(await grantTesterCodeAccess("DEMO-1234", "demo@redditech.academy", "board-game-tutorial-academy")).toBe(true);
+    expect(await userHasCourseAccess("board-game-tutorial-academy", "demo@redditech.academy")).toBe(true);
+    expect(await userHasCourseAccess("solana-academy", "demo@redditech.academy")).toBe(true);
+    expect(await grantTesterCodeAccess("DEMO-1234", "learner@example.com", "solana-academy")).toBe(false);
   });
 
   it("approves a request using a one-time approval link", async () => {

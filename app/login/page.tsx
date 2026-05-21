@@ -29,7 +29,17 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             </form>
 
             <div className="border-t border-slate-800 pt-6">
-              <h2 className="text-sm font-semibold text-white">Tester access</h2>
+              <h2 className="text-sm font-semibold text-white">Shared demo access</h2>
+              <p className="mt-1 text-xs text-slate-400">For shared course try-outs. Demo sessions expire and reset every four hours.</p>
+              <form action="/api/auth/tester-login" method="post" className="mt-3 space-y-3">
+                <input type="hidden" name="next" value={next} />
+                <input name="code" type="password" required placeholder="Demo access code" className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white" />
+                <button className="w-full rounded-lg bg-slate-100 px-4 py-2.5 font-semibold text-slate-950 hover:bg-white">Enter demo</button>
+              </form>
+            </div>
+
+            <div className="border-t border-slate-800 pt-6">
+              <h2 className="text-sm font-semibold text-white">Named tester access</h2>
               <p className="mt-1 text-xs text-slate-400">For allowlisted course testers while email domain verification is pending.</p>
               <form action="/api/auth/tester-login" method="post" className="mt-3 space-y-3">
                 <input type="hidden" name="next" value={next} />

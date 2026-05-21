@@ -1,0 +1,17 @@
+{
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "06-balance-probability-systems-tuning-q1",
+      "question": "What is the main completion standard for this module?",
+      "options": [
+        "Create a v0.2 changelog and tuning rationale and explain the next testable step.",
+        "Polish the visual design before testing anything.",
+        "Add more features until the concept feels complete.",
+        "Skip review and wait for the final showcase."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Each module is artifact-first: make the next concrete deliverable, review it, and identify what to test or improve next."
+    }
+  ]
+}
