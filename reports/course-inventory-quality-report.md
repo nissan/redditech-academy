@@ -30,7 +30,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 
 | Bucket | Affected files |
 | --- | ---: |
-| lowercaseChallengeId | 176 |
+| lowercaseChallengeId | 127 |
 | lessonSlugFilenameMismatch | 230 |
 | missingChallengeJsonType | 87 |
 | legacyTitleDescription | 181 |
@@ -46,13 +46,13 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | Course | lowercase challengeId | slug/filename mismatch | missing JSON type | legacy title/description | legacy starterCode | legacy validationRules | missing spec | missing JSON seed | sequence integrity | env gaps |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `auth-training` | 54 | 43 | 9 | 54 | 54 | 54 | 54 | 0 | 0 | 5 |
-| `churn-modeling-academy` | 7 | 7 | 0 | 7 | 7 | 7 | 7 | 0 | 0 | 0 |
+| `churn-modeling-academy` | 0 | 7 | 0 | 7 | 7 | 7 | 7 | 0 | 0 | 0 |
 | `genai-ml-academy` | 12 | 25 | 0 | 35 | 35 | 35 | 35 | 0 | 0 | 0 |
 | `llm-benchmarking-academy` | 18 | 22 | 3 | 11 | 11 | 11 | 11 | 0 | 0 | 0 |
-| `martech-adtech-academy` | 11 | 1 | 0 | 11 | 11 | 11 | 11 | 0 | 0 | 0 |
+| `martech-adtech-academy` | 0 | 1 | 0 | 11 | 11 | 11 | 11 | 0 | 0 | 0 |
 | `openclaw-academy` | 43 | 46 | 0 | 46 | 46 | 46 | 46 | 0 | 0 | 0 |
-| `python-interview-prep` | 17 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `sales-spin-meddic` | 14 | 14 | 0 | 14 | 14 | 14 | 14 | 0 | 0 | 0 |
+| `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `sales-spin-meddic` | 0 | 14 | 0 | 14 | 14 | 14 | 14 | 0 | 0 | 0 |
 | `solana-academy` | 0 | 72 | 75 | 3 | 3 | 3 | 3 | 0 | 0 | 43 |
 
 ## Course Inventory
@@ -60,13 +60,13 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | Course | Status | Modules | Lessons | Quizzes | Challenges | Diagrams | Downloads | Videos | External deps | Quality flags |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `auth-training` | free | 12 | 63 | 12 | 63 | 20 | 0 | 22 | 135 | 116 |
-| `churn-modeling-academy` | free | 7 | 7 | 7 | 7 | 6 | 4 | 12 | 12 | 14 |
+| `churn-modeling-academy` | free | 7 | 7 | 7 | 7 | 6 | 4 | 12 | 12 | 7 |
 | `genai-ml-academy` | free | 13 | 37 | 13 | 46 | 12 | 24 | 24 | 44 | 37 |
 | `llm-benchmarking-academy` | free | 12 | 22 | 12 | 15 | 22 | 5 | 0 | 24 | 42 |
-| `martech-adtech-academy` | free | 11 | 11 | 11 | 11 | 10 | 20 | 20 | 5 | 12 |
+| `martech-adtech-academy` | free | 11 | 11 | 11 | 11 | 10 | 20 | 20 | 5 | 1 |
 | `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 90 |
-| `python-interview-prep` | protected | 7 | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 36 |
-| `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 32 |
+| `python-interview-prep` | protected | 7 | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 19 |
+| `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 18 |
 | `solana-academy` | free | 24 | 72 | 24 | 80 | 67 | 79 | 16 | 52 | 72 |
 
 ## Quality Flags
@@ -184,30 +184,17 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - missingQuizzes: 0
 - brokenReferences: 0
 - emptyLessons: 0
-- inconsistentFrontmatter: 14
+- inconsistentFrontmatter: 7
   - content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx slug "first-principles" does not match filename "01-first-principles"
-  - content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
-  - ...and 2 more
+  - content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
 - wholeGameGaps: 0
 - compatibility buckets:
-  - lowercaseChallengeId: 7
-    - content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx
-    - content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx
-    - content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx
-    - content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx
-    - content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx
-    - content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx
-    - content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 7
     - content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx: slug "first-principles" does not match filename "01-first-principles"
     - content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx: slug "core-concepts" does not match filename "01-core-concepts"
@@ -453,31 +440,11 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - missingQuizzes: 0
 - brokenReferences: 0
 - emptyLessons: 0
-- inconsistentFrontmatter: 12
+- inconsistentFrontmatter: 1
   - content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx slug "first-principles" does not match filename "01-first-principles"
-  - content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/capstone/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/creative-ai/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/crm-map-cdp/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/customer-data/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/industry-map/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/lifecycle/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/measurement/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/privacy-consent/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/programmatic-pipes/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/martech-adtech-academy/modules/vendor-evaluation/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId
 - wholeGameGaps: 0
 - compatibility buckets:
-  - lowercaseChallengeId: 11
-    - content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx
-    - content/courses/martech-adtech-academy/modules/capstone/lessons/01-overview.mdx
-    - content/courses/martech-adtech-academy/modules/creative-ai/lessons/01-overview.mdx
-    - content/courses/martech-adtech-academy/modules/crm-map-cdp/lessons/01-overview.mdx
-    - content/courses/martech-adtech-academy/modules/customer-data/lessons/01-overview.mdx
-    - content/courses/martech-adtech-academy/modules/industry-map/lessons/01-overview.mdx
-    - content/courses/martech-adtech-academy/modules/lifecycle/lessons/01-overview.mdx
-    - content/courses/martech-adtech-academy/modules/measurement/lessons/01-overview.mdx
-    - ...and 3 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 1
     - content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx: slug "first-principles" does not match filename "01-first-principles"
   - missingChallengeJsonType: 0
@@ -637,35 +604,21 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - brokenReferences: 0
 - emptyLessons: 1
   - python-interview-prep/00-course-intro has no lesson files
-- inconsistentFrontmatter: 25
+- inconsistentFrontmatter: 8
   - content/courses/python-interview-prep/course.json missing fields: author, version
   - content/courses/python-interview-prep/modules/00-course-intro/module.json missing fields: id
   - content/courses/python-interview-prep/modules/01-file-parsing/module.json missing fields: id
-  - content/courses/python-interview-prep/modules/01-file-parsing/lessons/01-reading-json.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/python-interview-prep/modules/01-file-parsing/lessons/02-reading-csv.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/python-interview-prep/modules/01-file-parsing/lessons/03-parsing-jsonl.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/python-interview-prep/modules/01-file-parsing/lessons/04-schema-audit.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/python-interview-prep/modules/02-aggregation/module.json missing fields: id
-  - content/courses/python-interview-prep/modules/02-aggregation/lessons/01-groupby-pandas.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/python-interview-prep/modules/02-aggregation/lessons/02-groupby-stdlib.mdx uses non-canonical challengeid; prefer challengeId
-  - content/courses/python-interview-prep/modules/02-aggregation/lessons/03-join-and-merge.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/python-interview-prep/modules/03-metrics/module.json missing fields: id
-  - ...and 13 more
+  - content/courses/python-interview-prep/modules/04-output-formatting/module.json missing fields: id
+  - content/courses/python-interview-prep/modules/05-edge-cases/module.json missing fields: id
+  - content/courses/python-interview-prep/modules/06-mock-problems/module.json missing fields: id
 - wholeGameGaps: 3
   - course.json missing learningApproach: whole-game
   - 7 modules/lessons lack an obvious running-project or game signal
   - no capstone signal found in course/module titles or slugs
 - compatibility buckets:
-  - lowercaseChallengeId: 17
-    - content/courses/python-interview-prep/modules/01-file-parsing/lessons/01-reading-json.mdx
-    - content/courses/python-interview-prep/modules/01-file-parsing/lessons/02-reading-csv.mdx
-    - content/courses/python-interview-prep/modules/01-file-parsing/lessons/03-parsing-jsonl.mdx
-    - content/courses/python-interview-prep/modules/01-file-parsing/lessons/04-schema-audit.mdx
-    - content/courses/python-interview-prep/modules/02-aggregation/lessons/01-groupby-pandas.mdx
-    - content/courses/python-interview-prep/modules/02-aggregation/lessons/02-groupby-stdlib.mdx
-    - content/courses/python-interview-prep/modules/02-aggregation/lessons/03-join-and-merge.mdx
-    - content/courses/python-interview-prep/modules/03-metrics/lessons/01-latency-metrics.mdx
-    - ...and 9 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 0
   - missingChallengeJsonType: 0
   - legacyTitleDescription: 0
@@ -685,32 +638,23 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
   - content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/10-meddpicc-deal-inspection-eli5.mp4
   - content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/10-meddpicc-deal-inspection-tldr.mp4
 - emptyLessons: 0
-- inconsistentFrontmatter: 28
+- inconsistentFrontmatter: 14
   - content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
-  - ...and 16 more
+  - content/courses/sales-spin-meddic/modules/07-failure-postmortems/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - content/courses/sales-spin-meddic/modules/08-capstone-deal-room/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - content/courses/sales-spin-meddic/modules/11-challenger-selling/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - content/courses/sales-spin-meddic/modules/12-qualification-models/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - ...and 2 more
 - wholeGameGaps: 0
 - compatibility buckets:
-  - lowercaseChallengeId: 14
-    - content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/07-failure-postmortems/lessons/01-core-concepts.mdx
-    - content/courses/sales-spin-meddic/modules/08-capstone-deal-room/lessons/01-core-concepts.mdx
-    - ...and 6 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 14
     - content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx: slug "core-concepts" does not match filename "01-core-concepts"
     - content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx: slug "core-concepts" does not match filename "01-core-concepts"
