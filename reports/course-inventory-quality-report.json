@@ -2,10 +2,9 @@
   "generatedAt": "2026-06-20T00:00:00.000Z",
   "issue": {
     "number": 14,
+    "reconciliationIssue": 25,
     "expectedSlugs": [
-      "agentic-ai-systems-engineering",
       "auth-training",
-      "board-game-tutorial-academy",
       "churn-modeling-academy",
       "genai-ml-academy",
       "llm-benchmarking-academy",
@@ -15,10 +14,7 @@
       "sales-spin-meddic",
       "solana-academy"
     ],
-    "missingExpectedSlugs": [
-      "agentic-ai-systems-engineering",
-      "board-game-tutorial-academy"
-    ],
+    "missingExpectedSlugs": [],
     "additionalActualSlugs": [],
     "actualSlugs": [
       "auth-training",
@@ -30,6 +26,20 @@
       "python-interview-prep",
       "sales-spin-meddic",
       "solana-academy"
+    ],
+    "absentCourseReconciliation": [
+      {
+        "slug": "agentic-ai-systems-engineering",
+        "status": "follow-up-required",
+        "finding": "Absent from origin/main, but prior workspace status and the feat/bdd-phase1-validators-and-genai-dryrun branch record implemented/deployed course content at commits 92bed9d and 4fe0740.",
+        "action": "Restore or intentionally retire this course in a dedicated implementation decision issue; do not count it as active in the current branch inventory until course content lands on main."
+      },
+      {
+        "slug": "board-game-tutorial-academy",
+        "status": "not-active-in-current-branch",
+        "finding": "Absent from origin/main and no course-content history or source/design artifact was found in this repository for this slug.",
+        "action": "Treat as a historical planning reference only unless Nissan provides a source/design brief for a new course."
+      }
     ]
   },
   "totals": {
