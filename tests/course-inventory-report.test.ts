@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { buildCourseInventoryReport } from "../scripts/course-inventory-report.mjs";
+import {
+  buildCourseInventoryReport,
+  sequenceIntegrityIssue,
+} from "../scripts/course-inventory-report.mjs";
 
 describe("course inventory report", () => {
   const report = buildCourseInventoryReport();
@@ -18,6 +21,7 @@ describe("course inventory report", () => {
       "solana-academy",
     ]);
     expect(report.issue.reconciliationIssue).toBe(25);
+    expect(report.issue.compatibilityIssue).toBe(34);
     expect(report.issue.actualSlugs).toEqual(
       report.issue.actualSlugs.slice().sort()
     );
@@ -50,6 +54,71 @@ describe("course inventory report", () => {
       expect(course.issues).toHaveProperty("emptyLessons");
       expect(course.issues).toHaveProperty("inconsistentFrontmatter");
       expect(course.issues).toHaveProperty("wholeGameGaps");
+      expect(course).toHaveProperty("compatibilityBuckets");
     }
+  });
+
+  it("counts the current challenge/frontmatter compatibility buckets explicitly", () => {
+    expect(report.compatibilityBucketTotals).toEqual({
+      lowercaseChallengeId: 176,
+      lessonSlugFilenameMismatch: 230,
+      missingChallengeJsonType: 87,
+      legacyTitleDescription: 181,
+      legacyStarterCode: 181,
+      legacyValidationRules: 181,
+      missingVisibleSpec: 181,
+      missingEffectiveJsonEditorSeed: 0,
+      sequenceCorrectOrderIntegrity: 0,
+      environmentCoverageGaps: 48,
+    });
+
+    const solana = report.courses.find((course) => course.slug === "solana-academy");
+    expect(solana?.compatibilityBuckets.missingChallengeJsonType).toHaveLength(75);
+    expect(solana?.compatibilityBuckets.environmentCoverageGaps).toHaveLength(43);
+
+    const authTraining = report.courses.find((course) => course.slug === "auth-training");
+    expect(authTraining?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(54);
+    expect(authTraining?.compatibilityBuckets.legacyValidationRules).toHaveLength(54);
+  });
+
+  it("fails closed on malformed sequence challenge integrity inputs", () => {
+    const validSequenceChallenge = {
+      prefilled: {
+        steps: [
+          { id: "A", label: "Plan" },
+          { id: "B", label: "Ship" },
+        ],
+        correctOrder: ["A", "B"],
+      },
+    };
+
+    expect(sequenceIntegrityIssue(validSequenceChallenge)).toBeNull();
+    expect(sequenceIntegrityIssue({ prefilled: { correctOrder: ["A"] } })).toBe(
+      "missing prefilled.steps"
+    );
+    expect(
+      sequenceIntegrityIssue({
+        prefilled: {
+          steps: [{ id: "A", label: "Plan" }],
+          correctOrder: ["A", "B"],
+        },
+      })
+    ).toContain("does not match correctOrder length");
+    expect(
+      sequenceIntegrityIssue({
+        prefilled: {
+          steps: [{ id: "A" }],
+          correctOrder: ["A"],
+        },
+      })
+    ).toContain("steps missing id or label");
+    expect(
+      sequenceIntegrityIssue({
+        prefilled: {
+          steps: [{ id: "A", label: "Plan" }],
+          correctOrder: ["B"],
+        },
+      })
+    ).toContain("unknown step ids");
   });
 });
