@@ -125,7 +125,7 @@ Purpose: give a named tester course access while email delivery is constrained o
 Supported patterns:
 
 - `TESTER_LOGIN_CODE` works with `GLOBAL_COURSE_ACCESS_EMAILS` for global testers.
-- `TESTER_LOGIN_CODES` maps codes to courses. Example shape only: `<code-a>:python-interview-prep|agentic-ai-systems-engineering,<code-b>:*`.
+- `TESTER_LOGIN_CODES` maps codes to courses. Example shape only: `<code-a>:python-interview-prep|auth-training,<code-b>:*`.
 - Course-specific codes grant access for the slugs they list. If the target `next` course is one of the mapped slugs, grant only that course for the login path.
 
 Rotate or add a tester code:

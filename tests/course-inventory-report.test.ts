@@ -5,11 +5,9 @@ import { buildCourseInventoryReport } from "../scripts/course-inventory-report.m
 describe("course inventory report", () => {
   const report = buildCourseInventoryReport();
 
-  it("records the issue #14 expected slug list and the actual repo list", () => {
+  it("records the reconciled active expected slug list and the actual repo list", () => {
     expect(report.issue.expectedSlugs).toEqual([
-      "agentic-ai-systems-engineering",
       "auth-training",
-      "board-game-tutorial-academy",
       "churn-modeling-academy",
       "genai-ml-academy",
       "llm-benchmarking-academy",
@@ -19,12 +17,20 @@ describe("course inventory report", () => {
       "sales-spin-meddic",
       "solana-academy",
     ]);
+    expect(report.issue.reconciliationIssue).toBe(25);
     expect(report.issue.actualSlugs).toEqual(
       report.issue.actualSlugs.slice().sort()
     );
-    expect(report.issue.missingExpectedSlugs).toEqual([
-      "agentic-ai-systems-engineering",
-      "board-game-tutorial-academy",
+    expect(report.issue.missingExpectedSlugs).toEqual([]);
+    expect(report.issue.absentCourseReconciliation).toEqual([
+      expect.objectContaining({
+        slug: "agentic-ai-systems-engineering",
+        status: "follow-up-required",
+      }),
+      expect.objectContaining({
+        slug: "board-game-tutorial-academy",
+        status: "not-active-in-current-branch",
+      }),
     ]);
   });
 
