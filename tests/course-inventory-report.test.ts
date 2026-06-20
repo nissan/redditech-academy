@@ -60,7 +60,7 @@ describe("course inventory report", () => {
 
   it("counts the current challenge/frontmatter compatibility buckets explicitly", () => {
     expect(report.compatibilityBucketTotals).toEqual({
-      lowercaseChallengeId: 127,
+      lowercaseChallengeId: 0,
       lessonSlugFilenameMismatch: 230,
       missingChallengeJsonType: 87,
       legacyTitleDescription: 181,
@@ -77,14 +77,19 @@ describe("course inventory report", () => {
     expect(solana?.compatibilityBuckets.environmentCoverageGaps).toHaveLength(43);
 
     const authTraining = report.courses.find((course) => course.slug === "auth-training");
-    expect(authTraining?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(54);
+    expect(authTraining?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(0);
     expect(authTraining?.compatibilityBuckets.legacyValidationRules).toHaveLength(54);
 
     for (const slug of [
+      "auth-training",
       "churn-modeling-academy",
+      "genai-ml-academy",
+      "llm-benchmarking-academy",
       "martech-adtech-academy",
+      "openclaw-academy",
       "python-interview-prep",
       "sales-spin-meddic",
+      "solana-academy",
     ]) {
       const course = report.courses.find((candidate) => candidate.slug === slug);
       expect(course?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(0);

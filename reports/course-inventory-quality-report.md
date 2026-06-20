@@ -30,7 +30,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 
 | Bucket | Affected files |
 | --- | ---: |
-| lowercaseChallengeId | 127 |
+| lowercaseChallengeId | 0 |
 | lessonSlugFilenameMismatch | 230 |
 | missingChallengeJsonType | 87 |
 | legacyTitleDescription | 181 |
@@ -45,12 +45,12 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 
 | Course | lowercase challengeId | slug/filename mismatch | missing JSON type | legacy title/description | legacy starterCode | legacy validationRules | missing spec | missing JSON seed | sequence integrity | env gaps |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `auth-training` | 54 | 43 | 9 | 54 | 54 | 54 | 54 | 0 | 0 | 5 |
+| `auth-training` | 0 | 43 | 9 | 54 | 54 | 54 | 54 | 0 | 0 | 5 |
 | `churn-modeling-academy` | 0 | 7 | 0 | 7 | 7 | 7 | 7 | 0 | 0 | 0 |
-| `genai-ml-academy` | 12 | 25 | 0 | 35 | 35 | 35 | 35 | 0 | 0 | 0 |
-| `llm-benchmarking-academy` | 18 | 22 | 3 | 11 | 11 | 11 | 11 | 0 | 0 | 0 |
+| `genai-ml-academy` | 0 | 25 | 0 | 35 | 35 | 35 | 35 | 0 | 0 | 0 |
+| `llm-benchmarking-academy` | 0 | 22 | 3 | 11 | 11 | 11 | 11 | 0 | 0 | 0 |
 | `martech-adtech-academy` | 0 | 1 | 0 | 11 | 11 | 11 | 11 | 0 | 0 | 0 |
-| `openclaw-academy` | 43 | 46 | 0 | 46 | 46 | 46 | 46 | 0 | 0 | 0 |
+| `openclaw-academy` | 0 | 46 | 0 | 46 | 46 | 46 | 46 | 0 | 0 | 0 |
 | `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `sales-spin-meddic` | 0 | 14 | 0 | 14 | 14 | 14 | 14 | 0 | 0 | 0 |
 | `solana-academy` | 0 | 72 | 75 | 3 | 3 | 3 | 3 | 0 | 0 | 43 |
@@ -59,12 +59,12 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 
 | Course | Status | Modules | Lessons | Quizzes | Challenges | Diagrams | Downloads | Videos | External deps | Quality flags |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `auth-training` | free | 12 | 63 | 12 | 63 | 20 | 0 | 22 | 135 | 116 |
+| `auth-training` | free | 12 | 63 | 12 | 63 | 20 | 0 | 22 | 135 | 62 |
 | `churn-modeling-academy` | free | 7 | 7 | 7 | 7 | 6 | 4 | 12 | 12 | 7 |
-| `genai-ml-academy` | free | 13 | 37 | 13 | 46 | 12 | 24 | 24 | 44 | 37 |
-| `llm-benchmarking-academy` | free | 12 | 22 | 12 | 15 | 22 | 5 | 0 | 24 | 42 |
+| `genai-ml-academy` | free | 13 | 37 | 13 | 46 | 12 | 24 | 24 | 44 | 25 |
+| `llm-benchmarking-academy` | free | 12 | 22 | 12 | 15 | 22 | 5 | 0 | 24 | 24 |
 | `martech-adtech-academy` | free | 11 | 11 | 11 | 11 | 10 | 20 | 20 | 5 | 1 |
-| `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 90 |
+| `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 47 |
 | `python-interview-prep` | protected | 7 | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 19 |
 | `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 18 |
 | `solana-academy` | free | 24 | 72 | 24 | 80 | 67 | 79 | 16 | 52 | 72 |
@@ -76,34 +76,25 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - missingQuizzes: 0
 - brokenReferences: 0
 - emptyLessons: 0
-- inconsistentFrontmatter: 114
+- inconsistentFrontmatter: 60
   - content/courses/auth-training/modules/00-executive-overview/lessons/00-module-briefing.mdx slug "module-briefing" does not match filename "00-module-briefing"
-  - content/courses/auth-training/modules/00-executive-overview/lessons/00-module-briefing.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/auth-training/modules/00-executive-overview/lessons/01-identity-landscape.mdx slug "identity-landscape" does not match filename "01-identity-landscape"
-  - content/courses/auth-training/modules/00-executive-overview/lessons/01-identity-landscape.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/auth-training/modules/00-executive-overview/lessons/02-authentication-authorization-summary.mdx slug "authentication-authorization-summary" does not match filename "02-authentication-authorization-summary"
-  - content/courses/auth-training/modules/00-executive-overview/lessons/02-authentication-authorization-summary.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/auth-training/modules/00-executive-overview/lessons/03-enterprise-passwordless-summary.mdx slug "enterprise-passwordless-summary" does not match filename "03-enterprise-passwordless-summary"
-  - content/courses/auth-training/modules/00-executive-overview/lessons/03-enterprise-passwordless-summary.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/auth-training/modules/00-executive-overview/lessons/04-authorization-zero-trust-summary.mdx slug "authorization-zero-trust-summary" does not match filename "04-authorization-zero-trust-summary"
-  - content/courses/auth-training/modules/00-executive-overview/lessons/04-authorization-zero-trust-summary.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/auth-training/modules/00-executive-overview/lessons/05-decentralized-identity-summary.mdx slug "decentralized-identity-summary" does not match filename "05-decentralized-identity-summary"
-  - content/courses/auth-training/modules/00-executive-overview/lessons/05-decentralized-identity-summary.mdx uses non-canonical challengeid; prefer challengeId
-  - ...and 102 more
+  - content/courses/auth-training/modules/00-iam-first-principles/lessons/01-iam-first-principles.mdx slug "iam-first-principles" does not match filename "01-iam-first-principles"
+  - content/courses/auth-training/modules/01-auth-fundamentals/lessons/00-module-briefing.mdx slug "module-briefing" does not match filename "00-module-briefing"
+  - content/courses/auth-training/modules/01-auth-fundamentals/lessons/01-auth-vs-authz.mdx slug "auth-vs-authz" does not match filename "01-auth-vs-authz"
+  - content/courses/auth-training/modules/01-auth-fundamentals/lessons/02-idps-and-rps.mdx slug "idps-and-rps" does not match filename "02-idps-and-rps"
+  - content/courses/auth-training/modules/01-auth-fundamentals/lessons/03-token-types.mdx slug "token-types" does not match filename "03-token-types"
+  - content/courses/auth-training/modules/01-auth-fundamentals/lessons/04-claims-scopes-audience.mdx slug "claims-scopes-audience" does not match filename "04-claims-scopes-audience"
+  - ...and 48 more
 - wholeGameGaps: 2
   - 10 modules/lessons lack an obvious running-project or game signal
   - no capstone signal found in course/module titles or slugs
 - compatibility buckets:
-  - lowercaseChallengeId: 54
-    - content/courses/auth-training/modules/00-executive-overview/lessons/00-module-briefing.mdx
-    - content/courses/auth-training/modules/00-executive-overview/lessons/01-identity-landscape.mdx
-    - content/courses/auth-training/modules/00-executive-overview/lessons/02-authentication-authorization-summary.mdx
-    - content/courses/auth-training/modules/00-executive-overview/lessons/03-enterprise-passwordless-summary.mdx
-    - content/courses/auth-training/modules/00-executive-overview/lessons/04-authorization-zero-trust-summary.mdx
-    - content/courses/auth-training/modules/00-executive-overview/lessons/05-decentralized-identity-summary.mdx
-    - content/courses/auth-training/modules/00-iam-first-principles/lessons/01-iam-first-principles.mdx
-    - content/courses/auth-training/modules/01-auth-fundamentals/lessons/00-module-briefing.mdx
-    - ...and 46 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 43
     - content/courses/auth-training/modules/00-executive-overview/lessons/00-module-briefing.mdx: slug "module-briefing" does not match filename "00-module-briefing"
     - content/courses/auth-training/modules/00-executive-overview/lessons/01-identity-landscape.mdx: slug "identity-landscape" does not match filename "01-identity-landscape"
@@ -251,32 +242,23 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - missingQuizzes: 0
 - brokenReferences: 0
 - emptyLessons: 0
-- inconsistentFrontmatter: 37
+- inconsistentFrontmatter: 25
   - content/courses/genai-ml-academy/modules/00-genai-first-principles/lessons/01-genai-first-principles.mdx slug "genai-first-principles" does not match filename "01-genai-first-principles"
-  - content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/01-production-ai-foundations.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/02-eval-contracts-and-quality-gates.mdx slug "eval-contracts-and-quality-gates" does not match filename "02-eval-contracts-and-quality-gates"
   - content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/03-release-gate-sequencing.mdx slug "release-gate-sequencing" does not match filename "03-release-gate-sequencing"
-  - content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/01-rag-in-practice.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/02-retrieval-pipeline-architecture.mdx slug "retrieval-pipeline-architecture" does not match filename "02-retrieval-pipeline-architecture"
   - content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/03-rag-failure-mode-triage.mdx slug "rag-failure-mode-triage" does not match filename "03-rag-failure-mode-triage"
-  - content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/01-multi-agent-systems-and-frameworks.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/02-agent-topologies-and-coordination.mdx slug "agent-topologies-and-coordination" does not match filename "02-agent-topologies-and-coordination"
   - content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/03-agent-handoff-contracts.mdx slug "agent-handoff-contracts" does not match filename "03-agent-handoff-contracts"
-  - content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/01-langgraph-stateful-agents.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/02-state-machine-design-for-agents.mdx slug "state-machine-design-for-agents" does not match filename "02-state-machine-design-for-agents"
-  - ...and 25 more
+  - content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/03-langgraph-config-and-persistence.mdx slug "langgraph-config-and-persistence" does not match filename "03-langgraph-config-and-persistence"
+  - content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/02-sql-safety-policy-design.mdx slug "sql-safety-policy-design" does not match filename "02-sql-safety-policy-design"
+  - content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/03-query-validation-sequence.mdx slug "query-validation-sequence" does not match filename "03-query-validation-sequence"
+  - content/courses/genai-ml-academy/modules/06-fine-tuning-open-models/lessons/02-training-data-brief-and-dataset-design.mdx slug "training-data-brief-and-dataset-design" does not match filename "02-training-data-brief-and-dataset-design"
+  - ...and 13 more
 - wholeGameGaps: 0
 - compatibility buckets:
-  - lowercaseChallengeId: 12
-    - content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/01-production-ai-foundations.mdx
-    - content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/01-rag-in-practice.mdx
-    - content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/01-multi-agent-systems-and-frameworks.mdx
-    - content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/01-langgraph-stateful-agents.mdx
-    - content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/01-text2sql-enterprise-data.mdx
-    - content/courses/genai-ml-academy/modules/06-fine-tuning-open-models/lessons/01-fine-tuning-open-models.mdx
-    - content/courses/genai-ml-academy/modules/07-langchain-production-genai/lessons/01-langchain-production-genai.mdx
-    - content/courses/genai-ml-academy/modules/08-production-genai-ops/lessons/01-production-genai-ops.mdx
-    - ...and 4 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 25
     - content/courses/genai-ml-academy/modules/00-genai-first-principles/lessons/01-genai-first-principles.mdx: slug "genai-first-principles" does not match filename "01-genai-first-principles"
     - content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/02-eval-contracts-and-quality-gates.mdx: slug "eval-contracts-and-quality-gates" does not match filename "02-eval-contracts-and-quality-gates"
@@ -344,33 +326,24 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - brokenReferences: 1
   - content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx references missing asset /assets/courses/llm-benchmarking-academy/memes/01-benchmarking-fundamentals.svg
 - emptyLessons: 0
-- inconsistentFrontmatter: 40
+- inconsistentFrontmatter: 22
   - content/courses/llm-benchmarking-academy/modules/00-llm-benchmarking-first-principles/lessons/01-llm-benchmarking-first-principles.mdx slug "llm-benchmarking-first-principles" does not match filename "01-llm-benchmarking-first-principles"
   - content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/llm-benchmarking-academy/modules/02-benchmark-architecture-and-metrics/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/llm-benchmarking-academy/modules/02-benchmark-architecture-and-metrics/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/02-implementation-patterns.mdx slug "implementation-patterns" does not match filename "02-implementation-patterns"
-  - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/02-implementation-patterns.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/03-pitfalls-and-case-review.mdx slug "pitfalls-and-case-review" does not match filename "03-pitfalls-and-case-review"
-  - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/03-pitfalls-and-case-review.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
-  - ...and 28 more
+  - content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/02-frontier-eval-operations.mdx slug "frontier-eval-operations" does not match filename "02-frontier-eval-operations"
+  - content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/03-risk-of-overfitting-hard-benchmarks.mdx slug "risk-of-overfitting-hard-benchmarks" does not match filename "03-risk-of-overfitting-hard-benchmarks"
+  - content/courses/llm-benchmarking-academy/modules/05-gsm8k-and-mgsm/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"
+  - content/courses/llm-benchmarking-academy/modules/05-gsm8k-and-mgsm/lessons/02-reasoning-trace-evaluation.mdx slug "reasoning-trace-evaluation" does not match filename "02-reasoning-trace-evaluation"
+  - content/courses/llm-benchmarking-academy/modules/05-gsm8k-and-mgsm/lessons/03-multilingual-regression-playbook.mdx slug "multilingual-regression-playbook" does not match filename "03-multilingual-regression-playbook"
+  - ...and 10 more
 - wholeGameGaps: 1
   - 10 modules/lessons lack an obvious running-project or game signal
 - compatibility buckets:
-  - lowercaseChallengeId: 18
-    - content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx
-    - content/courses/llm-benchmarking-academy/modules/02-benchmark-architecture-and-metrics/lessons/01-core-concepts.mdx
-    - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/01-core-concepts.mdx
-    - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/02-implementation-patterns.mdx
-    - content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/03-pitfalls-and-case-review.mdx
-    - content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/01-core-concepts.mdx
-    - content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/02-frontier-eval-operations.mdx
-    - content/courses/llm-benchmarking-academy/modules/04-gpqa-and-hle/lessons/03-risk-of-overfitting-hard-benchmarks.mdx
-    - ...and 10 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 22
     - content/courses/llm-benchmarking-academy/modules/00-llm-benchmarking-first-principles/lessons/01-llm-benchmarking-first-principles.mdx: slug "llm-benchmarking-first-principles" does not match filename "01-llm-benchmarking-first-principles"
     - content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx: slug "core-concepts" does not match filename "01-core-concepts"
@@ -503,33 +476,24 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 - missingQuizzes: 0
 - brokenReferences: 0
 - emptyLessons: 0
-- inconsistentFrontmatter: 89
+- inconsistentFrontmatter: 46
   - content/courses/openclaw-academy/modules/module-00-first-principles/lessons/01-what-problem-does-openclaw-solve.mdx slug "what-problem-does-openclaw-solve" does not match filename "01-what-problem-does-openclaw-solve"
   - content/courses/openclaw-academy/modules/module-00-first-principles/lessons/02-gateway-channels-agents-mental-model.mdx slug "gateway-channels-agents-mental-model" does not match filename "02-gateway-channels-agents-mental-model"
   - content/courses/openclaw-academy/modules/module-00-first-principles/lessons/03-your-first-openclaw-conversation.mdx slug "your-first-openclaw-conversation" does not match filename "03-your-first-openclaw-conversation"
   - content/courses/openclaw-academy/modules/module-01-overview/lessons/00-module-briefing.mdx slug "module-briefing" does not match filename "00-module-briefing"
-  - content/courses/openclaw-academy/modules/module-01-overview/lessons/00-module-briefing.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/openclaw-academy/modules/module-01-overview/lessons/01-what-is-openclaw.mdx slug "what-is-openclaw" does not match filename "01-what-is-openclaw"
-  - content/courses/openclaw-academy/modules/module-01-overview/lessons/01-what-is-openclaw.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/openclaw-academy/modules/module-01-overview/lessons/02-architecture-overview.mdx slug "architecture-overview" does not match filename "02-architecture-overview"
-  - content/courses/openclaw-academy/modules/module-01-overview/lessons/02-architecture-overview.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/openclaw-academy/modules/module-01-overview/lessons/03-end-to-end-flow.mdx slug "end-to-end-message-flow" does not match filename "03-end-to-end-flow"
-  - content/courses/openclaw-academy/modules/module-01-overview/lessons/03-end-to-end-flow.mdx uses non-canonical challengeid; prefer challengeId
   - content/courses/openclaw-academy/modules/module-02-gateway/lessons/00-module-briefing.mdx slug "module-briefing" does not match filename "00-module-briefing"
-  - ...and 77 more
+  - content/courses/openclaw-academy/modules/module-02-gateway/lessons/01-gateway-daemon.mdx slug "gateway-daemon" does not match filename "01-gateway-daemon"
+  - content/courses/openclaw-academy/modules/module-02-gateway/lessons/02-websocket-protocol.mdx slug "websocket-protocol" does not match filename "02-websocket-protocol"
+  - content/courses/openclaw-academy/modules/module-02-gateway/lessons/03-session-store.mdx slug "session-store" does not match filename "03-session-store"
+  - content/courses/openclaw-academy/modules/module-02-gateway/lessons/04-configuration-system.mdx slug "configuration-system" does not match filename "04-configuration-system"
+  - ...and 34 more
 - wholeGameGaps: 1
   - no capstone signal found in course/module titles or slugs
 - compatibility buckets:
-  - lowercaseChallengeId: 43
-    - content/courses/openclaw-academy/modules/module-01-overview/lessons/00-module-briefing.mdx
-    - content/courses/openclaw-academy/modules/module-01-overview/lessons/01-what-is-openclaw.mdx
-    - content/courses/openclaw-academy/modules/module-01-overview/lessons/02-architecture-overview.mdx
-    - content/courses/openclaw-academy/modules/module-01-overview/lessons/03-end-to-end-flow.mdx
-    - content/courses/openclaw-academy/modules/module-02-gateway/lessons/00-module-briefing.mdx
-    - content/courses/openclaw-academy/modules/module-02-gateway/lessons/01-gateway-daemon.mdx
-    - content/courses/openclaw-academy/modules/module-02-gateway/lessons/02-websocket-protocol.mdx
-    - content/courses/openclaw-academy/modules/module-02-gateway/lessons/03-session-store.mdx
-    - ...and 35 more
+  - lowercaseChallengeId: 0
   - lessonSlugFilenameMismatch: 46
     - content/courses/openclaw-academy/modules/module-00-first-principles/lessons/01-what-problem-does-openclaw-solve.mdx: slug "what-problem-does-openclaw-solve" does not match filename "01-what-problem-does-openclaw-solve"
     - content/courses/openclaw-academy/modules/module-00-first-principles/lessons/02-gateway-channels-agents-mental-model.mdx: slug "gateway-channels-agents-mental-model" does not match filename "02-gateway-channels-agents-mental-model"
