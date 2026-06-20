@@ -57,7 +57,7 @@
     "interactiveLessons": 289
   },
   "compatibilityBucketTotals": {
-    "lowercaseChallengeId": 176,
+    "lowercaseChallengeId": 127,
     "lessonSlugFilenameMismatch": 230,
     "missingChallengeJsonType": 87,
     "legacyTitleDescription": 181,
@@ -610,15 +610,7 @@
         "interactiveLessons": 7
       },
       "compatibilityBuckets": {
-        "lowercaseChallengeId": [
-          "content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx",
-          "content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx",
-          "content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx",
-          "content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx",
-          "content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx",
-          "content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx",
-          "content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx"
-        ],
+        "lowercaseChallengeId": [],
         "lessonSlugFilenameMismatch": [
           "content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx: slug \"first-principles\" does not match filename \"01-first-principles\"",
           "content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx: slug \"core-concepts\" does not match filename \"01-core-concepts\"",
@@ -713,19 +705,12 @@
         "emptyLessons": [],
         "inconsistentFrontmatter": [
           "content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx slug \"first-principles\" does not match filename \"01-first-principles\"",
-          "content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId"
+          "content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\""
         ],
         "wholeGameGaps": []
       }
@@ -1254,19 +1239,7 @@
         "interactiveLessons": 11
       },
       "compatibilityBuckets": {
-        "lowercaseChallengeId": [
-          "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx",
-          "content/courses/martech-adtech-academy/modules/capstone/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/creative-ai/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/crm-map-cdp/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/customer-data/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/industry-map/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/lifecycle/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/measurement/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/privacy-consent/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/programmatic-pipes/lessons/01-overview.mdx",
-          "content/courses/martech-adtech-academy/modules/vendor-evaluation/lessons/01-overview.mdx"
-        ],
+        "lowercaseChallengeId": [],
         "lessonSlugFilenameMismatch": [
           "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx: slug \"first-principles\" does not match filename \"01-first-principles\""
         ],
@@ -1365,18 +1338,7 @@
         "brokenReferences": [],
         "emptyLessons": [],
         "inconsistentFrontmatter": [
-          "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx slug \"first-principles\" does not match filename \"01-first-principles\"",
-          "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/capstone/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/creative-ai/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/crm-map-cdp/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/customer-data/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/industry-map/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/lifecycle/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/measurement/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/privacy-consent/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/programmatic-pipes/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/martech-adtech-academy/modules/vendor-evaluation/lessons/01-overview.mdx uses non-canonical challengeid; prefer challengeId"
+          "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx slug \"first-principles\" does not match filename \"01-first-principles\""
         ],
         "wholeGameGaps": []
       }
@@ -1840,25 +1802,7 @@
         "interactiveLessons": 17
       },
       "compatibilityBuckets": {
-        "lowercaseChallengeId": [
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/01-reading-json.mdx",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/02-reading-csv.mdx",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/03-parsing-jsonl.mdx",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/04-schema-audit.mdx",
-          "content/courses/python-interview-prep/modules/02-aggregation/lessons/01-groupby-pandas.mdx",
-          "content/courses/python-interview-prep/modules/02-aggregation/lessons/02-groupby-stdlib.mdx",
-          "content/courses/python-interview-prep/modules/02-aggregation/lessons/03-join-and-merge.mdx",
-          "content/courses/python-interview-prep/modules/03-metrics/lessons/01-latency-metrics.mdx",
-          "content/courses/python-interview-prep/modules/03-metrics/lessons/02-blended-price.mdx",
-          "content/courses/python-interview-prep/modules/03-metrics/lessons/03-leaderboard.mdx",
-          "content/courses/python-interview-prep/modules/04-output-formatting/lessons/01-table-formatting.mdx",
-          "content/courses/python-interview-prep/modules/05-edge-cases/lessons/01-null-semantics.mdx",
-          "content/courses/python-interview-prep/modules/05-edge-cases/lessons/02-deduplication.mdx",
-          "content/courses/python-interview-prep/modules/05-edge-cases/lessons/03-anomaly-detection.mdx",
-          "content/courses/python-interview-prep/modules/06-mock-problems/lessons/01-mock-aggregation.mdx",
-          "content/courses/python-interview-prep/modules/06-mock-problems/lessons/02-mock-provider-report.mdx",
-          "content/courses/python-interview-prep/modules/06-mock-problems/lessons/03-mock-debug.mdx"
-        ],
+        "lowercaseChallengeId": [],
         "lessonSlugFilenameMismatch": [],
         "missingChallengeJsonType": [],
         "legacyTitleDescription": [],
@@ -1893,28 +1837,11 @@
           "content/courses/python-interview-prep/course.json missing fields: author, version",
           "content/courses/python-interview-prep/modules/00-course-intro/module.json missing fields: id",
           "content/courses/python-interview-prep/modules/01-file-parsing/module.json missing fields: id",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/01-reading-json.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/02-reading-csv.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/03-parsing-jsonl.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/01-file-parsing/lessons/04-schema-audit.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/python-interview-prep/modules/02-aggregation/module.json missing fields: id",
-          "content/courses/python-interview-prep/modules/02-aggregation/lessons/01-groupby-pandas.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/02-aggregation/lessons/02-groupby-stdlib.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/02-aggregation/lessons/03-join-and-merge.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/python-interview-prep/modules/03-metrics/module.json missing fields: id",
-          "content/courses/python-interview-prep/modules/03-metrics/lessons/01-latency-metrics.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/03-metrics/lessons/02-blended-price.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/03-metrics/lessons/03-leaderboard.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/python-interview-prep/modules/04-output-formatting/module.json missing fields: id",
-          "content/courses/python-interview-prep/modules/04-output-formatting/lessons/01-table-formatting.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/python-interview-prep/modules/05-edge-cases/module.json missing fields: id",
-          "content/courses/python-interview-prep/modules/05-edge-cases/lessons/01-null-semantics.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/05-edge-cases/lessons/02-deduplication.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/05-edge-cases/lessons/03-anomaly-detection.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/06-mock-problems/module.json missing fields: id",
-          "content/courses/python-interview-prep/modules/06-mock-problems/lessons/01-mock-aggregation.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/06-mock-problems/lessons/02-mock-provider-report.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/python-interview-prep/modules/06-mock-problems/lessons/03-mock-debug.mdx uses non-canonical challengeid; prefer challengeId"
+          "content/courses/python-interview-prep/modules/06-mock-problems/module.json missing fields: id"
         ],
         "wholeGameGaps": [
           "course.json missing learningApproach: whole-game",
@@ -1941,22 +1868,7 @@
         "interactiveLessons": 14
       },
       "compatibilityBuckets": {
-        "lowercaseChallengeId": [
-          "content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/07-failure-postmortems/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/08-capstone-deal-room/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/11-challenger-selling/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/12-qualification-models/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/13-sandler-and-message-frameworks/lessons/01-core-concepts.mdx",
-          "content/courses/sales-spin-meddic/modules/14-methodology-comparison/lessons/01-core-concepts.mdx"
-        ],
+        "lowercaseChallengeId": [],
         "lessonSlugFilenameMismatch": [
           "content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx: slug \"core-concepts\" does not match filename \"01-core-concepts\"",
           "content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx: slug \"core-concepts\" does not match filename \"01-core-concepts\"",
@@ -2093,33 +2005,19 @@
         "emptyLessons": [],
         "inconsistentFrontmatter": [
           "content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/07-failure-postmortems/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/07-failure-postmortems/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/08-capstone-deal-room/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/08-capstone-deal-room/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/11-challenger-selling/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/11-challenger-selling/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/12-qualification-models/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/12-qualification-models/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
           "content/courses/sales-spin-meddic/modules/13-sandler-and-message-frameworks/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/13-sandler-and-message-frameworks/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId",
-          "content/courses/sales-spin-meddic/modules/14-methodology-comparison/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
-          "content/courses/sales-spin-meddic/modules/14-methodology-comparison/lessons/01-core-concepts.mdx uses non-canonical challengeid; prefer challengeId"
+          "content/courses/sales-spin-meddic/modules/14-methodology-comparison/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\""
         ],
         "wholeGameGaps": []
       }

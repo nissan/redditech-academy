@@ -60,7 +60,7 @@ describe("course inventory report", () => {
 
   it("counts the current challenge/frontmatter compatibility buckets explicitly", () => {
     expect(report.compatibilityBucketTotals).toEqual({
-      lowercaseChallengeId: 176,
+      lowercaseChallengeId: 127,
       lessonSlugFilenameMismatch: 230,
       missingChallengeJsonType: 87,
       legacyTitleDescription: 181,
@@ -79,6 +79,16 @@ describe("course inventory report", () => {
     const authTraining = report.courses.find((course) => course.slug === "auth-training");
     expect(authTraining?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(54);
     expect(authTraining?.compatibilityBuckets.legacyValidationRules).toHaveLength(54);
+
+    for (const slug of [
+      "churn-modeling-academy",
+      "martech-adtech-academy",
+      "python-interview-prep",
+      "sales-spin-meddic",
+    ]) {
+      const course = report.courses.find((candidate) => candidate.slug === slug);
+      expect(course?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(0);
+    }
   });
 
   it("fails closed on malformed sequence challenge integrity inputs", () => {
