@@ -69,6 +69,18 @@ const REQUIRED_MODULE_FIELDS = [
 const REQUIRED_LESSON_FIELDS = ["title", "description", "slug", "duration", "order"];
 const URL_RE = /https?:\/\/[^\s)"'<>]+/g;
 const MARKDOWN_LINK_RE = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+const COMPATIBILITY_BUCKETS = [
+  "lowercaseChallengeId",
+  "lessonSlugFilenameMismatch",
+  "missingChallengeJsonType",
+  "legacyTitleDescription",
+  "legacyStarterCode",
+  "legacyValidationRules",
+  "missingVisibleSpec",
+  "missingEffectiveJsonEditorSeed",
+  "sequenceCorrectOrderIntegrity",
+  "environmentCoverageGaps",
+];
 
 function listDirs(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -140,6 +152,62 @@ function summarizeAssets(courseSlug, subdir, predicate = () => true) {
   return listFiles(path.join(PUBLIC_COURSE_ASSETS_DIR, courseSlug, subdir), predicate);
 }
 
+function createCompatibilityBuckets() {
+  return Object.fromEntries(COMPATIBILITY_BUCKETS.map((bucket) => [bucket, []]));
+}
+
+function pushBucket(buckets, bucket, filePath, detail) {
+  buckets[bucket].push(detail ? `${rel(filePath)}: ${detail}` : rel(filePath));
+}
+
+function effectiveChallengeType(challenge) {
+  if (challenge?.type) return challenge.type;
+  if (Array.isArray(challenge?.prefilled?.steps) || Array.isArray(challenge?.prefilled?.correctOrder)) {
+    return "sequence-completer";
+  }
+  if (challenge?.prefilled?.template !== undefined || challenge?.starterCode !== undefined) {
+    return "json-editor";
+  }
+  return undefined;
+}
+
+function hasJsonEditorSeed(challenge) {
+  return (
+    typeof challenge?.prefilled?.template === "string" ||
+    typeof challenge?.starterCode === "string"
+  );
+}
+
+export function sequenceIntegrityIssue(challenge) {
+  const correctOrder = challenge?.prefilled?.correctOrder;
+  if (!Array.isArray(correctOrder) || correctOrder.length === 0) {
+    return "missing prefilled.correctOrder";
+  }
+  const steps = challenge?.prefilled?.steps;
+  if (!Array.isArray(steps) || steps.length === 0) {
+    return "missing prefilled.steps";
+  }
+  if (steps.length !== correctOrder.length) {
+    return `prefilled.steps length ${steps.length} does not match correctOrder length ${correctOrder.length}`;
+  }
+  const invalidSteps = steps
+    .map((step, index) => ({ step, index }))
+    .filter(({ step }) => !step?.id || !step?.label);
+  if (invalidSteps.length > 0) {
+    return `steps missing id or label at indexes: ${invalidSteps.map(({ index }) => index).join(", ")}`;
+  }
+  const duplicateIds = correctOrder.filter((id, index) => correctOrder.indexOf(id) !== index);
+  if (duplicateIds.length > 0) {
+    return `duplicate correctOrder ids: ${[...new Set(duplicateIds)].join(", ")}`;
+  }
+  const stepIds = new Set(steps.map((step) => step.id));
+  const unknownIds = correctOrder.filter((id) => !stepIds.has(id));
+  if (unknownIds.length > 0) {
+    return `correctOrder references unknown step ids: ${unknownIds.join(", ")}`;
+  }
+  return null;
+}
+
 function inventoryCourse(courseSlug) {
   const courseDir = path.join(CONTENT_DIR, courseSlug);
   const courseIssues = {
@@ -166,6 +234,45 @@ function inventoryCourse(courseSlug) {
   const moduleSlugs = listDirs(path.join(courseDir, "modules"));
   const challengeFiles = listFiles(path.join(courseDir, "challenges"), (file) => file.endsWith(".json"));
   const challengeIds = new Set(challengeFiles.map((file) => path.basename(file, ".json")));
+  const challengeById = new Map();
+  const compatibilityBuckets = createCompatibilityBuckets();
+  for (const challengeFile of challengeFiles) {
+    const challenge = readJson(
+      challengeFile,
+      courseIssues.inconsistentFrontmatter,
+      `${rel(challengeFile)}`
+    );
+    if (!challenge) continue;
+    const challengeFilenameId = path.basename(challengeFile, ".json");
+    const challengeId = challenge.id ?? challengeFilenameId;
+    challengeById.set(challengeFilenameId, challenge);
+    challengeById.set(challengeId, challenge);
+    const type = effectiveChallengeType(challenge);
+    if (!challenge.type) {
+      pushBucket(compatibilityBuckets, "missingChallengeJsonType", challengeFile);
+    }
+    if (challenge.title !== undefined || challenge.description !== undefined) {
+      pushBucket(compatibilityBuckets, "legacyTitleDescription", challengeFile);
+    }
+    if (challenge.starterCode !== undefined) {
+      pushBucket(compatibilityBuckets, "legacyStarterCode", challengeFile);
+    }
+    if (challenge.validationRules !== undefined) {
+      pushBucket(compatibilityBuckets, "legacyValidationRules", challengeFile);
+    }
+    if (typeof challenge.spec !== "string" || challenge.spec.trim() === "") {
+      pushBucket(compatibilityBuckets, "missingVisibleSpec", challengeFile);
+    }
+    if (type === "json-editor" && !hasJsonEditorSeed(challenge)) {
+      pushBucket(compatibilityBuckets, "missingEffectiveJsonEditorSeed", challengeFile);
+    }
+    if (type === "sequence-completer") {
+      const issue = sequenceIntegrityIssue(challenge);
+      if (issue) {
+        pushBucket(compatibilityBuckets, "sequenceCorrectOrderIntegrity", challengeFile, issue);
+      }
+    }
+  }
   const externalDependencies = new Set();
   const referencedLocalAssets = new Set();
   let lessonCount = 0;
@@ -235,11 +342,18 @@ function inventoryCourse(courseSlug) {
         courseIssues.inconsistentFrontmatter.push(
           `${rel(lessonFile)} slug "${frontmatter.slug}" does not match filename "${lessonSlug}"`
         );
+        pushBucket(
+          compatibilityBuckets,
+          "lessonSlugFilenameMismatch",
+          lessonFile,
+          `slug "${frontmatter.slug}" does not match filename "${lessonSlug}"`
+        );
       }
       if (frontmatter.challengeid && !frontmatter.challengeId) {
         courseIssues.inconsistentFrontmatter.push(
           `${rel(lessonFile)} uses non-canonical challengeid; prefer challengeId`
         );
+        pushBucket(compatibilityBuckets, "lowercaseChallengeId", lessonFile);
       }
 
       const challengeId = frontmatter.challengeId ?? frontmatter.challengeid;
@@ -251,6 +365,39 @@ function inventoryCourse(courseSlug) {
       }
       if (challengeId && !challengeIds.has(challengeId)) {
         courseIssues.brokenReferences.push(`${rel(lessonFile)} references missing challenge ${challengeId}`);
+      }
+      const challenge = challengeId ? challengeById.get(challengeId) : undefined;
+      if (frontmatter.environment && !challengeId) {
+        pushBucket(
+          compatibilityBuckets,
+          "environmentCoverageGaps",
+          lessonFile,
+          `environment "${frontmatter.environment}" has no challengeId`
+        );
+      } else if (frontmatter.environment && !challenge) {
+        pushBucket(
+          compatibilityBuckets,
+          "environmentCoverageGaps",
+          lessonFile,
+          `environment "${frontmatter.environment}" references missing challenge "${challengeId}"`
+        );
+      } else if (frontmatter.environment && challenge) {
+        const type = effectiveChallengeType(challenge);
+        if (!type) {
+          pushBucket(
+            compatibilityBuckets,
+            "environmentCoverageGaps",
+            lessonFile,
+            `environment "${frontmatter.environment}" references challenge without effective type "${challengeId}"`
+          );
+        } else if (frontmatter.environment !== type) {
+          pushBucket(
+            compatibilityBuckets,
+            "environmentCoverageGaps",
+            lessonFile,
+            `environment "${frontmatter.environment}" differs from effective challenge type "${type}" (${challengeId})`
+          );
+        }
       }
 
       for (const url of collectUrls(raw)) externalDependencies.add(url);
@@ -308,6 +455,7 @@ function inventoryCourse(courseSlug) {
       referencedLocalAssets: referencedLocalAssets.size,
       interactiveLessons: interactiveLessonCount,
     },
+    compatibilityBuckets,
     samples: {
       externalDependencies: [...externalDependencies].slice(0, 12),
       diagrams: diagramFiles.slice(0, 6).map(rel),
@@ -332,6 +480,12 @@ export function buildCourseInventoryReport() {
     },
     {}
   );
+  const compatibilityBucketTotals = Object.fromEntries(
+    COMPATIBILITY_BUCKETS.map((bucket) => [
+      bucket,
+      courses.reduce((sum, course) => sum + course.compatibilityBuckets[bucket].length, 0),
+    ])
+  );
 
   const expectedSet = new Set(ACTIVE_EXPECTED_SLUGS);
   const actualSet = new Set(actualSlugs);
@@ -343,6 +497,7 @@ export function buildCourseInventoryReport() {
     issue: {
       number: 14,
       reconciliationIssue: 25,
+      compatibilityIssue: 34,
       expectedSlugs: ACTIVE_EXPECTED_SLUGS,
       missingExpectedSlugs,
       additionalActualSlugs,
@@ -350,6 +505,7 @@ export function buildCourseInventoryReport() {
       absentCourseReconciliation: ABSENT_COURSE_RECONCILIATION,
     },
     totals,
+    compatibilityBucketTotals,
     courses,
   };
 }
@@ -362,7 +518,7 @@ export function renderMarkdownReport(report) {
   const lines = [
     "# Course Inventory And Quality Report",
     "",
-    `Generated by \`pnpm content:inventory\` for GitHub issue #${report.issue.number}, with slug expectations reconciled by issue #${report.issue.reconciliationIssue}.`,
+    `Generated by \`pnpm content:inventory\` for GitHub issue #${report.issue.number}, with slug expectations reconciled by issue #${report.issue.reconciliationIssue} and challenge/frontmatter buckets added for issue #${report.issue.compatibilityIssue}.`,
     "",
     "## Slug Coverage",
     "",
@@ -386,6 +542,25 @@ export function renderMarkdownReport(report) {
     "| Modules | Lessons | Quizzes | Challenges | Diagrams | Mermaid blocks | Downloads | Videos | External deps |",
     "| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     `| ${report.totals.modules} | ${report.totals.lessons} | ${report.totals.quizzes} | ${report.totals.challenges} | ${report.totals.diagrams} | ${report.totals.inlineMermaidBlocks} | ${report.totals.downloads} | ${report.totals.videos} | ${report.totals.externalDependencies} |`,
+    "",
+    "## Challenge/Frontmatter Compatibility Buckets",
+    "",
+    "Issue #29 tracks challenge/frontmatter normalization. These buckets are report-only and intentionally separate from the issue #25 slug inventory reconciliation above.",
+    "",
+    "| Bucket | Affected files |",
+    "| --- | ---: |",
+    ...COMPATIBILITY_BUCKETS.map(
+      (bucket) => `| ${bucket} | ${report.compatibilityBucketTotals[bucket]} |`
+    ),
+    "",
+    "## Compatibility Buckets By Course",
+    "",
+    "| Course | lowercase challengeId | slug/filename mismatch | missing JSON type | legacy title/description | legacy starterCode | legacy validationRules | missing spec | missing JSON seed | sequence integrity | env gaps |",
+    "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ...report.courses.map(
+      (course) =>
+        `| \`${course.slug}\` | ${course.compatibilityBuckets.lowercaseChallengeId.length} | ${course.compatibilityBuckets.lessonSlugFilenameMismatch.length} | ${course.compatibilityBuckets.missingChallengeJsonType.length} | ${course.compatibilityBuckets.legacyTitleDescription.length} | ${course.compatibilityBuckets.legacyStarterCode.length} | ${course.compatibilityBuckets.legacyValidationRules.length} | ${course.compatibilityBuckets.missingVisibleSpec.length} | ${course.compatibilityBuckets.missingEffectiveJsonEditorSeed.length} | ${course.compatibilityBuckets.sequenceCorrectOrderIntegrity.length} | ${course.compatibilityBuckets.environmentCoverageGaps.length} |`
+    ),
     "",
     "## Course Inventory",
     "",
@@ -415,6 +590,17 @@ export function renderMarkdownReport(report) {
       }
       if (values.length > 12) {
         lines.push(`  - ...and ${values.length - 12} more`);
+      }
+    }
+    lines.push("- compatibility buckets:");
+    for (const bucket of COMPATIBILITY_BUCKETS) {
+      const values = course.compatibilityBuckets[bucket];
+      lines.push(`  - ${bucket}: ${values.length}`);
+      for (const value of values.slice(0, 8)) {
+        lines.push(`    - ${value}`);
+      }
+      if (values.length > 8) {
+        lines.push(`    - ...and ${values.length - 8} more`);
       }
     }
     if (course.samples.externalDependencies.length > 0) {
