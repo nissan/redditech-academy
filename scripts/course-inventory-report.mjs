@@ -399,7 +399,7 @@ export function renderMarkdownReport(report) {
     lines.push("");
   }
 
-  return `${lines.join("\n")}\n`;
+  return `${lines.join("\n").replace(/\n+$/, "")}\n`;
 }
 
 function writeReport(report) {

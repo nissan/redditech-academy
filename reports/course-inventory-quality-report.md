@@ -288,4 +288,3 @@ The issue lists eleven course slugs, but the current `origin/main` content tree 
   - https://solana.com/docs/core/transactions
   - https://solana.com/docs/references/security
   - https://solana.com/developers/courses
-
