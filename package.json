@@ -9,6 +9,7 @@
     "test:integration": "vitest run --config vitest.integration.config.ts --reporter=verbose",
     "test:all": "vitest run",
     "content:inventory": "node scripts/course-inventory-report.mjs",
+    "ui:evidence": "node scripts/capture-ui-evidence.mjs",
     "mermaid:sync": "node scripts/mermaid-sync.mjs",
     "mermaid:sync:openai": "MERMAID_USE_OPENAI=1 node scripts/mermaid-sync.mjs --openai",
     "build": "pnpm mermaid:sync && next build",
