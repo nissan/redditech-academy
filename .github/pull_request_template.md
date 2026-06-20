@@ -32,6 +32,7 @@ Do not include secrets, credentials, tokens, private learner data, or sensitive 
 
 ## Post-Merge Checklist
 
+- [ ] Run `docs/runbooks/post-merge-release-checklist.md`.
 - [ ] Confirm the linked issue is closed or updated.
 - [ ] Update the academy plan/status notes if roadmap scope, validation expectations, or release state changed.
 - [ ] Revalidate dependent issues and note any newly unblocked work.
