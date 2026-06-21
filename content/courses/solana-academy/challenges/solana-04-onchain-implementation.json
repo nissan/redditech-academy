@@ -1,5 +1,6 @@
 {
   "id": "solana-04-onchain-implementation",
+  "type": "json-editor",
   "spec": "Build implementation mission for On-Chain Program Design: workflow steps, deterministic checks, and observability outputs.",
   "validation": {
     "must_have": [

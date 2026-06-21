@@ -1,5 +1,6 @@
 {
   "id": "solana-15-pyth-oracle",
+  "type": "json-editor",
   "spec": "Use Pyth pull receiver flow and confidence interval checks for execution safety gates.",
   "validation": {
     "must_have": [

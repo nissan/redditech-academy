@@ -1,5 +1,6 @@
 {
   "id": "solana-05-frontend-implementation",
+  "type": "json-editor",
   "spec": "Build implementation mission for Frontend + RPC Integration: workflow steps, deterministic checks, and observability outputs.",
   "validation": {
     "must_have": [

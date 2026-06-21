@@ -1,5 +1,6 @@
 {
   "id": "solana-03-devnet-launch-gate",
+  "type": "sequence-completer",
   "spec": "Order the Solana release steps into a safe devnet go/no-go sequence.",
   "validation": {
     "must_have": [

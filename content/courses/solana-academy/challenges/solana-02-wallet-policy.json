@@ -1,5 +1,6 @@
 {
   "id": "solana-02-wallet-policy",
+  "type": "json-editor",
   "spec": "Complete the wallet policy JSON for your first Solana sprint release. Scenario: A learner-facing dApp supports wallet connect, token-gated content access, and one on-chain progress-write action. Keep policy strict, least-privilege, and production-minded.",
   "validation": {
     "must_have": [

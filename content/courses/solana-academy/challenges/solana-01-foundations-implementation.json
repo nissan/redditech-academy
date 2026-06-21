@@ -1,5 +1,6 @@
 {
   "id": "solana-01-foundations-implementation",
+  "type": "json-editor",
   "spec": "Build implementation mission for Solana + Blockchain Fundamentals: workflow steps, deterministic checks, and observability outputs.",
   "validation": {
     "must_have": [

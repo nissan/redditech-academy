@@ -1,5 +1,6 @@
 {
   "id": "solana-13-orca-defi",
+  "type": "json-editor",
   "spec": "Integrate Orca Whirlpools swap/liquidity actions and compare concentrated liquidity behavior vs Jupiter path.",
   "validation": {
     "must_have": [

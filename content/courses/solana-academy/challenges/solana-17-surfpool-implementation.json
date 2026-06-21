@@ -1,5 +1,6 @@
 {
   "id": "solana-17-surfpool-implementation",
+  "type": "json-editor",
   "spec": "Implement Testing Lab \u2014 Surfpool Workflows harness strategy: setup, fixtures, deterministic tests, and observability outputs.",
   "validation": {
     "must_have": [

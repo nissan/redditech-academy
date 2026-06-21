@@ -1,5 +1,6 @@
 {
   "id": "solana-10-pinocchio-escrow",
+  "type": "json-editor",
   "spec": "Port escrow to Pinocchio and provide CU/binary comparison against Anchor baseline with same acceptance tests.",
   "validation": {
     "must_have": [

@@ -1,5 +1,6 @@
 {
   "id": "solana-07-deployment-implementation",
+  "type": "json-editor",
   "spec": "Build implementation mission for Deployment + Mainnet Readiness: workflow steps, deterministic checks, and observability outputs.",
   "validation": {
     "must_have": [

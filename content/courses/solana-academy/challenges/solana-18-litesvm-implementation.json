@@ -1,5 +1,6 @@
 {
   "id": "solana-18-litesvm-implementation",
+  "type": "json-editor",
   "spec": "Implement Testing Lab \u2014 LiteSVM In-Process Testing harness strategy: setup, fixtures, deterministic tests, and observability outputs.",
   "validation": {
     "must_have": [

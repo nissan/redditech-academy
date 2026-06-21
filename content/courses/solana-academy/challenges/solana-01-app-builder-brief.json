@@ -1,5 +1,6 @@
 {
   "id": "solana-01-app-builder-brief",
+  "type": "json-editor",
   "spec": "Fill in the Solana app build brief JSON for a production-minded first milestone. Scenario: You are building a token-gated learning dApp with solana.new acceleration. Keep scope realistic for a first sprint, include quality gates, and avoid over-permissioned wallet behavior.",
   "validation": {
     "must_have": [

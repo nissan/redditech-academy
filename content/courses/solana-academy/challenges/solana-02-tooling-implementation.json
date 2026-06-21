@@ -1,5 +1,6 @@
 {
   "id": "solana-02-tooling-implementation",
+  "type": "json-editor",
   "spec": "Build implementation mission for Developer Tooling + Environments: workflow steps, deterministic checks, and observability outputs.",
   "validation": {
     "must_have": [

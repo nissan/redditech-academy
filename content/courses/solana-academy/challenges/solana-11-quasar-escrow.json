@@ -1,5 +1,6 @@
 {
   "id": "solana-11-quasar-escrow",
+  "type": "json-editor",
   "spec": "Implement escrow in Quasar no_std style and document zero-copy account model and safety tradeoffs.",
   "validation": {
     "must_have": [

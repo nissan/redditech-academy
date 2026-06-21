@@ -1,5 +1,6 @@
 {
   "id": "solana-16-vrm-auctions",
+  "type": "json-editor",
   "spec": "Choose one path: (A) Switchboard commit-reveal coin flip / random selector or (B) Dutch auction with Chainlink feed guardrail, and submit threat model.",
   "validation": {
     "must_have": [
