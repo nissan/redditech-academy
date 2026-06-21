@@ -1,5 +1,6 @@
 {
   "id": "solana-12-jupiter-implementation",
+  "type": "json-editor",
   "spec": "Implementation mission for DeFi Layer 1 \u2014 Jupiter Integration: produce a devnet-ready implementation plan with deterministic tests and failure logging strategy.",
   "validation": {
     "must_have": [
@@ -34,7 +35,7 @@
     "Treat launch-gate failures as hard blockers."
   ],
   "prefilled": {
-    "template": "{\\n  \"submission\": {\\n    \"network\": \"devnet\",\\n    \"summary\": \"__FILL_IN__\",\\n    \"invariants\": [\"__FILL_IN__\"],\\n    \"test_evidence\": [\"__FILL_IN__\"],\\n    \"risk_controls\": [\"__FILL_IN__\"]\\n  }\\n}"
+    "template": "{\n  \"submission\": {\n    \"network\": \"devnet\",\n    \"summary\": \"__FILL_IN__\",\n    \"invariants\": [\"__FILL_IN__\"],\n    \"test_evidence\": [\"__FILL_IN__\"],\n    \"risk_controls\": [\"__FILL_IN__\"]\n  }\n}"
   },
   "success_text": "Mission accepted. Submission includes enforceable controls and evidence-backed quality gates."
 }
