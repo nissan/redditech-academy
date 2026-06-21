@@ -1,5 +1,6 @@
 {
   "id": "solana-11-quasar-escrow-implementation",
+  "type": "json-editor",
   "spec": "Implementation mission for Quasar Escrow Lab: produce a devnet-ready implementation plan with deterministic tests and failure logging strategy.",
   "validation": {
     "must_have": [
@@ -34,7 +35,7 @@
     "Treat launch-gate failures as hard blockers."
   ],
   "prefilled": {
-    "template": "{\\n  \"submission\": {\\n    \"network\": \"devnet\",\\n    \"summary\": \"__FILL_IN__\",\\n    \"invariants\": [\"__FILL_IN__\"],\\n    \"test_evidence\": [\"__FILL_IN__\"],\\n    \"risk_controls\": [\"__FILL_IN__\"]\\n  }\\n}"
+    "template": "{\n  \"submission\": {\n    \"network\": \"devnet\",\n    \"summary\": \"__FILL_IN__\",\n    \"invariants\": [\"__FILL_IN__\"],\n    \"test_evidence\": [\"__FILL_IN__\"],\n    \"risk_controls\": [\"__FILL_IN__\"]\n  }\n}"
   },
   "success_text": "Mission accepted. Submission includes enforceable controls and evidence-backed quality gates."
 }

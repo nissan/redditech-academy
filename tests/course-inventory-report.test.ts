@@ -62,7 +62,7 @@ describe("course inventory report", () => {
     expect(report.compatibilityBucketTotals).toEqual({
       lowercaseChallengeId: 0,
       lessonSlugFilenameMismatch: 230,
-      missingChallengeJsonType: 63,
+      missingChallengeJsonType: 55,
       legacyTitleDescription: 181,
       legacyStarterCode: 181,
       legacyValidationRules: 181,
@@ -73,7 +73,7 @@ describe("course inventory report", () => {
     });
 
     const solana = report.courses.find((course) => course.slug === "solana-academy");
-    expect(solana?.compatibilityBuckets.missingChallengeJsonType).toHaveLength(51);
+    expect(solana?.compatibilityBuckets.missingChallengeJsonType).toHaveLength(43);
     expect(solana?.compatibilityBuckets.environmentCoverageGaps).toHaveLength(43);
 
     const authTraining = report.courses.find((course) => course.slug === "auth-training");
