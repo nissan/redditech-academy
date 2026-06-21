@@ -32,7 +32,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | --- | ---: |
 | lowercaseChallengeId | 0 |
 | lessonSlugFilenameMismatch | 230 |
-| missingChallengeJsonType | 87 |
+| missingChallengeJsonType | 63 |
 | legacyTitleDescription | 181 |
 | legacyStarterCode | 181 |
 | legacyValidationRules | 181 |
@@ -53,7 +53,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | `openclaw-academy` | 0 | 46 | 0 | 46 | 46 | 46 | 46 | 0 | 0 | 0 |
 | `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `sales-spin-meddic` | 0 | 14 | 0 | 14 | 14 | 14 | 14 | 0 | 0 | 0 |
-| `solana-academy` | 0 | 72 | 75 | 3 | 3 | 3 | 3 | 0 | 0 | 43 |
+| `solana-academy` | 0 | 72 | 51 | 3 | 3 | 3 | 3 | 0 | 0 | 43 |
 
 ## Course Inventory
 
@@ -712,16 +712,16 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx: slug "core-concepts" does not match filename "01-core-concepts"
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/02-implementation-lab.mdx: slug "implementation-lab" does not match filename "02-implementation-lab"
     - ...and 64 more
-  - missingChallengeJsonType: 75
+  - missingChallengeJsonType: 51
     - content/courses/solana-academy/challenges/solana-00-first-principles-launch-gate.json
-    - content/courses/solana-academy/challenges/solana-01-app-builder-brief.json
     - content/courses/solana-academy/challenges/solana-01-foundations-adversarial.json
     - content/courses/solana-academy/challenges/solana-01-foundations-architecture.json
-    - content/courses/solana-academy/challenges/solana-01-foundations-implementation.json
     - content/courses/solana-academy/challenges/solana-02-tooling-adversarial.json
     - content/courses/solana-academy/challenges/solana-02-tooling-architecture.json
-    - content/courses/solana-academy/challenges/solana-02-tooling-implementation.json
-    - ...and 67 more
+    - content/courses/solana-academy/challenges/solana-03-wallets-adversarial.json
+    - content/courses/solana-academy/challenges/solana-03-wallets-architecture.json
+    - content/courses/solana-academy/challenges/solana-04-onchain-adversarial.json
+    - ...and 43 more
   - legacyTitleDescription: 3
     - content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json
     - content/courses/solana-academy/challenges/solana-capstone-beginner-build.json

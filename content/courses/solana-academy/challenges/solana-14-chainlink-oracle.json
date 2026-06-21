@@ -1,5 +1,6 @@
 {
   "id": "solana-14-chainlink-oracle",
+  "type": "json-editor",
   "spec": "Use Chainlink data feed account(s) for price guardrails in escrow/deal settlement logic.",
   "validation": {
     "must_have": [

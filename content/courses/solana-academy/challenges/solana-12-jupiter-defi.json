@@ -1,5 +1,6 @@
 {
   "id": "solana-12-jupiter-defi",
+  "type": "json-editor",
   "spec": "Integrate Jupiter quote/order flow into escrow settlement extension with slippage and route guards.",
   "validation": {
     "must_have": [

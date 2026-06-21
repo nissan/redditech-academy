@@ -1,5 +1,6 @@
 {
   "id": "solana-19-validator-arch-implementation",
+  "type": "json-editor",
   "spec": "Build implementation runbook for Advanced Validators \u2014 Architecture and Consensus: infra plan, key management posture, monitoring, and maintenance procedures.",
   "validation": {
     "must_have": [
