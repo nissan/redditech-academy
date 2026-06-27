@@ -10,8 +10,8 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 
 ## Counts
 
-- Total mismatches classified: 12
-- Keep JSON editor, change MDX environment later: 12
+- Total mismatches classified: 0
+- Keep JSON editor, change MDX environment later: 0
 - Convert to true sequence completer: 0
 - Hold for content spec: 0
 
@@ -24,28 +24,7 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 
 ## Implementation Splits
 
-### Solana validator modules JSON-editor environment alignment
-
-- Modules: 17-22
-- Count: 12
-- Depends on: #44
-- Blocks: #36
-- UI evidence: Required in the implementation PR because changing MDX environment changes rendered challenge UI.
-- Challenge IDs: `solana-17-surfpool-architecture`, `solana-17-surfpool-adversarial`, `solana-18-litesvm-architecture`, `solana-18-litesvm-adversarial`, `solana-19-validator-arch-architecture`, `solana-19-validator-arch-adversarial`, `solana-20-validator-ops-architecture`, `solana-20-validator-ops-adversarial`, `solana-21-client-diversity-architecture`, `solana-21-client-diversity-adversarial`, `solana-22-validator-launch-architecture`, `solana-22-validator-launch-adversarial`
-
 ## Classified Pairs
 
 | Module | Lesson | Challenge ID | Classification | Split | Rationale |
 | --- | --- | --- | --- | --- | --- |
-| 17-surfpool-testing-lab | 01-core-concepts | `solana-17-surfpool-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 17-surfpool-testing-lab | 03-adversarial-testing-and-launch-gate | `solana-17-surfpool-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 18-litesvm-testing-lab | 01-core-concepts | `solana-18-litesvm-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 18-litesvm-testing-lab | 03-adversarial-testing-and-launch-gate | `solana-18-litesvm-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 19-validator-architecture-and-consensus | 01-core-concepts | `solana-19-validator-arch-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 19-validator-architecture-and-consensus | 03-adversarial-ops-and-go-live-gate | `solana-19-validator-arch-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 20-running-a-validator-ops-and-economics | 01-core-concepts | `solana-20-validator-ops-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 20-running-a-validator-ops-and-economics | 03-adversarial-ops-and-go-live-gate | `solana-20-validator-ops-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 21-client-diversity-firedancer-frankendancer | 01-core-concepts | `solana-21-client-diversity-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 21-client-diversity-firedancer-frankendancer | 03-adversarial-ops-and-go-live-gate | `solana-21-client-diversity-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 22-validator-launch-readiness-mission | 01-core-concepts | `solana-22-validator-launch-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 22-validator-launch-readiness-mission | 03-adversarial-ops-and-go-live-gate | `solana-22-validator-launch-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |

@@ -1,5 +1,6 @@
 {
   "id": "solana-17-surfpool-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial scenarios for Testing Lab \u2014 Surfpool Workflows: attack-path matrix, release blockers, rollback and incident triggers.",
   "validation": {
     "must_have": [

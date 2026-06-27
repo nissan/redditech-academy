@@ -1,5 +1,6 @@
 {
   "id": "solana-21-client-diversity-architecture",
+  "type": "json-editor",
   "spec": "Create architecture and risk model for Advanced Validators \u2014 Client Diversity (Agave, Firedancer, Frankendancer): roles, assumptions, failure taxonomy, and measurable launch thresholds.",
   "validation": {
     "must_have": [

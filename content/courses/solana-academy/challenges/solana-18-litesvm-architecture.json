@@ -1,5 +1,6 @@
 {
   "id": "solana-18-litesvm-architecture",
+  "type": "json-editor",
   "spec": "Define architecture for Testing Lab \u2014 LiteSVM In-Process Testing: invariants, scope, failure taxonomy, and measurable acceptance boundaries.",
   "validation": {
     "must_have": [

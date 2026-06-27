@@ -62,19 +62,19 @@ describe("course inventory report", () => {
     expect(report.compatibilityBucketTotals).toEqual({
       lowercaseChallengeId: 0,
       lessonSlugFilenameMismatch: 230,
-      missingChallengeJsonType: 24,
+      missingChallengeJsonType: 12,
       legacyTitleDescription: 181,
       legacyStarterCode: 181,
       legacyValidationRules: 181,
       missingVisibleSpec: 181,
       missingEffectiveJsonEditorSeed: 0,
       sequenceCorrectOrderIntegrity: 0,
-      environmentCoverageGaps: 17,
+      environmentCoverageGaps: 5,
     });
 
     const solana = report.courses.find((course) => course.slug === "solana-academy");
-    expect(solana?.compatibilityBuckets.missingChallengeJsonType).toHaveLength(12);
-    expect(solana?.compatibilityBuckets.environmentCoverageGaps).toHaveLength(12);
+    expect(solana?.compatibilityBuckets.missingChallengeJsonType).toHaveLength(0);
+    expect(solana?.compatibilityBuckets.environmentCoverageGaps).toHaveLength(0);
 
     const authTraining = report.courses.find((course) => course.slug === "auth-training");
     expect(authTraining?.compatibilityBuckets.lowercaseChallengeId).toHaveLength(0);

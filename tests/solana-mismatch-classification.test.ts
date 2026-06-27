@@ -5,11 +5,11 @@ import { buildReport } from "../scripts/solana-mismatch-classification.mjs";
 describe("Solana sequence environment mismatch classification", () => {
   const report = buildReport();
 
-  it("classifies the current #44 mismatch inventory without changing behavior", () => {
+  it("keeps the Solana sequence environment mismatch inventory resolved", () => {
     expect(report.issue).toBe(44);
     expect(report.counts).toEqual({
-      mismatches: 12,
-      keepJsonEditorChangeMdxEnvironment: 12,
+      mismatches: 0,
+      keepJsonEditorChangeMdxEnvironment: 0,
       convertToSequenceCompleter: 0,
       holdForContentSpec: 0,
     });
@@ -26,8 +26,6 @@ describe("Solana sequence environment mismatch classification", () => {
   });
 
   it("keeps implementation batches split by low-overlap module groups", () => {
-    expect(report.implementationSplits.map((split) => [split.id, split.count])).toEqual([
-      ["solana-validator-json-editor-env-alignment", 12],
-    ]);
+    expect(report.implementationSplits.map((split) => [split.id, split.count])).toEqual([]);
   });
 });
