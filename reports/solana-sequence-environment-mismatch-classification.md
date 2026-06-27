@@ -10,8 +10,8 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 
 ## Counts
 
-- Total mismatches classified: 28
-- Keep JSON editor, change MDX environment later: 28
+- Total mismatches classified: 12
+- Keep JSON editor, change MDX environment later: 12
 - Convert to true sequence completer: 0
 - Hold for content spec: 0
 
@@ -23,15 +23,6 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 - Keep #37 slug/frontmatter cleanup separate from this lane.
 
 ## Implementation Splits
-
-### Solana integration modules JSON-editor environment alignment
-
-- Modules: 09-16
-- Count: 16
-- Depends on: #44
-- Blocks: #36
-- UI evidence: Required in the implementation PR because changing MDX environment changes rendered challenge UI.
-- Challenge IDs: `solana-09-anchor-escrow-architecture`, `solana-09-anchor-escrow-adversarial`, `solana-10-pinocchio-escrow-architecture`, `solana-10-pinocchio-escrow-adversarial`, `solana-11-quasar-escrow-architecture`, `solana-11-quasar-escrow-adversarial`, `solana-12-jupiter-architecture`, `solana-12-jupiter-adversarial`, `solana-13-orca-architecture`, `solana-13-orca-adversarial`, `solana-14-chainlink-architecture`, `solana-14-chainlink-adversarial`, `solana-15-pyth-architecture`, `solana-15-pyth-adversarial`, `solana-16-vrm-auctions-architecture`, `solana-16-vrm-auctions-adversarial`
 
 ### Solana validator modules JSON-editor environment alignment
 
@@ -46,22 +37,6 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 
 | Module | Lesson | Challenge ID | Classification | Split | Rationale |
 | --- | --- | --- | --- | --- | --- |
-| 09-anchor-escrow-lab | 01-core-concepts | `solana-09-anchor-escrow-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 09-anchor-escrow-lab | 03-adversarial-testing-and-launch-gate | `solana-09-anchor-escrow-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 10-pinocchio-escrow-lab | 01-core-concepts | `solana-10-pinocchio-escrow-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 10-pinocchio-escrow-lab | 03-adversarial-testing-and-launch-gate | `solana-10-pinocchio-escrow-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 11-quasar-escrow-lab | 01-core-concepts | `solana-11-quasar-escrow-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 11-quasar-escrow-lab | 03-adversarial-testing-and-launch-gate | `solana-11-quasar-escrow-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 12-jupiter-defi-integration | 01-core-concepts | `solana-12-jupiter-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 12-jupiter-defi-integration | 03-adversarial-testing-and-launch-gate | `solana-12-jupiter-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 13-orca-whirlpools-integration | 01-core-concepts | `solana-13-orca-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 13-orca-whirlpools-integration | 03-adversarial-testing-and-launch-gate | `solana-13-orca-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 14-chainlink-oracle-integration | 01-core-concepts | `solana-14-chainlink-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 14-chainlink-oracle-integration | 03-adversarial-testing-and-launch-gate | `solana-14-chainlink-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 15-pyth-oracle-integration | 01-core-concepts | `solana-15-pyth-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 15-pyth-oracle-integration | 03-adversarial-testing-and-launch-gate | `solana-15-pyth-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 16-verifiable-randomness-auctions | 01-core-concepts | `solana-16-vrm-auctions-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| 16-verifiable-randomness-auctions | 03-adversarial-testing-and-launch-gate | `solana-16-vrm-auctions-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 17-surfpool-testing-lab | 01-core-concepts | `solana-17-surfpool-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 17-surfpool-testing-lab | 03-adversarial-testing-and-launch-gate | `solana-17-surfpool-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 18-litesvm-testing-lab | 01-core-concepts | `solana-18-litesvm-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |

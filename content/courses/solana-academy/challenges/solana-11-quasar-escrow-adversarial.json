@@ -1,5 +1,6 @@
 {
   "id": "solana-11-quasar-escrow-adversarial",
+  "type": "json-editor",
   "spec": "Adversarial mission for Quasar Escrow Lab: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
   "validation": {
     "must_have": [
@@ -34,7 +35,7 @@
     "Treat launch-gate failures as hard blockers."
   ],
   "prefilled": {
-    "template": "{\\n  \"submission\": {\\n    \"network\": \"devnet\",\\n    \"summary\": \"__FILL_IN__\",\\n    \"invariants\": [\"__FILL_IN__\"],\\n    \"test_evidence\": [\"__FILL_IN__\"],\\n    \"risk_controls\": [\"__FILL_IN__\"]\\n  }\\n}"
+    "template": "{\n  \"submission\": {\n    \"network\": \"devnet\",\n    \"summary\": \"__FILL_IN__\",\n    \"invariants\": [\"__FILL_IN__\"],\n    \"test_evidence\": [\"__FILL_IN__\"],\n    \"risk_controls\": [\"__FILL_IN__\"]\n  }\n}"
   },
   "success_text": "Mission accepted. Submission includes enforceable controls and evidence-backed quality gates."
 }

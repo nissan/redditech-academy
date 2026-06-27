@@ -32,14 +32,14 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | --- | ---: |
 | lowercaseChallengeId | 0 |
 | lessonSlugFilenameMismatch | 230 |
-| missingChallengeJsonType | 40 |
+| missingChallengeJsonType | 24 |
 | legacyTitleDescription | 181 |
 | legacyStarterCode | 181 |
 | legacyValidationRules | 181 |
 | missingVisibleSpec | 181 |
 | missingEffectiveJsonEditorSeed | 0 |
 | sequenceCorrectOrderIntegrity | 0 |
-| environmentCoverageGaps | 33 |
+| environmentCoverageGaps | 17 |
 
 ## Compatibility Buckets By Course
 
@@ -53,7 +53,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | `openclaw-academy` | 0 | 46 | 0 | 46 | 46 | 46 | 46 | 0 | 0 | 0 |
 | `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `sales-spin-meddic` | 0 | 14 | 0 | 14 | 14 | 14 | 14 | 0 | 0 | 0 |
-| `solana-academy` | 0 | 72 | 28 | 3 | 3 | 3 | 3 | 0 | 0 | 28 |
+| `solana-academy` | 0 | 72 | 12 | 3 | 3 | 3 | 3 | 0 | 0 | 12 |
 
 ## Course Inventory
 
@@ -699,16 +699,16 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx: slug "core-concepts" does not match filename "01-core-concepts"
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/02-implementation-lab.mdx: slug "implementation-lab" does not match filename "02-implementation-lab"
     - ...and 64 more
-  - missingChallengeJsonType: 28
-    - content/courses/solana-academy/challenges/solana-09-anchor-escrow-adversarial.json
-    - content/courses/solana-academy/challenges/solana-09-anchor-escrow-architecture.json
-    - content/courses/solana-academy/challenges/solana-10-pinocchio-escrow-adversarial.json
-    - content/courses/solana-academy/challenges/solana-10-pinocchio-escrow-architecture.json
-    - content/courses/solana-academy/challenges/solana-11-quasar-escrow-adversarial.json
-    - content/courses/solana-academy/challenges/solana-11-quasar-escrow-architecture.json
-    - content/courses/solana-academy/challenges/solana-12-jupiter-adversarial.json
-    - content/courses/solana-academy/challenges/solana-12-jupiter-architecture.json
-    - ...and 20 more
+  - missingChallengeJsonType: 12
+    - content/courses/solana-academy/challenges/solana-17-surfpool-adversarial.json
+    - content/courses/solana-academy/challenges/solana-17-surfpool-architecture.json
+    - content/courses/solana-academy/challenges/solana-18-litesvm-adversarial.json
+    - content/courses/solana-academy/challenges/solana-18-litesvm-architecture.json
+    - content/courses/solana-academy/challenges/solana-19-validator-arch-adversarial.json
+    - content/courses/solana-academy/challenges/solana-19-validator-arch-architecture.json
+    - content/courses/solana-academy/challenges/solana-20-validator-ops-adversarial.json
+    - content/courses/solana-academy/challenges/solana-20-validator-ops-architecture.json
+    - ...and 4 more
   - legacyTitleDescription: 3
     - content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json
     - content/courses/solana-academy/challenges/solana-capstone-beginner-build.json
@@ -727,16 +727,16 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
     - content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json
   - missingEffectiveJsonEditorSeed: 0
   - sequenceCorrectOrderIntegrity: 0
-  - environmentCoverageGaps: 28
-    - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-09-anchor-escrow-architecture)
-    - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-09-anchor-escrow-adversarial)
-    - content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-10-pinocchio-escrow-architecture)
-    - content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-10-pinocchio-escrow-adversarial)
-    - content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-11-quasar-escrow-architecture)
-    - content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-11-quasar-escrow-adversarial)
-    - content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-12-jupiter-architecture)
-    - content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/03-adversarial-testing-and-launch-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-12-jupiter-adversarial)
-    - ...and 20 more
+  - environmentCoverageGaps: 12
+    - content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-17-surfpool-architecture)
+    - content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-17-surfpool-adversarial)
+    - content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-18-litesvm-architecture)
+    - content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-18-litesvm-adversarial)
+    - content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-19-validator-arch-architecture)
+    - content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-19-validator-arch-adversarial)
+    - content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/01-core-concepts.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-20-validator-ops-architecture)
+    - content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment "sequence-completer" differs from effective challenge type "json-editor" (solana-20-validator-ops-adversarial)
+    - ...and 4 more
 - external dependency samples:
   - https://solana.com/docs/core/accounts
   - https://solana.com/docs/core/instructions

@@ -1,0 +1,57 @@
+{
+  "issue": 67,
+  "capturedAt": "2026-06-27T11:48:42.545Z",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "baseUrl": "http://localhost:30267",
+  "note": "Representative screenshots for Solana integration JSON-editor environment alignment.",
+  "scenarios": [
+    {
+      "name": "anchor-architecture-json-editor-desktop",
+      "label": "Anchor architecture lesson renders JSON editor",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts/interactive",
+      "url": "http://localhost:30267/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/67/anchor-architecture-json-editor-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission 09A/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Architecture/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "anchor-adversarial-launch-gate-json-editor-desktop",
+      "label": "Anchor adversarial launch gate renders JSON editor",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/03-adversarial-testing-and-launch-gate/interactive",
+      "url": "http://localhost:30267/courses/solana-academy/learn/09-anchor-escrow-lab/03-adversarial-testing-and-launch-gate/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/67/anchor-adversarial-launch-gate-json-editor-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission 09C/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Launch Gate|launch gate/i",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}
