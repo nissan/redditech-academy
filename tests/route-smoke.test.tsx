@@ -16,6 +16,7 @@ import { getCourseStructure as readCourseStructure } from "../lib/content";
 
 const SMOKE_COURSE_SLUG = "auth-training";
 const SMOKE_MODULE_SLUG = "00-executive-overview";
+const SMOKE_INTERACTIVE_LESSON_SLUG = "00-module-briefing";
 const SOLANA_COURSE_SLUG = "solana-academy";
 const SOLANA_MODULE_SLUG = "00-solana-first-principles";
 const SOLANA_INTERACTIVE_LESSON_SLUG = "01-mental-models-and-vocabulary";
@@ -137,6 +138,33 @@ describe("route smoke coverage", () => {
       "href",
       `/courses/${SOLANA_COURSE_SLUG}/learn/${SOLANA_MODULE_SLUG}/${SOLANA_INTERACTIVE_LESSON_SLUG}/interactive`
     );
+  });
+
+  it("keeps mission path affordances scoped to Solana", async () => {
+    render(
+      await ModuleOverviewPage({
+        params: Promise.resolve({
+          courseSlug: SMOKE_COURSE_SLUG,
+          moduleSlug: SMOKE_MODULE_SLUG,
+        }),
+      })
+    );
+
+    expect(screen.queryByText("Mission path")).toBeNull();
+    expect(screen.queryByRole("link", { name: /Start Mission Mode/ })).toBeNull();
+
+    render(
+      await LessonPage({
+        params: Promise.resolve({
+          courseSlug: SMOKE_COURSE_SLUG,
+          moduleSlug: SMOKE_MODULE_SLUG,
+          lessonSlug: SMOKE_INTERACTIVE_LESSON_SLUG,
+        }),
+      })
+    );
+
+    expect(screen.queryByText("Mission path available")).toBeNull();
+    expect(screen.queryByRole("link", { name: "Open Mission →" })).toBeNull();
   });
 
   it("documents absent auth and request-access route targets on the current branch", () => {

@@ -64,6 +64,7 @@ export function LessonPageClient({
   const lessonProgress =
     progress?.moduleProgress[moduleSlug]?.lessonProgress[lessonId];
   const isCompleted = lessonProgress?.completed || false;
+  const showMissionPath = courseSlug === "solana-academy" && isInteractive;
 
   const handleComplete = () => {
     const timeSpent = Math.round((Date.now() - lessonStartTime) / 1000 / 60);
@@ -90,7 +91,7 @@ export function LessonPageClient({
         </h1>
         <p className="text-slate-400 text-sm sm:text-base lg:text-lg">{description}</p>
 
-        {isInteractive && (
+        {showMissionPath && (
           <div className="mt-4 rounded-lg border border-fuchsia-500/30 bg-fuchsia-900/10 p-4">
             <p className="mb-1 text-xs font-mono uppercase tracking-wider text-fuchsia-300">
               Mission path available

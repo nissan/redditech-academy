@@ -64,6 +64,8 @@ export function ModuleOverviewClient({
     return !lp?.completed;
   });
   const startLessonSlug = firstIncompleteLesson?.slug || lessons[0]?.slug;
+  const showMissionPath =
+    courseSlug === "solana-academy" && firstInteractiveLessonSlug !== null;
 
   const difficultyColors: Record<string, string> = {
     beginner: "text-green-400 border-green-400/30 bg-green-400/10",
@@ -142,7 +144,7 @@ export function ModuleOverviewClient({
               {completedLessons > 0 && !isCompleted ? "Continue →" : isCompleted ? "Review Lessons" : "Start Module →"}
             </Link>
           )}
-          {firstInteractiveLessonSlug && (
+          {showMissionPath && (
             <Link
               href={`/courses/${courseSlug}/learn/${moduleSlug}/${firstInteractiveLessonSlug}/interactive`}
               className="rounded-lg border border-fuchsia-500/50 bg-fuchsia-500/10 px-6 py-2.5 text-sm font-semibold text-fuchsia-300 hover:bg-fuchsia-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800 transition-colors"
@@ -168,7 +170,7 @@ export function ModuleOverviewClient({
           )}
         </div>
 
-        {firstInteractiveLessonSlug && (
+        {showMissionPath && (
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             <div className="rounded-lg border border-orange-500/30 bg-orange-500/5 p-4">
               <p className="mb-1 text-xs font-mono uppercase tracking-wider text-orange-300">
