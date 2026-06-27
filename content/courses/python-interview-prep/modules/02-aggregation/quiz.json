@@ -1,0 +1,49 @@
+{
+  "id": "02-aggregation-quiz",
+  "moduleId": "02-aggregation",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "After a pandas groupby aggregation, why do interview solutions often call reset_index?",
+      "options": [
+        "To delete all grouped rows",
+        "To make grouped keys regular columns again",
+        "To convert every value to a string",
+        "To sort values alphabetically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "groupby places the grouping keys in the index; reset_index returns a flatter table that is easier to sort and format.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-groupby-pandas"
+    },
+    {
+      "id": "q2",
+      "question": "What is a good stdlib pattern for grouping rows without pandas?",
+      "options": [
+        "Use a dict or defaultdict keyed by the grouping field",
+        "Convert the records to a single comma-separated string",
+        "Use print statements as the only storage layer",
+        "Rely on list.index for every lookup"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A dictionary keyed by model, provider, or task gives you clear buckets for counts, sums, and later summaries.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-groupby-stdlib"
+    },
+    {
+      "id": "q3",
+      "question": "Before joining two datasets, what should you confirm first?",
+      "options": [
+        "That both files use the same filename extension",
+        "That the join key exists, has compatible types, and has the expected uniqueness",
+        "That every output column is rounded",
+        "That pandas is unavailable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Join correctness depends on the key: whether it exists, matches by type, and creates the expected one-to-one or one-to-many shape.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-join-and-merge"
+    }
+  ]
+}

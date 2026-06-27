@@ -1,0 +1,49 @@
+{
+  "id": "04-output-formatting-quiz",
+  "moduleId": "04-output-formatting",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Why should rounding usually happen at the presentation layer?",
+      "options": [
+        "It keeps calculations precise until the final output",
+        "It prevents you from sorting rows",
+        "It changes strings into dictionaries",
+        "It makes null values disappear"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Keeping full precision during calculations avoids compounding rounding error; format the final values for readability.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-table-formatting"
+    },
+    {
+      "id": "q2",
+      "question": "What makes a text table easier for an interviewer to inspect?",
+      "options": [
+        "Stable column order, clear headers, and aligned numeric formatting",
+        "Randomized column order on every run",
+        "No labels because the code is enough",
+        "Only printing the first row"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Readable output shows that your solution is not just correct internally but understandable to a reviewer.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-table-formatting"
+    },
+    {
+      "id": "q3",
+      "question": "Which narration best supports an interview solution?",
+      "options": [
+        "I will print whatever the code produces and explain later",
+        "I will define the output contract, sort order, and edge-case labels before formatting",
+        "I will skip output design to save time",
+        "I will round all values before aggregation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A good narration tells the interviewer what the output should mean before the formatting code appears.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-narration-patterns"
+    }
+  ]
+}

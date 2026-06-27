@@ -1,0 +1,49 @@
+{
+  "id": "06-mock-problems-quiz",
+  "moduleId": "06-mock-problems",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "In a timed mock aggregation problem, what should you do before implementing the full solution?",
+      "options": [
+        "Read the brief twice and write a short plan",
+        "Start with the most complex optimization",
+        "Skip data inspection to save time",
+        "Only write comments and never run the code"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A short plan reduces rework and gives the interviewer confidence that you understand the requested output.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-mock-aggregation"
+    },
+    {
+      "id": "q2",
+      "question": "For a provider report, which output is usually strongest?",
+      "options": [
+        "A ranked summary with clear metrics, counts, and caveats",
+        "A raw dump of every input row",
+        "Only the provider names",
+        "A chart with no labels"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Provider reports should summarize comparisons while preserving enough context, such as counts and caveats, to trust the ranking.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mock-provider-report"
+    },
+    {
+      "id": "q3",
+      "question": "When debugging a broken interview solution, what is the best first move?",
+      "options": [
+        "Rewrite everything from scratch immediately",
+        "Reproduce the failure, inspect the smallest failing case, and explain the root cause",
+        "Delete the test that fails",
+        "Assume the input data is always wrong"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A disciplined debug loop proves you can isolate the failing behavior instead of guessing.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-mock-debug"
+    }
+  ]
+}

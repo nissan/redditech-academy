@@ -1,0 +1,49 @@
+{
+  "id": "05-edge-cases-quiz",
+  "moduleId": "05-edge-cases",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the safest first step when a metric column contains nulls?",
+      "options": [
+        "Replace every null with zero without explanation",
+        "Define what null means for the metric before calculating",
+        "Delete the whole dataset",
+        "Cast null to the string \"missing\" and average it"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Null handling is a policy decision; define whether null means missing, zero, not applicable, or invalid before computing.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-null-semantics"
+    },
+    {
+      "id": "q2",
+      "question": "When deduplicating records, what should drive the dedupe key?",
+      "options": [
+        "The first field in the file, no matter what it represents",
+        "The business identity of a record, such as request id plus model when appropriate",
+        "The row number only",
+        "The longest string in each row"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Deduplication must match the business meaning of uniqueness or it can remove valid data and keep invalid duplicates.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-deduplication"
+    },
+    {
+      "id": "q3",
+      "question": "Which anomaly handling approach is most interview-safe?",
+      "options": [
+        "Remove outliers silently",
+        "Flag suspicious values, explain the threshold, and decide whether to exclude them",
+        "Ignore anomalies because tests never include them",
+        "Use only the maximum value as the summary"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Flagging and explaining anomalies shows defensive thinking without silently changing the dataset.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-anomaly-detection"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "00-course-intro-quiz",
+  "moduleId": "00-course-intro",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the first habit this course wants you to build before writing code in a data interview?",
+      "options": [
+        "Start coding immediately so you can show speed",
+        "State your plan and inspect the data shape",
+        "Ask for the final solution after one attempt",
+        "Avoid mentioning edge cases until the end"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A strong interview answer starts by explaining the plan and checking the data shape before processing records.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-how-to-use-this-course"
+    },
+    {
+      "id": "q2",
+      "question": "When should you use Eli's syntax mode?",
+      "options": [
+        "When you need quick API help such as csv.DictReader or json.loads",
+        "When you want Eli to skip the interview process and reveal every answer",
+        "Only after finishing the entire course",
+        "When you want to hide your reasoning"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Syntax mode is for direct help with language and library details while the coaching modes preserve interview-style reasoning.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-how-to-use-this-course"
+    },
+    {
+      "id": "q3",
+      "question": "Why does Eli ask follow-up questions before showing a full solution?",
+      "options": [
+        "To make the problem longer without adding value",
+        "To train the correction and reasoning loop interviewers care about",
+        "To avoid checking your assumptions",
+        "To replace practice with memorization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The follow-up loop helps you practice debugging your own assumptions, which is a major part of live interviews.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-how-to-use-this-course"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "issue": "issue-26-python-inventory",
+  "baseUrl": "http://localhost:3000",
+  "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "createdAt": "2026-06-27T08:20:07.998Z",
+  "screenshots": [
+    {
+      "viewport": "desktop",
+      "name": "course-overview",
+      "url": "http://localhost:3000/courses/python-interview-prep",
+      "file": "01-course-overview-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "desktop",
+      "name": "intro-module",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/00-course-intro",
+      "file": "02-intro-module-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "desktop",
+      "name": "intro-lesson",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/00-course-intro/01-how-to-use-this-course",
+      "file": "03-intro-lesson-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "desktop",
+      "name": "intro-quiz",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/00-course-intro/quiz",
+      "file": "04-intro-quiz-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "desktop",
+      "name": "file-parsing-quiz",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/01-file-parsing/quiz",
+      "file": "05-file-parsing-quiz-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "mobile",
+      "name": "course-overview",
+      "url": "http://localhost:3000/courses/python-interview-prep",
+      "file": "01-course-overview-mobile.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "mobile",
+      "name": "intro-module",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/00-course-intro",
+      "file": "02-intro-module-mobile.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "mobile",
+      "name": "intro-lesson",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/00-course-intro/01-how-to-use-this-course",
+      "file": "03-intro-lesson-mobile.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "mobile",
+      "name": "intro-quiz",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/00-course-intro/quiz",
+      "file": "04-intro-quiz-mobile.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    },
+    {
+      "viewport": "mobile",
+      "name": "file-parsing-quiz",
+      "url": "http://localhost:3000/courses/python-interview-prep/learn/01-file-parsing/quiz",
+      "file": "05-file-parsing-quiz-mobile.png",
+      "status": 200,
+      "ok": true,
+      "expectationMatched": true,
+      "warning": null
+    }
+  ],
+  "warnings": []
+}
