@@ -1,0 +1,50 @@
+{
+  "issue": 79,
+  "branch": "content/79-solana-whole-game-language",
+  "tool": "playwright-system-chrome",
+  "baseUrl": "http://localhost:30279",
+  "capturedAt": "2026-06-27T16:01:35.177Z",
+  "scope": "Representative learner-visible screenshots for the module 09 whole-game L1/L2/L3 language pass.",
+  "screenshots": [
+    {
+      "label": "anchor-l1-the-game",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts",
+      "url": "http://localhost:30279/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts",
+      "expectedText": "The Game",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "file": "artifacts/ui-evidence/79/anchor-l1-the-game-desktop.png",
+      "note": "L1 attempt-before-theory framing for Anchor escrow architecture."
+    },
+    {
+      "label": "anchor-l2-hard-part",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/02-implementation-lab",
+      "url": "http://localhost:30279/courses/solana-academy/learn/09-anchor-escrow-lab/02-implementation-lab",
+      "expectedText": "The Hard Part",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "file": "artifacts/ui-evidence/79/anchor-l2-hard-part-desktop.png",
+      "note": "L2 constrained hard-part implementation practice."
+    },
+    {
+      "label": "anchor-l3-transfer-pressure",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/03-adversarial-testing-and-launch-gate",
+      "url": "http://localhost:30279/courses/solana-academy/learn/09-anchor-escrow-lab/03-adversarial-testing-and-launch-gate",
+      "expectedText": "Transfer Under Adversarial Pressure",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "file": "artifacts/ui-evidence/79/anchor-l3-transfer-pressure-desktop.png",
+      "note": "L3 transfer/adversarial pressure launch-gate framing."
+    }
+  ],
+  "validations": [
+    "Each screenshot waited for the newly added marker heading before capture.",
+    "Routes are standard lesson routes; challenge IDs and interactive challenge behavior were not changed."
+  ]
+}

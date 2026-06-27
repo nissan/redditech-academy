@@ -61,9 +61,9 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
 
 | Marker | Lessons with marker |
 | --- | ---: |
-| The Game | 9 |
+| The Game | 10 |
 | Your Running Project | 82 |
-| hard-part language | 2 |
+| hard-part language | 3 |
 | transfer/adversarial framing | 27 |
 | solo AI prompts | 50 |
 | case-study source/provenance | 4 |
@@ -80,7 +80,7 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
 | `openclaw-academy` | 1 | 11 | 1 | 0 | 0 | 0 |
 | `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 |
 | `sales-spin-meddic` | 0 | 14 | 0 | 0 | 0 | 0 |
-| `solana-academy` | 2 | 24 | 0 | 26 | 26 | 1 |
+| `solana-academy` | 3 | 24 | 1 | 26 | 26 | 1 |
 
 ## Course Inventory
 
@@ -858,9 +858,10 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
   - sequenceCorrectOrderIntegrity: 0
   - environmentCoverageGaps: 0
 - informational whole-game markers:
-  - theGame: 2
+  - theGame: 3
     - content/courses/solana-academy/modules/00-solana-first-principles/lessons/01-mental-models-and-vocabulary.mdx
     - content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx
+    - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx
   - yourRunningProject: 24
     - content/courses/solana-academy/modules/00-solana-first-principles/lessons/01-mental-models-and-vocabulary.mdx
     - content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx
@@ -871,7 +872,8 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
     - content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/01-core-concepts.mdx
     - content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/01-core-concepts.mdx
     - ...and 16 more
-  - hardPartLanguage: 0
+  - hardPartLanguage: 1
+    - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/02-implementation-lab.mdx
   - transferAdversarialFraming: 26
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx
     - content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx

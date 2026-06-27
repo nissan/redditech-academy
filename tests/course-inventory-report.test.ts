@@ -71,9 +71,9 @@ describe("course inventory report", () => {
     });
 
     const solana = report.courses.find((course) => course.slug === "solana-academy");
-    expect(solana?.wholeGameMarkers.theGame).toHaveLength(2);
+    expect(solana?.wholeGameMarkers.theGame).toHaveLength(3);
     expect(solana?.wholeGameMarkers.yourRunningProject).toHaveLength(24);
-    expect(solana?.wholeGameMarkers.hardPartLanguage).toHaveLength(0);
+    expect(solana?.wholeGameMarkers.hardPartLanguage).toHaveLength(1);
     expect(solana?.wholeGameMarkers.transferAdversarialFraming).toHaveLength(26);
     expect(solana?.wholeGameMarkers.soloAiPrompts).toHaveLength(26);
     expect(solana?.wholeGameMarkers.caseStudySourceProvenance).toHaveLength(1);
