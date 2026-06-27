@@ -50,17 +50,17 @@ flowchart LR
 ```
 
 ## Harvard-Style Case
-**Context:** Team velocity is high, but a single unchecked account/signature rule can create irreversible loss.
+**Case pack entry:** [Case 5: DeFi Integration Slippage and User Trust](/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md)
 
-**Decision point:** prioritize feature speed or enforce strict gate policy per mission step?
+**Case pack note:** synthetic teaching case derived from repo-owned Solana planning content; technical grounding comes from the linked Jupiter developer docs.
 
-**Action taken:** team enforces mission-based gating with explicit invariants and rollback notes.
+**Context:** A marketplace adds token swap routing, but volatile pools produce payment outcomes outside user expectations.
 
-**Outcome:** fewer regressions and cleaner incident response posture.
+**Decision point:** maximize conversion throughput or enforce stricter route, preview, and slippage defaults?
 
 **Discussion questions:**
-1. Which invariant would fail first under malicious input?
-2. Which check must block deployment even when functional tests pass?
+1. What slippage ceiling should block execution by default?
+2. Which route-policy constraint protects trust even when it lowers conversion?
 
 ## Primary References
 - https://developers.jup.ag/docs/get-started

@@ -51,10 +51,10 @@
     "challenges": 299,
     "diagrams": 184,
     "inlineMermaidBlocks": 185,
-    "downloads": 146,
+    "downloads": 147,
     "videos": 130,
     "externalDependencies": 324,
-    "referencedLocalAssets": 413,
+    "referencedLocalAssets": 414,
     "interactiveLessons": 289
   },
   "compatibilityBucketTotals": {
@@ -1946,10 +1946,10 @@
         "challenges": 80,
         "diagrams": 67,
         "inlineMermaidBlocks": 67,
-        "downloads": 79,
+        "downloads": 80,
         "videos": 16,
         "externalDependencies": 52,
-        "referencedLocalAssets": 91,
+        "referencedLocalAssets": 92,
         "interactiveLessons": 72
       },
       "compatibilityBuckets": {

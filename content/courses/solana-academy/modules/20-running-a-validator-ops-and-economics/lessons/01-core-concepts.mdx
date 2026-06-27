@@ -50,17 +50,17 @@ flowchart LR
 ```
 
 ## Harvard-Style Case
-**Context:** Team wants to run a validator but has limited staff and budget clarity.
+**Case pack entry:** [Case 4: Validator Ops Incident and Slow Recovery](/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md)
 
-**Decision point:** launch early with partial prep, or delay until reliability/economic thresholds are met?
+**Case pack note:** synthetic teaching case derived from repo-owned Solana planning content; technical grounding comes from the linked Anza validator operations docs.
 
-**Action taken:** establish measurable requirements and hard release blockers.
+**Context:** Node instability, noisy alerts, and unclear failover ownership stretch the recovery window.
 
-**Outcome:** slower launch, significantly lower operational risk.
+**Decision point:** stay online with degraded signals, fail over early and investigate, or reduce services until the runbook is proven?
 
 **Discussion questions:**
-1. Which metric (latency, uptime, or cost) should be your hard blocker first?
-2. What single incident would force immediate rollback?
+1. Which metric should be your hard blocker first: latency, uptime, cost, or alert quality?
+2. What single incident would force immediate failover?
 
 ## Primary References
 - https://docs.anza.xyz/operations/requirements

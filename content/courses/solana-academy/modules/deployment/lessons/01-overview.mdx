@@ -50,17 +50,17 @@ flowchart LR
 ```
 
 ## Harvard-Style Case
-**Context:** Team shipped fast but encountered hidden failures caused by unclear constraints.
+**Case pack entry:** [Case 3: Launch Sequence Failure Despite Green Tests](/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md)
 
-**Decision point:** keep velocity and patch later, or enforce mission gates and deterministic checks?
+**Case pack note:** synthetic teaching case derived from repo-owned Solana planning content; technical grounding comes from the linked Solana security, RPC, and fee docs.
 
-**Action taken:** the team adopted mission gates with explicit evidence for each promotion step.
+**Context:** Local and devnet tests pass, but a production configuration mismatch appears because ordered launch gates were treated as guidance.
 
-**Outcome:** slower initial cycle, significantly better reliability and review quality.
+**Decision point:** preserve the launch date, ship partially, or enforce a hard gate with rollback proof before promotion?
 
 **Discussion questions:**
-1. Which assumption is most likely to fail under real usage?
-2. What should block progression to the next stage?
+1. Which failed launch check stops promotion even when tests are green?
+2. What rollback proof would satisfy you before mainnet release?
 
 ## Primary References
 - https://solana.com/docs/security
