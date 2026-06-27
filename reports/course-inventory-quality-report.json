@@ -53,7 +53,7 @@
     "downloads": 146,
     "videos": 130,
     "externalDependencies": 324,
-    "referencedLocalAssets": 417,
+    "referencedLocalAssets": 413,
     "interactiveLessons": 289
   },
   "compatibilityBucketTotals": {
@@ -1604,7 +1604,7 @@
         "downloads": 14,
         "videos": 16,
         "externalDependencies": 20,
-        "referencedLocalAssets": 48,
+        "referencedLocalAssets": 44,
         "interactiveLessons": 14
       },
       "compatibilityBuckets": {
@@ -1736,12 +1736,7 @@
       },
       "issues": {
         "missingQuizzes": [],
-        "brokenReferences": [
-          "content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/09-meddpicc-upgrade-eli5.mp4",
-          "content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/09-meddpicc-upgrade-tldr.mp4",
-          "content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/10-meddpicc-deal-inspection-eli5.mp4",
-          "content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/10-meddpicc-deal-inspection-tldr.mp4"
-        ],
+        "brokenReferences": [],
         "emptyLessons": [],
         "inconsistentFrontmatter": [
           "content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx slug \"core-concepts\" does not match filename \"01-core-concepts\"",
