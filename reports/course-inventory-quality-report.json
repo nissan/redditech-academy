@@ -45,8 +45,8 @@
   },
   "totals": {
     "modules": 111,
-    "lessons": 290,
-    "quizzes": 104,
+    "lessons": 291,
+    "quizzes": 111,
     "challenges": 299,
     "diagrams": 184,
     "inlineMermaidBlocks": 185,
@@ -1530,8 +1530,8 @@
       "protectedOrFreeStatus": "protected",
       "counts": {
         "modules": 7,
-        "lessons": 18,
-        "quizzes": 0,
+        "lessons": 19,
+        "quizzes": 7,
         "challenges": 17,
         "diagrams": 0,
         "inlineMermaidBlocks": 0,
@@ -1560,19 +1560,9 @@
         "videos": []
       },
       "issues": {
-        "missingQuizzes": [
-          "python-interview-prep/00-course-intro",
-          "python-interview-prep/01-file-parsing",
-          "python-interview-prep/02-aggregation",
-          "python-interview-prep/03-metrics",
-          "python-interview-prep/04-output-formatting",
-          "python-interview-prep/05-edge-cases",
-          "python-interview-prep/06-mock-problems"
-        ],
+        "missingQuizzes": [],
         "brokenReferences": [],
-        "emptyLessons": [
-          "python-interview-prep/00-course-intro has no lesson files"
-        ],
+        "emptyLessons": [],
         "inconsistentFrontmatter": [
           "content/courses/python-interview-prep/course.json missing fields: author, version",
           "content/courses/python-interview-prep/modules/00-course-intro/module.json missing fields: id",

@@ -1,0 +1,49 @@
+{
+  "id": "01-file-parsing-quiz",
+  "moduleId": "01-file-parsing",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which pairing correctly matches Python JSON helpers to their inputs?",
+      "options": [
+        "json.load reads a file object; json.loads reads a string",
+        "json.load reads a string; json.loads reads a file object",
+        "Both only read CSV files",
+        "Both require pandas"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Use json.load with an open file object and json.loads when the JSON data is already in a string.",
+      "difficulty": "beginner",
+      "relatedLessonId": "01-reading-json"
+    },
+    {
+      "id": "q2",
+      "question": "Why is csv.DictReader usually better than csv.reader in an interview data task?",
+      "options": [
+        "It automatically casts every numeric field",
+        "It returns rows keyed by header names instead of relying on column positions",
+        "It only works with pandas DataFrames",
+        "It ignores malformed rows silently"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DictReader makes each row self-describing, which reduces brittle index-based logic and is easier to narrate.",
+      "difficulty": "beginner",
+      "relatedLessonId": "02-reading-csv"
+    },
+    {
+      "id": "q3",
+      "question": "When parsing JSONL, what is the safest response to one malformed line?",
+      "options": [
+        "Crash the entire job without reporting the line",
+        "Skip every line after the bad one",
+        "Track the bad line and continue processing valid records when the task allows it",
+        "Assume all remaining records have the same problem"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Real data pipelines often need to report malformed rows while still extracting useful valid records.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-parsing-jsonl"
+    }
+  ]
+}

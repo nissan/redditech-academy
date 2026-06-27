@@ -22,7 +22,7 @@ Issue #14 originally listed eleven course slugs. Issue #25 reconciles that histo
 
 | Modules | Lessons | Quizzes | Challenges | Diagrams | Mermaid blocks | Downloads | Videos | External deps |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 111 | 290 | 104 | 299 | 184 | 185 | 146 | 130 | 324 |
+| 111 | 291 | 111 | 299 | 184 | 185 | 146 | 130 | 324 |
 
 ## Challenge/Frontmatter Compatibility Buckets
 
@@ -65,7 +65,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | `llm-benchmarking-academy` | free | 12 | 22 | 12 | 15 | 22 | 5 | 0 | 24 | 23 |
 | `martech-adtech-academy` | free | 11 | 11 | 11 | 11 | 10 | 20 | 20 | 5 | 1 |
 | `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 47 |
-| `python-interview-prep` | protected | 7 | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 19 |
+| `python-interview-prep` | protected | 7 | 19 | 7 | 17 | 0 | 0 | 0 | 0 | 11 |
 | `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 14 |
 | `solana-academy` | free | 24 | 72 | 24 | 80 | 67 | 79 | 16 | 52 | 72 |
 
@@ -556,17 +556,9 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 
 ### python-interview-prep
 
-- missingQuizzes: 7
-  - python-interview-prep/00-course-intro
-  - python-interview-prep/01-file-parsing
-  - python-interview-prep/02-aggregation
-  - python-interview-prep/03-metrics
-  - python-interview-prep/04-output-formatting
-  - python-interview-prep/05-edge-cases
-  - python-interview-prep/06-mock-problems
+- missingQuizzes: 0
 - brokenReferences: 0
-- emptyLessons: 1
-  - python-interview-prep/00-course-intro has no lesson files
+- emptyLessons: 0
 - inconsistentFrontmatter: 8
   - content/courses/python-interview-prep/course.json missing fields: author, version
   - content/courses/python-interview-prep/modules/00-course-intro/module.json missing fields: id

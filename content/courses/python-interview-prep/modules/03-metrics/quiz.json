@@ -1,0 +1,49 @@
+{
+  "id": "03-metrics-quiz",
+  "moduleId": "03-metrics",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does TTFT measure in an LLM latency dataset?",
+      "options": [
+        "Time from request sent to first token received",
+        "Total tokens generated per request",
+        "Cost per thousand input tokens",
+        "Average quality score across providers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "TTFT is time to first token: the delay between sending the request and receiving the first generated token.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-latency-metrics"
+    },
+    {
+      "id": "q2",
+      "question": "When computing a blended price, what should be included?",
+      "options": [
+        "Only the cheapest request in the dataset",
+        "The relevant input and output token costs weighted by usage",
+        "The model name length",
+        "Only successful requests with a score above 9"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Blended price should reflect actual usage mix, usually weighting input and output token costs by observed token counts.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-blended-price"
+    },
+    {
+      "id": "q3",
+      "question": "Which choice makes a leaderboard more defensible?",
+      "options": [
+        "Sort by one metric without showing sample size",
+        "Define ranking metrics, tie-breakers, and minimum sample-size rules",
+        "Hide null handling so the table is shorter",
+        "Round every intermediate calculation before ranking"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Leaderboards need transparent ranking rules so a reader can understand why one model outranks another.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "03-leaderboard"
+    }
+  ]
+}

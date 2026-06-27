@@ -1,9 +1,11 @@
 {
   "slug": "00-course-intro",
   "title": "Course Intro",
-  "description": "Coming soon.",
+  "description": "How to use Eli, the 3-strike coaching loop, and the interview habits this course builds.",
   "order": 0,
-  "lessons": [],
+  "lessons": [
+    "01-how-to-use-this-course"
+  ],
   "passingScore": 70,
   "badge": {
     "name": "Python Foundations",
@@ -12,6 +14,10 @@
   },
   "difficulty": "beginner",
   "estimatedHours": 1,
-  "learningObjectives": [],
+  "learningObjectives": [
+    "Understand the Socratic coaching format before starting timed missions",
+    "Practice narrating data-shape checks, edge cases, and tradeoffs out loud",
+    "Know when to ask Eli for syntax help versus interview-strategy guidance"
+  ],
   "prerequisiteModules": []
 }
