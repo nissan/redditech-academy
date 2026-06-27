@@ -1,5 +1,6 @@
 {
   "id": "solana-19-validator-arch-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial ops gate for Advanced Validators \u2014 Architecture and Consensus: incident simulation, recovery validation, and explicit go/no-go decision record.",
   "validation": {
     "must_have": [

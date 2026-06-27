@@ -1,0 +1,57 @@
+{
+  "issue": 66,
+  "capturedAt": "2026-06-27T12:19:24.717Z",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "baseUrl": "http://localhost:30266",
+  "note": "Representative screenshots for Solana validator JSON-editor environment alignment.",
+  "scenarios": [
+    {
+      "name": "surfpool-architecture-json-editor-desktop",
+      "label": "Surfpool architecture lesson renders JSON editor",
+      "route": "/courses/solana-academy/learn/17-surfpool-testing-lab/01-core-concepts/interactive",
+      "url": "http://localhost:30266/courses/solana-academy/learn/17-surfpool-testing-lab/01-core-concepts/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/66/surfpool-architecture-json-editor-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission 17A/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Test Architecture|Architecture/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "surfpool-adversarial-launch-gate-json-editor-desktop",
+      "label": "Surfpool adversarial launch gate renders JSON editor",
+      "route": "/courses/solana-academy/learn/17-surfpool-testing-lab/03-adversarial-testing-and-launch-gate/interactive",
+      "url": "http://localhost:30266/courses/solana-academy/learn/17-surfpool-testing-lab/03-adversarial-testing-and-launch-gate/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/66/surfpool-adversarial-launch-gate-json-editor-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission 17C/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Launch Gate|Adversarial/i",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}

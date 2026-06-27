@@ -1,5 +1,6 @@
 {
   "id": "solana-17-surfpool-architecture",
+  "type": "json-editor",
   "spec": "Define architecture for Testing Lab \u2014 Surfpool Workflows: invariants, scope, failure taxonomy, and measurable acceptance boundaries.",
   "validation": {
     "must_have": [

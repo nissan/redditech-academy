@@ -59,14 +59,14 @@
   "compatibilityBucketTotals": {
     "lowercaseChallengeId": 0,
     "lessonSlugFilenameMismatch": 230,
-    "missingChallengeJsonType": 24,
+    "missingChallengeJsonType": 12,
     "legacyTitleDescription": 181,
     "legacyStarterCode": 181,
     "legacyValidationRules": 181,
     "missingVisibleSpec": 181,
     "missingEffectiveJsonEditorSeed": 0,
     "sequenceCorrectOrderIntegrity": 0,
-    "environmentCoverageGaps": 17
+    "environmentCoverageGaps": 5
   },
   "courses": [
     {
@@ -1840,20 +1840,7 @@
           "content/courses/solana-academy/modules/wallets/lessons/02-implementation-lab.mdx: slug \"wallets-implementation-lab\" does not match filename \"02-implementation-lab\"",
           "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx: slug \"wallets-adversarial-gate\" does not match filename \"03-adversarial-gate\""
         ],
-        "missingChallengeJsonType": [
-          "content/courses/solana-academy/challenges/solana-17-surfpool-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-17-surfpool-architecture.json",
-          "content/courses/solana-academy/challenges/solana-18-litesvm-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-18-litesvm-architecture.json",
-          "content/courses/solana-academy/challenges/solana-19-validator-arch-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-19-validator-arch-architecture.json",
-          "content/courses/solana-academy/challenges/solana-20-validator-ops-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-20-validator-ops-architecture.json",
-          "content/courses/solana-academy/challenges/solana-21-client-diversity-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-21-client-diversity-architecture.json",
-          "content/courses/solana-academy/challenges/solana-22-validator-launch-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-22-validator-launch-architecture.json"
-        ],
+        "missingChallengeJsonType": [],
         "legacyTitleDescription": [
           "content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json",
           "content/courses/solana-academy/challenges/solana-capstone-beginner-build.json",
@@ -1876,20 +1863,7 @@
         ],
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
-        "environmentCoverageGaps": [
-          "content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-17-surfpool-architecture)",
-          "content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-17-surfpool-adversarial)",
-          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-18-litesvm-architecture)",
-          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-18-litesvm-adversarial)",
-          "content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-19-validator-arch-architecture)",
-          "content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-19-validator-arch-adversarial)",
-          "content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-20-validator-ops-architecture)",
-          "content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-20-validator-ops-adversarial)",
-          "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-21-client-diversity-architecture)",
-          "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-21-client-diversity-adversarial)",
-          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-22-validator-launch-architecture)",
-          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-22-validator-launch-adversarial)"
-        ]
+        "environmentCoverageGaps": []
       },
       "samples": {
         "externalDependencies": [

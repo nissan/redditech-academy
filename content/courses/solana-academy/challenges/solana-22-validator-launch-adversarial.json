@@ -1,5 +1,6 @@
 {
   "id": "solana-22-validator-launch-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial ops gate for Advanced Validators \u2014 Launch Readiness Mission: incident simulation, recovery validation, and explicit go/no-go decision record.",
   "validation": {
     "must_have": [

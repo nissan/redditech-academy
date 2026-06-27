@@ -1,5 +1,6 @@
 {
   "id": "solana-21-client-diversity-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial ops gate for Advanced Validators \u2014 Client Diversity (Agave, Firedancer, Frankendancer): incident simulation, recovery validation, and explicit go/no-go decision record.",
   "validation": {
     "must_have": [
