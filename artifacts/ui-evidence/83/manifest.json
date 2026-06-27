@@ -1,0 +1,824 @@
+{
+  "issue": "83",
+  "createdAt": "2026-06-27T13:56:24.789Z",
+  "baseUrl": "http://127.0.0.1:32183",
+  "browser": "System Google Chrome via Playwright executablePath",
+  "conclusion": "UI fix was needed: module overview and standard lesson pages did not expose mission/gamified path controls directly. Course overview already exposed mission links. This branch adds module-level and lesson-level mission navigation while preserving standard paths.",
+  "coverageSummary": {
+    "totalSolanaModules": 24,
+    "modulesWithMissionRoutes": 24,
+    "screenshotCategories": [
+      "course overview",
+      "module 0",
+      "representative lesson",
+      "module 0 interactive",
+      "solana.new onramp",
+      "core module",
+      "escrow lab",
+      "validator module",
+      "capstone"
+    ],
+    "routeChecksPassed": 48,
+    "routeChecksTotal": 48
+  },
+  "allModuleRoutes": [
+    {
+      "moduleSlug": "00-solana-first-principles",
+      "title": "Start Here: Solana First Principles",
+      "standardPath": "/courses/solana-academy/learn/00-solana-first-principles",
+      "firstMissionPath": "/courses/solana-academy/learn/00-solana-first-principles/01-mental-models-and-vocabulary/interactive",
+      "firstMissionTitle": "Mission 00A — Mental Model Mapping"
+    },
+    {
+      "moduleSlug": "08-solana-new-app-builder",
+      "title": "Start Here: solana.new Beginner Onramp",
+      "standardPath": "/courses/solana-academy/learn/08-solana-new-app-builder",
+      "firstMissionPath": "/courses/solana-academy/learn/08-solana-new-app-builder/01-solana-new-workflow/interactive",
+      "firstMissionTitle": "Mission 01 — Beginner Build Brief"
+    },
+    {
+      "moduleSlug": "09-anchor-escrow-lab",
+      "title": "Anchor Escrow Lab",
+      "standardPath": "/courses/solana-academy/learn/09-anchor-escrow-lab",
+      "firstMissionPath": "/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 09A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "10-pinocchio-escrow-lab",
+      "title": "Pinocchio Escrow Lab",
+      "standardPath": "/courses/solana-academy/learn/10-pinocchio-escrow-lab",
+      "firstMissionPath": "/courses/solana-academy/learn/10-pinocchio-escrow-lab/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 10A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "11-quasar-escrow-lab",
+      "title": "Quasar Escrow Lab",
+      "standardPath": "/courses/solana-academy/learn/11-quasar-escrow-lab",
+      "firstMissionPath": "/courses/solana-academy/learn/11-quasar-escrow-lab/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 11A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "12-jupiter-defi-integration",
+      "title": "DeFi Layer 1 — Jupiter Integration",
+      "standardPath": "/courses/solana-academy/learn/12-jupiter-defi-integration",
+      "firstMissionPath": "/courses/solana-academy/learn/12-jupiter-defi-integration/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 12A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "13-orca-whirlpools-integration",
+      "title": "DeFi Layer 2 — Orca Whirlpools",
+      "standardPath": "/courses/solana-academy/learn/13-orca-whirlpools-integration",
+      "firstMissionPath": "/courses/solana-academy/learn/13-orca-whirlpools-integration/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 13A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "14-chainlink-oracle-integration",
+      "title": "Oracle Layer 1 — Chainlink Data Feeds",
+      "standardPath": "/courses/solana-academy/learn/14-chainlink-oracle-integration",
+      "firstMissionPath": "/courses/solana-academy/learn/14-chainlink-oracle-integration/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 14A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "15-pyth-oracle-integration",
+      "title": "Oracle Layer 2 — Pyth Integration",
+      "standardPath": "/courses/solana-academy/learn/15-pyth-oracle-integration",
+      "firstMissionPath": "/courses/solana-academy/learn/15-pyth-oracle-integration/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 15A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "16-verifiable-randomness-auctions",
+      "title": "VRM Lab — Commit-Reveal and Dutch Auction",
+      "standardPath": "/courses/solana-academy/learn/16-verifiable-randomness-auctions",
+      "firstMissionPath": "/courses/solana-academy/learn/16-verifiable-randomness-auctions/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 16A — Architecture and Case Design"
+    },
+    {
+      "moduleSlug": "17-surfpool-testing-lab",
+      "title": "Testing Lab — Surfpool Workflows",
+      "standardPath": "/courses/solana-academy/learn/17-surfpool-testing-lab",
+      "firstMissionPath": "/courses/solana-academy/learn/17-surfpool-testing-lab/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 17A — Test Architecture"
+    },
+    {
+      "moduleSlug": "18-litesvm-testing-lab",
+      "title": "Testing Lab — LiteSVM In-Process Testing",
+      "standardPath": "/courses/solana-academy/learn/18-litesvm-testing-lab",
+      "firstMissionPath": "/courses/solana-academy/learn/18-litesvm-testing-lab/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 18A — Test Architecture"
+    },
+    {
+      "moduleSlug": "19-validator-architecture-and-consensus",
+      "title": "Advanced Validators — Architecture and Consensus",
+      "standardPath": "/courses/solana-academy/learn/19-validator-architecture-and-consensus",
+      "firstMissionPath": "/courses/solana-academy/learn/19-validator-architecture-and-consensus/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 19A — Architecture and Risk Model"
+    },
+    {
+      "moduleSlug": "20-running-a-validator-ops-and-economics",
+      "title": "Advanced Validators — Operations and Economics",
+      "standardPath": "/courses/solana-academy/learn/20-running-a-validator-ops-and-economics",
+      "firstMissionPath": "/courses/solana-academy/learn/20-running-a-validator-ops-and-economics/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 20A — Architecture and Risk Model"
+    },
+    {
+      "moduleSlug": "21-client-diversity-firedancer-frankendancer",
+      "title": "Advanced Validators — Client Diversity (Agave, Firedancer, Frankendancer)",
+      "standardPath": "/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer",
+      "firstMissionPath": "/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 21A — Architecture and Risk Model"
+    },
+    {
+      "moduleSlug": "22-validator-launch-readiness-mission",
+      "title": "Advanced Validators — Launch Readiness Mission",
+      "standardPath": "/courses/solana-academy/learn/22-validator-launch-readiness-mission",
+      "firstMissionPath": "/courses/solana-academy/learn/22-validator-launch-readiness-mission/01-core-concepts/interactive",
+      "firstMissionTitle": "Mission 22A — Architecture and Risk Model"
+    },
+    {
+      "moduleSlug": "23-capstone-ladder",
+      "title": "Capstone — From First Principles to Production",
+      "standardPath": "/courses/solana-academy/learn/23-capstone-ladder",
+      "firstMissionPath": "/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build/interactive",
+      "firstMissionTitle": "Capstone Mission 01 — Guided Build"
+    },
+    {
+      "moduleSlug": "deployment",
+      "title": "Deployment + Mainnet Readiness",
+      "standardPath": "/courses/solana-academy/learn/deployment",
+      "firstMissionPath": "/courses/solana-academy/learn/deployment/01-overview/interactive",
+      "firstMissionTitle": "Mission 07A — Architecture Map"
+    },
+    {
+      "moduleSlug": "foundations",
+      "title": "Solana + Blockchain Fundamentals",
+      "standardPath": "/courses/solana-academy/learn/foundations",
+      "firstMissionPath": "/courses/solana-academy/learn/foundations/01-overview/interactive",
+      "firstMissionTitle": "Mission 01A — Architecture Map"
+    },
+    {
+      "moduleSlug": "frontend",
+      "title": "Frontend + RPC Integration",
+      "standardPath": "/courses/solana-academy/learn/frontend",
+      "firstMissionPath": "/courses/solana-academy/learn/frontend/01-overview/interactive",
+      "firstMissionTitle": "Mission 05A — Architecture Map"
+    },
+    {
+      "moduleSlug": "onchain",
+      "title": "On-Chain Program Design",
+      "standardPath": "/courses/solana-academy/learn/onchain",
+      "firstMissionPath": "/courses/solana-academy/learn/onchain/01-overview/interactive",
+      "firstMissionTitle": "Mission 04A — Architecture Map"
+    },
+    {
+      "moduleSlug": "testing",
+      "title": "Testing + Quality Gates",
+      "standardPath": "/courses/solana-academy/learn/testing",
+      "firstMissionPath": "/courses/solana-academy/learn/testing/01-overview/interactive",
+      "firstMissionTitle": "Mission 06A — Architecture Map"
+    },
+    {
+      "moduleSlug": "tooling",
+      "title": "Developer Tooling + Environments",
+      "standardPath": "/courses/solana-academy/learn/tooling",
+      "firstMissionPath": "/courses/solana-academy/learn/tooling/01-overview/interactive",
+      "firstMissionTitle": "Mission 02A — Architecture Map"
+    },
+    {
+      "moduleSlug": "wallets",
+      "title": "Wallet Integration + Signing Flows",
+      "standardPath": "/courses/solana-academy/learn/wallets",
+      "firstMissionPath": "/courses/solana-academy/learn/wallets/01-overview/interactive",
+      "firstMissionTitle": "Mission 03A — Architecture Map"
+    }
+  ],
+  "routeChecks": [
+    {
+      "moduleSlug": "00-solana-first-principles",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/00-solana-first-principles",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "00-solana-first-principles",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/00-solana-first-principles/01-mental-models-and-vocabulary/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "08-solana-new-app-builder",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/08-solana-new-app-builder",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "08-solana-new-app-builder",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/08-solana-new-app-builder/01-solana-new-workflow/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "09-anchor-escrow-lab",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/09-anchor-escrow-lab",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "09-anchor-escrow-lab",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "10-pinocchio-escrow-lab",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/10-pinocchio-escrow-lab",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "10-pinocchio-escrow-lab",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/10-pinocchio-escrow-lab/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "11-quasar-escrow-lab",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/11-quasar-escrow-lab",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "11-quasar-escrow-lab",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/11-quasar-escrow-lab/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "12-jupiter-defi-integration",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/12-jupiter-defi-integration",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "12-jupiter-defi-integration",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/12-jupiter-defi-integration/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "13-orca-whirlpools-integration",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/13-orca-whirlpools-integration",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "13-orca-whirlpools-integration",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/13-orca-whirlpools-integration/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "14-chainlink-oracle-integration",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/14-chainlink-oracle-integration",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "14-chainlink-oracle-integration",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/14-chainlink-oracle-integration/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "15-pyth-oracle-integration",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/15-pyth-oracle-integration",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "15-pyth-oracle-integration",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/15-pyth-oracle-integration/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "16-verifiable-randomness-auctions",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/16-verifiable-randomness-auctions",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "16-verifiable-randomness-auctions",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/16-verifiable-randomness-auctions/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "17-surfpool-testing-lab",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/17-surfpool-testing-lab",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "17-surfpool-testing-lab",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/17-surfpool-testing-lab/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "18-litesvm-testing-lab",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/18-litesvm-testing-lab",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "18-litesvm-testing-lab",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/18-litesvm-testing-lab/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "19-validator-architecture-and-consensus",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/19-validator-architecture-and-consensus",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "19-validator-architecture-and-consensus",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/19-validator-architecture-and-consensus/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "20-running-a-validator-ops-and-economics",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/20-running-a-validator-ops-and-economics",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "20-running-a-validator-ops-and-economics",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/20-running-a-validator-ops-and-economics/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "21-client-diversity-firedancer-frankendancer",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "21-client-diversity-firedancer-frankendancer",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "22-validator-launch-readiness-mission",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/22-validator-launch-readiness-mission",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "22-validator-launch-readiness-mission",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/22-validator-launch-readiness-mission/01-core-concepts/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "23-capstone-ladder",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/23-capstone-ladder",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "23-capstone-ladder",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "deployment",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/deployment",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "deployment",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/deployment/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "foundations",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/foundations",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "foundations",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/foundations/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "frontend",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/frontend",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "frontend",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/frontend/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "onchain",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/onchain",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "onchain",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/onchain/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "testing",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/testing",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "testing",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/testing/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "tooling",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/tooling",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "tooling",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/tooling/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "wallets",
+      "kind": "standard",
+      "path": "/courses/solana-academy/learn/wallets",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "moduleSlug": "wallets",
+      "kind": "mission",
+      "path": "/courses/solana-academy/learn/wallets/01-overview/interactive",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "01-course-overview",
+      "label": "Course overview",
+      "category": "course overview",
+      "path": "/courses/solana-academy",
+      "expected": [
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy",
+      "file": "01-course-overview-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Start First Module|Start Module/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path|Mission/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "02-module-0-overview",
+      "label": "Module 0 overview",
+      "category": "module 0",
+      "path": "/courses/solana-academy/learn/00-solana-first-principles",
+      "expected": [
+        {},
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/00-solana-first-principles",
+      "file": "02-module-0-overview-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "03-module-0-standard-lesson",
+      "label": "Module 0 standard lesson route",
+      "category": "representative lesson",
+      "path": "/courses/solana-academy/learn/00-solana-first-principles/01-mental-models-and-vocabulary",
+      "expected": [
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/00-solana-first-principles/01-mental-models-and-vocabulary",
+      "file": "03-module-0-standard-lesson-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Mission path available/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Open Mission/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "04-module-0-interactive",
+      "label": "Module 0 interactive mission route",
+      "category": "module 0 interactive",
+      "path": "/courses/solana-academy/learn/00-solana-first-principles/01-mental-models-and-vocabulary/interactive",
+      "expected": [
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/00-solana-first-principles/01-mental-models-and-vocabulary/interactive",
+      "file": "04-module-0-interactive-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Mission HUD/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission goals/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "05-solana-new-onramp",
+      "label": "solana.new onramp module",
+      "category": "solana.new onramp",
+      "path": "/courses/solana-academy/learn/08-solana-new-app-builder",
+      "expected": [
+        {},
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/08-solana-new-app-builder",
+      "file": "05-solana-new-onramp-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "06-core-module",
+      "label": "Core module",
+      "category": "core module",
+      "path": "/courses/solana-academy/learn/foundations",
+      "expected": [
+        {},
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/foundations",
+      "file": "06-core-module-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "07-escrow-lab",
+      "label": "Escrow lab",
+      "category": "escrow lab",
+      "path": "/courses/solana-academy/learn/09-anchor-escrow-lab",
+      "expected": [
+        {},
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/09-anchor-escrow-lab",
+      "file": "07-escrow-lab-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "08-validator-module",
+      "label": "Validator module",
+      "category": "validator module",
+      "path": "/courses/solana-academy/learn/19-validator-architecture-and-consensus",
+      "expected": [
+        {},
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/19-validator-architecture-and-consensus",
+      "file": "08-validator-module-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "09-capstone",
+      "label": "Capstone",
+      "category": "capstone",
+      "path": "/courses/solana-academy/learn/23-capstone-ladder",
+      "expected": [
+        {},
+        {},
+        {}
+      ],
+      "url": "http://127.0.0.1:32183/courses/solana-academy/learn/23-capstone-ladder",
+      "file": "09-capstone-desktop.png",
+      "status": 200,
+      "ok": true,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "10-module-0-overview-mobile",
+      "file": "10-module-0-overview-mobile.png",
+      "viewport": "mobile",
+      "status": 200,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "11-module-0-standard-lesson-mobile",
+      "file": "11-module-0-standard-lesson-mobile.png",
+      "viewport": "mobile",
+      "status": 200,
+      "expectations": [
+        {
+          "pattern": "/Mission path available/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Open Mission/i",
+          "matched": true
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "mobileSupplement": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "note": "Supplemental mobile screenshots captured during parent review for changed module and lesson mission-path controls."
+  }
+}
