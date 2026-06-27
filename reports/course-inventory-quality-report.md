@@ -66,7 +66,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | `martech-adtech-academy` | free | 11 | 11 | 11 | 11 | 10 | 20 | 20 | 5 | 1 |
 | `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 47 |
 | `python-interview-prep` | protected | 7 | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 19 |
-| `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 18 |
+| `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 14 |
 | `solana-academy` | free | 24 | 72 | 24 | 80 | 67 | 79 | 16 | 52 | 72 |
 
 ## Quality Flags
@@ -595,11 +595,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 ### sales-spin-meddic
 
 - missingQuizzes: 0
-- brokenReferences: 4
-  - content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/09-meddpicc-upgrade-eli5.mp4
-  - content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/09-meddpicc-upgrade-tldr.mp4
-  - content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/10-meddpicc-deal-inspection-eli5.mp4
-  - content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx references missing asset /assets/courses/sales-spin-meddic/videos/10-meddpicc-deal-inspection-tldr.mp4
+- brokenReferences: 0
 - emptyLessons: 0
 - inconsistentFrontmatter: 14
   - content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx slug "core-concepts" does not match filename "01-core-concepts"

@@ -1,0 +1,19 @@
+{
+  "issue": 28,
+  "baseUrl": "http://127.0.0.1:3000",
+  "createdAt": "2026-06-27T07:46:46.005Z",
+  "screenshots": [
+    {
+      "file": "09-meddpicc-upgrade-lesson-desktop.png",
+      "url": "http://127.0.0.1:3000/courses/sales-spin-meddic/learn/09-meddpicc-upgrade/01-core-concepts",
+      "status": 200,
+      "expectedFallbackTextFound": true
+    },
+    {
+      "file": "10-meddpicc-deal-inspection-lesson-desktop.png",
+      "url": "http://127.0.0.1:3000/courses/sales-spin-meddic/learn/10-meddpicc-deal-inspection/01-core-concepts",
+      "status": 200,
+      "expectedFallbackTextFound": true
+    }
+  ]
+}
