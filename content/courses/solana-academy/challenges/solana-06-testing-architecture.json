@@ -1,5 +1,6 @@
 {
   "id": "solana-06-testing-architecture",
+  "type": "json-editor",
   "spec": "Define architecture map for Testing + Quality Gates: assumptions, invariants, and acceptance boundaries.",
   "validation": {
     "must_have": [

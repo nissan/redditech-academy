@@ -1,5 +1,6 @@
 {
   "id": "solana-05-frontend-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial mission for Frontend + RPC Integration: failure scenarios, release blockers, and mitigation plan.",
   "validation": {
     "must_have": [

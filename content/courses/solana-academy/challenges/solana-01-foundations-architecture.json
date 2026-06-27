@@ -1,5 +1,6 @@
 {
   "id": "solana-01-foundations-architecture",
+  "type": "json-editor",
   "spec": "Define architecture map for Solana + Blockchain Fundamentals: assumptions, invariants, and acceptance boundaries.",
   "validation": {
     "must_have": [

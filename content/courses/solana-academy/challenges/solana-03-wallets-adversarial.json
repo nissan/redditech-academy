@@ -1,5 +1,6 @@
 {
   "id": "solana-03-wallets-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial mission for Wallet Integration + Signing Flows: failure scenarios, release blockers, and mitigation plan.",
   "validation": {
     "must_have": [

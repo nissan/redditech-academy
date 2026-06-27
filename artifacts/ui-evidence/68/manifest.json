@@ -1,0 +1,57 @@
+{
+  "issue": 68,
+  "capturedAt": "2026-06-27T11:19:30.292Z",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "baseUrl": "http://localhost:30268",
+  "note": "Representative screenshots for Solana foundation JSON-editor environment alignment.",
+  "scenarios": [
+    {
+      "name": "foundation-architecture-json-editor-desktop",
+      "label": "Foundation architecture lesson renders JSON editor",
+      "route": "/courses/solana-academy/learn/foundations/01-overview/interactive",
+      "url": "http://localhost:30268/courses/solana-academy/learn/foundations/01-overview/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/68/foundation-architecture-json-editor-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission 01A/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Architecture Map/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "first-principles-launch-gate-json-editor-desktop",
+      "label": "First-principles launch gate renders JSON editor",
+      "route": "/courses/solana-academy/learn/00-solana-first-principles/03-safe-first-launch-checklist/interactive",
+      "url": "http://localhost:30268/courses/solana-academy/learn/00-solana-first-principles/03-safe-first-launch-checklist/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/68/first-principles-launch-gate-json-editor-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        },
+        {
+          "pattern": "/launch/i",
+          "matched": true
+        },
+        {
+          "pattern": "/gate/i",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}

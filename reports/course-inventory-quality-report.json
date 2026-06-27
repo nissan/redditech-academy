@@ -59,14 +59,14 @@
   "compatibilityBucketTotals": {
     "lowercaseChallengeId": 0,
     "lessonSlugFilenameMismatch": 230,
-    "missingChallengeJsonType": 55,
+    "missingChallengeJsonType": 40,
     "legacyTitleDescription": 181,
     "legacyStarterCode": 181,
     "legacyValidationRules": 181,
     "missingVisibleSpec": 181,
     "missingEffectiveJsonEditorSeed": 0,
     "sequenceCorrectOrderIntegrity": 0,
-    "environmentCoverageGaps": 48
+    "environmentCoverageGaps": 33
   },
   "courses": [
     {
@@ -1841,21 +1841,6 @@
           "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx: slug \"wallets-adversarial-gate\" does not match filename \"03-adversarial-gate\""
         ],
         "missingChallengeJsonType": [
-          "content/courses/solana-academy/challenges/solana-00-first-principles-launch-gate.json",
-          "content/courses/solana-academy/challenges/solana-01-foundations-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-01-foundations-architecture.json",
-          "content/courses/solana-academy/challenges/solana-02-tooling-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-02-tooling-architecture.json",
-          "content/courses/solana-academy/challenges/solana-03-wallets-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-03-wallets-architecture.json",
-          "content/courses/solana-academy/challenges/solana-04-onchain-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-04-onchain-architecture.json",
-          "content/courses/solana-academy/challenges/solana-05-frontend-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-05-frontend-architecture.json",
-          "content/courses/solana-academy/challenges/solana-06-testing-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-06-testing-architecture.json",
-          "content/courses/solana-academy/challenges/solana-07-deployment-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-07-deployment-architecture.json",
           "content/courses/solana-academy/challenges/solana-09-anchor-escrow-adversarial.json",
           "content/courses/solana-academy/challenges/solana-09-anchor-escrow-architecture.json",
           "content/courses/solana-academy/challenges/solana-10-pinocchio-escrow-adversarial.json",
@@ -1908,7 +1893,6 @@
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": [
-          "content/courses/solana-academy/modules/00-solana-first-principles/lessons/03-safe-first-launch-checklist.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-00-first-principles-launch-gate)",
           "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-09-anchor-escrow-architecture)",
           "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-09-anchor-escrow-adversarial)",
           "content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-10-pinocchio-escrow-architecture)",
@@ -1936,21 +1920,7 @@
           "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-21-client-diversity-architecture)",
           "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-21-client-diversity-adversarial)",
           "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/01-core-concepts.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-22-validator-launch-architecture)",
-          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-22-validator-launch-adversarial)",
-          "content/courses/solana-academy/modules/deployment/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-07-deployment-architecture)",
-          "content/courses/solana-academy/modules/deployment/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-07-deployment-adversarial)",
-          "content/courses/solana-academy/modules/foundations/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-01-foundations-architecture)",
-          "content/courses/solana-academy/modules/foundations/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-01-foundations-adversarial)",
-          "content/courses/solana-academy/modules/frontend/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-05-frontend-architecture)",
-          "content/courses/solana-academy/modules/frontend/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-05-frontend-adversarial)",
-          "content/courses/solana-academy/modules/onchain/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-04-onchain-architecture)",
-          "content/courses/solana-academy/modules/onchain/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-04-onchain-adversarial)",
-          "content/courses/solana-academy/modules/testing/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-06-testing-architecture)",
-          "content/courses/solana-academy/modules/testing/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-06-testing-adversarial)",
-          "content/courses/solana-academy/modules/tooling/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-02-tooling-architecture)",
-          "content/courses/solana-academy/modules/tooling/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-02-tooling-adversarial)",
-          "content/courses/solana-academy/modules/wallets/lessons/01-overview.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-03-wallets-architecture)",
-          "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-03-wallets-adversarial)"
+          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/03-adversarial-ops-and-go-live-gate.mdx: environment \"sequence-completer\" differs from effective challenge type \"json-editor\" (solana-22-validator-launch-adversarial)"
         ]
       },
       "samples": {

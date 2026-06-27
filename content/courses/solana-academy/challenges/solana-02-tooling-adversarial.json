@@ -1,5 +1,6 @@
 {
   "id": "solana-02-tooling-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial mission for Developer Tooling + Environments: failure scenarios, release blockers, and mitigation plan.",
   "validation": {
     "must_have": [

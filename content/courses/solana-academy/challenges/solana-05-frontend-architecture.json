@@ -1,5 +1,6 @@
 {
   "id": "solana-05-frontend-architecture",
+  "type": "json-editor",
   "spec": "Define architecture map for Frontend + RPC Integration: assumptions, invariants, and acceptance boundaries.",
   "validation": {
     "must_have": [

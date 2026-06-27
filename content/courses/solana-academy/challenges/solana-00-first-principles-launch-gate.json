@@ -1,5 +1,6 @@
 {
   "id": "solana-00-first-principles-launch-gate",
+  "type": "json-editor",
   "spec": "Order beginner launch-gate checkpoints for a safe promotion path from devnet readiness to release decision.",
   "validation": {
     "must_have": [

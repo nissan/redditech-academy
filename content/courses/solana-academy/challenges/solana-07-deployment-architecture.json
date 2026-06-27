@@ -1,5 +1,6 @@
 {
   "id": "solana-07-deployment-architecture",
+  "type": "json-editor",
   "spec": "Define architecture map for Deployment + Mainnet Readiness: assumptions, invariants, and acceptance boundaries.",
   "validation": {
     "must_have": [
