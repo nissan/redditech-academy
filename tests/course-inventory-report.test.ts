@@ -22,6 +22,7 @@ describe("course inventory report", () => {
     ]);
     expect(report.issue.reconciliationIssue).toBe(25);
     expect(report.issue.compatibilityIssue).toBe(34);
+    expect(report.issue.wholeGameMarkerIssue).toBe(84);
     expect(report.issue.actualSlugs).toEqual(
       report.issue.actualSlugs.slice().sort()
     );
@@ -55,7 +56,35 @@ describe("course inventory report", () => {
       expect(course.issues).toHaveProperty("inconsistentFrontmatter");
       expect(course.issues).toHaveProperty("wholeGameGaps");
       expect(course).toHaveProperty("compatibilityBuckets");
+      expect(course).toHaveProperty("wholeGameMarkers");
     }
+  });
+
+  it("counts informational whole-game audit markers without making gaps blocking", () => {
+    expect(report.wholeGameMarkerTotals).toEqual({
+      theGame: expect.any(Number),
+      yourRunningProject: expect.any(Number),
+      hardPartLanguage: expect.any(Number),
+      transferAdversarialFraming: expect.any(Number),
+      soloAiPrompts: expect.any(Number),
+      caseStudySourceProvenance: expect.any(Number),
+    });
+
+    const solana = report.courses.find((course) => course.slug === "solana-academy");
+    expect(solana?.wholeGameMarkers.theGame).toHaveLength(2);
+    expect(solana?.wholeGameMarkers.yourRunningProject).toHaveLength(24);
+    expect(solana?.wholeGameMarkers.hardPartLanguage).toHaveLength(0);
+    expect(solana?.wholeGameMarkers.transferAdversarialFraming).toHaveLength(26);
+    expect(solana?.wholeGameMarkers.soloAiPrompts).toHaveLength(8);
+    expect(solana?.wholeGameMarkers.caseStudySourceProvenance).toHaveLength(1);
+
+    const solanaQualityFlags =
+      solana!.issues.missingQuizzes.length +
+      solana!.issues.brokenReferences.length +
+      solana!.issues.emptyLessons.length +
+      solana!.issues.inconsistentFrontmatter.length +
+      solana!.issues.wholeGameGaps.length;
+    expect(solanaQualityFlags).toBe(72);
   });
 
   it("counts the current challenge/frontmatter compatibility buckets explicitly", () => {
