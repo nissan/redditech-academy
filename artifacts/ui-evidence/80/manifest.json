@@ -1,0 +1,60 @@
+{
+  "issue": 80,
+  "capturedAt": "2026-06-27T14:52:30.758Z",
+  "baseUrl": "http://127.0.0.1:30680",
+  "tool": "playwright-system-chrome",
+  "screenshots": [
+    {
+      "id": "01-anchor-escrow-case",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/01-core-concepts",
+      "text": "Case 1: Escrow Release Deadlock",
+      "file": "01-anchor-escrow-case.png",
+      "viewport": "1440x1200",
+      "href": "/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md"
+    },
+    {
+      "id": "02-jupiter-slippage-case",
+      "route": "/courses/solana-academy/learn/12-jupiter-defi-integration/01-core-concepts",
+      "text": "Case 5: DeFi Integration Slippage and User Trust",
+      "file": "02-jupiter-slippage-case.png",
+      "viewport": "1440x1200",
+      "href": "/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md"
+    },
+    {
+      "id": "03-pyth-oracle-drift-case",
+      "route": "/courses/solana-academy/learn/15-pyth-oracle-integration/01-core-concepts",
+      "text": "Case 2: Oracle Drift and Unsafe Execution",
+      "file": "03-pyth-oracle-drift-case.png",
+      "viewport": "1440x1200",
+      "href": "/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md"
+    },
+    {
+      "id": "04-deployment-launch-sequence-case",
+      "route": "/courses/solana-academy/learn/deployment/01-overview",
+      "text": "Case 3: Launch Sequence Failure Despite Green Tests",
+      "file": "04-deployment-launch-sequence-case.png",
+      "viewport": "1440x1200",
+      "href": "/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md"
+    },
+    {
+      "id": "05-validator-ops-case",
+      "route": "/courses/solana-academy/learn/20-running-a-validator-ops-and-economics/01-core-concepts",
+      "text": "Case 4: Validator Ops Incident and Slow Recovery",
+      "file": "05-validator-ops-case.png",
+      "viewport": "1440x1200",
+      "href": "/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md"
+    },
+    {
+      "id": "06-case-pack-asset",
+      "route": "/assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md",
+      "text": "Case pack asset with five synthetic labels",
+      "file": "06-case-pack-asset.png",
+      "viewport": "1440x1200"
+    }
+  ],
+  "assertions": [
+    "Five changed learner-visible Solana lessons render their case-pack entry links.",
+    "Each lesson link points to /assets/courses/solana-academy/downloads/solana-case-pack-source-rigor.md.",
+    "The case-pack asset renders and contains all five synthetic teaching case labels."
+  ]
+}

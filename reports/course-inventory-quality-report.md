@@ -22,7 +22,7 @@ Issue #14 originally listed eleven course slugs. Issue #25 reconciles that histo
 
 | Modules | Lessons | Quizzes | Challenges | Diagrams | Mermaid blocks | Downloads | Videos | External deps |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 111 | 291 | 111 | 299 | 184 | 185 | 146 | 130 | 324 |
+| 111 | 291 | 111 | 299 | 184 | 185 | 147 | 130 | 324 |
 
 ## Challenge/Frontmatter Compatibility Buckets
 
@@ -94,7 +94,7 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
 | `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 47 |
 | `python-interview-prep` | protected | 7 | 19 | 7 | 17 | 0 | 0 | 0 | 0 | 11 |
 | `sales-spin-meddic` | free | 14 | 14 | 14 | 14 | 14 | 14 | 16 | 20 | 14 |
-| `solana-academy` | free | 24 | 72 | 24 | 80 | 67 | 79 | 16 | 52 | 72 |
+| `solana-academy` | free | 24 | 72 | 24 | 80 | 67 | 80 | 16 | 52 | 72 |
 
 ## Quality Flags
 
