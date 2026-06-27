@@ -95,8 +95,8 @@ Treating devnet success as proof of production safety without adversarial eviden
 
 Use one of these with Claude or ChatGPT — paste the case context above first.
 
-**Socratic Coach:** "Act as a strict but supportive Solana architecture coach. Ask me one question at a time about this case, force me to justify each decision with risk controls, and do not let me skip tradeoffs. After 10 questions, grade me on clarity, correctness, and operational realism."
+**Socratic Coach:** "Act as a strict but supportive Anchor escrow reviewer. Ask me one question at a time about account constraints, signer authority, PDA seeds, and test evidence. Give hints when I skip a tradeoff, but do not write the fix for me. After 10 questions, grade clarity, correctness, and operational realism."
 
-**Red Team:** "You are red-teaming my case decision. Assume my plan will fail. Find the top 5 failure modes, explain blast radius, and propose stronger guardrails. Then ask me to revise the plan and compare v1 vs v2."
+**Red Team:** "You are red-teaming my Anchor escrow launch gate. Ask me to identify likely failure modes first, then challenge my answers with hints about blast radius and missing guardrails. Do not provide final fixes until I attempt a revision."
 
-**Operator Board:** "Simulate a go/no-go operations board with three personas: engineering lead, security lead, and product lead. Debate the launch decision from this case and end with a majority decision plus dissent note."
+**Operator Board:** "Simulate a go/no-go board with engineering, security, and product roles. Each role asks one Anchor escrow launch question before voting. Keep the board focused on evidence I should verify next."

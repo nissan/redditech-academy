@@ -1,0 +1,241 @@
+{
+  "issue": 81,
+  "capturedAt": "2026-06-27T15:28:39.900Z",
+  "baseUrl": "http://127.0.0.1:32181",
+  "tool": "playwright-system-chrome",
+  "coverageSummary": {
+    "totalSolanaModules": 24,
+    "modulesWithVisibleSoloAiPrompt": 24,
+    "deliberateExceptions": [],
+    "inventorySoloAiPromptCount": 26,
+    "representativeScreenshots": 9
+  },
+  "moduleCoverage": [
+    {
+      "moduleSlug": "00-solana-first-principles",
+      "lesson": "03-safe-first-launch-checklist.mdx",
+      "route": "/courses/solana-academy/learn/00-solana-first-principles/03-safe-first-launch-checklist"
+    },
+    {
+      "moduleSlug": "08-solana-new-app-builder",
+      "lesson": "03-devnet-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/08-solana-new-app-builder/03-devnet-launch-gate"
+    },
+    {
+      "moduleSlug": "09-anchor-escrow-lab",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/09-anchor-escrow-lab/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "10-pinocchio-escrow-lab",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/10-pinocchio-escrow-lab/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "11-quasar-escrow-lab",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/11-quasar-escrow-lab/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "12-jupiter-defi-integration",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/12-jupiter-defi-integration/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "13-orca-whirlpools-integration",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/13-orca-whirlpools-integration/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "14-chainlink-oracle-integration",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/14-chainlink-oracle-integration/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "15-pyth-oracle-integration",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/15-pyth-oracle-integration/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "16-verifiable-randomness-auctions",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/16-verifiable-randomness-auctions/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "17-surfpool-testing-lab",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/17-surfpool-testing-lab/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "18-litesvm-testing-lab",
+      "lesson": "03-adversarial-testing-and-launch-gate.mdx",
+      "route": "/courses/solana-academy/learn/18-litesvm-testing-lab/03-adversarial-testing-and-launch-gate"
+    },
+    {
+      "moduleSlug": "19-validator-architecture-and-consensus",
+      "lesson": "03-adversarial-ops-and-go-live-gate.mdx",
+      "route": "/courses/solana-academy/learn/19-validator-architecture-and-consensus/03-adversarial-ops-and-go-live-gate"
+    },
+    {
+      "moduleSlug": "20-running-a-validator-ops-and-economics",
+      "lesson": "03-adversarial-ops-and-go-live-gate.mdx",
+      "route": "/courses/solana-academy/learn/20-running-a-validator-ops-and-economics/03-adversarial-ops-and-go-live-gate"
+    },
+    {
+      "moduleSlug": "21-client-diversity-firedancer-frankendancer",
+      "lesson": "03-adversarial-ops-and-go-live-gate.mdx",
+      "route": "/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer/03-adversarial-ops-and-go-live-gate"
+    },
+    {
+      "moduleSlug": "22-validator-launch-readiness-mission",
+      "lesson": "03-adversarial-ops-and-go-live-gate.mdx",
+      "route": "/courses/solana-academy/learn/22-validator-launch-readiness-mission/03-adversarial-ops-and-go-live-gate"
+    },
+    {
+      "moduleSlug": "23-capstone-ladder",
+      "lesson": "01-beginner-capstone-guided-build.mdx",
+      "route": "/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build"
+    },
+    {
+      "moduleSlug": "deployment",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/deployment/03-adversarial-gate"
+    },
+    {
+      "moduleSlug": "foundations",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/foundations/03-adversarial-gate"
+    },
+    {
+      "moduleSlug": "frontend",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/frontend/03-adversarial-gate"
+    },
+    {
+      "moduleSlug": "onchain",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/onchain/03-adversarial-gate"
+    },
+    {
+      "moduleSlug": "testing",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/testing/03-adversarial-gate"
+    },
+    {
+      "moduleSlug": "tooling",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/tooling/03-adversarial-gate"
+    },
+    {
+      "moduleSlug": "wallets",
+      "lesson": "03-adversarial-gate.mdx",
+      "route": "/courses/solana-academy/learn/wallets/03-adversarial-gate"
+    }
+  ],
+  "screenshots": [
+    {
+      "id": "01-first-principles-prompt-desktop",
+      "label": "first-principles beginner launch prompt",
+      "route": "/courses/solana-academy/learn/00-solana-first-principles/03-safe-first-launch-checklist",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/00-solana-first-principles/03-safe-first-launch-checklist",
+      "file": "01-first-principles-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "02-foundations-prompt-desktop",
+      "label": "legacy foundations prompt",
+      "route": "/courses/solana-academy/learn/foundations/03-adversarial-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/foundations/03-adversarial-gate",
+      "file": "02-foundations-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "03-pinocchio-prompt-desktop",
+      "label": "Pinocchio framework prompt",
+      "route": "/courses/solana-academy/learn/10-pinocchio-escrow-lab/03-adversarial-testing-and-launch-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/10-pinocchio-escrow-lab/03-adversarial-testing-and-launch-gate",
+      "file": "03-pinocchio-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "04-orca-prompt-desktop",
+      "label": "Orca DeFi prompt",
+      "route": "/courses/solana-academy/learn/13-orca-whirlpools-integration/03-adversarial-testing-and-launch-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/13-orca-whirlpools-integration/03-adversarial-testing-and-launch-gate",
+      "file": "04-orca-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "05-pyth-prompt-desktop",
+      "label": "Pyth oracle prompt",
+      "route": "/courses/solana-academy/learn/15-pyth-oracle-integration/03-adversarial-testing-and-launch-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/15-pyth-oracle-integration/03-adversarial-testing-and-launch-gate",
+      "file": "05-pyth-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "06-surfpool-prompt-desktop",
+      "label": "Surfpool testing prompt",
+      "route": "/courses/solana-academy/learn/17-surfpool-testing-lab/03-adversarial-testing-and-launch-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/17-surfpool-testing-lab/03-adversarial-testing-and-launch-gate",
+      "file": "06-surfpool-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "07-client-diversity-prompt-desktop",
+      "label": "client diversity validator prompt",
+      "route": "/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer/03-adversarial-ops-and-go-live-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/21-client-diversity-firedancer-frankendancer/03-adversarial-ops-and-go-live-gate",
+      "file": "07-client-diversity-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "08-capstone-prompt-desktop",
+      "label": "capstone prompt",
+      "route": "/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build",
+      "file": "08-capstone-prompt-desktop.png",
+      "viewport": "1440x1100",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    },
+    {
+      "id": "09-wallets-prompt-mobile",
+      "label": "wallet prompt mobile",
+      "route": "/courses/solana-academy/learn/wallets/03-adversarial-gate",
+      "url": "http://127.0.0.1:32181/courses/solana-academy/learn/wallets/03-adversarial-gate",
+      "file": "09-wallets-prompt-mobile.png",
+      "viewport": "390x844 mobile",
+      "status": 200,
+      "promptHeadingFound": true,
+      "expectedTextFound": true
+    }
+  ],
+  "assertions": [
+    "All 24 Solana module directories have at least one lesson containing a visible Solo AI Discussion Prompts section.",
+    "Representative screenshots prove prompt rendering on standard lesson routes across beginner, legacy, framework, DeFi, oracle, testing, validator, wallet, and capstone areas.",
+    "Prompt text is role-specific and asks for questions, hints, scoring, or board review before recommendations."
+  ]
+}

@@ -64,5 +64,13 @@ flowchart LR
 - [Artifact](/assets/courses/solana-academy/downloads/18-litesvm-testing-lab-test-matrix.csv)
 - [Artifact](/assets/courses/solana-academy/downloads/18-litesvm-testing-lab-release-gate.md)
 
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT after you draft your LiteSVM test harness. Ask for questions, hints, and scoring before any suggested rewrite.
+
+**In-Process Test Reviewer:** "Act as a LiteSVM reviewer. Ask me how my harness proves account setup, instruction ordering, signer errors, and edge cases without relying on network behavior. Give hints first; do not write the test code for me."
+
+**Regression Gate Coach:** "Roleplay a regression gate coach. Ask which LiteSVM tests would catch a real production bug and which might give false confidence. Make me improve the matrix before you score it."
+
 ## Anti-Pattern to Avoid
 Treating one-off green runs as proof of reliability without repeatability and adversarial evidence.

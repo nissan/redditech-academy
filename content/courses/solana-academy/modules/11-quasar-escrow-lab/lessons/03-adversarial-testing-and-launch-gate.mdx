@@ -62,5 +62,13 @@ flowchart LR
 - [Artifact](/assets/courses/solana-academy/downloads/11-quasar-escrow-lab-adversarial-test-matrix.csv)
 - [Artifact](/assets/courses/solana-academy/downloads/11-quasar-escrow-lab-release-gate-checklist.md)
 
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT after you draft your Quasar escrow review notes. Ask for questions, hints, and scoring before any suggested rewrite.
+
+**Framework Reviewer:** "Act as a Quasar escrow reviewer. Ask me which framework abstractions protect account validation, signer checks, and state transitions, and which risks still need explicit tests. Give hints before recommendations; do not write my final review."
+
+**Migration Red Team:** "Roleplay a migration red-team lead comparing my Quasar escrow to the prior escrow versions. Ask where behavior might drift across frameworks and make me justify each assumption before scoring the release gate."
+
 ## Anti-Pattern to Avoid
 Treating devnet success as proof of production safety without adversarial evidence and release gate documentation.
