@@ -4,6 +4,7 @@
     "number": 14,
     "reconciliationIssue": 25,
     "compatibilityIssue": 34,
+    "wholeGameMarkerIssue": 84,
     "expectedSlugs": [
       "auth-training",
       "churn-modeling-academy",
@@ -67,6 +68,14 @@
     "missingEffectiveJsonEditorSeed": 0,
     "sequenceCorrectOrderIntegrity": 0,
     "environmentCoverageGaps": 5
+  },
+  "wholeGameMarkerTotals": {
+    "theGame": 9,
+    "yourRunningProject": 82,
+    "hardPartLanguage": 2,
+    "transferAdversarialFraming": 27,
+    "soloAiPrompts": 32,
+    "caseStudySourceProvenance": 4
   },
   "courses": [
     {
@@ -378,6 +387,21 @@
           "content/courses/auth-training/modules/03-oidc/lessons/02-id-tokens-jwt.mdx: environment \"jwt-inspector\" references challenge without effective type \"oidc-02-id-token-audit\""
         ]
       },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/auth-training/modules/00-executive-overview/lessons/04-authorization-zero-trust-summary.mdx",
+          "content/courses/auth-training/modules/00-iam-first-principles/lessons/01-iam-first-principles.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/auth-training/modules/00-iam-first-principles/lessons/01-iam-first-principles.mdx"
+        ],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": [
+          "content/courses/auth-training/modules/10-applied-case-study/lessons/06-partner-federation.mdx"
+        ]
+      },
       "samples": {
         "externalDependencies": [
           "https://datatracker.ietf.org/doc/html/rfc6749",
@@ -551,6 +575,24 @@
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
+      },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/churn-modeling-academy/modules/00-first-principles/lessons/01-first-principles.mdx",
+          "content/courses/churn-modeling-academy/modules/01-churn-fundamentals/lessons/01-core-concepts.mdx",
+          "content/courses/churn-modeling-academy/modules/02-data-and-leakage/lessons/01-core-concepts.mdx",
+          "content/courses/churn-modeling-academy/modules/03-modeling-and-evaluation/lessons/01-core-concepts.mdx",
+          "content/courses/churn-modeling-academy/modules/04-interventions-and-uplift/lessons/01-core-concepts.mdx",
+          "content/courses/churn-modeling-academy/modules/05-production-and-monitoring/lessons/01-core-concepts.mdx",
+          "content/courses/churn-modeling-academy/modules/06-case-studies-and-capstone/lessons/01-core-concepts.mdx"
+        ],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": []
       },
       "samples": {
         "externalDependencies": [
@@ -805,6 +847,59 @@
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
       },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/genai-ml-academy/modules/00-genai-first-principles/lessons/01-genai-first-principles.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/genai-ml-academy/modules/00-genai-first-principles/lessons/01-genai-first-principles.mdx",
+          "content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/01-production-ai-foundations.mdx",
+          "content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/01-rag-in-practice.mdx",
+          "content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/01-multi-agent-systems-and-frameworks.mdx",
+          "content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/01-langgraph-stateful-agents.mdx",
+          "content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/01-text2sql-enterprise-data.mdx",
+          "content/courses/genai-ml-academy/modules/06-fine-tuning-open-models/lessons/01-fine-tuning-open-models.mdx",
+          "content/courses/genai-ml-academy/modules/07-langchain-production-genai/lessons/01-langchain-production-genai.mdx",
+          "content/courses/genai-ml-academy/modules/08-production-genai-ops/lessons/01-production-genai-ops.mdx",
+          "content/courses/genai-ml-academy/modules/09-applied-data-science-cases/lessons/01-applied-data-science-cases.mdx",
+          "content/courses/genai-ml-academy/modules/10-advanced-ai-solutions-in-production/lessons/01-advanced-ai-solutions-in-production.mdx",
+          "content/courses/genai-ml-academy/modules/11-ml-deployment-cloud/lessons/01-ml-deployment-cloud.mdx",
+          "content/courses/genai-ml-academy/modules/12-databricks-spark-capstone/lessons/01-databricks-spark-capstone.mdx"
+        ],
+        "hardPartLanguage": [
+          "content/courses/genai-ml-academy/modules/08-production-genai-ops/lessons/01-production-genai-ops.mdx"
+        ],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [
+          "content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/02-eval-contracts-and-quality-gates.mdx",
+          "content/courses/genai-ml-academy/modules/01-production-ai-foundations/lessons/03-release-gate-sequencing.mdx",
+          "content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/02-retrieval-pipeline-architecture.mdx",
+          "content/courses/genai-ml-academy/modules/02-rag-in-practice/lessons/03-rag-failure-mode-triage.mdx",
+          "content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/02-agent-topologies-and-coordination.mdx",
+          "content/courses/genai-ml-academy/modules/03-multi-agent-systems-and-frameworks/lessons/03-agent-handoff-contracts.mdx",
+          "content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/02-state-machine-design-for-agents.mdx",
+          "content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/03-langgraph-config-and-persistence.mdx",
+          "content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/02-sql-safety-policy-design.mdx",
+          "content/courses/genai-ml-academy/modules/05-text2sql-enterprise-data/lessons/03-query-validation-sequence.mdx",
+          "content/courses/genai-ml-academy/modules/06-fine-tuning-open-models/lessons/02-training-data-brief-and-dataset-design.mdx",
+          "content/courses/genai-ml-academy/modules/06-fine-tuning-open-models/lessons/03-eval-sequence-for-fine-tuned-models.mdx",
+          "content/courses/genai-ml-academy/modules/07-langchain-production-genai/lessons/02-chain-architecture-and-component-design.mdx",
+          "content/courses/genai-ml-academy/modules/07-langchain-production-genai/lessons/03-production-readiness-checklist.mdx",
+          "content/courses/genai-ml-academy/modules/08-production-genai-ops/lessons/02-observability-stack-for-genai.mdx",
+          "content/courses/genai-ml-academy/modules/08-production-genai-ops/lessons/03-genai-incident-runbook.mdx",
+          "content/courses/genai-ml-academy/modules/09-applied-data-science-cases/lessons/02-case-analysis-framework.mdx",
+          "content/courses/genai-ml-academy/modules/09-applied-data-science-cases/lessons/03-recommendation-brief.mdx",
+          "content/courses/genai-ml-academy/modules/10-advanced-ai-solutions-in-production/lessons/02-advanced-pattern-selection.mdx",
+          "content/courses/genai-ml-academy/modules/10-advanced-ai-solutions-in-production/lessons/03-production-architecture-review.mdx",
+          "content/courses/genai-ml-academy/modules/11-ml-deployment-cloud/lessons/02-ml-deployment-specification.mdx",
+          "content/courses/genai-ml-academy/modules/11-ml-deployment-cloud/lessons/03-cloud-deployment-checklist.mdx",
+          "content/courses/genai-ml-academy/modules/12-databricks-spark-capstone/lessons/02-data-pipeline-design-for-ml.mdx",
+          "content/courses/genai-ml-academy/modules/12-databricks-spark-capstone/lessons/03-capstone-production-genai-system-design.mdx"
+        ],
+        "caseStudySourceProvenance": [
+          "content/courses/genai-ml-academy/modules/04-langgraph-stateful-agents/lessons/01-langgraph-stateful-agents.mdx"
+        ]
+      },
       "samples": {
         "externalDependencies": [
           "https://cookbook.openai.com/",
@@ -983,6 +1078,22 @@
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
       },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/llm-benchmarking-academy/modules/00-llm-benchmarking-first-principles/lessons/01-llm-benchmarking-first-principles.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/llm-benchmarking-academy/modules/00-llm-benchmarking-first-principles/lessons/01-llm-benchmarking-first-principles.mdx"
+        ],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [
+          "content/courses/llm-benchmarking-academy/modules/03-mmlu-and-mmmlu/lessons/01-core-concepts.mdx"
+        ],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": [
+          "content/courses/llm-benchmarking-academy/modules/08-building-an-eval-harness/lessons/01-core-concepts.mdx"
+        ]
+      },
       "samples": {
         "externalDependencies": [
           "https://arxiv.org/abs/2404.18824",
@@ -1126,6 +1237,28 @@
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
+      },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/martech-adtech-academy/modules/00-first-principles/lessons/01-first-principles.mdx",
+          "content/courses/martech-adtech-academy/modules/capstone/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/creative-ai/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/crm-map-cdp/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/customer-data/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/industry-map/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/lifecycle/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/measurement/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/privacy-consent/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/programmatic-pipes/lessons/01-overview.mdx",
+          "content/courses/martech-adtech-academy/modules/vendor-evaluation/lessons/01-overview.mdx"
+        ],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": []
       },
       "samples": {
         "externalDependencies": [
@@ -1434,6 +1567,30 @@
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
       },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/openclaw-academy/modules/module-00-first-principles/lessons/01-what-problem-does-openclaw-solve.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/openclaw-academy/modules/module-00-first-principles/lessons/01-what-problem-does-openclaw-solve.mdx",
+          "content/courses/openclaw-academy/modules/module-01-overview/lessons/01-what-is-openclaw.mdx",
+          "content/courses/openclaw-academy/modules/module-02-gateway/lessons/01-gateway-daemon.mdx",
+          "content/courses/openclaw-academy/modules/module-03-channels/lessons/01-channel-plugin-architecture.mdx",
+          "content/courses/openclaw-academy/modules/module-04-agents/lessons/01-agent-lifecycle.mdx",
+          "content/courses/openclaw-academy/modules/module-05-skills/lessons/01-skill-anatomy.mdx",
+          "content/courses/openclaw-academy/modules/module-06-security/lessons/01-trust-hierarchy.mdx",
+          "content/courses/openclaw-academy/modules/module-07-config/lessons/01-config-structure.mdx",
+          "content/courses/openclaw-academy/modules/module-08-extending/lessons/01-writing-a-skill.mdx",
+          "content/courses/openclaw-academy/modules/module-09-deployment/lessons/01-macos-deployment.mdx",
+          "content/courses/openclaw-academy/modules/module-10-case-study/lessons/01-our-architecture.mdx"
+        ],
+        "hardPartLanguage": [
+          "content/courses/openclaw-academy/modules/module-05-skills/lessons/01-skill-anatomy.mdx"
+        ],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": []
+      },
       "samples": {
         "externalDependencies": [
           "https://cheatsheetseries.owasp.org/",
@@ -1552,6 +1709,14 @@
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
+      },
+      "wholeGameMarkers": {
+        "theGame": [],
+        "yourRunningProject": [],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": []
       },
       "samples": {
         "externalDependencies": [],
@@ -1683,6 +1848,29 @@
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
+      },
+      "wholeGameMarkers": {
+        "theGame": [],
+        "yourRunningProject": [
+          "content/courses/sales-spin-meddic/modules/01-sales-system/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/02-spin-foundations/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/03-spin-live-discovery/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/04-meddic-fundamentals/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/05-spin-to-meddic/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/06-growth-wins/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/07-failure-postmortems/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/08-capstone-deal-room/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/09-meddpicc-upgrade/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/10-meddpicc-deal-inspection/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/11-challenger-selling/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/12-qualification-models/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/13-sandler-and-message-frameworks/lessons/01-core-concepts.mdx",
+          "content/courses/sales-spin-meddic/modules/14-methodology-comparison/lessons/01-core-concepts.mdx"
+        ],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [],
+        "soloAiPrompts": [],
+        "caseStudySourceProvenance": []
       },
       "samples": {
         "externalDependencies": [
@@ -1864,6 +2052,80 @@
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
+      },
+      "wholeGameMarkers": {
+        "theGame": [
+          "content/courses/solana-academy/modules/00-solana-first-principles/lessons/01-mental-models-and-vocabulary.mdx",
+          "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx"
+        ],
+        "yourRunningProject": [
+          "content/courses/solana-academy/modules/00-solana-first-principles/lessons/01-mental-models-and-vocabulary.mdx",
+          "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx",
+          "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/01-beginner-capstone-guided-build.mdx",
+          "content/courses/solana-academy/modules/deployment/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/foundations/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/frontend/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/onchain/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/testing/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/tooling/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/wallets/lessons/01-overview.mdx"
+        ],
+        "hardPartLanguage": [],
+        "transferAdversarialFraming": [
+          "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/01-core-concepts.mdx",
+          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/02-harness-implementation.mdx",
+          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/03-advanced-capstone-open-adversarial-challenge.mdx",
+          "content/courses/solana-academy/modules/deployment/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/foundations/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/frontend/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/onchain/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/testing/lessons/01-overview.mdx",
+          "content/courses/solana-academy/modules/testing/lessons/02-implementation-lab.mdx",
+          "content/courses/solana-academy/modules/testing/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/tooling/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx"
+        ],
+        "soloAiPrompts": [
+          "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/03-devnet-launch-gate.mdx",
+          "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/01-beginner-capstone-guided-build.mdx",
+          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/02-intermediate-capstone-scaffolded-architecture.mdx",
+          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/03-advanced-capstone-open-adversarial-challenge.mdx"
+        ],
+        "caseStudySourceProvenance": [
+          "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/03-devnet-launch-gate.mdx"
+        ]
       },
       "samples": {
         "externalDependencies": [
