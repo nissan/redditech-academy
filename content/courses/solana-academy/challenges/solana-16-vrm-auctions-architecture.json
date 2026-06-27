@@ -1,7 +1,7 @@
 {
   "id": "solana-16-vrm-auctions-architecture",
   "type": "json-editor",
-  "spec": "Architecture mission for VRM Lab — Commit-Reveal and Dutch Auction: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
+  "spec": "Architecture mission for VRM Lab \u2014 Commit-Reveal and Dutch Auction: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
   "validation": {
     "must_have": [
       {

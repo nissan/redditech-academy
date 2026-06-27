@@ -1,7 +1,7 @@
 {
   "id": "solana-15-pyth-adversarial",
   "type": "json-editor",
-  "spec": "Adversarial mission for Oracle Layer 2 — Pyth Integration: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
+  "spec": "Adversarial mission for Oracle Layer 2 \u2014 Pyth Integration: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
   "validation": {
     "must_have": [
       {

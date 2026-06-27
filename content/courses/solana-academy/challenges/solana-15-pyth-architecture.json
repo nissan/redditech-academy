@@ -1,7 +1,7 @@
 {
   "id": "solana-15-pyth-architecture",
   "type": "json-editor",
-  "spec": "Architecture mission for Oracle Layer 2 — Pyth Integration: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
+  "spec": "Architecture mission for Oracle Layer 2 \u2014 Pyth Integration: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
   "validation": {
     "must_have": [
       {

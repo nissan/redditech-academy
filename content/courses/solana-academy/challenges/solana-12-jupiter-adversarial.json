@@ -1,7 +1,7 @@
 {
   "id": "solana-12-jupiter-adversarial",
   "type": "json-editor",
-  "spec": "Adversarial mission for DeFi Layer 1 — Jupiter Integration: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
+  "spec": "Adversarial mission for DeFi Layer 1 \u2014 Jupiter Integration: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
   "validation": {
     "must_have": [
       {

@@ -1,7 +1,7 @@
 {
   "id": "solana-14-chainlink-architecture",
   "type": "json-editor",
-  "spec": "Architecture mission for Oracle Layer 1 — Chainlink Data Feeds: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
+  "spec": "Architecture mission for Oracle Layer 1 \u2014 Chainlink Data Feeds: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
   "validation": {
     "must_have": [
       {

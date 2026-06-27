@@ -1,7 +1,7 @@
 {
   "id": "solana-13-orca-architecture",
   "type": "json-editor",
-  "spec": "Architecture mission for DeFi Layer 2 — Orca Whirlpools: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
+  "spec": "Architecture mission for DeFi Layer 2 \u2014 Orca Whirlpools: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
   "validation": {
     "must_have": [
       {

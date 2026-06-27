@@ -1,7 +1,7 @@
 {
   "id": "solana-12-jupiter-architecture",
   "type": "json-editor",
-  "spec": "Architecture mission for DeFi Layer 1 — Jupiter Integration: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
+  "spec": "Architecture mission for DeFi Layer 1 \u2014 Jupiter Integration: define account/signer invariants, threat assumptions, and acceptance boundaries for escrow continuity.",
   "validation": {
     "must_have": [
       {

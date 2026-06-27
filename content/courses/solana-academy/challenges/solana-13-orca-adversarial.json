@@ -1,7 +1,7 @@
 {
   "id": "solana-13-orca-adversarial",
   "type": "json-editor",
-  "spec": "Adversarial mission for DeFi Layer 2 — Orca Whirlpools: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
+  "spec": "Adversarial mission for DeFi Layer 2 \u2014 Orca Whirlpools: run attack-path matrix, define go/no-go gates, and document rollback + incident response triggers.",
   "validation": {
     "must_have": [
       {
