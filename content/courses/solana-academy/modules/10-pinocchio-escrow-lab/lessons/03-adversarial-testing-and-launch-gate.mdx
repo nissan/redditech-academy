@@ -62,5 +62,13 @@ flowchart LR
 - [Artifact](/assets/courses/solana-academy/downloads/10-pinocchio-escrow-lab-adversarial-test-matrix.csv)
 - [Artifact](/assets/courses/solana-academy/downloads/10-pinocchio-escrow-lab-release-gate-checklist.md)
 
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT after you compare your Pinocchio escrow design to the Anchor version. Ask for questions, hints, and scoring before any suggested rewrite.
+
+**Low-Level Reviewer:** "Act as a Pinocchio escrow reviewer. Ask me how I preserved signer checks, account validation, instruction parsing, and compute goals without Anchor macros. Give hints for missing invariants, but do not write the implementation for me."
+
+**Compute Tradeoff Board:** "Roleplay a board with a protocol engineer, auditor, and performance lead. Each role asks one question about my Pinocchio tradeoffs before voting on launch readiness. Keep the feedback hint-first."
+
 ## Anti-Pattern to Avoid
 Treating devnet success as proof of production safety without adversarial evidence and release gate documentation.

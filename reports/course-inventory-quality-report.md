@@ -65,7 +65,7 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
 | Your Running Project | 82 |
 | hard-part language | 2 |
 | transfer/adversarial framing | 27 |
-| solo AI prompts | 32 |
+| solo AI prompts | 50 |
 | case-study source/provenance | 4 |
 
 ## Informational Whole-Game Markers By Course
@@ -80,7 +80,7 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
 | `openclaw-academy` | 1 | 11 | 1 | 0 | 0 | 0 |
 | `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 |
 | `sales-spin-meddic` | 0 | 14 | 0 | 0 | 0 | 0 |
-| `solana-academy` | 2 | 24 | 0 | 26 | 8 | 1 |
+| `solana-academy` | 2 | 24 | 0 | 26 | 26 | 1 |
 
 ## Course Inventory
 
@@ -882,15 +882,16 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
     - content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx
     - content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/03-adversarial-testing-and-launch-gate.mdx
     - ...and 18 more
-  - soloAiPrompts: 8
+  - soloAiPrompts: 26
+    - content/courses/solana-academy/modules/00-solana-first-principles/lessons/03-safe-first-launch-checklist.mdx
     - content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/03-devnet-launch-gate.mdx
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx
+    - content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx
+    - content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx
     - content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/03-adversarial-testing-and-launch-gate.mdx
+    - content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/03-adversarial-testing-and-launch-gate.mdx
     - content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx
-    - content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx
-    - content/courses/solana-academy/modules/23-capstone-ladder/lessons/01-beginner-capstone-guided-build.mdx
-    - content/courses/solana-academy/modules/23-capstone-ladder/lessons/02-intermediate-capstone-scaffolded-architecture.mdx
-    - content/courses/solana-academy/modules/23-capstone-ladder/lessons/03-advanced-capstone-open-adversarial-challenge.mdx
+    - ...and 18 more
   - caseStudySourceProvenance: 1
     - content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/03-devnet-launch-gate.mdx
 - external dependency samples:

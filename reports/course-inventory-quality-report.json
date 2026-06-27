@@ -74,7 +74,7 @@
     "yourRunningProject": 82,
     "hardPartLanguage": 2,
     "transferAdversarialFraming": 27,
-    "soloAiPrompts": 32,
+    "soloAiPrompts": 50,
     "caseStudySourceProvenance": 4
   },
   "courses": [
@@ -2098,14 +2098,32 @@
           "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx"
         ],
         "soloAiPrompts": [
+          "content/courses/solana-academy/modules/00-solana-first-principles/lessons/03-safe-first-launch-checklist.mdx",
           "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/03-devnet-launch-gate.mdx",
           "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/11-quasar-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
           "content/courses/solana-academy/modules/12-jupiter-defi-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/13-orca-whirlpools-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
           "content/courses/solana-academy/modules/14-chainlink-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/15-pyth-oracle-integration/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/16-verifiable-randomness-auctions/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/17-surfpool-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/18-litesvm-testing-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
+          "content/courses/solana-academy/modules/19-validator-architecture-and-consensus/lessons/03-adversarial-ops-and-go-live-gate.mdx",
           "content/courses/solana-academy/modules/20-running-a-validator-ops-and-economics/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/21-client-diversity-firedancer-frankendancer/lessons/03-adversarial-ops-and-go-live-gate.mdx",
+          "content/courses/solana-academy/modules/22-validator-launch-readiness-mission/lessons/03-adversarial-ops-and-go-live-gate.mdx",
           "content/courses/solana-academy/modules/23-capstone-ladder/lessons/01-beginner-capstone-guided-build.mdx",
           "content/courses/solana-academy/modules/23-capstone-ladder/lessons/02-intermediate-capstone-scaffolded-architecture.mdx",
-          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/03-advanced-capstone-open-adversarial-challenge.mdx"
+          "content/courses/solana-academy/modules/23-capstone-ladder/lessons/03-advanced-capstone-open-adversarial-challenge.mdx",
+          "content/courses/solana-academy/modules/deployment/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/foundations/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/frontend/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/onchain/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/testing/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/tooling/lessons/03-adversarial-gate.mdx",
+          "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx"
         ],
         "caseStudySourceProvenance": [
           "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/03-devnet-launch-gate.mdx"

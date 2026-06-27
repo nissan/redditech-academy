@@ -62,5 +62,13 @@ flowchart LR
 - [Artifact](/assets/courses/solana-academy/downloads/15-pyth-oracle-integration-adversarial-test-matrix.csv)
 - [Artifact](/assets/courses/solana-academy/downloads/15-pyth-oracle-integration-release-gate-checklist.md)
 
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT after you draft your Pyth oracle guardrails. Ask for questions, hints, and scoring before any suggested rewrite.
+
+**Oracle Freshness Reviewer:** "Act as a Pyth integration reviewer. Ask me how I validate price account identity, confidence intervals, staleness, fallback behavior, and monitoring. Give hints when I miss a risk, but do not write the guardrail list for me."
+
+**Market Stress Board:** "Simulate a board with a protocol engineer, risk lead, and user advocate. Each role asks one question about my Pyth behavior during volatility before voting on launch readiness. Keep feedback hint-first."
+
 ## Anti-Pattern to Avoid
 Treating devnet success as proof of production safety without adversarial evidence and release gate documentation.

@@ -62,5 +62,13 @@ flowchart LR
 - [Artifact](/assets/courses/solana-academy/downloads/02-tooling-mission-runbook.md)
 - [Artifact](/assets/courses/solana-academy/downloads/02-tooling-quality-matrix.csv)
 
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT after you define your local/devnet tooling workflow. Ask for questions, hints, and scoring before any suggested rewrite.
+
+**Environment Reviewer:** "Act as a Solana developer-environment reviewer. Question my CLI, keypair, RPC, dependency, and local-validator setup one item at a time. Give hints for missing controls, but do not write the workflow for me. End with the riskiest setup assumption."
+
+**Release Gate Coach:** "Roleplay a tooling release gate for my Solana project. Ask how I prove reproducible builds, safe key handling, and environment parity. Keep feedback focused on what evidence I should collect next, not final answers."
+
 ## Anti-Pattern to Avoid
 Skipping explicit constraints and adversarial checks because a single happy-path demo passed.

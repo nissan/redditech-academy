@@ -75,7 +75,7 @@ describe("course inventory report", () => {
     expect(solana?.wholeGameMarkers.yourRunningProject).toHaveLength(24);
     expect(solana?.wholeGameMarkers.hardPartLanguage).toHaveLength(0);
     expect(solana?.wholeGameMarkers.transferAdversarialFraming).toHaveLength(26);
-    expect(solana?.wholeGameMarkers.soloAiPrompts).toHaveLength(8);
+    expect(solana?.wholeGameMarkers.soloAiPrompts).toHaveLength(26);
     expect(solana?.wholeGameMarkers.caseStudySourceProvenance).toHaveLength(1);
 
     const solanaQualityFlags =

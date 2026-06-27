@@ -113,8 +113,8 @@ Two weeks later, a white-hat researcher found a critical: the authority check on
 
 ## 🤖 Solo AI Discussion Prompts
 
-**Operator Board:** "You are a panel of three experts: a Solana program auditor, a DeFi protocol operator, and a user advocate. Review my program architecture. Each persona raises their top concern and proposes a mitigation. End with a go/no-go recommendation and a dissent note if any persona disagrees."
+**Operator Board:** "You are a panel of three experts: a Solana program auditor, a DeFi protocol operator, and a user advocate. Each persona asks one hard question about my architecture before raising a concern. Keep mitigation advice hint-first and end with a go/no-go recommendation."
 
-**Red Team:** "You are a sophisticated attacker with full read access to the Solana blockchain and knowledge of my program's IDL. You have 48 hours before mainnet launch. Walk me through your attack planning process step by step. Then tell me which single change to my program would most reduce your attack surface."
+**Red Team:** "You are a sophisticated attacker with full read access to Solana state and my program IDL. Ask me to map my likely attack surfaces first, then challenge my map with hints. Do not name the single best fix until I propose a mitigation."
 
-**Socratic Coach:** "Act as a Solana program security researcher. For every architectural decision I state, ask me to justify it against at least one adversarial scenario. Do not accept 'the runtime handles it' as an answer. After 15 rounds, give me a final score and a one-paragraph recommendation."
+**Socratic Coach:** "Act as a Solana program security researcher. For every architectural decision I state, ask me to justify it against at least one adversarial scenario. Do not accept 'the runtime handles it' as an answer. After 15 rounds, give me a final score and the next question I should investigate."

@@ -62,5 +62,13 @@ flowchart LR
 - [Artifact](/assets/courses/solana-academy/downloads/04-onchain-mission-runbook.md)
 - [Artifact](/assets/courses/solana-academy/downloads/04-onchain-quality-matrix.csv)
 
+## 🤖 Solo AI Discussion Prompts
+
+Use one of these with Claude or ChatGPT after you outline your program state machine. Ask for questions, hints, and scoring before any suggested rewrite.
+
+**State Machine Reviewer:** "Act as a Solana program reviewer. Ask me one question at a time about accounts, authorities, constraints, state transitions, and failure modes. Give hints when an invariant is weak, but do not write the instruction logic for me."
+
+**Adversarial Designer:** "Roleplay a cautious protocol designer reviewing my on-chain architecture. Challenge one assumption about ownership, mutability, or replay resistance at a time. Keep feedback Socratic and end with a rubric score."
+
 ## Anti-Pattern to Avoid
 Skipping explicit constraints and adversarial checks because a single happy-path demo passed.
