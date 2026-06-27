@@ -1,5 +1,6 @@
 {
   "id": "solana-07-deployment-adversarial",
+  "type": "json-editor",
   "spec": "Run adversarial mission for Deployment + Mainnet Readiness: failure scenarios, release blockers, and mitigation plan.",
   "validation": {
     "must_have": [

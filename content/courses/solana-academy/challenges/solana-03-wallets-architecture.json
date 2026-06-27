@@ -1,5 +1,6 @@
 {
   "id": "solana-03-wallets-architecture",
+  "type": "json-editor",
   "spec": "Define architecture map for Wallet Integration + Signing Flows: assumptions, invariants, and acceptance boundaries.",
   "validation": {
     "must_have": [

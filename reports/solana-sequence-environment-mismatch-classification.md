@@ -10,8 +10,8 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 
 ## Counts
 
-- Total mismatches classified: 43
-- Keep JSON editor, change MDX environment later: 43
+- Total mismatches classified: 28
+- Keep JSON editor, change MDX environment later: 28
 - Convert to true sequence completer: 0
 - Hold for content spec: 0
 
@@ -23,15 +23,6 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 - Keep #37 slug/frontmatter cleanup separate from this lane.
 
 ## Implementation Splits
-
-### Solana foundation modules JSON-editor environment alignment
-
-- Modules: 00-07
-- Count: 15
-- Depends on: #44
-- Blocks: #36
-- UI evidence: Required in the implementation PR because changing MDX environment changes rendered challenge UI.
-- Challenge IDs: `solana-00-first-principles-launch-gate`, `solana-07-deployment-architecture`, `solana-07-deployment-adversarial`, `solana-01-foundations-architecture`, `solana-01-foundations-adversarial`, `solana-05-frontend-architecture`, `solana-05-frontend-adversarial`, `solana-04-onchain-architecture`, `solana-04-onchain-adversarial`, `solana-06-testing-architecture`, `solana-06-testing-adversarial`, `solana-02-tooling-architecture`, `solana-02-tooling-adversarial`, `solana-03-wallets-architecture`, `solana-03-wallets-adversarial`
 
 ### Solana integration modules JSON-editor environment alignment
 
@@ -55,7 +46,6 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 
 | Module | Lesson | Challenge ID | Classification | Split | Rationale |
 | --- | --- | --- | --- | --- | --- |
-| 00-solana-first-principles | 03-safe-first-launch-checklist | `solana-00-first-principles-launch-gate` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 09-anchor-escrow-lab | 01-core-concepts | `solana-09-anchor-escrow-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 09-anchor-escrow-lab | 03-adversarial-testing-and-launch-gate | `solana-09-anchor-escrow-adversarial` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 10-pinocchio-escrow-lab | 01-core-concepts | `solana-10-pinocchio-escrow-architecture` | keep-json-editor-change-mdx-environment | solana-integration-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
@@ -84,17 +74,3 @@ These lessons declare `environment: "sequence-completer"` in MDX, but the refere
 | 21-client-diversity-firedancer-frankendancer | 03-adversarial-ops-and-go-live-gate | `solana-21-client-diversity-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 22-validator-launch-readiness-mission | 01-core-concepts | `solana-22-validator-launch-architecture` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
 | 22-validator-launch-readiness-mission | 03-adversarial-ops-and-go-live-gate | `solana-22-validator-launch-adversarial` | keep-json-editor-change-mdx-environment | solana-validator-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| deployment | 01-overview | `solana-07-deployment-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| deployment | 03-adversarial-gate | `solana-07-deployment-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| foundations | 01-overview | `solana-01-foundations-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| foundations | 03-adversarial-gate | `solana-01-foundations-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| frontend | 01-overview | `solana-05-frontend-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| frontend | 03-adversarial-gate | `solana-05-frontend-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| onchain | 01-overview | `solana-04-onchain-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| onchain | 03-adversarial-gate | `solana-04-onchain-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| testing | 01-overview | `solana-06-testing-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| testing | 03-adversarial-gate | `solana-06-testing-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| tooling | 01-overview | `solana-02-tooling-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| tooling | 03-adversarial-gate | `solana-02-tooling-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| wallets | 01-overview | `solana-03-wallets-architecture` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
-| wallets | 03-adversarial-gate | `solana-03-wallets-adversarial` | keep-json-editor-change-mdx-environment | solana-foundation-json-editor-env-alignment | has prefilled.template; no prefilled.steps; no prefilled.correctOrder; sequence conversion would require authoring new learner-visible order data |
