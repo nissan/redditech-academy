@@ -1,0 +1,12 @@
+{
+  "issue": "27",
+  "note": "Manual Playwright capture using system Google Chrome because pnpm ui:evidence could not launch missing chromium_headless_shell-1217.",
+  "screenshots": [
+    {
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3000/courses/llm-benchmarking-academy/learn/01-benchmarking-first-principles/01-core-concepts",
+      "status": 200,
+      "file": "artifacts/ui-evidence/27/lesson-llm-benchmarking-module-01-desktop.png"
+    }
+  ]
+}
