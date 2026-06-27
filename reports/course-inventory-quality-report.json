@@ -70,9 +70,9 @@
     "environmentCoverageGaps": 5
   },
   "wholeGameMarkerTotals": {
-    "theGame": 9,
+    "theGame": 10,
     "yourRunningProject": 82,
-    "hardPartLanguage": 2,
+    "hardPartLanguage": 3,
     "transferAdversarialFraming": 27,
     "soloAiPrompts": 50,
     "caseStudySourceProvenance": 4
@@ -2040,7 +2040,8 @@
       "wholeGameMarkers": {
         "theGame": [
           "content/courses/solana-academy/modules/00-solana-first-principles/lessons/01-mental-models-and-vocabulary.mdx",
-          "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx"
+          "content/courses/solana-academy/modules/08-solana-new-app-builder/lessons/01-solana-new-workflow.mdx",
+          "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/01-core-concepts.mdx"
         ],
         "yourRunningProject": [
           "content/courses/solana-academy/modules/00-solana-first-principles/lessons/01-mental-models-and-vocabulary.mdx",
@@ -2068,7 +2069,9 @@
           "content/courses/solana-academy/modules/tooling/lessons/01-overview.mdx",
           "content/courses/solana-academy/modules/wallets/lessons/01-overview.mdx"
         ],
-        "hardPartLanguage": [],
+        "hardPartLanguage": [
+          "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/02-implementation-lab.mdx"
+        ],
         "transferAdversarialFraming": [
           "content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
           "content/courses/solana-academy/modules/10-pinocchio-escrow-lab/lessons/03-adversarial-testing-and-launch-gate.mdx",
