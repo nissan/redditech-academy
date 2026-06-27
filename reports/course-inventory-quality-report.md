@@ -62,7 +62,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | `auth-training` | free | 12 | 63 | 12 | 63 | 20 | 0 | 22 | 135 | 62 |
 | `churn-modeling-academy` | free | 7 | 7 | 7 | 7 | 6 | 4 | 12 | 12 | 7 |
 | `genai-ml-academy` | free | 13 | 37 | 13 | 46 | 12 | 24 | 24 | 44 | 25 |
-| `llm-benchmarking-academy` | free | 12 | 22 | 12 | 15 | 22 | 5 | 0 | 24 | 24 |
+| `llm-benchmarking-academy` | free | 12 | 22 | 12 | 15 | 22 | 5 | 0 | 24 | 23 |
 | `martech-adtech-academy` | free | 11 | 11 | 11 | 11 | 10 | 20 | 20 | 5 | 1 |
 | `openclaw-academy` | free | 11 | 46 | 11 | 46 | 33 | 0 | 20 | 32 | 47 |
 | `python-interview-prep` | protected | 7 | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 19 |
@@ -323,8 +323,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 ### llm-benchmarking-academy
 
 - missingQuizzes: 0
-- brokenReferences: 1
-  - content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx references missing asset /assets/courses/llm-benchmarking-academy/memes/01-benchmarking-fundamentals.svg
+- brokenReferences: 0
 - emptyLessons: 0
 - inconsistentFrontmatter: 22
   - content/courses/llm-benchmarking-academy/modules/00-llm-benchmarking-first-principles/lessons/01-llm-benchmarking-first-principles.mdx slug "llm-benchmarking-first-principles" does not match filename "01-llm-benchmarking-first-principles"

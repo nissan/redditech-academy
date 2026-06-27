@@ -1017,9 +1017,7 @@
       },
       "issues": {
         "missingQuizzes": [],
-        "brokenReferences": [
-          "content/courses/llm-benchmarking-academy/modules/01-benchmarking-first-principles/lessons/01-core-concepts.mdx references missing asset /assets/courses/llm-benchmarking-academy/memes/01-benchmarking-fundamentals.svg"
-        ],
+        "brokenReferences": [],
         "emptyLessons": [],
         "inconsistentFrontmatter": [
           "content/courses/llm-benchmarking-academy/modules/00-llm-benchmarking-first-principles/lessons/01-llm-benchmarking-first-principles.mdx slug \"llm-benchmarking-first-principles\" does not match filename \"01-llm-benchmarking-first-principles\"",
