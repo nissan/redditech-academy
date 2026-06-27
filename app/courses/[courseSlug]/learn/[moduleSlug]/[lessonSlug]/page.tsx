@@ -112,6 +112,7 @@ export default async function LessonPage({ params }: PageProps) {
           order={lesson.frontmatter.order}
           duration={lesson.frontmatter.duration}
           keyTakeaways={lesson.frontmatter.keyTakeaways || []}
+          isInteractive={lesson.frontmatter.type === "interactive"}
           nextLesson={nextLesson}
           previousLesson={previousLesson}
           moduleTitle={moduleMetadata?.title}

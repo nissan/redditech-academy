@@ -7,6 +7,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import HomePage from "../app/page";
 import CourseOverviewPage from "../app/courses/[courseSlug]/page";
+import ModuleOverviewPage from "../app/courses/[courseSlug]/learn/[moduleSlug]/page";
+import LessonPage from "../app/courses/[courseSlug]/learn/[moduleSlug]/[lessonSlug]/page";
 import { GET as getCourseStructure } from "../app/api/course-structure/route";
 import { GET as getQuiz } from "../app/api/quiz/route";
 import { getAllCourses } from "../lib/courses";
@@ -14,6 +16,9 @@ import { getCourseStructure as readCourseStructure } from "../lib/content";
 
 const SMOKE_COURSE_SLUG = "auth-training";
 const SMOKE_MODULE_SLUG = "00-executive-overview";
+const SOLANA_COURSE_SLUG = "solana-academy";
+const SOLANA_MODULE_SLUG = "00-solana-first-principles";
+const SOLANA_INTERACTIVE_LESSON_SLUG = "01-mental-models-and-vocabulary";
 
 function stubLocalStorage() {
   const store = new Map<string, string>();
@@ -96,6 +101,42 @@ describe("route smoke coverage", () => {
       expect(screen.getByRole("heading", { name: mod.metadata.title })).toBeTruthy();
       expect(screen.getByText(mod.metadata.description)).toBeTruthy();
     }
+  });
+
+  it("renders Solana module and lesson mission path affordances", async () => {
+    render(
+      await ModuleOverviewPage({
+        params: Promise.resolve({
+          courseSlug: SOLANA_COURSE_SLUG,
+          moduleSlug: SOLANA_MODULE_SLUG,
+        }),
+      })
+    );
+
+    expect(screen.getByText("Standard path")).toBeTruthy();
+    expect(screen.getByText("Mission path")).toBeTruthy();
+    expect(
+      screen.getByRole("link", { name: /Start Mission Mode/ })
+    ).toHaveAttribute(
+      "href",
+      `/courses/${SOLANA_COURSE_SLUG}/learn/${SOLANA_MODULE_SLUG}/${SOLANA_INTERACTIVE_LESSON_SLUG}/interactive`
+    );
+
+    render(
+      await LessonPage({
+        params: Promise.resolve({
+          courseSlug: SOLANA_COURSE_SLUG,
+          moduleSlug: SOLANA_MODULE_SLUG,
+          lessonSlug: SOLANA_INTERACTIVE_LESSON_SLUG,
+        }),
+      })
+    );
+
+    expect(screen.getByText("Mission path available")).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Open Mission →" })).toHaveAttribute(
+      "href",
+      `/courses/${SOLANA_COURSE_SLUG}/learn/${SOLANA_MODULE_SLUG}/${SOLANA_INTERACTIVE_LESSON_SLUG}/interactive`
+    );
   });
 
   it("documents absent auth and request-access route targets on the current branch", () => {

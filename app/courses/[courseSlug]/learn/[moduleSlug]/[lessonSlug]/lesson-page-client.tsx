@@ -15,6 +15,7 @@ interface LessonPageClientProps {
   order: number;
   duration: number;
   keyTakeaways: string[];
+  isInteractive: boolean;
   nextLesson: { moduleSlug: string; lessonSlug: string } | null;
   previousLesson: { moduleSlug: string; lessonSlug: string } | null;
   moduleTitle?: string;
@@ -31,6 +32,7 @@ export function LessonPageClient({
   order,
   duration,
   keyTakeaways,
+  isInteractive,
   nextLesson,
   previousLesson,
   moduleTitle,
@@ -87,6 +89,25 @@ export function LessonPageClient({
           {title}
         </h1>
         <p className="text-slate-400 text-sm sm:text-base lg:text-lg">{description}</p>
+
+        {isInteractive && (
+          <div className="mt-4 rounded-lg border border-fuchsia-500/30 bg-fuchsia-900/10 p-4">
+            <p className="mb-1 text-xs font-mono uppercase tracking-wider text-fuchsia-300">
+              Mission path available
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-slate-300">
+                Switch to the gamified route for goals, points, and challenge feedback.
+              </p>
+              <Link
+                href={`/courses/${courseSlug}/learn/${moduleSlug}/${lessonSlug}/interactive`}
+                className="inline-flex min-h-10 items-center justify-center rounded-lg border border-fuchsia-500/50 bg-fuchsia-500/10 px-4 py-2 text-sm font-semibold text-fuchsia-300 hover:bg-fuchsia-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 transition-colors"
+              >
+                Open Mission →
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* Registration CTA */}
         <div className="mt-4 rounded-lg border border-slate-700 bg-slate-800/50 p-4 text-sm text-slate-400">

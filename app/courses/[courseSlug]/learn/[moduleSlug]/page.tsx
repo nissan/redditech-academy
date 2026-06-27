@@ -54,6 +54,9 @@ export default async function ModuleOverviewPage({ params }: PageProps) {
     duration: lesson.frontmatter.duration,
     order: lesson.frontmatter.order,
   }));
+  const firstInteractiveLessonSlug =
+    mod.lessons.find((lesson) => lesson.frontmatter.type === "interactive")?.slug ||
+    null;
 
   return (
     <div className="min-h-screen bg-[#0F172A]">
@@ -93,6 +96,7 @@ export default async function ModuleOverviewPage({ params }: PageProps) {
         totalModules={allModules.length}
         nextModule={nextModule ? { slug: nextModule.metadata.slug, title: nextModule.metadata.title } : null}
         prevModule={prevModule ? { slug: prevModule.metadata.slug, title: prevModule.metadata.title } : null}
+        firstInteractiveLessonSlug={firstInteractiveLessonSlug}
       />
     </div>
   );

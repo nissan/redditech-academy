@@ -27,6 +27,7 @@ interface ModuleOverviewClientProps {
   totalModules: number;
   nextModule: { slug: string; title: string } | null;
   prevModule: { slug: string; title: string } | null;
+  firstInteractiveLessonSlug: string | null;
 }
 
 export function ModuleOverviewClient({
@@ -39,6 +40,7 @@ export function ModuleOverviewClient({
   totalModules,
   nextModule,
   prevModule,
+  firstInteractiveLessonSlug,
 }: ModuleOverviewClientProps) {
   const [progress, setProgress] = useState<ReturnType<typeof getUserProgress> | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -135,9 +137,17 @@ export function ModuleOverviewClient({
           {startLessonSlug && (
             <Link
               href={`/courses/${courseSlug}/learn/${moduleSlug}/${startLessonSlug}`}
-              className="rounded-lg bg-orange-500 px-6 py-2.5 font-semibold text-slate-900 hover:bg-orange-400 transition-colors"
+              className="rounded-lg bg-orange-500 px-6 py-2.5 font-semibold text-slate-900 hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800 transition-colors"
             >
               {completedLessons > 0 && !isCompleted ? "Continue →" : isCompleted ? "Review Lessons" : "Start Module →"}
+            </Link>
+          )}
+          {firstInteractiveLessonSlug && (
+            <Link
+              href={`/courses/${courseSlug}/learn/${moduleSlug}/${firstInteractiveLessonSlug}/interactive`}
+              className="rounded-lg border border-fuchsia-500/50 bg-fuchsia-500/10 px-6 py-2.5 text-sm font-semibold text-fuchsia-300 hover:bg-fuchsia-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800 transition-colors"
+            >
+              Start Mission Mode →
             </Link>
           )}
           {isCompleted && (
@@ -157,6 +167,27 @@ export function ModuleOverviewClient({
             </Link>
           )}
         </div>
+
+        {firstInteractiveLessonSlug && (
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-lg border border-orange-500/30 bg-orange-500/5 p-4">
+              <p className="mb-1 text-xs font-mono uppercase tracking-wider text-orange-300">
+                Standard path
+              </p>
+              <p className="text-sm text-slate-300">
+                Read lessons in order, mark progress, then take the module quiz.
+              </p>
+            </div>
+            <div className="rounded-lg border border-fuchsia-500/30 bg-fuchsia-900/10 p-4">
+              <p className="mb-1 text-xs font-mono uppercase tracking-wider text-fuchsia-300">
+                Mission path
+              </p>
+              <p className="text-sm text-slate-300">
+                Jump into the gamified challenge route with points, goals, and leaderboard context.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Learning objectives */}
