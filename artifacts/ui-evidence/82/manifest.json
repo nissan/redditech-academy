@@ -1,0 +1,81 @@
+{
+  "issue": 82,
+  "capturedAt": "2026-06-27T13:14:07.920Z",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "baseUrl": "http://127.0.0.1:30282",
+  "note": "Screenshots for Solana capstone canonical JSON-editor schema migration; the task panel now renders canonical challenge.spec text for each capstone route.",
+  "scenarios": [
+    {
+      "name": "beginner-capstone-task-spec-desktop",
+      "label": "Beginner capstone task spec renders in JSON editor route",
+      "route": "/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build/interactive",
+      "url": "http://127.0.0.1:30282/courses/solana-academy/learn/23-capstone-ladder/01-beginner-capstone-guided-build/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/82/beginner-capstone-task-spec-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/Your Task/i",
+          "matched": true
+        },
+        {
+          "pattern": "/beginner time-lock vault build brief/i",
+          "matched": true
+        },
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "intermediate-capstone-task-spec-desktop",
+      "label": "Intermediate capstone task spec renders in JSON editor route",
+      "route": "/courses/solana-academy/learn/23-capstone-ladder/02-intermediate-capstone-scaffolded-architecture/interactive",
+      "url": "http://127.0.0.1:30282/courses/solana-academy/learn/23-capstone-ladder/02-intermediate-capstone-scaffolded-architecture/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/82/intermediate-capstone-task-spec-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/Your Task/i",
+          "matched": true
+        },
+        {
+          "pattern": "/marketplace escrow architecture brief/i",
+          "matched": true
+        },
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "advanced-capstone-task-spec-desktop",
+      "label": "Advanced capstone task spec renders in JSON editor route",
+      "route": "/courses/solana-academy/learn/23-capstone-ladder/03-advanced-capstone-open-adversarial-challenge/interactive",
+      "url": "http://127.0.0.1:30282/courses/solana-academy/learn/23-capstone-ladder/03-advanced-capstone-open-adversarial-challenge/interactive",
+      "status": 200,
+      "viewport": "desktop",
+      "file": "artifacts/ui-evidence/82/advanced-capstone-task-spec-desktop.png",
+      "expectationMatched": true,
+      "expectations": [
+        {
+          "pattern": "/Your Task/i",
+          "matched": true
+        },
+        {
+          "pattern": "/advanced open adversarial capstone/i",
+          "matched": true
+        },
+        {
+          "pattern": "/JSON/i",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}

@@ -33,10 +33,10 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | lowercaseChallengeId | 0 |
 | lessonSlugFilenameMismatch | 230 |
 | missingChallengeJsonType | 12 |
-| legacyTitleDescription | 181 |
-| legacyStarterCode | 181 |
-| legacyValidationRules | 181 |
-| missingVisibleSpec | 181 |
+| legacyTitleDescription | 178 |
+| legacyStarterCode | 178 |
+| legacyValidationRules | 178 |
+| missingVisibleSpec | 178 |
 | missingEffectiveJsonEditorSeed | 0 |
 | sequenceCorrectOrderIntegrity | 0 |
 | environmentCoverageGaps | 5 |
@@ -53,7 +53,7 @@ Issue #29 tracks challenge/frontmatter normalization. These buckets are report-o
 | `openclaw-academy` | 0 | 46 | 0 | 46 | 46 | 46 | 46 | 0 | 0 | 0 |
 | `python-interview-prep` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `sales-spin-meddic` | 0 | 14 | 0 | 14 | 14 | 14 | 14 | 0 | 0 | 0 |
-| `solana-academy` | 0 | 72 | 0 | 3 | 3 | 3 | 3 | 0 | 0 | 0 |
+| `solana-academy` | 0 | 72 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ## Informational Whole-Game Markers
 
@@ -850,22 +850,10 @@ Issue #84 tracks whole-game audit signals that were previously counted manually.
     - content/courses/solana-academy/modules/09-anchor-escrow-lab/lessons/02-implementation-lab.mdx: slug "implementation-lab" does not match filename "02-implementation-lab"
     - ...and 64 more
   - missingChallengeJsonType: 0
-  - legacyTitleDescription: 3
-    - content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json
-    - content/courses/solana-academy/challenges/solana-capstone-beginner-build.json
-    - content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json
-  - legacyStarterCode: 3
-    - content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json
-    - content/courses/solana-academy/challenges/solana-capstone-beginner-build.json
-    - content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json
-  - legacyValidationRules: 3
-    - content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json
-    - content/courses/solana-academy/challenges/solana-capstone-beginner-build.json
-    - content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json
-  - missingVisibleSpec: 3
-    - content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json
-    - content/courses/solana-academy/challenges/solana-capstone-beginner-build.json
-    - content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json
+  - legacyTitleDescription: 0
+  - legacyStarterCode: 0
+  - legacyValidationRules: 0
+  - missingVisibleSpec: 0
   - missingEffectiveJsonEditorSeed: 0
   - sequenceCorrectOrderIntegrity: 0
   - environmentCoverageGaps: 0

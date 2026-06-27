@@ -1,18 +1,40 @@
 {
   "id": "solana-capstone-intermediate-architecture",
   "type": "json-editor",
-  "title": "Intermediate Architecture",
-  "description": "Complete the capstone mission brief with all required fields. All go/no-go checklist items must be true.",
-  "starterCode": "{}",
-  "validationRules": [
-    {"type": "key_exists", "key": "program_name"},
-    {"type": "key_exists", "key": "go_no_go_checklist"}
-  ],
+  "spec": "Complete the intermediate marketplace escrow architecture brief with state transitions, layered tests, explicit authority gates, and a go/no-go decision of go.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "program_name",
+        "non_empty": true
+      },
+      {
+        "field": "state_machine",
+        "non_empty": true
+      },
+      {
+        "field": "test_strategy",
+        "non_empty": true
+      },
+      {
+        "field": "gates",
+        "non_empty": true
+      },
+      {
+        "field": "sign_off",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "Require complete state-machine guards, unit/integration/adversarial tests, reviewed authority assumptions, and a go decision only when every gate is true.",
   "hints": [
     "Start by naming your program and defining the core accounts",
     "Every instruction must list its required signers explicitly",
     "The go/no-go checklist must have all items set to true before submission"
   ],
-  "successMessage": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
+  "prefilled": {
+    "template": "{\n  \"program_name\": \"marketplace_escrow\",\n  \"version\": \"1.0.0\",\n  \"state_machine\": {\n    \"states\": [\"Uninitialised\", \"Open\", \"Filled\", \"Cancelled\", \"Completed\"],\n    \"transitions\": []\n  },\n  \"test_strategy\": {\n    \"unit_tests\": [],\n    \"integration_tests\": [],\n    \"adversarial_tests\": []\n  },\n  \"gates\": {\n    \"all_unit_tests_pass\": false,\n    \"integration_tests_pass\": false,\n    \"adversarial_tests_pass\": false,\n    \"authority_model_reviewed\": false,\n    \"state_transitions_documented\": false,\n    \"rollback_plan_defined\": false,\n    \"emergency_authority_scoped\": false\n  },\n  \"open_risks\": [],\n  \"sign_off\": {\n    \"engineering_lead\": null,\n    \"security_lead\": null,\n    \"decision\": \"no-go\"\n  }\n}"
+  },
+  "success_text": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
   "points": 500
 }
