@@ -4,7 +4,6 @@ title: "Task: Quality upgrade for <course-slug>"
 labels:
   - type:task
   - area:content
-  - lane:docs
 body:
   - type: markdown
     attributes:
@@ -12,6 +11,8 @@ body:
         Use this for course-by-course quality work under #7. Keep each issue scoped to one course unless the work is audit-only or shared docs/test work.
 
         Reference `docs/course-quality-task-template.md` for the full checklist, DoD, validation, screenshot rules, and content-source guardrails.
+
+        After creating the issue, apply the lane label that matches the selected work type (`lane:docs`, `lane:content`, `lane:ui`, or `lane:tests`) instead of assuming every course-quality task is docs-only.
 
   - type: input
     id: parent-issue
