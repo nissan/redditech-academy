@@ -1,18 +1,44 @@
 {
   "id": "solana-capstone-advanced-adversarial",
   "type": "json-editor",
-  "title": "Advanced Adversarial",
-  "description": "Complete the capstone mission brief with all required fields. All go/no-go checklist items must be true.",
-  "starterCode": "{}",
-  "validationRules": [
-    {"type": "key_exists", "key": "program_name"},
-    {"type": "key_exists", "key": "go_no_go_checklist"}
-  ],
+  "spec": "Complete the advanced open adversarial capstone with architecture, authority model, test evidence, go/no-go gates, open risks, and an incident runbook.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "program_name",
+        "non_empty": true
+      },
+      {
+        "field": "architecture",
+        "non_empty": true
+      },
+      {
+        "field": "authority_model",
+        "non_empty": true
+      },
+      {
+        "field": "test_evidence",
+        "non_empty": true
+      },
+      {
+        "field": "go_no_go",
+        "non_empty": true
+      },
+      {
+        "field": "incident_runbook",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "Reject submissions without explicit authority boundaries, adversarial evidence, launch gates, open-risk treatment, and a drain-response runbook.",
   "hints": [
-    "Start by naming your program and defining the core accounts",
-    "Every instruction must list its required signers explicitly",
-    "The go/no-go checklist must have all items set to true before submission"
+    "Pick one production-grade track and define all accounts, PDAs, seeds, and authorities",
+    "Include unit, integration, and at least five adversarial test scenarios with evidence",
+    "Treat unresolved critical risks as launch blockers in the go/no-go decision"
   ],
-  "successMessage": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
+  "prefilled": {
+    "template": "{\n  \"program_name\": \"\",\n  \"track\": \"\",\n  \"architecture\": {\n    \"accounts\": [],\n    \"instructions\": [],\n    \"state_transitions\": [],\n    \"upgrade_authority_policy\": \"\"\n  },\n  \"authority_model\": {\n    \"roles\": [],\n    \"privileged_operations\": [],\n    \"freeze_policy\": \"\"\n  },\n  \"test_evidence\": {\n    \"unit\": [],\n    \"integration\": [],\n    \"adversarial\": []\n  },\n  \"go_no_go\": {\n    \"gates\": [],\n    \"open_risks\": [],\n    \"decision\": \"no-go\"\n  },\n  \"incident_runbook\": {\n    \"drain_vector_response\": [],\n    \"contacts\": [],\n    \"fastest_safe_freeze_path\": \"\"\n  }\n}"
+  },
+  "success_text": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
   "points": 500
 }

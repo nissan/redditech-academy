@@ -1,18 +1,40 @@
 {
   "id": "solana-capstone-beginner-build",
   "type": "json-editor",
-  "title": "Beginner Build",
-  "description": "Complete the capstone mission brief with all required fields. All go/no-go checklist items must be true.",
-  "starterCode": "{}",
-  "validationRules": [
-    {"type": "key_exists", "key": "program_name"},
-    {"type": "key_exists", "key": "go_no_go_checklist"}
-  ],
+  "spec": "Complete the beginner time-lock vault build brief with explicit accounts, signer policy, edge-path tests, and all go/no-go checklist items set to true.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "program_name",
+        "non_empty": true
+      },
+      {
+        "field": "accounts",
+        "non_empty": true
+      },
+      {
+        "field": "instructions",
+        "non_empty": true
+      },
+      {
+        "field": "test_cases",
+        "non_empty": true
+      },
+      {
+        "field": "go_no_go_checklist",
+        "non_empty": true
+      }
+    ]
+  },
+  "eli_notes": "Require explicit account types, signer requirements, edge-path tests, and every checklist gate set to true before accepting the beginner capstone.",
   "hints": [
     "Start by naming your program and defining the core accounts",
     "Every instruction must list its required signers explicitly",
     "The go/no-go checklist must have all items set to true before submission"
   ],
-  "successMessage": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
+  "prefilled": {
+    "template": "{\n  \"program_name\": \"\",\n  \"accounts\": [\n    {\n      \"name\": \"vault\",\n      \"type\": \"PDA\",\n      \"seeds\": [],\n      \"data_fields\": []\n    }\n  ],\n  \"instructions\": [\n    {\n      \"name\": \"initialize_vault\",\n      \"signers\": [],\n      \"validations\": []\n    },\n    {\n      \"name\": \"withdraw\",\n      \"signers\": [],\n      \"validations\": [\"lock_duration_expired\", \"beneficiary_signed\"]\n    }\n  ],\n  \"test_cases\": [\n    {\"case\": \"withdraw before lock expires\", \"expected\": \"error\"},\n    {\"case\": \"withdraw after lock expires, correct beneficiary\", \"expected\": \"success\"}\n  ],\n  \"go_no_go_checklist\": {\n    \"signer_policy_documented\": false,\n    \"authority_escrow_modeled\": false,\n    \"rollback_path_defined\": false,\n    \"adversarial_test_written\": false\n  }\n}"
+  },
+  "success_text": "Your build brief is complete and submission-ready. A senior engineer could implement from this.",
   "points": 500
 }

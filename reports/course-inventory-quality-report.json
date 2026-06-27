@@ -61,10 +61,10 @@
     "lowercaseChallengeId": 0,
     "lessonSlugFilenameMismatch": 230,
     "missingChallengeJsonType": 12,
-    "legacyTitleDescription": 181,
-    "legacyStarterCode": 181,
-    "legacyValidationRules": 181,
-    "missingVisibleSpec": 181,
+    "legacyTitleDescription": 178,
+    "legacyStarterCode": 178,
+    "legacyValidationRules": 178,
+    "missingVisibleSpec": 178,
     "missingEffectiveJsonEditorSeed": 0,
     "sequenceCorrectOrderIntegrity": 0,
     "environmentCoverageGaps": 5
@@ -2029,26 +2029,10 @@
           "content/courses/solana-academy/modules/wallets/lessons/03-adversarial-gate.mdx: slug \"wallets-adversarial-gate\" does not match filename \"03-adversarial-gate\""
         ],
         "missingChallengeJsonType": [],
-        "legacyTitleDescription": [
-          "content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-capstone-beginner-build.json",
-          "content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json"
-        ],
-        "legacyStarterCode": [
-          "content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-capstone-beginner-build.json",
-          "content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json"
-        ],
-        "legacyValidationRules": [
-          "content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-capstone-beginner-build.json",
-          "content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json"
-        ],
-        "missingVisibleSpec": [
-          "content/courses/solana-academy/challenges/solana-capstone-advanced-adversarial.json",
-          "content/courses/solana-academy/challenges/solana-capstone-beginner-build.json",
-          "content/courses/solana-academy/challenges/solana-capstone-intermediate-architecture.json"
-        ],
+        "legacyTitleDescription": [],
+        "legacyStarterCode": [],
+        "legacyValidationRules": [],
+        "missingVisibleSpec": [],
         "missingEffectiveJsonEditorSeed": [],
         "sequenceCorrectOrderIntegrity": [],
         "environmentCoverageGaps": []
