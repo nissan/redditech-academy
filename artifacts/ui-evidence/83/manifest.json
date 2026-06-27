@@ -775,7 +775,50 @@
           "matched": true
         }
       ]
+    },
+    {
+      "name": "10-module-0-overview-mobile",
+      "file": "10-module-0-overview-mobile.png",
+      "viewport": "mobile",
+      "status": 200,
+      "expectations": [
+        {
+          "pattern": "/Standard path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Mission path/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Start Mission Mode/i",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "name": "11-module-0-standard-lesson-mobile",
+      "file": "11-module-0-standard-lesson-mobile.png",
+      "viewport": "mobile",
+      "status": 200,
+      "expectations": [
+        {
+          "pattern": "/Mission path available/i",
+          "matched": true
+        },
+        {
+          "pattern": "/Open Mission/i",
+          "matched": true
+        }
+      ]
     }
   ],
-  "warnings": []
+  "warnings": [],
+  "mobileSupplement": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "note": "Supplemental mobile screenshots captured during parent review for changed module and lesson mission-path controls."
+  }
 }
