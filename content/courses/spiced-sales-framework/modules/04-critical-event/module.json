@@ -1,0 +1,22 @@
+{
+  "id": "04-critical-event",
+  "slug": "04-critical-event",
+  "order": 4,
+  "title": "Critical Event and Reverse Timeline",
+  "description": "buyer-owned milestones, consequences, and dependencies",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Critical Event and Reverse Timeline Badge",
+    "icon": "🌶️",
+    "description": "Completed Critical Event and Reverse Timeline"
+  },
+  "learningObjectives": [
+    "Test whether urgency is real and build a reverse timeline",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "03-impact"
+  ]
+}

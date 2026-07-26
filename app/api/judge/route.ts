@@ -3,6 +3,7 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import path from "path";
 import fs from "fs";
 import { createJudgeLLM, judgeProviderLabel } from "@/lib/judge-llm";
+import { gradeStructured } from "@/lib/structured-grader";
 
 interface ChallengeStep {
   id: string;
@@ -19,7 +20,14 @@ interface ChallengePrefilled {
 interface ChallengeSpec {
   id: string;
   spec: string;
-  validation: unknown;
+  validation: {
+    must_have?: Array<{
+      field?: string;
+      value?: string;
+      present?: boolean;
+      non_empty?: boolean;
+    }>;
+  };
   eli_notes?: string;
   hints?: string[];
   prefilled?: ChallengePrefilled;
@@ -171,6 +179,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
+
+  if (environment === "json-editor" && challenge.id.startsWith("spiced-")) {
+    const structuredGrade = gradeStructured(challenge.validation, userInput);
+    if (structuredGrade) {
+      return NextResponse.json({
+        ...structuredGrade,
+        hints: structuredGrade.pass ? undefined : challenge.hints,
+        _provider: "deterministic-structured-grader",
+      });
+    }
+  }
 
   // Pick system prompt — Socratic mode for coaching challenges
   const systemPrompt = challenge.socratic_mode

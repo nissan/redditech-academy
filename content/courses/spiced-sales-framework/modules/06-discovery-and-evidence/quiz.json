@@ -1,0 +1,63 @@
+{
+  "id": "06-discovery-and-evidence-quiz",
+  "moduleId": "06-discovery-and-evidence",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "After discovery, the seller should:",
+      "options": [
+        "Pitch immediately",
+        "Summarise and invite correction",
+        "Delete contradictions",
+        "Fill unknowns"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Discovery, Listening, and Evidence Hygiene lesson: Run consultative discovery and preserve what was said, inferred, and still unknown.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "Conflicting evidence should be:",
+      "options": [
+        "Hidden",
+        "Preserved with sources",
+        "Averaged",
+        "Marked buyer-verified"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Discovery, Listening, and Evidence Hygiene lesson: Run consultative discovery and preserve what was said, inferred, and still unknown.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "A useful next action:",
+      "options": [
+        "Learn more",
+        "Confirm payroll range with named owner by date",
+        "Send deck",
+        "Update stage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Discovery, Listening, and Evidence Hygiene lesson: Run consultative discovery and preserve what was said, inferred, and still unknown.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "Provenance contains:",
+      "options": [
+        "Source, date, status, confidence",
+        "Logo and price",
+        "Stage only",
+        "Seller opinion"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Discovery, Listening, and Evidence Hygiene lesson: Run consultative discovery and preserve what was said, inferred, and still unknown.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

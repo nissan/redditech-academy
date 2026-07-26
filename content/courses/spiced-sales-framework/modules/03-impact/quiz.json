@@ -1,0 +1,63 @@
+{
+  "id": "03-impact-quiz",
+  "moduleId": "03-impact",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Strongest Impact evidence?",
+      "options": [
+        "It is annoying",
+        "A sourced 90–140 hour range",
+        "$1m saved with no basis",
+        "Our demo is faster"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Impact Without False Precision lesson: Connect Pain to rational and emotional Impact without inventing ROI.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "Impact should connect to:",
+      "options": [
+        "Pain",
+        "Seller quota",
+        "Product roadmap",
+        "Discount"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Impact Without False Precision lesson: Connect Pain to rational and emotional Impact without inventing ROI.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "When exact data is unavailable:",
+      "options": [
+        "Invent it",
+        "Use a defensible range and label assumptions",
+        "Skip Impact",
+        "Ask procurement"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Impact Without False Precision lesson: Connect Pain to rational and emotional Impact without inventing ROI.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "Emotional Impact can include:",
+      "options": [
+        "Stakeholder risk or confidence",
+        "Only price",
+        "Only features",
+        "The seller forecast"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Impact Without False Precision lesson: Connect Pain to rational and emotional Impact without inventing ROI.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

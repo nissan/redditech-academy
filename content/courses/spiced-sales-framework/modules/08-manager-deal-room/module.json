@@ -1,0 +1,22 @@
+{
+  "id": "08-manager-deal-room",
+  "slug": "08-manager-deal-room",
+  "order": 8,
+  "title": "Manager Deal Room Capstone",
+  "description": "coherence, evidence freshness, forecast risk, and coaching",
+  "difficulty": "advanced",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Manager Deal Room Capstone Badge",
+    "icon": "🌶️",
+    "description": "Completed Manager Deal Room Capstone"
+  },
+  "learningObjectives": [
+    "Inspect the full deal, identify gaps, and recommend the next buyer-verified move",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "07-interoperability-and-handoff"
+  ]
+}

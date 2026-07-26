@@ -1,0 +1,22 @@
+{
+  "id": "02-situation-and-pain",
+  "slug": "02-situation-and-pain",
+  "order": 2,
+  "title": "Situation and Pain",
+  "description": "material context, observable friction, and root-cause discovery",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Situation and Pain Badge",
+    "icon": "🌶️",
+    "description": "Completed Situation and Pain"
+  },
+  "learningObjectives": [
+    "Distinguish relevant Situation facts from noise and Pain from symptoms",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "01-diagnose-dont-decorate"
+  ]
+}

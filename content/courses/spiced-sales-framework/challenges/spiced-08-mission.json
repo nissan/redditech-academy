@@ -1,0 +1,43 @@
+{
+  "id": "spiced-08-mission",
+  "type": "json-editor",
+  "spec": "Build the Manager Deal Room Capstone section of the Northstar Health deal room using sourced evidence and an explicit next action.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.summary",
+        "non_empty": true
+      },
+      {
+        "field": "submission.evidence",
+        "non_empty": true
+      },
+      {"field": "submission.evidence[0].claim", "non_empty": true},
+      {"field": "submission.evidence[0].source", "non_empty": true},
+      {"field": "submission.evidence[0].observed_at", "non_empty": true},
+      {"field": "submission.evidence[0].status", "non_empty": true, "allowed_values": ["hypothesis", "buyer-verified", "multi-party-verified", "changed"]},
+      {"field": "submission.evidence[0].confidence", "non_empty": true, "allowed_values": ["low", "medium", "high"]},
+      {
+        "field": "submission.risks_or_unknowns",
+        "non_empty": true
+      },
+      {
+        "field": "submission.next_verification_action",
+        "non_empty": true
+      },
+      {"field": "submission.next_verification_action.owner", "non_empty": true},
+      {"field": "submission.next_verification_action.action", "non_empty": true},
+      {"field": "submission.next_verification_action.due", "non_empty": true}
+    ]
+  },
+  "eli_notes": "Reject invented certainty. Passing structure is necessary; feedback should also test provenance, causality, and action specificity.",
+  "hints": [
+    "Name the source and date.",
+    "Separate a buyer statement from your inference.",
+    "Give the next action an owner and timing."
+  ],
+  "prefilled": {
+    "template": "{\n  \"submission\": {\n    \"summary\": \"__FILL_IN__\",\n    \"evidence\": [\n      {\n        \"claim\": \"__FILL_IN__\",\n        \"source\": \"__FILL_IN__\",\n        \"observed_at\": \"YYYY-MM-DD\",\n        \"status\": \"hypothesis|buyer-verified\",\n        \"confidence\": \"low|medium|high\"\n      }\n    ],\n    \"risks_or_unknowns\": [\n      \"__FILL_IN__\"\n    ],\n    \"next_verification_action\": {\n      \"owner\": \"__FILL_IN__\",\n      \"action\": \"__FILL_IN__\",\n      \"due\": \"YYYY-MM-DD\"\n    }\n  }\n}"
+  },
+  "success_text": "Manager Deal Room Capstone record accepted. Now inspect whether its claims are genuinely buyer-verified."
+}
