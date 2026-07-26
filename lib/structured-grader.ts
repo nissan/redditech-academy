@@ -1,5 +1,9 @@
 export interface StructuredValidation {
-  must_have?: Array<{ field?: string; non_empty?: boolean }>;
+  must_have?: Array<{
+    field?: string;
+    non_empty?: boolean;
+    allowed_values?: string[];
+  }>;
   must_not_have?: Array<{ field?: string; value?: string }>;
 }
 
@@ -60,7 +64,10 @@ export function gradeStructured(
     if (!rule.field) continue;
     checks++;
     const value = readPath(submission, rule.field);
-    const ok = rule.non_empty ? meaningful(value) : value !== undefined && value !== null;
+    const present = rule.non_empty ? meaningful(value) : value !== undefined && value !== null;
+    const allowed = !rule.allowed_values ||
+      (typeof value === "string" && rule.allowed_values.includes(value));
+    const ok = present && allowed;
     if (ok) passed++;
     else failures.push(`${rule.field} is missing, empty, or still contains a placeholder`);
   }
@@ -72,6 +79,22 @@ export function gradeStructured(
     const ok = rule.value === undefined ? value === undefined : value !== rule.value;
     if (ok) passed++;
     else failures.push(`${rule.field} contains a forbidden value`);
+  }
+
+  const evidence = readPath(submission, "submission.evidence");
+  if (Array.isArray(evidence)) {
+    for (const [index, item] of evidence.entries()) {
+      if (!item || typeof item !== "object") continue;
+      const record = item as Record<string, unknown>;
+      if (
+        record.status === "buyer-verified" &&
+        typeof record.source === "string" &&
+        /\b(?:seller|sales rep|account executive|nimbushr|our team|we inferred)\b/i.test(record.source)
+      ) {
+        checks++;
+        failures.push(`submission.evidence[${index}] cannot be buyer-verified from a seller-authored source`);
+      }
+    }
   }
 
   return {

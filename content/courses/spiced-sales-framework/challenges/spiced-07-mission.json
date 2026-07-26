@@ -15,8 +15,8 @@
       {"field": "submission.evidence[0].claim", "non_empty": true},
       {"field": "submission.evidence[0].source", "non_empty": true},
       {"field": "submission.evidence[0].observed_at", "non_empty": true},
-      {"field": "submission.evidence[0].status", "non_empty": true},
-      {"field": "submission.evidence[0].confidence", "non_empty": true},
+      {"field": "submission.evidence[0].status", "non_empty": true, "allowed_values": ["hypothesis", "buyer-verified", "multi-party-verified", "changed"]},
+      {"field": "submission.evidence[0].confidence", "non_empty": true, "allowed_values": ["low", "medium", "high"]},
       {
         "field": "submission.risks_or_unknowns",
         "non_empty": true
