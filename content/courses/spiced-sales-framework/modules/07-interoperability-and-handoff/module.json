@@ -1,0 +1,22 @@
+{
+  "id": "07-interoperability-and-handoff",
+  "slug": "07-interoperability-and-handoff",
+  "order": 7,
+  "title": "Method Interoperability and Handoff",
+  "description": "SPIN, Challenger, MEDDPICC, and customer-success handoffs",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Method Interoperability and Handoff Badge",
+    "icon": "🌶️",
+    "description": "Completed Method Interoperability and Handoff"
+  },
+  "learningObjectives": [
+    "Use each framework for its job and carry customer context without duplication",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "06-discovery-and-evidence"
+  ]
+}

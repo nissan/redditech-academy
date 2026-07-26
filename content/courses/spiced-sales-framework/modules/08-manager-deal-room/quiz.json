@@ -1,0 +1,63 @@
+{
+  "id": "08-manager-deal-room-quiz",
+  "moduleId": "08-manager-deal-room",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "The manager's first question should test:",
+      "options": [
+        "Field colour",
+        "Evidence and coherence",
+        "Rep confidence",
+        "Discount"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Manager Deal Room Capstone lesson: Inspect the full deal, identify gaps, and recommend the next buyer-verified move.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "A stale Critical Event should be:",
+      "options": [
+        "Trusted forever",
+        "Re-verified",
+        "Deleted",
+        "Converted to Impact"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Manager Deal Room Capstone lesson: Inspect the full deal, identify gaps, and recommend the next buyer-verified move.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "The capstone output should include:",
+      "options": [
+        "Gaps and next verification actions",
+        "Only a score",
+        "Only a pitch",
+        "A certificate claim"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Manager Deal Room Capstone lesson: Inspect the full deal, identify gaps, and recommend the next buyer-verified move.",
+      "difficulty": "advanced",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "Best forecast posture when security is unknown:",
+      "options": [
+        "Certain",
+        "Risk-labelled with a named next action",
+        "Closed won",
+        "Ignore it"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Manager Deal Room Capstone lesson: Inspect the full deal, identify gaps, and recommend the next buyer-verified move.",
+      "difficulty": "advanced",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "06-discovery-and-evidence",
+  "slug": "06-discovery-and-evidence",
+  "order": 6,
+  "title": "Discovery, Listening, and Evidence Hygiene",
+  "description": "conversation flow, summaries, provenance, and CRM discipline",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Discovery, Listening, and Evidence Hygiene Badge",
+    "icon": "🌶️",
+    "description": "Completed Discovery, Listening, and Evidence Hygiene"
+  },
+  "learningObjectives": [
+    "Run consultative discovery and preserve what was said, inferred, and still unknown",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "05-decision"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "01-diagnose-dont-decorate",
+  "slug": "01-diagnose-dont-decorate",
+  "order": 1,
+  "title": "Diagnose, Don't Decorate",
+  "description": "SPICED as a non-linear, evidence-led customer diagnosis",
+  "difficulty": "beginner",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Diagnose, Don't Decorate Badge",
+    "icon": "🌶️",
+    "description": "Completed Diagnose, Don't Decorate"
+  },
+  "learningObjectives": [
+    "Explain the five information groups and separate buyer evidence from seller inference",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": []
+}
