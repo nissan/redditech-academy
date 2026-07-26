@@ -23,6 +23,7 @@
   "author": "Redditech Labs",
   "version": "1.0",
   "free": false,
+  "protected": true,
   "learningApproach": "whole-game",
   "runningProject": {
     "title": "Diagnose the Northstar Health opportunity",
