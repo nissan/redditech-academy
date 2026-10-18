@@ -3,6 +3,7 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
+import { pathToFileURL } from "url";
 
 import { afterEach, describe, expect, it } from "vitest";
 
@@ -140,5 +141,85 @@ describe("Forward Deployed AI Engineering B4 local lab bootstrap", () => {
     expect(providerEnv.status).not.toBe(0);
     expect(providerEnv.stderr).toContain("Provider credentials are not permitted");
     expect(fs.existsSync(stateDir)).toBe(false);
+  });
+
+  it("rejects marker and runtime symlinks without touching their targets", () => {
+    const markerState = newStateDirectory();
+    const markerTarget = path.join(path.dirname(markerState), "marker-target.json");
+    fs.mkdirSync(markerState);
+    fs.writeFileSync(markerTarget, '{"outside":true}\n');
+    fs.symlinkSync(markerTarget, path.join(markerState, ".fde-lab-state.json"));
+
+    const markerSetup = run("setup", "fixture", markerState);
+    expect(markerSetup.status).not.toBe(0);
+    expect(markerSetup.stderr).toContain("regular non-symlink file");
+    expect(fs.readFileSync(markerTarget, "utf8")).toBe('{"outside":true}\n');
+
+    const runtimeState = newStateDirectory();
+    expect(run("setup", "fixture", runtimeState).status).toBe(0);
+    const runtimeTarget = path.join(path.dirname(runtimeState), "runtime-target.json");
+    fs.writeFileSync(runtimeTarget, '{"outside":true}\n');
+    fs.unlinkSync(path.join(runtimeState, "runtime.json"));
+    fs.symlinkSync(runtimeTarget, path.join(runtimeState, "runtime.json"));
+
+    const runtimeSetup = run("setup", "fixture", runtimeState);
+    const runtimeHealth = run("health", "fixture", runtimeState);
+    expect(runtimeSetup.status).not.toBe(0);
+    expect(runtimeHealth.status).not.toBe(0);
+    expect(runtimeSetup.stderr).toContain("regular non-symlink file");
+    expect(runtimeHealth.stderr).toContain("regular non-symlink file");
+    expect(fs.readFileSync(runtimeTarget, "utf8")).toBe('{"outside":true}\n');
+  });
+
+  it("rejects non-regular marker and runtime entries", () => {
+    const markerState = newStateDirectory();
+    fs.mkdirSync(path.join(markerState, ".fde-lab-state.json"), { recursive: true });
+    const markerSetup = run("setup", "fixture", markerState);
+    expect(markerSetup.status).not.toBe(0);
+    expect(markerSetup.stderr).toContain("regular non-symlink file");
+
+    const runtimeState = newStateDirectory();
+    expect(run("setup", "fixture", runtimeState).status).toBe(0);
+    fs.unlinkSync(path.join(runtimeState, "runtime.json"));
+    fs.mkdirSync(path.join(runtimeState, "runtime.json"));
+    const runtimeSetup = run("setup", "fixture", runtimeState);
+    const runtimeHealth = run("health", "fixture", runtimeState);
+    expect(runtimeSetup.status).not.toBe(0);
+    expect(runtimeHealth.status).not.toBe(0);
+    expect(runtimeSetup.stderr).toContain("regular non-symlink file");
+    expect(runtimeHealth.stderr).toContain("regular non-symlink file");
+  });
+
+  it("quarantines but never deletes a swapped replacement directory", async () => {
+    const stateDir = newStateDirectory();
+    expect(run("setup", "fixture", stateDir).status).toBe(0);
+    const originalDir = `${stateDir}-authenticated-original`;
+    const cliModule = await import(pathToFileURL(CLI).href);
+
+    expect(() =>
+      cliModule.resetAuthenticatedState("fixture", stateDir, {
+        beforeQuarantine() {
+          fs.renameSync(stateDir, originalDir);
+          fs.mkdirSync(stateDir, { mode: 0o700 });
+          fs.copyFileSync(
+            path.join(originalDir, ".fde-lab-state.json"),
+            path.join(stateDir, ".fde-lab-state.json")
+          );
+          fs.copyFileSync(
+            path.join(originalDir, "runtime.json"),
+            path.join(stateDir, "runtime.json")
+          );
+        },
+      })
+    ).toThrow("identity changed before quarantine; no files were deleted");
+
+    expect(fs.existsSync(path.join(originalDir, ".fde-lab-state.json"))).toBe(true);
+    expect(fs.existsSync(path.join(originalDir, "runtime.json"))).toBe(true);
+    const quarantines = fs
+      .readdirSync(path.dirname(stateDir))
+      .filter((entry) => entry.startsWith(`.${path.basename(stateDir)}.fde-quarantine-`));
+    expect(quarantines).toHaveLength(1);
+    expect(fs.existsSync(path.join(path.dirname(stateDir), quarantines[0], "state", ".fde-lab-state.json"))).toBe(true);
+    expect(fs.existsSync(path.join(path.dirname(stateDir), quarantines[0], "state", "runtime.json"))).toBe(true);
   });
 });

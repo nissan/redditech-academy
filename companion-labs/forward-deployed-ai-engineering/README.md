@@ -12,7 +12,7 @@ node scripts/lab-bootstrap.mjs health --profile fixture
 node scripts/lab-bootstrap.mjs reset --profile fixture
 ```
 
-The default state directory is `.lab-state/`. `setup` is idempotent and authenticates the selected profile, fixture, and evidence manifest by SHA-256. `health` fails if those identities drift. `reset` deletes only a directory carrying the matching course/profile marker; it refuses unmarked state.
+The default state directory is `.lab-state/`. `setup` is idempotent and authenticates the selected profile, fixture, and evidence manifest by SHA-256. Marker and runtime writes use no-follow, exclusive temporary files followed by identity-checked atomic replacement. `health` fails if those identities drift. `reset` first authenticates and quarantines the exact directory identity, deletes only the two authenticated regular files, and removes the now-empty quarantined directory; it never performs recursive path deletion.
 
 `cpu-low-resource` records the later CPU-only inference seam:
 
@@ -27,6 +27,7 @@ That profile caps the declared baseline at one worker and 1,024 MB, denies egres
 ## Fail-closed boundaries
 
 - Provider credential variables cause setup and health to stop before writing state.
+- State directories, markers, and runtime records must remain non-symlink objects with stable device/inode/type identity; setup and health fail closed on drift.
 - Fixture and evidence paths must resolve to regular files inside this bundle; traversal and symlinks are rejected.
 - Service declarations bind to `none` or `127.0.0.1`; the canonical profile binds nothing.
 - No container image, model weight, prepared database, customer record, provider response, or secret is included.
