@@ -5,29 +5,138 @@
   "validation": {
     "must_have": [
       {
-        "field": "submission.summary",
-        "non_empty": true
+        "field": "submission.analysis.module_focus_id",
+        "non_empty": true,
+        "allowed_values": [
+          "spiced-02-situation-pain"
+        ]
       },
       {
-        "field": "submission.evidence",
-        "non_empty": true
-      },
-      {"field": "submission.evidence[0].claim", "non_empty": true},
-      {"field": "submission.evidence[0].source", "non_empty": true},
-      {"field": "submission.evidence[0].observed_at", "non_empty": true},
-      {"field": "submission.evidence[0].status", "non_empty": true, "allowed_values": ["hypothesis", "buyer-verified", "multi-party-verified", "changed"]},
-      {"field": "submission.evidence[0].confidence", "non_empty": true, "allowed_values": ["low", "medium", "high"]},
-      {
-        "field": "submission.risks_or_unknowns",
-        "non_empty": true
+        "field": "submission.analysis.cause_id",
+        "non_empty": true,
+        "allowed_values": [
+          "manual-rekeying"
+        ]
       },
       {
-        "field": "submission.next_verification_action",
-        "non_empty": true
+        "field": "submission.analysis.relationship_id",
+        "non_empty": true,
+        "allowed_values": [
+          "causes"
+        ]
       },
-      {"field": "submission.next_verification_action.owner", "non_empty": true},
-      {"field": "submission.next_verification_action.action", "non_empty": true},
-      {"field": "submission.next_verification_action.due", "non_empty": true}
+      {
+        "field": "submission.analysis.effect_id",
+        "non_empty": true,
+        "allowed_values": [
+          "payroll-errors"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-payroll-rekey-01"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].person_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-riley-patel"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].role_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-payroll-lead"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].observed_at",
+        "non_empty": true,
+        "allowed_values": [
+          "2026-07-27"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].status",
+        "non_empty": true,
+        "allowed_values": [
+          "buyer-verified"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].confidence",
+        "non_empty": true,
+        "allowed_values": [
+          "high"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.risk_id",
+        "non_empty": true,
+        "allowed_values": [
+          "reconciliation-errors-unquantified"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-payroll-rekey-01"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.cause_id",
+        "non_empty": true,
+        "allowed_values": [
+          "manual-rekeying"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.effect_id",
+        "non_empty": true,
+        "allowed_values": [
+          "payroll-errors"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.action_id",
+        "non_empty": true,
+        "allowed_values": [
+          "validate-root-cause"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.verification_target_id",
+        "non_empty": true,
+        "allowed_values": [
+          "root-cause"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-payroll-rekey-01"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.risk_id",
+        "non_empty": true,
+        "allowed_values": [
+          "reconciliation-errors-unquantified"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.due",
+        "non_empty": true,
+        "allowed_values": [
+          "2026-08-10"
+        ]
+      }
     ]
   },
   "eli_notes": "Reject invented certainty. Passing structure is necessary; feedback should also test provenance, causality, and action specificity.",
@@ -37,7 +146,39 @@
     "Give the next action an owner and timing."
   ],
   "prefilled": {
-    "template": "{\n  \"submission\": {\n    \"analysis\": {\n      \"module_focus\": \"situation-pain\",\n      \"cause\": \"__FILL_IN__\",\n      \"effect\": \"__FILL_IN__\"\n    },\n    \"summary\": \"State how the selected cause connects to the selected effect.\",\n    \"evidence\": [\n      {\n        \"claim\": \"State the cause before the causal relationship and effect.\",\n        \"source\": \"Name and role, such as Morgan Lee, payroll lead\",\n        \"source_role\": \"clinic-manager|payroll-lead|hr-director\",\n        \"observed_at\": \"YYYY-MM-DD\",\n        \"status\": \"hypothesis|buyer-verified\",\n        \"confidence\": \"low|medium|high\"\n      }\n    ],\n    \"risks_or_unknowns\": [\n      \"Explain the risk created by the selected effect.\"\n    ],\n    \"next_verification_action\": {\n      \"owner\": \"__FILL_IN__\",\n      \"action\": \"Name a concrete action on the verification target.\",\n      \"verification_target\": \"__FILL_IN__\",\n      \"due\": \"YYYY-MM-DD\"\n    }\n  }\n}"
+    "trusted_options": {
+      "module_focus_ids": [
+        "spiced-02-situation-pain"
+      ],
+      "evidence_ids": [
+        "northstar-payroll-rekey-01"
+      ],
+      "person_ids": [
+        "northstar-riley-patel"
+      ],
+      "role_ids": [
+        "northstar-payroll-lead"
+      ],
+      "cause_ids": [
+        "manual-rekeying"
+      ],
+      "relationship_ids": [
+        "causes"
+      ],
+      "effect_ids": [
+        "payroll-errors"
+      ],
+      "risk_ids": [
+        "reconciliation-errors-unquantified"
+      ],
+      "verification_target_ids": [
+        "root-cause"
+      ],
+      "action_ids": [
+        "validate-root-cause"
+      ]
+    },
+    "template": "{\n  \"trusted_options\": {\n    \"module_focus_ids\": [\n      \"spiced-02-situation-pain\"\n    ],\n    \"evidence_ids\": [\n      \"northstar-payroll-rekey-01\"\n    ],\n    \"person_ids\": [\n      \"northstar-riley-patel\"\n    ],\n    \"role_ids\": [\n      \"northstar-payroll-lead\"\n    ],\n    \"cause_ids\": [\n      \"manual-rekeying\"\n    ],\n    \"relationship_ids\": [\n      \"causes\"\n    ],\n    \"effect_ids\": [\n      \"payroll-errors\"\n    ],\n    \"risk_ids\": [\n      \"reconciliation-errors-unquantified\"\n    ],\n    \"verification_target_ids\": [\n      \"root-cause\"\n    ],\n    \"action_ids\": [\n      \"validate-root-cause\"\n    ]\n  },\n  \"submission\": {\n    \"analysis\": {\n      \"module_focus_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"cause_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"relationship_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"effect_id\": \"SELECT_FROM_TRUSTED_OPTIONS\"\n    },\n    \"summary\": \"Optional learner rationale; grading uses the selected trusted IDs.\",\n    \"evidence\": [\n      {\n        \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"person_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"role_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"observed_at\": \"YYYY-MM-DD\",\n        \"status\": \"buyer-verified\",\n        \"confidence\": \"high\",\n        \"claim\": \"Optional supporting note.\",\n        \"source\": \"Optional human-readable source label.\"\n      }\n    ],\n    \"risk_assessment\": {\n      \"risk_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"cause_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"effect_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"note\": \"Optional risk rationale.\"\n    },\n    \"next_verification_action\": {\n      \"action_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"verification_target_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"risk_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"due\": \"YYYY-MM-DD\",\n      \"owner\": \"Optional owner label.\",\n      \"action\": \"Optional action note.\"\n    }\n  }\n}"
   },
   "success_text": "Situation and Pain record accepted. Now inspect whether its claims are genuinely buyer-verified."
 }

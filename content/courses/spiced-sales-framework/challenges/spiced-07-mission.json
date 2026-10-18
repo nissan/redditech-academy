@@ -5,29 +5,138 @@
   "validation": {
     "must_have": [
       {
-        "field": "submission.summary",
-        "non_empty": true
+        "field": "submission.analysis.module_focus_id",
+        "non_empty": true,
+        "allowed_values": [
+          "spiced-07-method-handoff"
+        ]
       },
       {
-        "field": "submission.evidence",
-        "non_empty": true
-      },
-      {"field": "submission.evidence[0].claim", "non_empty": true},
-      {"field": "submission.evidence[0].source", "non_empty": true},
-      {"field": "submission.evidence[0].observed_at", "non_empty": true},
-      {"field": "submission.evidence[0].status", "non_empty": true, "allowed_values": ["hypothesis", "buyer-verified", "multi-party-verified", "changed"]},
-      {"field": "submission.evidence[0].confidence", "non_empty": true, "allowed_values": ["low", "medium", "high"]},
-      {
-        "field": "submission.risks_or_unknowns",
-        "non_empty": true
+        "field": "submission.analysis.cause_id",
+        "non_empty": true,
+        "allowed_values": [
+          "method-handoff-gap"
+        ]
       },
       {
-        "field": "submission.next_verification_action",
-        "non_empty": true
+        "field": "submission.analysis.relationship_id",
+        "non_empty": true,
+        "allowed_values": [
+          "creates"
+        ]
       },
-      {"field": "submission.next_verification_action.owner", "non_empty": true},
-      {"field": "submission.next_verification_action.action", "non_empty": true},
-      {"field": "submission.next_verification_action.due", "non_empty": true}
+      {
+        "field": "submission.analysis.effect_id",
+        "non_empty": true,
+        "allowed_values": [
+          "deal-control-risk"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-method-handoff-01"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].person_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-alex-ng"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].role_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-sales-manager"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].observed_at",
+        "non_empty": true,
+        "allowed_values": [
+          "2026-07-27"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].status",
+        "non_empty": true,
+        "allowed_values": [
+          "buyer-verified"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].confidence",
+        "non_empty": true,
+        "allowed_values": [
+          "high"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.risk_id",
+        "non_empty": true,
+        "allowed_values": [
+          "qualification-gap"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-method-handoff-01"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.cause_id",
+        "non_empty": true,
+        "allowed_values": [
+          "method-handoff-gap"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.effect_id",
+        "non_empty": true,
+        "allowed_values": [
+          "deal-control-risk"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.action_id",
+        "non_empty": true,
+        "allowed_values": [
+          "validate-method-mapping"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.verification_target_id",
+        "non_empty": true,
+        "allowed_values": [
+          "method-mapping"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-method-handoff-01"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.risk_id",
+        "non_empty": true,
+        "allowed_values": [
+          "qualification-gap"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.due",
+        "non_empty": true,
+        "allowed_values": [
+          "2026-08-10"
+        ]
+      }
     ]
   },
   "eli_notes": "Reject invented certainty. Passing structure is necessary; feedback should also test provenance, causality, and action specificity.",
@@ -37,7 +146,39 @@
     "Give the next action an owner and timing."
   ],
   "prefilled": {
-    "template": "{\n  \"submission\": {\n    \"analysis\": {\n      \"module_focus\": \"method-handoff\",\n      \"cause\": \"__FILL_IN__\",\n      \"effect\": \"__FILL_IN__\"\n    },\n    \"summary\": \"State how the selected cause connects to the selected effect.\",\n    \"evidence\": [\n      {\n        \"claim\": \"State the cause before the causal relationship and effect.\",\n        \"source\": \"Name and role, such as Morgan Lee, sales manager\",\n        \"source_role\": \"sales-manager|customer-success-lead|account-executive\",\n        \"observed_at\": \"YYYY-MM-DD\",\n        \"status\": \"hypothesis|buyer-verified\",\n        \"confidence\": \"low|medium|high\"\n      }\n    ],\n    \"risks_or_unknowns\": [\n      \"Explain the risk created by the selected effect.\"\n    ],\n    \"next_verification_action\": {\n      \"owner\": \"__FILL_IN__\",\n      \"action\": \"Name a concrete action on the verification target.\",\n      \"verification_target\": \"__FILL_IN__\",\n      \"due\": \"YYYY-MM-DD\"\n    }\n  }\n}"
+    "trusted_options": {
+      "module_focus_ids": [
+        "spiced-07-method-handoff"
+      ],
+      "evidence_ids": [
+        "northstar-method-handoff-01"
+      ],
+      "person_ids": [
+        "northstar-alex-ng"
+      ],
+      "role_ids": [
+        "northstar-sales-manager"
+      ],
+      "cause_ids": [
+        "method-handoff-gap"
+      ],
+      "relationship_ids": [
+        "creates"
+      ],
+      "effect_ids": [
+        "deal-control-risk"
+      ],
+      "risk_ids": [
+        "qualification-gap"
+      ],
+      "verification_target_ids": [
+        "method-mapping"
+      ],
+      "action_ids": [
+        "validate-method-mapping"
+      ]
+    },
+    "template": "{\n  \"trusted_options\": {\n    \"module_focus_ids\": [\n      \"spiced-07-method-handoff\"\n    ],\n    \"evidence_ids\": [\n      \"northstar-method-handoff-01\"\n    ],\n    \"person_ids\": [\n      \"northstar-alex-ng\"\n    ],\n    \"role_ids\": [\n      \"northstar-sales-manager\"\n    ],\n    \"cause_ids\": [\n      \"method-handoff-gap\"\n    ],\n    \"relationship_ids\": [\n      \"creates\"\n    ],\n    \"effect_ids\": [\n      \"deal-control-risk\"\n    ],\n    \"risk_ids\": [\n      \"qualification-gap\"\n    ],\n    \"verification_target_ids\": [\n      \"method-mapping\"\n    ],\n    \"action_ids\": [\n      \"validate-method-mapping\"\n    ]\n  },\n  \"submission\": {\n    \"analysis\": {\n      \"module_focus_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"cause_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"relationship_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"effect_id\": \"SELECT_FROM_TRUSTED_OPTIONS\"\n    },\n    \"summary\": \"Optional learner rationale; grading uses the selected trusted IDs.\",\n    \"evidence\": [\n      {\n        \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"person_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"role_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"observed_at\": \"YYYY-MM-DD\",\n        \"status\": \"buyer-verified\",\n        \"confidence\": \"high\",\n        \"claim\": \"Optional supporting note.\",\n        \"source\": \"Optional human-readable source label.\"\n      }\n    ],\n    \"risk_assessment\": {\n      \"risk_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"cause_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"effect_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"note\": \"Optional risk rationale.\"\n    },\n    \"next_verification_action\": {\n      \"action_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"verification_target_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"risk_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"due\": \"YYYY-MM-DD\",\n      \"owner\": \"Optional owner label.\",\n      \"action\": \"Optional action note.\"\n    }\n  }\n}"
   },
   "success_text": "Method Interoperability and Handoff record accepted. Now inspect whether its claims are genuinely buyer-verified."
 }

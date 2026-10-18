@@ -14,75 +14,133 @@ export interface StructuredGrade {
 }
 
 const PLACEHOLDER = /^(?:__FILL_IN__|YYYY-MM-DD|unknown|tbd)$/i;
-const NONSENSE = /^(?:foo|bar|baz|blah|test|testing|lorem|ipsum|n\/a|none|something|whatever)$/i;
-const CAUSAL_MARKER = /\b(?:because|therefore|caus\w*|lead\w*|result\w*|delay\w*|prevent\w*|block\w*|consume\w*|risk\w*|impact\w*|driv\w*|due to|create\w*|means?)\b/i;
-const ACTION_MARKER = /\b(?:ask|confirm|verify|validate|schedule|review|document|obtain|resolve|compare|test|map|interview|align|quantify|inspect|update|measure|agree|record)\w*\b/i;
-const PERSON_NAME = /\b[A-Z][a-z]+\s+[A-Z][a-z]+\b/;
-
 interface MissionContract {
-  focus: string;
-  cause: RegExp;
-  effect: RegExp;
-  sourceRoles: string[];
-  verificationTarget: RegExp;
+  moduleFocusId: string;
+  evidenceId: string;
+  personId: string;
+  roleId: string;
+  causeId: string;
+  relationshipId: string;
+  effectId: string;
+  riskId: string;
+  verificationTargetId: string;
+  actionId: string;
+  observedAt: string;
+  due: string;
 }
 
 const MISSION_CONTRACTS: Record<string, MissionContract> = {
   "spiced-01-mission": {
-    focus: "diagnosis",
-    cause: /\b(?:manual onboarding|audit trigger|unverified assumption)\b/i,
-    effect: /\b(?:audit exposure|onboarding risk|evidence gap)\b/i,
-    sourceRoles: ["hr-director", "operations-lead", "audit-lead"],
-    verificationTarget: /\b(?:audit evidence|buyer verification|onboarding process)\b/i,
+    moduleFocusId: "spiced-01-diagnosis",
+    evidenceId: "northstar-internal-audit-01",
+    personId: "northstar-morgan-lee",
+    roleId: "northstar-hr-director",
+    causeId: "manual-onboarding",
+    relationshipId: "creates",
+    effectId: "audit-exposure",
+    riskId: "audit-control-unverified",
+    verificationTargetId: "audit-evidence",
+    actionId: "confirm-audit-evidence",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-02-mission": {
-    focus: "situation-pain",
-    cause: /\b(?:manual re-keying|manual data entry|three systems)\b/i,
-    effect: /\b(?:payroll errors?|reconciliation errors?|onboarding friction)\b/i,
-    sourceRoles: ["clinic-manager", "payroll-lead", "hr-director"],
-    verificationTarget: /\b(?:re-keying evidence|payroll errors?|root cause)\b/i,
+    moduleFocusId: "spiced-02-situation-pain",
+    evidenceId: "northstar-payroll-rekey-01",
+    personId: "northstar-riley-patel",
+    roleId: "northstar-payroll-lead",
+    causeId: "manual-rekeying",
+    relationshipId: "causes",
+    effectId: "payroll-errors",
+    riskId: "reconciliation-errors-unquantified",
+    verificationTargetId: "root-cause",
+    actionId: "validate-root-cause",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-03-mission": {
-    focus: "impact",
-    cause: /\b(?:payroll corrections|correction workload|onboarding errors?)\b/i,
-    effect: /\b(?:clinician start delays?|audit findings?|manager workload)\b/i,
-    sourceRoles: ["payroll-lead", "clinic-manager", "hr-director"],
-    verificationTarget: /\b(?:impact range|correction hours?|clinician delays?)\b/i,
+    moduleFocusId: "spiced-03-impact",
+    evidenceId: "northstar-correction-hours-01",
+    personId: "northstar-riley-patel",
+    roleId: "northstar-payroll-lead",
+    causeId: "payroll-corrections",
+    relationshipId: "delays",
+    effectId: "clinician-starts",
+    riskId: "impact-range-disputed",
+    verificationTargetId: "impact-range",
+    actionId: "verify-impact-range",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-04-mission": {
-    focus: "critical-event",
-    cause: /\b(?:missing onboarding evidence|uncontrolled onboarding|accreditation gap)\b/i,
-    effect: /\b(?:clinic opening delays?|accreditation risk)\b/i,
-    sourceRoles: ["accreditation-lead", "operations-lead", "hr-director"],
-    verificationTarget: /\b(?:accreditation evidence|reverse timeline|clinic opening dependency)\b/i,
+    moduleFocusId: "spiced-04-critical-event",
+    evidenceId: "northstar-accreditation-01",
+    personId: "northstar-jordan-kim",
+    roleId: "northstar-accreditation-lead",
+    causeId: "missing-control-evidence",
+    relationshipId: "threatens",
+    effectId: "clinic-openings",
+    riskId: "accreditation-deadline",
+    verificationTargetId: "reverse-timeline",
+    actionId: "confirm-reverse-timeline",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-05-mission": {
-    focus: "decision-dynamics",
-    cause: /\b(?:incomplete security review|unvalidated integration|unclear pilot criteria)\b/i,
-    effect: /\b(?:approval delay|coo decision delay|pilot delay)\b/i,
-    sourceRoles: ["security-lead", "finance-manager", "payroll-lead", "hr-director", "coo"],
-    verificationTarget: /\b(?:security approval|finance approval|pilot criteria|decision process)\b/i,
+    moduleFocusId: "spiced-05-decision-dynamics",
+    evidenceId: "northstar-approval-chain-01",
+    personId: "northstar-sam-torres",
+    roleId: "northstar-security-lead",
+    causeId: "incomplete-security-review",
+    relationshipId: "blocks",
+    effectId: "coo-approval",
+    riskId: "approval-sequence-unclear",
+    verificationTargetId: "decision-process",
+    actionId: "map-decision-process",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-06-mission": {
-    focus: "evidence-hygiene",
-    cause: /\b(?:disputed hours estimate|unaccepted architecture|conflicting evidence)\b/i,
-    effect: /\b(?:low confidence|forecast risk|evidence gap)\b/i,
-    sourceRoles: ["hr-director", "payroll-lead", "security-lead"],
-    verificationTarget: /\b(?:hours estimate|security architecture|source contradiction)\b/i,
+    moduleFocusId: "spiced-06-evidence-hygiene",
+    evidenceId: "northstar-evidence-conflict-01",
+    personId: "northstar-riley-patel",
+    roleId: "northstar-payroll-lead",
+    causeId: "disputed-hours-estimate",
+    relationshipId: "reduces",
+    effectId: "evidence-confidence",
+    riskId: "source-contradiction",
+    verificationTargetId: "source-contradiction",
+    actionId: "resolve-source-contradiction",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-07-mission": {
-    focus: "method-handoff",
-    cause: /\b(?:method handoff gap|unmapped qualification gap|incomplete customer handoff)\b/i,
-    effect: /\b(?:deal-control risk|customer-success risk|qualification gap)\b/i,
-    sourceRoles: ["sales-manager", "customer-success-lead", "account-executive"],
-    verificationTarget: /\b(?:method mapping|deal-control gap|customer-success handoff)\b/i,
+    moduleFocusId: "spiced-07-method-handoff",
+    evidenceId: "northstar-method-handoff-01",
+    personId: "northstar-alex-ng",
+    roleId: "northstar-sales-manager",
+    causeId: "method-handoff-gap",
+    relationshipId: "creates",
+    effectId: "deal-control-risk",
+    riskId: "qualification-gap",
+    verificationTargetId: "method-mapping",
+    actionId: "validate-method-mapping",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
   "spiced-08-mission": {
-    focus: "manager-capstone",
-    cause: /\b(?:incomplete security review|disputed impact range|vague pilot criteria)\b/i,
-    effect: /\b(?:forecast risk|commit risk|pilot risk)\b/i,
-    sourceRoles: ["sales-manager", "security-lead", "hr-director", "coo"],
-    verificationTarget: /\b(?:security approval|impact range|pilot criteria)\b/i,
+    moduleFocusId: "spiced-08-manager-capstone",
+    evidenceId: "northstar-capstone-risk-01",
+    personId: "northstar-sam-torres",
+    roleId: "northstar-security-lead",
+    causeId: "incomplete-security-review",
+    relationshipId: "creates",
+    effectId: "forecast-risk",
+    riskId: "pilot-criteria-vague",
+    verificationTargetId: "pilot-criteria",
+    actionId: "confirm-pilot-criteria",
+    observedAt: "2026-07-27",
+    due: "2026-08-10",
   },
 };
 
@@ -107,20 +165,6 @@ function meaningful(value: unknown): boolean {
   return value !== undefined && value !== null;
 }
 
-function words(value: unknown): string[] {
-  if (typeof value !== "string") return [];
-  return value.toLowerCase().match(/[a-z0-9]+(?:[-'][a-z0-9]+)*/g) ?? [];
-}
-
-function substantive(value: unknown, minimumWords: number): boolean {
-  const tokens = words(value);
-  if (tokens.length < minimumWords) return false;
-  if (tokens.every((token) => NONSENSE.test(token))) return false;
-  const unique = new Set(tokens).size;
-  if (unique < Math.min(3, minimumWords)) return false;
-  return tokens.length < 4 || unique / tokens.length >= 0.6;
-}
-
 function validIsoDate(value: unknown): boolean {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
   const [year, month, day] = value.split("-").map(Number);
@@ -128,38 +172,6 @@ function validIsoDate(value: unknown): boolean {
   return parsed.getUTCFullYear() === year &&
     parsed.getUTCMonth() === month - 1 &&
     parsed.getUTCDate() === day;
-}
-
-function asText(value: unknown): string {
-  if (typeof value === "string") return value;
-  if (Array.isArray(value)) return value.map(asText).join(" ");
-  if (value && typeof value === "object") return Object.values(value).map(asText).join(" ");
-  return "";
-}
-
-function normalized(value: unknown): string {
-  return asText(value).trim().toLowerCase().replace(/\s+/g, " ");
-}
-
-function includesText(container: unknown, expected: unknown): boolean {
-  const needle = normalized(expected);
-  return needle.length > 0 && normalized(container).includes(needle);
-}
-
-function hasOrderedCausalRelation(claim: unknown, cause: unknown, effect: unknown): boolean {
-  const text = normalized(claim);
-  const causeText = normalized(cause);
-  const effectText = normalized(effect);
-  if (!causeText || !effectText || causeText === effectText) return false;
-  const causeIndex = text.indexOf(causeText);
-  const effectIndex = text.indexOf(effectText);
-  if (causeIndex < 0 || effectIndex <= causeIndex + causeText.length) return false;
-  const relation = text.slice(causeIndex + causeText.length, effectIndex);
-  return CAUSAL_MARKER.test(relation);
-}
-
-function dateOnOrAfter(later: unknown, earlier: unknown): boolean {
-  return validIsoDate(later) && validIsoDate(earlier) && String(later) >= String(earlier);
 }
 
 function parseSubmission(userInput: Record<string, unknown>): unknown {
@@ -208,8 +220,9 @@ export function gradeStructured(
     else failures.push(`${rule.field} contains a forbidden value`);
   }
 
+  const missionContract = challengeId ? MISSION_CONTRACTS[challengeId] : undefined;
   const evidence = readPath(submission, "submission.evidence");
-  if (Array.isArray(evidence)) {
+  if (!missionContract && Array.isArray(evidence)) {
     for (const [index, item] of evidence.entries()) {
       if (!item || typeof item !== "object") continue;
       const record = item as Record<string, unknown>;
@@ -224,41 +237,47 @@ export function gradeStructured(
     }
   }
 
-  const missionContract = challengeId ? MISSION_CONTRACTS[challengeId] : undefined;
   if (missionContract) {
-    const focus = readPath(submission, "submission.analysis.module_focus");
-    const cause = readPath(submission, "submission.analysis.cause");
-    const effect = readPath(submission, "submission.analysis.effect");
-    const claim = readPath(submission, "submission.evidence[0].claim");
-    const source = readPath(submission, "submission.evidence[0].source");
-    const sourceRole = readPath(submission, "submission.evidence[0].source_role");
-    const risk = readPath(submission, "submission.risks_or_unknowns[0]");
-    const action = readPath(submission, "submission.next_verification_action.action");
-    const target = readPath(submission, "submission.next_verification_action.verification_target");
-    const observedAt = readPath(submission, "submission.evidence[0].observed_at");
-    const due = readPath(submission, "submission.next_verification_action.due");
-    const qualityChecks: Array<[label: string, ok: boolean]> = [
-      ["submission.analysis.module_focus must match this mission", focus === missionContract.focus],
-      ["submission.analysis.cause must identify the mission's expected cause", substantive(cause, 2) && missionContract.cause.test(asText(cause))],
-      ["submission.analysis.effect must identify the mission's expected effect", substantive(effect, 2) && missionContract.effect.test(asText(effect))],
-      ["submission.summary must connect the selected cause and effect", substantive(readPath(submission, "submission.summary"), 5) && includesText(readPath(submission, "submission.summary"), cause) && includesText(readPath(submission, "submission.summary"), effect)],
-      ["submission.evidence[0].claim must state cause before effect with a causal relationship", substantive(claim, 5) && hasOrderedCausalRelation(claim, cause, effect)],
-      ["submission.evidence[0].source_role must be allowed for this mission", typeof sourceRole === "string" && missionContract.sourceRoles.includes(sourceRole)],
-      ["submission.evidence[0].source must name a person and match source_role", substantive(source, 3) && PERSON_NAME.test(asText(source)) && includesText(source, String(sourceRole).replace(/-/g, " "))],
-      ["submission.evidence[0].observed_at must be a valid ISO date", validIsoDate(observedAt)],
-      ["submission.risks_or_unknowns[0] must relate to the selected effect", substantive(risk, 5) && includesText(risk, effect)],
-      ["submission.next_verification_action.owner must name a specific owner", substantive(readPath(submission, "submission.next_verification_action.owner"), 1) && normalized(readPath(submission, "submission.next_verification_action.owner")).length >= 2 && !/^(?:someone|team|owner|sales)$/i.test(asText(readPath(submission, "submission.next_verification_action.owner")).trim())],
-      ["submission.next_verification_action.verification_target must match this mission", substantive(target, 2) && missionContract.verificationTarget.test(asText(target))],
-      ["submission.next_verification_action.action must act on verification_target", substantive(action, 5) && ACTION_MARKER.test(asText(action)) && includesText(action, target)],
-      ["submission.next_verification_action.due must be a valid ISO date on or after the evidence date", dateOnOrAfter(due, observedAt)],
+    const contractChecks: Array<[path: string, expected: string]> = [
+      ["submission.analysis.module_focus_id", missionContract.moduleFocusId],
+      ["submission.analysis.cause_id", missionContract.causeId],
+      ["submission.analysis.relationship_id", missionContract.relationshipId],
+      ["submission.analysis.effect_id", missionContract.effectId],
+      ["submission.evidence[0].evidence_id", missionContract.evidenceId],
+      ["submission.evidence[0].person_id", missionContract.personId],
+      ["submission.evidence[0].role_id", missionContract.roleId],
+      ["submission.evidence[0].observed_at", missionContract.observedAt],
+      ["submission.evidence[0].status", "buyer-verified"],
+      ["submission.evidence[0].confidence", "high"],
+      ["submission.risk_assessment.risk_id", missionContract.riskId],
+      ["submission.risk_assessment.evidence_id", missionContract.evidenceId],
+      ["submission.risk_assessment.cause_id", missionContract.causeId],
+      ["submission.risk_assessment.effect_id", missionContract.effectId],
+      ["submission.next_verification_action.action_id", missionContract.actionId],
+      ["submission.next_verification_action.verification_target_id", missionContract.verificationTargetId],
+      ["submission.next_verification_action.evidence_id", missionContract.evidenceId],
+      ["submission.next_verification_action.risk_id", missionContract.riskId],
+      ["submission.next_verification_action.due", missionContract.due],
     ];
+
+    const qualityChecks: Array<[label: string, ok: boolean]> = contractChecks.map(
+      ([path, expected]) => [`${path} must match the trusted mission contract`, readPath(submission, path) === expected]
+    );
+    qualityChecks.push(
+      ["submission.evidence[0].observed_at must be a valid ISO date", validIsoDate(readPath(submission, "submission.evidence[0].observed_at"))],
+      ["submission.next_verification_action.due must be a valid ISO date", validIsoDate(readPath(submission, "submission.next_verification_action.due"))],
+    );
 
     if (challengeId === "spiced-08-mission") {
       qualityChecks.push(
-        ["submission.forecast_risk.level must classify forecast risk", ["low", "medium", "high"].includes(asText(readPath(submission, "submission.forecast_risk.level")))],
-        ["submission.forecast_risk.basis must connect the selected effect to forecast risk", substantive(readPath(submission, "submission.forecast_risk.basis"), 5) && includesText(readPath(submission, "submission.forecast_risk.basis"), effect) && /\b(?:forecast|commit|pipeline)\b/i.test(asText(readPath(submission, "submission.forecast_risk.basis")))],
-        ["submission.manager_output.forecast_category must be a supported capstone output", ["commit", "best-case", "pipeline", "disqualify"].includes(asText(readPath(submission, "submission.manager_output.forecast_category")))],
-        ["submission.manager_output.coaching_question must ask about verification_target", substantive(readPath(submission, "submission.manager_output.coaching_question"), 5) && includesText(readPath(submission, "submission.manager_output.coaching_question"), target) && /\?$/.test(asText(readPath(submission, "submission.manager_output.coaching_question")).trim())],
+        ["submission.forecast_risk.risk_id must reference the trusted risk", readPath(submission, "submission.forecast_risk.risk_id") === missionContract.riskId],
+        ["submission.forecast_risk.evidence_id must reference the trusted evidence", readPath(submission, "submission.forecast_risk.evidence_id") === missionContract.evidenceId],
+        ["submission.forecast_risk.effect_id must reference the trusted effect", readPath(submission, "submission.forecast_risk.effect_id") === missionContract.effectId],
+        ["submission.forecast_risk.level must match the capstone contract", readPath(submission, "submission.forecast_risk.level") === "high"],
+        ["submission.manager_output.forecast_category must match the capstone contract", readPath(submission, "submission.manager_output.forecast_category") === "pipeline"],
+        ["submission.manager_output.action_id must reference the trusted action", readPath(submission, "submission.manager_output.action_id") === missionContract.actionId],
+        ["submission.manager_output.verification_target_id must reference the trusted target", readPath(submission, "submission.manager_output.verification_target_id") === missionContract.verificationTargetId],
+        ["submission.manager_output.risk_id must reference the trusted risk", readPath(submission, "submission.manager_output.risk_id") === missionContract.riskId],
       );
     }
 
