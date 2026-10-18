@@ -1,0 +1,18 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "forward-deployed-ai-engineering",
+  "profileId": "fixture",
+  "mode": "deterministic-fixture",
+  "description": "Canonical offline bootstrap using only versioned HarbourCare fixtures and local evidence files.",
+  "networkEgress": "deny",
+  "paidProviderCalls": false,
+  "liveCustomerData": false,
+  "fixturePath": "data/harbourcare-v1.json",
+  "evidenceManifestPath": "evidence/manifest.json",
+  "resources": { "cpuWorkers": 1, "memoryMb": 256, "gpuRequired": false },
+  "services": [
+    { "id": "fixture-catalog", "kind": "embedded-json", "bind": "none", "required": true },
+    { "id": "evidence-store", "kind": "filesystem", "bind": "none", "required": true }
+  ],
+  "optionalExtensions": []
+}
