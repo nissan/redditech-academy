@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://academy.reddi.tech/schemas/fde-evidence-manifest-v1.schema.json",
+  "title": "Forward Deployed AI Engineering evidence manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "courseId",
+    "datasetId",
+    "localOnly",
+    "containsCredentials",
+    "requiredDirectories",
+    "templates"
+  ],
+  "properties": {
+    "contractVersion": { "const": "1.0.0" },
+    "courseId": { "const": "forward-deployed-ai-engineering" },
+    "datasetId": { "const": "harbourcare-synthetic-v1" },
+    "localOnly": { "const": true },
+    "containsCredentials": { "const": false },
+    "requiredDirectories": {
+      "type": "array",
+      "minItems": 7,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9-]+/$" }
+    },
+    "templates": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "$ref": "#/$defs/template" }
+    }
+  },
+  "$defs": {
+    "identifier": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "index",
+        "id",
+        "evidenceType",
+        "path",
+        "outputDirectory",
+        "sha256",
+        "bddScenarios",
+        "requiredSections"
+      ],
+      "properties": {
+        "index": { "type": "integer", "minimum": 0 },
+        "id": { "type": "string", "pattern": "^[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "evidenceType": { "$ref": "#/$defs/identifier" },
+        "path": { "type": "string", "pattern": "^templates/[a-z0-9-]+\\.md$" },
+        "outputDirectory": { "type": "string", "pattern": "^[a-z0-9-]+/$" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "bddScenarios": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^FDE-[0-9]{2}$" }
+        },
+        "requiredSections": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
