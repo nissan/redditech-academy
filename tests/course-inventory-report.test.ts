@@ -12,6 +12,7 @@ describe("course inventory report", () => {
     expect(report.issue.expectedSlugs).toEqual([
       "auth-training",
       "churn-modeling-academy",
+      "forward-deployed-ai-engineering",
       "genai-ml-academy",
       "llm-benchmarking-academy",
       "martech-adtech-academy",
@@ -43,7 +44,11 @@ describe("course inventory report", () => {
     expect(report.courses.length).toBe(report.issue.actualSlugs.length);
     for (const course of report.courses) {
       expect(course.counts.modules, course.slug).toBeGreaterThan(0);
-      expect(course.counts.lessons, course.slug).toBeGreaterThan(0);
+      if (course.slug === "forward-deployed-ai-engineering") {
+        expect(course.counts.lessons).toBe(0);
+      } else {
+        expect(course.counts.lessons, course.slug).toBeGreaterThan(0);
+      }
       expect(course.counts.quizzes, course.slug).toBeGreaterThanOrEqual(0);
       expect(course.counts.challenges, course.slug).toBeGreaterThanOrEqual(0);
       expect(course.counts.diagrams, course.slug).toBeGreaterThanOrEqual(0);
@@ -112,6 +117,7 @@ describe("course inventory report", () => {
     for (const slug of [
       "auth-training",
       "churn-modeling-academy",
+      "forward-deployed-ai-engineering",
       "genai-ml-academy",
       "llm-benchmarking-academy",
       "martech-adtech-academy",

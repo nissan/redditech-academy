@@ -1,0 +1,22 @@
+{
+  "id": "01-enterprise-identity-and-isolation",
+  "slug": "01-enterprise-identity-and-isolation",
+  "order": 1,
+  "title": "Enterprise Identity and Isolation",
+  "description": "Separate authentication and provisioning from tenant, role, document, action, and service-identity authorisation.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Isolation Architect",
+    "icon": "🛡️",
+    "description": "Completed the enterprise identity and isolation module"
+  },
+  "learningObjectives": [
+    "Distinguish identity claims from enforceable authorisation decisions",
+    "Map tenant, role, document, action, and service-identity boundaries",
+    "Design pre-context denial evidence for cross-tenant access"
+  ],
+  "prerequisiteModules": [
+    "00-fde-operating-model-and-discovery"
+  ]
+}

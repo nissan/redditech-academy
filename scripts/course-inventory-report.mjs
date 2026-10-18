@@ -5,6 +5,7 @@ import matter from "gray-matter";
 const ACTIVE_EXPECTED_SLUGS = [
   "auth-training",
   "churn-modeling-academy",
+  "forward-deployed-ai-engineering",
   "genai-ml-academy",
   "llm-benchmarking-academy",
   "martech-adtech-academy",
@@ -499,7 +500,8 @@ function inventoryCourse(courseSlug) {
   return {
     slug: courseSlug,
     title: course.title ?? courseSlug,
-    protectedOrFreeStatus: course.free === true ? "free" : "protected",
+    catalogAccessStatus:
+      course.free === true ? "free" : course.accessStatus ?? "restricted-metadata-only",
     counts: {
       modules: moduleSlugs.length,
       lessons: lessonCount,
@@ -662,7 +664,7 @@ export function renderMarkdownReport(report) {
       issueCount(course, "inconsistentFrontmatter") +
       issueCount(course, "wholeGameGaps");
     lines.push(
-      `| \`${course.slug}\` | ${course.protectedOrFreeStatus} | ${course.counts.modules} | ${course.counts.lessons} | ${course.counts.quizzes} | ${course.counts.challenges} | ${course.counts.diagrams} | ${course.counts.downloads} | ${course.counts.videos} | ${course.counts.externalDependencies} | ${flags} |`
+      `| \`${course.slug}\` | ${course.catalogAccessStatus} | ${course.counts.modules} | ${course.counts.lessons} | ${course.counts.quizzes} | ${course.counts.challenges} | ${course.counts.diagrams} | ${course.counts.downloads} | ${course.counts.videos} | ${course.counts.externalDependencies} | ${flags} |`
     );
   }
 

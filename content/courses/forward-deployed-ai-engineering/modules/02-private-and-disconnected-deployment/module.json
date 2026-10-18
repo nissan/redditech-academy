@@ -1,0 +1,22 @@
+{
+  "id": "02-private-and-disconnected-deployment",
+  "slug": "02-private-and-disconnected-deployment",
+  "order": 2,
+  "title": "Private and Disconnected Deployment",
+  "description": "Package a reproducible default-deny deployment and a verifiable offline artifact bundle without opening hidden egress paths.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Disconnected Deployer",
+    "icon": "📦",
+    "description": "Completed the private and disconnected deployment module"
+  },
+  "learningObjectives": [
+    "Plan reproducible packaging for private and disconnected environments",
+    "Define default-deny egress, health, rollback, and restore checks",
+    "Inventory required artifacts and fail clearly when one is missing"
+  ],
+  "prerequisiteModules": [
+    "01-enterprise-identity-and-isolation"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "06-sensitive-data-guardrails-and-audit",
+  "slug": "06-sensitive-data-guardrails-and-audit",
+  "order": 6,
+  "title": "Sensitive-Data Guardrails and Audit",
+  "description": "Classify and minimise sensitive data, pseudonymise by default, restrict restoration, and keep audit output safe and useful.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Sensitive Data Steward",
+    "icon": "🔐",
+    "description": "Completed the sensitive-data guardrails and audit module"
+  },
+  "learningObjectives": [
+    "Define classification, minimisation, and pseudonymisation policies",
+    "Limit restoration authority and record metadata-only audit evidence",
+    "Measure detector precision, recall, bypasses, and residual risk"
+  ],
+  "prerequisiteModules": [
+    "05-safe-tools-and-legacy-integration"
+  ]
+}

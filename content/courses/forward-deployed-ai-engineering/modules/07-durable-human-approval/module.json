@@ -1,0 +1,22 @@
+{
+  "id": "07-durable-human-approval",
+  "slug": "07-durable-human-approval",
+  "order": 7,
+  "title": "Durable Human Approval",
+  "description": "Model separation of duties, durable waits, retries, expiry, rejection, compensation, and terminal outcomes for high-impact actions.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Approval Workflow Engineer",
+    "icon": "✅",
+    "description": "Completed the durable human approval module"
+  },
+  "learningObjectives": [
+    "Model explicit workflow states and independent approval authority",
+    "Handle restarts, duplicate callbacks, rejection, expiry, and compensation",
+    "Prove at-most-once execution for a high-impact write"
+  ],
+  "prerequisiteModules": [
+    "06-sensitive-data-guardrails-and-audit"
+  ]
+}

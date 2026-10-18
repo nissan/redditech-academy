@@ -1,0 +1,22 @@
+{
+  "id": "08-local-and-edge-inference",
+  "slug": "08-local-and-edge-inference",
+  "order": 8,
+  "title": "Local and Edge Inference",
+  "description": "Compare a deterministic baseline with optional CPU-local inference while reasoning about format, quantisation, capacity, and licensing.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Local Inference Planner",
+    "icon": "🖥️",
+    "description": "Completed the local and edge inference module"
+  },
+  "learningObjectives": [
+    "Explain model format, quantisation, capacity, and licensing trade-offs",
+    "Keep deterministic offline evaluation as the canonical path",
+    "Compare quality, latency, throughput, and resource use without vendor lock-in"
+  ],
+  "prerequisiteModules": [
+    "07-durable-human-approval"
+  ]
+}

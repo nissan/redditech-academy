@@ -1,0 +1,49 @@
+{
+  "id": "forward-deployed-ai-engineering",
+  "slug": "forward-deployed-ai-engineering",
+  "title": "Forward Deployed AI Engineering",
+  "description": "Move a synthetic regulated-enterprise AI prototype from technical discovery to secure deployment, measurable operation, and independent handoff through the HarbourCare capstone.",
+  "tagline": "Turn prototypes into evidence-backed enterprise systems",
+  "icon": "🧭",
+  "difficulty": "advanced",
+  "estimatedHours": 120,
+  "duration": "12–14 weeks at 8–10 hours per week; six-week accelerated format for experienced platform engineers",
+  "tags": [
+    "forward-deployed-engineering",
+    "enterprise-ai",
+    "security",
+    "evaluation",
+    "operations"
+  ],
+  "badge": {
+    "name": "Enterprise AI Delivery Practitioner",
+    "icon": "🧭",
+    "description": "Completed the Forward Deployed AI Engineering portfolio course"
+  },
+  "author": "Redditech Labs",
+  "version": "0.1",
+  "free": false,
+  "comingSoon": true,
+  "accessStatus": "catalog-metadata-only",
+  "prerequisites": [
+    "Use one backend programming language plus HTTP/REST, SQL, Git, Docker, and basic networking",
+    "Read JSON and YAML, run command-line tests, and interpret logs",
+    "Apply basic identity, container, LLM application, and threat-modelling concepts"
+  ],
+  "learningObjectives": [
+    "Bound an enterprise AI pilot with explicit outcomes, constraints, non-goals, and evidence",
+    "Design identity, data, retrieval, tool, approval, and audit controls that fail closed",
+    "Package a reproducible local-first deployment with deterministic offline acceptance paths",
+    "Measure system quality, reliability, resource use, and customer value with inspectable evidence",
+    "Transfer configuration, operations, rollback, backup, and recovery to an independent operator"
+  ],
+  "attribution": "Inspired by Suraj Sharma's 12-stage Forward Deployed Engineering roadmap; curriculum, labs, examples, and assessments are original Redditech Academy material.",
+  "disclaimer": "This independent course is not endorsed by Suraj Sharma and does not confer accreditation or formal certification. HarbourCare and all identities, records, credentials, incidents, and evaluation labels are synthetic. The canonical course path requires no paid API or production credential.",
+  "runningProject": {
+    "title": "HarbourCare Procurement Assistant",
+    "description": "You are delivering a bounded procurement-assistant pilot for a fictional regulated organisation with isolated business units, scanned supplier records, a legacy ERP, sensitive staff data, and a disconnected production requirement.",
+    "juniorGameBrief": "Start by recording what the pilot must prove, what it must not do, and which stakeholder will inspect each claim. Every later build decision must trace back to that discovery evidence.",
+    "finalOutcome": "A synthetic regulated-enterprise AI system that a new operator can deploy, observe, roll back, back up, and restore using versioned evidence and deterministic acceptance tests."
+  },
+  "learningApproach": "whole-game"
+}
