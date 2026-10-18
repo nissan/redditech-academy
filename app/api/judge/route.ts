@@ -19,6 +19,7 @@ interface ChallengePrefilled {
 
 interface ChallengeSpec {
   id: string;
+  type: string;
   spec: string;
   validation: {
     must_have?: Array<{
@@ -180,8 +181,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
 
-  if (environment === "json-editor" && challenge.id.startsWith("spiced-")) {
-    const structuredGrade = gradeStructured(challenge.validation, userInput);
+  if (challenge.type === "json-editor" && challenge.id.startsWith("spiced-")) {
+    const structuredGrade = gradeStructured(challenge.validation, userInput, challenge.id);
     if (structuredGrade) {
       return NextResponse.json({
         ...structuredGrade,

@@ -88,7 +88,102 @@ describe("gradeStructured", () => {
         due: "2026-08-10",
       },
     } });
-    expect(gradeStructured(realChallenge.validation, { json })).toMatchObject({
+    const result = gradeStructured(realChallenge.validation, { json }, realChallenge.id);
+    expect(result).toMatchObject({
+      pass: true,
+      score: 1,
+    });
+  });
+
+  it.each([
+    ["syntactically non-empty nonsense", {
+      summary: "blah blah blah blah",
+      evidence: [{ claim: "foo foo foo foo", source: "some source", observed_at: "2026-07-27", status: "buyer-verified", confidence: "high" }],
+      risks_or_unknowns: ["test test test test"],
+      next_verification_action: { owner: "someone", action: "do the thing now please", due: "2026-08-10" },
+    }],
+    ["impossible ISO dates", {
+      summary: "Payroll corrections delay clinic onboarding after the audit.",
+      evidence: [{ claim: "Manual corrections cause onboarding delays each month.", source: "Morgan Lee, payroll lead", observed_at: "2026-02-30", status: "buyer-verified", confidence: "high" }],
+      risks_or_unknowns: ["Audit evidence remains unverified by the buyer."],
+      next_verification_action: { owner: "Avery Chen", action: "Confirm the audit evidence with Morgan Lee.", due: "2026-13-10" },
+    }],
+    ["vague provenance and action", {
+      summary: "Payroll corrections delay clinic onboarding after the audit.",
+      evidence: [{ claim: "Manual corrections cause onboarding delays each month.", source: "someone", observed_at: "2026-07-27", status: "buyer-verified", confidence: "high" }],
+      risks_or_unknowns: ["Audit evidence remains unverified by the buyer."],
+      next_verification_action: { owner: "team", action: "Follow up on it soon.", due: "2026-08-10" },
+    }],
+    ["plausible-looking but non-specific provenance", {
+      summary: "Payroll corrections delay clinic onboarding after the audit.",
+      evidence: [{ claim: "Manual corrections cause onboarding delays each month.", source: "purple elephant", observed_at: "2026-07-27", status: "buyer-verified", confidence: "high" }],
+      risks_or_unknowns: ["Audit evidence remains unverified by the buyer."],
+      next_verification_action: { owner: "Avery", action: "Confirm the audit evidence with Morgan Lee.", due: "2026-08-10" },
+    }],
+    ["content from the wrong module", {
+      summary: "MEDDPICC handoff improves customer success collaboration.",
+      evidence: [{ claim: "A Challenger insight causes a stronger method handoff.", source: "Morgan Lee, payroll lead", observed_at: "2026-07-27", status: "buyer-verified", confidence: "high" }],
+      risks_or_unknowns: ["Customer success ownership remains unclear after handoff."],
+      next_verification_action: { owner: "Avery Chen", action: "Confirm the handoff owner with Morgan Lee.", due: "2026-08-10" },
+    }],
+  ])("rejects %s", (_label, submission) => {
+    const result = gradeStructured(realChallenge.validation, { json: JSON.stringify({ submission }) }, realChallenge.id);
+    expect(result?.pass).toBe(false);
+  });
+
+  it("requires forecast risk and manager outputs for the capstone", async () => {
+    const capstone = (await import("@/content/courses/spiced-sales-framework/challenges/spiced-08-mission.json")).default;
+    const json = JSON.stringify({ submission: {
+      summary: "Security gaps create forecast risk before the fixed event.",
+      evidence: [{
+        claim: "Incomplete security review may delay the pilot decision.",
+        source: "Morgan Lee, payroll lead",
+        observed_at: "2026-07-27",
+        status: "buyer-verified",
+        confidence: "high",
+      }],
+      risks_or_unknowns: ["Pilot success criteria remain unverified by the buyer."],
+      next_verification_action: {
+        owner: "Avery Chen",
+        action: "Confirm pilot success criteria with the buyer.",
+        due: "2026-08-10",
+      },
+    } });
+
+    const result = gradeStructured(capstone.validation, { json }, capstone.id);
+    expect(result?.pass).toBe(false);
+    expect(result?.feedback).toContain("forecast_risk");
+    expect(result?.feedback).toContain("manager_output");
+  });
+
+  it("passes a complete capstone with forecast risk and manager outputs", async () => {
+    const capstone = (await import("@/content/courses/spiced-sales-framework/challenges/spiced-08-mission.json")).default;
+    const json = JSON.stringify({ submission: {
+      summary: "Security gaps create material forecast risk before the fixed event.",
+      evidence: [{
+        claim: "Incomplete security review may delay the pilot decision.",
+        source: "Morgan Lee, payroll lead",
+        observed_at: "2026-07-27",
+        status: "buyer-verified",
+        confidence: "high",
+      }],
+      risks_or_unknowns: ["Pilot success criteria remain unverified by the buyer."],
+      next_verification_action: {
+        owner: "Avery",
+        action: "Confirm pilot success criteria with the buyer.",
+        due: "2026-08-10",
+      },
+      forecast_risk: {
+        level: "high",
+        basis: "Security approval and pilot criteria remain incomplete.",
+      },
+      manager_output: {
+        forecast_category: "pipeline",
+        coaching_question: "Which buyer evidence would resolve the security risk?",
+      },
+    } });
+
+    expect(gradeStructured(capstone.validation, { json }, capstone.id)).toMatchObject({
       pass: true,
       score: 1,
     });
