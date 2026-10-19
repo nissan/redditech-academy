@@ -20,7 +20,10 @@ import { HintAccordion } from "@/components/environments/HintAccordion";
 import { FeedbackPanel } from "@/components/environments/FeedbackPanel";
 import { HttpRequestBuilder } from "@/components/environments/HttpRequestBuilder";
 import { JwtInspector } from "@/components/environments/JwtInspector";
-import { JsonEditor } from "@/components/environments/JsonEditor";
+import {
+  JsonEditor,
+  type JsonEditorTrustedOption,
+} from "@/components/environments/JsonEditor";
 import { SequenceCompleter } from "@/components/environments/SequenceCompleter";
 import TutorChat from "@/components/TutorChat";
 
@@ -303,6 +306,9 @@ export function InteractiveLessonClient({
         return (
           <JsonEditor
             template={template}
+            trustedOptions={
+              (prefilled.trusted_options as Record<string, JsonEditorTrustedOption[]>) || {}
+            }
             onSubmit={(val) => callJudge({ json: val })}
             loading={loading}
           />

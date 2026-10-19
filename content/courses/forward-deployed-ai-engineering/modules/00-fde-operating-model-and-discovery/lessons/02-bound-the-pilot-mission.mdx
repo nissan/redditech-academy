@@ -20,7 +20,7 @@ estimatedMinutes: 45
 
 HarbourCare is fictional, and this exercise uses only the repository's synthetic fixture. The procurement owner asks for “an AI assistant that finds policy answers and helps prepare purchases.” Your job is to turn that request into an executable four-week pilot—not to promise a production system.
 
-The editor contains a typed evidence record and a repository-owned list of trusted IDs. Select the relationships supported by the case. Supplemental prose is not graded, and keyword stuffing cannot substitute for a valid evidence relationship.
+The editor starts with a typed evidence record. Before your first attempt, the **Trusted option reference** beside it shows every allowed exact ID, what it means, and the placeholder path where it belongs. Select the relationships supported by the case. Supplemental prose is not graded, and keyword stuffing cannot substitute for a valid evidence relationship.
 
 ## Discovery rubric
 
@@ -58,11 +58,14 @@ That append-only history is part of the evidence. A clean final diagram without 
 
 The canonical path is local, deterministic, CPU-only, and requires no paid API, provider credential, live customer data, production endpoint, or network listener.
 
-1. From the repository root, run `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs setup fixture`.
-2. Verify the authenticated synthetic state with `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs health fixture`.
+1. From the repository root, run `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs setup --profile fixture`.
+   Expected output includes `status: ready`, `profile: fixture`, and `networkEgress: deny`.
+2. Verify the authenticated synthetic state with `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs health --profile fixture`.
+   Expected output includes `status: healthy`, `profile: fixture`, and `networkEgress: deny`.
 3. Review `companion-labs/forward-deployed-ai-engineering/data/harbourcare-v1.json` and the evidence templates before selecting IDs.
 4. Complete the mission in the JSON editor. The judge uses only the challenge-owned deterministic contract; changing the caller environment cannot enable a provider path.
 5. Save reviewed artefacts under the manifest directories: the brief/SOW in `discovery/`, risks in `risks/`, and both ADR revisions in `decisions/`. Keep the original revision.
-6. When finished, run `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs reset fixture`. Reset authenticates the generated state and refuses unexpected files.
+6. When finished, run `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs reset --profile fixture`. Reset authenticates the generated state and refuses unexpected files.
+   Expected output is `status: reset` and `profile: fixture`.
 
 The downloadable templates are working aids, not completed evidence. A passing editor submission proves only that the selected HarbourCare relationships satisfy this mission's deterministic rubric.

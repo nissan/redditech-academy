@@ -1,5 +1,7 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
+import { spawnSync } from "child_process";
 
 import { NextRequest } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -183,6 +185,57 @@ describe("Forward Deployed AI Engineering C0b discovery mission", () => {
     expect(course?.compatibilityBuckets.missingEffectiveJsonEditorSeed).toEqual([]);
   });
 
+  it("executes the exact learner-facing lab commands and reports the documented statuses", () => {
+    const lessonPath = path.join(
+      COURSE_DIR,
+      "modules",
+      MODULE_SLUG,
+      "lessons",
+      "02-bound-the-pilot-mission.mdx"
+    );
+    const lesson = fs.readFileSync(lessonPath, "utf8");
+    const commands = [...lesson.matchAll(/`(node companion-labs\/forward-deployed-ai-engineering\/scripts\/lab-bootstrap\.mjs (?:setup|health|reset) --profile fixture)`/g)]
+      .map((match) => match[1]);
+    expect(commands).toEqual([
+      "node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs setup --profile fixture",
+      "node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs health --profile fixture",
+      "node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs reset --profile fixture",
+    ]);
+    for (const marker of [
+      "Expected output includes `status: ready`",
+      "Expected output includes `status: healthy`",
+      "Expected output is `status: reset`",
+    ]) {
+      expect(lesson).toContain(marker);
+    }
+
+    const parent = fs.mkdtempSync(path.join(os.tmpdir(), "fde-rendered-commands-"));
+    const stateDir = path.join(parent, "state");
+    try {
+      const statuses = commands.map((command) => {
+        const [, script, action, profileFlag, profile] = command.split(" ");
+        const result = spawnSync(
+          process.execPath,
+          [script, action, profileFlag, profile, "--state-dir", stateDir],
+          {
+            cwd: process.cwd(),
+            encoding: "utf8",
+            env: { PATH: process.env.PATH ?? "", NODE_ENV: "test" },
+          }
+        );
+        expect(result.status, result.stderr).toBe(0);
+        return JSON.parse(result.stdout);
+      });
+      expect(statuses).toEqual([
+        expect.objectContaining({ status: "ready", profile: "fixture", networkEgress: "deny" }),
+        expect.objectContaining({ status: "healthy", profile: "fixture", networkEgress: "deny" }),
+        { status: "reset", profile: "fixture" },
+      ]);
+    } finally {
+      fs.rmSync(parent, { recursive: true, force: true });
+    }
+  });
+
   it("accepts the complete FDE-02 rubric and append-only FDE-03 revision", () => {
     expect(gradeFdeDiscovery(challenge, { json: JSON.stringify(validSubmission()) })).toEqual({
       pass: true,
@@ -203,7 +256,10 @@ describe("Forward Deployed AI Engineering C0b discovery mission", () => {
       "revision-002-disconnected-production",
     ]);
     expect(challenge.prefilled.trusted_options.assumptionIds).toEqual([
-      "assumption-outbound-internet",
+      expect.objectContaining({
+        id: "assumption-outbound-internet",
+        appliesTo: ["discovery.assumptions[0].id", "revisionHistory[1].invalidAssumptionId"],
+      }),
     ]);
     expect(() => JSON.parse(
       fs.readFileSync(path.join(DOWNLOAD_DIR, "discovery-evidence-submission-template.json"), "utf8")

@@ -4,11 +4,23 @@ import { useState } from 'react';
 
 interface JsonEditorProps {
   template: string;
+  trustedOptions?: Record<string, JsonEditorTrustedOption[]>;
   onSubmit: (value: string) => void;
   loading?: boolean;
 }
 
-export function JsonEditor({ template, onSubmit, loading = false }: JsonEditorProps) {
+export interface JsonEditorTrustedOption {
+  id: string;
+  meaning: string;
+  appliesTo: string[];
+}
+
+export function JsonEditor({
+  template,
+  trustedOptions = {},
+  onSubmit,
+  loading = false,
+}: JsonEditorProps) {
   const [value, setValue] = useState(template);
   const [parseError, setParseError] = useState<string | null>(null);
 
@@ -39,6 +51,43 @@ export function JsonEditor({ template, onSubmit, loading = false }: JsonEditorPr
       <div className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
         JSON Editor
       </div>
+
+      {Object.keys(trustedOptions).length > 0 && (
+        <section
+          aria-label="Trusted option reference"
+          className="mb-3 rounded border border-cyan-700/40 bg-cyan-950/20 p-3"
+        >
+          <div className="text-xs font-mono text-cyan-300 uppercase tracking-wider mb-2">
+            Trusted option reference
+          </div>
+          <p className="mb-3 text-xs text-slate-300">
+            Replace each placeholder only with an ID listed below. The target path and meaning are visible before your first attempt.
+          </p>
+          <div className="space-y-3">
+            {Object.entries(trustedOptions).map(([group, options]) => (
+              <div key={group}>
+                <div className="mb-1 text-[11px] font-mono text-slate-400">{group}</div>
+                <ul className="space-y-1">
+                  {options.map((option) => (
+                    <li
+                      key={`${group}:${option.id}`}
+                      data-option-id={option.id}
+                      data-option-paths={option.appliesTo.join(",")}
+                      className="rounded border border-slate-700 bg-slate-900/60 px-2 py-1.5 text-xs text-slate-300"
+                    >
+                      <code className="text-cyan-200">{option.id}</code>
+                      <span> — {option.meaning}</span>
+                      <div className="mt-0.5 font-mono text-[10px] text-slate-500">
+                        Use at: {option.appliesTo.join(", ")}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Editor area */}
       <div className="flex-1 relative mb-3">
