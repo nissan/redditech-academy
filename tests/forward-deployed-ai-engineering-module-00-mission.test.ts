@@ -173,8 +173,8 @@ describe("Forward Deployed AI Engineering C0b discovery mission", () => {
     const course = buildCourseInventoryReport().courses.find((candidate) => candidate.slug === COURSE_SLUG);
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 4,
-      quizzes: 2,
+      lessons: 5,
+      quizzes: 3,
       challenges: 2,
       downloads: 5,
       interactiveLessons: 2,

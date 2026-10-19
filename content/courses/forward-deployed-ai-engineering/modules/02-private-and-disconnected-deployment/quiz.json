@@ -1,0 +1,91 @@
+{
+  "id": "02-private-and-disconnected-deployment-quiz",
+  "moduleId": "02-private-and-disconnected-deployment",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "HarbourCare's connected rehearsal succeeds, but the disconnected target tries to fetch one language package at startup. What is the strongest response?",
+      "options": [
+        "Permit temporary public access, then close it after installation and record the exception",
+        "Stop, name the missing artifact, rebuild the declared bundle, and repeat with egress denied",
+        "Mark the package optional because the main application image exists",
+        "Retry until a cached copy happens to satisfy the dependency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The attempted fetch exposes an undeclared runtime dependency. The safe response preserves default-deny egress, identifies the missing item exactly, repairs the reviewed bundle, and reruns the evidence path.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-package-before-you-disconnect"
+    },
+    {
+      "id": "q2",
+      "question": "Which HarbourCare record best distinguishes an artifact inventory from a dependency inventory?",
+      "options": [
+        "One list of product names, with versions added after deployment",
+        "A Software Bill of Materials that replaces every operator instruction",
+        "A list of container tags plus a note that the private network should contain every dependency",
+        "Transferred artifacts linked to dependencies classified by build, install, runtime, or optional use"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The artifact inventory proves what crosses the boundary, while the dependency inventory exposes when and why supporting components or services are required. Linking both prevents connected-environment assumptions from remaining hidden.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-package-before-you-disconnect"
+    },
+    {
+      "id": "q3",
+      "question": "HarbourCare approves one internal identity endpoint for the private deployment. Which egress design is most defensible?",
+      "options": [
+        "Allow the named workload only to the approved destination and port, with ownership and negative tests",
+        "Allow all encrypted outbound traffic because payloads cannot be read",
+        "Allow the whole private subnet, but review connection logs monthly and remove unused destinations",
+        "Disable network-policy tests because one exception means the network is not disconnected"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Default deny can coexist with a narrow, explicit internal exception. Workload, destination, purpose, owner, review timing, and denial tests keep the exception inspectable instead of turning it into broad outbound access.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-package-before-you-disconnect"
+    },
+    {
+      "id": "q4",
+      "question": "A HarbourCare service process is listening, but its required policy bundle is absent. What should the readiness check report?",
+      "options": [
+        "Ready, because process liveness proves the application can accept production traffic safely",
+        "Ready, then download the policy after the first request and record the startup delay",
+        "Not ready, naming the failed declared dependency without attempting an undeclared download",
+        "Healthy if the previous application release used the same port"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Readiness represents the ability to perform the bounded service with declared dependencies. A listening process without its required policy must stay out of service and report the dependency boundary clearly.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-package-before-you-disconnect"
+    },
+    {
+      "id": "q5",
+      "question": "HarbourCare's candidate permits undeclared egress during its negative test. What is the correct rollback action?",
+      "options": [
+        "Continue because application health checks are otherwise green",
+        "Pause work, preserve default deny, restore compatible accepted state, then recheck health and denial",
+        "Keep the candidate running in reduced capacity while security documents an exception and monitors outbound traffic",
+        "Delete the release evidence so the failed test cannot block acceptance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A violated non-compensable network gate meets the pre-agreed rollback criteria. The sequence protects state, restores the accepted release, retains evidence, and proves both service health and policy enforcement afterward.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-package-before-you-disconnect"
+    },
+    {
+      "id": "q6",
+      "question": "HarbourCare's offline bundle installs, passes health checks, and rolls back in rehearsal. What does this establish?",
+      "options": [
+        "Production acceptance, including real-data privacy, capacity, recovery, and support readiness",
+        "Approval to replace the customer's identity and recovery processes",
+        "Proof that future capacity and incidents will remain within target",
+        "Packaging proof under stated assumptions; owners must still decide production acceptance"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The rehearsal proves reproducible packaging and recovery within its declared boundary. Production acceptance remains a separate customer decision covering real integrations, operations, risk, capacity, privacy, and support.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-package-before-you-disconnect"
+    }
+  ]
+}
