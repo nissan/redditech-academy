@@ -1,5 +1,5 @@
 # BDD Tracker - Redditech Academy
-_Last updated: 2026-06-27 by Loki_
+_Last updated: 2026-10-19 by Loki_
 
 ## Purpose
 
@@ -26,6 +26,7 @@ Legacy source: `features/consolidation.feature`.
 | #9 Auth, access, demo, and admin operations | `features/auth-access.feature` | Passwordless, demo, request, and approval flows are covered by tests | External email/service calls are mocked or disabled in tests | Security-sensitive approval or demo reset behavior regresses | #52, #53 |
 | #10 AI feedback and judge reliability | `features/ai-feedback.feature` | Deterministic validation covers supported challenge types | Malformed input gets safe judge/tutor fallback behavior | Provider/network dependence makes local tests flaky or unsafe | #54, #55, #56 |
 | #11 Release, evidence, and deployment hygiene | `features/release-evidence.feature` | PRs include validation, release notes, and required evidence | UI evidence capture can fall back when bundled browser is unavailable | A PR merges without post-merge plan revalidation | M6 readiness claims |
+| #122 Agentic Game Development Specialist | `features/agentic-game-development-specialist.feature` | Learners deliver an evidence-backed Unity/C# production slice, genuine web lab, Unity web port, Godot transfer, and independent handoff | Core remains accessible offline/low-spec and independently completable when optional Solana tooling or devnet is unavailable | Unverified agent output, inaccessible required paths, unauthenticated evidence, incompatible asset provenance, or optional-chain coupling blocks the applicable badge | Issue #122 Gate A and all implementation slices |
 
 ## Validation Commands
 
