@@ -91,11 +91,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       catalogAccessStatus: "catalog-metadata-only",
       counts: {
         modules: 12,
-        lessons: 5,
+        lessons: 6,
         quizzes: 3,
-        challenges: 2,
-        downloads: 5,
-        interactiveLessons: 2,
+        challenges: 3,
+        downloads: 6,
+        interactiveLessons: 3,
       },
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
@@ -104,6 +104,7 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
     expect(fs.readdirSync(path.join(COURSE_DIR, "challenges")).sort()).toEqual([
       "fde-00-discovery-mission.json",
       "fde-01-access-policy-mission.json",
+      "fde-02-private-deployment-mission.json",
     ]);
   });
 
@@ -148,6 +149,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
         courseSlug: COURSE_SLUG,
         moduleSlug: EXPECTED_MODULES[2],
         lessonSlug: "01-package-before-you-disconnect",
+      },
+      {
+        courseSlug: COURSE_SLUG,
+        moduleSlug: EXPECTED_MODULES[2],
+        lessonSlug: "02-prove-the-disconnected-release",
       },
     ]);
   });

@@ -11,6 +11,10 @@ import {
   gradeFdeAccessPolicy,
   isTrustedFdeAccessPolicyChallenge,
 } from "@/lib/fde-access-policy-grader";
+import {
+  gradeFdePrivateDeployment,
+  isTrustedFdePrivateDeploymentChallenge,
+} from "@/lib/fde-private-deployment-grader";
 import { gradeStructured } from "@/lib/structured-grader";
 
 interface ChallengeStep {
@@ -212,6 +216,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       ...grade,
       hints: grade.pass ? undefined : challenge.hints,
       _provider: "deterministic-fde-access-policy-v1",
+    });
+  }
+
+  if (isTrustedFdePrivateDeploymentChallenge(challenge)) {
+    const grade = gradeFdePrivateDeployment(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-private-deployment-v1",
     });
   }
 

@@ -1,0 +1,55 @@
+{
+  "contractVersion": "1.0.0",
+  "caseVersion": "harbourcare-private-deployment-v1",
+  "datasetId": "harbourcare-synthetic-v1",
+  "fictional": true,
+  "containsRealPersonalData": false,
+  "assumptions": {
+    "publicEgress": "denied",
+    "undeclaredDownloads": "forbidden",
+    "targetNetwork": "disconnected-after-reviewed-transfer"
+  },
+  "artifacts": [
+    { "artifactId": "app-image", "version": "1.4.0", "digest": "sha256:14a0a4a1f0b1c2d3e4f506172839405162738495a6b7c8d9e0f1029384756abc", "path": "bundle/images/harbourcare-assistant-1.4.0.oci", "required": true },
+    { "artifactId": "schema-migration", "version": "2026.10.1", "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "path": "bundle/migrations/2026.10.1.sql", "required": true },
+    { "artifactId": "policy-bundle", "version": "3.2.1", "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "path": "bundle/policies/harbourcare-3.2.1.json", "required": true },
+    { "artifactId": "deployment-manifest", "version": "1.4.0", "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "path": "bundle/manifests/disconnected-1.4.0.yaml", "required": true }
+  ],
+  "dependencies": [
+    { "dependencyId": "node-runtime", "version": "24.18.0", "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555", "path": "bundle/runtime/node-v24.18.0", "timing": "runtime", "required": true },
+    { "dependencyId": "local-database", "version": "16.4", "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666", "path": "bundle/services/database-16.4.oci", "timing": "runtime", "required": true },
+    { "dependencyId": "internal-dns", "version": "harbourcare-2026.10", "digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777", "path": "bundle/config/internal-dns-2026.10.json", "timing": "runtime", "required": true }
+  ],
+  "healthChecks": [
+    { "checkId": "startup-artifact-and-schema", "status": "pass", "trafficAccepted": false, "dependencyId": "local-filesystem" },
+    { "checkId": "readiness-bounded-workflow", "status": "pass", "trafficAccepted": true, "dependencyId": "local-database" },
+    { "checkId": "liveness-progress", "status": "pass", "trafficAccepted": true, "dependencyId": "local-process" },
+    { "checkId": "dependency-local-database", "status": "pass", "trafficAccepted": false, "dependencyId": "local-database" }
+  ],
+  "networkTests": [
+    { "testId": "default-deny-baseline", "decision": "deny", "destination": "0.0.0.0/0", "port": "all", "exceptionId": null, "ownerId": null, "purpose": "deny-undeclared-egress", "reviewDate": null, "contentLogged": false, "rawCredentialLogged": false },
+    { "testId": "narrow-internal-dns", "decision": "allow", "destination": "10.40.0.53/32", "port": "udp/53", "exceptionId": "internal-dns-only", "ownerId": "platform-operator", "purpose": "resolve-declared-internal-services", "reviewDate": "2026-11-19", "contentLogged": false, "rawCredentialLogged": false },
+    { "testId": "undeclared-public-registry", "decision": "deny", "destination": "registry.example.invalid", "port": "tcp/443", "exceptionId": null, "ownerId": null, "purpose": "prove-public-registry-blocked", "reviewDate": null, "contentLogged": false, "rawCredentialLogged": false }
+  ],
+  "offlineTests": [
+    { "caseId": "complete-bundle", "result": "success", "downloadAttempted": false, "missingArtifactId": null, "missingVersion": null, "missingDigest": null, "expectedPath": null, "egressWeakened": false },
+    { "caseId": "missing-policy-bundle", "result": "blocked-before-mutation", "downloadAttempted": false, "missingArtifactId": "policy-bundle", "missingVersion": "3.2.1", "missingDigest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "expectedPath": "bundle/policies/harbourcare-3.2.1.json", "egressWeakened": false }
+  ],
+  "rollbackEvidence": {
+    "triggerId": "readiness-window-exceeded",
+    "trafficStateDuringRecovery": "off",
+    "networkPolicy": "default-deny-enforced",
+    "backupArtifactId": "backup-state-1.3.2",
+    "backupDigest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+    "backupDigestVerified": true,
+    "stateAuthenticated": true,
+    "compatibilityDecision": "schema-data-compatible-with-1.3.2",
+    "recoveryPathId": "tested-forward-recovery-1.3.2",
+    "restoredApplicationVersion": "1.3.2",
+    "recoverySequence": ["traffic-off", "authenticate-backup-and-state", "establish-schema-data-compatibility", "execute-tested-recovery", "restore-accepted-application", "verify-health-workflow-egress", "resume-traffic"],
+    "verificationIds": ["startup-readiness-liveness-dependency", "bounded-workflow", "undeclared-egress-denied"],
+    "trafficResumedAfterVerification": true,
+    "contentLogged": false,
+    "rawCredentialLogged": false
+  }
+}

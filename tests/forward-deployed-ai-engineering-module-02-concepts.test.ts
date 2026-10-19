@@ -21,7 +21,7 @@ describe("Forward Deployed AI Engineering C2a private deployment concepts", () =
   it("adds one standard customer-signal lesson with packaging, egress, and recovery boundaries", () => {
     const module = getModule(COURSE_SLUG, MODULE_SLUG);
 
-    expect(module?.lessons).toHaveLength(1);
+    expect(module?.lessons).toHaveLength(2);
     expect(module?.lessons[0].frontmatter).toMatchObject({
       slug: "01-package-before-you-disconnect",
       order: 1,
@@ -114,11 +114,11 @@ describe("Forward Deployed AI Engineering C2a private deployment concepts", () =
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 5,
+      lessons: 6,
       quizzes: 3,
-      challenges: 2,
-      downloads: 5,
-      interactiveLessons: 2,
+      challenges: 3,
+      downloads: 6,
+      interactiveLessons: 3,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);

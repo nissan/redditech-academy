@@ -1,0 +1,60 @@
+---
+title: "Prove the Disconnected Release"
+description: "Authenticate HarbourCare's private bundle, test health and default-deny egress, and rehearse compatibility-safe rollback."
+slug: "02-prove-the-disconnected-release"
+duration: 60
+order: 2
+keyTakeaways:
+  - "Authenticate every required artifact by exact identifier, version, digest, and path before mutation"
+  - "Prove startup, readiness, liveness, dependency health, default-deny egress, and a narrow exception"
+  - "Treat an exact missing-artifact failure as useful evidence, never permission to download or weaken egress"
+  - "Keep traffic off until state authentication, compatibility or tested recovery, restoration, and verification finish"
+type: "interactive"
+environment: "json-editor"
+challengeId: "fde-02-private-deployment-mission"
+missionTitle: "Mission 02 — Prove the Disconnected Release"
+estimatedMinutes: 50
+---
+
+# Mission brief
+
+HarbourCare is fictional; its release, addresses, artifacts, state, and results are synthetic. The reviewed transfer has closed and the target now has no public route. Prove the candidate from the versioned local case without opening the network, contacting a registry, or deploying a real service.
+
+The editor's **Trusted option reference** is visible before the first attempt. Use each exact artifact ID, version, digest, and expected path. The reference also names every health, network, offline, and rollback case; do not invent evidence identifiers.
+
+## Authenticate the bundle before mutation
+
+The inventory binds the application image, schema migration, policy bundle, and deployment manifest. A name or version alone is insufficient: verify the immutable digest and target path before any install or state change. The deployment profile is disconnected after a reviewed transfer, permits no undeclared download, and keeps public egress denied.
+
+## Prove health and default-deny egress
+
+Record startup, readiness, liveness, and dependency health separately. Startup verifies local artifacts and schema before traffic. Readiness exercises the bounded workflow using the declared local database. Liveness proves progress without calling a public endpoint. Dependency health identifies the local database boundary.
+
+The baseline is **default-deny**. The sole positive exception is internal DNS at `10.40.0.53/32` on `udp/53`; it is narrow by workload case, destination, and port. The negative test proves a public registry on `tcp/443` remains blocked. Neither network evidence nor rollback output logs content or a raw credential.
+
+## Fail exactly while disconnected
+
+The complete bundle succeeds without a download attempt. The incomplete case stops before mutation and names the exact missing artifact: `policy-bundle`, version `3.2.1`, its SHA-256 digest, and `bundle/policies/harbourcare-3.2.1.json`. Repair happens on the approved build side. Do not weaken egress.
+
+## Roll back without exposing incompatible state
+
+When readiness exceeds its window, traffic stays off and default-deny remains enforced. Authenticate the backup digest and state first. Then establish schema and data compatibility with application `1.3.2` and execute the tested forward-recovery path **before** restoring or resuming that application. Rerun startup/readiness/liveness/dependency health, the bounded workflow, and the undeclared-egress denial. Resume traffic only after all verification passes.
+
+## Download
+
+- [Private deployment evidence template](/assets/courses/forward-deployed-ai-engineering/downloads/private-deployment-evidence-template.json)
+
+Templates are not completed evidence. The download remains `template-not-evidence` until the learner runs, reviews, and binds the local outputs.
+
+## Lab instructions
+
+Run these commands from the repository root. They read one repository-owned synthetic contract, perform no network request, mutate no deployment or state, require no credential, and emit deterministic metadata-only JSON.
+
+1. Inspect the authenticated inventory: `node companion-labs/forward-deployed-ai-engineering/scripts/deployment-lab.mjs inventory`.
+2. Run the health suite: `node companion-labs/forward-deployed-ai-engineering/scripts/deployment-lab.mjs health`.
+3. Run the default-deny, narrow-exception, and negative network cases: `node companion-labs/forward-deployed-ai-engineering/scripts/deployment-lab.mjs network`.
+4. Prove the complete disconnected bundle: `node companion-labs/forward-deployed-ai-engineering/scripts/deployment-lab.mjs offline --case complete-bundle`.
+5. Prove exact missing-artifact failure: `node companion-labs/forward-deployed-ai-engineering/scripts/deployment-lab.mjs offline --case missing-policy-bundle`.
+6. Inspect compatibility-safe rollback evidence: `node companion-labs/forward-deployed-ai-engineering/scripts/deployment-lab.mjs rollback`.
+
+Passing the rubric does not mean HarbourCare has accepted a customer or production deployment. It proves only that this synthetic packaging and recovery contract is complete. Customer acceptance remains `not-claimed` and requires HarbourCare's separately authorised operational, security, recovery, privacy, and business review.

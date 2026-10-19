@@ -1,0 +1,29 @@
+{
+  "contractVersion": "fde-private-deployment-v1",
+  "missionId": "fde-02-private-deployment-mission",
+  "evidenceStatus": "template-not-evidence",
+  "customerAcceptance": "not-claimed",
+  "deploymentProfileId": "harbourcare-disconnected-v1",
+  "artifactInventory": [],
+  "dependencyInventory": [],
+  "healthChecks": [],
+  "networkTests": [],
+  "offlineTests": [],
+  "rollbackEvidence": {
+    "triggerId": "",
+    "trafficStateDuringRecovery": "off",
+    "networkPolicy": "default-deny-enforced",
+    "backupArtifactId": "",
+    "backupDigest": "",
+    "backupDigestVerified": false,
+    "stateAuthenticated": false,
+    "compatibilityDecision": "",
+    "recoveryPathId": "",
+    "restoredApplicationVersion": "",
+    "recoverySequence": [],
+    "verificationIds": [],
+    "trafficResumedAfterVerification": false,
+    "contentLogged": false,
+    "rawCredentialLogged": false
+  }
+}
