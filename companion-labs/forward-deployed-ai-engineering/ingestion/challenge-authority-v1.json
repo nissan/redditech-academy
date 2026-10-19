@@ -1,0 +1,28 @@
+{
+  "authorityVersion": "fde-ingestion-authority-v1",
+  "missionId": "fde-03-ingestion-mission",
+  "contract": {
+    "path": "invoice-erp-v1.json",
+    "digest": "sha256:1d18d42b9a5a295c9601caec5ecbc98e3ad182dacee545a60160df300145c0e9",
+    "contractVersion": "fde-ingestion-v1",
+    "caseVersion": "harbourcare-invoice-erp-v1",
+    "datasetId": "harbourcare-synthetic-v1",
+    "batchId": "batch-hc-2026-10-19-001",
+    "eventTimestamp": "2026-10-19T00:00:00.000Z",
+    "currency": "AUD"
+  },
+  "inputs": [
+    {
+      "inputId": "ocr-invoices",
+      "path": "scanned-invoices-v1.json",
+      "digest": "sha256:4c74fa86b0aa9d392668b41197ba3e33a416a627e4864153137266c70413654f",
+      "schemaVersion": "scanned-invoices-v1"
+    },
+    {
+      "inputId": "erp-export",
+      "path": "erp-export-v1.json",
+      "digest": "sha256:b629f4ccdf8093b1aa76f47928ad1366b5a02913ff9180ec0064095c5214f355",
+      "schemaVersion": "erp-export-v1"
+    }
+  ]
+}

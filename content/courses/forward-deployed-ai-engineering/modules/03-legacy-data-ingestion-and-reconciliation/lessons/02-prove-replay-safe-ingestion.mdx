@@ -20,7 +20,7 @@ estimatedMinutes: 50
 
 HarbourCare is fictional. The scans, ERP export, people, suppliers, identifiers, amounts, and outcomes are synthetic. An interrupted import is ready to retry. Produce a reviewable data-quality report without connecting to an ERP, provider, live customer system, or network.
 
-The editor's **Trusted option reference** is visible before the first attempt. It explains the exact canonical IDs, quarantine reasons, named variances, replay state, and bounded decision-agent ID. Run the local harness before completing the evidence; do not invent pass rows.
+The editor's **Trusted option reference** is visible before the first attempt. It explains the durable two-process workflow, but it contains no accepted rows, quarantine rows, lineage, state digests, or passing proof. Run the local harness and replace the whole editor template with its report output; do not invent pass rows.
 
 ## Preserve observations before decisions
 
@@ -44,7 +44,7 @@ A zero total is meaningful only when its variance has a name and both sides rema
 
 ## Replay and operator recovery proof
 
-The second attempt uses the same stable batch and record identifiers. Accepted cardinality remains two, duplicate accepted count remains zero, and both unresolved items remain quarantined with attempt `002`. The post-replay proof ID and `replay-safe-with-unresolved-quarantine` state make recovery visible to an operator instead of hiding the retry behind a success claim.
+`ingest` writes authenticated attempt `001` state. A separate `replay` process must read that exact state before it can append attempt `002`; a fresh replay fails closed. Accepted cardinality remains two, duplicate accepted count remains zero, and both unresolved items remain quarantined with attempt `002`. The last durable checkpoint, bounded recovery action, post-replay proof ID, and `replay-safe-with-unresolved-quarantine` state make recovery visible to an operator instead of hiding the retry behind a success claim.
 
 ## Downloads
 
@@ -55,11 +55,13 @@ Templates are not completed evidence. They remain `template-not-evidence` until 
 
 ## Lab instructions
 
-Run these exact commands from the repository root. They authenticate repository-owned synthetic bytes, make no network or provider call, require no credential, and emit deterministic metadata-only JSON.
+Run these exact commands from the repository root in one shell. They authenticate repository-owned synthetic bytes, make no network or provider call, require no credential, and emit deterministic metadata-only JSON. The temporary directory is explicit, shared across processes, and removed only after its exact generated path is checked.
 
-1. Derive accepted and quarantined outcomes: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs ingest`.
-2. Derive named count and amount reconciliation: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs reconcile`.
-3. Execute the duplicate-batch replay and inspect quarantine persistence: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs replay`.
-4. Produce the complete local rubric report: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs report`.
+1. Create the confined state directory: `FDE_INGESTION_STATE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/fde-ingestion.XXXXXX")"`.
+2. Derive accepted and quarantined outcomes and persist attempt `001`: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs ingest --state-dir "$FDE_INGESTION_STATE_DIR"`.
+3. Read the authenticated checkpoint and derive named reconciliation: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs reconcile --state-dir "$FDE_INGESTION_STATE_DIR"`.
+4. Execute attempt `002` in a separate process and inspect quarantine persistence: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs replay --state-dir "$FDE_INGESTION_STATE_DIR"`.
+5. Produce the complete local rubric report: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs report --state-dir "$FDE_INGESTION_STATE_DIR"`.
+6. After copying the report, remove only this generated state file and empty directory: `test -n "$FDE_INGESTION_STATE_DIR" && test -f "$FDE_INGESTION_STATE_DIR/ingestion-state.json" && find "$FDE_INGESTION_STATE_DIR" -maxdepth 1 -type f -name 'ingestion-state.json' -delete && rmdir "$FDE_INGESTION_STATE_DIR"`.
 
 Passing the rubric does not mean HarbourCare has accepted a customer or production ingestion. It proves only that this synthetic mission's record contract, lineage, quarantine, reconciliation, and replay checks are complete. Customer and production acceptance remain `not-claimed` pending separately authorised operational, data-owner, privacy, security, and business review.
