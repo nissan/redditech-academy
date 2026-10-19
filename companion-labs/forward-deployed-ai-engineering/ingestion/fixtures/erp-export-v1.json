@@ -1,0 +1,10 @@
+{
+  "fixtureVersion": "erp-export-v1",
+  "exportedAt": "2026-10-19T00:00:00.000Z",
+  "fictional": true,
+  "rows": [
+    { "erpRecordId": "erp-9001", "invoice_number": "HC-INV-1001", "amount": "1250.00", "currency": "AUD" },
+    { "erpRecordId": "erp-9002", "invoiceNo": "HC-INV-1002", "amount": "750.00", "currency": "AUD" },
+    { "erpRecordId": "erp-9003", "invoice_number": "HC-INV-1003", "amount": "400.00", "currency": "AUD" }
+  ]
+}

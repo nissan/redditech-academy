@@ -15,6 +15,10 @@ import {
   gradeFdePrivateDeployment,
   isTrustedFdePrivateDeploymentChallenge,
 } from "@/lib/fde-private-deployment-grader";
+import {
+  gradeFdeIngestion,
+  isTrustedFdeIngestionChallenge,
+} from "@/lib/fde-ingestion-grader";
 import { gradeStructured } from "@/lib/structured-grader";
 
 interface ChallengeStep {
@@ -225,6 +229,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       ...grade,
       hints: grade.pass ? undefined : challenge.hints,
       _provider: "deterministic-fde-private-deployment-v1",
+    });
+  }
+
+  if (isTrustedFdeIngestionChallenge(challenge)) {
+    const grade = gradeFdeIngestion(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-ingestion-v1",
     });
   }
 

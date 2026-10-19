@@ -1,0 +1,36 @@
+{
+  "fixtureVersion": "scanned-invoices-v1",
+  "batchId": "batch-hc-2026-10-19-001",
+  "capturedAt": "2026-10-19T00:00:00.000Z",
+  "fictional": true,
+  "records": [
+    {
+      "sourceRecordId": "scan-001",
+      "invoiceNumber": { "observed": " HC-INV-1001 ", "confidence": 0.99 },
+      "amount": { "observed": "1,250.00", "confidence": 0.98 },
+      "currency": { "observed": "AUD", "confidence": 0.99 },
+      "supplier": { "observed": "Northstar Medical", "confidence": 0.97 }
+    },
+    {
+      "sourceRecordId": "scan-002",
+      "invoiceNumber": { "observed": "HC-INV-1002", "confidence": 0.96 },
+      "amount": { "observed": "750.00", "confidence": 0.94 },
+      "currency": { "observed": "AUD", "confidence": 0.99 },
+      "supplier": { "observed": "Coastal Clinical", "confidence": 0.95 }
+    },
+    {
+      "sourceRecordId": "scan-003",
+      "invoiceNumber": { "observed": "HC-INV-I003", "confidence": 0.61 },
+      "amount": { "observed": "400.00", "confidence": 0.58 },
+      "currency": { "observed": "AUD", "confidence": 0.99 },
+      "supplier": { "observed": "Metro Pathology", "confidence": 0.93 }
+    },
+    {
+      "sourceRecordId": "scan-004",
+      "invoiceNumber": { "observed": "HC-INV-1002", "confidence": 0.97 },
+      "amount": { "observed": "750.00", "confidence": 0.96 },
+      "currency": { "observed": "AUD", "confidence": 0.99 },
+      "supplier": { "observed": "Coastal Clinical", "confidence": 0.96 }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "templateVersion": "fde-ingestion-lineage-quarantine-template-v1",
+  "evidenceStatus": "template-not-evidence",
+  "customerAcceptance": "not-claimed",
+  "acceptedRecords": [],
+  "quarantine": [],
+  "decisionAgent": {
+    "id": "REPLACE_WITH_BOUNDED_AGENT_ID",
+    "type": "deterministic-rules-engine",
+    "role": "data-quality-decision",
+    "authority": "synthetic-fixture-only",
+    "action": "accept-or-quarantine",
+    "timestamp": "REPLACE_WITH_CONTRACT_TIMESTAMP",
+    "reason": "contract-threshold-lineage-reconciliation",
+    "evidence": [],
+    "contractVersion": "fde-ingestion-v1"
+  }
+}

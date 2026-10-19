@@ -1,0 +1,65 @@
+---
+title: "Prove Replay-Safe Invoice Ingestion"
+description: "Run synthetic OCR and ERP ingestion twice, reconcile count and amount totals, and preserve unresolved quarantine evidence."
+slug: "02-prove-replay-safe-ingestion"
+duration: 60
+order: 2
+keyTakeaways:
+  - "Authenticate the versioned input contract and preserve source observations plus OCR confidence"
+  - "Use stable batch, record, outcome, quarantine, attempt, lineage, and proof identifiers"
+  - "Reconcile named count and amount partitions across source, accepted, quarantine, and ERP records"
+  - "Prove replay adds no accepted business record while unresolved items remain quarantined"
+type: "interactive"
+environment: "json-editor"
+challengeId: "fde-03-ingestion-mission"
+missionTitle: "Mission 03 — Prove Replay-Safe Invoice Ingestion"
+estimatedMinutes: 50
+---
+
+# Mission brief
+
+HarbourCare is fictional. The scans, ERP export, people, suppliers, identifiers, amounts, and outcomes are synthetic. An interrupted import is ready to retry. Produce a reviewable data-quality report without connecting to an ERP, provider, live customer system, or network.
+
+The editor's **Trusted option reference** is visible before the first attempt. It explains the exact canonical IDs, quarantine reasons, named variances, replay state, and bounded decision-agent ID. Run the local harness before completing the evidence; do not invent pass rows.
+
+## Preserve observations before decisions
+
+The versioned record contract authenticates both fixture files. Keep source observations and OCR confidence together. Normalising the high-confidence invoice key to a canonical identifier does not authorise silent rewriting of an uncertain observation. `scan-003` therefore retains its original invoice text, amount text, and confidence in lineage while the business record stays quarantined.
+
+The decision agent is a challenge-owned deterministic rules engine, not a person or production identity. Its stable non-secret provenance records ID, type, role, synthetic-only authority, action, timestamp, reason, evidence, and contract version.
+
+## Reconcile count and amount
+
+The report closes three named variances in both count and integer minor-unit amount:
+
+- source observations = accepted + quarantined;
+- ERP observations = matched + unmatched; and
+- accepted = matched ERP.
+
+A zero total is meaningful only when its variance has a name and both sides remain inspectable. The deliberate ERP alias `invoiceNo` is declared schema drift. Any undeclared root or nested field still fails closed.
+
+## Quarantine ambiguity and canonical-ID collision
+
+`scan-003` is below the OCR contract threshold. `scan-004` resolves to the same canonical invoice as accepted `scan-002`, so it is a canonical-ID collision rather than a second business record. Each quarantine row has a bounded reason, evidence, owner, and retry history. The raw source observations are not silently coerced into acceptance.
+
+## Replay and operator recovery proof
+
+The second attempt uses the same stable batch and record identifiers. Accepted cardinality remains two, duplicate accepted count remains zero, and both unresolved items remain quarantined with attempt `002`. The post-replay proof ID and `replay-safe-with-unresolved-quarantine` state make recovery visible to an operator instead of hiding the retry behind a success claim.
+
+## Downloads
+
+- [Data-quality report template](/assets/courses/forward-deployed-ai-engineering/downloads/ingestion-data-quality-report-template.json)
+- [Lineage and quarantine template](/assets/courses/forward-deployed-ai-engineering/downloads/ingestion-lineage-quarantine-template.json)
+
+Templates are not completed evidence. They remain `template-not-evidence` until the learner runs the fixture-byte-derived commands, reviews the output, and binds it to the mission submission.
+
+## Lab instructions
+
+Run these exact commands from the repository root. They authenticate repository-owned synthetic bytes, make no network or provider call, require no credential, and emit deterministic metadata-only JSON.
+
+1. Derive accepted and quarantined outcomes: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs ingest`.
+2. Derive named count and amount reconciliation: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs reconcile`.
+3. Execute the duplicate-batch replay and inspect quarantine persistence: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs replay`.
+4. Produce the complete local rubric report: `node companion-labs/forward-deployed-ai-engineering/scripts/ingestion-lab.mjs report`.
+
+Passing the rubric does not mean HarbourCare has accepted a customer or production ingestion. It proves only that this synthetic mission's record contract, lineage, quarantine, reconciliation, and replay checks are complete. Customer and production acceptance remain `not-claimed` pending separately authorised operational, data-owner, privacy, security, and business review.

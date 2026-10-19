@@ -21,7 +21,7 @@ describe("Forward Deployed AI Engineering C3a ingestion concepts", () => {
   it("adds one standard customer-signal lesson with explicit uncertainty and recovery boundaries", () => {
     const module = getModule(COURSE_SLUG, MODULE_SLUG);
 
-    expect(module?.lessons).toHaveLength(1);
+    expect(module?.lessons).toHaveLength(2);
     expect(module?.lessons[0].frontmatter).toMatchObject({
       slug: "01-reconcile-uncertain-records",
       order: 1,
@@ -118,11 +118,11 @@ describe("Forward Deployed AI Engineering C3a ingestion concepts", () => {
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 7,
+      lessons: 8,
       quizzes: 4,
-      challenges: 3,
-      downloads: 6,
-      interactiveLessons: 3,
+      challenges: 4,
+      downloads: 8,
+      interactiveLessons: 4,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);

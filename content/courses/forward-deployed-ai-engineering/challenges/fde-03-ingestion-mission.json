@@ -1,0 +1,52 @@
+{
+  "id": "fde-03-ingestion-mission",
+  "type": "json-editor",
+  "spec": "Run HarbourCare's synthetic invoice/OCR and ERP ingestion twice. Submit authenticated accepted records, bounded quarantine, named count-and-amount reconciliation, replay-safe proof, and stable decision-agent provenance without claiming customer or production acceptance.",
+  "grading": {
+    "type": "fde-ingestion-v1",
+    "contractVersion": "fde-ingestion-v1",
+    "providerCallsAllowed": false
+  },
+  "validation": {
+    "rubric": [
+      "versioned-record-contract-and-canonical-identifiers",
+      "source-observation-and-ocr-confidence-preserved",
+      "accepted-and-quarantined-lineage",
+      "bounded-quarantine-reason-evidence-owner-retry-history",
+      "named-count-and-amount-reconciliation",
+      "stable-batch-record-outcome-and-attempt-identifiers",
+      "duplicate-replay-adds-no-accepted-records",
+      "unresolved-items-remain-quarantined",
+      "operator-visible-post-replay-proof",
+      "bounded-decision-agent-provenance",
+      "rubric-completion-without-customer-acceptance"
+    ]
+  },
+  "hints": [
+    "Run the four local commands and preserve observed OCR values and confidence instead of silently rewriting them.",
+    "Reconcile both record counts and integer minor-unit amounts; every variance needs a stable name.",
+    "On replay, accepted cardinality stays fixed while both unresolved quarantine IDs retain a second attempt record."
+  ],
+  "prefilled": {
+    "trusted_options": {
+      "canonicalRecordIds": [
+        { "id": "invoice:hc-inv-1001", "meaning": "Canonical invoice identifier derived from the high-confidence scan-001 observation and matched ERP record.", "appliesTo": ["acceptedRecords[0].canonicalRecordId"] },
+        { "id": "invoice:hc-inv-1002", "meaning": "Canonical invoice identifier derived from scan-002; the later scan-004 occurrence is quarantined as a collision.", "appliesTo": ["acceptedRecords[1].canonicalRecordId"] }
+      ],
+      "quarantineReasons": [
+        { "id": "ocr-below-contract-threshold", "meaning": "At least one required OCR field remains below the declared confidence threshold; preserve the observation for review.", "appliesTo": ["quarantine[0].reasonId"] },
+        { "id": "canonical-id-collision", "meaning": "A later source record resolves to an already accepted canonical invoice and cannot create another business record.", "appliesTo": ["quarantine[1].reasonId"] }
+      ],
+      "varianceIds": [
+        { "id": "source-partition-count", "meaning": "Source count and amount equal the accepted plus quarantined partitions.", "appliesTo": ["reconciliation.variances[0].varianceId"] },
+        { "id": "erp-partition-count", "meaning": "ERP count and amount equal the matched plus unmatched partitions.", "appliesTo": ["reconciliation.variances[1].varianceId"] },
+        { "id": "accepted-vs-matched-erp", "meaning": "Accepted invoices equal their matched ERP records by count and amount.", "appliesTo": ["reconciliation.variances[2].varianceId"] }
+      ],
+      "replayAndAgentIds": [
+        { "id": "replay-safe-with-unresolved-quarantine", "meaning": "Second attempt creates no accepted duplicate and leaves both unresolved items visible to the operator.", "appliesTo": ["replayProof.operatorState"] },
+        { "id": "agent:challenge-owned-ingestion-rules-v1", "meaning": "Non-secret deterministic challenge-owned decision agent with synthetic-fixture-only authority.", "appliesTo": ["decisionAgent.id"] }
+      ]
+    },
+    "template": "{\n  \"contractVersion\": \"fde-ingestion-v1\",\n  \"missionId\": \"fde-03-ingestion-mission\",\n  \"evidenceStatus\": \"rubric-complete\",\n  \"customerAcceptance\": \"not-claimed\",\n  \"batchId\": \"batch-hc-2026-10-19-001\",\n  \"acceptedRecords\": [\n    {\"canonicalRecordId\":\"SELECT_CANONICAL_1001\",\"sourceRecordId\":\"scan-001\",\"erpRecordId\":\"erp-9001\",\"outcomeId\":\"outcome:batch-hc-2026-10-19-001:scan-001\",\"amountMinor\":125000,\"currency\":\"AUD\",\"lineageIds\":[\"lineage:ocr:scan-001\",\"lineage:erp:erp-9001\"],\"ocrAmountObserved\":\"1,250.00\",\"ocrAmountConfidence\":0.98},\n    {\"canonicalRecordId\":\"SELECT_CANONICAL_1002\",\"sourceRecordId\":\"scan-002\",\"erpRecordId\":\"erp-9002\",\"outcomeId\":\"outcome:batch-hc-2026-10-19-001:scan-002\",\"amountMinor\":75000,\"currency\":\"AUD\",\"lineageIds\":[\"lineage:ocr:scan-002\",\"lineage:erp:erp-9002\"],\"ocrAmountObserved\":\"750.00\",\"ocrAmountConfidence\":0.94}\n  ],\n  \"quarantine\": [\n    {\"quarantineId\":\"quarantine:batch-hc-2026-10-19-001:scan-003\",\"sourceRecordId\":\"scan-003\",\"reasonId\":\"SELECT_LOW_CONFIDENCE_REASON\",\"evidenceIds\":[\"lineage:ocr:scan-003\"],\"ownerId\":\"data-steward\",\"retryHistory\":[{\"attemptId\":\"attempt:batch-hc-2026-10-19-001:scan-003:001\",\"outcome\":\"quarantined\",\"timestamp\":\"2026-10-19T00:00:00.000Z\"},{\"attemptId\":\"attempt:batch-hc-2026-10-19-001:scan-003:002\",\"outcome\":\"quarantined\",\"timestamp\":\"2026-10-19T00:00:00.000Z\"}]},\n    {\"quarantineId\":\"quarantine:batch-hc-2026-10-19-001:scan-004\",\"sourceRecordId\":\"scan-004\",\"reasonId\":\"SELECT_COLLISION_REASON\",\"evidenceIds\":[\"lineage:ocr:scan-004\",\"lineage:ocr:scan-002\"],\"ownerId\":\"data-steward\",\"retryHistory\":[{\"attemptId\":\"attempt:batch-hc-2026-10-19-001:scan-004:001\",\"outcome\":\"quarantined\",\"timestamp\":\"2026-10-19T00:00:00.000Z\"},{\"attemptId\":\"attempt:batch-hc-2026-10-19-001:scan-004:002\",\"outcome\":\"quarantined\",\"timestamp\":\"2026-10-19T00:00:00.000Z\"}]}\n  ],\n  \"reconciliation\": {\"sourceObserved\":{\"count\":4,\"amountMinor\":315000},\"accepted\":{\"count\":2,\"amountMinor\":200000},\"quarantined\":{\"count\":2,\"amountMinor\":115000},\"erpObserved\":{\"count\":3,\"amountMinor\":240000},\"matchedErp\":{\"count\":2,\"amountMinor\":200000},\"unmatchedErp\":{\"count\":1,\"amountMinor\":40000},\"variances\":[{\"varianceId\":\"SELECT_SOURCE_VARIANCE\",\"countDelta\":0,\"amountMinorDelta\":0},{\"varianceId\":\"SELECT_ERP_VARIANCE\",\"countDelta\":0,\"amountMinorDelta\":0},{\"varianceId\":\"SELECT_MATCH_VARIANCE\",\"countDelta\":0,\"amountMinorDelta\":0}]},\n  \"replayProof\": {\"firstAcceptedCount\":2,\"replayAcceptedCount\":2,\"duplicateAcceptedCount\":0,\"firstQuarantineCount\":2,\"replayQuarantineCount\":2,\"unresolvedQuarantineIds\":[\"quarantine:batch-hc-2026-10-19-001:scan-003\",\"quarantine:batch-hc-2026-10-19-001:scan-004\"],\"operatorState\":\"SELECT_REPLAY_STATE\",\"postReplayProofId\":\"proof:batch-hc-2026-10-19-001:attempt-002\"},\n  \"decisionAgent\": {\"id\":\"SELECT_DECISION_AGENT\",\"type\":\"deterministic-rules-engine\",\"role\":\"data-quality-decision\",\"authority\":\"synthetic-fixture-only\",\"action\":\"accept-or-quarantine\",\"timestamp\":\"2026-10-19T00:00:00.000Z\",\"reason\":\"contract-threshold-lineage-reconciliation\",\"evidence\":[\"invoice-erp-v1.json\",\"scanned-invoices-v1.json\",\"erp-export-v1.json\"],\"contractVersion\":\"fde-ingestion-v1\"}\n}"
+  }
+}

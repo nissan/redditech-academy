@@ -91,11 +91,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       catalogAccessStatus: "catalog-metadata-only",
       counts: {
         modules: 12,
-        lessons: 7,
+        lessons: 8,
         quizzes: 4,
-        challenges: 3,
-        downloads: 6,
-        interactiveLessons: 3,
+        challenges: 4,
+        downloads: 8,
+        interactiveLessons: 4,
       },
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
@@ -105,6 +105,7 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       "fde-00-discovery-mission.json",
       "fde-01-access-policy-mission.json",
       "fde-02-private-deployment-mission.json",
+      "fde-03-ingestion-mission.json",
     ]);
   });
 
@@ -159,6 +160,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
         courseSlug: COURSE_SLUG,
         moduleSlug: EXPECTED_MODULES[3],
         lessonSlug: "01-reconcile-uncertain-records",
+      },
+      {
+        courseSlug: COURSE_SLUG,
+        moduleSlug: EXPECTED_MODULES[3],
+        lessonSlug: "02-prove-replay-safe-ingestion",
       },
     ]);
   });
