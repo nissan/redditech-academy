@@ -1,0 +1,91 @@
+{
+  "id": "00-fde-operating-model-and-discovery-quiz",
+  "moduleId": "00-fde-operating-model-and-discovery",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "HarbourCare asks for an AI assistant in four weeks. What should the FDE do first?",
+      "options": [
+        "Select a model and begin building the interface",
+        "Treat the request as a signal and map actors, decisions, constraints, and measurable outcomes",
+        "Promise production readiness if the first demo works",
+        "Ask the procurement owner to write the complete technical specification"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The request identifies a workflow opportunity but leaves authority, safety, scope, and success undefined. Discovery turns it into a testable outcome before implementation choices harden.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-discovery-before-delivery"
+    },
+    {
+      "id": "q2",
+      "question": "Which decision sits outside the FDE role boundary?",
+      "options": [
+        "Proposing a cross-tenant denial test",
+        "Recording an assumption about document metadata",
+        "Accepting privacy risk on behalf of HarbourCare",
+        "Explaining a reversible pilot option"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The FDE exposes and reduces risk, but the authorised customer owner accepts or rejects residual business, privacy, security, and operational risk.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-discovery-before-delivery"
+    },
+    {
+      "id": "q3",
+      "question": "Which HarbourCare statement is the strongest outcome contract?",
+      "options": [
+        "Build a modern procurement chatbot quickly",
+        "Improve procurement with best-practice AI",
+        "Answer 18 of 20 approved questions with citations in under two minutes while denying cross-unit requests before context assembly",
+        "Deploy an assistant that all stakeholders like"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A strong outcome contract names observable value and a non-negotiable safety condition. It can be tested against a bounded sample instead of relying on subjective confidence.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-discovery-before-delivery"
+    },
+    {
+      "id": "q4",
+      "question": "HarbourCare believes every supplier document has a correct business-unit label. How should discovery record this?",
+      "options": [
+        "As a proven constraint",
+        "As an assumption paired with a metadata sampling and validation action",
+        "As a non-goal that needs no further work",
+        "As a successful control because labels exist"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A belief that has not been verified is an assumption. Pairing it with a validation action prevents the architecture from silently depending on untested metadata quality.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-discovery-before-delivery"
+    },
+    {
+      "id": "q5",
+      "question": "HarbourCare uses pre-context tenant filtering, but some source records may be mislabelled. What is the best discovery response?",
+      "options": [
+        "Claim the filtering removes all isolation risk",
+        "Remove tenant filtering because the source may be wrong",
+        "Record mislabelling as residual risk, assign an owner, and require metadata-quality evidence",
+        "Expand the pilot to all business units to collect more examples"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The control remains valuable, while the source-quality dependency remains real. Recording owner and evidence makes the remaining risk visible and actionable.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-discovery-before-delivery"
+    },
+    {
+      "id": "q6",
+      "question": "Why should final purchase approval be a non-goal for the first HarbourCare assistant slice?",
+      "options": [
+        "Non-goals make pilots look smaller",
+        "The bounded evidence does not yet justify transferring purchase authority to the system",
+        "Approval workflows cannot be implemented in software",
+        "Procurement outcomes are unrelated to technical delivery"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A non-goal prevents a narrow evidence-producing pilot from silently expanding into a high-impact authority change that has not been designed or tested.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-discovery-before-delivery"
+    }
+  ]
+}

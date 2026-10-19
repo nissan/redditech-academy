@@ -81,7 +81,7 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
     }
   });
 
-  it("adds only B1 shell inventory and makes the metadata-only access state explicit", () => {
+  it("preserves the scaffold while later slices add bounded content", () => {
     const report = buildCourseInventoryReport();
     const course = report.courses.find(
       (candidate) => candidate.slug === COURSE_SLUG
@@ -91,8 +91,8 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       catalogAccessStatus: "catalog-metadata-only",
       counts: {
         modules: 12,
-        lessons: 0,
-        quizzes: 0,
+        lessons: 1,
+        quizzes: 1,
         challenges: 0,
         downloads: 0,
         interactiveLessons: 0,
@@ -100,11 +100,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
-    expect(course?.issues.missingQuizzes).toHaveLength(12);
+    expect(course?.issues.missingQuizzes).toHaveLength(11);
     expect(fs.existsSync(path.join(COURSE_DIR, "challenges"))).toBe(false);
   });
 
-  it("generates one course route and the twelve module routes, with no B2+ lesson routes", async () => {
+  it("generates the course, twelve module routes, and only the current bounded lesson route", async () => {
     const courseParams = await generateCourseParams();
     const moduleParams = await generateModuleParams();
     const lessonParams = await generateLessonParams();
@@ -120,6 +120,12 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
     );
     expect(
       lessonParams.filter((param) => param.courseSlug === COURSE_SLUG)
-    ).toEqual([]);
+    ).toEqual([
+      {
+        courseSlug: COURSE_SLUG,
+        moduleSlug: EXPECTED_MODULES[0],
+        lessonSlug: "01-discovery-before-delivery",
+      },
+    ]);
   });
 });
