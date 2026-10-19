@@ -1,0 +1,63 @@
+{
+  "id": "02-situation-and-pain-quiz",
+  "moduleId": "02-situation-and-pain",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which is a Pain statement?",
+      "options": [
+        "14 clinics",
+        "Three systems",
+        "Payroll corrections delay manager approvals",
+        "Healthcare company"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Review the Situation and Pain lesson: Distinguish relevant Situation facts from noise and Pain from symptoms.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "Best Situation question?",
+      "options": [
+        "Tell me about your company",
+        "What changed in the workflow this year?",
+        "Do you like our product?",
+        "What is your budget?"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Situation and Pain lesson: Distinguish relevant Situation facts from noise and Pain from symptoms.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "A symptom becomes useful when you know:",
+      "options": [
+        "The logo",
+        "Who experiences it and an example",
+        "The seller stage",
+        "The contract term"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Situation and Pain lesson: Distinguish relevant Situation facts from noise and Pain from symptoms.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "What should research replace?",
+      "options": [
+        "Listening",
+        "Material questions",
+        "Basic fact collection",
+        "Validation"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Review the Situation and Pain lesson: Distinguish relevant Situation facts from noise and Pain from symptoms.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

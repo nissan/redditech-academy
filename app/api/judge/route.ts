@@ -7,6 +7,7 @@ import {
   gradeFdeDiscovery,
   isTrustedFdeDiscoveryChallenge,
 } from "@/lib/fde-discovery-grader";
+import { gradeStructured } from "@/lib/structured-grader";
 
 interface ChallengeStep {
   id: string;
@@ -24,7 +25,15 @@ interface ChallengeSpec {
   id: string;
   type?: string;
   spec: string;
-  validation: unknown;
+  validation: {
+    must_have?: Array<{
+      field?: string;
+      value?: string;
+      present?: boolean;
+      non_empty?: boolean;
+    }>;
+    [key: string]: unknown;
+  };
   grading?: {
     type?: string;
     contractVersion?: string;
@@ -191,6 +200,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       hints: grade.pass ? undefined : challenge.hints,
       _provider: "deterministic-fde-discovery-v1",
     });
+  }
+
+  if (challenge.type === "json-editor" && challenge.id.startsWith("spiced-")) {
+    const structuredGrade = gradeStructured(challenge.validation, userInput, challenge.id);
+    if (structuredGrade) {
+      return NextResponse.json({
+        ...structuredGrade,
+        hints: structuredGrade.pass ? undefined : challenge.hints,
+        _provider: "deterministic-structured-grader",
+      });
+    }
   }
 
   // Pick system prompt — Socratic mode for coaching challenges

@@ -1,0 +1,184 @@
+{
+  "id": "spiced-01-mission",
+  "type": "json-editor",
+  "spec": "Build the Diagnose, Don't Decorate section of the Northstar Health deal room using sourced evidence and an explicit next action.",
+  "validation": {
+    "must_have": [
+      {
+        "field": "submission.analysis.module_focus_id",
+        "non_empty": true,
+        "allowed_values": [
+          "spiced-01-diagnosis"
+        ]
+      },
+      {
+        "field": "submission.analysis.cause_id",
+        "non_empty": true,
+        "allowed_values": [
+          "manual-onboarding"
+        ]
+      },
+      {
+        "field": "submission.analysis.relationship_id",
+        "non_empty": true,
+        "allowed_values": [
+          "creates"
+        ]
+      },
+      {
+        "field": "submission.analysis.effect_id",
+        "non_empty": true,
+        "allowed_values": [
+          "audit-exposure"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-internal-audit-01"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].person_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-morgan-lee"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].role_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-hr-director"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].observed_at",
+        "non_empty": true,
+        "allowed_values": [
+          "2026-07-27"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].status",
+        "non_empty": true,
+        "allowed_values": [
+          "buyer-verified"
+        ]
+      },
+      {
+        "field": "submission.evidence[0].confidence",
+        "non_empty": true,
+        "allowed_values": [
+          "high"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.risk_id",
+        "non_empty": true,
+        "allowed_values": [
+          "audit-control-unverified"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-internal-audit-01"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.cause_id",
+        "non_empty": true,
+        "allowed_values": [
+          "manual-onboarding"
+        ]
+      },
+      {
+        "field": "submission.risk_assessment.effect_id",
+        "non_empty": true,
+        "allowed_values": [
+          "audit-exposure"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.action_id",
+        "non_empty": true,
+        "allowed_values": [
+          "confirm-audit-evidence"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.verification_target_id",
+        "non_empty": true,
+        "allowed_values": [
+          "audit-evidence"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.evidence_id",
+        "non_empty": true,
+        "allowed_values": [
+          "northstar-internal-audit-01"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.risk_id",
+        "non_empty": true,
+        "allowed_values": [
+          "audit-control-unverified"
+        ]
+      },
+      {
+        "field": "submission.next_verification_action.due",
+        "non_empty": true,
+        "allowed_values": [
+          "2026-08-10"
+        ]
+      }
+    ]
+  },
+  "eli_notes": "Reject invented certainty. Passing structure is necessary; feedback should also test provenance, causality, and action specificity.",
+  "hints": [
+    "Name the source and date.",
+    "Separate a buyer statement from your inference.",
+    "Give the next action an owner and timing."
+  ],
+  "prefilled": {
+    "trusted_options": {
+      "module_focus_ids": [
+        "spiced-01-diagnosis"
+      ],
+      "evidence_ids": [
+        "northstar-internal-audit-01"
+      ],
+      "person_ids": [
+        "northstar-morgan-lee"
+      ],
+      "role_ids": [
+        "northstar-hr-director"
+      ],
+      "cause_ids": [
+        "manual-onboarding"
+      ],
+      "relationship_ids": [
+        "creates"
+      ],
+      "effect_ids": [
+        "audit-exposure"
+      ],
+      "risk_ids": [
+        "audit-control-unverified"
+      ],
+      "verification_target_ids": [
+        "audit-evidence"
+      ],
+      "action_ids": [
+        "confirm-audit-evidence"
+      ]
+    },
+    "template": "{\n  \"trusted_options\": {\n    \"module_focus_ids\": [\n      \"spiced-01-diagnosis\"\n    ],\n    \"evidence_ids\": [\n      \"northstar-internal-audit-01\"\n    ],\n    \"person_ids\": [\n      \"northstar-morgan-lee\"\n    ],\n    \"role_ids\": [\n      \"northstar-hr-director\"\n    ],\n    \"cause_ids\": [\n      \"manual-onboarding\"\n    ],\n    \"relationship_ids\": [\n      \"creates\"\n    ],\n    \"effect_ids\": [\n      \"audit-exposure\"\n    ],\n    \"risk_ids\": [\n      \"audit-control-unverified\"\n    ],\n    \"verification_target_ids\": [\n      \"audit-evidence\"\n    ],\n    \"action_ids\": [\n      \"confirm-audit-evidence\"\n    ]\n  },\n  \"submission\": {\n    \"analysis\": {\n      \"module_focus_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"cause_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"relationship_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"effect_id\": \"SELECT_FROM_TRUSTED_OPTIONS\"\n    },\n    \"summary\": \"Optional learner rationale; grading uses the selected trusted IDs.\",\n    \"evidence\": [\n      {\n        \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"person_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"role_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"observed_at\": \"YYYY-MM-DD\",\n        \"status\": \"buyer-verified\",\n        \"confidence\": \"high\",\n        \"claim\": \"Optional supporting note.\",\n        \"source\": \"Optional human-readable source label.\"\n      }\n    ],\n    \"risk_assessment\": {\n      \"risk_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"cause_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"effect_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"note\": \"Optional risk rationale.\"\n    },\n    \"next_verification_action\": {\n      \"action_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"verification_target_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"evidence_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"risk_id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"due\": \"YYYY-MM-DD\",\n      \"owner\": \"Optional owner label.\",\n      \"action\": \"Optional action note.\"\n    }\n  }\n}"
+  },
+  "success_text": "Diagnose, Don't Decorate record accepted. Now inspect whether its claims are genuinely buyer-verified."
+}

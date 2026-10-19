@@ -1,0 +1,34 @@
+{
+  "id": "spiced-sales-framework",
+  "slug": "spiced-sales-framework",
+  "title": "SPICED Sales Framework Practice Lab",
+  "description": "Build buyer-verified Situation, Pain, Impact, Critical Event, and Decision evidence through an evolving B2B deal. Independently produced by Redditech; not affiliated with, endorsed by, or official certification from Winning by Design.",
+  "tagline": "Diagnose the deal. Prove the evidence. Coach the next move.",
+  "icon": "🌶️",
+  "difficulty": "intermediate",
+  "estimatedHours": 16,
+  "tags": [
+    "sales",
+    "spiced",
+    "discovery",
+    "qualification",
+    "revenue-operations",
+    "b2b-saas"
+  ],
+  "badge": {
+    "name": "SPICED Practice Lab Graduate",
+    "icon": "🌶️",
+    "description": "Completed Redditech's independent SPICED practice course"
+  },
+  "author": "Redditech Labs",
+  "version": "1.0",
+  "free": false,
+  "protected": true,
+  "learningApproach": "whole-game",
+  "runningProject": {
+    "title": "Diagnose the Northstar Health opportunity",
+    "description": "Turn messy, changing stakeholder evidence into a defensible SPICED deal room.",
+    "juniorGameBrief": "You inherit a promising deal whose CRM fields look complete but whose evidence is contradictory.",
+    "finalOutcome": "A buyer-verified diagnosis, evidence ledger, decision map, gap register, and manager forecast recommendation."
+  }
+}

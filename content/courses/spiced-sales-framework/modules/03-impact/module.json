@@ -1,0 +1,22 @@
+{
+  "id": "03-impact",
+  "slug": "03-impact",
+  "order": 3,
+  "title": "Impact Without False Precision",
+  "description": "business and human consequences with defensible measurement",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Impact Without False Precision Badge",
+    "icon": "🌶️",
+    "description": "Completed Impact Without False Precision"
+  },
+  "learningObjectives": [
+    "Connect Pain to rational and emotional Impact without inventing ROI",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "02-situation-and-pain"
+  ]
+}
