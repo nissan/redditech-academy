@@ -1,0 +1,37 @@
+{
+  "id": "fde-03-ingestion-mission",
+  "type": "json-editor",
+  "spec": "Run HarbourCare's synthetic invoice/OCR and ERP ingestion in separate processes. Submit the harness-produced authority-bound execution report with durable replay proof and complete lineage, without claiming customer or production acceptance.",
+  "grading": {
+    "type": "fde-ingestion-v1",
+    "contractVersion": "fde-ingestion-v1",
+    "providerCallsAllowed": false
+  },
+  "validation": {
+    "rubric": [
+      "repository-owned-immutable-fixture-authority",
+      "authenticated-durable-attempt-001-state",
+      "separate-process-idempotent-attempt-002-replay",
+      "complete-ocr-and-erp-observation-lineage",
+      "named-count-and-amount-reconciliation",
+      "bounded-operator-recovery-proof",
+      "independently-recomputed-execution-report-binding",
+      "rubric-completion-without-customer-acceptance"
+    ]
+  },
+  "hints": [
+    "Use one explicit temporary state directory for all four commands; replay fails closed without the ingest checkpoint.",
+    "Do not copy the template's labels into invented outcomes. Replace the editor content with the complete report command output.",
+    "Inspect scan-003 and scan-004 lineage before submitting: uncertainty and collision evidence must remain exact."
+  ],
+  "prefilled": {
+    "trusted_options": {
+      "workflow": [
+        { "id": "attempt-001-ingest", "meaning": "Creates the authenticated durable ingest checkpoint in the explicit state directory.", "appliesTo": ["local-harness-step-1"] },
+        { "id": "attempt-002-replay", "meaning": "Authenticates attempt 001 in a separate process, appends attempt 002, and writes no duplicate accepted outcome.", "appliesTo": ["local-harness-step-3"] },
+        { "id": "fixture-bound-report", "meaning": "The grader accepts only the complete harness report whose digest it independently recomputes against repository authority.", "appliesTo": ["editor-submission"] }
+      ]
+    },
+    "template": "{\n  \"missionId\": \"fde-03-ingestion-mission\",\n  \"evidenceStatus\": \"template-not-evidence\",\n  \"customerAcceptance\": \"not-claimed\",\n  \"instruction\": \"Replace this entire template with the output of the report command after ingest and replay complete.\"\n}"
+  }
+}

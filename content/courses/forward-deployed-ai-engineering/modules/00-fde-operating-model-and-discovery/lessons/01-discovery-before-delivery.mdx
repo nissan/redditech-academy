@@ -1,0 +1,145 @@
+---
+title: "Discovery Before Delivery"
+description: "Turn a customer request into a bounded outcome contract before choosing a technical solution."
+slug: "01-discovery-before-delivery"
+duration: 35
+order: 1
+type: "standard"
+keyTakeaways:
+  - "Treat the first request as a customer signal, not a complete specification"
+  - "Keep the forward deployed engineer accountable for evidence and boundaries, not every stakeholder decision"
+  - "Translate stakeholder needs into measurable outcomes, constraints, assumptions, and non-goals"
+  - "Record residual risk and decision ownership before implementation begins"
+---
+
+# Discovery Before Delivery
+
+HarbourCare is a fictional healthcare procurement organisation. Its procurement owner opens the engagement with a plausible request:
+
+> “Give our buyers an AI assistant that can answer supplier questions and prepare purchase requests within four weeks.”
+
+That sentence is a **Customer signal**, not a build specification. It tells you there is a workflow worth investigating, but it does not tell you who may see which records, what “prepare” means, how success will be measured, or which actions must remain human decisions.
+
+A forward deployed AI engineer creates value by resolving those uncertainties before turning them into code. Fast delivery still matters. Discovery makes speed directional.
+
+## The operating model
+
+The forward deployed engineer sits between customer work and technical delivery. The job is to maintain a short evidence loop:
+
+1. Observe a real workflow and its failure points.
+2. Translate the signal into a testable outcome and explicit boundary.
+3. Propose the smallest reversible change that can produce evidence.
+4. Test the change, including a failure or denial path.
+5. Explain what the evidence supports and what remains uncertain.
+
+This is not “build whatever was requested.” It is also not endless consulting analysis. The engineer is responsible for making assumptions visible and producing inspectable evidence quickly.
+
+## Role boundary
+
+The **Role boundary** prevents technical access from becoming accidental business authority.
+
+The learner/FDE may:
+
+- map the current workflow and information flows;
+- propose measurable pilot outcomes and technical options;
+- implement controls inside the approved pilot boundary;
+- test allowed, denied, degraded, and recovery paths;
+- record evidence, uncertainty, and residual risk.
+
+The learner/FDE may not unilaterally:
+
+- decide which employees should see restricted supplier documents;
+- redefine procurement approval thresholds;
+- accept security, legal, privacy, or operational risk for HarbourCare;
+- turn a pilot result into a production-readiness claim;
+- expand the pilot because a demo appears successful.
+
+Those decisions remain with named HarbourCare owners. Good delivery makes ownership easier to exercise; it does not absorb it.
+
+## Stakeholder map
+
+A **Stakeholder map** names decision rights, evidence needs, and likely tensions. For this pilot:
+
+| Stakeholder | Owns | Needs to see | Tension to resolve |
+|---|---|---|---|
+| Procurement owner | workflow outcome and acceptance | time saved, answer usefulness, approval integrity | speed without bypassing purchasing policy |
+| Security lead | access and data-risk acceptance | denied-path tests, data flow, residual risk | usefulness without cross-unit disclosure |
+| Platform operator | operability and recovery | setup, health, rollback, logs | a repeatable service rather than a one-off demo |
+| Finance approver | purchase authority | thresholds, evidence, final human decision | assistance without autonomous commitment |
+| Learner/FDE | delivery evidence | assumptions, tests, decisions, open risks | momentum without hidden scope growth |
+
+“Keep stakeholders informed” is too vague. A useful map records which decision each role owns and which evidence enables that decision.
+
+## Outcome contract
+
+An **Outcome contract** connects a customer problem to observable evidence. It has five parts:
+
+1. **Actor:** whose work changes?
+2. **Behaviour:** what do they do differently?
+3. **Measure:** what observable result indicates improvement?
+4. **Safety condition:** what must never be traded away?
+5. **Evidence window:** when and from which bounded sample will you judge it?
+
+For HarbourCare, a defensible pilot outcome is:
+
+> During a four-week synthetic pilot, authorised procurement staff can locate a cited supplier-policy answer in under two minutes for at least 18 of 20 approved test questions, while every cross-business-unit document request is denied before answer context is assembled. Purchase requests remain drafts until the existing independent approval step completes.
+
+This statement does more work than “build a chatbot.” It defines value, scope, security behaviour, and the evidence needed to decide what happens next.
+
+## Constraints, assumptions, and non-goals
+
+These terms are related but not interchangeable:
+
+- A **constraint** is a boundary the design must satisfy, such as disconnected operation or separation between business units.
+- An **assumption** is something believed but not yet proven, such as the availability of reliable supplier-document metadata.
+- A **non-goal** is intentionally excluded work, such as automating final purchase approval during the pilot.
+- A **risk** is a possible harmful outcome with likelihood, impact, owner, and response.
+
+Useful discovery turns each assumption into a validation action. If reliable document metadata is assumed, sample it and measure missing or conflicting labels before designing retrieval around it.
+
+## Non-goals
+
+Explicit **Non-goals** protect both the customer and the delivery team. The first HarbourCare slice does not:
+
+- replace procurement policy;
+- approve or execute purchases;
+- ingest live employee or supplier records;
+- establish enterprise-wide readiness;
+- optimise every procurement workflow;
+- remove the need for security and operator review.
+
+A non-goal is not an apology. It is a statement that the current evidence cannot support a broader claim.
+
+## Residual risk
+
+Controls reduce risk; they rarely erase it. **Residual risk** is what remains after the planned safeguards operate.
+
+For example, pre-context authorisation can prevent known cross-unit documents from reaching retrieval. It cannot guarantee correct isolation if the source metadata itself is wrong. Discovery therefore records both the control and the remaining dependency:
+
+- **Control:** filter by authenticated tenant and document policy before context assembly.
+- **Residual risk:** incorrectly labelled source records may still be placed in the wrong tenant partition.
+- **Owner:** Security lead accepts, rejects, or requires additional sampling.
+- **Evidence:** metadata-quality report plus cross-tenant denial tests.
+
+Honest residual-risk language is more useful than “secure by design.” It tells the customer what was tested and where judgement is still required.
+
+## Discovery output: one page, not one month
+
+At the end of this concept slice, you should be able to outline a one-page discovery brief containing:
+
+- customer signal and current workflow;
+- named stakeholders and decision ownership;
+- measurable outcome contract;
+- constraints, assumptions, and validation actions;
+- in-scope work and non-goals;
+- major risks, controls, residual risks, and owners;
+- next reversible evidence-producing step.
+
+The applied lesson will turn this outline into the versioned statement of work, risk, and decision artefacts used throughout the course.
+
+## Further reading
+
+- [NIST AI Risk Management Framework Playbook](https://airc.nist.gov/airmf-resources/playbook/) — practical actions for governing, mapping, measuring, and managing AI risk.
+- [UK Government Service Manual: How the discovery phase works](https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works) — a concise model for understanding users, constraints, and whether to proceed.
+
+These sources inform transferable discovery practice. The HarbourCare scenario, explanations, outcome contract, and assessment are original Redditech Academy material.

@@ -1,0 +1,4 @@
+harbourcare synthetic application image
+version=1.4.0
+schema=2026.10.1
+workflow=bounded-record-summary

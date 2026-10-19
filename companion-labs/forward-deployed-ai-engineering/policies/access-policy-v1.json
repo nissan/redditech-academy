@@ -1,0 +1,109 @@
+{
+  "contractVersion": "1.0.0",
+  "policyVersion": "harbourcare-access-policy-v1",
+  "datasetId": "harbourcare-synthetic-v1",
+  "fictional": true,
+  "containsRealPersonalData": false,
+  "logging": {
+    "restrictedContent": false,
+    "rawCredentials": false
+  },
+  "identities": [
+    {
+      "id": "identity-north-procurement-active",
+      "kind": "human",
+      "lifecycleState": "active",
+      "assignmentId": "assignment-north-procurement-v1",
+      "tenantId": "tenant-north",
+      "roleIds": ["procurement_owner"],
+      "allowedActionIds": ["read_document", "draft_purchase"]
+    },
+    {
+      "id": "identity-south-procurement-moved",
+      "kind": "human",
+      "lifecycleState": "active",
+      "assignmentId": "assignment-south-procurement-after-move-v2",
+      "tenantId": "tenant-south",
+      "roleIds": ["procurement_owner"],
+      "allowedActionIds": ["read_document", "draft_purchase"]
+    },
+    {
+      "id": "identity-north-procurement-deprovisioned",
+      "kind": "human",
+      "lifecycleState": "deprovisioned",
+      "assignmentId": "assignment-north-procurement-ended-v1",
+      "tenantId": "tenant-north",
+      "roleIds": ["procurement_owner"],
+      "allowedActionIds": []
+    },
+    {
+      "id": "service-north-retrieval-worker",
+      "kind": "service",
+      "lifecycleState": "active",
+      "assignmentId": "assignment-service-north-retrieval-v1",
+      "tenantId": "tenant-north",
+      "roleIds": ["retrieval_worker"],
+      "allowedActionIds": ["read_document"]
+    }
+  ],
+  "resources": [
+    {
+      "id": "doc-north-procurement-policy",
+      "kind": "document",
+      "tenantId": "tenant-north",
+      "classification": "internal",
+      "allowedRoleIds": ["procurement_owner", "retrieval_worker"]
+    },
+    {
+      "id": "doc-north-staff-contact",
+      "kind": "document",
+      "tenantId": "tenant-north",
+      "classification": "restricted",
+      "allowedRoleIds": ["procurement_owner"]
+    },
+    {
+      "id": "erp-po-north-1001",
+      "kind": "erp_record",
+      "tenantId": "tenant-north",
+      "classification": "confidential",
+      "allowedRoleIds": ["procurement_owner"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "authorized-human-document-read",
+      "identityId": "identity-north-procurement-active",
+      "resourceId": "doc-north-procurement-policy",
+      "actionId": "read_document",
+      "expectedDecision": "allow"
+    },
+    {
+      "id": "authorized-service-document-read",
+      "identityId": "service-north-retrieval-worker",
+      "resourceId": "doc-north-procurement-policy",
+      "actionId": "read_document",
+      "expectedDecision": "allow"
+    },
+    {
+      "id": "denied-moved-human-cross-tenant-read",
+      "identityId": "identity-south-procurement-moved",
+      "resourceId": "doc-north-staff-contact",
+      "actionId": "read_document",
+      "expectedDecision": "deny"
+    },
+    {
+      "id": "denied-deprovisioned-human-read",
+      "identityId": "identity-north-procurement-deprovisioned",
+      "resourceId": "doc-north-procurement-policy",
+      "actionId": "read_document",
+      "expectedDecision": "deny"
+    },
+    {
+      "id": "denied-cross-business-unit-action",
+      "identityId": "identity-south-procurement-moved",
+      "resourceId": "erp-po-north-1001",
+      "actionId": "draft_purchase",
+      "expectedDecision": "deny"
+    }
+  ]
+}

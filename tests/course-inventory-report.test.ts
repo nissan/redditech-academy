@@ -12,6 +12,7 @@ describe("course inventory report", () => {
     expect(report.issue.expectedSlugs).toEqual([
       "auth-training",
       "churn-modeling-academy",
+      "forward-deployed-ai-engineering",
       "genai-ml-academy",
       "llm-benchmarking-academy",
       "martech-adtech-academy",
@@ -112,6 +113,7 @@ describe("course inventory report", () => {
     for (const slug of [
       "auth-training",
       "churn-modeling-academy",
+      "forward-deployed-ai-engineering",
       "genai-ml-academy",
       "llm-benchmarking-academy",
       "martech-adtech-academy",

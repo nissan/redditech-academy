@@ -1,0 +1,39 @@
+{
+  "trainingNotice": "HarbourCare synthetic evidence template; no live data or credentials.",
+  "contractVersion": "fde-discovery-v1",
+  "missionId": "fde-00-discovery-mission",
+  "discovery": {
+    "customerRequestId": "harbourcare-procurement-assistant-v1",
+    "assumptions": [],
+    "stakeholders": [],
+    "outcomes": [],
+    "architecture": {
+      "insideBoundaryIds": [],
+      "outsideBoundaryIds": [],
+      "trustBoundaryIds": []
+    },
+    "risks": [],
+    "nonGoalIds": [],
+    "pilotSow": {
+      "timeboxId": "four-weeks",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-27",
+      "deliverableIds": [],
+      "entryCriteriaIds": [],
+      "exitCriteriaIds": [],
+      "acceptanceOwnerIds": []
+    }
+  },
+  "revisionHistory": [
+    {
+      "revisionId": "revision-001-connected-proposal",
+      "previousRevisionId": null,
+      "status": "superseded"
+    },
+    {
+      "revisionId": "revision-002-disconnected-production",
+      "previousRevisionId": "revision-001-connected-proposal",
+      "status": "accepted"
+    }
+  ]
+}

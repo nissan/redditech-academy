@@ -1,0 +1,71 @@
+---
+title: "Bound the HarbourCare Pilot"
+description: "Turn an ambiguous request into a measurable pilot contract and preserve the design change as append-only evidence."
+slug: "02-bound-the-pilot-mission"
+duration: 55
+order: 2
+keyTakeaways:
+  - "Bind discovery claims to trusted synthetic evidence instead of persuasive prose"
+  - "Make outcomes measurable with actor, behaviour, measure, safety condition, and evidence window"
+  - "Timebox the pilot with explicit entry, exit, acceptance, risk, and non-goal boundaries"
+  - "Append a superseding decision when a constraint invalidates the first design"
+type: "interactive"
+environment: "json-editor"
+challengeId: "fde-00-discovery-mission"
+missionTitle: "Mission 00 — Bound the HarbourCare Pilot"
+estimatedMinutes: 45
+---
+
+# Mission brief
+
+HarbourCare is fictional, and this exercise uses only the repository's synthetic fixture. The procurement owner asks for “an AI assistant that finds policy answers and helps prepare purchases.” Your job is to turn that request into an executable four-week pilot—not to promise a production system.
+
+The editor starts with a typed evidence record. Before your first attempt, the **Trusted option reference** beside it shows every allowed exact ID, what it means, and the placeholder path where it belongs. Select the relationships supported by the case. Supplemental prose is not graded, and keyword stuffing cannot substitute for a valid evidence relationship.
+
+## Discovery rubric
+
+Your submission must preserve all of these boundaries:
+
+1. **Assumptions:** record outbound internet as unvalidated, give it an owner, and name the workshop that will test it.
+2. **Stakeholders:** keep pilot-outcome, security-risk, operability, and delivery-evidence decision rights separate.
+3. **Measurable outcomes:** bind an actor and behaviour to a numeric measure, safety condition, and four-week evidence window.
+4. **Architecture boundaries:** separate the local pilot components from live data, production writes, and a cloud model provider; name both trust boundaries.
+5. **Risks:** connect each risk to its customer owner, response, and expected evidence.
+6. **Non-goals:** exclude live data, production writes, and replacement of HarbourCare's approval policy.
+7. **Pilot SOW:** retain the fixed dates, four weekly deliverables, entry/exit criteria, and three acceptance owners.
+
+## Changing constraint
+
+After the first design review, HarbourCare declares that production is disconnected: there is no outbound internet access. Do not delete or silently rewrite the connected proposal.
+
+Keep `revision-001-connected-proposal` as `superseded`, then append `revision-002-disconnected-production`. The new revision must identify:
+
+- the invalid assumption;
+- the cloud-provider and outbound-observability components affected;
+- the local CPU fixture stack selected instead; and
+- the remaining local quality/latency risk.
+
+That append-only history is part of the evidence. A clean final diagram without the invalidated assumption would hide how the decision changed.
+
+## Downloads
+
+- [Four-week pilot SOW template](/assets/courses/forward-deployed-ai-engineering/downloads/discovery-pilot-sow-template.md)
+- [Discovery risk register template](/assets/courses/forward-deployed-ai-engineering/downloads/discovery-risk-register-template.md)
+- [Disconnected-production ADR template](/assets/courses/forward-deployed-ai-engineering/downloads/disconnected-production-adr-template.md)
+- [Deterministic evidence submission template](/assets/courses/forward-deployed-ai-engineering/downloads/discovery-evidence-submission-template.json)
+
+## Lab instructions
+
+The canonical path is local, deterministic, CPU-only, and requires no paid API, provider credential, live customer data, production endpoint, or network listener.
+
+1. From the repository root, run `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs setup --profile fixture`.
+   Expected output includes `status: ready`, `profile: fixture`, and `networkEgress: deny`.
+2. Verify the authenticated synthetic state with `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs health --profile fixture`.
+   Expected output includes `status: healthy`, `profile: fixture`, and `networkEgress: deny`.
+3. Review `companion-labs/forward-deployed-ai-engineering/data/harbourcare-v1.json` and the evidence templates before selecting IDs.
+4. Complete the mission in the JSON editor. The judge uses only the challenge-owned deterministic contract; changing the caller environment cannot enable a provider path.
+5. Save reviewed artefacts under the manifest directories: the brief/SOW in `discovery/`, risks in `risks/`, and both ADR revisions in `decisions/`. Keep the original revision.
+6. When finished, run `node companion-labs/forward-deployed-ai-engineering/scripts/lab-bootstrap.mjs reset --profile fixture`. Reset authenticates the generated state and refuses unexpected files.
+   Expected output is `status: reset` and `profile: fixture`.
+
+The downloadable templates are working aids, not completed evidence. A passing editor submission proves only that the selected HarbourCare relationships satisfy this mission's deterministic rubric.

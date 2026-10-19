@@ -1,0 +1,143 @@
+---
+title: "Reconcile Uncertain Records"
+description: "Turn HarbourCare's scanned invoices and legacy exports into contract-bound, traceable records without hiding uncertainty or duplicating work on replay."
+slug: "01-reconcile-uncertain-records"
+duration: 45
+order: 1
+type: "standard"
+keyTakeaways:
+  - "Define record contracts and canonical identifiers before transforming legacy inputs"
+  - "Preserve OCR confidence and source evidence instead of silently coercing uncertain values"
+  - "Reconcile control totals and quarantine ambiguity with operator-visible reasons"
+  - "Make batch replay idempotent while keeping unresolved records in quarantine"
+---
+
+# Reconcile Uncertain Records
+
+HarbourCare is a **fictional** regulated procurement organisation. Its accounts-payable lead raises a **Customer signal**:
+
+> “We scanned 480 supplier invoices and matched them to the finance export. The import says it succeeded, but the accepted total is lower than the source total. One supplier also appears twice after we retried an interrupted batch. Can the team just correct the uncertain values and load the rest?”
+
+Not silently. A pipeline can be technically green while losing money fields, inventing matches, or duplicating business records. The Forward Deployed Engineer must make each transformation explainable, every unresolved decision visible, and replay safe before describing the data product as trustworthy.
+
+## Put a record contract before the parser
+
+A **Record contract** defines what a record means at an ingestion boundary. It is more than a loose schema. For each invoice, HarbourCare records:
+
+- the contract version and source-system version;
+- required and optional fields, types, null rules, formats, currency, timezone, and allowed precision;
+- source identifiers and a **Canonical identifier** used across scans and system exports;
+- field-level confidence and validation rules;
+- accepted, quarantined, and rejected outcomes;
+- lineage fields, reason codes, and evidence references required for each outcome;
+- deduplication keys, batch identity, and replay behavior.
+
+Suppose a scan calls an invoice `HC-4471`, while the legacy **Enterprise Resource Planning (ERP)** export stores `4471-HC`. The pipeline must not guess that they are the same because their strings look similar. A versioned mapping rule can produce canonical invoice identifier `invoice:harbour-medical:4471`, but the output must retain both source values, the rule version, and the evidence used. A collision or ambiguous match belongs in quarantine.
+
+Contracts also make schema drift observable. If yesterday's `invoice_total_minor_units` integer becomes today's locale-formatted `invoice_total` string, the parser should identify the unrecognised source version or apply a reviewed mapping. Treating commas, decimal points, blank strings, or currency symbols as interchangeable can change value while still producing valid-looking numbers.
+
+## Confidence is evidence, not truth
+
+**Optical Character Recognition (OCR)** converts document images into machine-readable text. Its confidence score is a signal about the extraction process, not a probability that a business fact is correct. A crisp but wrong character can receive a high score; a low score can still accompany the right value.
+
+HarbourCare therefore keeps, for each extracted field:
+
+| Field evidence | Example |
+|---|---|
+| observed value | `8,750.00` |
+| normalised candidate | `875000` minor currency units |
+| confidence | `0.71` from the named OCR engine and version |
+| source locator | scan digest, page 2, bounding box coordinates |
+| validation result | arithmetic mismatch with subtotal plus tax |
+| decision | quarantine under `TOTAL_MISMATCH` |
+
+**Confidence is evidence, not truth.** A threshold may route work, but it cannot justify changing `8,750.00` to `3,750.00` because that would make the totals balance. Never silently coerce, replace, or correct a source value. Keep the observed value immutable, create a separate candidate value, and record the rule or human decision that accepts it.
+
+Use different controls for different failure modes. Format validation catches an impossible date, a supplier master lookup can expose an unknown identifier, and arithmetic can compare subtotal plus tax with invoice total. Agreement between two weak extractors is not independent proof when they share the same blurred scan.
+
+## Lineage and provenance survive every outcome
+
+**Lineage and provenance** answer where a value came from, which operations changed its representation, and who or what made a decision. The accepted table is not the only place that needs this evidence. Quarantined and rejected records need it too.
+
+For a HarbourCare invoice, preserve:
+
+1. immutable source artifact digest, source system, batch identifier, and receipt time;
+2. source record identifier plus page or row locator;
+3. parser, OCR engine, contract, and mapping-rule versions;
+4. observed values, normalised candidates, confidence, and validation results;
+5. canonical identifier and the rule or reviewed decision that produced it;
+6. outcome, reason code, evidence references, decision time, and actor type.
+
+This chain lets an operator trace an accepted amount back to one scan region and one export row. It also lets the team replay only the affected contract version after a rule changes. Logging a final row without its source evidence is transformation, not traceability.
+
+## Quarantine ambiguity without losing it
+
+**Quarantine** is a durable workflow state for records that are parseable but not safe to accept. It is not a miscellaneous error folder. Every quarantined record needs:
+
+- a stable record and batch identity;
+- a bounded reason code such as `LOW_TOTAL_CONFIDENCE`, `TOTAL_MISMATCH`, `AMBIGUOUS_SUPPLIER`, or `CANONICAL_ID_COLLISION`;
+- the observed value, candidate value, confidence, validation result, and source evidence;
+- the contract and rule versions that made the decision;
+- an owner or review queue, permitted next actions, and retry eligibility;
+- timestamps and an append-only decision history.
+
+The pipeline exposes three distinct outcomes: **accepted**, **quarantined**, and **rejected**. Accepted means the record satisfies the current contract. Quarantined means evidence is insufficient for acceptance but can support controlled review or later replay. Rejected means the input is outside the contract or unsafe to process, while retaining the minimum evidence required to explain the result.
+
+Do not turn `null` into zero, choose the nearest supplier, or drop a duplicate-looking row merely to increase throughput. Those moves exchange visible uncertainty for hidden corruption. HarbourCare can set risk-based thresholds, but threshold choice, false-accept cost, review capacity, and permitted overrides remain explicit customer decisions.
+
+## Reconciliation proves conservation, not correctness
+
+**Reconciliation** compares control totals across boundaries so missing, duplicated, or transformed value cannot disappear behind a success status. HarbourCare checks at least:
+
+| Boundary | Control evidence |
+|---|---|
+| source receipt | artifact count, source row count, declared amount total, digest |
+| parsed candidates | parsed count, parse failures, candidate amount total |
+| decision outcomes | accepted, quarantined, and rejected counts and totals |
+| canonical store | unique canonical count, accepted amount total, duplicate suppression count |
+
+The key invariant is explicit. For example, source count must equal accepted plus quarantined plus rejected records, with any non-record header or trailer exclusions named. Source amount must reconcile to outcome amounts or produce a documented variance with exact record identifiers. Never “fix” the reconciliation by excluding the records that disagree.
+
+Reconciled totals are necessary but not sufficient. Two wrong records can offset each other, and the wrong supplier can still have the right total. Pair aggregate controls with record-level identity, validation, lineage, and sampled review. A mismatch blocks acceptance of the affected boundary; it does not authorise a fabricated correction.
+
+## Idempotent replay uses stable business identity
+
+An **Idempotent replay** means processing the same logical input again produces the same business outcome without duplicate accepted records or lost unresolved work. HarbourCare binds each run to:
+
+- a batch key derived from the source identity, immutable digest, contract version, and declared scope;
+- a stable record key derived from the source record locator and canonical business identity;
+- an outcome key that prevents a retry from appending a second accepted invoice;
+- a processing attempt identifier, kept separate so operators can still see every attempt.
+
+After an interruption, the operator can replay the same batch. Existing accepted outcomes are verified and reused or updated only through an explicit versioned policy; they are not inserted again. Unresolved low-confidence records remain quarantined with their original evidence and append-only attempt history. A changed source digest or contract version creates a new reviewable lineage event rather than masquerading as the old batch.
+
+Deduplicating only on file name is weak because names can be reused. Deduplicating only on invoice number is also weak because suppliers can share numbering patterns. The contract should combine immutable source identity with the canonical supplier and invoice identity, then fail visibly on collisions.
+
+## Operator-visible recovery closes the loop
+
+**Operator-visible recovery** gives a named operator a bounded way to diagnose, correct, replay, and verify without editing accepted data invisibly. A useful recovery view shows:
+
+1. the failed batch and last durable checkpoint;
+2. accepted, quarantined, and rejected counts and totals;
+3. exact reconciliation variance and affected record identifiers;
+4. reason-code queues with source evidence and contract versions;
+5. duplicate-suppression and prior-attempt history;
+6. allowed actions: correct a mapping under review, attach evidence, approve or reject a candidate, and replay the bounded scope;
+7. post-replay proof that the same batch created no duplicate accepted records and unresolved items stayed quarantined.
+
+A dashboard that says only `97% complete` is not recovery evidence. Operators need the last safe state, the unresolved scope, the authorised next action, and the verification result. Recovery must retain history; overwriting the original OCR value or deleting the first failed attempt destroys the explanation the control was meant to provide.
+
+## Data-quality proof is not production acceptance
+
+**Data-quality proof** demonstrates that synthetic inputs obey the declared contract: uncertainty is preserved, lineage is complete, totals reconcile or fail visibly, quarantine contains reasons and evidence, and the same batch creates no duplicate accepted records. **Production acceptance** is HarbourCare's authorised decision that the process may handle real records under its privacy, finance, retention, access, operating, and risk controls.
+
+Data-quality proof **does not equal production acceptance**. The concept and later synthetic lab cannot approve real supplier matching, legal retention, finance tolerances, review staffing, source-system ownership, or production recovery. Engineering supplies bounded evidence; data, finance, security, operations, and risk owners decide whether the real service is acceptable.
+
+The next applied slice will ask the learner to ingest synthetic scans and ERP rows, reconcile totals, inspect lineage and quarantine evidence, and replay a duplicate batch. This lesson does not process live customer data or claim production readiness.
+
+## Further reading
+
+- [World Wide Web Consortium (W3C) PROV Overview](https://www.w3.org/TR/prov-overview/) — the W3C provenance family and its model for entities, activities, and agents.
+- [W3C Data Quality Vocabulary](https://www.w3.org/TR/vocab-dqv/) — a W3C vocabulary for expressing data-quality measurements, annotations, and provenance.
+
+These primary standards inform the transferable evidence model. The HarbourCare signal, invoice identifiers, thresholds, reason codes, reconciliation examples, recovery sequence, explanations, and assessment are original Redditech Academy material.

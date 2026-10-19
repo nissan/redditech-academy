@@ -1,0 +1,18 @@
+{
+  "trainingNotice": "HarbourCare synthetic evidence aid; no live data, restricted content, or credentials.",
+  "contractVersion": "fde-access-evidence-aid-v1",
+  "policyVersion": "harbourcare-access-policy-v1",
+  "evidenceStatus": "template-not-evidence",
+  "customerAcceptance": "not-claimed",
+  "review": {
+    "ownerId": "",
+    "reviewedCaseIds": [],
+    "decision": "pending"
+  },
+  "accessMatrix": [],
+  "policyTraces": [],
+  "loggingAttestation": {
+    "restrictedContentLogged": false,
+    "rawCredentialLogged": false
+  }
+}

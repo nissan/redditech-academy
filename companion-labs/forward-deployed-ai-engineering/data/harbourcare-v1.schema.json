@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://academy.reddi.tech/schemas/harbourcare-v1.schema.json",
+  "title": "HarbourCare synthetic data contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "datasetId",
+    "fictional",
+    "containsRealPersonalData",
+    "defaultLicenceRef",
+    "sensitivityLabels",
+    "tenants",
+    "personas",
+    "documents",
+    "erpRecords",
+    "goldenSet"
+  ],
+  "properties": {
+    "contractVersion": { "const": "1.0.0" },
+    "datasetId": { "const": "harbourcare-synthetic-v1" },
+    "fictional": { "const": true },
+    "containsRealPersonalData": { "const": false },
+    "defaultLicenceRef": { "const": "redditech-original-fixture" },
+    "sensitivityLabels": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "$ref": "#/$defs/sensitivityLabel" }
+    },
+    "tenants": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/tenant" }
+    },
+    "personas": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "$ref": "#/$defs/persona" }
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "$ref": "#/$defs/document" }
+    },
+    "erpRecords": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "$ref": "#/$defs/erpRecord" }
+    },
+    "goldenSet": { "$ref": "#/$defs/goldenSet" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$" },
+    "sensitivityLabel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "rank", "description"],
+      "properties": {
+        "id": { "enum": ["public", "internal", "confidential", "restricted"] },
+        "rank": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "tenant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "fictional"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "region": { "$ref": "#/$defs/id" },
+        "fictional": { "const": true }
+      }
+    },
+    "persona": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "displayName", "email", "tenantId", "roles", "purpose"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "email": { "type": "string", "pattern": "^[a-z0-9.]+@harbourcare\\.invalid$" },
+        "tenantId": { "$ref": "#/$defs/id" },
+        "roles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "purpose": { "type": "string", "minLength": 1 }
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "tenantId", "title", "classification", "sourceType", "text"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "tenantId": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "classification": { "enum": ["public", "internal", "confidential", "restricted"] },
+        "sourceType": { "$ref": "#/$defs/id" },
+        "text": { "type": "string", "minLength": 1 },
+        "sensitiveFields": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "adversarial": { "type": "boolean" }
+      }
+    },
+    "erpRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "tenantId", "recordType", "currency", "amountCents", "status", "supplierId"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "tenantId": { "$ref": "#/$defs/id" },
+        "recordType": { "enum": ["purchase_order", "invoice"] },
+        "currency": { "const": "AUD" },
+        "amountCents": { "type": "integer", "minimum": 0 },
+        "status": { "$ref": "#/$defs/id" },
+        "supplierId": { "$ref": "#/$defs/id" },
+        "duplicateOf": { "$ref": "#/$defs/id" }
+      }
+    },
+    "goldenSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "cases"],
+      "properties": {
+        "schemaVersion": { "const": "1.0.0" },
+        "cases": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "actorId", "query", "expected"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "actorId": { "$ref": "#/$defs/id" },
+              "query": { "type": "string", "minLength": 1 },
+              "expected": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["decision", "documentIds", "mustCite", "mustExcludeTenantIds"],
+                "properties": {
+                  "decision": { "enum": ["answer", "deny", "abstain"] },
+                  "documentIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+                  "mustCite": { "type": "boolean" },
+                  "mustExcludeTenantIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

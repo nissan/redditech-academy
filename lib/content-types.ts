@@ -96,4 +96,11 @@ export interface CourseMetadata {
   version: string;
   free: boolean;
   comingSoon?: boolean;
+  duration?: string;
+  accessStatus?: "catalog-metadata-only";
+  prerequisites?: string[];
+  learningObjectives?: string[];
+  attribution?: string;
+  disclaimer?: string;
+  learningApproach?: "whole-game";
 }

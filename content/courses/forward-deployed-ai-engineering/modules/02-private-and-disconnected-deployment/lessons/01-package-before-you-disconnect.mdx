@@ -1,0 +1,121 @@
+---
+title: "Package Before You Disconnect"
+description: "Turn HarbourCare's private-network constraint into an explicit artifact inventory, default-deny egress plan, health gate, and reversible rollback decision."
+slug: "01-package-before-you-disconnect"
+duration: 45
+order: 1
+type: "standard"
+keyTakeaways:
+  - "Inventory every deployable artifact and runtime dependency before the target network is disconnected"
+  - "Keep egress default-deny and treat any exception as a narrow, owned, time-bounded policy decision"
+  - "Use health checks and explicit rollback criteria to decide whether a release may continue"
+  - "Separate reproducible packaging proof from customer production acceptance"
+---
+
+# Package Before You Disconnect
+
+HarbourCare is a **fictional** regulated procurement organisation. A new **Customer signal** arrives from its platform operator:
+
+> “The pilot worked on a connected staging laptop. Production cannot download packages or container images, and outbound network access is denied. Can we open egress during installation and call the deployment proven?”
+
+No. A connected build can hide undeclared downloads, mutable tags, licence assumptions, and remote services. Opening the target network until the installation happens to work removes the control the deployment is meant to prove. The Forward Deployed Engineer must make the package complete, the network policy explicit, and failure useful before claiming readiness.
+
+## Start with two inventories
+
+An **Artifact inventory** names the exact items transported into the private environment. A **Dependency inventory** explains what those items require at build time, installation time, and runtime. They overlap, but they answer different questions.
+
+| Inventory | HarbourCare records | Why it matters |
+|---|---|---|
+| Artifact inventory | application image by immutable digest; database migration bundle; policy files; configuration schema; synthetic fixtures; deployment descriptors; licence notices; verification checksums | Proves what was transferred and lets an operator detect a missing, substituted, or mutable item |
+| Dependency inventory | base image; language packages; operating-system packages; database extensions; certificate roots; local name resolution; storage class; identity and time sources; optional model assets | Exposes assumptions that a connected environment may satisfy silently |
+
+Each entry needs an identifier, version, source, integrity value, licence or usage constraint, purpose, target location, and required/optional status. Use an immutable digest rather than a floating `latest` tag. Record a Secure Hash Algorithm 256-bit (**SHA-256**) checksum for file artifacts so the receiving operator can verify bytes before installation.
+
+A **Software Bill of Materials (SBOM)** is a machine-readable component record that supports provenance and vulnerability work. It is valuable, but it is not the whole deployment inventory: an SBOM may omit configuration schemas, migration order, policy files, certificate assumptions, model weights, or the operator's required verification command. Keep the SBOM and the operational inventories linked by release identifier and digest.
+
+### Classify dependency timing
+
+For each dependency, state when it is needed:
+
+- **Build-time:** compilers, package indexes, and source inputs used before the bundle is sealed.
+- **Install-time:** images, charts, manifests, migrations, and verification tools required inside the private environment.
+- **Runtime:** databases, local identity services, certificate and time sources, storage, and explicitly approved internal endpoints.
+- **Optional:** diagnostics or acceleration that cannot be allowed to become a hidden requirement.
+
+The disconnected target should not need build-time internet access. If HarbourCare chooses to mirror a dependency internally, the mirror address, trust root, ownership, refresh process, and failure behavior become declared runtime assumptions.
+
+## State the disconnected assumptions
+
+“Offline” and “private” are not precise enough. For this lesson, the **offline/disconnected assumptions** are:
+
+1. the release bundle is prepared and verified on an approved connected build system;
+2. all required artifacts cross the boundary through HarbourCare's reviewed transfer process;
+3. the target has no public network route after transfer;
+4. only documented internal services may be reachable;
+5. package managers, image runtimes, and application startup must not resolve undeclared remote dependencies;
+6. missing optional assets disable only their documented optional feature;
+7. a missing required item stops before mutation and reports the **exact missing artifact** by inventory identifier, version or digest, and expected path.
+
+That failure is a packaging result, not a reason to weaken policy. The operator must **never open or weaken egress** to make an undeclared download succeed. Repair the bundle on the approved build side, increment the release evidence, transfer it again, and repeat verification.
+
+## Default-deny egress is the baseline
+
+**Default-deny egress** means outbound connections are blocked unless an explicit rule permits a named workload to reach a specific approved destination and port for a documented purpose. “Allow the private subnet” or “allow HTTPS” is not a useful exception; both are broad paths that can conceal accidental or malicious traffic.
+
+For the HarbourCare capstone, the canonical disconnected path has no public egress. A customer may approve an internal identity endpoint or package mirror, but every exception needs:
+
+- a workload identity and namespace or equivalent boundary;
+- a destination and port that are as narrow as the platform can enforce;
+- an owner, purpose, expiry or review date;
+- a negative test showing other destinations remain blocked;
+- evidence that denial is visible without logging protected payloads or credentials.
+
+A successful deployment test includes a network-policy negative test. It should prove that an undeclared destination is denied and that the application remains in a safe state. A timeout alone is weak evidence because it cannot distinguish intended denial from broken routing.
+
+## Health checks are release evidence
+
+**Health checks** must distinguish process existence from useful service behavior:
+
+- **Startup:** required local configuration, schema, and artifact digests can be read before traffic is accepted.
+- **Readiness:** the service can perform its bounded function using declared internal dependencies; failed readiness removes it from service.
+- **Liveness:** the process is making progress; the check does not depend on a blocked public endpoint or trigger damaging restart loops.
+- **Dependency health:** required local services are checked separately so an operator can identify the failing boundary.
+
+Do not make a health endpoint return success merely because the web process is listening. For HarbourCare, readiness should fail when a required migration, policy bundle, or local database dependency is absent. It should not attempt to download a replacement.
+
+## Decide rollback before rollout
+
+**Rollback criteria** are observable conditions agreed before release. HarbourCare rolls back when, for example:
+
+- readiness does not stabilise within the agreed window;
+- a required artifact digest or schema version differs from the release inventory;
+- a network-policy negative test permits undeclared egress;
+- a required workflow fails its deterministic smoke test;
+- a migration cannot be completed or safely reversed under its documented compatibility plan.
+
+The **Rollback sequence** protects state and preserves evidence:
+
+1. stop or pause new work and record the release identifier, failed check, and time;
+2. keep the default-deny network policy in force;
+3. route traffic away from the candidate or restore the last accepted application version;
+4. execute the migration's tested reverse or forward-recovery path, rather than improvising destructive data changes;
+5. verify the restored version's startup, readiness, bounded workflow, and egress-denial checks;
+6. reconcile queued work and record unresolved impact, owner, and next decision.
+
+Rollback is not “redeploy the old image and hope.” Application and data compatibility, queued operations, policy versions, and evidence must move through a rehearsed sequence. If a schema change is not safely reversible, the release plan needs a compatible forward fix, backup/restore boundary, and a stricter stop decision before migration.
+
+## Packaging proof is not production acceptance
+
+**Packaging proof** shows that the declared bundle can be verified, installed, started, health-checked, network-tested, and rolled back under stated assumptions. **Production acceptance** is the customer's authorised decision that the system may serve a real environment under its operational, security, privacy, support, recovery, and business criteria.
+
+Packaging proof **does not equal production acceptance**. A reproducible offline rehearsal cannot approve HarbourCare's real data, identity integration, capacity, support roster, recovery objective, or residual risk. The platform operator supplies deployment evidence; security validates the control boundary; service and risk owners accept or reject production use.
+
+The next applied slice will ask the learner to generate the transcript, inventory, network, health, rollback, restore, and missing-artifact evidence. This concept lesson does not deploy a live cluster or claim that HarbourCare has accepted one.
+
+## Further reading
+
+- [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) — selector-based ingress and egress controls, including default-deny patterns and important platform prerequisites.
+- [National Institute of Standards and Technology (NIST) Special Publication (SP) 800-190: Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final) — container image, registry, orchestration, runtime, and host security considerations.
+- [CycloneDX SBOM standard](https://cyclonedx.org/specification/overview/) — a format for recording components, services, dependencies, and related supply-chain metadata.
+
+These sources inform the transferable control model. The HarbourCare signal, inventories, examples, decision sequence, explanations, and assessment are original Redditech Academy material.

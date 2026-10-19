@@ -1,0 +1,22 @@
+{
+  "id": "11-handoff-self-service-and-resilience",
+  "slug": "11-handoff-self-service-and-resilience",
+  "order": 11,
+  "title": "Handoff, Self-Service, and Resilience",
+  "description": "Transfer configuration and operations to an independent operator who can deploy, observe, roll back, back up, restore, and report unresolved risk.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Operational Handoff Lead",
+    "icon": "🛟",
+    "description": "Completed the handoff, self-service, and resilience module"
+  },
+  "learningObjectives": [
+    "Write configuration and operations guidance for a new operator",
+    "Test deploy, observe, rollback, backup, restore, and recovery tasks",
+    "Record recovery time, unresolved risk, and ownership boundaries honestly"
+  ],
+  "prerequisiteModules": [
+    "10-customer-specific-evaluation"
+  ]
+}

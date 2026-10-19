@@ -1,0 +1,124 @@
+{
+  "id": "fde-00-discovery-mission",
+  "type": "json-editor",
+  "spec": "Select only trusted HarbourCare evidence relationships. Complete assumptions, stakeholders and decision rights, measurable outcomes, architecture boundaries, risks, non-goals, the four-week SOW, and both append-only design revisions.",
+  "grading": {
+    "type": "fde-discovery-v1",
+    "contractVersion": "fde-discovery-v1",
+    "providerCallsAllowed": false
+  },
+  "validation": {
+    "rubric": [
+      "assumptions",
+      "stakeholders-and-decision-rights",
+      "measurable-outcomes",
+      "architecture-boundaries",
+      "risks",
+      "non-goals",
+      "time-bounded-pilot-sow",
+      "append-only-changing-constraint-revision"
+    ]
+  },
+  "hints": [
+    "Every selected ID must come from the trusted HarbourCare contract; prose is not graded.",
+    "An outcome needs an actor, behaviour, measure, safety condition, and evidence window.",
+    "Keep revision 001, mark it superseded, and append revision 002 with the invalid assumption, affected components, alternative, and remaining risk."
+  ],
+  "prefilled": {
+    "trusted_options": {
+      "assumptionIds": [
+        {
+          "id": "assumption-outbound-internet",
+          "meaning": "Outbound internet is unvalidated initially and becomes the invalid assumption in the disconnected-production revision.",
+          "appliesTo": ["discovery.assumptions[0].id", "revisionHistory[1].invalidAssumptionId"]
+        }
+      ],
+      "decisionRightIds": [
+        {
+          "id": "accept-pilot-outcomes",
+          "meaning": "North procurement decides whether the pilot outcomes are acceptable.",
+          "appliesTo": ["discovery.stakeholders[0].decisionRightId"]
+        },
+        {
+          "id": "accept-security-risk",
+          "meaning": "North security decides whether the security risk is acceptable.",
+          "appliesTo": ["discovery.stakeholders[1].decisionRightId"]
+        },
+        {
+          "id": "accept-operability",
+          "meaning": "The platform operator decides whether the pilot is operable.",
+          "appliesTo": ["discovery.stakeholders[2].decisionRightId"]
+        },
+        {
+          "id": "produce-delivery-evidence",
+          "meaning": "The FDE produces delivery evidence but does not accept customer outcomes or risk.",
+          "appliesTo": ["discovery.stakeholders[3].decisionRightId"]
+        }
+      ],
+      "behaviourIds": [
+        {
+          "id": "locate-cited-policy-answer",
+          "meaning": "The cited-answer outcome measures finding a policy answer with its source.",
+          "appliesTo": ["discovery.outcomes[0].behaviourId"]
+        },
+        {
+          "id": "create-draft-purchase-request",
+          "meaning": "The purchase outcome creates a draft request without approving or writing it to production.",
+          "appliesTo": ["discovery.outcomes[1].behaviourId"]
+        }
+      ],
+      "measureIds": [
+        {
+          "id": "18-of-20-under-120-seconds",
+          "meaning": "At least 18 of 20 cited policy answers are located in under 120 seconds.",
+          "appliesTo": ["discovery.outcomes[0].measureId"]
+        },
+        {
+          "id": "20-of-20-remain-draft",
+          "meaning": "All 20 purchase requests remain drafts.",
+          "appliesTo": ["discovery.outcomes[1].measureId"]
+        }
+      ],
+      "safetyConditionIds": [
+        {
+          "id": "no-cross-tenant-context",
+          "meaning": "The cited-answer outcome must not use another tenant's context.",
+          "appliesTo": ["discovery.outcomes[0].safetyConditionId"]
+        },
+        {
+          "id": "independent-approval-required",
+          "meaning": "A human approval independent of the assistant remains required for purchases.",
+          "appliesTo": ["discovery.outcomes[1].safetyConditionId"]
+        }
+      ],
+      "riskResponseIds": [
+        {
+          "id": "validate-before-pilot-entry",
+          "meaning": "Test the connectivity assumption before the pilot may begin.",
+          "appliesTo": ["discovery.risks[0].responseId"]
+        },
+        {
+          "id": "metadata-quality-and-denial-tests",
+          "meaning": "Use metadata-quality and denial tests to address source mislabelling.",
+          "appliesTo": ["discovery.risks[1].responseId"]
+        }
+      ],
+      "selectedAlternativeIds": [
+        {
+          "id": "alternative-local-cpu-fixture-stack",
+          "meaning": "Use the deterministic local CPU fixture stack after outbound internet is removed.",
+          "appliesTo": ["revisionHistory[1].selectedAlternativeId"]
+        }
+      ],
+      "remainingRiskIds": [
+        {
+          "id": "risk-local-quality-latency-gap",
+          "meaning": "Local execution may still have a quality or latency gap that HarbourCare must own.",
+          "appliesTo": ["revisionHistory[1].remainingRiskId"]
+        }
+      ]
+    },
+    "template": "{\n  \"contractVersion\": \"fde-discovery-v1\",\n  \"missionId\": \"fde-00-discovery-mission\",\n  \"discovery\": {\n    \"customerRequestId\": \"harbourcare-procurement-assistant-v1\",\n    \"assumptions\": [{\n      \"id\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"ownerId\": \"persona-platform-operator\",\n      \"state\": \"unvalidated\",\n      \"validationEvidenceId\": \"evidence-connectivity-workshop\"\n    }],\n    \"stakeholders\": [\n      {\"id\": \"persona-north-procurement\", \"decisionRightId\": \"SELECT_FROM_TRUSTED_OPTIONS\"},\n      {\"id\": \"persona-north-security\", \"decisionRightId\": \"SELECT_FROM_TRUSTED_OPTIONS\"},\n      {\"id\": \"persona-platform-operator\", \"decisionRightId\": \"SELECT_FROM_TRUSTED_OPTIONS\"},\n      {\"id\": \"role-fde\", \"decisionRightId\": \"SELECT_FROM_TRUSTED_OPTIONS\"}\n    ],\n    \"outcomes\": [\n      {\n        \"id\": \"outcome-cited-answer\",\n        \"actorId\": \"persona-north-procurement\",\n        \"behaviourId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"measureId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"safetyConditionId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"evidenceWindowId\": \"four-week-pilot\"\n      },\n      {\n        \"id\": \"outcome-draft-only-purchase\",\n        \"actorId\": \"persona-north-procurement\",\n        \"behaviourId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"measureId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"safetyConditionId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"evidenceWindowId\": \"four-week-pilot\"\n      }\n    ],\n    \"architecture\": {\n      \"insideBoundaryIds\": [\"local-user-interface\", \"policy-gateway\", \"synthetic-document-index\"],\n      \"outsideBoundaryIds\": [\"live-clinical-data\", \"production-erp-write\", \"cloud-model-provider\"],\n      \"trustBoundaryIds\": [\"authenticated-user-to-app\", \"app-to-synthetic-data\"]\n    },\n    \"risks\": [\n      {\n        \"id\": \"risk-connectivity-assumption\",\n        \"ownerId\": \"persona-platform-operator\",\n        \"responseId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"evidenceId\": \"evidence-connectivity-workshop\"\n      },\n      {\n        \"id\": \"risk-source-mislabel\",\n        \"ownerId\": \"persona-north-security\",\n        \"responseId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n        \"evidenceId\": \"evidence-metadata-quality-report\"\n      }\n    ],\n    \"nonGoalIds\": [\"no-live-data\", \"no-production-write\", \"no-approval-policy-replacement\"],\n    \"pilotSow\": {\n      \"timeboxId\": \"four-weeks\",\n      \"startDate\": \"2026-11-02\",\n      \"endDate\": \"2026-11-27\",\n      \"deliverableIds\": [\"week-1-discovery-baseline\", \"week-2-local-prototype\", \"week-3-adversarial-evaluation\", \"week-4-handoff-decision\"],\n      \"entryCriteriaIds\": [\"synthetic-fixture-verified\", \"decision-owners-named\"],\n      \"exitCriteriaIds\": [\"outcome-scorecard-reviewed\", \"residual-risks-owned\"],\n      \"acceptanceOwnerIds\": [\"persona-north-procurement\", \"persona-north-security\", \"persona-platform-operator\"]\n    }\n  },\n  \"revisionHistory\": [\n    {\n      \"revisionId\": \"revision-001-connected-proposal\",\n      \"previousRevisionId\": null,\n      \"assumptionId\": \"assumption-outbound-internet\",\n      \"designId\": \"design-cloud-dependent-observability\",\n      \"status\": \"superseded\"\n    },\n    {\n      \"revisionId\": \"revision-002-disconnected-production\",\n      \"previousRevisionId\": \"revision-001-connected-proposal\",\n      \"invalidAssumptionId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"constraintId\": \"constraint-disconnected-production\",\n      \"affectedComponentIds\": [\"cloud-model-provider\", \"outbound-observability\"],\n      \"selectedAlternativeId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"remainingRiskId\": \"SELECT_FROM_TRUSTED_OPTIONS\",\n      \"status\": \"accepted\"\n    }\n  ]\n}"
+  },
+  "success_text": "Pilot discovery accepted. The disconnected-production decision preserves the original assumption and its superseding revision."
+}

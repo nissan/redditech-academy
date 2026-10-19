@@ -1,0 +1,120 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "forward-deployed-ai-engineering",
+  "datasetId": "harbourcare-synthetic-v1",
+  "localOnly": true,
+  "containsCredentials": false,
+  "requiredDirectories": [
+    "discovery/",
+    "decisions/",
+    "risks/",
+    "runbooks/",
+    "evaluations/",
+    "tests/",
+    "reports/"
+  ],
+  "templates": [
+    {
+      "index": 0,
+      "id": "00-discovery-brief",
+      "evidenceType": "discovery-brief",
+      "path": "templates/00-discovery-brief.md",
+      "outputDirectory": "discovery/",
+      "sha256": "7b2d865911398795857bc7d0e06c0d33ab24ec7f4b2ae752e7fdf2cf8eaa8987",
+      "bddScenarios": ["FDE-02", "FDE-21"],
+      "requiredSections": [
+        "Evidence Metadata",
+        "Customer Request",
+        "Assumptions",
+        "Stakeholders",
+        "Measurable Outcomes",
+        "Architecture Boundaries",
+        "Risks",
+        "Non-goals",
+        "Four-week Pilot Statement of Work",
+        "Evidence References"
+      ]
+    },
+    {
+      "index": 1,
+      "id": "01-architecture-decision-record",
+      "evidenceType": "architecture-decision-record",
+      "path": "templates/01-architecture-decision-record.md",
+      "outputDirectory": "decisions/",
+      "sha256": "91d39b7b01bfd967e98dfc09ebdf7c2aa0de1b591a6d3e8c0ce633afbbbb3dfb",
+      "bddScenarios": ["FDE-03", "FDE-21"],
+      "requiredSections": [
+        "Evidence Metadata",
+        "Status",
+        "Context and Invalidated Assumption",
+        "Affected Components",
+        "Options Considered",
+        "Decision",
+        "Remaining Risk",
+        "Append-only Revision History",
+        "Evidence References"
+      ]
+    },
+    {
+      "index": 2,
+      "id": "02-risk-register",
+      "evidenceType": "risk-register",
+      "path": "templates/02-risk-register.md",
+      "outputDirectory": "risks/",
+      "sha256": "85873d7acddb725977a9c35e6ab1f24a1712823ce2e6d2be73ab9a5f0fc796b9",
+      "bddScenarios": ["FDE-02", "FDE-19", "FDE-21"],
+      "requiredSections": [
+        "Evidence Metadata",
+        "Scoring Scale",
+        "Risk Register",
+        "Review Cadence",
+        "Accepted Residual Risk",
+        "Evidence References"
+      ]
+    },
+    {
+      "index": 3,
+      "id": "03-operator-runbook",
+      "evidenceType": "operator-runbook",
+      "path": "templates/03-operator-runbook.md",
+      "outputDirectory": "runbooks/",
+      "sha256": "e41ecd74f0fda1443a065e47419295db2f6f208f737a800b42f252af6028895e",
+      "bddScenarios": ["FDE-19", "FDE-21"],
+      "requiredSections": [
+        "Evidence Metadata",
+        "Scope and Preconditions",
+        "Configuration",
+        "Deploy",
+        "Observe",
+        "Diagnose",
+        "Roll Back",
+        "Back Up",
+        "Restore",
+        "Recovery Targets",
+        "Unresolved Risks",
+        "Operator Task Record",
+        "Evidence References"
+      ]
+    },
+    {
+      "index": 4,
+      "id": "04-evaluation-card",
+      "evidenceType": "evaluation-card",
+      "path": "templates/04-evaluation-card.md",
+      "outputDirectory": "evaluations/",
+      "sha256": "0cc39c43a166204bead806010bed8d8ac1b87e693b798f124a7debf12a8a1884",
+      "bddScenarios": ["FDE-17", "FDE-18", "FDE-21"],
+      "requiredSections": [
+        "Evidence Metadata",
+        "Golden Set and Version",
+        "Metrics and Thresholds",
+        "Error Categories",
+        "Human and Automated Grader Agreement",
+        "Uncertainty and Regressions",
+        "Release Recommendation",
+        "Exception Record",
+        "Evidence References"
+      ]
+    }
+  ]
+}

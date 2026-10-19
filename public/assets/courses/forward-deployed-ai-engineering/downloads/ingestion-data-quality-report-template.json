@@ -1,0 +1,22 @@
+{
+  "templateVersion": "fde-ingestion-data-quality-template-v1",
+  "evidenceStatus": "template-not-evidence",
+  "customerAcceptance": "not-claimed",
+  "contractVersion": "fde-ingestion-v1",
+  "batchId": "REPLACE_WITH_AUTHENTICATED_BATCH_ID",
+  "reconciliation": {
+    "sourceObserved": { "count": null, "amountMinor": null },
+    "accepted": { "count": null, "amountMinor": null },
+    "quarantined": { "count": null, "amountMinor": null },
+    "erpObserved": { "count": null, "amountMinor": null },
+    "matchedErp": { "count": null, "amountMinor": null },
+    "unmatchedErp": { "count": null, "amountMinor": null },
+    "namedVariances": []
+  },
+  "replayProof": {
+    "duplicateAcceptedCount": null,
+    "unresolvedQuarantineIds": [],
+    "operatorState": "REPLACE_WITH_DERIVED_STATE",
+    "postReplayProofId": "REPLACE_WITH_DERIVED_PROOF_ID"
+  }
+}

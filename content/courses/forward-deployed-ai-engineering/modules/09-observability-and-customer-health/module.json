@@ -1,0 +1,22 @@
+{
+  "id": "09-observability-and-customer-health",
+  "slug": "09-observability-and-customer-health",
+  "order": 9,
+  "title": "Observability and Customer Health",
+  "description": "Trace a request across system boundaries and connect service signals, resource use, and alerts to customer value without leaking payloads.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Customer Health Operator",
+    "icon": "📈",
+    "description": "Completed the observability and customer health module"
+  },
+  "learningObjectives": [
+    "Correlate one request across service and policy boundaries",
+    "Define service-level indicators, objectives, and actionable alerts",
+    "Connect safe telemetry and resource use to a measurable customer outcome"
+  ],
+  "prerequisiteModules": [
+    "08-local-and-edge-inference"
+  ]
+}

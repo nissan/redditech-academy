@@ -1,0 +1,22 @@
+{
+  "id": "04-authorisation-aware-retrieval",
+  "slug": "04-authorisation-aware-retrieval",
+  "order": 4,
+  "title": "Authorisation-Aware Retrieval",
+  "description": "Apply access policy before context assembly, cite permitted sources, abstain when evidence is weak, and resist document injection.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Retrieval Boundary Engineer",
+    "icon": "🔎",
+    "description": "Completed the authorisation-aware retrieval module"
+  },
+  "learningObjectives": [
+    "Enforce tenant and document policy before retrieval reaches model context",
+    "Require grounded citations and explicit abstention",
+    "Test denied-document leakage and document-borne prompt injection"
+  ],
+  "prerequisiteModules": [
+    "03-legacy-data-ingestion-and-reconciliation"
+  ]
+}

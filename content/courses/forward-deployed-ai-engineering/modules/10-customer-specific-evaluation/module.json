@@ -1,0 +1,22 @@
+{
+  "id": "10-customer-specific-evaluation",
+  "slug": "10-customer-specific-evaluation",
+  "order": 10,
+  "title": "Customer-Specific Evaluation",
+  "description": "Version a HarbourCare golden set, calibrate grading with people, quantify disagreement and uncertainty, and gate releases on relevant evidence.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Evaluation Lead",
+    "icon": "📊",
+    "description": "Completed the customer-specific evaluation module"
+  },
+  "learningObjectives": [
+    "Design a versioned task-specific golden set and evaluation card",
+    "Calibrate human and deterministic grading while reporting uncertainty",
+    "Use regression, shadow-mode, exception, and release-gate evidence"
+  ],
+  "prerequisiteModules": [
+    "09-observability-and-customer-health"
+  ]
+}

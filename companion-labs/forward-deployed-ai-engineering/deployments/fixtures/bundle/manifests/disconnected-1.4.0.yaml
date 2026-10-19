@@ -1,0 +1,5 @@
+application: harbourcare-assistant
+version: 1.4.0
+schema: 2026.10.1
+policy: 3.2.1
+publicEgress: denied

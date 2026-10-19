@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://academy.reddi.tech/schemas/forward-deployed-ai-engineering/lab-profile-v1.schema.json",
+  "title": "Forward Deployed AI Engineering local lab profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "courseId", "profileId", "mode", "description", "networkEgress", "paidProviderCalls", "liveCustomerData", "fixturePath", "evidenceManifestPath", "resources", "services", "optionalExtensions"],
+  "properties": {
+    "contractVersion": { "const": "1.0.0" },
+    "courseId": { "const": "forward-deployed-ai-engineering" },
+    "profileId": { "enum": ["fixture", "cpu-low-resource"] },
+    "mode": { "enum": ["deterministic-fixture", "cpu-local"] },
+    "description": { "type": "string", "minLength": 1 },
+    "networkEgress": { "const": "deny" },
+    "paidProviderCalls": { "const": false },
+    "liveCustomerData": { "const": false },
+    "fixturePath": { "const": "data/harbourcare-v1.json" },
+    "evidenceManifestPath": { "const": "evidence/manifest.json" },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpuWorkers", "memoryMb", "gpuRequired"],
+      "properties": {
+        "cpuWorkers": { "const": 1 },
+        "memoryMb": { "type": "integer", "minimum": 256, "maximum": 1024 },
+        "gpuRequired": { "const": false }
+      }
+    },
+    "services": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "bind", "required"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "kind": { "enum": ["embedded-json", "filesystem", "optional-local-runtime"] },
+          "bind": { "enum": ["none", "127.0.0.1"] },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "optionalExtensions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["local-model-runtime", "gpu-acceleration"] }
+    }
+  }
+}

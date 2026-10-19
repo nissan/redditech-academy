@@ -1,0 +1,22 @@
+{
+  "id": "03-legacy-data-ingestion-and-reconciliation",
+  "slug": "03-legacy-data-ingestion-and-reconciliation",
+  "order": 3,
+  "title": "Legacy Data Ingestion and Reconciliation",
+  "description": "Parse uncertain supplier records, preserve lineage, reconcile totals, quarantine ambiguity, and make repeated ingestion safe.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Reconciliation Engineer",
+    "icon": "🧾",
+    "description": "Completed the legacy data ingestion and reconciliation module"
+  },
+  "learningObjectives": [
+    "Model OCR uncertainty and explicit data-quality contracts",
+    "Preserve source lineage while reconciling records and totals",
+    "Design quarantine and idempotent replay behavior"
+  ],
+  "prerequisiteModules": [
+    "02-private-and-disconnected-deployment"
+  ]
+}

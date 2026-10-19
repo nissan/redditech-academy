@@ -1,0 +1,22 @@
+{
+  "id": "05-safe-tools-and-legacy-integration",
+  "slug": "05-safe-tools-and-legacy-integration",
+  "order": 5,
+  "title": "Safe Tools and Legacy Integration",
+  "description": "Define typed, least-privilege read and guarded-write contracts around a sandbox legacy ERP boundary.",
+  "difficulty": "advanced",
+  "estimatedHours": 10,
+  "badge": {
+    "name": "Tool Boundary Designer",
+    "icon": "🔧",
+    "description": "Completed the safe tools and legacy integration module"
+  },
+  "learningObjectives": [
+    "Threat-model tool and Model Context Protocol boundaries",
+    "Design typed least-privilege read and write contracts",
+    "Plan schema, rate, replay, idempotency, and credential-leak checks"
+  ],
+  "prerequisiteModules": [
+    "04-authorisation-aware-retrieval"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "forward-deployed-ai-engineering",
+  "profileId": "cpu-low-resource",
+  "mode": "cpu-local",
+  "description": "Low-resource CPU profile with the same deterministic fixtures and an optional loopback-only model runtime.",
+  "networkEgress": "deny",
+  "paidProviderCalls": false,
+  "liveCustomerData": false,
+  "fixturePath": "data/harbourcare-v1.json",
+  "evidenceManifestPath": "evidence/manifest.json",
+  "resources": { "cpuWorkers": 1, "memoryMb": 1024, "gpuRequired": false },
+  "services": [
+    { "id": "fixture-catalog", "kind": "embedded-json", "bind": "none", "required": true },
+    { "id": "evidence-store", "kind": "filesystem", "bind": "none", "required": true },
+    { "id": "local-inference", "kind": "optional-local-runtime", "bind": "127.0.0.1", "required": false }
+  ],
+  "optionalExtensions": ["local-model-runtime", "gpu-acceleration"]
+}

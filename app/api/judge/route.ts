@@ -3,6 +3,22 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import path from "path";
 import fs from "fs";
 import { createJudgeLLM, judgeProviderLabel } from "@/lib/judge-llm";
+import {
+  gradeFdeDiscovery,
+  isTrustedFdeDiscoveryChallenge,
+} from "@/lib/fde-discovery-grader";
+import {
+  gradeFdeAccessPolicy,
+  isTrustedFdeAccessPolicyChallenge,
+} from "@/lib/fde-access-policy-grader";
+import {
+  gradeFdePrivateDeployment,
+  isTrustedFdePrivateDeploymentChallenge,
+} from "@/lib/fde-private-deployment-grader";
+import {
+  gradeFdeIngestion,
+  isTrustedFdeIngestionChallenge,
+} from "@/lib/fde-ingestion-grader";
 import { gradeStructured } from "@/lib/structured-grader";
 
 interface ChallengeStep {
@@ -19,7 +35,7 @@ interface ChallengePrefilled {
 
 interface ChallengeSpec {
   id: string;
-  type: string;
+  type?: string;
   spec: string;
   validation: {
     must_have?: Array<{
@@ -28,6 +44,11 @@ interface ChallengeSpec {
       present?: boolean;
       non_empty?: boolean;
     }>;
+    [key: string]: unknown;
+  };
+  grading?: {
+    type?: string;
+    contractVersion?: string;
   };
   eli_notes?: string;
   hints?: string[];
@@ -180,6 +201,45 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
+
+  // Deterministic FDE grading is selected only by repository-owned challenge
+  // metadata. Caller-controlled environment/provider fields cannot enter this
+  // boundary or cause a provider to be constructed.
+  if (isTrustedFdeDiscoveryChallenge(challenge)) {
+    const grade = gradeFdeDiscovery(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-discovery-v1",
+    });
+  }
+
+  if (isTrustedFdeAccessPolicyChallenge(challenge)) {
+    const grade = gradeFdeAccessPolicy(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-access-policy-v1",
+    });
+  }
+
+  if (isTrustedFdePrivateDeploymentChallenge(challenge)) {
+    const grade = gradeFdePrivateDeployment(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-private-deployment-v1",
+    });
+  }
+
+  if (isTrustedFdeIngestionChallenge(challenge)) {
+    const grade = gradeFdeIngestion(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-ingestion-v1",
+    });
+  }
 
   if (challenge.type === "json-editor" && challenge.id.startsWith("spiced-")) {
     const structuredGrade = gradeStructured(challenge.validation, userInput, challenge.id);
