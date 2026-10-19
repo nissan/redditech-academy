@@ -197,7 +197,7 @@ describe("Forward Deployed AI Engineering C1b access-policy mission", () => {
     }
 
     const course = buildCourseInventoryReport().courses.find((candidate) => candidate.slug === COURSE_SLUG);
-    expect(course?.counts).toMatchObject({ modules: 12, lessons: 6, quizzes: 3, challenges: 3, downloads: 6, interactiveLessons: 3 });
+    expect(course?.counts).toMatchObject({ modules: 12, lessons: 7, quizzes: 4, challenges: 3, downloads: 6, interactiveLessons: 3 });
     expect(course?.issues.brokenReferences).toEqual([]);
   });
 

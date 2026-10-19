@@ -99,14 +99,14 @@ describe("Forward Deployed AI Engineering C1a identity and isolation concepts", 
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 6,
-      quizzes: 3,
+      lessons: 7,
+      quizzes: 4,
       challenges: 3,
       downloads: 6,
       interactiveLessons: 3,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
-    expect(course?.issues.missingQuizzes).toHaveLength(9);
+    expect(course?.issues.missingQuizzes).toHaveLength(8);
   });
 });

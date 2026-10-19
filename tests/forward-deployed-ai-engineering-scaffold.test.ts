@@ -91,8 +91,8 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       catalogAccessStatus: "catalog-metadata-only",
       counts: {
         modules: 12,
-        lessons: 6,
-        quizzes: 3,
+        lessons: 7,
+        quizzes: 4,
         challenges: 3,
         downloads: 6,
         interactiveLessons: 3,
@@ -100,7 +100,7 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
-    expect(course?.issues.missingQuizzes).toHaveLength(9);
+    expect(course?.issues.missingQuizzes).toHaveLength(8);
     expect(fs.readdirSync(path.join(COURSE_DIR, "challenges")).sort()).toEqual([
       "fde-00-discovery-mission.json",
       "fde-01-access-policy-mission.json",
@@ -154,6 +154,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
         courseSlug: COURSE_SLUG,
         moduleSlug: EXPECTED_MODULES[2],
         lessonSlug: "02-prove-the-disconnected-release",
+      },
+      {
+        courseSlug: COURSE_SLUG,
+        moduleSlug: EXPECTED_MODULES[3],
+        lessonSlug: "01-reconcile-uncertain-records",
       },
     ]);
   });

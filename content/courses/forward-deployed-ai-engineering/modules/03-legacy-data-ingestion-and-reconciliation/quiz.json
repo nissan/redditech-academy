@@ -1,0 +1,91 @@
+{
+  "id": "03-legacy-data-ingestion-and-reconciliation-quiz",
+  "moduleId": "03-legacy-data-ingestion-and-reconciliation",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "HarbourCare's OCR reads an invoice total with 0.71 confidence, and the candidate fails the subtotal-plus-tax check. What is the strongest next action?",
+      "options": [
+        "Accept it because most other fields exceed the confidence threshold",
+        "Replace it with the ERP value automatically and retain the scan as an attachment",
+        "Quarantine it with the observed value, candidate, reason code, and source evidence",
+        "Accept it provisionally with a warning because finance can correct exceptions during month-end close"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Confidence routes review but does not establish truth. Quarantine preserves the observed value, candidate, validation failure, and source evidence so an authorised operator can resolve ambiguity without silent coercion.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-reconcile-uncertain-records"
+    },
+    {
+      "id": "q2",
+      "question": "HarbourCare's ERP export changes an amount from integer minor units to a locale-formatted string. Which record-contract response is most defensible?",
+      "options": [
+        "Version the source mapping, declare types and currency rules, and quarantine unrecognised drift",
+        "Parse either format heuristically and update the contract after the import completes",
+        "Store every field as text so future schema changes cannot cause validation failures",
+        "Trust the newest format and silently convert old rows when their values look plausible"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A versioned record contract makes representation, currency, precision, and failure behavior explicit. Unrecognised drift remains visible instead of being guessed into valid-looking but potentially wrong amounts.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-reconcile-uncertain-records"
+    },
+    {
+      "id": "q3",
+      "question": "A HarbourCare operator disputes an accepted supplier match. Which evidence best supports a traceable investigation?",
+      "options": [
+        "The final supplier identifier and the current accepted-record timestamp",
+        "A screenshot showing that the ingestion dashboard was green at completion",
+        "The OCR confidence and a note that two extraction attempts agreed",
+        "Source digest and locator, observed values, rule versions, canonical identifier, and decision history"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Lineage and provenance must connect the accepted value to immutable source evidence, transformations, versions, and decisions. A final value, confidence score, or dashboard status cannot reconstruct that chain.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-reconcile-uncertain-records"
+    },
+    {
+      "id": "q4",
+      "question": "HarbourCare's source file declares 480 records, but accepted, quarantined, and rejected outcomes total 479. What should the pipeline report?",
+      "options": [
+        "Success, because a single missing record is below the operational tolerance",
+        "A blocked reconciliation with the exact variance and affected source identity for recovery",
+        "Proceed with 479 outcomes, record a one-row variance, and investigate it after posting",
+        "A warning only if the accepted amount total also differs from the source total"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The conservation invariant has failed. The pipeline must expose the exact count variance and source scope, then support bounded recovery; a tolerance or fabricated placeholder would hide missing lineage.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-reconcile-uncertain-records"
+    },
+    {
+      "id": "q5",
+      "question": "HarbourCare retries the same interrupted batch after 300 invoices were accepted and 12 remained quarantined. What proves idempotent replay?",
+      "options": [
+        "The same batch creates no duplicate accepted invoices, while unresolved records retain quarantine evidence",
+        "The retry uses a new batch name and imports all records as fresh business events",
+        "The retry replaces prior outcomes in bulk so the final accepted count remains stable",
+        "The pipeline skips all prior records, including quarantined items that still need operator review"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Stable batch and record identities prevent a retry from duplicating accepted business records. Quarantined work remains durable and visible, with attempt history available for authorised resolution and replay.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-reconcile-uncertain-records"
+    },
+    {
+      "id": "q6",
+      "question": "HarbourCare's synthetic ingestion reconciles totals, preserves lineage, quarantines uncertainty, and passes duplicate-batch replay. What has the team established?",
+      "options": [
+        "Approval to ingest live supplier records because the technical controls passed and no further owner review is needed",
+        "Proof that finance tolerances and review staffing will be adequate in production",
+        "Data-quality proof under stated contracts; customer owners still decide production acceptance",
+        "Technical readiness for a limited live pilot, with finance controls reviewed after launch"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The synthetic evidence proves the declared data-quality and replay boundaries only. Production acceptance remains an authorised customer decision covering real data, controls, staffing, retention, recovery, and residual risk.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-reconcile-uncertain-records"
+    }
+  ]
+}
