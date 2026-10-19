@@ -20,16 +20,16 @@ const OFFLINE_KEYS = ["caseId", "downloadAttempted", "egressWeakened", "expected
 const ROLLBACK_KEYS = ["backupArtifactId", "backupDigest", "backupDigestVerified", "compatibilityDecision", "contentLogged", "networkPolicy", "rawCredentialLogged", "recoveryPathId", "recoverySequence", "restoredApplicationVersion", "stateAuthenticated", "trafficResumedAfterVerification", "trafficStateDuringRecovery", "triggerId", "verificationIds"];
 
 const ARTIFACTS = [
-  ["app-image", "1.4.0", "sha256:14a0a4a1f0b1c2d3e4f506172839405162738495a6b7c8d9e0f1029384756abc", "bundle/images/harbourcare-assistant-1.4.0.oci", true],
-  ["schema-migration", "2026.10.1", "sha256:2222222222222222222222222222222222222222222222222222222222222222", "bundle/migrations/2026.10.1.sql", true],
-  ["policy-bundle", "3.2.1", "sha256:3333333333333333333333333333333333333333333333333333333333333333", "bundle/policies/harbourcare-3.2.1.json", true],
-  ["deployment-manifest", "1.4.0", "sha256:4444444444444444444444444444444444444444444444444444444444444444", "bundle/manifests/disconnected-1.4.0.yaml", true],
+  ["app-image", "1.4.0", "sha256:74592a16aee5193b4abfdec7a965b01aba42cfee9368e60ddbd7bbd9b222b178", "bundle/images/harbourcare-assistant-1.4.0.oci", true],
+  ["schema-migration", "2026.10.1", "sha256:880a2b96c010b5e2065eb63dc57230b3cd43c1c92e607030745ea6039842e313", "bundle/migrations/2026.10.1.sql", true],
+  ["policy-bundle", "3.2.1", "sha256:aec90a7332dba4956f45fbb3022b347684f409d9771b95c464ed50542938141d", "bundle/policies/harbourcare-3.2.1.json", true],
+  ["deployment-manifest", "1.4.0", "sha256:7f2fdde72d4dea8b709f5eab0d2824c89e18d831b75d26caa43f9ec3b066f962", "bundle/manifests/disconnected-1.4.0.yaml", true],
 ].map(([artifactId, version, digest, path, required]) => ({ artifactId, version, digest, path, required }));
 
 const DEPENDENCIES = [
-  ["node-runtime", "24.18.0", "sha256:5555555555555555555555555555555555555555555555555555555555555555", "bundle/runtime/node-v24.18.0", "runtime", true],
-  ["local-database", "16.4", "sha256:6666666666666666666666666666666666666666666666666666666666666666", "bundle/services/database-16.4.oci", "runtime", true],
-  ["internal-dns", "harbourcare-2026.10", "sha256:7777777777777777777777777777777777777777777777777777777777777777", "bundle/config/internal-dns-2026.10.json", "runtime", true],
+  ["node-runtime", "24.18.0", "sha256:a388b70374ed812b9afa908fc711be9e900229d8f4a5c3710c54168c8c719951", "bundle/runtime/node-v24.18.0", "runtime", true],
+  ["local-database", "16.4", "sha256:450a651a74ecb3d4f80b53e02dca35a46e0a806495ccc89e090cbb52a658c29c", "bundle/services/database-16.4.oci", "runtime", true],
+  ["internal-dns", "harbourcare-2026.10", "sha256:ca0ce1d462e1acf47aa45b9f2c13cf3323538a91338165a01798fa961d11754f", "bundle/config/internal-dns-2026.10.json", "runtime", true],
 ].map(([dependencyId, version, digest, path, timing, required]) => ({ dependencyId, version, digest, path, timing, required }));
 
 const HEALTH = [
@@ -47,12 +47,12 @@ const NETWORK = [
 
 const OFFLINE = [
   { caseId: "complete-bundle", result: "success", downloadAttempted: false, missingArtifactId: null, missingVersion: null, missingDigest: null, expectedPath: null, egressWeakened: false },
-  { caseId: "missing-policy-bundle", result: "blocked-before-mutation", downloadAttempted: false, missingArtifactId: "policy-bundle", missingVersion: "3.2.1", missingDigest: "sha256:3333333333333333333333333333333333333333333333333333333333333333", expectedPath: "bundle/policies/harbourcare-3.2.1.json", egressWeakened: false },
+  { caseId: "missing-policy-bundle", result: "blocked-before-mutation", downloadAttempted: false, missingArtifactId: "policy-bundle", missingVersion: "3.2.1", missingDigest: "sha256:aec90a7332dba4956f45fbb3022b347684f409d9771b95c464ed50542938141d", expectedPath: "bundle/policies/harbourcare-3.2.1.json", egressWeakened: false },
 ];
 
 const ROLLBACK = {
   triggerId: "readiness-window-exceeded", trafficStateDuringRecovery: "off", networkPolicy: "default-deny-enforced",
-  backupArtifactId: "backup-state-1.3.2", backupDigest: "sha256:8888888888888888888888888888888888888888888888888888888888888888", backupDigestVerified: true, stateAuthenticated: true,
+  backupArtifactId: "backup-state-1.3.2", backupDigest: "sha256:42b1c1427fd821fd47741ad2f60140a58fa7a99f022b6973f3c603af92b27d8d", backupDigestVerified: true, stateAuthenticated: true,
   compatibilityDecision: "schema-data-compatible-with-1.3.2", recoveryPathId: "tested-forward-recovery-1.3.2",
   restoredApplicationVersion: "1.3.2",
   recoverySequence: ["traffic-off", "authenticate-backup-and-state", "establish-schema-data-compatibility", "execute-tested-recovery", "restore-accepted-application", "verify-health-workflow-egress", "resume-traffic"],

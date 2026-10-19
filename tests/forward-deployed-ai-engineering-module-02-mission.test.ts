@@ -1,4 +1,5 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
 
@@ -20,6 +21,30 @@ const MODULE_SLUG = "02-private-and-disconnected-deployment";
 const COURSE_DIR = path.join(process.cwd(), "content", "courses", COURSE_SLUG);
 const DOWNLOAD_DIR = path.join(process.cwd(), "public", "assets", "courses", COURSE_SLUG, "downloads");
 const CASE_PATH = path.join(process.cwd(), "companion-labs", COURSE_SLUG, "deployments", "private-deployment-v1.json");
+const FIXTURE_PATH = path.join(process.cwd(), "companion-labs", COURSE_SLUG, "deployments", "fixtures");
+const LAB_PATH = path.join(process.cwd(), "companion-labs", COURSE_SLUG, "scripts", "deployment-lab.mjs");
+
+function isolatedLab() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "fde-deployment-test-"));
+  const fixtureRoot = path.join(root, "fixtures");
+  const contractPath = path.join(root, "private-deployment-v1.json");
+  fs.cpSync(FIXTURE_PATH, fixtureRoot, { recursive: true, dereference: false });
+  fs.copyFileSync(CASE_PATH, contractPath);
+  return {
+    root,
+    fixtureRoot,
+    contractPath,
+    contract: JSON.parse(fs.readFileSync(contractPath, "utf8")),
+    run(...args: string[]) {
+      return spawnSync(process.execPath, [LAB_PATH, ...args], {
+        cwd: process.cwd(), encoding: "utf8",
+        env: { PATH: process.env.PATH ?? "", NODE_ENV: "test", FDE_DEPLOYMENT_FIXTURE_ROOT: fixtureRoot, FDE_DEPLOYMENT_CONTRACT: contractPath },
+      });
+    },
+    save(contract: unknown) { fs.writeFileSync(contractPath, `${JSON.stringify(contract, null, 2)}\n`); },
+    cleanup() { fs.rmSync(root, { recursive: true, force: true }); },
+  };
+}
 
 function validSubmission(): Record<string, unknown> {
   return {
@@ -29,15 +54,15 @@ function validSubmission(): Record<string, unknown> {
     customerAcceptance: "not-claimed",
     deploymentProfileId: "harbourcare-disconnected-v1",
     artifactInventory: [
-      { artifactId: "app-image", version: "1.4.0", digest: "sha256:14a0a4a1f0b1c2d3e4f506172839405162738495a6b7c8d9e0f1029384756abc", path: "bundle/images/harbourcare-assistant-1.4.0.oci", required: true },
-      { artifactId: "schema-migration", version: "2026.10.1", digest: "sha256:2222222222222222222222222222222222222222222222222222222222222222", path: "bundle/migrations/2026.10.1.sql", required: true },
-      { artifactId: "policy-bundle", version: "3.2.1", digest: "sha256:3333333333333333333333333333333333333333333333333333333333333333", path: "bundle/policies/harbourcare-3.2.1.json", required: true },
-      { artifactId: "deployment-manifest", version: "1.4.0", digest: "sha256:4444444444444444444444444444444444444444444444444444444444444444", path: "bundle/manifests/disconnected-1.4.0.yaml", required: true },
+      { artifactId: "app-image", version: "1.4.0", digest: "sha256:74592a16aee5193b4abfdec7a965b01aba42cfee9368e60ddbd7bbd9b222b178", path: "bundle/images/harbourcare-assistant-1.4.0.oci", required: true },
+      { artifactId: "schema-migration", version: "2026.10.1", digest: "sha256:880a2b96c010b5e2065eb63dc57230b3cd43c1c92e607030745ea6039842e313", path: "bundle/migrations/2026.10.1.sql", required: true },
+      { artifactId: "policy-bundle", version: "3.2.1", digest: "sha256:aec90a7332dba4956f45fbb3022b347684f409d9771b95c464ed50542938141d", path: "bundle/policies/harbourcare-3.2.1.json", required: true },
+      { artifactId: "deployment-manifest", version: "1.4.0", digest: "sha256:7f2fdde72d4dea8b709f5eab0d2824c89e18d831b75d26caa43f9ec3b066f962", path: "bundle/manifests/disconnected-1.4.0.yaml", required: true },
     ],
     dependencyInventory: [
-      { dependencyId: "node-runtime", version: "24.18.0", digest: "sha256:5555555555555555555555555555555555555555555555555555555555555555", path: "bundle/runtime/node-v24.18.0", timing: "runtime", required: true },
-      { dependencyId: "local-database", version: "16.4", digest: "sha256:6666666666666666666666666666666666666666666666666666666666666666", path: "bundle/services/database-16.4.oci", timing: "runtime", required: true },
-      { dependencyId: "internal-dns", version: "harbourcare-2026.10", digest: "sha256:7777777777777777777777777777777777777777777777777777777777777777", path: "bundle/config/internal-dns-2026.10.json", timing: "runtime", required: true },
+      { dependencyId: "node-runtime", version: "24.18.0", digest: "sha256:a388b70374ed812b9afa908fc711be9e900229d8f4a5c3710c54168c8c719951", path: "bundle/runtime/node-v24.18.0", timing: "runtime", required: true },
+      { dependencyId: "local-database", version: "16.4", digest: "sha256:450a651a74ecb3d4f80b53e02dca35a46e0a806495ccc89e090cbb52a658c29c", path: "bundle/services/database-16.4.oci", timing: "runtime", required: true },
+      { dependencyId: "internal-dns", version: "harbourcare-2026.10", digest: "sha256:ca0ce1d462e1acf47aa45b9f2c13cf3323538a91338165a01798fa961d11754f", path: "bundle/config/internal-dns-2026.10.json", timing: "runtime", required: true },
     ],
     healthChecks: [
       { checkId: "startup-artifact-and-schema", status: "pass", trafficAccepted: false, dependencyId: "local-filesystem" },
@@ -52,14 +77,14 @@ function validSubmission(): Record<string, unknown> {
     ],
     offlineTests: [
       { caseId: "complete-bundle", result: "success", downloadAttempted: false, missingArtifactId: null, missingVersion: null, missingDigest: null, expectedPath: null, egressWeakened: false },
-      { caseId: "missing-policy-bundle", result: "blocked-before-mutation", downloadAttempted: false, missingArtifactId: "policy-bundle", missingVersion: "3.2.1", missingDigest: "sha256:3333333333333333333333333333333333333333333333333333333333333333", expectedPath: "bundle/policies/harbourcare-3.2.1.json", egressWeakened: false },
+      { caseId: "missing-policy-bundle", result: "blocked-before-mutation", downloadAttempted: false, missingArtifactId: "policy-bundle", missingVersion: "3.2.1", missingDigest: "sha256:aec90a7332dba4956f45fbb3022b347684f409d9771b95c464ed50542938141d", expectedPath: "bundle/policies/harbourcare-3.2.1.json", egressWeakened: false },
     ],
     rollbackEvidence: {
       triggerId: "readiness-window-exceeded",
       trafficStateDuringRecovery: "off",
       networkPolicy: "default-deny-enforced",
       backupArtifactId: "backup-state-1.3.2",
-      backupDigest: "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      backupDigest: "sha256:42b1c1427fd821fd47741ad2f60140a58fa7a99f022b6973f3c603af92b27d8d",
       backupDigestVerified: true,
       stateAuthenticated: true,
       compatibilityDecision: "schema-data-compatible-with-1.3.2",
@@ -143,8 +168,9 @@ describe("Forward Deployed AI Engineering C2b private-deployment mission", () =>
       expect(result.status, result.stderr).toBe(0);
       return JSON.parse(result.stdout);
     });
-    expect(results[3]).toMatchObject({ result: "success", downloadAttempted: false, egressWeakened: false });
-    expect(results[4]).toMatchObject({ result: "blocked-before-mutation", missingArtifactId: "policy-bundle", missingVersion: "3.2.1", expectedPath: "bundle/policies/harbourcare-3.2.1.json" });
+    expect(results[0]).toMatchObject({ authenticatedCount: 7 });
+    expect(results[3]).toMatchObject({ result: "success", authenticatedArtifactCount: 7, stateMutationCount: 7, downloadAttempted: false, egressWeakened: false });
+    expect(results[4]).toMatchObject({ result: "blocked-before-mutation", authenticatedArtifactCount: 6, stateMutationCount: 0, missingArtifactId: "policy-bundle", missingVersion: "3.2.1", expectedPath: "bundle/policies/harbourcare-3.2.1.json" });
     expect(results[5]).toMatchObject({ trafficStateDuringRecovery: "off", backupDigestVerified: true, stateAuthenticated: true, restoredApplicationVersion: "1.3.2", trafficResumedAfterVerification: true });
     expect(JSON.stringify(results)).not.toMatch(/Bearer\s|password|session_cookie|api[_-]?key/i);
   });
@@ -155,6 +181,75 @@ describe("Forward Deployed AI Engineering C2b private-deployment mission", () =>
     expect(contract.assumptions).toMatchObject({ publicEgress: "denied", undeclaredDownloads: "forbidden", targetNetwork: "disconnected-after-reviewed-transfer" });
     expect(contract.artifacts).toEqual(validSubmission().artifactInventory);
     expect(contract.dependencies).toEqual(validSubmission().dependencyInventory);
+    expect(contract).not.toHaveProperty("healthChecks");
+    expect(contract).not.toHaveProperty("networkTests");
+    expect(contract).not.toHaveProperty("offlineTests");
+    expect(contract).not.toHaveProperty("rollbackEvidence");
+  });
+
+  it("derives outcomes from isolated fixture bytes instead of replaying authored pass rows", () => {
+    const lab = isolatedLab();
+    try {
+      fs.appendFileSync(path.join(lab.fixtureRoot, "bundle/images/harbourcare-assistant-1.4.0.oci"), "corrupt\n");
+      const corruptArtifact = lab.run("inventory");
+      expect(corruptArtifact.status).toBe(1);
+      expect(corruptArtifact.stderr).toContain("digest mismatch for bundle/images/harbourcare-assistant-1.4.0.oci");
+
+      fs.copyFileSync(path.join(FIXTURE_PATH, "bundle/images/harbourcare-assistant-1.4.0.oci"), path.join(lab.fixtureRoot, "bundle/images/harbourcare-assistant-1.4.0.oci"));
+      fs.appendFileSync(path.join(lab.fixtureRoot, "health/records.json"), "corrupt\n");
+      const corruptWorkflow = lab.run("health");
+      expect(corruptWorkflow.status).toBe(1);
+      expect(corruptWorkflow.stderr).toContain("digest mismatch for health/records.json");
+
+      fs.copyFileSync(path.join(FIXTURE_PATH, "health/records.json"), path.join(lab.fixtureRoot, "health/records.json"));
+      lab.contract.healthInputs.workflow = "authored-pass-cannot-hide-this-mutation";
+      lab.save(lab.contract);
+      const unhealthy = lab.run("health");
+      expect(unhealthy.status).toBe(1);
+      expect(unhealthy.stderr).toContain("synthetic health verification failed");
+    } finally { lab.cleanup(); }
+  });
+
+  it("evaluates default-deny locally and rejects policy weakening without network access", () => {
+    const lab = isolatedLab();
+    try {
+      lab.contract.networkPolicy.defaultDecision = "allow";
+      lab.save(lab.contract);
+      const result = lab.run("network");
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("network policy must default deny");
+    } finally { lab.cleanup(); }
+  });
+
+  it("fails closed on corrupt rollback state and invalid transition order", () => {
+    const corrupt = isolatedLab();
+    try {
+      fs.appendFileSync(path.join(corrupt.fixtureRoot, "rollback/backup-state-1.3.2.json"), "corrupt\n");
+      const result = corrupt.run("rollback");
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("digest mismatch for rollback/backup-state-1.3.2.json");
+    } finally { corrupt.cleanup(); }
+
+    const reordered = isolatedLab();
+    try {
+      [reordered.contract.rollbackPlan.steps[1], reordered.contract.rollbackPlan.steps[4]] = [reordered.contract.rollbackPlan.steps[4], reordered.contract.rollbackPlan.steps[1]];
+      reordered.save(reordered.contract);
+      const result = reordered.run("rollback");
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("invalid rollback transition: restore-accepted-application");
+    } finally { reordered.cleanup(); }
+  });
+
+  it("refuses symlinked fixture inputs under the no-follow boundary", () => {
+    const lab = isolatedLab();
+    try {
+      const target = path.join(lab.fixtureRoot, "bundle/config/internal-dns-2026.10.json");
+      fs.unlinkSync(target);
+      fs.symlinkSync(path.join(FIXTURE_PATH, "bundle/config/internal-dns-2026.10.json"), target);
+      const result = lab.run("inventory");
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("symlink input refused");
+    } finally { lab.cleanup(); }
   });
 
   it("accepts rubric-complete deployment evidence without claiming customer acceptance", () => {

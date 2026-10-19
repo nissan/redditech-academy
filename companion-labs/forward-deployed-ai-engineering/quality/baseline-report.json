@@ -49,7 +49,7 @@
       "id": "zero-placeholders",
       "status": "pass",
       "details": {
-        "filesScanned": 46,
+        "filesScanned": 57,
         "matches": 0
       }
     },
@@ -57,7 +57,7 @@
       "id": "credential-signatures",
       "status": "pass",
       "details": {
-        "filesScanned": 46,
+        "filesScanned": 57,
         "matches": 0
       }
     }
