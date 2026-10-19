@@ -82,14 +82,14 @@ describe("Forward Deployed AI Engineering C0a discovery concepts", () => {
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 2,
-      quizzes: 1,
+      lessons: 3,
+      quizzes: 2,
       challenges: 1,
       downloads: 4,
       interactiveLessons: 1,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
-    expect(course?.issues.missingQuizzes).toHaveLength(11);
+    expect(course?.issues.missingQuizzes).toHaveLength(10);
   });
 });

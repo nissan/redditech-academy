@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 interface JsonEditorProps {
   template: string;
-  trustedOptions?: Record<string, JsonEditorTrustedOption[]>;
+  trustedOptions?: Record<string, Array<JsonEditorTrustedOption | string>>;
   onSubmit: (value: string) => void;
   loading?: boolean;
 }
@@ -13,6 +13,18 @@ export interface JsonEditorTrustedOption {
   id: string;
   meaning: string;
   appliesTo: string[];
+}
+
+function isReferenceOption(
+  option: JsonEditorTrustedOption | string
+): option is JsonEditorTrustedOption {
+  return (
+    typeof option === "object" &&
+    typeof option.id === "string" &&
+    typeof option.meaning === "string" &&
+    Array.isArray(option.appliesTo) &&
+    option.appliesTo.every((path) => typeof path === "string")
+  );
 }
 
 export function JsonEditor({
@@ -45,6 +57,12 @@ export function JsonEditor({
   };
 
   const lineCount = value.split('\n').length;
+  const referenceGroups = Object.entries(trustedOptions).flatMap(
+    ([group, options]) =>
+      options.length > 0 && options.every(isReferenceOption)
+        ? ([[group, options]] as const)
+        : []
+  );
 
   return (
     <div className="flex flex-col h-full">
@@ -52,7 +70,7 @@ export function JsonEditor({
         JSON Editor
       </div>
 
-      {Object.keys(trustedOptions).length > 0 && (
+      {referenceGroups.length > 0 && (
         <section
           aria-label="Trusted option reference"
           className="mb-3 rounded border border-cyan-700/40 bg-cyan-950/20 p-3"
@@ -64,7 +82,7 @@ export function JsonEditor({
             Replace each placeholder only with an ID listed below. The target path and meaning are visible before your first attempt.
           </p>
           <div className="space-y-3">
-            {Object.entries(trustedOptions).map(([group, options]) => (
+            {referenceGroups.map(([group, options]) => (
               <div key={group}>
                 <div className="mb-1 text-[11px] font-mono text-slate-400">{group}</div>
                 <ul className="space-y-1">

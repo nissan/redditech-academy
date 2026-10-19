@@ -1,0 +1,91 @@
+{
+  "id": "01-enterprise-identity-and-isolation-quiz",
+  "moduleId": "01-enterprise-identity-and-isolation",
+  "passingScore": 80,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "A HarbourCare user authenticates successfully but requests a confidential document from another business unit. What does authentication establish?",
+      "options": [
+        "That the user may read any document attached to their role name",
+        "That the presented evidence is bound to an identity, while authorisation still must evaluate this resource and action",
+        "That the document can be retrieved and filtered after generation",
+        "That cross-tenant access is safe when both users work for HarbourCare"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Authentication establishes identity confidence, not resource authority. Current lifecycle state plus tenant, role, document, and action policy must still produce an enforceable decision.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-identity-is-not-authority"
+    },
+    {
+      "id": "q2",
+      "question": "A HarbourCare buyer transfers from North to South. Which deprovisioning plan is strongest?",
+      "options": [
+        "Add the South role and remove North access at the next annual review",
+        "Change the display name because the same account remains valid",
+        "End the North assignment, revoke or expire active access, clear cached and application grants, then activate the approved South assignment with evidence",
+        "Keep both roles so the assistant can answer more questions"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A move is a lifecycle event, not an additive group change. The old authority and usable sessions must end, the new assignment must be approved, and both transitions need reviewable evidence.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-identity-is-not-authority"
+    },
+    {
+      "id": "q3",
+      "question": "When a HarbourCare South buyer requests a North restricted record, where must denial occur?",
+      "options": [
+        "After the record is added to model context but before the answer is displayed",
+        "After a downstream tool reads the record but before it writes anything",
+        "Before retrieval, context assembly, or tool execution receives protected content",
+        "Only after a security reviewer inspects the generated answer"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Policy before context prevents denied data from entering prompts, traces, memory, or tools. Post-retrieval filtering cannot undo exposure that has already occurred inside the system.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-identity-is-not-authority"
+    },
+    {
+      "id": "q4",
+      "question": "Which HarbourCare policy is sufficiently bound for a document read decision?",
+      "options": [
+        "Allow every authenticated employee",
+        "Allow anyone whose role text contains procurement",
+        "Allow only when active tenant assignment, role purpose, exact document policy, and requested action all match",
+        "Allow when the model says the request appears reasonable"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The decision must bind the current principal assignment to the tenant, role purpose, exact resource policy, and action. A valid login or broad role label is insufficient.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-identity-is-not-authority"
+    },
+    {
+      "id": "q5",
+      "question": "What is the safest HarbourCare audit record for a denied cross-tenant request?",
+      "options": [
+        "The complete denied document and bearer token for later debugging",
+        "Only the words access denied, with no policy or enforcement detail",
+        "Correlation and pseudonymous subject IDs, policy version, resource metadata, action, reason code, enforcement point, and timestamps",
+        "The generated prompt with every retrieved passage"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Traceable metadata can prove which policy and enforcement point denied the request. Restricted content and raw credentials would turn the audit trail into another leakage path.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-identity-is-not-authority"
+    },
+    {
+      "id": "q6",
+      "question": "A HarbourCare retrieval service identity can read both tenants because it uses one shared connector credential. What is the best correction?",
+      "options": [
+        "Keep the shared credential and rely on the model prompt to respect tenant boundaries",
+        "Give the service identity an administrator role so failures are easier to diagnose",
+        "Assign owned, least-privilege service scopes and enforce the user's tenant, document, and action policy before the connector receives a request",
+        "Log the connector credential so policy reviewers can reproduce requests"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A service identity needs an owner and narrow lifecycle-managed scopes, while user policy must still be enforced before connector execution. Shared broad credentials and prompt instructions do not provide isolation.",
+      "difficulty": "advanced",
+      "relatedLessonId": "01-identity-is-not-authority"
+    }
+  ]
+}

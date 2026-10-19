@@ -1,0 +1,141 @@
+---
+title: "Identity Is Not Authority"
+description: "Turn an authenticated HarbourCare identity into a lifecycle-bound, policy-enforced decision before protected context or tools are reached."
+slug: "01-identity-is-not-authority"
+duration: 40
+order: 1
+type: "standard"
+keyTakeaways:
+  - "Authentication establishes who or what presented an identity; it does not grant access by itself"
+  - "Provision and deprovision people and service identities through an owned, reviewable lifecycle"
+  - "Authorise tenant, role, document, and action together, then enforce the decision before context or tool execution"
+  - "Record redacted policy evidence that explains allow or deny without copying protected payloads or credentials"
+---
+
+# Identity Is Not Authority
+
+HarbourCare is a **fictional** regulated procurement organisation. A new **Customer signal** arrives after a North buyer transfers to the South business unit:
+
+> “Their HarbourCare login works, but yesterday the assistant still answered from a North supplier review. Can we just trust the business-unit claim in the login token?”
+
+The login proves neither that the transfer was provisioned correctly nor that this request is authorised. Identity, lifecycle, decision, and enforcement are separate controls. A safe design makes each boundary inspectable.
+
+## Authentication answers one question
+
+**Authentication** establishes that a person or workload successfully presented evidence bound to an identity. The result may carry claims such as subject ID, issuer, authentication time, and group membership.
+
+Authentication answers: **“Who or what presented this identity, to the confidence required here?”**
+
+It does not answer:
+
+- whether the identity is still active;
+- whether its tenant and role assignments are current;
+- whether it may read this particular document;
+- whether it may perform the requested action;
+- whether the downstream service will enforce the same decision.
+
+A valid session from another HarbourCare business unit is therefore an authenticated request, not an authorised one.
+
+## Provisioning and deprovisioning make identity a lifecycle
+
+**Provisioning and deprovisioning** connect business events to technical access. An owned lifecycle is safer than adding users to groups until something works.
+
+| Lifecycle event | Required control | Inspectable evidence |
+|---|---|---|
+| Join | Create one synthetic subject, assign an approved tenant and minimum role, set an expiry or review date | approved request ID, subject ID, assignment, owner, effective time |
+| Move | End the old assignment before the new one becomes effective; review cached groups and delegated access | old/new assignment IDs, effective times, reviewer, invalidation result |
+| Leave | Disable the subject, revoke active sessions or tokens where supported, remove group and role assignments, rotate solely held service credentials | revocation result, completed time, exceptions and owner |
+| Temporary access | Bind a narrow tenant, document class, action, purpose, and expiry | approval ID, scope, expiry, periodic review result |
+
+Deprovisioning is not complete merely because a directory account says “disabled.” The workflow must address active sessions, cached group membership, application-local grants, API credentials, and sole-owner service identities. Any delayed revocation becomes an explicit exception with an owner and deadline.
+
+Service identities need the same discipline. A retrieval worker receives only the scopes its job needs, cannot inherit a human approver's role, has a named owner, and expires or rotates predictably. Shared credentials erase accountability and are not a provisioning strategy.
+
+## Authorisation decides; policy enforcement makes it real
+
+**Authorisation** evaluates whether a principal may perform an action on a resource under current conditions. **Policy enforcement** blocks or permits the real data flow or operation based on that decision.
+
+Keeping these concepts separate exposes two common failures:
+
+1. the policy decision is correct, but protected data was already loaded before it ran;
+2. the application records “deny,” but a downstream adapter executes anyway.
+
+For HarbourCare, every decision binds four dimensions:
+
+| Dimension | Example attribute | Question |
+|---|---|---|
+| **Tenant** | `tenant-south` | Does the principal's active assignment match the resource's business unit? |
+| **Role** | `procurement_owner` | Does the current role support this business purpose? |
+| **Document** | `confidential supplier_review` | Is this identity permitted to use this exact resource and classification? |
+| **Action** | `read_document` or `draft_purchase` | Is this operation allowed, including thresholds and approval conditions? |
+
+An allow requires all applicable predicates. Missing, stale, conflicting, or unverifiable attributes fail closed. An unauthorised cross-tenant or cross-business-unit request is denied even when the identity is valid and has the same role name in another unit.
+
+## Policy before context
+
+**Policy before context** is the ordering invariant:
+
+1. authenticate the principal or service identity;
+2. resolve current lifecycle state and trusted assignments;
+3. identify the requested tenant, document, and action without loading the protected payload;
+4. evaluate the policy;
+5. enforce deny immediately, or retrieve only the authorised resource fields;
+6. assemble permitted model context or call the approved downstream tool;
+7. record redacted decision evidence.
+
+```text
+request metadata
+  -> authenticated identity
+  -> active assignment
+  -> tenant + role + document + action decision
+      -> DENY: audit metadata; no retrieval; no tool call
+      -> ALLOW: fetch permitted fields only -> context or bounded tool
+```
+
+Filtering after retrieval is too late: restricted content may already be in memory, a prompt, a trace, or an error. The same ordering applies to actions. A restricted action is denied before a downstream tool receives arguments or credentials.
+
+### HarbourCare transfer example
+
+The transferred buyer presents a valid identity with a current South assignment and asks for `doc-north-staff-contact`.
+
+- **Authentication:** valid synthetic HarbourCare subject.
+- **Lifecycle state:** active, South assignment effective, North assignment ended.
+- **Requested resource:** North tenant, restricted staff record.
+- **Requested action:** read document.
+- **Authorisation:** deny because tenant and document policy do not match the active assignment.
+- **Enforcement:** return a generic denial before the North record is retrieved or model context is assembled.
+
+Changing the role text to `procurement_owner` does not change the decision. The same role name is not a bridge between business units.
+
+## Audit evidence without another leak
+
+**Audit evidence** must let a reviewer reconstruct the policy decision without becoming a second copy of the protected dataset.
+
+A useful record contains metadata such as:
+
+- correlation ID and policy version;
+- pseudonymous subject or service-identity ID;
+- trusted tenant and role assignment IDs;
+- requested resource ID, classification, and action;
+- allow or deny plus reason code and enforcement point;
+- decision and enforcement timestamps;
+- provisioning change or approval reference when relevant.
+
+It contains **no restricted content or raw credential**. Do not log document text, prompts containing denied material, bearer tokens, session cookies, or connector secrets. Audit access is itself authorised, retained for a defined period, and monitored.
+
+For an allow, evidence should show which policy version permitted which bounded resource and action. For a deny, it should show that the enforcement point ran before retrieval or tool execution. “Access denied” alone is not traceable; copying the denied document into the log is unsafe.
+
+## Customer explanation
+
+HarbourCare can explain the control in plain language:
+
+> A successful login identifies the requester. Current assignments and resource policy decide what that requester may do. The application enforces the decision before it loads protected content or invokes a business action, and the audit trail records the decision without recording the protected content itself.
+
+The applied mission in the next slice will turn this model into an access matrix and deterministic policy traces. This lesson establishes the decision boundaries only; it does not claim that a live identity provider or production tenant has been configured.
+
+## Further reading
+
+- [NIST SP 800-63-4: Digital Identity Guidelines](https://csrc.nist.gov/pubs/sp/800/63/4/final) — identity proofing, authentication, and federation guidance.
+- [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final) — resource-focused, continuously evaluated access decisions and enforcement concepts.
+
+These sources inform the transferable control model. The HarbourCare signal, lifecycle, examples, policy table, explanations, and assessment are original Redditech Academy material.

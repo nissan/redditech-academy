@@ -13,6 +13,21 @@ function setPath(input: Record<string, any>, dottedPath: string, value: string):
 }
 
 describe("FDE discovery trusted-option UI", () => {
+  it("ignores legacy flat trusted-option arrays instead of rendering them as FDE references", () => {
+    render(
+      <JsonEditor
+        template={'{"answer":"SELECT_FROM_TRUSTED_OPTIONS"}'}
+        trustedOptions={{ role_ids: ["legacy-role-id"] }}
+        onSubmit={vi.fn()}
+      />
+    );
+
+    expect(screen.queryByLabelText("Trusted option reference")).not.toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toHaveValue(
+      '{"answer":"SELECT_FROM_TRUSTED_OPTIONS"}'
+    );
+  });
+
   it("can complete every placeholder from information visible before the first attempt", () => {
     const onSubmit = vi.fn();
     render(

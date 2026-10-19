@@ -91,8 +91,8 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       catalogAccessStatus: "catalog-metadata-only",
       counts: {
         modules: 12,
-        lessons: 2,
-        quizzes: 1,
+        lessons: 3,
+        quizzes: 2,
         challenges: 1,
         downloads: 4,
         interactiveLessons: 1,
@@ -100,7 +100,7 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
-    expect(course?.issues.missingQuizzes).toHaveLength(11);
+    expect(course?.issues.missingQuizzes).toHaveLength(10);
     expect(fs.readdirSync(path.join(COURSE_DIR, "challenges"))).toEqual([
       "fde-00-discovery-mission.json",
     ]);
@@ -132,6 +132,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
         courseSlug: COURSE_SLUG,
         moduleSlug: EXPECTED_MODULES[0],
         lessonSlug: "02-bound-the-pilot-mission",
+      },
+      {
+        courseSlug: COURSE_SLUG,
+        moduleSlug: EXPECTED_MODULES[1],
+        lessonSlug: "01-identity-is-not-authority",
       },
     ]);
   });
