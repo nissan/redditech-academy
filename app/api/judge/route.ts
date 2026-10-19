@@ -3,6 +3,10 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import path from "path";
 import fs from "fs";
 import { createJudgeLLM, judgeProviderLabel } from "@/lib/judge-llm";
+import {
+  gradeFdeDiscovery,
+  isTrustedFdeDiscoveryChallenge,
+} from "@/lib/fde-discovery-grader";
 
 interface ChallengeStep {
   id: string;
@@ -18,8 +22,13 @@ interface ChallengePrefilled {
 
 interface ChallengeSpec {
   id: string;
+  type?: string;
   spec: string;
   validation: unknown;
+  grading?: {
+    type?: string;
+    contractVersion?: string;
+  };
   eli_notes?: string;
   hints?: string[];
   prefilled?: ChallengePrefilled;
@@ -171,6 +180,18 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   // ── Programmatic grading for sequence-completer challenges ──────────────────
   const seqGrade = gradeSequence(challenge, userInput);
+
+  // Deterministic FDE grading is selected only by repository-owned challenge
+  // metadata. Caller-controlled environment/provider fields cannot enter this
+  // boundary or cause a provider to be constructed.
+  if (isTrustedFdeDiscoveryChallenge(challenge)) {
+    const grade = gradeFdeDiscovery(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-discovery-v1",
+    });
+  }
 
   // Pick system prompt — Socratic mode for coaching challenges
   const systemPrompt = challenge.socratic_mode

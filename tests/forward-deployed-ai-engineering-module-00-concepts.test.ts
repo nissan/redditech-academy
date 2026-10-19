@@ -21,7 +21,7 @@ describe("Forward Deployed AI Engineering C0a discovery concepts", () => {
   it("adds one standard customer-signal lesson with inspectable discovery boundaries", () => {
     const module = getModule(COURSE_SLUG, MODULE_SLUG);
 
-    expect(module?.lessons).toHaveLength(1);
+    expect(module?.lessons).toHaveLength(2);
     expect(module?.lessons[0].frontmatter).toMatchObject({
       slug: "01-discovery-before-delivery",
       order: 1,
@@ -75,18 +75,18 @@ describe("Forward Deployed AI Engineering C0a discovery concepts", () => {
     ).toHaveLength(5);
   });
 
-  it("updates only the first concept slice in the cumulative course inventory", () => {
+  it("preserves the concept slice in the cumulative module 0 inventory", () => {
     const course = buildCourseInventoryReport().courses.find(
       (candidate) => candidate.slug === COURSE_SLUG
     );
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 1,
+      lessons: 2,
       quizzes: 1,
-      challenges: 0,
-      downloads: 0,
-      interactiveLessons: 0,
+      challenges: 1,
+      downloads: 4,
+      interactiveLessons: 1,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
