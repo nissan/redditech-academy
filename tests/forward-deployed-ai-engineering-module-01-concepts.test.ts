@@ -21,14 +21,15 @@ describe("Forward Deployed AI Engineering C1a identity and isolation concepts", 
   it("adds one standard customer-signal lesson with explicit identity and policy boundaries", () => {
     const module = getModule(COURSE_SLUG, MODULE_SLUG);
 
-    expect(module?.lessons).toHaveLength(1);
-    expect(module?.lessons[0].frontmatter).toMatchObject({
+    expect(module?.lessons).toHaveLength(2);
+    const conceptLesson = module?.lessons.find((lesson) => lesson.frontmatter.slug === "01-identity-is-not-authority");
+    expect(conceptLesson?.frontmatter).toMatchObject({
       slug: "01-identity-is-not-authority",
       order: 1,
       type: "standard",
       duration: 40,
     });
-    expect(module?.lessons[0].frontmatter.keyTakeaways).toHaveLength(4);
+    expect(conceptLesson?.frontmatter.keyTakeaways).toHaveLength(4);
 
     const lesson = fs.readFileSync(
       path.join(MODULE_DIR, "lessons", "01-identity-is-not-authority.mdx"),
@@ -91,18 +92,18 @@ describe("Forward Deployed AI Engineering C1a identity and isolation concepts", 
     expect(JSON.stringify(quiz)).toMatch(/audit/i);
   });
 
-  it("preserves the bounded C1a inventory without adding a mission or challenge", () => {
+  it("preserves the C1a concepts in the cumulative C1b inventory", () => {
     const course = buildCourseInventoryReport().courses.find(
       (candidate) => candidate.slug === COURSE_SLUG
     );
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 3,
+      lessons: 4,
       quizzes: 2,
-      challenges: 1,
-      downloads: 4,
-      interactiveLessons: 1,
+      challenges: 2,
+      downloads: 5,
+      interactiveLessons: 2,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);

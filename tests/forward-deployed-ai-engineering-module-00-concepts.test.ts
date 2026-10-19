@@ -82,11 +82,11 @@ describe("Forward Deployed AI Engineering C0a discovery concepts", () => {
 
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 3,
+      lessons: 4,
       quizzes: 2,
-      challenges: 1,
-      downloads: 4,
-      interactiveLessons: 1,
+      challenges: 2,
+      downloads: 5,
+      interactiveLessons: 2,
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);

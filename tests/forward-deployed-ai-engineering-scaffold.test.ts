@@ -91,18 +91,19 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
       catalogAccessStatus: "catalog-metadata-only",
       counts: {
         modules: 12,
-        lessons: 3,
+        lessons: 4,
         quizzes: 2,
-        challenges: 1,
-        downloads: 4,
-        interactiveLessons: 1,
+        challenges: 2,
+        downloads: 5,
+        interactiveLessons: 2,
       },
     });
     expect(course?.issues.inconsistentFrontmatter).toEqual([]);
     expect(course?.issues.brokenReferences).toEqual([]);
     expect(course?.issues.missingQuizzes).toHaveLength(10);
-    expect(fs.readdirSync(path.join(COURSE_DIR, "challenges"))).toEqual([
+    expect(fs.readdirSync(path.join(COURSE_DIR, "challenges")).sort()).toEqual([
       "fde-00-discovery-mission.json",
+      "fde-01-access-policy-mission.json",
     ]);
   });
 
@@ -137,6 +138,11 @@ describe("Forward Deployed AI Engineering B1 scaffold", () => {
         courseSlug: COURSE_SLUG,
         moduleSlug: EXPECTED_MODULES[1],
         lessonSlug: "01-identity-is-not-authority",
+      },
+      {
+        courseSlug: COURSE_SLUG,
+        moduleSlug: EXPECTED_MODULES[1],
+        lessonSlug: "02-enforce-policy-before-context",
       },
     ]);
   });

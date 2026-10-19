@@ -162,7 +162,7 @@ describe("Forward Deployed AI Engineering C0b discovery mission", () => {
       "disconnected-production-adr-template.md",
       "discovery-evidence-submission-template.json",
     ];
-    expect(fs.readdirSync(DOWNLOAD_DIR).sort()).toEqual([...downloads].sort());
+    expect(fs.readdirSync(DOWNLOAD_DIR)).toEqual(expect.arrayContaining(downloads));
     for (const file of downloads) {
       const content = fs.readFileSync(path.join(DOWNLOAD_DIR, file), "utf8");
       expect(content).toMatch(/HarbourCare/);
@@ -173,11 +173,11 @@ describe("Forward Deployed AI Engineering C0b discovery mission", () => {
     const course = buildCourseInventoryReport().courses.find((candidate) => candidate.slug === COURSE_SLUG);
     expect(course?.counts).toMatchObject({
       modules: 12,
-      lessons: 3,
+      lessons: 4,
       quizzes: 2,
-      challenges: 1,
-      downloads: 4,
-      interactiveLessons: 1,
+      challenges: 2,
+      downloads: 5,
+      interactiveLessons: 2,
     });
     expect(course?.issues.brokenReferences).toEqual([]);
     expect(course?.compatibilityBuckets.environmentCoverageGaps).toEqual([]);

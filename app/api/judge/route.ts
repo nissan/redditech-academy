@@ -7,6 +7,10 @@ import {
   gradeFdeDiscovery,
   isTrustedFdeDiscoveryChallenge,
 } from "@/lib/fde-discovery-grader";
+import {
+  gradeFdeAccessPolicy,
+  isTrustedFdeAccessPolicyChallenge,
+} from "@/lib/fde-access-policy-grader";
 import { gradeStructured } from "@/lib/structured-grader";
 
 interface ChallengeStep {
@@ -199,6 +203,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       ...grade,
       hints: grade.pass ? undefined : challenge.hints,
       _provider: "deterministic-fde-discovery-v1",
+    });
+  }
+
+  if (isTrustedFdeAccessPolicyChallenge(challenge)) {
+    const grade = gradeFdeAccessPolicy(challenge, userInput);
+    return NextResponse.json({
+      ...grade,
+      hints: grade.pass ? undefined : challenge.hints,
+      _provider: "deterministic-fde-access-policy-v1",
     });
   }
 

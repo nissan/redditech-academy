@@ -1,0 +1,68 @@
+---
+title: "Enforce Policy Before Context"
+description: "Build HarbourCare's access matrix, run deterministic allow and deny cases, and preserve redacted policy evidence."
+slug: "02-enforce-policy-before-context"
+duration: 55
+order: 2
+keyTakeaways:
+  - "Treat provisioning and deprovisioning as enforceable lifecycle state"
+  - "Give human and service identities distinct, tenant-bound roles and scopes"
+  - "Evaluate tenant, role, document, and action before protected retrieval, context assembly, or tool invocation"
+  - "Record traceable policy metadata while logging no restricted content or raw credential"
+type: "interactive"
+environment: "json-editor"
+challengeId: "fde-01-access-policy-mission"
+missionTitle: "Mission 01 — Enforce Policy Before Context"
+estimatedMinutes: 45
+---
+
+# Mission brief
+
+HarbourCare is fictional and all identities, documents, transactions, and values in this lab are synthetic. A buyer moved from North to South, a former North buyer has been deprovisioned, and a North retrieval worker uses a service identity. HarbourCare needs evidence that its policy protects documents and actions rather than merely trusting a successful login.
+
+The editor's **Trusted option reference** is visible before your first attempt. It defines every selectable identity kind, lifecycle state, role, action, decision, reason code, and enforcement point. Use those meanings and the fixed synthetic case metadata; do not invent identifiers or infer authority from a role name alone.
+
+## Provisioning and deprovisioning
+
+The access matrix contains an active North human, a human whose active assignment moved to South, a deprovisioned North human, and an active North service identity. The moved identity has no surviving North assignment. The deprovisioned identity must stop at lifecycle evaluation even if an older role value remains in the evidence case.
+
+## Human and service identities
+
+The human `procurement_owner` role permits the two declared actions only inside its active tenant and only when the resource policy also permits it. The service `retrieval_worker` has a narrower scope: authorised document reads only. A service identity never inherits a human approver's authority.
+
+## Tenant, role, document, and action policy
+
+Complete the matrix and trace for all five cases:
+
+1. authorised North human reading the North procurement policy;
+2. authorised North retrieval service reading that policy;
+3. moved South human requesting the restricted North contact document;
+4. deprovisioned North human requesting a North policy document; and
+5. South human requesting a draft action on a North purchase record.
+
+An allow requires active lifecycle state, tenant match, an allowed human role or service scope, document policy, and action. A deny stops at the first failed boundary. The two document allows may retrieve and assemble only the permitted context. The cross-tenant read is denied **before protected retrieval** and therefore before context assembly. The cross-business-unit action is denied **before downstream tool** invocation.
+
+## Redacted audit evidence
+
+Each trace records a correlation ID, pseudonymous identity and assignment references, policy version, tenant, roles, resource reference, classification, action, decision, reason codes, enforcement point, and stage booleans. It records **no restricted content or raw credential**. Do not add document text, prompt payloads, tokens, cookies, passwords, connector secrets, or action credentials to the evidence.
+
+## Download
+
+- [Identity access evidence template](/assets/courses/forward-deployed-ai-engineering/downloads/identity-access-evidence-template.json)
+
+Templates are not completed evidence. The download is a collection aid whose `evidenceStatus` remains `template-not-evidence` until a learner runs, reviews, and binds the lab traces.
+
+## Lab instructions
+
+The canonical path is deterministic, local, CPU-only, and makes no provider call. It uses the versioned policy at `companion-labs/forward-deployed-ai-engineering/policies/access-policy-v1.json`; no credential, live customer data, network listener, or paid API is required.
+
+1. From the repository root, run the authorised human case: `node companion-labs/forward-deployed-ai-engineering/scripts/policy-lab.mjs run --case authorized-human-document-read`.
+   Expected output includes `"decision": "allow"`, `"retrievalAttempted": true`, `"contextAssembled": true`, and `"toolInvoked": false`.
+2. Run the moved-human denial: `node companion-labs/forward-deployed-ai-engineering/scripts/policy-lab.mjs run --case denied-moved-human-cross-tenant-read`.
+   Expected output includes `"decision": "deny"`, reason `tenant-mismatch`, and false values for retrieval, context, and tool stages.
+3. Run the cross-business-unit action denial: `node companion-labs/forward-deployed-ai-engineering/scripts/policy-lab.mjs run --case denied-cross-business-unit-action`.
+   Expected output includes `"decision": "deny"`, enforcement point `before-downstream-tool`, and `"toolInvoked": false`.
+4. Inspect the other two versioned cases for the authorised service scope and deprovisioned-human lifecycle denial, then complete every matrix row and trace in the editor.
+5. Confirm every trace keeps `contentLogged` and `rawCredentialLogged` false before saving the evidence aid.
+
+Passing the rubric does not mean HarbourCare has accepted a production control. It proves that the submitted synthetic matrix and traces match this deterministic training contract. Customer acceptance requires a separately owned review and remains `not-claimed` here.

@@ -1,0 +1,65 @@
+{
+  "id": "fde-01-access-policy-mission",
+  "type": "json-editor",
+  "spec": "Complete the HarbourCare access matrix and policy traces from the visible trusted references. Prove both authorised human/service paths and lifecycle, cross-tenant, and cross-business-unit denials before protected retrieval, model context, or downstream tools.",
+  "grading": {
+    "type": "fde-access-policy-v1",
+    "contractVersion": "fde-access-policy-v1",
+    "providerCallsAllowed": false
+  },
+  "validation": {
+    "rubric": [
+      "provisioning-and-deprovisioning",
+      "human-and-service-identities",
+      "tenant-role-document-action-policy",
+      "authorised-path-trace",
+      "pre-context-cross-tenant-denial",
+      "pre-tool-cross-business-unit-denial",
+      "redacted-audit-evidence",
+      "no-secret-or-content-logging"
+    ]
+  },
+  "hints": [
+    "An authenticated identity still needs an active assignment, matching tenant, permitted role or service scope, resource policy, and action.",
+    "A deny trace must show zero retrieval, context assembly, and tool invocation.",
+    "Passing proves rubric completion only; keep customerAcceptance set to not-claimed."
+  ],
+  "prefilled": {
+    "trusted_options": {
+      "identityKindIds": [
+        { "id": "human", "meaning": "A provisioned person with a current or ended tenant assignment.", "appliesTo": ["accessMatrix[0].identityKind", "accessMatrix[2].identityKind", "accessMatrix[3].identityKind", "accessMatrix[4].identityKind"] },
+        { "id": "service", "meaning": "A non-human retrieval workload with an owned, narrow scope.", "appliesTo": ["accessMatrix[1].identityKind"] }
+      ],
+      "lifecycleStateIds": [
+        { "id": "active", "meaning": "The assignment is currently provisioned and eligible for policy evaluation.", "appliesTo": ["accessMatrix[0].lifecycleState", "accessMatrix[1].lifecycleState", "accessMatrix[2].lifecycleState", "accessMatrix[4].lifecycleState"] },
+        { "id": "deprovisioned", "meaning": "The assignment has ended and must fail before access.", "appliesTo": ["accessMatrix[3].lifecycleState"] }
+      ],
+      "roleIds": [
+        { "id": "procurement_owner", "meaning": "Tenant-bound human procurement role; the name does not grant another business unit's access.", "appliesTo": ["accessMatrix[0].roleIds[0]", "accessMatrix[2].roleIds[0]", "accessMatrix[3].roleIds[0]", "accessMatrix[4].roleIds[0]"] },
+        { "id": "retrieval_worker", "meaning": "Service role limited to authorised tenant document reads.", "appliesTo": ["accessMatrix[1].roleIds[0]"] }
+      ],
+      "actionIds": [
+        { "id": "read_document", "meaning": "Read only the authorised document after the policy allows retrieval.", "appliesTo": ["accessMatrix[0].actionId", "accessMatrix[1].actionId", "accessMatrix[2].actionId", "accessMatrix[3].actionId"] },
+        { "id": "draft_purchase", "meaning": "Invoke the bounded draft action only after policy allows the downstream tool.", "appliesTo": ["accessMatrix[4].actionId"] }
+      ],
+      "decisionIds": [
+        { "id": "allow", "meaning": "Every applicable lifecycle, tenant, role or scope, resource, and action predicate passed.", "appliesTo": ["accessMatrix[0].expectedDecision", "accessMatrix[1].expectedDecision", "policyTraces[0].decision", "policyTraces[1].decision"] },
+        { "id": "deny", "meaning": "At least one required predicate failed and enforcement stopped the protected flow.", "appliesTo": ["accessMatrix[2].expectedDecision", "accessMatrix[3].expectedDecision", "accessMatrix[4].expectedDecision", "policyTraces[2].decision", "policyTraces[3].decision", "policyTraces[4].decision"] }
+      ],
+      "reasonCodeIds": [
+        { "id": "lifecycle-active", "meaning": "The current assignment is active.", "appliesTo": ["policyTraces[0].reasonCodeIds[0]", "policyTraces[1].reasonCodeIds[0]"] },
+        { "id": "lifecycle-inactive", "meaning": "The assignment is deprovisioned, so evaluation stops.", "appliesTo": ["policyTraces[3].reasonCodeIds[0]"] },
+        { "id": "tenant-match", "meaning": "The active identity assignment and resource tenant match.", "appliesTo": ["policyTraces[0].reasonCodeIds[1]", "policyTraces[1].reasonCodeIds[1]"] },
+        { "id": "tenant-mismatch", "meaning": "The requested resource belongs to another tenant or business unit.", "appliesTo": ["policyTraces[2].reasonCodeIds[0]", "policyTraces[4].reasonCodeIds[0]"] },
+        { "id": "role-action-allowed", "meaning": "The human role permits the requested action in its tenant.", "appliesTo": ["policyTraces[0].reasonCodeIds[2]"] },
+        { "id": "service-scope-allowed", "meaning": "The service identity's narrow scope permits this read.", "appliesTo": ["policyTraces[1].reasonCodeIds[2]"] },
+        { "id": "document-policy-allowed", "meaning": "The resource classification permits the evaluated role or service scope.", "appliesTo": ["policyTraces[0].reasonCodeIds[3]", "policyTraces[1].reasonCodeIds[3]"] }
+      ],
+      "enforcementPointIds": [
+        { "id": "before-protected-retrieval", "meaning": "Decide before document bytes are retrieved or model context is assembled.", "appliesTo": ["policyTraces[0].enforcementPointId", "policyTraces[1].enforcementPointId", "policyTraces[2].enforcementPointId", "policyTraces[3].enforcementPointId"] },
+        { "id": "before-downstream-tool", "meaning": "Decide before arguments or credentials reach a downstream action adapter.", "appliesTo": ["policyTraces[4].enforcementPointId"] }
+      ]
+    },
+    "template": "{\n  \"contractVersion\": \"fde-access-policy-v1\",\n  \"missionId\": \"fde-01-access-policy-mission\",\n  \"evidenceStatus\": \"rubric-complete\",\n  \"customerAcceptance\": \"not-claimed\",\n  \"accessMatrix\": [\n    {\"caseId\":\"authorized-human-document-read\",\"identityKind\":\"human\",\"lifecycleState\":\"active\",\"tenantId\":\"tenant-north\",\"roleIds\":[\"procurement_owner\"],\"resourceId\":\"doc-north-procurement-policy\",\"actionId\":\"read_document\",\"expectedDecision\":\"SELECT_ALLOW_OR_DENY\"},\n    {\"caseId\":\"authorized-service-document-read\",\"identityKind\":\"service\",\"lifecycleState\":\"active\",\"tenantId\":\"tenant-north\",\"roleIds\":[\"retrieval_worker\"],\"resourceId\":\"doc-north-procurement-policy\",\"actionId\":\"read_document\",\"expectedDecision\":\"SELECT_ALLOW_OR_DENY\"},\n    {\"caseId\":\"denied-moved-human-cross-tenant-read\",\"identityKind\":\"human\",\"lifecycleState\":\"active\",\"tenantId\":\"tenant-south\",\"roleIds\":[\"procurement_owner\"],\"resourceId\":\"doc-north-staff-contact\",\"actionId\":\"read_document\",\"expectedDecision\":\"SELECT_ALLOW_OR_DENY\"},\n    {\"caseId\":\"denied-deprovisioned-human-read\",\"identityKind\":\"human\",\"lifecycleState\":\"deprovisioned\",\"tenantId\":\"tenant-north\",\"roleIds\":[\"procurement_owner\"],\"resourceId\":\"doc-north-procurement-policy\",\"actionId\":\"read_document\",\"expectedDecision\":\"SELECT_ALLOW_OR_DENY\"},\n    {\"caseId\":\"denied-cross-business-unit-action\",\"identityKind\":\"human\",\"lifecycleState\":\"active\",\"tenantId\":\"tenant-south\",\"roleIds\":[\"procurement_owner\"],\"resourceId\":\"erp-po-north-1001\",\"actionId\":\"draft_purchase\",\"expectedDecision\":\"SELECT_ALLOW_OR_DENY\"}\n  ],\n  \"policyTraces\": [\n    {\"caseId\":\"authorized-human-document-read\",\"decision\":\"SELECT_ALLOW_OR_DENY\",\"reasonCodeIds\":[\"SELECT_REASON_CODE\",\"SELECT_REASON_CODE\",\"SELECT_REASON_CODE\",\"SELECT_REASON_CODE\"],\"enforcementPointId\":\"SELECT_ENFORCEMENT_POINT\",\"retrievalAttempted\":true,\"contextAssembled\":true,\"toolInvoked\":false,\"contentLogged\":false,\"rawCredentialLogged\":false},\n    {\"caseId\":\"authorized-service-document-read\",\"decision\":\"SELECT_ALLOW_OR_DENY\",\"reasonCodeIds\":[\"SELECT_REASON_CODE\",\"SELECT_REASON_CODE\",\"SELECT_REASON_CODE\",\"SELECT_REASON_CODE\"],\"enforcementPointId\":\"SELECT_ENFORCEMENT_POINT\",\"retrievalAttempted\":true,\"contextAssembled\":true,\"toolInvoked\":false,\"contentLogged\":false,\"rawCredentialLogged\":false},\n    {\"caseId\":\"denied-moved-human-cross-tenant-read\",\"decision\":\"SELECT_ALLOW_OR_DENY\",\"reasonCodeIds\":[\"SELECT_REASON_CODE\"],\"enforcementPointId\":\"SELECT_ENFORCEMENT_POINT\",\"retrievalAttempted\":false,\"contextAssembled\":false,\"toolInvoked\":false,\"contentLogged\":false,\"rawCredentialLogged\":false},\n    {\"caseId\":\"denied-deprovisioned-human-read\",\"decision\":\"SELECT_ALLOW_OR_DENY\",\"reasonCodeIds\":[\"SELECT_REASON_CODE\"],\"enforcementPointId\":\"SELECT_ENFORCEMENT_POINT\",\"retrievalAttempted\":false,\"contextAssembled\":false,\"toolInvoked\":false,\"contentLogged\":false,\"rawCredentialLogged\":false},\n    {\"caseId\":\"denied-cross-business-unit-action\",\"decision\":\"SELECT_ALLOW_OR_DENY\",\"reasonCodeIds\":[\"SELECT_REASON_CODE\"],\"enforcementPointId\":\"SELECT_ENFORCEMENT_POINT\",\"retrievalAttempted\":false,\"contextAssembled\":false,\"toolInvoked\":false,\"contentLogged\":false,\"rawCredentialLogged\":false}\n  ]\n}"
+  }
+}
