@@ -1,0 +1,63 @@
+{
+  "id": "07-interoperability-and-handoff-quiz",
+  "moduleId": "07-interoperability-and-handoff",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "SPIN primarily helps with:",
+      "options": [
+        "Questioning",
+        "Procurement",
+        "Forecasting",
+        "Certification"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Method Interoperability and Handoff lesson: Use each framework for its job and carry customer context without duplication.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "MEDDPICC can add:",
+      "options": [
+        "Champion and paper-process rigor",
+        "A new Situation",
+        "Only questions",
+        "No value"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Method Interoperability and Handoff lesson: Use each framework for its job and carry customer context without duplication.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "WbD advises teams with adopted MEDDIC to:",
+      "options": [
+        "Discard it",
+        "Integrate rather than replace it",
+        "Rename it",
+        "Hide it"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Method Interoperability and Handoff lesson: Use each framework for its job and carry customer context without duplication.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "A strong handoff preserves:",
+      "options": [
+        "Buyer context, evidence, gaps, and next outcomes",
+        "Only contract value",
+        "Only notes",
+        "Only product features"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Method Interoperability and Handoff lesson: Use each framework for its job and carry customer context without duplication.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

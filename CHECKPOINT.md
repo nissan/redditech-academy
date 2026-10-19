@@ -37,3 +37,21 @@ blockers: none
 - 6 interactive lesson routes generated at /courses/auth-training/learn/02-oauth2/*/interactive
 - /api/judge dynamic route registered
 - 0 TypeScript errors
+
+---
+
+## Issue #97 checkpoint — scaffold, content, and validation complete
+
+- Branch: `feat/97-spiced-course`
+- Added protected (`free: false`), catalog-visible course metadata and eight ordered module manifests.
+- Added 16 lessons, eight canonical JSON-editor missions, eight four-question quizzes, and eight practical downloads.
+- Added deterministic JSON mission preflight so missing claim provenance or next-action ownership is rejected before grading.
+- Added source, originality, attribution, and independent-course notices; the Redditech badge is not official certification.
+- Inventory: 8 modules, 16 lessons, 8 challenges, 8 quizzes / 32 questions, 8 downloads.
+- Validation: course content 21/21; full suite 86/86; type-check; production build (741 static pages); `git diff --check`.
+- Removed build-only Mermaid cache and TypeScript incremental artifacts from the issue diff.
+- No deployment or merge performed.
+
+### Next
+
+Commit and push `feat/97-spiced-course`, then open the issue #97 review PR.

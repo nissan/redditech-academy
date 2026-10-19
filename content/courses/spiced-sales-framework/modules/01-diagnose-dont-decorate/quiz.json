@@ -1,0 +1,63 @@
+{
+  "id": "01-diagnose-dont-decorate-quiz",
+  "moduleId": "01-diagnose-dont-decorate",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What does CE mean in SPICED?",
+      "options": [
+        "Customer Emotion",
+        "Critical Event",
+        "Commercial Evidence",
+        "Contract Execution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Diagnose, Don't Decorate lesson: Explain the five information groups and separate buyer evidence from seller inference.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "Which record is strongest?",
+      "options": [
+        "Seller guess",
+        "Undated CRM note",
+        "Buyer statement with source and date",
+        "Marketing claim"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Review the Diagnose, Don't Decorate lesson: Explain the five information groups and separate buyer evidence from seller inference.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "Must SPICED be discovered in acronym order?",
+      "options": [
+        "Always",
+        "Only in enterprise",
+        "No",
+        "Only by managers"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Review the Diagnose, Don't Decorate lesson: Explain the five information groups and separate buyer evidence from seller inference.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "What makes a diagnosis useful?",
+      "options": [
+        "Every field has text",
+        "The evidence forms a coherent buyer-verified story",
+        "It is long",
+        "It predicts a close date alone"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Diagnose, Don't Decorate lesson: Explain the five information groups and separate buyer evidence from seller inference.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

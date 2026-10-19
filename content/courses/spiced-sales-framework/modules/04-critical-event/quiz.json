@@ -1,0 +1,63 @@
+{
+  "id": "04-critical-event-quiz",
+  "moduleId": "04-critical-event",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "A Critical Event requires:",
+      "options": [
+        "A seller deadline",
+        "A date and consequence",
+        "A discount",
+        "A demo"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Critical Event and Reverse Timeline lesson: Test whether urgency is real and build a reverse timeline.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "Whose event matters?",
+      "options": [
+        "The buyer's",
+        "The seller's",
+        "The CRM's",
+        "The vendor's"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Critical Event and Reverse Timeline lesson: Test whether urgency is real and build a reverse timeline.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "Reverse planning begins with:",
+      "options": [
+        "The milestone and required preceding outcomes",
+        "The contract price",
+        "The logo",
+        "The seller stage"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Review the Critical Event and Reverse Timeline lesson: Test whether urgency is real and build a reverse timeline.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "'This quarter' is weak because:",
+      "options": [
+        "It is too long",
+        "It lacks buyer consequence and dependencies",
+        "It is financial",
+        "It names a date"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Critical Event and Reverse Timeline lesson: Test whether urgency is real and build a reverse timeline.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}

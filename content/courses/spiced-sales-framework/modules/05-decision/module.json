@@ -1,0 +1,22 @@
+{
+  "id": "05-decision",
+  "slug": "05-decision",
+  "order": 5,
+  "title": "Decision Dynamics",
+  "description": "criteria, participants, steps, approvals, and trade-offs",
+  "difficulty": "intermediate",
+  "estimatedHours": 2,
+  "badge": {
+    "name": "Decision Dynamics Badge",
+    "icon": "🌶️",
+    "description": "Completed Decision Dynamics"
+  },
+  "learningObjectives": [
+    "Map how the customer will evaluate, approve, and purchase",
+    "Apply the concept to the Northstar Health case",
+    "Document evidence and the next verification action"
+  ],
+  "prerequisiteModules": [
+    "04-critical-event"
+  ]
+}

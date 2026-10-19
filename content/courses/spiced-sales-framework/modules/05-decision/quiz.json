@@ -1,0 +1,63 @@
+{
+  "id": "05-decision-quiz",
+  "moduleId": "05-decision",
+  "passingScore": 75,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Decision includes:",
+      "options": [
+        "Only authority",
+        "Criteria, roles, steps, and approvals",
+        "Only budget",
+        "Only the signature"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Decision Dynamics lesson: Map how the customer will evaluate, approve, and purchase.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q2",
+      "question": "Best evidence?",
+      "options": [
+        "Our champion says it is easy",
+        "Named roles and confirmed review sequence",
+        "A likely close date",
+        "A discount request"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Decision Dynamics lesson: Map how the customer will evaluate, approve, and purchase.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "01-concept"
+    },
+    {
+      "id": "q3",
+      "question": "Security review is:",
+      "options": [
+        "Noise",
+        "A decision dependency",
+        "Impact",
+        "Situation only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Review the Decision Dynamics lesson: Map how the customer will evaluate, approve, and purchase.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    },
+    {
+      "id": "q4",
+      "question": "Unknown decision steps should be:",
+      "options": [
+        "Guessed",
+        "Hidden",
+        "Tracked with a verification action",
+        "Marked complete"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Review the Decision Dynamics lesson: Map how the customer will evaluate, approve, and purchase.",
+      "difficulty": "intermediate",
+      "relatedLessonId": "02-mission"
+    }
+  ]
+}
