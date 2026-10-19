@@ -34,3 +34,14 @@ That profile caps the declared baseline at one worker and 1,024 MB, denies egres
 - `.lab-state/` is generated local state and must not be committed as evidence.
 
 Use `data/` for the versioned synthetic fixture and `evidence/` for the evidence repository contract. Later slices may add services behind these profiles without changing the Academy application runtime.
+
+## B5 baseline quality harness
+
+The repository-owned baseline harness validates the course/module inventory, all four Draft 2020-12 contract instances, synthetic fixture references, evidence-template digests, unresolved placeholder markers, and high-confidence credential signatures. It performs no network or provider call.
+
+```bash
+pnpm fde:quality:generate
+pnpm fde:quality:check
+```
+
+`generate` writes `quality/baseline-report.json` atomically. The report contains no timestamp or machine-specific path, so a second generation is byte-identical. `check` recomputes the report and fails if the tracked bytes are stale. This baseline implements the repository-owned fixture-validation follow-up in issue #103; the broader semantic evidence-manifest validator remains isolated in issue #105.

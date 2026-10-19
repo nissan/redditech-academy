@@ -1,0 +1,70 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "forward-deployed-ai-engineering",
+  "bddScenarios": [
+    "FDE-20",
+    "FDE-21"
+  ],
+  "checks": [
+    {
+      "id": "course-inventory",
+      "status": "pass",
+      "details": {
+        "modules": 12,
+        "firstOrder": 0,
+        "lastOrder": 11
+      }
+    },
+    {
+      "id": "draft-2020-12-schemas",
+      "status": "pass",
+      "details": {
+        "draft": "2020-12",
+        "validatedInstances": 4
+      }
+    },
+    {
+      "id": "fixture-integrity",
+      "status": "pass",
+      "details": {
+        "datasetId": "harbourcare-synthetic-v1",
+        "sha256": "571c3b494eb0e5ca6914d5033883e459f856cd5a7e2493fb3e471af7e6c7d541",
+        "tenants": 2,
+        "personas": 4,
+        "documents": 4,
+        "erpRecords": 4,
+        "goldenCases": 4
+      }
+    },
+    {
+      "id": "evidence-references",
+      "status": "pass",
+      "details": {
+        "templates": 5,
+        "profiles": 2,
+        "authenticatedReferences": 9
+      }
+    },
+    {
+      "id": "zero-placeholders",
+      "status": "pass",
+      "details": {
+        "filesScanned": 30,
+        "matches": 0
+      }
+    },
+    {
+      "id": "credential-signatures",
+      "status": "pass",
+      "details": {
+        "filesScanned": 30,
+        "matches": 0
+      }
+    }
+  ],
+  "summary": {
+    "status": "pass",
+    "passed": 6,
+    "failed": 0
+  }
+}
