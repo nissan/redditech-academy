@@ -1,0 +1,478 @@
+{
+  "schemaVersion": "agd-accessibility-matrix-v1",
+  "contractId": "agd-accessibility-matrix-v1",
+  "title": "Agentic Game Development bounded accessibility behaviour matrix",
+  "standardTarget": "WCAG 2.2 Level AA bounded behaviours",
+  "accessedOn": "2026-10-20",
+  "claimBoundary": "This contract defines bounded behaviours and evidence for the required Academy missions and learner-built game paths. It does not claim WCAG 2.2 conformance, whole-site accessibility, or platform certification. A passing row proves only the named behaviour on the recorded build, input, browser, engine, operating system, and assistive-technology context; independent evaluation against the complete standard and applicable platform guidance is still required for any broader claim.",
+  "manualOwnerDirectory": {
+    "sara-independent-accessibility-review": {
+      "role": "Independent accessibility reviewer",
+      "responsibility": "Run and record every assigned manual check against the exact review head without relying on learner-authored verdicts or screenshots alone."
+    }
+  },
+  "allowedEvidenceTypes": [
+    "automated-static",
+    "automated-unit",
+    "automated-component",
+    "automated-e2e",
+    "manual-keyboard",
+    "manual-visual",
+    "manual-screen-reader",
+    "manual-gameplay",
+    "manual-controller",
+    "manual-media-review"
+  ],
+  "sources": [
+    {
+      "id": "wcag-2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "version": "W3C Recommendation, 12 December 2024",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "wai-aria-apg-keyboard",
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/",
+      "version": "WAI-ARIA Authoring Practices Guide keyboard interface guidance",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "web-reduced-motion",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion",
+      "version": "MDN Web Docs, prefers-reduced-motion reference",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "unity-6.3-input-system",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.inputsystem.html",
+      "version": "Unity 6.3 manual; exact Input System package remains subject to the blocked A2 package-resolution gate",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "unity-input-rebinding",
+      "url": "https://docs.unity3d.com/Packages/com.unity.inputsystem@1.14/manual/ActionBindings.html#interactive-rebinding",
+      "version": "Unity Input System 1.14 documentation; implementation version is illustrative until A2 locks the compatible package",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "unity-6.3-audio-mixer",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Audio.AudioMixer.SetFloat.html",
+      "version": "Unity 6.3 Scripting API",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "unity-6.3-time-scale",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Time-timeScale.html",
+      "version": "Unity 6.3 Scripting API",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "godot-4.7-input-map",
+      "url": "https://docs.godotengine.org/en/4.7/classes/class_inputmap.html",
+      "version": "Godot Engine 4.7 documentation",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "godot-4.7-gui-navigation",
+      "url": "https://docs.godotengine.org/en/4.7/tutorials/ui/gui_navigation.html",
+      "version": "Godot Engine 4.7 documentation",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "godot-4.7-audio-server",
+      "url": "https://docs.godotengine.org/en/4.7/classes/class_audioserver.html",
+      "version": "Godot Engine 4.7 documentation",
+      "accessedOn": "2026-10-20"
+    },
+    {
+      "id": "godot-4.7-pause",
+      "url": "https://docs.godotengine.org/en/4.7/tutorials/scripting/pausing_games.html",
+      "version": "Godot Engine 4.7 documentation",
+      "accessedOn": "2026-10-20"
+    }
+  ],
+  "rows": [
+    {
+      "id": "academy-semantic-structure-and-instructions",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Required missions expose headings, regions, lists, form relationships, control purpose, and linked instructions programmatically; instructions do not depend only on shape, colour, position, or sound.",
+      "wcag": [
+        {"criterion": "1.3.1", "name": "Info and Relationships", "level": "A", "relevance": "Semantic structure and relationships are programmatically determinable."},
+        {"criterion": "1.3.3", "name": "Sensory Characteristics", "level": "A", "relevance": "Instructions do not rely only on sensory characteristics."},
+        {"criterion": "3.3.2", "name": "Labels or Instructions", "level": "A", "relevance": "Inputs and interactive tasks receive labels or instructions."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Native headings, landmarks, lists, label/fieldset/legend, aria-describedby, and adjacent persistent instructions", "expected": "Browser accessibility tree exposes structure, purpose, and instruction linkage in reading order."}
+      ],
+      "evidence": [
+        {"type": "automated-component", "automated": true, "proof": "Component assertions inspect semantic roles, accessible names, and instruction ID references."},
+        {"type": "manual-screen-reader", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer traverses one mission of each required interaction family and records announced structure, names, and instructions."}
+      ],
+      "failureRule": "Any required control or instruction that is not programmatically available fails the accessibility gate."
+    },
+    {
+      "id": "academy-non-colour-information-and-status",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Errors, success, focus, selection, ordering, and mission state use text, iconography, shape, or programmatic state in addition to colour, and dynamic status is announced without moving focus.",
+      "wcag": [
+        {"criterion": "1.4.1", "name": "Use of Color", "level": "A", "relevance": "Colour is not the only visual means of conveying information."},
+        {"criterion": "4.1.3", "name": "Status Messages", "level": "AA", "relevance": "Status is exposed so assistive technology can announce it without focus movement."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Visible text/icon state plus aria-live or role=status/alert chosen by urgency", "expected": "State remains understandable in grayscale and is announced once when it changes."}
+      ],
+      "evidence": [
+        {"type": "automated-component", "automated": true, "proof": "State-change tests assert visible non-colour tokens and the correct live-region semantics."},
+        {"type": "manual-visual", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer verifies required states in grayscale/high-contrast presentation."},
+        {"type": "manual-screen-reader", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer verifies status is announced once without unexpected focus movement."}
+      ],
+      "failureRule": "Colour-only or silent required status fails the row."
+    },
+    {
+      "id": "academy-contrast-resize-and-reflow",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Required text meets contrast, scales to 200 percent, and reflows at the WCAG equivalent of 320 CSS pixels without loss of information or two-dimensional scrolling except for genuinely excepted content.",
+      "wcag": [
+        {"criterion": "1.4.3", "name": "Contrast (Minimum)", "level": "AA", "relevance": "Text and images of text meet the required contrast ratio."},
+        {"criterion": "1.4.4", "name": "Resize Text", "level": "AA", "relevance": "Text resizes to 200 percent without loss of content or function."},
+        {"criterion": "1.4.10", "name": "Reflow", "level": "AA", "relevance": "Content reflows at the specified viewport equivalent without unnecessary two-dimensional scrolling."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "CSS relative units, responsive layout, wrapping code/controls, browser zoom, and measured foreground/background design tokens", "expected": "Required mission content remains readable and operable at 200 percent zoom and 320 CSS-pixel width."}
+      ],
+      "evidence": [
+        {"type": "automated-e2e", "automated": true, "proof": "Browser checks exercise narrow viewport/zoom-equivalent layouts and flag overflow or clipped required controls."},
+        {"type": "automated-static", "automated": true, "proof": "Contrast calculation records the sampled token pairs and ratios."},
+        {"type": "manual-visual", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer checks 200 percent zoom and narrow reflow for overlap, clipping, reading order, and exceptions."}
+      ],
+      "failureRule": "A required instruction or control lost to contrast, resize, or reflow fails the row."
+    },
+    {
+      "id": "academy-non-text-contrast-and-visible-focus",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Required control boundaries, meaningful graphics, and keyboard focus indicators have sufficient non-text contrast; focused components remain visible and are not entirely obscured.",
+      "wcag": [
+        {"criterion": "1.4.11", "name": "Non-text Contrast", "level": "AA", "relevance": "Required UI component states and graphical information reach 3:1 contrast where applicable."},
+        {"criterion": "2.4.7", "name": "Focus Visible", "level": "AA", "relevance": "Keyboard focus has a visible indicator."},
+        {"criterion": "2.4.11", "name": "Focus Not Obscured (Minimum)", "level": "AA", "relevance": "Focused components are not entirely hidden by author-created content."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": ":focus-visible styling, non-colour state borders/icons, scroll-margin, and non-obscuring sticky overlays", "expected": "Each keyboard stop has a persistent visible indicator and remains perceivable."}
+      ],
+      "evidence": [
+        {"type": "automated-e2e", "automated": true, "proof": "Tab traversal records focused elements and bounding-box visibility under overlays."},
+        {"type": "manual-keyboard", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer follows every required task path and records focus visibility, contrast, and obstruction."}
+      ],
+      "failureRule": "Missing, colour-indistinct, or fully obscured focus on a required path fails the row."
+    },
+    {
+      "id": "academy-keyboard-order-and-no-trap",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-008", "AGD-CORE-029"],
+      "behaviour": "Every required mission action is operable by keyboard, focus follows a logical sequence, and the learner can leave each component using ordinary keyboard commands.",
+      "wcag": [
+        {"criterion": "2.1.1", "name": "Keyboard", "level": "A", "relevance": "Functionality does not require a pointer or path-dependent motion."},
+        {"criterion": "2.1.2", "name": "No Keyboard Trap", "level": "A", "relevance": "Focus can leave components without undocumented methods."},
+        {"criterion": "2.4.3", "name": "Focus Order", "level": "A", "relevance": "Sequential navigation preserves meaning and operability."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Native interactive elements, DOM-order tab sequence, managed composite-widget focus only where needed, Escape/close behaviour, and focus return", "expected": "Keyboard-only completion reaches every required action with predictable entry, operation, exit, and focus return."}
+      ],
+      "evidence": [
+        {"type": "automated-e2e", "automated": true, "proof": "Keyboard-only browser tests complete each required interaction family and assert focus order/exit."},
+        {"type": "manual-keyboard", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer completes a required mission without pointer input and records any trap or unexpected focus jump."}
+      ],
+      "failureRule": "One pointer-only action, illogical blocking focus order, or keyboard trap withholds core completion."
+    },
+    {
+      "id": "academy-no-required-timing-and-resume",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Assessment completion does not require a timed response; moving or auto-updating instructional content can be paused; long labs preserve resumable evidence without expiring the learner's work.",
+      "wcag": [
+        {"criterion": "2.2.1", "name": "Timing Adjustable", "level": "A", "relevance": "Any time limit is absent or can be turned off, adjusted, or extended under the criterion."},
+        {"criterion": "2.2.2", "name": "Pause, Stop, Hide", "level": "A", "relevance": "Moving or auto-updating content can be paused, stopped, hidden, or controlled."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Untimed mission state, explicit pause controls for motion/media, durable draft/evidence checkpoints, and explicit resume action", "expected": "Waiting, pausing, closing, and resuming do not forfeit a required attempt or evidence deposit."}
+      ],
+      "evidence": [
+        {"type": "automated-e2e", "automated": true, "proof": "Clock-advanced and reload/resume tests prove no required timeout and preservation of in-progress evidence."},
+        {"type": "manual-gameplay", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer pauses and resumes a long-lab path and checks that instructions and evidence remain usable."}
+      ],
+      "failureRule": "An unavoidable assessment timeout or loss of resumable required evidence fails the row."
+    },
+    {
+      "id": "academy-non-drag-alternative",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-008", "AGD-CORE-029"],
+      "behaviour": "Every ordering or placement task that supports dragging also exposes a single-pointer and keyboard-operable alternative such as named Move up and Move down controls.",
+      "wcag": [
+        {"criterion": "2.5.7", "name": "Dragging Movements", "level": "AA", "relevance": "Dragging functionality has a non-drag single-pointer alternative unless essential."},
+        {"criterion": "2.1.1", "name": "Keyboard", "level": "A", "relevance": "The same ordering outcome is available from the keyboard."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Per-item Move up/Move down buttons with item name, disabled boundary state, maintained focus, and announced position", "expected": "A learner reorders, verifies, and submits using no drag gesture."}
+      ],
+      "evidence": [
+        {"type": "automated-component", "automated": true, "proof": "Tests reorder first/middle/last items by named controls, preserve focus, and announce position."},
+        {"type": "manual-keyboard", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer completes the ordering mission without drag, pointer movement, or touch gesture."}
+      ],
+      "failureRule": "A required ordering result available only through dragging fails the row."
+    },
+    {
+      "id": "academy-programmatic-names-values-and-status",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Required controls expose accurate names, roles, values, expanded/selected/disabled state, validation relationships, and changed status to assistive technology.",
+      "wcag": [
+        {"criterion": "4.1.2", "name": "Name, Role, Value", "level": "A", "relevance": "Custom and native controls expose programmatic identity and state."},
+        {"criterion": "4.1.3", "name": "Status Messages", "level": "AA", "relevance": "Changed results are programmatically determinable without focus movement."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Native button/input semantics; accessible-name calculation; aria-expanded, aria-selected, aria-invalid, aria-describedby, and live-region status only when native semantics are insufficient", "expected": "Accessibility-tree inspection matches visible purpose and current state."}
+      ],
+      "evidence": [
+        {"type": "automated-component", "automated": true, "proof": "Role/name/state queries and state-transition assertions cover required custom widgets."},
+        {"type": "manual-screen-reader", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer verifies names, state changes, errors, and completion status in one supported screen reader/browser pair."}
+      ],
+      "failureRule": "Unnamed, misleading, or programmatically stale required controls/status fail the row."
+    },
+    {
+      "id": "academy-diagram-and-media-alternatives",
+      "scope": "academy-ui",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-029"],
+      "behaviour": "Instructional diagrams include equivalent prose; prerecorded audio/video used for a required outcome includes the applicable transcript, captions, and text or audio-description alternative.",
+      "wcag": [
+        {"criterion": "1.1.1", "name": "Non-text Content", "level": "A", "relevance": "Meaningful diagrams have a text alternative serving the same purpose."},
+        {"criterion": "1.2.1", "name": "Audio-only and Video-only (Prerecorded)", "level": "A", "relevance": "Prerecorded audio-only/video-only content has an equivalent alternative."},
+        {"criterion": "1.2.2", "name": "Captions (Prerecorded)", "level": "A", "relevance": "Prerecorded synchronized media has captions."},
+        {"criterion": "1.2.3", "name": "Audio Description or Media Alternative (Prerecorded)", "level": "A", "relevance": "Prerecorded video conveys visual information through audio description or a media alternative."}
+      ],
+      "platformControls": [
+        {"platform": "Academy web", "control": "Diagram prose adjacent to the figure; meaningful alt text; WebVTT captions; linked transcript/media alternative", "expected": "The required concept and task instructions remain available without seeing the diagram or hearing/seeing the media."}
+      ],
+      "evidence": [
+        {"type": "automated-static", "automated": true, "proof": "Content checks require declared alternative/caption/transcript references and reject missing files."},
+        {"type": "manual-media-review", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer checks semantic equivalence, caption accuracy/synchronization, and coverage of task-critical visual/audio content."}
+      ],
+      "failureRule": "A required concept or instruction available only visually or audibly fails the row."
+    },
+    {
+      "id": "game-remappable-controls-where-supported",
+      "scope": "learner-game",
+      "applicability": "conditional",
+      "condition": "Required when the selected engine/input layer exposes runtime rebinding for the claimed keyboard or controller action set; unsupported cases must be documented with an equivalent multi-input mapping and may not be described as remappable.",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007", "AGD-CORE-008"],
+      "behaviour": "Gameplay actions can be rebound where the selected input layer supports rebinding, conflicts are handled explicitly, and reset restores documented defaults.",
+      "wcag": [
+        {"criterion": "2.1.1", "name": "Keyboard", "level": "A", "relevance": "Required gameplay does not depend on one fixed pointer or physical key path."},
+        {"criterion": "2.1.4", "name": "Character Key Shortcuts", "level": "A", "relevance": "Single-character shortcuts that create accidental activation can be remapped, disabled, or limited to focus where applicable."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "Input System InputAction binding overrides and interactive rebinding; exact compatible package version remains blocked by A2", "expected": "Rebind, conflict, persistence, and reset behaviour are tested on the pinned implementation before any support claim."},
+        {"platform": "Godot game", "control": "InputMap action events with a settings-layer replace/add/remove/reset flow", "expected": "Named actions accept the changed binding and restore defaults without editing project files."},
+        {"platform": "Browser game", "control": "Action-to-KeyboardEvent mapping stored behind a validated settings adapter with reset", "expected": "Changed bindings drive actions, reject reserved/conflicting choices, and survive only according to the documented persistence policy."}
+      ],
+      "evidence": [
+        {"type": "automated-unit", "automated": true, "proof": "Changed-binding, conflict, persistence, and reset fixtures assert action results rather than settings labels alone."},
+        {"type": "manual-gameplay", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer changes one movement and one action binding, completes the action, then resets defaults."}
+      ],
+      "failureRule": "If remapping is claimed or supported by the chosen layer, a label-only or nonfunctional remap fails; otherwise the limitation and alternative mapping must be explicit."
+    },
+    {
+      "id": "game-keyboard-menu-operation",
+      "scope": "learner-game",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007", "AGD-CORE-008"],
+      "behaviour": "Start, settings, pause, confirmation, and recovery menus are navigable, operable, and escapable by keyboard with visible current focus.",
+      "wcag": [
+        {"criterion": "2.1.1", "name": "Keyboard", "level": "A", "relevance": "Menu functions are available without pointer input."},
+        {"criterion": "2.1.2", "name": "No Keyboard Trap", "level": "A", "relevance": "The player can leave or close menu layers."},
+        {"criterion": "2.4.7", "name": "Focus Visible", "level": "AA", "relevance": "The current menu target is visibly identified."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "EventSystem/Input System UI actions with explicit first selection, directional navigation, submit, cancel, and selected-state styling", "expected": "Keyboard-only start-to-play-to-pause-to-resume path works on the pinned player build."},
+        {"platform": "Godot game", "control": "Control focus_mode/focus neighbors and ui_focus/ui_accept/ui_cancel actions", "expected": "Focus enters, traverses, activates, cancels, and returns predictably."},
+        {"platform": "Browser game", "control": "Native button/dialog controls and managed canvas-to-menu focus boundary", "expected": "Tab/arrow/Enter/Space/Escape operation reaches all menu commands without trapping focus in canvas."}
+      ],
+      "evidence": [
+        {"type": "automated-e2e", "automated": true, "proof": "Target-context smoke drives the documented keyboard sequence and asserts state transitions/focus."},
+        {"type": "manual-keyboard", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer completes the full menu/pause/recovery path with keyboard only."}
+      ],
+      "failureRule": "Any required menu or recovery action that needs pointer input fails the core gate."
+    },
+    {
+      "id": "game-readable-scalable-text",
+      "scope": "learner-game",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007"],
+      "behaviour": "Required game text has measured contrast, remains readable at the reduced 1280 by 720 target, and exposes an in-game text/UI scale that does not clip required labels or instructions.",
+      "wcag": [
+        {"criterion": "1.4.3", "name": "Contrast (Minimum)", "level": "AA", "relevance": "Required game text uses the same minimum text-contrast ratios as the bounded target."},
+        {"criterion": "1.4.4", "name": "Resize Text", "level": "AA", "relevance": "The bounded implementation provides a text/UI scale and preserves required content."},
+        {"criterion": "1.4.10", "name": "Reflow", "level": "AA", "relevance": "Responsive game UI preserves required text at the tested viewport; canvas exceptions are not used to excuse clipped menus or instructions."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "Canvas Scaler plus explicit user text/UI scale setting and layout groups/content sizing", "expected": "Largest supported scale preserves complete required labels at 1280 by 720."},
+        {"platform": "Godot game", "control": "Theme font-size variation, Control anchors/containers, and explicit scale setting", "expected": "Largest supported scale preserves required labels and menu operation."},
+        {"platform": "Browser game", "control": "DOM settings/menu text in relative units and canvas text backed by a user scale plus DOM-equivalent instructions", "expected": "Text remains legible and complete at the documented viewport and scale."}
+      ],
+      "evidence": [
+        {"type": "automated-static", "automated": true, "proof": "Contrast calculations and layout snapshots record tested colours, resolution, and scale values."},
+        {"type": "manual-visual", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer checks largest supported text/UI scale for clipping, overlap, truncation, and readability on the reduced target."}
+      ],
+      "failureRule": "Unreadable contrast or clipped required text at a documented supported scale fails the row."
+    },
+    {
+      "id": "game-non-colour-feedback",
+      "scope": "learner-game",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007"],
+      "behaviour": "Pickup, delivery, success, failure, hazard, readiness, and cooldown states are distinguishable without colour through text, shape, icon, motion-independent pattern, or audio paired with a visual/text equivalent.",
+      "wcag": [
+        {"criterion": "1.4.1", "name": "Use of Color", "level": "A", "relevance": "Gameplay state is not communicated by colour alone."},
+        {"criterion": "1.1.1", "name": "Non-text Content", "level": "A", "relevance": "Meaningful game icons/graphics have an equivalent label or perceivable alternative in the bounded UI."}
+      ],
+      "platformControls": [
+        {"platform": "Unity, Godot, and browser games", "control": "State-specific text/icon/shape tokens driven from the same Signal Relay state, with optional audio as redundant feedback", "expected": "Every required state remains identifiable in grayscale and with audio muted."}
+      ],
+      "evidence": [
+        {"type": "automated-unit", "automated": true, "proof": "Each mechanic state produces a unique non-colour feedback token from the state model."},
+        {"type": "manual-gameplay", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer identifies each required state in grayscale with audio muted and records any ambiguity."}
+      ],
+      "failureRule": "A required state distinguishable only by hue or audio fails the row."
+    },
+    {
+      "id": "game-independent-volume-control",
+      "scope": "learner-game",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007"],
+      "behaviour": "Music and sound-effects levels can be changed independently, including mute, before or during the required playable path without changing the host device volume.",
+      "wcag": [
+        {"criterion": "1.4.2", "name": "Audio Control", "level": "A", "relevance": "Automatically playing audio can be paused/stopped or controlled independently of system volume; this row applies the control more broadly to required game audio."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "Separate exposed AudioMixer parameters changed with AudioMixer.SetFloat and persisted through validated settings", "expected": "Music and effects each change/mute without affecting the other channel or device volume."},
+        {"platform": "Godot game", "control": "Separate AudioServer buses with independent volume_db/mute settings", "expected": "Music and effects each change/mute independently."},
+        {"platform": "Browser game", "control": "Separate Web Audio GainNode branches for music and effects, initialized only after user activation", "expected": "Each branch changes/mutes independently and no audio autoplays before activation."}
+      ],
+      "evidence": [
+        {"type": "automated-unit", "automated": true, "proof": "Settings tests assert independent channel values, mute, boundary clamping, and persistence/recovery."},
+        {"type": "manual-gameplay", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer audibly verifies each channel at minimum, intermediate, maximum, and mute while the other remains unchanged."}
+      ],
+      "failureRule": "A single master-only control, ineffective mute, or coupled music/effects setting fails the row."
+    },
+    {
+      "id": "game-pause-behaviour",
+      "scope": "learner-game",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007", "AGD-CORE-008"],
+      "behaviour": "The player can pause and resume the core loop; simulation, cooldown, input, audio, menus, and focus follow a documented policy with no hidden progression or duplicate events.",
+      "wcag": [
+        {"criterion": "2.2.2", "name": "Pause, Stop, Hide", "level": "A", "relevance": "Player-controlled pause stops moving/updating required game content under the documented policy."},
+        {"criterion": "2.1.1", "name": "Keyboard", "level": "A", "relevance": "Pause and resume are keyboard operable."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "Documented pause state using Time.timeScale where suitable, unscaled menu input, explicit audio policy, and guarded event subscriptions", "expected": "Simulation/cooldown stop and resume exactly once while the pause menu stays operable."},
+        {"platform": "Godot game", "control": "SceneTree.paused with explicit process_mode for pause UI/audio policy", "expected": "Gameplay nodes stop while required pause controls remain operable."},
+        {"platform": "Browser game", "control": "Explicit simulation paused flag, requestAnimationFrame delta reset, visibility/focus handling, and Web Audio suspend/resume policy", "expected": "No catch-up jump, hidden progression, or duplicate award occurs after pause/resume."}
+      ],
+      "evidence": [
+        {"type": "automated-unit", "automated": true, "proof": "Pause-at-each-state tests assert frozen simulation/cooldown, no duplicate events, and bounded resume delta."},
+        {"type": "manual-keyboard", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer pauses/resumes from keyboard during ready, carrying, delivery, and cooldown states and records observed policy."}
+      ],
+      "failureRule": "Unavailable keyboard pause, hidden progress, state corruption, or duplicate award on resume fails the row."
+    },
+    {
+      "id": "game-reduced-motion-and-camera-shake",
+      "scope": "learner-game",
+      "applicability": "required",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007"],
+      "behaviour": "A persistent setting disables camera shake and non-essential motion while preserving state feedback through non-motion cues; the browser version initializes from prefers-reduced-motion without preventing an explicit override.",
+      "wcag": [
+        {"criterion": "2.3.3", "name": "Animation from Interactions", "level": "AAA", "relevance": "Included as a bounded enhancement beyond Level AA because interaction-triggered camera motion can cause harm; animation can be disabled unless essential."},
+        {"criterion": "2.2.2", "name": "Pause, Stop, Hide", "level": "A", "relevance": "Moving non-essential presentation can be stopped under the bounded game policy."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "Accessibility setting gates camera impulse/shake amplitude and non-essential tween/particle motion at the source", "expected": "Reduced mode produces zero camera-shake displacement while retaining text/icon feedback."},
+        {"platform": "Godot game", "control": "Accessibility setting gates Camera2D/3D shake offsets and non-essential AnimationPlayer/particle effects", "expected": "Reduced mode removes camera shake without removing required state information."},
+        {"platform": "Browser game", "control": "matchMedia('(prefers-reduced-motion: reduce)') initializes a user-overridable setting that gates canvas/CSS motion", "expected": "Reduced preference is respected on first run and explicit user choice remains effective."}
+      ],
+      "evidence": [
+        {"type": "automated-unit", "automated": true, "proof": "Reduced-mode fixtures assert zero shake amplitude/non-essential transform motion and preserved non-motion state tokens."},
+        {"type": "manual-gameplay", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer toggles the setting before and during play and compares camera/non-essential motion while confirming equivalent feedback."}
+      ],
+      "failureRule": "Camera shake that cannot be disabled, a setting that does not affect motion, or loss of required feedback fails the row."
+    },
+    {
+      "id": "game-controller-operation-only-when-claimed",
+      "scope": "learner-game",
+      "applicability": "conditional",
+      "condition": "Required only when course copy, settings, build metadata, or release notes claim controller support; otherwise controller affordances and claims must be absent and the row is recorded not applicable rather than passed.",
+      "required": true,
+      "nonCompensable": true,
+      "scenarioIds": ["AGD-CORE-007", "AGD-CORE-008"],
+      "behaviour": "Every claimed controller path is tested on a named device and operating system for connect-before-launch, connect-after-launch, menus, gameplay, pause, disconnect, reconnect, prompts, and any claimed rebinding.",
+      "wcag": [
+        {"criterion": "2.1.1", "name": "Keyboard", "level": "A", "relevance": "Controller support supplements rather than replaces the required keyboard path; WCAG does not itself certify controller compatibility."},
+        {"criterion": "2.5.6", "name": "Concurrent Input Mechanisms", "level": "AAA", "relevance": "Included as relevant platform guidance beyond Level AA: controller use must not disable another available input mechanism unless essential or required for security."}
+      ],
+      "platformControls": [
+        {"platform": "Unity game", "control": "Pinned Input System device layout/control scheme and UI actions, with runtime device-change handling", "expected": "The named controller/build/OS matrix passes all claimed actions and fallback after disconnect."},
+        {"platform": "Godot game", "control": "InputMap joypad events and connection_changed handling", "expected": "The named controller/build/OS matrix passes all claimed actions and fallback after disconnect."},
+        {"platform": "Browser game", "control": "Gamepad API feature detection, explicit opt-in claim, connect/disconnect handling, and keyboard fallback", "expected": "Only a tested browser/controller/OS tuple is named as supported."}
+      ],
+      "evidence": [
+        {"type": "automated-unit", "automated": true, "proof": "Synthetic device/action tests cover mapping, disconnect fallback, and prompt switching where the engine harness permits."},
+        {"type": "manual-controller", "automated": false, "owner": "sara-independent-accessibility-review", "proof": "Reviewer records controller model, connection mode, OS, build identity, every claimed action, disconnect/reconnect result, and limitations."}
+      ],
+      "failureRule": "An untested universal controller claim, a failed claimed action, or controller-only required path fails the row; no claim means explicit not-applicable evidence, not an inferred pass."
+    }
+  ]
+}
