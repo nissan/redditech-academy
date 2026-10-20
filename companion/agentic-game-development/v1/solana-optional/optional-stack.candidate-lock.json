@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "agd-solana-optional-candidate-lock-v1",
+  "status": "gate-a5-candidate-only",
+  "accessedOn": "2026-10-20",
+  "host": {
+    "os": "macOS 27.0.1 (26A434)",
+    "architecture": "arm64",
+    "node": "26.12.0",
+    "pnpm": "10.9.0"
+  },
+  "tools": {
+    "agaveSolanaCli": {
+      "version": "4.3.2",
+      "client": "Agave",
+      "installedBinarySha256": "577a8decef7ae1b1af0c2f8bd5acb9005024629835319a1a6f00fe6175e37f16",
+      "sourceArchiveSha256": "e23ce28d4fbcbfdb1dfc2a6b5f8b4da2fbc3597d8a8c067d3914fca60227b395",
+      "sourceUrl": "https://github.com/anza-xyz/agave/releases/tag/v4.3.2",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/anza-xyz/agave/blob/v4.3.2/LICENSE"
+    },
+    "surfpool": {
+      "version": "1.1.1",
+      "installedBinarySha256": "8303bf0764057a3320d16f8ce127ca4d233aa3b774a79a19eb965a392e3688b9",
+      "darwinArm64ArchiveSha256": "45c1eedba925b9afc2b23635f920053eab2e6dece10f67aed9d28f98e456dce6",
+      "sourceUrl": "https://github.com/solana-foundation/surfpool/releases/tag/v1.1.1",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/solana-foundation/surfpool/blob/v1.1.1/LICENSE"
+    }
+  },
+  "typescriptClient": {
+    "package": "@solana/kit",
+    "version": "8.5.0",
+    "registryIntegrity": "sha512-bMnXXADeyZFe3XyqzPhlQAIsmPYRiojaRO4JQxwGOmMwiQ5f13ZQodmsOqnt8W/n40P7r/+/pDqWuqG0TUv+yA==",
+    "tarballSha256": "8861d1db1d6d9d1f45e1b4a32686fc21e90217e76a9bb41d9cb1f81c4786c337",
+    "tarballUrl": "https://registry.npmjs.org/@solana/kit/-/kit-8.5.0.tgz",
+    "maintainerReleaseUrl": "https://github.com/anza-xyz/kit/releases/tag/v8.5.0",
+    "maintainerCommit": "f35eab56d68a4d4421a5dbf018ad3cf6c3423d62",
+    "license": "MIT",
+    "licenseUrl": "https://github.com/anza-xyz/kit/blob/v8.5.0/LICENSE",
+    "nodeEngine": ">=20.18.0",
+    "typescriptPeer": ">=5.4.0"
+  },
+  "clusters": {
+    "local": {
+      "rpc": "http://127.0.0.1:18999",
+      "websocket": "ws://127.0.0.1:19000",
+      "runner": "Surfpool 1.1.1 --offline"
+    },
+    "development": {
+      "rpc": "https://api.devnet.solana.com",
+      "liveTransactionRequiredForGateA5": false,
+      "liveTransactionExecutedForGateA5": false
+    },
+    "productionClusterConfigured": false
+  },
+  "keyPolicy": {
+    "pattern": "player-controlled throwaway test key",
+    "requiredLocation": "outside repository and source bundle",
+    "requiredMode": "0600 or stricter",
+    "logging": "never print secret bytes, seed phrases, or key-file contents"
+  },
+  "futureGlobalLockIntegration": {
+    "target": "companion/agentic-game-development/v1/bundle.lock.json",
+    "precondition": "Gate A2 passes every mandatory Unity, Godot, TypeScript, Vitest, Chromium, and Firefox row",
+    "semantics": "copy only this isolated optional-stack section and its resolved pnpm integrity graph into a newly validated complete global lock; this file must never be renamed or interpreted as that global lock"
+  }
+}
