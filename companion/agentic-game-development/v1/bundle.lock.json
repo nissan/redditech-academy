@@ -1,0 +1,143 @@
+{
+  "acceptedGateReferences": {
+    "accessibility": {
+      "commit": "4895128c960e13173e8b7d7d99e1283c07f1bc68",
+      "files": [
+        {
+          "path": "companion/agentic-game-development/v1/contracts/accessibility-matrix-v1.json",
+          "sha256": "0be9d234f00d14a6a4a9a284890cbd493648afbcb8c6952f62a7af8aa129b585"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/contracts/validate-accessibility-matrix-v1.mjs",
+          "sha256": "1454b2cc5efaecb75f1dd3898ff03cec71d7129bd2567a5de34e64a64e63c474"
+        },
+        {
+          "path": "tests/agd-accessibility-matrix.test.ts",
+          "sha256": "0fb8a959e74c3fec85b73d55f83eb275fbd869b3c3f8fc8661ac2ec66612c116"
+        }
+      ],
+      "gate": "A4",
+      "tree": "85bbcdc3f842a9b6500d7be3fad35d368c38be34"
+    },
+    "solanaOptional": {
+      "commit": "854cb0d351c33fbb5d200daf541811961cd25f75",
+      "files": [
+        {
+          "path": "audits/issue-122-solana-gate-a.md",
+          "sha256": "303589b28fd6db9c1a833438b714a63deec2d33d909377a17b477980d6b6a9e4"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/optional-stack.candidate-lock.json",
+          "sha256": "6986a3a81f073f03cec30ba09d2a716c0f7e1d526316bf7c394b34639d06ed46"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/package.json",
+          "sha256": "e2c5a38fd851ed55071e63b93626333b373d5ed4f4ea419252035b857a3065bc"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/pnpm-lock.yaml",
+          "sha256": "9e2d8361fef7766e22ed03afe64c21204c02e108644f9a177e0a5c330b6eb498"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/scripts/localnet-smoke.mjs",
+          "sha256": "f7256a8d8d806db6cc54b417fe160560a5ddd9afe0d0cae719f5310b6c225d96"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/src/entitlement-adapter.mjs",
+          "sha256": "0123fa3b13b00653cd0a237db840afead2305ec12d91b7e1e27734b499789ebb"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/tests/entitlement-adapter.test.mjs",
+          "sha256": "c6d76f1450ef0676e522545ee662552708b79b47c593e119d7dfad645533ec94"
+        },
+        {
+          "path": "companion/agentic-game-development/v1/solana-optional/tsconfig.json",
+          "sha256": "9cd6637108c0b867839b3e4fe164735ba2b0dac6154bdbaa08a2937363e13550"
+        }
+      ],
+      "gate": "A5",
+      "tree": "09ed46162c564bb3de2de1a1510942e079be4a15"
+    }
+  },
+  "accessDate": "2026-10-24",
+  "browsers": [
+    {
+      "archiveSha256": "324f68a2c3a03ea5c9de81297ede5f78b333659b2b6594a4cb8071cd171f1404",
+      "archiveUrl": "https://cdn.playwright.dev/builds/cft/147.0.7727.15/mac-arm64/chrome-mac-arm64.zip",
+      "engine": "chromium",
+      "executableSha256": "3ae4a8cdc0e8d19f8799d3031eca038459dcb1fb6879b8e28a6f0c4fb5f75fc2",
+      "playwrightRevision": "1217",
+      "version": "147.0.7727.15"
+    },
+    {
+      "archiveSha256": "64e4552e00bb53f221d552dd66e2ac9fcb98fff31622ca73f8e100ab9979fe09",
+      "archiveUrl": "https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1511/firefox-mac-arm64.zip",
+      "engine": "firefox",
+      "executableSha256": "52a5ca3a878eae5628847be27bcc0966d759a2a224aec4c9c5e62ccb5609977a",
+      "playwrightRevision": "1511",
+      "version": "148.0.2"
+    }
+  ],
+  "bundleVersion": "1.0.0",
+  "engines": {
+    "godot": {
+      "archiveSha256": "c58a24e31d720be9d62f60cb5627c4e695fb72f21b0cfe1bc9ccaa9a3b3ba63e",
+      "archiveUrl": "https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_macos.universal.zip",
+      "build": "4.7.2.stable.official.ed1daf0bf",
+      "language": "GDScript",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/godotengine/godot/blob/4.7.2-stable/LICENSE.txt",
+      "platform": "macos-universal"
+    },
+    "unity": {
+      "architecture": "arm64",
+      "archiveMd5Base64": "OYM2IlbzPmOOdLJgKKz1iA==",
+      "archiveSha256": "f193b01430dfdde6167b15b55cd4d138ff6adb269ee3760690d33363a5777df0",
+      "archiveUrl": "https://download.unity3d.com/download_unity/de8167e7440c/MacEditorInstallerArm64/Unity-6000.3.26f1.pkg",
+      "editorLicenseUrl": "https://unity.com/legal/editor-terms-of-service/software",
+      "languageVersion": "9.0",
+      "revision": "de8167e7440c",
+      "scriptingProfile": ".NET Standard 2.1",
+      "testFramework": {
+        "distribution": "editor-builtin",
+        "license": "Unity Companion License",
+        "licenseSha256": "d3b09e9683afbc8d468a83000308f18e7133eaf7879af870747000a66e3c0693",
+        "licenseUrl": "https://unity.com/legal/licenses/unity-companion-license",
+        "packageCacheIdentity": "com.unity.test-framework@bd7f943e9647",
+        "sourceUrl": "https://docs.unity3d.com/Packages/com.unity.test-framework@1.6/manual/index.html",
+        "treeSha256": "df4cb771f320c081ab3f810d27468b3b9fe8e9478a8ee4e48753d85f53a42bed",
+        "version": "1.6.0"
+      },
+      "version": "6000.3.26f1"
+    }
+  },
+  "schemaVersion": "agd-bundle-lock-v1",
+  "source": {
+    "branch": "feat/122-agentic-game-development",
+    "gateA2PreCommit": "854cb0d351c33fbb5d200daf541811961cd25f75",
+    "gateA2PreTree": "09ed46162c564bb3de2de1a1510942e079be4a15",
+    "mainBaseCommit": "88f977c5a142ec2878efe9d3e8d0b34e62e08bc7",
+    "repository": "https://github.com/nissan/redditech-academy"
+  },
+  "status": "gate-a2-pass",
+  "webToolchain": {
+    "playwright": {
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/microsoft/playwright/blob/v1.59.1/LICENSE",
+      "sourceUrl": "https://github.com/microsoft/playwright/releases/tag/v1.59.1",
+      "version": "1.59.1"
+    },
+    "typescript": {
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/microsoft/TypeScript/blob/v5.9.3/LICENSE.txt",
+      "sourceUrl": "https://github.com/microsoft/TypeScript/releases/tag/v5.9.3",
+      "version": "5.9.3"
+    },
+    "vitest": {
+      "license": "MIT",
+      "licenseUrl": "https://github.com/vitest-dev/vitest/blob/v4.1.4/LICENSE",
+      "sourceUrl": "https://github.com/vitest-dev/vitest/releases/tag/v4.1.4",
+      "version": "4.1.4"
+    }
+  }
+}
